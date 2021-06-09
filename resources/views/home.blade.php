@@ -148,7 +148,7 @@
               <div class="inner">
                 <h3>{{$yap->monto}} Soles</h3>
 
-                <p>Total Yappe</p>
+                <p>Total Yape</p>
               </div>
               <div class="icon">
                 <i class="ion ion-bag"></i>

@@ -105,23 +105,23 @@
                                 <option selected="selected" value="EF">Efectivo</option>
                                 <option value="TJ">Tarjeta</option>
                                 <option value="DP">Depósito</option>
-                                <option value="YP">Yappe</option>
+                                <option value="YP">Yape</option>
                             @elseif($atencion->tipo_pago == 'TJ')
                             <option  value="EF">Efectivo</option>
                                 <option value="TJ selected="selected>Tarjeta</option>
                                 <option value="DP">Depósito</option>
-                                <option value="YP">Yappe</option>
+                                <option value="YP">Yape</option>
                             @elseif($atencion->tipo_pago == 'DP')
                                <option value="EF">Efectivo</option>
                                 <option value="TJ">Tarjeta</option>
                                 <option value="DP" selected="selected">Depósito</option>
-                                <option value="YP">Yappe</option>
+                                <option value="YP">Yape</option>
 
                             @else
                             <option  value="EF">Efectivo</option>
                                 <option value="TJ">Tarjeta</option>
                                 <option value="DP">Depósito</option>
-                            <option value="YP"selected="selected">Yappe</option>
+                            <option value="YP"selected="selected">Yape</option>
                             @endif
                                 
                             </select>

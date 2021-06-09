@@ -213,7 +213,7 @@
                         <option value="EF">Efectivo</option>
                         <option value="TJ">Tarjeta</option>
                         <option value="DP">Depósito</option>
-                        <option value="YP">Yappe</option>
+                        <option value="YP">Yape</option>
 
                       </select>
                     </div>
@@ -281,7 +281,7 @@
                         <option value="EF">Efectivo</option>
                         <option value="TJ">Tarjeta</option>
                         <option value="DP">Depósito</option>
-                        <option value="YP">Yappe</option>
+                        <option value="YP">Yape</option>
 
                       </select>
                     </div>
@@ -349,7 +349,7 @@
                         <option value="EF">Efectivo</option>
                         <option value="TJ">Tarjeta</option>
                         <option value="DP">Depósito</option>
-                        <option value="YP">Yappe</option>
+                        <option value="YP">Yape</option>
 
                       </select>
                     </div>
@@ -419,7 +419,7 @@
                         <option value="EF">Efectivo</option>
                         <option value="TJ">Tarjeta</option>
                         <option value="DP">Depósito</option>
-                        <option value="YP">Yappe</option>
+                        <option value="YP">Yape</option>
 
                       </select>
                     </div>
@@ -477,7 +477,7 @@
                             <option value="EF">Efectivo</option>
                             <option value="TJ">Tarjeta</option>
                             <option value="DP">Depósito</option>
-                            <option value="YP">Yappe</option>
+                            <option value="YP">Yape</option>
                         </select>
                   </div>
 
@@ -497,7 +497,7 @@
                             <option value="EF">Efectivo</option>
                             <option value="TJ">Tarjeta</option>
                             <option value="DP">Depósito</option>
-                            <option value="YP">Yappe</option>
+                            <option value="YP">Yape</option>
                         </select>
                   </div>
                   <div class="col-md-4">
@@ -511,7 +511,7 @@
                             <option value="EF">Efectivo</option>
                             <option value="TJ">Tarjeta</option>
                             <option value="DP">Depósito</option>
-                            <option value="YP">Yappe</option>
+                            <option value="YP">Yape</option>
                         </select>
                   </div>
 
