@@ -81,12 +81,7 @@
                   <p>Roles</p>
                 </a>
               </li>
-              <li class="nav-item">
-                <a href="{{route('ingproductos.create')}}" class="nav-link">
-                  <i class="far fa-circle nav-icon"></i>
-                  <p>Ingresos</p>
-                </a>
-              </li>
+            
               
               
             </ul>
