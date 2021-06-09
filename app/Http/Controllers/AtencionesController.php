@@ -12,6 +12,7 @@ use App\User;
 use App\Atenciones;
 use App\Consultas;
 use App\Metodos;
+use App\Comisiones;
 use Auth;
 use Illuminate\Http\Request;
 use DB;
@@ -27,17 +28,190 @@ class AtencionesController extends Controller
     public function index(Request $request)
     {
 
-        $atenciones = DB::table('atenciones as a')
-        ->select('a.id','a.tipo_origen','a.id_origen','a.sede','a.usuario','a.created_at','a.estatus','a.id_paciente','a.tipo_atencion','a.monto','a.abono','a.tipo_pago','b.nombres','b.apellidos','c.name as nameo','c.lastname as lasto','d.name as nameu','d.lastname as lastu')
+      if($request->inicio){
+        $f1 = $request->inicio;
+        $f2 = $request->fin;
+
+      
+
+        $serv = DB::table('atenciones as a')
+        ->select('a.id','a.tipo_origen','a.id_origen','a.id_tipo','a.sede','a.usuario','a.created_at','a.estatus','a.id_paciente','a.tipo_atencion','a.monto','a.abono','a.tipo_pago','b.nombres','b.apellidos','b.dni','c.name as nameo','c.lastname as lasto','d.name as nameu','d.lastname as lastu','s.nombre as detalle')
         ->join('pacientes as b','b.id','a.id_paciente')
         ->join('users as c','c.id','a.id_origen')
         ->join('users as d','d.id','a.usuario')
+        ->join('servicios as s','s.id','a.id_tipo')
         ->where('a.estatus', '=', 1)
+        ->where('a.tipo_atencion', '=', 1)
+        ->where('a.monto', '!=', '0')
+        ->whereBetween('a.created_at', [$f1, $f2])
+        ->where('a.sede', '=', $request->session()->get('sede'));
+       // ->get(); 
+
+        $eco = DB::table('atenciones as a')
+        ->select('a.id','a.tipo_origen','a.id_origen','a.id_tipo','a.sede','a.usuario','a.created_at','a.estatus','a.id_paciente','a.tipo_atencion','a.monto','a.abono','a.tipo_pago','b.nombres','b.apellidos','b.dni','c.name as nameo','c.lastname as lasto','d.name as nameu','d.lastname as lastu','s.nombre as detalle')
+        ->join('pacientes as b','b.id','a.id_paciente')
+        ->join('users as c','c.id','a.id_origen')
+        ->join('users as d','d.id','a.usuario')
+        ->join('servicios as s','s.id','a.id_tipo')
+        ->where('a.estatus', '=', 1)
+        ->where('a.tipo_atencion', '=', 2)
+        ->where('a.monto', '!=', '0')
+        ->whereBetween('a.created_at', [$f1, $f2])
+        ->where('a.sede', '=', $request->session()->get('sede'));
+
+        $cons = DB::table('atenciones as a')
+        ->select('a.id','a.tipo_origen','a.id_origen','a.id_tipo','a.sede','a.usuario','a.created_at','a.estatus','a.id_paciente','a.tipo_atencion','a.monto','a.abono','a.tipo_pago','b.nombres','b.apellidos','b.dni','c.name as nameo','c.lastname as lasto','d.name as nameu','d.lastname as lastu','s.nombre as detalle')
+        ->join('pacientes as b','b.id','a.id_paciente')
+        ->join('users as c','c.id','a.id_origen')
+        ->join('users as d','d.id','a.usuario')
+        ->join('servicios as s','s.id','a.id_tipo')
+        ->where('a.estatus', '=', 1)
+        ->where('a.tipo_atencion', '=', 5)
+        ->where('a.monto', '!=', '0')
+        ->whereBetween('a.created_at', [$f1, $f2])
+        ->where('a.sede', '=', $request->session()->get('sede'));
+
+        $meto = DB::table('atenciones as a')
+        ->select('a.id','a.tipo_origen','a.id_origen','a.id_tipo','a.sede','a.usuario','a.created_at','a.estatus','a.id_paciente','a.tipo_atencion','a.monto','a.abono','a.tipo_pago','b.nombres','b.apellidos','b.dni','c.name as nameo','c.lastname as lasto','d.name as nameu','d.lastname as lastu','s.nombre as detalle')
+        ->join('pacientes as b','b.id','a.id_paciente')
+        ->join('users as c','c.id','a.id_origen')
+        ->join('users as d','d.id','a.usuario')
+        ->join('servicios as s','s.id','a.id_tipo')
+        ->where('a.estatus', '=', 1)
+        ->where('a.tipo_atencion', '=', 6)
+        ->where('a.monto', '!=', '0')
+        ->whereBetween('a.created_at', [$f1, $f2])
+        ->where('a.sede', '=', $request->session()->get('sede'));
+
+        $ana = DB::table('atenciones as a')
+        ->select('a.id','a.tipo_origen','a.id_origen','a.id_tipo','a.sede','a.usuario','a.created_at','a.estatus','a.id_paciente','a.tipo_atencion','a.monto','a.abono','a.tipo_pago','b.nombres','b.apellidos','b.dni','c.name as nameo','c.lastname as lasto','d.name as nameu','d.lastname as lastu','s.nombre as detalle')
+        ->join('pacientes as b','b.id','a.id_paciente')
+        ->join('users as c','c.id','a.id_origen')
+        ->join('users as d','d.id','a.usuario')
+        ->join('analisis as s','s.id','a.id_tipo')
+        ->where('a.estatus', '=', 1)
+        ->where('a.tipo_atencion', '=', 4)
+        ->where('a.monto', '!=', '0')
+        ->whereBetween('a.created_at', [$f1, $f2])
+        ->where('a.sede', '=', $request->session()->get('sede'));
+        //->get(); 
+
+     
+
+        $atenciones = DB::table('atenciones as a')
+        ->select('a.id','a.tipo_origen','a.id_origen','a.id_tipo','a.sede','a.usuario','a.created_at','a.estatus','a.id_paciente','a.tipo_atencion','a.monto','a.abono','a.tipo_pago','b.nombres','b.apellidos','b.dni','c.name as nameo','c.lastname as lasto','d.name as nameu','d.lastname as lastu','s.nombre as detalle')
+        ->join('pacientes as b','b.id','a.id_paciente')
+        ->join('users as c','c.id','a.id_origen')
+        ->join('users as d','d.id','a.usuario')
+        ->join('servicios as s','s.id','a.id_tipo')
+        ->where('a.estatus', '=', 1)
+        ->where('a.tipo_atencion', '=', 3)
         ->where('a.monto', '!=', '0')
         ->where('a.sede', '=', $request->session()->get('sede'))
+        ->whereBetween('a.created_at', [$f1, $f2])
+        ->orderBy('a.created_at','ASC')
+        ->union($serv)
+        ->union($eco)
+        ->union($ana)
         ->get(); 
 
-        return view('atenciones.index', compact('atenciones'));
+
+
+
+
+      } else {
+
+        $f1 = date('Y-m-d');
+        $f2 = date('Y-m-d');
+
+        $serv = DB::table('atenciones as a')
+        ->select('a.id','a.tipo_origen','a.id_origen','a.id_tipo','a.sede','a.usuario','a.created_at','a.estatus','a.id_paciente','a.tipo_atencion','a.monto','a.abono','a.tipo_pago','b.nombres','b.apellidos','b.dni','c.name as nameo','c.lastname as lasto','d.name as nameu','d.lastname as lastu','s.nombre as detalle')
+        ->join('pacientes as b','b.id','a.id_paciente')
+        ->join('users as c','c.id','a.id_origen')
+        ->join('users as d','d.id','a.usuario')
+        ->join('servicios as s','s.id','a.id_tipo')
+        ->where('a.estatus', '=', 1)
+        ->where('a.tipo_atencion', '=', 1)
+        ->where('a.monto', '!=', '0')
+        ->where('a.created_at','=',date('Y-m-d'))
+        ->where('a.sede', '=', $request->session()->get('sede'));
+       // ->get(); 
+
+        $eco = DB::table('atenciones as a')
+        ->select('a.id','a.tipo_origen','a.id_origen','a.id_tipo','a.sede','a.usuario','a.created_at','a.estatus','a.id_paciente','a.tipo_atencion','a.monto','a.abono','a.tipo_pago','b.nombres','b.apellidos','b.dni','c.name as nameo','c.lastname as lasto','d.name as nameu','d.lastname as lastu','s.nombre as detalle')
+        ->join('pacientes as b','b.id','a.id_paciente')
+        ->join('users as c','c.id','a.id_origen')
+        ->join('users as d','d.id','a.usuario')
+        ->join('servicios as s','s.id','a.id_tipo')
+        ->where('a.estatus', '=', 1)
+        ->where('a.tipo_atencion', '=', 2)
+        ->where('a.monto', '!=', '0')
+        ->where('a.created_at','=',date('Y-m-d'))
+        ->where('a.sede', '=', $request->session()->get('sede'));
+
+        $cons = DB::table('atenciones as a')
+        ->select('a.id','a.tipo_origen','a.id_origen','a.id_tipo','a.sede','a.usuario','a.created_at','a.estatus','a.id_paciente','a.tipo_atencion','a.monto','a.abono','a.tipo_pago','b.nombres','b.apellidos','b.dni','c.name as nameo','c.lastname as lasto','d.name as nameu','d.lastname as lastu','s.nombre as detalle')
+        ->join('pacientes as b','b.id','a.id_paciente')
+        ->join('users as c','c.id','a.id_origen')
+        ->join('users as d','d.id','a.usuario')
+        ->join('servicios as s','s.id','a.id_tipo')
+        ->where('a.estatus', '=', 1)
+        ->where('a.tipo_atencion', '=', 5)
+        ->where('a.monto', '!=', '0')
+        ->where('a.created_at','=',date('Y-m-d'))
+        ->where('a.sede', '=', $request->session()->get('sede'));
+
+        $meto = DB::table('atenciones as a')
+        ->select('a.id','a.tipo_origen','a.id_origen','a.id_tipo','a.sede','a.usuario','a.created_at','a.estatus','a.id_paciente','a.tipo_atencion','a.monto','a.abono','a.tipo_pago','b.nombres','b.apellidos','b.dni','c.name as nameo','c.lastname as lasto','d.name as nameu','d.lastname as lastu','s.nombre as detalle')
+        ->join('pacientes as b','b.id','a.id_paciente')
+        ->join('users as c','c.id','a.id_origen')
+        ->join('users as d','d.id','a.usuario')
+        ->join('servicios as s','s.id','a.id_tipo')
+        ->where('a.estatus', '=', 1)
+        ->where('a.tipo_atencion', '=', 6)
+        ->where('a.monto', '!=', '0')
+        ->where('a.created_at','=',date('Y-m-d'))
+        ->where('a.sede', '=', $request->session()->get('sede'));
+
+        $ana = DB::table('atenciones as a')
+        ->select('a.id','a.tipo_origen','a.id_origen','a.id_tipo','a.sede','a.usuario','a.created_at','a.estatus','a.id_paciente','a.tipo_atencion','a.monto','a.abono','a.tipo_pago','b.nombres','b.apellidos','b.dni','c.name as nameo','c.lastname as lasto','d.name as nameu','d.lastname as lastu','s.nombre as detalle')
+        ->join('pacientes as b','b.id','a.id_paciente')
+        ->join('users as c','c.id','a.id_origen')
+        ->join('users as d','d.id','a.usuario')
+        ->join('analisis as s','s.id','a.id_tipo')
+        ->where('a.estatus', '=', 1)
+        ->where('a.tipo_atencion', '=', 4)
+        ->where('a.monto', '!=', '0')
+        ->where('a.created_at','=',date('Y-m-d'))
+        ->where('a.sede', '=', $request->session()->get('sede'));
+        //->get(); 
+
+     
+
+        $atenciones = DB::table('atenciones as a')
+        ->select('a.id','a.tipo_origen','a.id_origen','a.id_tipo','a.sede','a.usuario','a.created_at','a.estatus','a.id_paciente','a.tipo_atencion','a.monto','a.abono','a.tipo_pago','b.nombres','b.apellidos','b.dni','c.name as nameo','c.lastname as lasto','d.name as nameu','d.lastname as lastu','s.nombre as detalle')
+        ->join('pacientes as b','b.id','a.id_paciente')
+        ->join('users as c','c.id','a.id_origen')
+        ->join('users as d','d.id','a.usuario')
+        ->join('servicios as s','s.id','a.id_tipo')
+        ->where('a.estatus', '=', 1)
+        ->where('a.tipo_atencion', '=', 3)
+        ->where('a.monto', '!=', '0')
+        ->where('a.sede', '=', $request->session()->get('sede'))
+        ->where('a.created_at','=',date('Y-m-d'))
+        ->orderBy('a.created_at','ASC')
+        ->union($serv)
+        ->union($eco)
+        ->union($ana)
+        ->get(); 
+
+
+      }
+
+        
+        
+
+        return view('atenciones.index', compact('atenciones','f1','f2'));
         //
     }
 
@@ -191,6 +365,8 @@ class AtencionesController extends Controller
             foreach ($request->id_servicio['servicios'] as $key => $serv) {
               if (!is_null($serv['servicio'])) {
 
+                $servicio = Servicios::where('id','=',$serv['servicio'])->first();
+
                 //TIPO ATENCION SERVICIOS= 1
                 $lab = new Atenciones();
                 $lab->tipo_origen =  $request->origen;
@@ -204,6 +380,41 @@ class AtencionesController extends Controller
                 $lab->usuario = Auth::user()->id;
                 $lab->sede = $request->session()->get('sede');
                 $lab->save();
+
+
+
+                if($request->origen == 1){
+                  $com = new Comisiones();
+                  $com->id_atencion =  $lab->id;
+                  $com->porcentaje = $servicio->porcentaje;
+                  $com->monto = (float)$request->monto_s['servicios'][$key]['monto'] * $servicio->porcentaje / 100;
+                  $com->estatus = 1;
+                  $com->usuario = Auth::user()->id;
+                  $com->save();
+
+                } elseif($request->origen == 2) {
+                  $com = new Comisiones();
+                  $com->id_atencion =  $lab->id;
+                  $com->porcentaje = $servicio->porcentaje1;
+                  $com->monto = (float)$request->monto_s['servicios'][$key]['monto'] * $servicio->porcentaje1 / 100;
+                  $com->estatus = 1;
+                  $com->usuario = Auth::user()->id;
+                  $com->save();
+
+                } else {
+
+                  $com = new Comisiones();
+                  $com->id_atencion =  $lab->id;
+                  $com->porcentaje = $servicio->porcentaje2;
+                  $com->monto = (float)$request->monto_s['servicios'][$key]['monto'] * $servicio->porcentaje2 / 100;
+                  $com->estatus = 1;
+                  $com->usuario = Auth::user()->id;
+                  $com->save();
+
+                }
+
+
+
               } 
             }
           }
@@ -219,6 +430,10 @@ class AtencionesController extends Controller
             foreach ($request->id_analisi['analisis'] as $key => $laboratorio) {
               if (!is_null($laboratorio['analisi'])) {
 
+
+                $analisis = Analisis::where('id','=',$laboratorio['analisi'])->first();
+
+
                 //TIPO ATENCION LABORATORIO= 4
                 $lab = new Atenciones();
                 $lab->tipo_origen =  $request->origen;
@@ -232,6 +447,41 @@ class AtencionesController extends Controller
                 $lab->usuario = Auth::user()->id;
                 $lab->sede = $request->session()->get('sede');
                 $lab->save();
+
+
+                if($request->origen == 1){
+                  $com = new Comisiones();
+                  $com->id_atencion =  $lab->id;
+                  $com->porcentaje = $analisis->porcentaje;
+                  $com->monto = (float)$request->monto_s['servicios'][$key]['monto'] * $analisis->porcentaje / 100;
+                  $com->estatus = 1;
+                  $com->usuario = Auth::user()->id;
+                  $com->save();
+
+                } elseif($request->origen == 2) {
+                  $com = new Comisiones();
+                  $com->id_atencion =  $lab->id;
+                  $com->porcentaje = $analisis->porcentaje;
+                  $com->monto = (float)$request->monto_s['servicios'][$key]['monto'] * $analisis->porcentaje / 100;
+                  $com->estatus = 1;
+                  $com->usuario = Auth::user()->id;
+                  $com->save();
+
+                } else {
+
+                  $com = new Comisiones();
+                  $com->id_atencion =  $lab->id;
+                  $com->porcentaje = $analisis->porcentaje;
+                  $com->monto = (float)$request->monto_s['servicios'][$key]['monto'] * $analisis->porcentaje / 100;
+                  $com->estatus = 1;
+                  $com->usuario = Auth::user()->id;
+                  $com->save();
+
+                }
+
+
+
+
               } 
             }
           }
@@ -255,6 +505,39 @@ class AtencionesController extends Controller
                 $lab->usuario = Auth::user()->id;
                 $lab->sede = $request->session()->get('sede');
                 $lab->save();
+
+                if($request->origen == 1){
+                  $com = new Comisiones();
+                  $com->id_atencion =  $lab->id;
+                  $com->porcentaje = $servicio->porcentaje;
+                  $com->monto = (float)$request->monto_s['servicios'][$key]['monto'] * $servicio->porcentaje / 100;
+                  $com->estatus = 1;
+                  $com->usuario = Auth::user()->id;
+                  $com->save();
+
+                } elseif($request->origen == 2) {
+                  $com = new Comisiones();
+                  $com->id_atencion =  $lab->id;
+                  $com->porcentaje = $servicio->porcentaje1;
+                  $com->monto = (float)$request->monto_s['servicios'][$key]['monto'] * $servicio->porcentaje1 / 100;
+                  $com->estatus = 1;
+                  $com->usuario = Auth::user()->id;
+                  $com->save();
+
+                } else {
+
+                  $com = new Comisiones();
+                  $com->id_atencion =  $lab->id;
+                  $com->porcentaje = $servicio->porcentaje2;
+                  $com->monto = (float)$request->monto_s['servicios'][$key]['monto'] * $servicio->porcentaje2 / 100;
+                  $com->estatus = 1;
+                  $com->usuario = Auth::user()->id;
+                  $com->save();
+
+                }
+
+
+
               } 
             }
           }
@@ -278,6 +561,38 @@ class AtencionesController extends Controller
                 $lab->usuario = Auth::user()->id;
                 $lab->sede =$request->session()->get('sede');
                 $lab->save();
+
+                if($request->origen == 1){
+                  $lab = new Comisiones();
+                  $lab->id_atencion =  $lab->id;
+                  $lab->porcentaje = $servicio->porcentaje;
+                  $lab->monto = (float)$request->monto_s['servicios'][$key]['monto'] * $servicio->porcentaje / 100;
+                  $lab->estatus = 1;
+                  $lab->usuario = Auth::user()->id;
+                  $lab->save();
+
+                } elseif($request->origen == 2) {
+                  $lab = new Comisiones();
+                  $lab->id_atencion =  $lab->id;
+                  $lab->porcentaje = $servicio->porcentaje1;
+                  $lab->monto = (float)$request->monto_s['servicios'][$key]['monto'] * $servicio->porcentaje1 / 100;
+                  $lab->estatus = 1;
+                  $lab->usuario = Auth::user()->id;
+                  $lab->save();
+
+                } else {
+
+                  $lab = new Comisiones();
+                  $lab->id_atencion =  $lab->id;
+                  $lab->porcentaje = $servicio->porcentaje2;
+                  $lab->monto = (float)$request->monto_s['servicios'][$key]['monto'] * $servicio->porcentaje2 / 100;
+                  $lab->estatus = 1;
+                  $lab->usuario = Auth::user()->id;
+                  $lab->save();
+
+                }
+
+
               } 
             }
           }
@@ -388,6 +703,10 @@ class AtencionesController extends Controller
         $atencion->estatus = 0;
         $atencion->eliminado_por= $searchUsuarioID->name.' '.$searchUsuarioID->lastname;
         $atencion->save();
+
+        $com = Comisiones::where('id_atencion','=',$id)->first();
+        $com->estatus = 0;
+        $com->save();
 
         return redirect()->action('AtencionesController@index')
         ->with('success','Eliminado Exitosamente!');

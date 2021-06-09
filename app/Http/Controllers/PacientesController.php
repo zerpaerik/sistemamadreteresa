@@ -74,7 +74,6 @@ class PacientesController extends Controller
         $pacientes->ocupacion =$request->ocupacion;
         $pacientes->fechanac =$request->fechanac;
         $pacientes->sexo =$request->sexo;
-        $pacientes->empresa =Auth::user()->empresa;
         $pacientes->usuario =Auth::user()->id;
         $pacientes->save();
 

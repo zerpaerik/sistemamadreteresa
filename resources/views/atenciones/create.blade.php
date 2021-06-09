@@ -134,7 +134,6 @@
 
                         </select>
                   </div>
-
                   <div class="col-md-6">
                       <div id="siniestro" class="siniestro">
 
@@ -187,7 +186,7 @@
                 <label for="servicios_#index#_servicio" class="col-sm-1 control-label">Servicios</label>
                     <div class="col-sm-3">
                       <select id="servicios_#index#_servicio" name="id_servicio[servicios][#index#][servicio]" class="selectServ form-control">
-                        <option value="1" disabled>Seleccionar Servicio</option>
+                      <option value="">Seleccionar Servicio</option>
                         @foreach($otros as $ot)
                           <option value="{{$ot->id}}">
                             {{$ot->nombre}}
@@ -203,10 +202,10 @@
                       <input id="servicios_#index#_monto" name="monto_s[servicios][#index#][monto]" type="text" class="number form-control monto" placeholder="Precio" data-toggle="tooltip" data-placement="bottom" title="Precio">
                     </div>
 
-                    <label for="servicios_#index#_abonoL" class="col-sm-1 control-label">Abono.</label>
+                    <label for="servicios_#index#_abonoS" class="col-sm-1 control-label">Abono.</label>
                     <div class="col-sm-1">
 
-                      <input id="servicios_#index#_abonoL" name="monto_abol[servicios][#index#][abono]" type="number" class="number form-control abonoL" placeholder="Abono" data-toggle="tooltip" data-placement="bottom" title="Abono">
+                      <input id="servicios_#index#_abonoS" name="monto_abol[servicios][#index#][abono]" type="number" class="number form-control abonoS" placeholder="Abono" data-toggle="tooltip" data-placement="bottom" title="Abono">
                     </div>
                     <label for="servicios_#index#_tipop" class="col-sm-1 control-label">TipoPago</label>
                     <div class="col-sm-2">
@@ -666,6 +665,66 @@ function datapac(){
 
 
 <script>
+
+
+$(".abonoL, .abonoS, .abonop").keyup(function(){
+      var total = 0;
+      var selectId = $(this).attr('id');
+      var selectArr = selectId.split('_');
+      
+      switch(selectArr[0]){
+
+        case 'servicios':
+            if(parseFloat($(this).val()) > parseFloat($("#servicios_"+selectArr[1]+"_monto").val())){
+                alert('La cantidad insertada en abono es mayor al monto.');
+                $(this).val('0.00');
+                calculo_general();
+            } else {
+                calculo_general();
+            }
+          break;
+
+        case 'laboratorios':
+            if(parseFloat($(this).val()) > parseFloat($("#laboratorios_"+selectArr[1]+"_monto").val())){
+                alert('La cantidad insertada en abono es mayor al monto.');
+                $(this).val('0.00');
+                calculo_general();
+            } else {
+                calculo_general();
+            }
+          break;
+
+        case 'paquetes':
+            if(parseFloat($(this).val()) > parseFloat($("#paquetes_"+selectArr[1]+"_monto").val())){
+              alert('La cantidad insertada en abono es mayor al monto.');
+                $(this).val('0.00');
+                calculo_general();
+            } else {
+                calculo_general();
+            }
+          break;
+      }
+      /*if(selectArr[0] == 'servicios'){
+          if(parseFloat($(this).val()) > parseFloat($("#servicios_"+selectArr[1]+"_monto").val())){
+              alert('La cantidad insertada en abono es mayor al monto.');
+              $(this).val('0.00');
+              calculo_general();
+          } else {
+              calculo_general();
+          }
+      } else {
+        if(parseFloat($(this).val()) > parseFloat($("#laboratorios_"+selectArr[1]+"_monto").val())){
+              alert('La cantidad insertada en abono es mayor al monto.');
+              $(this).val('0.00');
+              calculo_general();
+          } else {
+              calculo_general();
+          }
+      }*/
+    });
+
+
+
 
 $(document).on('change','.selectServ',function(){
       var labId = $(this).attr('id');

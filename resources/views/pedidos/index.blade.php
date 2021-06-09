@@ -142,7 +142,7 @@
                     <td><span class="badge bg-success">Pagado</span></td>
                     @endif
                     <td>{{$so->tipopago}}</td>
-                    <td>{{$so->created_at}}</td>
+                    <td>{{date('d-M-y', strtotime($so->created_at))}}</td>
                     <td>
                     
                              

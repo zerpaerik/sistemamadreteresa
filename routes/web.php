@@ -197,6 +197,17 @@ Route::get('cobrar-edit-{id}', 'IngresosController@edit')->name('ingresos.edit')
 Route::post('cobrar/edit', 'IngresosController@update');
 Route::get('cobrar-ticket-{id}', 'IngresosController@ticket');
 
+Route::get('comisiones', 'ComisionesPagarController@index')->name('comisiones.index');
+Route::get('comisiones1', 'ComisionesPagarController@index1')->name('comisiones.index1');
+Route::get('comisiones2', 'ComisionesPagarController@index2')->name('comisiones.index2');
+Route::get('cobrar-create', 'CobrarController@create')->name('cobrar.create')->middleware('auth');
+Route::post('cobrar/create', 'CobrarController@store')->middleware('auth');
+Route::get('cobrar-delete-{id}', 'IngresosController@delete')->middleware('auth');
+Route::get('cobrar-edit-{id}', 'IngresosController@edit')->name('ingresos.edit');
+Route::post('cobrar/edit', 'IngresosController@update');
+Route::get('cobrar-ticket-{id}', 'IngresosController@ticket');
+
+
 
 
 Route::get('consultas', 'ConsultasController@index')->name('consultas.index');
