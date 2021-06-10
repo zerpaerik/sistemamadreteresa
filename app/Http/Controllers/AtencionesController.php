@@ -492,6 +492,8 @@ class AtencionesController extends Controller
             foreach ($request->id_ecografia['ecografias'] as $key => $eco) {
               if (!is_null($eco['ecografia'])) {
 
+                $servicio = Servicios::where('id','=',$eco['ecografia'])->first();
+
                 //TIPO ATENCION ECOGRAFIA= 2
                 $lab = new Atenciones();
                 $lab->tipo_origen =  $request->origen;
@@ -547,6 +549,9 @@ class AtencionesController extends Controller
           if (isset($request->id_rayo)) {
             foreach ($request->id_rayo['rayos'] as $key => $ray) {
               if (!is_null($ray['rayo'])) {
+
+                $servicio = Servicios::where('id','=',$ray['rayo'])->first();
+
 
                 //TIPO ATENCION RAYOS= 3
                 $lab = new Atenciones();

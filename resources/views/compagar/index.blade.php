@@ -144,6 +144,11 @@
 
                     <td>
                     @if(Auth::user()->rol == 1)
+                    <a class="btn btn-danger btn-sm" href="comisiones-pagar-{{$an->id}}" onclick="return confirm('¿Desea pagar esta comisión?')">
+                    <i class="fa fa-money" aria-hidden="true">
+                              </i>
+                              Pagar
+                          </a>
 
                          
 

@@ -57,12 +57,12 @@
       <div class="container-fluid">
         <div class="row mb-2">
           <div class="col-sm-6">
-            <h1 class="m-0 text-dark">Atenciones</h1>
+            <h1 class="m-0 text-dark">Comisiones Pagadas Personal</h1>
           </div><!-- /.col -->
           <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">
               <li class="breadcrumb-item"><a href="#">Home</a></li>
-              <li class="breadcrumb-item active">Atenciones</li>
+              <li class="breadcrumb-item active">Personal</li>
             </ol>
           </div><!-- /.col -->
         </div><!-- /.row -->
@@ -76,23 +76,18 @@
       <div class="container-fluid">
       <div class="card">
               <div class="card-header">
-                <a class="btn btn-primary btn-sm" href="{{route('atenciones.create')}}">
-                              <i class="fas fa-folder">
-                              </i>
-                              Agregar
-                          </a>
-                          <form method="get" action="atenciones">					
+              <form method="get" action="comisiones">					
                   <label for="exampleInputEmail1">Filtros de Busqueda</label>
 
                     <div class="row">
                   <div class="col-md-3">
                     <label for="exampleInputEmail1">Fecha Inicio</label>
-                    <input type="date" class="form-control" value="{{$f1}}" name="inicio" placeholder="Buscar por dni" onsubmit="datapac()">
+                    <input type="date" class="form-control" value="{{$f1}}" name="inicio">
                   </div>
 
                   <div class="col-md-3">
                     <label for="exampleInputEmail1">Fecha Fin</label>
-                    <input type="date" class="form-control" value="{{$f2}}" name="fin" placeholder="Buscar por dni" onsubmit="datapac()">
+                    <input type="date" class="form-control" value="{{$f2}}" name="fin">
                   </div>
                   
                 
@@ -102,6 +97,7 @@
 
                   </div>
                   </form>
+              
               </div>
               <!-- /.card-header -->
               <div class="card-body">
@@ -111,50 +107,49 @@
                     <th>Fecha</th>
                     <th>Paciente</th>
                     <th>Origen</th>
-                    <th width="20%">Detalle</th>
-                    <th width="2%">Mto</th>
-                    <th width="2%">Abo</th>
-                    <th width="2%">Tp</th>
+                    <th>Tipo</th>
+                    <th>Detalle</th>
+                    <th>MontoAT</th>
+                    <th>Porcentaje</th>
+                    <th>MontoPG</th>
                     <th>RP</th>
                     <th>Acciones</th>
                   </tr>
                   </thead>
                   <tbody>
 
-
-                  @foreach($atenciones as $an)
+                  @foreach($comisiones as $an)
                   <tr>
-                    <td>{{date('d-M-y', strtotime($an->created_at))}}</td>
-                    <td>{{substr($an->apellidos,0,10)}} {{substr($an->nombres,0,10)}}</td>
+                  <td>{{date('d-M-y', strtotime($an->created_at))}}</td>
+                    <td>{{substr($an->apellidos,0,5)}} {{substr($an->nombres,0,5)}}</td>
                     <td>{{substr($an->lasto,0,5)}} {{substr($an->nameo,0,5)}}</td>
-                    <td width="20%">{{$an->detalle}}</td>
-                    <td width="2%">{{$an->monto}}</td>
-                    <td width="2%">{{$an->abono}}</td>
-                    <td width="2%">{{$an->tipo_pago}}</td>
-                    <td>{{substr($an->lastu,0,5)}} {{substr($an->nameu,0,5)}}</td>
+                    @if($an->tipo_atencion == 1)
+                    <td><span class="badge bg-success">Servicio</span></td>
+                    @elseif($an->tipo_atencion == 2)
+                    <td><span class="badge bg-success">Ecografia</span></td>
+                    @elseif($an->tipo_atencion == 3)
+                    <td><span class="badge bg-success">RayosX</span></td>
+                    @elseif($an->tipo_atencion == 4)
+                    <td><span class="badge bg-success">Laboratorio</span></td>
+                    @elseif($an->tipo_atencion == 5)
+                    <td><span class="badge bg-success">Consulta</span></td>
+                    @else
+                    <td><span class="badge bg-success">Método</span></td>
+                    @endif
+                    <td width="5%">{{$an->detalle}}</td>
+                    <td>{{$an->total}}</td>
+                    <td>{{$an->porcentaje}}</td>
+                    <td>{{$an->monto}}</td>
+                    <td>{{$an->nameu}} {{$an->lastu}}</td>
 
                     <td>
                     @if(Auth::user()->rol == 1)
-
-                          <a class="btn btn-info btn-sm" href="atenciones-edit-{{$an->id}}">
-                              <i class="fas fa-pencil-alt">
-                              </i>
-                          </a>
-                          <a class="btn btn-danger btn-sm" href="atenciones-delete-{{$an->id}}" onclick="return confirm('¿Desea Eliminar este registro?')">
-                              <i class="fas fa-trash">
-                              </i>
-                          </a>
-                          <a class="btn btn-default btn-sm">
-                              <i class="fas fa-eye">
-                              </i>
-                          </a>
-                          <a class="btn btn-success btn-sm">
-                              <i class="fas fa-print">
-                              </i>
-                          </a>
+                   
+                         
 
                         
-                          @endif</td>
+                         </td>
+                          @endif
                   </tr>
                   @endforeach
                  
@@ -164,10 +159,11 @@
                   <th>Fecha</th>
                     <th>Paciente</th>
                     <th>Origen</th>
-                    <th width="20%">Detalle</th>
-                    <th width="2%">Monto</th>
-                    <th width="2%">Abono</th>
-                    <th width="2%">Tp</th>
+                    <th>Tipo</th>
+                    <th>Detalle</th>
+                    <th>MontoAT</th>
+                    <th>Porcentaje</th>
+                    <th>MontoPG</th>
                     <th>RP</th>
                     <th>Acciones</th>
                   </tr>

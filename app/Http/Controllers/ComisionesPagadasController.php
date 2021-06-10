@@ -16,7 +16,7 @@ use Illuminate\Http\Request;
 use DB;
 
 
-class ComisionesPagarController extends Controller
+class ComisionesPagadasController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -37,7 +37,7 @@ class ComisionesPagarController extends Controller
         ->join('users as c', 'c.id', 'at.id_origen')
         ->join('users as d', 'd.id', 'a.usuario')
         ->join('servicios as s', 's.id', 'at.id_tipo')
-        ->where('a.estatus', '=', 1)
+        ->where('a.estatus', '=', 2)
         ->where('at.tipo_origen', '=', 1)
         ->where('at.tipo_atencion', '=', 1)
         ->whereBetween('a.created_at', [$f1, $f2])
@@ -50,7 +50,7 @@ class ComisionesPagarController extends Controller
         ->join('users as c', 'c.id', 'at.id_origen')
         ->join('users as d', 'd.id', 'a.usuario')
         ->join('servicios as s', 's.id', 'at.id_tipo')
-        ->where('a.estatus', '=', 1)
+        ->where('a.estatus', '=', 2)
         ->where('at.tipo_origen', '=', 1)
         ->where('at.tipo_atencion', '=', 2)
         ->whereBetween('a.created_at', [$f1, $f2])
@@ -63,7 +63,7 @@ class ComisionesPagarController extends Controller
         ->join('users as c', 'c.id', 'at.id_origen')
         ->join('users as d', 'd.id', 'a.usuario')
         ->join('servicios as s', 's.id', 'at.id_tipo')
-        ->where('a.estatus', '=', 1)
+        ->where('a.estatus', '=', 2)
         ->where('at.tipo_origen', '=', 1)
         ->where('at.tipo_atencion', '=', 3)
         ->whereBetween('a.created_at', [$f1, $f2])
@@ -76,7 +76,7 @@ class ComisionesPagarController extends Controller
         ->join('users as c', 'c.id', 'at.id_origen')
         ->join('users as d', 'd.id', 'a.usuario')
         ->join('analisis as s', 's.id', 'at.id_tipo')
-        ->where('a.estatus', '=', 1)
+        ->where('a.estatus', '=', 2)
         ->where('at.tipo_origen', '=', 1)
         ->where('at.tipo_atencion', '=', 4)
         ->where('at.sede', '=', $request->session()->get('sede'))
@@ -102,7 +102,7 @@ class ComisionesPagarController extends Controller
         ->join('users as c', 'c.id', 'at.id_origen')
         ->join('users as d', 'd.id', 'a.usuario')
         ->join('servicios as s', 's.id', 'at.id_tipo')
-        ->where('a.estatus', '=', 1)
+        ->where('a.estatus', '=', 2)
         ->where('at.tipo_origen', '=', 1)
         ->where('at.tipo_atencion', '=', 1)
         ->where('a.created_at','=',date('Y-m-d'))
@@ -115,7 +115,7 @@ class ComisionesPagarController extends Controller
         ->join('users as c', 'c.id', 'at.id_origen')
         ->join('users as d', 'd.id', 'a.usuario')
         ->join('servicios as s', 's.id', 'at.id_tipo')
-        ->where('a.estatus', '=', 1)
+        ->where('a.estatus', '=', 2)
         ->where('at.tipo_origen', '=', 1)
         ->where('at.tipo_atencion', '=', 2)
         ->where('a.created_at','=',date('Y-m-d'))
@@ -128,7 +128,7 @@ class ComisionesPagarController extends Controller
         ->join('users as c', 'c.id', 'at.id_origen')
         ->join('users as d', 'd.id', 'a.usuario')
         ->join('servicios as s', 's.id', 'at.id_tipo')
-        ->where('a.estatus', '=', 1)
+        ->where('a.estatus', '=', 2)
         ->where('at.tipo_origen', '=', 1)
         ->where('at.tipo_atencion', '=', 3)
         ->where('a.created_at','=',date('Y-m-d'))
@@ -141,7 +141,7 @@ class ComisionesPagarController extends Controller
         ->join('users as c', 'c.id', 'at.id_origen')
         ->join('users as d', 'd.id', 'a.usuario')
         ->join('analisis as s', 's.id', 'at.id_tipo')
-        ->where('a.estatus', '=', 1)
+        ->where('a.estatus', '=', 2)
         ->where('at.tipo_origen', '=', 1)
         ->where('at.tipo_atencion', '=', 4)
         ->where('at.sede', '=', $request->session()->get('sede'))
@@ -160,7 +160,7 @@ class ComisionesPagarController extends Controller
         
 
 
-        return view('compagar.index', compact('comisiones','f1','f2'));
+        return view('compagadas.index', compact('comisiones','f1','f2'));
         //
     }
 
@@ -179,7 +179,7 @@ class ComisionesPagarController extends Controller
         ->join('users as c', 'c.id', 'at.id_origen')
         ->join('users as d', 'd.id', 'a.usuario')
         ->join('servicios as s', 's.id', 'at.id_tipo')
-        ->where('a.estatus', '=', 1)
+        ->where('a.estatus', '=', 2)
         ->where('at.tipo_origen', '=', 2)
         ->where('at.tipo_atencion', '=', 1)
         ->whereBetween('a.created_at', [$f1, $f2])
@@ -192,7 +192,7 @@ class ComisionesPagarController extends Controller
         ->join('users as c', 'c.id', 'at.id_origen')
         ->join('users as d', 'd.id', 'a.usuario')
         ->join('servicios as s', 's.id', 'at.id_tipo')
-        ->where('a.estatus', '=', 1)
+        ->where('a.estatus', '=', 2)
         ->where('at.tipo_origen', '=', 2)
         ->where('at.tipo_atencion', '=', 2)
         ->whereBetween('a.created_at', [$f1, $f2])
@@ -205,7 +205,7 @@ class ComisionesPagarController extends Controller
         ->join('users as c', 'c.id', 'at.id_origen')
         ->join('users as d', 'd.id', 'a.usuario')
         ->join('servicios as s', 's.id', 'at.id_tipo')
-        ->where('a.estatus', '=', 1)
+        ->where('a.estatus', '=', 2)
         ->where('at.tipo_origen', '=', 2)
         ->where('at.tipo_atencion', '=', 3)
         ->whereBetween('a.created_at', [$f1, $f2])
@@ -218,7 +218,7 @@ class ComisionesPagarController extends Controller
         ->join('users as c', 'c.id', 'at.id_origen')
         ->join('users as d', 'd.id', 'a.usuario')
         ->join('analisis as s', 's.id', 'at.id_tipo')
-        ->where('a.estatus', '=', 1)
+        ->where('a.estatus', '=', 2)
         ->where('at.tipo_origen', '=', 2)
         ->where('at.tipo_atencion', '=', 4)
         ->where('at.sede', '=', $request->session()->get('sede'))
@@ -244,7 +244,7 @@ class ComisionesPagarController extends Controller
         ->join('users as c', 'c.id', 'at.id_origen')
         ->join('users as d', 'd.id', 'a.usuario')
         ->join('servicios as s', 's.id', 'at.id_tipo')
-        ->where('a.estatus', '=', 1)
+        ->where('a.estatus', '=', 2)
         ->where('at.tipo_origen', '=', 2)
         ->where('at.tipo_atencion', '=', 1)
         ->where('a.created_at','=',date('Y-m-d'))
@@ -257,7 +257,7 @@ class ComisionesPagarController extends Controller
         ->join('users as c', 'c.id', 'at.id_origen')
         ->join('users as d', 'd.id', 'a.usuario')
         ->join('servicios as s', 's.id', 'at.id_tipo')
-        ->where('a.estatus', '=', 1)
+        ->where('a.estatus', '=', 2)
         ->where('at.tipo_origen', '=', 2)
         ->where('at.tipo_atencion', '=', 2)
         ->where('a.created_at','=',date('Y-m-d'))
@@ -270,7 +270,7 @@ class ComisionesPagarController extends Controller
         ->join('users as c', 'c.id', 'at.id_origen')
         ->join('users as d', 'd.id', 'a.usuario')
         ->join('servicios as s', 's.id', 'at.id_tipo')
-        ->where('a.estatus', '=', 1)
+        ->where('a.estatus', '=', 2)
         ->where('at.tipo_origen', '=', 2)
         ->where('at.tipo_atencion', '=', 3)
         ->where('a.created_at','=',date('Y-m-d'))
@@ -283,7 +283,7 @@ class ComisionesPagarController extends Controller
         ->join('users as c', 'c.id', 'at.id_origen')
         ->join('users as d', 'd.id', 'a.usuario')
         ->join('analisis as s', 's.id', 'at.id_tipo')
-        ->where('a.estatus', '=', 1)
+        ->where('a.estatus', '=', 2)
         ->where('at.tipo_origen', '=', 2)
         ->where('at.tipo_atencion', '=', 4)
         ->where('at.sede', '=', $request->session()->get('sede'))
@@ -297,7 +297,7 @@ class ComisionesPagarController extends Controller
 
         }
 
-        return view('compagar.index1', compact('comisiones','f1','f2'));
+        return view('compagadas.index1', compact('comisiones','f1','f2'));
         //
     }
 
