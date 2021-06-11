@@ -95,7 +95,7 @@
                     <div class="row">
                   <div class="col-md-4">
                     <label for="exampleInputEmail1">Nombre</label>
-                    <input type="text" class="form-control" id="name" name="nombre" placeholder="Nombre de Servicio" required>
+                    <input onkeyup="javascript:this.value=this.value.toUpperCase();" type="text" class="form-control" id="name" name="nombre" placeholder="Nombre de Servicio" required>
                   </div>
                   <div class="col-md-4">
                     <label for="exampleInputEmail1">Tipo de Servicio</label>

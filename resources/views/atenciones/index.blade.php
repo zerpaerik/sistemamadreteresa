@@ -86,14 +86,11 @@
 
                     <div class="row">
                   <div class="col-md-3">
-                    <label for="exampleInputEmail1">Fecha Inicio</label>
+                    <label for="exampleInputEmail1">Fecha </label>
                     <input type="date" class="form-control" value="{{$f1}}" name="inicio" placeholder="Buscar por dni" onsubmit="datapac()">
                   </div>
 
-                  <div class="col-md-3">
-                    <label for="exampleInputEmail1">Fecha Fin</label>
-                    <input type="date" class="form-control" value="{{$f2}}" name="fin" placeholder="Buscar por dni" onsubmit="datapac()">
-                  </div>
+               
                   
                 
                  
@@ -111,10 +108,10 @@
                     <th>Fecha</th>
                     <th>Paciente</th>
                     <th>Origen</th>
-                    <th width="20%">Detalle</th>
-                    <th width="2%">Mto</th>
-                    <th width="2%">Abo</th>
-                    <th width="2%">Tp</th>
+                    <th>Detalle</th>
+                    <th>Mto</th>
+                    <th>Abo</th>
+                    <th>Tp</th>
                     <th>RP</th>
                     <th>Acciones</th>
                   </tr>
@@ -125,12 +122,12 @@
                   @foreach($atenciones as $an)
                   <tr>
                     <td>{{date('d-M-y', strtotime($an->created_at))}}</td>
-                    <td>{{substr($an->apellidos,0,10)}} {{substr($an->nombres,0,10)}}</td>
-                    <td>{{substr($an->lasto,0,5)}} {{substr($an->nameo,0,5)}}</td>
-                    <td width="20%">{{$an->detalle}}</td>
-                    <td width="2%">{{$an->monto}}</td>
-                    <td width="2%">{{$an->abono}}</td>
-                    <td width="2%">{{$an->tipo_pago}}</td>
+                    <td>{{$an->apellidos}} {{$an->nombres}}</td>
+                    <td>{{$an->lasto}} {{$an->nameo}}</td>
+                    <td>{{$an->detalle}}</td>
+                    <td>{{$an->monto}}</td>
+                    <td>{{$an->abono}}</td>
+                    <td >{{$an->tipo_pago}}</td>
                     <td>{{substr($an->lastu,0,5)}} {{substr($an->nameu,0,5)}}</td>
 
                     <td>
@@ -164,10 +161,10 @@
                   <th>Fecha</th>
                     <th>Paciente</th>
                     <th>Origen</th>
-                    <th width="20%">Detalle</th>
-                    <th width="2%">Monto</th>
-                    <th width="2%">Abono</th>
-                    <th width="2%">Tp</th>
+                    <th>Detalle</th>
+                    <th>Monto</th>
+                    <th>Abono</th>
+                    <th>Tp</th>
                     <th>RP</th>
                     <th>Acciones</th>
                   </tr>

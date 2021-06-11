@@ -121,8 +121,8 @@
                   @foreach($comisiones as $an)
                   <tr>
                   <td>{{date('d-M-y', strtotime($an->created_at))}}</td>
-                    <td>{{substr($an->apellidos,0,5)}} {{substr($an->nombres,0,5)}}</td>
-                    <td>{{substr($an->lasto,0,5)}} {{substr($an->nameo,0,5)}}</td>
+                    <td>{{$an->apellidos}} {{$an->nombres}}</td>
+                    <td>{{$an->lasto)}} {{$an->nameo)}}</td>
                     @if($an->tipo_atencion == 1)
                     <td><span class="badge bg-success">Servicio</span></td>
                     @elseif($an->tipo_atencion == 2)

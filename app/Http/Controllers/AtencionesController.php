@@ -30,7 +30,6 @@ class AtencionesController extends Controller
 
       if($request->inicio){
         $f1 = $request->inicio;
-        $f2 = $request->fin;
 
       
 
@@ -43,7 +42,7 @@ class AtencionesController extends Controller
         ->where('a.estatus', '=', 1)
         ->where('a.tipo_atencion', '=', 1)
         ->where('a.monto', '!=', '0')
-        ->whereBetween('a.created_at', [$f1, $f2])
+        ->where('a.created_at','=',$f1)
         ->where('a.sede', '=', $request->session()->get('sede'));
        // ->get(); 
 
@@ -56,7 +55,7 @@ class AtencionesController extends Controller
         ->where('a.estatus', '=', 1)
         ->where('a.tipo_atencion', '=', 2)
         ->where('a.monto', '!=', '0')
-        ->whereBetween('a.created_at', [$f1, $f2])
+        ->where('a.created_at','=',$f1)
         ->where('a.sede', '=', $request->session()->get('sede'));
 
         $cons = DB::table('atenciones as a')
@@ -68,7 +67,7 @@ class AtencionesController extends Controller
         ->where('a.estatus', '=', 1)
         ->where('a.tipo_atencion', '=', 5)
         ->where('a.monto', '!=', '0')
-        ->whereBetween('a.created_at', [$f1, $f2])
+        ->where('a.created_at','=',$f1)
         ->where('a.sede', '=', $request->session()->get('sede'));
 
         $meto = DB::table('atenciones as a')
@@ -80,7 +79,7 @@ class AtencionesController extends Controller
         ->where('a.estatus', '=', 1)
         ->where('a.tipo_atencion', '=', 6)
         ->where('a.monto', '!=', '0')
-        ->whereBetween('a.created_at', [$f1, $f2])
+        ->where('a.created_at','=',$f1)
         ->where('a.sede', '=', $request->session()->get('sede'));
 
         $ana = DB::table('atenciones as a')
@@ -92,7 +91,7 @@ class AtencionesController extends Controller
         ->where('a.estatus', '=', 1)
         ->where('a.tipo_atencion', '=', 4)
         ->where('a.monto', '!=', '0')
-        ->whereBetween('a.created_at', [$f1, $f2])
+        ->where('a.created_at','=',$f1)
         ->where('a.sede', '=', $request->session()->get('sede'));
         //->get(); 
 
@@ -108,7 +107,7 @@ class AtencionesController extends Controller
         ->where('a.tipo_atencion', '=', 3)
         ->where('a.monto', '!=', '0')
         ->where('a.sede', '=', $request->session()->get('sede'))
-        ->whereBetween('a.created_at', [$f1, $f2])
+        ->where('a.created_at','=',$f1)
         ->orderBy('a.created_at','ASC')
         ->union($serv)
         ->union($eco)
@@ -122,7 +121,6 @@ class AtencionesController extends Controller
       } else {
 
         $f1 = date('Y-m-d');
-        $f2 = date('Y-m-d');
 
         $serv = DB::table('atenciones as a')
         ->select('a.id','a.tipo_origen','a.id_origen','a.id_tipo','a.sede','a.usuario','a.created_at','a.estatus','a.id_paciente','a.tipo_atencion','a.monto','a.abono','a.tipo_pago','b.nombres','b.apellidos','b.dni','c.name as nameo','c.lastname as lasto','d.name as nameu','d.lastname as lastu','s.nombre as detalle')
@@ -211,7 +209,7 @@ class AtencionesController extends Controller
         
         
 
-        return view('atenciones.index', compact('atenciones','f1','f2'));
+        return view('atenciones.index', compact('atenciones','f1'));
         //
     }
 
@@ -449,7 +447,7 @@ class AtencionesController extends Controller
                 $lab->save();
 
 
-                if($request->origen == 1){
+                if($request->origen == 2){
                   $com = new Comisiones();
                   $com->id_atencion =  $lab->id;
                   $com->porcentaje = $analisis->porcentaje;
@@ -458,26 +456,7 @@ class AtencionesController extends Controller
                   $com->usuario = Auth::user()->id;
                   $com->save();
 
-                } elseif($request->origen == 2) {
-                  $com = new Comisiones();
-                  $com->id_atencion =  $lab->id;
-                  $com->porcentaje = $analisis->porcentaje;
-                  $com->monto = (float)$request->monto_s['analisis'][$key]['monto'] * $analisis->porcentaje / 100;
-                  $com->estatus = 1;
-                  $com->usuario = Auth::user()->id;
-                  $com->save();
-
-                } else {
-
-                  $com = new Comisiones();
-                  $com->id_atencion =  $lab->id;
-                  $com->porcentaje = $analisis->porcentaje;
-                  $com->monto = (float)$request->monto_s['analisis'][$key]['monto'] * $analisis->porcentaje / 100;
-                  $com->estatus = 1;
-                  $com->usuario = Auth::user()->id;
-                  $com->save();
-
-                }
+                } 
 
 
 

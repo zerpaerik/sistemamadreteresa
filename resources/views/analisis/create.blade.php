@@ -95,7 +95,7 @@
                     <div class="row">
                   <div class="col-md-4">
                     <label for="exampleInputEmail1">Nombre</label>
-                    <input type="text" class="form-control" id="name" name="nombre" placeholder="Nombre de Analisis">
+                    <input type="text" class="form-control" id="name" value=""  onkeyup="javascript:this.value=this.value.toUpperCase();" name="nombre" placeholder="Nombre de Analisis">
                   </div>
                   <div class="col-md-4">
                     <label for="exampleInputEmail1">Precio</label>
@@ -115,11 +115,11 @@
                   </div>
                   <div class="col-md-4">
                     <label for="exampleInputEmail1">Tiempo</label>
-                    <input type="text" class="form-control" id="email" name="tiempo" placeholder="Tiempo">
+                    <input type="text" class="form-control" id="email" name="tiempo" placeholder="Tiempo" onkeyup="javascript:this.value=this.value.toUpperCase();">
                   </div>
                   <div class="col-md-4">
                     <label for="exampleInputEmail1">Material</label>
-                    <input type="text" class="form-control" id="email" name="material" placeholder="Material">
+                    <input type="text" class="form-control" id="email" name="material" placeholder="Material" onkeyup="javascript:this.value=this.value.toUpperCase();">
                   </div>
 
                  

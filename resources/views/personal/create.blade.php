@@ -88,21 +88,21 @@
                     <div class="row">
                   <div class="col-md-4">
                     <label for="exampleInputEmail1">Nombres</label>
-                    <input type="text" class="form-control" id="nombre" name="nombres" placeholder="Nombres">
+                    <input onkeyup="javascript:this.value=this.value.toUpperCase();" type="text" class="form-control" id="nombre" name="nombres" placeholder="Nombres">
                   </div>
                   <div class="col-md-4">
                     <label for="exampleInputEmail1">Apellidos</label>
-                    <input type="text" class="form-control" id="nombre" name="apellidos" placeholder="Apellidos">
+                    <input onkeyup="javascript:this.value=this.value.toUpperCase();" type="text" class="form-control" id="nombre" name="apellidos" placeholder="Apellidos">
                   </div>
                   <div class="col-md-4">
                     <label for="exampleInputEmail1">DNI</label>
-                    <input type="text" class="form-control" id="nombre" name="dni" placeholder="DNI">
+                    <input onkeyup="javascript:this.value=this.value.toUpperCase();" type="text" class="form-control" id="nombre" name="dni" placeholder="DNI">
                   </div>
                   </div>
                   <div class="row">
                   <div class="col-md-4">
                     <label for="exampleInputEmail1">Direccion</label>
-                    <input type="text" class="form-control" id="nombre" name="direccion" placeholder="Dirección de contacto">
+                    <input onkeyup="javascript:this.value=this.value.toUpperCase();" type="text" class="form-control" id="nombre" name="direccion" placeholder="Dirección de contacto">
                   </div>
                   <div class="col-md-4">
                     <label for="exampleInputEmail1">Teléfono</label>
@@ -119,7 +119,7 @@
 
                   <div class="col-md-4">
                     <label for="exampleInputEmail1">Cargo</label>
-                    <input type="text" class="form-control" id="nombre" name="cargo" placeholder="Cargo">
+                    <input onkeyup="javascript:this.value=this.value.toUpperCase();" type="text" class="form-control" id="nombre" name="cargo" placeholder="Cargo">
                   </div>
                  
                   <div class="col-md-4">

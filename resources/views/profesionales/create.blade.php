@@ -104,11 +104,11 @@
                   <div class="row">
                   <div class="col-md-4">
                     <label for="exampleInputEmail1">Teléfono</label>
-                    <input type="text" class="form-control" id="telefono" name="telefono" placeholder="Teléfono">
+                    <input type="text" onkeyup="javascript:this.value=this.value.toUpperCase();" class="form-control" id="telefono" name="telefono" placeholder="Teléfono">
                   </div>
                   <div class="col-md-4">
                     <label for="exampleInputEmail1">CMP</label>
-                    <input type="text" class="form-control" id="nombre" name="cmp" placeholder="CMP">
+                    <input type="text" onkeyup="javascript:this.value=this.value.toUpperCase();" class="form-control" id="nombre" name="cmp" placeholder="CMP">
                   </div>
                  
                   <div class="col-md-4">
