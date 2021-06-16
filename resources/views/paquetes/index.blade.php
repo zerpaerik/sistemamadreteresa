@@ -57,12 +57,12 @@
       <div class="container-fluid">
         <div class="row mb-2">
           <div class="col-sm-6">
-            <h1 class="m-0 text-dark">Comisiones por Pagar a Profesional</h1>
+            <h1 class="m-0 text-dark">Paquetes</h1>
           </div><!-- /.col -->
           <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">
               <li class="breadcrumb-item"><a href="#">Home</a></li>
-              <li class="breadcrumb-item active">Profesional</li>
+              <li class="breadcrumb-item active">Paquetes</li>
             </ol>
           </div><!-- /.col -->
         </div><!-- /.row -->
@@ -76,95 +76,63 @@
       <div class="container-fluid">
       <div class="card">
               <div class="card-header">
-              <form method="get" action="comisiones1">					
-                  <label for="exampleInputEmail1">Filtros de Busqueda</label>
-
-                    <div class="row">
-                  <div class="col-md-3">
-                    <label for="exampleInputEmail1">Fecha Inicio</label>
-                    <input type="date" class="form-control" value="{{$f1}}" name="inicio">
-                  </div>
-
-                  <div class="col-md-3">
-                    <label for="exampleInputEmail1">Fecha Fin</label>
-                    <input type="date" class="form-control" value="{{$f2}}" name="fin">
-                  </div>
-                  
-                
-                 
-                  <div class="col-md-2" style="margin-top: 30px;">
-                  <button type="submit" class="btn btn-primary">Buscar</button>
-
-                  </div>
-                  </form>
-              
+                <a class="btn btn-primary btn-sm" href="{{route('paquetes.create')}}">
+                              <i class="fas fa-folder">
+                              </i>
+                              Agregar
+                          </a>
               </div>
               <!-- /.card-header -->
               <div class="card-body">
                 <table id="example1" class="table table-bordered table-striped">
-                <form action="/pagarmultiple" method="post">
                   <thead>
                   <tr>
-                    <th>Items</th>
-                    <th>Paciente</th>
-                    <th>Origen</th>
-                    <th>Detalle</th>
-                    <th>MontoAT</th>
+                    <th>Nombre</th>
+                    <th>Precio</th>
                     <th>Porcentaje</th>
-                    <th>MontoPG</th>
-                    <th>RP</th>
                     <th>Acciones</th>
                   </tr>
                   </thead>
                   <tbody>
 
-                  @foreach($comisiones as $an)
+                  @foreach($paquetes as $an)
                   <tr>
-                  <td><input value="{{$an->id}}" type="checkbox" name="com[]"></td>
-                    <td>{{substr($an->apellidos,0,5)}} {{substr($an->nombres,0,5)}}</td>
-                    <td>{{substr($an->lasto,0,5)}} {{substr($an->nameo,0,5)}}</td>
-                   
-                    <td>Detalle</td>
-                    <td>{{$an->total}}</td>
+                    <td>{{$an->nombre}}</td>
+                    <td>{{$an->precio}}</td>
                     <td>{{$an->porcentaje}}</td>
-                    <td>{{$an->monto}}</td>
-                    <td>{{$an->nameu}} {{$an->lastu}}</td>
-
+                
                     <td>
                     @if(Auth::user()->rol == 1)
-                    <a class="btn btn-danger btn-sm" href="comisiones-pagar-{{$an->id}}" onclick="return confirm('¿Desea pagar esta comisión?')">
-                    <i class="fa fa-money" aria-hidden="true">
+
+                          <a class="btn btn-info btn-sm" href="paquetes-edit-{{$an->id}}">
+                              <i class="fas fa-pencil-alt">
                               </i>
-                              Pagar
+                              Editar
+                          </a>
+                          <a class="btn btn-danger btn-sm" href="paquetes-delete-{{$an->id}}" onclick="return confirm('¿Desea Eliminar este registro?')">
+                              <i class="fas fa-trash">
+                              </i>
+                              Eliminar
                           </a>
 
-                         
-
                         
-                         </td>
-                          @endif
+                          @endif</td>
                   </tr>
                   @endforeach
+                 
+                 
+               
+                 
                  
                   </tbody>
                   <tfoot>
                   <tr>
-                  <th>Items</th>
-                    <th>Paciente</th>
-                    <th>Origen</th>
-                    <th>Detalle</th>
-                    <th>MontoAT</th>
+                    <th>Nombre</th>
+                    <th>Precio</th>
                     <th>Porcentaje</th>
-                    <th>MontoPG</th>
-                    <th>RP</th>
                     <th>Acciones</th>
                   </tr>
-                  <th>
-								{{ csrf_field() }}
-								<button style="margin-left: -5px;" type="submit" onclick="return confirm('¿Desea Pagar estas Comisiónes?')" class="btn btn-xs btn-danger">Pagar.Selecc.</button>
-							</th>
                   </tfoot>
-                  </form>
                 </table>
               </div>
               <!-- /.card-body -->

@@ -10,14 +10,12 @@ use App\Pacientes;
 use App\Servicios;
 use App\User;
 use App\Atenciones;
-use App\Consultas;
-use App\Metodos;
 use Auth;
 use Illuminate\Http\Request;
 use DB;
 
 
-class MetodosController extends Controller
+class ResultadosController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -27,37 +25,86 @@ class MetodosController extends Controller
     public function index(Request $request)
     {
 
-      if ($request->inicio) {
-          $f1 = $request->inicio;
-          $f2 = $request->fin;
+        if ($request->inicio) {
+            $f1 = $request->inicio;
+            $f2 = $request->fin;
+  
 
-          $metodos = DB::table('metodos as a')
-        ->select('a.id', 'a.id_paciente', 'a.usuario', 'a.id_producto', 'a.sede', 'a.created_at', 'a.estatus', 'a.monto', 'b.nombres', 'b.apellidos', 'c.name as nameo', 'c.lastname as lasto', 'mp.nombre as producto')
-        ->join('pacientes as b', 'b.id', 'a.id_paciente')
-        ->join('users as c', 'c.id', 'a.usuario')
-        ->join('meto_pro as mp', 'mp.id', 'a.id_producto')
+            $resultados = DB::table('resultados_servicios as a')
+        ->select('a.id', 'a.id_atencion', 'a.id_servicio', 'b.usuario', 'a.created_at', 'a.estatus', 'b.id_paciente', 'b.id_origen', 's.nombre as servicio', 'pa.nombres', 'pa.apellidos', 'c.name', 'c.lastname')
+        ->join('atenciones as b', 'b.id', 'a.id_atencion')
+        ->join('users as c', 'c.id', 'b.id_origen')
+        ->join('pacientes as pa', 'pa.id', 'b.id_paciente')
+        ->join('servicios as s', 's.id', 'a.id_servicio')
         ->where('a.estatus', '=', 1)
-        ->where('a.sede', '=', $request->session()->get('sede'))
         ->whereBetween('a.created_at', [$f1, $f2])
+        //->where('a.monto', '!=', '0')
         ->get();
-      } else {
+        } else {
 
-        $f1 = date('Y-m-d');
-        $f2 = date('Y-m-d');
+            $f1 = date('Y-m-d');
+            $f2 = date('Y-m-d');
 
-        $metodos = DB::table('metodos as a')
-        ->select('a.id', 'a.id_paciente', 'a.usuario', 'a.id_producto', 'a.sede', 'a.created_at', 'a.estatus', 'a.monto', 'b.nombres', 'b.apellidos', 'c.name as nameo', 'c.lastname as lasto', 'mp.nombre as producto')
-        ->join('pacientes as b', 'b.id', 'a.id_paciente')
-        ->join('users as c', 'c.id', 'a.usuario')
-        ->join('meto_pro as mp', 'mp.id', 'a.id_producto')
+
+            $resultados = DB::table('resultados_servicios as a')
+            ->select('a.id', 'a.id_atencion', 'a.id_servicio', 'b.usuario', 'a.created_at', 'a.estatus', 'b.id_paciente', 'b.id_origen', 's.nombre as servicio', 'pa.nombres', 'pa.apellidos', 'c.name', 'c.lastname')
+            ->join('atenciones as b', 'b.id', 'a.id_atencion')
+            ->join('users as c', 'c.id', 'b.id_origen')
+            ->join('pacientes as pa', 'pa.id', 'b.id_paciente')
+            ->join('servicios as s', 's.id', 'a.id_servicio')
+            ->where('a.estatus', '=', 1)
+            ->where('a.created_at', '=', date('Y-m-d'))
+            ->get();
+
+            //->where('
+
+        }
+
+
+        return view('resultados.index', compact('resultados','f1','f2'));
+        //
+    }
+
+    public function index1(Request $request)
+    {
+
+        if ($request->inicio) {
+            $f1 = $request->inicio;
+            $f2 = $request->fin;
+  
+
+            $resultados = DB::table('resultados_laboratorio as a')
+        ->select('a.id', 'a.id_atencion', 'a.id_laboratorio', 'b.usuario', 'a.created_at', 'a.estatus', 'b.id_paciente', 'b.id_origen', 's.nombre as laboratorio', 'pa.nombres', 'pa.apellidos', 'c.name', 'c.lastname')
+        ->join('atenciones as b', 'b.id', 'a.id_atencion')
+        ->join('users as c', 'c.id', 'b.id_origen')
+        ->join('pacientes as pa', 'pa.id', 'b.id_paciente')
+        ->join('analisis as s', 's.id', 'a.id_laboratorio')
         ->where('a.estatus', '=', 1)
-        ->where('a.created_at', '=', date('Y-m-d'))
-        ->where('a.sede', '=', $request->session()->get('sede'))
+        ->whereBetween('a.created_at', [$f1, $f2])
+        //->where('a.monto', '!=', '0')
         ->get();
+        } else {
 
-      }
+            $f1 = date('Y-m-d');
+            $f2 = date('Y-m-d');
 
-        return view('metodos.index', compact('metodos','f1','f2'));
+
+            $resultados = DB::table('resultados_laboratorio as a')
+            ->select('a.id', 'a.id_atencion', 'a.id_laboratorio', 'b.usuario', 'a.created_at', 'a.estatus', 'b.id_paciente', 'b.id_origen', 's.nombre as laboratorio', 'pa.nombres', 'pa.apellidos', 'c.name', 'c.lastname')
+            ->join('atenciones as b', 'b.id', 'a.id_atencion')
+            ->join('users as c', 'c.id', 'b.id_origen')
+            ->join('pacientes as pa', 'pa.id', 'b.id_paciente')
+            ->join('analisis as s', 's.id', 'a.id_laboratorio')
+            ->where('a.estatus', '=', 1)
+            ->where('a.created_at', '=', date('Y-m-d'))
+            ->get();
+
+            //->where('
+
+        }
+
+
+        return view('resultados.index1', compact('resultados','f1','f2'));
         //
     }
 
@@ -164,15 +211,7 @@ class MetodosController extends Controller
             $lab->abono = $request->precio_con;
             $lab->tipo_pago = $request->tipop_con;
             $lab->usuario = Auth::user()->id;
-            $lab->sede = $request->session()->get('sede');
             $lab->save();
-
-            $con = new Consultas();
-            $con->id_paciente =  $request->paciente;
-            $con->monto = $request->precio_con;
-            $con->usuario = Auth::user()->id;
-            $con->sede = $request->session()->get('sede');
-            $con->save();
 
         }
 
@@ -190,15 +229,7 @@ class MetodosController extends Controller
             $lab->abono = $request->precio_met;
             $lab->tipo_pago = $request->tipop_met;
             $lab->usuario = Auth::user()->id;
-            $lab->sede = $request->session()->get('sede');
             $lab->save();
-
-            $met = new Metodos();
-            $met->id_paciente =  $request->paciente;
-            $met->monto = $request->precio_con;
-            $met->usuario = Auth::user()->id;
-            $met->sede = $request->session()->get('sede');
-            $met->save();
 
         }
 
@@ -219,7 +250,6 @@ class MetodosController extends Controller
                 $lab->abono = (float)$request->monto_abol['servicios'][$key]['abono'];
                 $lab->tipo_pago = $request->id_pago['servicios'][$key]['tipop'];
                 $lab->usuario = Auth::user()->id;
-                $lab->sede = $request->session()->get('sede');
                 $lab->save();
               } 
             }
@@ -247,7 +277,6 @@ class MetodosController extends Controller
                 $lab->abono = (float)$request->monto_abol['analisis'][$key]['abono'];
                 $lab->tipo_pago = $request->id_pago['analisis'][$key]['tipop'];
                 $lab->usuario = Auth::user()->id;
-                $lab->sede = $request->session()->get('sede');
                 $lab->save();
               } 
             }
@@ -270,7 +299,6 @@ class MetodosController extends Controller
                 $lab->abono = (float)$request->monto_abol['ecografias'][$key]['abono'];
                 $lab->tipo_pago = $request->id_pago['ecografias'][$key]['tipop'];
                 $lab->usuario = Auth::user()->id;
-                $lab->sede = $request->session()->get('sede');
                 $lab->save();
               } 
             }
@@ -293,7 +321,6 @@ class MetodosController extends Controller
                 $lab->abono = (float)$request->monto_abol['rayos'][$key]['abono'];
                 $lab->tipo_pago = $request->id_pago['rayos'][$key]['tipop'];
                 $lab->usuario = Auth::user()->id;
-                $lab->sede =$request->session()->get('sede');
                 $lab->save();
               } 
             }
@@ -394,4 +421,3 @@ class MetodosController extends Controller
         //
     }
 }
-

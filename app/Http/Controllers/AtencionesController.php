@@ -5,14 +5,18 @@ use App\Equipos;
 use App\Analisis;
 use App\Clientes;
 use App\Tiempo;
-use App\Material;
+use App\Paquetes;
 use App\Pacientes;
 use App\Servicios;
 use App\User;
 use App\Atenciones;
 use App\Consultas;
 use App\Metodos;
+use App\MetoPro;
 use App\Comisiones;
+use App\ResultadosServicios;
+use App\ResultadosLaboratorio;
+
 use Auth;
 use Illuminate\Http\Request;
 use DB;
@@ -93,6 +97,31 @@ class AtencionesController extends Controller
         ->where('a.monto', '!=', '0')
         ->where('a.created_at','=',$f1)
         ->where('a.sede', '=', $request->session()->get('sede'));
+
+        $paq = DB::table('atenciones as a')
+        ->select('a.id','a.tipo_origen','a.id_origen','a.id_tipo','a.sede','a.usuario','a.created_at','a.estatus','a.id_paciente','a.tipo_atencion','a.monto','a.abono','a.tipo_pago','b.nombres','b.apellidos','b.dni','c.name as nameo','c.lastname as lasto','d.name as nameu','d.lastname as lastu','s.nombre as detalle')
+        ->join('pacientes as b','b.id','a.id_paciente')
+        ->join('users as c','c.id','a.id_origen')
+        ->join('users as d','d.id','a.usuario')
+        ->join('paquetes as s','s.id','a.id_tipo')
+        ->where('a.estatus', '=', 1)
+        ->where('a.tipo_atencion', '=', 7)
+        ->where('a.monto', '!=', '0')
+        ->where('a.created_at','=',$f1)
+        ->where('a.sede', '=', $request->session()->get('sede'));
+
+
+        $metodos = DB::table('atenciones as a')
+        ->select('a.id','a.tipo_origen','a.id_origen','a.id_tipo','a.sede','a.usuario','a.created_at','a.estatus','a.id_paciente','a.tipo_atencion','a.monto','a.abono','a.tipo_pago','b.nombres','b.apellidos','b.dni','c.name as nameo','c.lastname as lasto','d.name as nameu','d.lastname as lastu','s.nombre as detalle')
+        ->join('pacientes as b','b.id','a.id_paciente')
+        ->join('users as c','c.id','a.id_origen')
+        ->join('users as d','d.id','a.usuario')
+        ->join('meto_pro as s','s.id','a.id_tipo')
+        ->where('a.estatus', '=', 1)
+        ->where('a.tipo_atencion', '=', 6)
+        ->where('a.monto', '!=', '0')
+        ->where('a.created_at','=',$f1)
+        ->where('a.sede', '=', $request->session()->get('sede'));
         //->get(); 
 
      
@@ -112,9 +141,9 @@ class AtencionesController extends Controller
         ->union($serv)
         ->union($eco)
         ->union($ana)
+        ->union($metodos)
+        ->union($paq)
         ->get(); 
-
-
 
 
 
@@ -182,6 +211,30 @@ class AtencionesController extends Controller
         ->where('a.monto', '!=', '0')
         ->where('a.created_at','=',date('Y-m-d'))
         ->where('a.sede', '=', $request->session()->get('sede'));
+
+        $paq = DB::table('atenciones as a')
+        ->select('a.id','a.tipo_origen','a.id_origen','a.id_tipo','a.sede','a.usuario','a.created_at','a.estatus','a.id_paciente','a.tipo_atencion','a.monto','a.abono','a.tipo_pago','b.nombres','b.apellidos','b.dni','c.name as nameo','c.lastname as lasto','d.name as nameu','d.lastname as lastu','s.nombre as detalle')
+        ->join('pacientes as b','b.id','a.id_paciente')
+        ->join('users as c','c.id','a.id_origen')
+        ->join('users as d','d.id','a.usuario')
+        ->join('paquetes as s','s.id','a.id_tipo')
+        ->where('a.estatus', '=', 1)
+        ->where('a.tipo_atencion', '=', 7)
+        ->where('a.monto', '!=', '0')
+        ->where('a.created_at','=',date('Y-m-d'))
+        ->where('a.sede', '=', $request->session()->get('sede'));
+
+        $metodos = DB::table('atenciones as a')
+        ->select('a.id','a.tipo_origen','a.id_origen','a.id_tipo','a.sede','a.usuario','a.created_at','a.estatus','a.id_paciente','a.tipo_atencion','a.monto','a.abono','a.tipo_pago','b.nombres','b.apellidos','b.dni','c.name as nameo','c.lastname as lasto','d.name as nameu','d.lastname as lastu','s.nombre as detalle')
+        ->join('pacientes as b','b.id','a.id_paciente')
+        ->join('users as c','c.id','a.id_origen')
+        ->join('users as d','d.id','a.usuario')
+        ->join('meto_pro as s','s.id','a.id_tipo')
+        ->where('a.estatus', '=', 1)
+        ->where('a.tipo_atencion', '=', 6)
+        ->where('a.monto', '!=', '0')
+        ->where('a.created_at','=',date('Y-m-d'))
+        ->where('a.sede', '=', $request->session()->get('sede'));
         //->get(); 
 
      
@@ -201,6 +254,8 @@ class AtencionesController extends Controller
         ->union($serv)
         ->union($eco)
         ->union($ana)
+        ->union($metodos)
+        ->union($paq)
         ->get(); 
 
 
@@ -226,6 +281,12 @@ class AtencionesController extends Controller
         $rayos = Servicios::where('estatus','=',1)->where('tipo','=','RAYOS')->get();
         $otros = Servicios::where('estatus','=',1)->where('tipo','=','OTROS')->get();
         $analisis = Analisis::where('estatus','=',1)->get();
+        $paquetes = Paquetes::where('estatus','=',1)->get();
+
+        $met = MetoPro::where('estatus','=',1)->get();
+
+        $personal = User::where('estatus','=',1)->where('tipo','=',1)->where('tipo_personal','=','Especialista')->get();
+
 
         if(!is_null($request->pac)){
             $paciente = Pacientes::where('dni','=',$request->pac)->first();
@@ -235,12 +296,18 @@ class AtencionesController extends Controller
             $res = 'NO';
             }
 
-        return view('atenciones.create', compact('ecografias','rayos','otros','analisis','paciente','res'));
+        return view('atenciones.create', compact('paquetes','personal','ecografias','rayos','otros','analisis','paciente','res','met'));
     }
 
     public function getServicio($id)
     {
         return Servicios::where('id','=',$id)->first();
+
+    }
+
+    public function getPaquetes($id)
+    {
+        return Paquetes::where('id','=',$id)->first();
 
     }
 
@@ -264,6 +331,11 @@ class AtencionesController extends Controller
 
 
  return view('atenciones.profesionales', compact('profesionales'));
+}
+
+public function particular(){
+
+return view('atenciones.particular');
 }
 
     public function datapac($id){
@@ -322,6 +394,7 @@ class AtencionesController extends Controller
             $con = new Consultas();
             $con->id_paciente =  $request->paciente;
             $con->id_atencion =  $lab->id;
+            $con->id_especialista =  $request->esp_con;
             $con->tipo =  $request->tipo_con;
             $con->monto = $request->precio_con;
             $con->usuario = Auth::user()->id;
@@ -339,7 +412,7 @@ class AtencionesController extends Controller
             $lab->id_origen = $searchUsuarioID->id;
             $lab->id_paciente =  $request->paciente;
             $lab->tipo_atencion = 6;
-           // $lab->id_tipo = $request->esp_con;
+            $lab->id_tipo = $request->metodo;
             $lab->monto = $request->precio_met;
             $lab->abono = $request->precio_met;
             $lab->tipo_pago = $request->tipop_met;
@@ -350,6 +423,7 @@ class AtencionesController extends Controller
             $met = new Metodos();
             $met->id_paciente =  $request->paciente;
             $met->id_atencion =  $lab->id;
+            $met->id_producto =  $request->metodo;
             $met->monto = $request->precio_met;
             $met->usuario = Auth::user()->id;
             $met->sede = $request->session()->get('sede');
@@ -378,6 +452,11 @@ class AtencionesController extends Controller
                 $lab->usuario = Auth::user()->id;
                 $lab->sede = $request->session()->get('sede');
                 $lab->save();
+
+                $rs = new ResultadosServicios();
+                $rs->id_atencion =  $lab->id;
+                $rs->id_servicio = $serv['servicio'];
+                $rs->save();
 
 
 
@@ -446,6 +525,11 @@ class AtencionesController extends Controller
                 $lab->sede = $request->session()->get('sede');
                 $lab->save();
 
+                $rs = new ResultadosLaboratorio();
+                $rs->id_atencion =  $lab->id;
+                $rs->id_laboratorio =$laboratorio['analisi'];
+                $rs->save();
+
 
                 if($request->origen == 2){
                   $com = new Comisiones();
@@ -464,6 +548,176 @@ class AtencionesController extends Controller
               } 
             }
           }
+
+            //GUARDANDO PAQUETES
+
+
+        if (isset($request->id_paquete)) {
+          foreach ($request->id_paquete['paquetes_'] as $key => $paq) {
+            if (!is_null($paq['paquete'])) {
+
+
+              $paquetes = Paquetes::where('id','=',$paq['paquete'])->first();
+
+              //TIPO ATENCION PAQUETE= 7
+              $lab = new Atenciones();
+              $lab->tipo_origen =  $request->origen;
+              $lab->id_origen = $searchUsuarioID->id;
+              $lab->id_paciente =  $request->paciente;
+              $lab->tipo_atencion = 7;
+              $lab->id_tipo = $paq['paquete'];
+              $lab->monto = (float)$request->monto_s['paquetes'][$key]['monto'];
+              $lab->abono = (float)$request->monto_abol['paquetes'][$key]['abono'];
+              $lab->tipo_pago = $request->id_pago['paquetes'][$key]['tipop'];
+              $lab->usuario = Auth::user()->id;
+              $lab->sede = $request->session()->get('sede');
+              $lab->save();
+
+
+              if($request->origen == 1){
+                $com = new Comisiones();
+                $com->id_atencion =  $lab->id;
+                $com->porcentaje = $paquetes->porcentaje;
+                $com->monto = (float)$request->monto_s['paquetes'][$key]['monto'] * $paquetes->porcentaje / 100;
+                $com->estatus = 1;
+                $com->usuario = Auth::user()->id;
+                $com->save();
+              } 
+
+
+              // VERIFICANDO SERVICIOS DE PAQUETE PARA GUARDAR SUS RESULTADPS
+
+              $searchServPaq = DB::table('paquetes_s')
+              ->select('*')
+              ->where('paquete','=', $paq['paquete'])
+              ->get();
+
+              //
+
+              foreach ($searchServPaq as $serv) {
+                $id_servicio = $serv->servicio;
+          
+                $servdetalle =  DB::table('servicios')
+                ->select('*')
+                ->where('id','=',$id_servicio)
+                ->first();
+                
+                if(! is_null($id_servicio)){
+
+                  $rs = new ResultadosServicios();
+                  $rs->id_atencion =  $lab->id;
+                  $rs->id_servicio = $id_servicio;
+                  $rs->save();
+                    
+                    }
+                }
+
+
+
+              // VERIFICANDO LABORATORIOS DE PAQUETE PARA GUARDAR SUS RESULTADPS
+
+
+              $searchLabPaq = DB::table('paquetes_l')
+              ->select('*')
+              ->where('paquete','=', $paq['paquete'])
+              ->get();
+
+
+              foreach ($searchLabPaq as $labp) {
+                $id_laboratorio = $labp->laboratorio;
+                if(!is_null($id_laboratorio)){
+                  $rs = new ResultadosLaboratorio();
+                  $rs->id_atencion =  $lab->id;
+                  $rs->id_laboratorio =$id_laboratorio;
+                  $rs->save();
+  
+                 }
+            }
+
+            // VERIFICANDO CANTIDAD DE CONSULTAS EN PAQUETE
+
+            $searchConsPaq = DB::table('paquetes_c')
+            ->select('*')
+            ->where('paquete','=', $paq['paquete'])
+            ->get();
+    
+          if(count($searchConsPaq) > 0){
+    
+    
+              foreach ($searchConsPaq as $cons) {
+                $cantidad=$cons->cantidad;
+                 }
+    
+    
+    
+             $contador=0;
+
+             
+            while ($contador < $cantidad) {
+                $con = new Consultas();
+                $con->id_paciente =  $request->paciente;
+                $con->id_especialista =  $searchUsuarioID->id;
+                $con->id_atencion =  $lab->id;
+                $con->tipo =  1;
+                $con->monto = 0;
+                $con->usuario = Auth::user()->id;
+                $con->sede = $request->session()->get('sede');
+                $con->save();
+ 
+               $contador++;
+             } 
+    
+           }
+
+
+
+            //
+
+            // VERIFICANDO CANTIDAD DE CONTROLES EN PAQUETE
+
+            $searchConsPaq = DB::table('paquetes_co')
+            ->select('*')
+            ->where('paquete','=', $paq['paquete'])
+            ->get();
+    
+          if(count($searchConsPaq) > 0){
+    
+    
+              foreach ($searchConsPaq as $cons) {
+                $cantidad=$cons->cantidad;
+                 }
+    
+    
+    
+             $contador=0;
+
+             
+            while ($contador < $cantidad) {
+                $con = new Consultas();
+                $con->id_paciente =  $request->paciente;
+                $con->id_especialista =  $searchUsuarioID->id;
+                $con->id_atencion =  $lab->id;
+                $con->tipo =  2;
+                $con->monto = 0;
+                $con->usuario = Auth::user()->id;
+                $con->sede = $request->session()->get('sede');
+                $con->save();
+ 
+               $contador++;
+             } 
+    
+           }
+
+
+
+
+
+
+
+
+            } 
+          }
+        }
 
           //GUARDANDO ECOGRAFIAS
 
@@ -486,6 +740,12 @@ class AtencionesController extends Controller
                 $lab->usuario = Auth::user()->id;
                 $lab->sede = $request->session()->get('sede');
                 $lab->save();
+
+                $rs = new ResultadosServicios();
+                $rs->id_atencion =  $lab->id;
+                $rs->id_servicio = $eco['ecografia'];
+                $rs->save();
+
 
                 if($request->origen == 1){
                   $com = new Comisiones();
@@ -546,6 +806,11 @@ class AtencionesController extends Controller
                 $lab->sede =$request->session()->get('sede');
                 $lab->save();
 
+                $rs = new ResultadosServicios();
+                $rs->id_atencion =  $lab->id;
+                $rs->id_servicio =$ray['rayo'];
+                $rs->save();
+
                 if($request->origen == 1){
                   $lab = new Comisiones();
                   $lab->id_atencion =  $lab->id;
@@ -581,10 +846,6 @@ class AtencionesController extends Controller
             }
           }
 
-
-
-        
-    
 
         return redirect()->action('AtencionesController@index')
         ->with('success','Creado Exitosamente!');
@@ -677,6 +938,21 @@ class AtencionesController extends Controller
           $con = Metodos::where('id_atencion','=',$id)->first();
           $con->estatus = 0;
           $con->save();
+        
+        } elseif($aten->tipo_atencion == 7){
+
+          $consultas = Consultas::where('id_atencion','=',$id)->get();
+
+          foreach ($consultas as $con) {
+            $id_consulta = $con->id;
+            if(!is_null($id_consulta)){
+              $con = Consultas::where('id','=',$id_consulta)->first();
+              $con->estatus = 0;
+              $con->save();
+             }
+           }
+
+         
 
         } else {
 
@@ -691,6 +967,14 @@ class AtencionesController extends Controller
         $com = Comisiones::where('id_atencion','=',$id)->first();
         $com->estatus = 0;
         $com->save();
+
+        $rs = ResultadosServicios::where('id_atencion','=',$id)->first();
+        $rs->estatus = 0;
+        $rs->delete();
+
+        $rl = ResultadosLaboratorio::where('id_atencion','=',$id)->first();
+        $rl->estatus = 0;
+        $rl->save();
 
         return redirect()->action('AtencionesController@index')
         ->with('success','Eliminado Exitosamente!');

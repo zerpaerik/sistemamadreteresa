@@ -69,6 +69,20 @@ class ComisionesPagarController extends Controller
         ->whereBetween('a.created_at', [$f1, $f2])
         ->where('at.sede', '=', $request->session()->get('sede'));
 
+        
+        $paq = DB::table('comisiones as a')
+        ->select('a.id', 'a.estatus', 'a.id_atencion', 'a.created_at','a.usuario', 'a.porcentaje', 'a.monto', 'a.estatus', 'at.id_paciente', 'at.tipo_atencion', 'at.sede', 'at.tipo_origen', 'at.id_origen', 'at.monto as total', 'b.nombres', 'b.apellidos', 'c.name as nameo', 'c.lastname as lasto', 'd.name as nameu', 'd.lastname as lastu', 's.nombre as detalle')
+        ->join('atenciones as at', 'at.id', 'a.id_atencion')
+        ->join('pacientes as b', 'b.id', 'at.id_paciente')
+        ->join('users as c', 'c.id', 'at.id_origen')
+        ->join('users as d', 'd.id', 'a.usuario')
+        ->join('paquetes as s', 's.id', 'at.id_tipo')
+        ->where('a.estatus', '=', 1)
+        ->where('at.tipo_origen', '=', 1)
+        ->where('at.tipo_atencion', '=', 7)
+        ->whereBetween('a.created_at', [$f1, $f2])
+        ->where('at.sede', '=', $request->session()->get('sede'));
+
         $comisiones = DB::table('comisiones as a')
         ->select('a.id', 'a.estatus', 'a.id_atencion','a.created_at','a.usuario', 'a.porcentaje', 'a.monto', 'a.estatus', 'at.id_paciente', 'at.tipo_atencion', 'at.sede', 'at.tipo_origen', 'at.id_origen', 'at.monto as total', 'b.nombres', 'b.apellidos', 'c.name as nameo', 'c.lastname as lasto', 'd.name as nameu', 'd.lastname as lastu', 's.nombre as detalle')
         ->join('atenciones as at', 'at.id', 'a.id_atencion')
@@ -85,6 +99,7 @@ class ComisionesPagarController extends Controller
         ->union($ser)
         ->union($eco)
         ->union($ray)
+        ->union($paq)
         ->get();
 
 
@@ -134,6 +149,19 @@ class ComisionesPagarController extends Controller
         ->where('a.created_at','=',date('Y-m-d'))
         ->where('at.sede', '=', $request->session()->get('sede'));
 
+        $paq = DB::table('comisiones as a')
+        ->select('a.id', 'a.estatus', 'a.id_atencion', 'a.created_at','a.usuario', 'a.porcentaje', 'a.monto', 'a.estatus', 'at.id_paciente', 'at.tipo_atencion', 'at.sede', 'at.tipo_origen', 'at.id_origen', 'at.monto as total', 'b.nombres', 'b.apellidos', 'c.name as nameo', 'c.lastname as lasto', 'd.name as nameu', 'd.lastname as lastu', 's.nombre as detalle')
+        ->join('atenciones as at', 'at.id', 'a.id_atencion')
+        ->join('pacientes as b', 'b.id', 'at.id_paciente')
+        ->join('users as c', 'c.id', 'at.id_origen')
+        ->join('users as d', 'd.id', 'a.usuario')
+        ->join('paquetes as s', 's.id', 'at.id_tipo')
+        ->where('a.estatus', '=', 1)
+        ->where('at.tipo_origen', '=', 1)
+        ->where('at.tipo_atencion', '=', 7)
+        ->where('a.created_at','=',date('Y-m-d'))
+        ->where('at.sede', '=', $request->session()->get('sede'));
+
             $comisiones = DB::table('comisiones as a')
         ->select('a.id', 'a.estatus', 'a.id_atencion', 'a.created_at','a.usuario', 'a.porcentaje', 'a.monto', 'a.estatus', 'at.id_paciente', 'at.tipo_atencion', 'at.sede', 'at.tipo_origen', 'at.id_origen', 'at.monto as total', 'b.nombres', 'b.apellidos', 'c.name as nameo', 'c.lastname as lasto', 'd.name as nameu', 'd.lastname as lastu', 's.nombre as detalle')
         ->join('atenciones as at', 'at.id', 'a.id_atencion')
@@ -150,6 +178,7 @@ class ComisionesPagarController extends Controller
         ->union($ser)
         ->union($eco)
         ->union($ray)
+        ->union($paq)
         ->get();
 
 
@@ -326,6 +355,36 @@ class ComisionesPagarController extends Controller
 
         return view('atenciones.create', compact('ecografias','rayos','otros','analisis','paciente','res'));
     }
+
+    public function pagarmultiple(Request $request)
+    {
+      if(isset($request->com)){
+        $last = Comisiones::select('recibo')->orderby('recibo', 'DESC')->first();
+        if (!empty($last->recibo)) {
+          $last = explode("-", $last->recibo);
+          $last = array_pop($last);
+        } else {
+          $last = 0;
+        }
+  
+        $recibo = $last + 1;
+        
+        foreach ($request->com as $atencion) {
+          Comisiones::where('id', $atencion)
+                    ->update([
+                        'fecha_pago' => date('Y-m-d'),
+                        'estatus' => 2,
+                        'recibo' => $recibo
+                    ]);
+        }
+  
+      } 
+  
+      return back();
+    }
+
+
+
 
     public function getServicio($id)
     {

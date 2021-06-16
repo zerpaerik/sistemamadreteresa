@@ -76,6 +76,27 @@
       <div class="container-fluid">
       <div class="card">
               <div class="card-header">
+              <form method="get" action="consultas">					
+                  <label for="exampleInputEmail1">Filtros de Busqueda</label>
+
+                    <div class="row">
+                  <div class="col-md-3">
+                    <label for="exampleInputEmail1">Fecha Inicio</label>
+                    <input type="date" class="form-control" value="{{$f1}}" name="inicio">
+                  </div>
+
+                  <div class="col-md-3">
+                    <label for="exampleInputEmail1">Fecha Fin</label>
+                    <input type="date" class="form-control" value="{{$f2}}" name="fin">
+                  </div>
+                  
+                
+                 
+                  <div class="col-md-2" style="margin-top: 30px;">
+                  <button type="submit" class="btn btn-primary">Buscar</button>
+
+                  </div>
+                  </form>
               
               </div>
               <!-- /.card-header -->
@@ -84,7 +105,9 @@
                   <thead>
                   <tr>
                     <th>Id</th>
+                    <th>Fecha</th>
                     <th>Paciente</th>
+                    <th>Especialista</th>
                     <th>Tipo</th>
                     <th>Monto</th>
                     <th>RP</th>
@@ -96,7 +119,9 @@
                   @foreach($consultas as $an)
                   <tr>
                     <td>{{$an->id}}</td>
+                    <td>{{date('d-M-y', strtotime($an->created_at))}}</td>
                     <td>{{$an->nombres}} {{$an->apellidos}}</td>
+                    <td>{{$an->namee}} {{$an->laste}}</td>
                     @if($an->tipo == 1)
                     <td><span class="badge bg-success">CONSULTA</span></td>
                   
@@ -121,7 +146,9 @@
                   <tfoot>
                   <tr>
                   <th>Id</th>
+                    <th>Fecha</th>
                     <th>Paciente</th>
+                    <th>Especialista</th>
                     <th>Tipo</th>
                     <th>Monto</th>
                     <th>RP</th>

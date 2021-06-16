@@ -68,6 +68,13 @@
                   <p>Servicios</p>
                 </a>
               </li>
+
+              <li class="nav-item">
+                <a href="{{route('paquetes.index')}}" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>Paquetes</p>
+                </a>
+              </li>
               
               <li class="nav-item">
                 <a href="{{route('pacientes.index')}}" class="nav-link">
@@ -176,6 +183,38 @@
                 <a href="{{route('comisionesp.index1')}}" class="nav-link">
                   <i class="fas fa-cart-arrow-down nav-icon"></i>
                   <p>Profesional</p>
+                </a>
+              </li>
+
+            
+            
+              
+            </ul>
+          </li>
+
+          <li class="nav-item has-treeview">
+            <a href="#" class="nav-link">
+              <i class="nav-icon fas fa-money-check-alt"></i>
+              <p>
+               Resultados
+                <i class="fas fa-angle-left right"></i>
+              </p>
+            </a>
+            <ul class="nav nav-treeview">
+
+
+            <li class="nav-item">
+                <a href="{{route('resultados.index')}}" class="nav-link">
+                  <i class="fas fa-hand-holding-usd nav-icon"></i>
+                  <p>Pendientes Servicio</p>
+                </a>
+              </li>
+
+
+              <li class="nav-item">
+                <a href="{{route('resultados.index1')}}" class="nav-link">
+                  <i class="fas fa-cart-arrow-down nav-icon"></i>
+                  <p>Pendientes Laboratorio</p>
                 </a>
               </li>
 

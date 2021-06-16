@@ -57,12 +57,12 @@
       <div class="container-fluid">
         <div class="row mb-2">
           <div class="col-sm-6">
-            <h1 class="m-0 text-dark">Comisiones por Pagar a Profesional</h1>
+            <h1 class="m-0 text-dark">Resultados Por Hacer Servicio</h1>
           </div><!-- /.col -->
           <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">
               <li class="breadcrumb-item"><a href="#">Home</a></li>
-              <li class="breadcrumb-item active">Profesional</li>
+              <li class="breadcrumb-item active">Resultados Por Hacer Servicio</li>
             </ol>
           </div><!-- /.col -->
         </div><!-- /.row -->
@@ -76,7 +76,7 @@
       <div class="container-fluid">
       <div class="card">
               <div class="card-header">
-              <form method="get" action="comisiones1">					
+              <form method="get" action="resultados">					
                   <label for="exampleInputEmail1">Filtros de Busqueda</label>
 
                     <div class="row">
@@ -102,41 +102,27 @@
               <!-- /.card-header -->
               <div class="card-body">
                 <table id="example1" class="table table-bordered table-striped">
-                <form action="/pagarmultiple" method="post">
                   <thead>
                   <tr>
-                    <th>Items</th>
-                    <th>Paciente</th>
+                    <th>Fecha</th>
+                    <th>Pac.</th>
                     <th>Origen</th>
-                    <th>Detalle</th>
-                    <th>MontoAT</th>
-                    <th>Porcentaje</th>
-                    <th>MontoPG</th>
-                    <th>RP</th>
-                    <th>Acciones</th>
+                    <th>Det.</th>
+                    <th></th>
                   </tr>
                   </thead>
                   <tbody>
 
-                  @foreach($comisiones as $an)
+                  @foreach($resultados as $an)
                   <tr>
-                  <td><input value="{{$an->id}}" type="checkbox" name="com[]"></td>
-                    <td>{{substr($an->apellidos,0,5)}} {{substr($an->nombres,0,5)}}</td>
-                    <td>{{substr($an->lasto,0,5)}} {{substr($an->nameo,0,5)}}</td>
-                   
-                    <td>Detalle</td>
-                    <td>{{$an->total}}</td>
-                    <td>{{$an->porcentaje}}</td>
-                    <td>{{$an->monto}}</td>
-                    <td>{{$an->nameu}} {{$an->lastu}}</td>
+                   <td>{{$an->created_at}}</td>
+                    <td>{{$an->apellidos}} {{$an->nombres}}</td>
+                    <td>{{$an->lastname}} {{$an->name}}</td>
+                    <td>{{$an->servicio}}</td>
 
                     <td>
                     @if(Auth::user()->rol == 1)
-                    <a class="btn btn-danger btn-sm" href="comisiones-pagar-{{$an->id}}" onclick="return confirm('¿Desea pagar esta comisión?')">
-                    <i class="fa fa-money" aria-hidden="true">
-                              </i>
-                              Pagar
-                          </a>
+                   
 
                          
 
@@ -149,22 +135,15 @@
                   </tbody>
                   <tfoot>
                   <tr>
-                  <th>Items</th>
-                    <th>Paciente</th>
+                    <th>Fecha</th>
+                    <th>Pac.</th>
                     <th>Origen</th>
-                    <th>Detalle</th>
-                    <th>MontoAT</th>
-                    <th>Porcentaje</th>
-                    <th>MontoPG</th>
-                    <th>RP</th>
-                    <th>Acciones</th>
+                    <th>Det.</th>
+                    <th></th>
                   </tr>
-                  <th>
-								{{ csrf_field() }}
-								<button style="margin-left: -5px;" type="submit" onclick="return confirm('¿Desea Pagar estas Comisiónes?')" class="btn btn-xs btn-danger">Pagar.Selecc.</button>
-							</th>
+                 
                   </tfoot>
-                  </form>
+
                 </table>
               </div>
               <!-- /.card-body -->

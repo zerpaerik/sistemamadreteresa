@@ -27,15 +27,39 @@ class ConsultasController extends Controller
     public function index(Request $request)
     {
 
+      
+      if ($request->inicio) {
+        $f1 = $request->inicio;
+        $f2 = $request->fin;
+
         $consultas = DB::table('consultas as a')
-        ->select('a.id','a.id_paciente','a.usuario','a.tipo','a.sede','a.created_at','a.estatus','a.monto','b.nombres','b.apellidos','c.name as nameo','c.lastname as lasto')
+        ->select('a.id','a.id_paciente','a.usuario','a.id_especialista','a.tipo','a.sede','a.created_at','a.estatus','a.monto','b.nombres','b.apellidos','c.name as nameo','c.lastname as lasto','e.name as namee','e.lastname as laste')
         ->join('pacientes as b','b.id','a.id_paciente')
         ->join('users as c','c.id','a.usuario')
+        ->join('users as e','e.id','a.id_especialista')
         ->where('a.estatus', '=', 1)
         ->where('a.sede', '=', $request->session()->get('sede'))
+        ->whereBetween('a.created_at', [$f1, $f2])
         ->get(); 
 
-        return view('consultas.index', compact('consultas'));
+      } else {
+
+        $f1 = date('Y-m-d');
+        $f2 = date('Y-m-d');
+
+        $consultas = DB::table('consultas as a')
+        ->select('a.id','a.id_paciente','a.usuario','a.id_especialista','a.tipo','a.sede','a.created_at','a.estatus','a.monto','b.nombres','b.apellidos','c.name as nameo','c.lastname as lasto','e.name as namee','e.lastname as laste')
+        ->join('pacientes as b','b.id','a.id_paciente')
+        ->join('users as c','c.id','a.usuario')
+        ->join('users as e','e.id','a.id_especialista')
+        ->where('a.estatus', '=', 1)
+        ->where('a.sede', '=', $request->session()->get('sede'))
+        ->where('a.created_at', '=', date('Y-m-d'))
+        ->get(); 
+
+      }
+
+        return view('consultas.index', compact('consultas','f1','f2'));
         //
     }
 

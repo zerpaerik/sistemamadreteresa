@@ -102,40 +102,30 @@
               <!-- /.card-header -->
               <div class="card-body">
                 <table id="example1" class="table table-bordered table-striped">
+                <form action="/pagarmultiple" method="post">
                   <thead>
                   <tr>
+                    <th>Items</th>
                     <th>Fecha</th>
-                    <th>Paciente</th>
+                    <th>Pac.</th>
                     <th>Origen</th>
-                    <th>Tipo</th>
-                    <th>Detalle</th>
+                    <th>Det.</th>
                     <th>MontoAT</th>
-                    <th>Porcentaje</th>
-                    <th>MontoPG</th>
+                    <th>Porc</th>
+                    <th>MontPG</th>
                     <th>RP</th>
-                    <th>Acciones</th>
+                    <th></th>
                   </tr>
                   </thead>
                   <tbody>
 
                   @foreach($comisiones as $an)
                   <tr>
-                  <td>{{date('d-M-y', strtotime($an->created_at))}}</td>
+                  <td><input value="{{$an->id}}" type="checkbox" name="com[]"></td>
+                   <td>{{$an->created_at}}</td>
                     <td>{{$an->apellidos}} {{$an->nombres}}</td>
-                    <td>{{$an->lasto)}} {{$an->nameo)}}</td>
-                    @if($an->tipo_atencion == 1)
-                    <td><span class="badge bg-success">Servicio</span></td>
-                    @elseif($an->tipo_atencion == 2)
-                    <td><span class="badge bg-success">Ecografia</span></td>
-                    @elseif($an->tipo_atencion == 3)
-                    <td><span class="badge bg-success">RayosX</span></td>
-                    @elseif($an->tipo_atencion == 4)
-                    <td><span class="badge bg-success">Laboratorio</span></td>
-                    @elseif($an->tipo_atencion == 5)
-                    <td><span class="badge bg-success">Consulta</span></td>
-                    @else
-                    <td><span class="badge bg-success">Método</span></td>
-                    @endif
+                    <td>{{$an->lasto}} {{$an->nameo}}</td>
+                   
                     <td width="5%">{{$an->detalle}}</td>
                     <td>{{$an->total}}</td>
                     <td>{{$an->porcentaje}}</td>
@@ -161,18 +151,26 @@
                   </tbody>
                   <tfoot>
                   <tr>
-                  <th>Fecha</th>
-                    <th>Paciente</th>
+                    <th>Items</th>
+                    <th>Fecha</th>
+                    <th>Pac</th>
                     <th>Origen</th>
-                    <th>Tipo</th>
-                    <th>Detalle</th>
+                    <th>Det</th>
                     <th>MontoAT</th>
-                    <th>Porcentaje</th>
-                    <th>MontoPG</th>
+                    <th>Porc.</th>
+                    <th>MontPG</th>
                     <th>RP</th>
-                    <th>Acciones</th>
+                    <th></th>
                   </tr>
+                  <th>
+								{{ csrf_field() }}
+								<button style="margin-left: -5px;" type="submit" onclick="return confirm('¿Desea Pagar estas Comisiónes?')" class="btn btn-xs btn-danger">Pagar.Selecc.</button>
+
+							    
+							</th>
                   </tfoot>
+                  </form>
+
                 </table>
               </div>
               <!-- /.card-body -->

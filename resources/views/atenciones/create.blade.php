@@ -105,25 +105,34 @@
                   <br>
                     <form method="post" action="atenciones/create" >			
                   {{ csrf_field() }}  
-                  <div class="row">
                   @if($paciente && $res == 'SI')
                   <input type="hidden" name="paciente" value="{{$paciente->id}}">
-                  <div class="col-md-8">
-                  <p style="color: red;">Datos de Paciente</p>
-                  <p>{{$paciente->nombres}} {{$paciente->apellidos}} DNI: {{$paciente->dni}}
-                  </div>
-
+                  <p style="">Datos de Paciente</p>
+                  <div class="row" style="background:yellowgreen;">
+                    <div class="col-md-3">
+                      <strong>Nombres:</strong>{{$paciente->nombres}}
+                    </div>
+                    <div class="col-md-3">
+                      <strong>Apellidos:</strong>{{$paciente->apellidos}}
+                    </div>
+                    <div class="col-md-2">
+                      <strong>DNI:</strong>{{$paciente->dni}}
+                    </div>
+                    
+                    <div class="col-md-2">
+                      <strong>Teléfono:</strong>{{$paciente->telefono}}
+                    </div>
+                    
+                   
+                    </div>
                   @else
                   <label for="exampleInputEmail1">NO EXISTE EL PACIENTE</label>
 
                 
                   @endif
-                  </div>
 
-
+                  <br>
                   <div class="row">
-
-
                   <div class="col-md-3">
                   <label>Origen</label>
                         <select class="form-control" name="origen" id="el2">
@@ -446,7 +455,77 @@
             <!-- /sheepIt Form --> 
           </div>
   </div>
-  <div class="tab-pane container fade" id="paq">AQUI VAN LOS PAQUETES</div>
+  <div class="tab-pane container fade" id="paq">
+
+    <div class="row">
+      <label class="col-sm-6 alert"><i class="fa fa-tasks" aria-hidden="true"></i> Paquetes Seleccionadas</label>
+      <!-- sheepIt Form -->
+      <div id="paquetes" class="embed ">
+      
+          <!-- Form template-->
+          <div id="paquetes_template" class="template row">
+
+          <label for="paquetes_#index#_paquete" class="col-sm-2 control-label">Paquetes</label>
+              <div class="col-sm-3">
+                <select id="paquetes_#index#_paquete" name="id_paquete[paquetes_][#index#][paquete]" class="selectPaq form-control">
+                  <option value="" >Seleccionar Paquete.</option>
+                  @foreach($paquetes as $paq)
+                    <option value="{{$paq->id}}">
+                      {{$paq->nombre}}
+                    </option>
+                  @endforeach
+                </select>
+              </div>
+
+              <label for="paquetes_#index#_monto" class="col-sm-1 control-label">Monto</label>
+              <div class="col-sm-1">
+                <input id="paquetes_#index#_montoHidden" name="monto_h[paquetes][#index#][montoHidden]" class="text" type="hidden" value="">
+
+                <input id="paquetes_#index#_monto" name="monto_s[paquetes][#index#][monto]" type="text" class="number form-control monto" placeholder="Precio" data-toggle="tooltip" data-placement="bottom" title="Precio">
+              </div>
+
+              <label for="paquetes_#index#_abonoL" class="col-sm-1 control-label">Abono.</label>
+              <div class="col-sm-1">
+
+                <input id="paquetes_#index#_abonoL" name="monto_abol[paquetes][#index#][abono]" type="number" class="number form-control abonoL" placeholder="Abono" data-toggle="tooltip" data-placement="bottom" title="Abono">
+              </div>
+
+              
+              <label for="paquetes_#index#_tipop" class="col-sm-1 control-label">TipoPago</label>
+              <div class="col-sm-2">
+                <select id="paquetes_#index#_paquete" name="id_pago[paquetes][#index#][tipop]" class="form-control">
+                <option value="" disabled>Seleccione</option>
+                  <option value="EF">Efectivo</option>
+                  <option value="TJ">Tarjeta</option>
+                  <option value="DP">Depósito</option>
+                  <option value="YP">Yape</option>
+
+                </select>
+              </div>
+
+             
+
+              <a id="paquetes_remove_current" style="cursor: pointer;"><i class="fa fa-times-circle" aria-hidden="true"></i></a>
+          </div>
+          <!-- /Form template-->
+          
+          <!-- No forms template -->
+          <div id="paquetes_noforms_template" class="noItems col-sm-12 text-center">Ningún Producto</div>
+          <!-- /No forms template-->
+          
+          <!-- Controls -->
+          <div id="paquetes_controls" class="controls col-sm-11 col-sm-offset-1">
+              <div id="paquetes_add" class="btn btn-default form add"><a><span><i class="fa fa-plus-circle"></i> Agregar Paquete</span></a></div>
+              <div id="paquetes_remove_last" class="btn form removeLast"><a><span><i class="fa fa-close-circle"></i> Eliminar ultimo</span></a></div>
+              <div id="apaquetes_remove_all" class="btn form removeAll"><a><span><i class="fa fa-close-circle"></i> Eliminar todos</span></a></div>
+          </div>
+          <!-- /Controls -->
+          
+      </div>
+      <!-- /sheepIt Form --> 
+    </div>
+
+  </div>
   <div class="tab-pane container fade" id="con">  
   <div class="card-body">
                     <div class="row" width="100%">
@@ -461,9 +540,10 @@
                   <div class="col-md-3">
                   <label>Especialista</label>
                         <select class="form-control" name="esp_con">
-						              	<option value="" disabled>Seleccione</option>
-                            <option value="1">Consulta</option>
-                            <option value="2">Control</option>
+                          <option value="">Seleccione</option>
+                          @foreach($personal as $p)
+                          <option value="{{$p->id}}">{{$p->lastname}} {{$p->name}}</option>
+                          @endforeach
                         </select>
                   </div>
                   <div class="col-md-3">
@@ -492,13 +572,14 @@
                     <div class="row">
                     <div class="col-md-4">
                   <label>Producto</label>
-                        <select class="form-control" name="metodo">
-						              	<option value="" disabled>Seleccione</option>
-                            <option value="EF">Efectivo</option>
-                            <option value="TJ">Tarjeta</option>
-                            <option value="DP">Depósito</option>
-                            <option value="YP">Yape</option>
-                        </select>
+                  <select class="form-control" name="metodo">
+                    <option value="">Seleccione</option>
+                  @foreach($met as $m)
+                  <option value="{{$m->id}}">{{$m->nombre}}</option>
+                  @endforeach
+                </select>
+
+                      
                   </div>
                   <div class="col-md-4">
                     <label for="exampleInputEmail1">Precio</label>
@@ -644,8 +725,11 @@ function datapac(){
           var link;
           if ($(this).val() == 1) {
             link = '/atenciones/personal/';
+
+          }else if ($(this).val() == 2) {
+            link = '/atenciones/profesionales/';
           } else {
-		    link = '/atenciones/profesionales/';
+		    link = '/atenciones/particular/';
 		  }
 
           $.ajax({
@@ -794,6 +878,24 @@ $(document).on('change','.selectServ',function(){
       });
     });
 
+    $(document).on('change','.selectPaq',function(){
+      var labId = $(this).attr('id');
+      var labArr = labId.split('_');
+      var id = labArr[1];
+
+      $.ajax({
+         type: "GET",
+         url:  "atenciones/getPaquetes/"+$(this).val(),
+         success: function(a) {
+           
+            $('#paquetes_'+id+'_montoHidden').val(a.precio);
+            $('#paquetes_'+id+'_monto').val(a.precio);
+          
+         }
+      });
+    });
+
+
 
 
 var botonDisabled = true;
@@ -858,6 +960,25 @@ var botonDisabled = true;
 
     
     var phonesForm = $("#analisis").sheepIt({
+        separator: '',
+        allowRemoveCurrent: true,
+        allowAdd: true,
+        allowRemoveAll: true,
+        allowRemoveLast: true,
+
+        // Limits
+        maxFormsCount: 10,
+        minFormsCount: 1,
+        iniFormsCount: 0,
+
+        removeAllConfirmationMsg: 'Seguro que quieres eliminar todos?',
+        afterRemoveCurrent: function(source, event){
+          calcular();
+          calculo_general();
+        }
+    });
+
+    var phonesForm = $("#paquetes").sheepIt({
         separator: '',
         allowRemoveCurrent: true,
         allowAdd: true,
