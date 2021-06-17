@@ -89,6 +89,15 @@
                     <label for="exampleInputEmail1">Fecha Fin</label>
                     <input type="date" class="form-control" value="{{$f2}}" name="fin">
                   </div>
+
+                  <div class="col-md-3">
+                    <label for="exampleInputEmail1">Seleccione el Personal</label>
+                    <select class="form-control" data-placeholder="Seleccione" style="width: 100%;" name="origen">
+                   @foreach($origen as $o)
+                   <option value="{{$o->idorigen}}">{{$o->lasto}} {{$o->nameo}}</option>
+                    @endforeach
+                  </select>
+                  </div>
                   
                 
                  

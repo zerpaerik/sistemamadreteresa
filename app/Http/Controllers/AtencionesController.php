@@ -872,7 +872,7 @@ return view('atenciones.particular');
           }
 
 
-        return redirect()->action('AtencionesController@index')
+        return redirect()->route('atenciones.index')
         ->with('success','Creado Exitosamente!');
 
         //return redirect()->action('AnalisisController@index', ["created" => true, "analisis" => Analisis::all()]);

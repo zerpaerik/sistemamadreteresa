@@ -31,6 +31,7 @@
 <link rel="stylesheet" href="../../plugins/datatables-responsive/css/responsive.bootstrap4.min.css">
 <link rel="stylesheet" href="http://cdn.bootcss.com/toastr.js/latest/css/toastr.min.css"> 
 
+
 </head>
 <body class="hold-transition sidebar-mini layout-fixed">
 <div class="wrapper">
@@ -72,7 +73,7 @@
 
     <!-- Main content -->
     <section class="content">
-    @include('flash-message')
+    <!-- @include('flash-message') -->
       <div class="container-fluid">
       <div class="card">
               <div class="card-header">
@@ -131,12 +132,12 @@
                     <td>{{$an->abono}}</td>
                     <td >{{$an->tipo_pago}}</td>
                     @if($an->pagado == 1)
-                    <td><span class="badge bg-success">NO</span></td>
+                    <td><span class="badge bg-danger">NO</span></td>
                     @else
                     <td><span class="badge bg-success">SI</span></td>
                     @endif
                     @if($an->atendido == 1)
-                    <td><span class="badge bg-success">NO</span></td>
+                    <td><span class="badge bg-danger">NO</span></td>
                     @else
                     <td><span class="badge bg-success">SI</span></td>
                     @endif
@@ -257,6 +258,53 @@
 <script src="../../dist/js/adminlte.min.js"></script>
 <!-- AdminLTE for demo purposes -->
 <script src="../../dist/js/demo.js"></script>
+
+<script>
+  @if(Session::has('message'))
+  toastr.options =
+  {
+  	"closeButton" : true,
+  	"progressBar" : true
+  }
+  		toastr.success("{{ session('message') }}");
+  @endif
+
+  @if(Session::has('error'))
+  toastr.options =
+  {
+  	"closeButton" : true,
+  	"progressBar" : true
+  }
+  		toastr.error("{{ session('error') }}");
+  @endif
+
+  @if(Session::has('info'))
+  toastr.options =
+  {
+  	"closeButton" : true,
+  	"progressBar" : true
+  }
+  		toastr.info("{{ session('info') }}");
+  @endif
+
+  @if(Session::has('success'))
+  toastr.options =
+  {
+  	"closeButton" : true,
+  	"progressBar" : true
+  }
+  		toastr.info("{{ session('success') }}");
+  @endif
+
+  @if(Session::has('warning'))
+  toastr.options =
+  {
+  	"closeButton" : true,
+  	"progressBar" : true
+  }
+  		toastr.warning("{{ session('warning') }}");
+  @endif
+</script>
 <!-- page script -->
 <script>
   $(function () {
