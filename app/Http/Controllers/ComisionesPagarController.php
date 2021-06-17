@@ -370,6 +370,14 @@ class ComisionesPagarController extends Controller
         $recibo = $last + 1;
         
         foreach ($request->com as $atencion) {
+
+          $com = Comisiones::where('id','=',$atencion)->first();
+
+          $a = Atenciones::where('id','=',$com->id_atencion)->first();
+          $a->pagado =2;
+          $resa = $a->update();
+         
+
           Comisiones::where('id', $atencion)
                     ->update([
                         'fecha_pago' => date('Y-m-d'),
@@ -638,6 +646,12 @@ class ComisionesPagarController extends Controller
     public function pagar($id)
     {
 
+      $com = Comisiones::where('id','=',$id)->first();
+
+      $a = Atenciones::where('id','=',$com->id_atencion)->first();
+      $a->pagado =2;
+      $resa = $a->update();
+     
 
       $p = Comisiones::find($id);
       $p->estatus =2;
