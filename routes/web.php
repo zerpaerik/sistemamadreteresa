@@ -134,6 +134,8 @@ Route::post('paquetes/create', 'PaquetesController@store')->middleware('auth');
 Route::get('paquetes-delete-{id}', 'PaquetesController@delete')->middleware('auth');
 Route::get('paquetes-edit-{id}', 'PaquetesController@edit')->name('paquetes.edit');
 Route::post('paquetes/edit', 'PaquetesController@update');
+Route::get('paquetes/ver/{id}', 'PaquetesController@ver')->middleware('auth');
+
 
 
 Route::get('pacientes', 'PacientesController@index')->name('pacientes.index');

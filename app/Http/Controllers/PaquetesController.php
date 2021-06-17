@@ -117,27 +117,15 @@ class PaquetesController extends Controller
 
     public function ver($id)
     {
-	  
-        $req = DB::table('requerimientos as a')
-        ->select('a.id','a.asunto','a.prioridad','a.categoria','a.descripcion','a.estatus','a.estado','a.empresa','b.nombre as empresa')
-        ->join('clientes as b','b.id','a.empresa')
-        ->where('a.empresa', '=', Auth::user()->empresa)
-        ->where('a.estatus', '=', 1)
-        ->where('a.id', '=', $id)
-        ->first(); 
+      $paquete = Paquetes::where('id','=',$id)->first();
+      $servicios = PaqueteServ::where('paquete', $paquete->id)->with('servicio')->get();
+      $laboratorios = PaqueteLab::where('paquete', $paquete->id)->with('laboratorio')->get();
+      $consultas = PaqueteCon::where('paquete', $paquete->id)->get();
+      $controles = PaqueteCont::where('paquete', $paquete->id)->get();
 
-        //$equipos = ActivosRequerimientos::
-
-        $equipos = DB::table('activos_requerimientos as a')
-        ->select('a.id','a.activo','a.ticket','b.nombre','b.modelo','b.serial')
-        ->join('equipos as b','b.id','a.activo')
-        ->where('ticket','=',$id)
-        ->get();
-
-
-	  
-      return view('requerimientos.ver', compact('req','equipos'));
-    }	  
+      
+      return view('paquetes.ver', compact('paquete', 'servicios', 'laboratorios','consultas','controles'));
+    }
 
     /**
      * Show the form for editing the specified resource.

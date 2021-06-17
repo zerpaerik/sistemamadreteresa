@@ -104,16 +104,13 @@
                     <td>
                     @if(Auth::user()->rol == 1)
 
-                          <a class="btn btn-info btn-sm" href="paquetes-edit-{{$an->id}}">
-                              <i class="fas fa-pencil-alt">
+                    <a class="btn btn-success btn-sm" id="{{$an->id}}" onclick="view(this)">
+                              <i class="fas fa-eye">
                               </i>
-                              Editar
+                              Ver
                           </a>
-                          <a class="btn btn-danger btn-sm" href="paquetes-delete-{{$an->id}}" onclick="return confirm('¿Desea Eliminar este registro?')">
-                              <i class="fas fa-trash">
-                              </i>
-                              Eliminar
-                          </a>
+
+                        
 
                         
                           @endif</td>
@@ -148,6 +145,24 @@
     <!-- /.content -->
   </div>
   </div>
+
+  <div class="modal fade" id="viewTicket">
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">Cerrar</span>
+              </button>
+            </div>
+            <div class="modal-body">
+            DETALLE DE PAQUETE
+            </div>
+           
+          </div>
+          <!-- /.modal-content -->
+        </div>
+        <!-- /.modal-dialog -->
+      </div>
   </section>
 
   <!-- /.content-wrapper -->
@@ -226,5 +241,29 @@
     });
   });
 </script>
+
+<script  type="text/javascript">
+	function view(e){
+		    var id = $(e).attr('id');
+		    
+		    $.ajax({
+		        type: "GET",
+		        url: "/paquetes/ver/"+id,
+		        success: function (data) {
+		            $("#viewTicket .modal-body").html(data);
+		            $('#viewTicket').modal('show');
+		        },
+		        error: function (data) {
+		            console.log('Error:', data);
+		        }
+		    });
+		}
+
+
+
+
+</script>
+
+
 </body>
 </html>

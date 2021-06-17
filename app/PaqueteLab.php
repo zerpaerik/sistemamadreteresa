@@ -20,5 +20,11 @@ class PaqueteLab extends Model
     ];
 
     
+    public function laboratorio()
+    {
+      return $this->hasOne('App\Analisis','id','laboratorio');
+    }
+
+    
     //
 }

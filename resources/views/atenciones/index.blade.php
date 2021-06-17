@@ -102,7 +102,7 @@
               </div>
               <!-- /.card-header -->
               <div class="card-body">
-                <table id="example1" class="table table-bordered table-striped">
+                <table id="" class="table table-bordered table-striped">
                   <thead>
                   <tr>
                     <th>Fecha</th>
@@ -112,6 +112,8 @@
                     <th>Mto</th>
                     <th>Abo</th>
                     <th>Tp</th>
+                    <th>PG</th>
+                    <th>AT</th>
                     <th>RP</th>
                     <th>Acciones</th>
                   </tr>
@@ -121,15 +123,24 @@
 
                   @foreach($atenciones as $an)
                   <tr>
-                    <td>{{date('d-M-y', strtotime($an->created_at))}}</td>
+                    <td>{{date('d-M-y H:i', strtotime($an->created_at))}}</td>
                     <td>{{$an->apellidos}} {{$an->nombres}}</td>
                     <td>{{$an->lasto}} {{$an->nameo}}</td>
                     <td>{{$an->detalle}}</td>
                     <td>{{$an->monto}}</td>
                     <td>{{$an->abono}}</td>
                     <td >{{$an->tipo_pago}}</td>
+                    @if($an->pagado == 1)
+                    <td><span class="badge bg-success">NO</span></td>
+                    @else
+                    <td><span class="badge bg-success">SI</span></td>
+                    @endif
+                    @if($an->atendido == 1)
+                    <td><span class="badge bg-success">NO</span></td>
+                    @else
+                    <td><span class="badge bg-success">SI</span></td>
+                    @endif
                     <td>{{substr($an->lastu,0,5)}} {{substr($an->nameu,0,5)}}</td>
-
                     <td>
                     @if(Auth::user()->rol == 1)
 
@@ -162,9 +173,11 @@
                     <th>Paciente</th>
                     <th>Origen</th>
                     <th>Detalle</th>
-                    <th>Monto</th>
-                    <th>Abono</th>
+                    <th>Mto</th>
+                    <th>Abo</th>
                     <th>Tp</th>
+                    <th>PG</th>
+                    <th>AT</th>
                     <th>RP</th>
                     <th>Acciones</th>
                   </tr>

@@ -123,8 +123,7 @@
                   <td><input value="{{$an->id}}" type="checkbox" name="com[]"></td>
                     <td>{{substr($an->apellidos,0,5)}} {{substr($an->nombres,0,5)}}</td>
                     <td>{{substr($an->lasto,0,5)}} {{substr($an->nameo,0,5)}}</td>
-                   
-                    <td>Detalle</td>
+                    <td>{{$an->detalle}}</td>
                     <td>{{$an->total}}</td>
                     <td>{{$an->porcentaje}}</td>
                     <td>{{$an->monto}}</td>

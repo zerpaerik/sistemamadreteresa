@@ -19,6 +19,12 @@ class PaqueteServ extends Model
         'paquete','servicio'
     ];
 
+
+    public function servicio()
+    {
+      return $this->hasOne('App\Servicios','id','servicio');
+    }
+
     
     //
 }

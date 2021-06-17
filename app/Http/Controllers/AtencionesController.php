@@ -38,7 +38,7 @@ class AtencionesController extends Controller
       
 
         $serv = DB::table('atenciones as a')
-        ->select('a.id','a.tipo_origen','a.id_origen','a.id_tipo','a.sede','a.usuario','a.created_at','a.estatus','a.id_paciente','a.tipo_atencion','a.monto','a.abono','a.tipo_pago','b.nombres','b.apellidos','b.dni','c.name as nameo','c.lastname as lasto','d.name as nameu','d.lastname as lastu','s.nombre as detalle')
+        ->select('a.id','a.tipo_origen','a.id_origen','a.id_tipo','a.pagado'.'a.atendido','a.sede','a.usuario','a.created_at','a.estatus','a.id_paciente','a.tipo_atencion','a.monto','a.abono','a.tipo_pago','b.nombres','b.apellidos','b.dni','c.name as nameo','c.lastname as lasto','d.name as nameu','d.lastname as lastu','s.nombre as detalle')
         ->join('pacientes as b','b.id','a.id_paciente')
         ->join('users as c','c.id','a.id_origen')
         ->join('users as d','d.id','a.usuario')
@@ -46,12 +46,13 @@ class AtencionesController extends Controller
         ->where('a.estatus', '=', 1)
         ->where('a.tipo_atencion', '=', 1)
         ->where('a.monto', '!=', '0')
-        ->where('a.created_at','=',$f1)
+        ->whereBetween('a.created_at', [date('Y-m-d 00:00:00', strtotime($f1)), date('Y-m-d 23:59:59', strtotime($f1))])
+        ->orderBy('a.id','DESC')
         ->where('a.sede', '=', $request->session()->get('sede'));
        // ->get(); 
 
         $eco = DB::table('atenciones as a')
-        ->select('a.id','a.tipo_origen','a.id_origen','a.id_tipo','a.sede','a.usuario','a.created_at','a.estatus','a.id_paciente','a.tipo_atencion','a.monto','a.abono','a.tipo_pago','b.nombres','b.apellidos','b.dni','c.name as nameo','c.lastname as lasto','d.name as nameu','d.lastname as lastu','s.nombre as detalle')
+        ->select('a.id','a.tipo_origen','a.id_origen','a.id_tipo','a.pagado','a.atendido','a.sede','a.usuario','a.created_at','a.estatus','a.id_paciente','a.tipo_atencion','a.monto','a.abono','a.tipo_pago','b.nombres','b.apellidos','b.dni','c.name as nameo','c.lastname as lasto','d.name as nameu','d.lastname as lastu','s.nombre as detalle')
         ->join('pacientes as b','b.id','a.id_paciente')
         ->join('users as c','c.id','a.id_origen')
         ->join('users as d','d.id','a.usuario')
@@ -59,11 +60,12 @@ class AtencionesController extends Controller
         ->where('a.estatus', '=', 1)
         ->where('a.tipo_atencion', '=', 2)
         ->where('a.monto', '!=', '0')
-        ->where('a.created_at','=',$f1)
+        ->whereBetween('a.created_at', [date('Y-m-d 00:00:00', strtotime($f1)), date('Y-m-d 23:59:59', strtotime($f1))])
+        ->orderBy('a.id','DESC')
         ->where('a.sede', '=', $request->session()->get('sede'));
 
         $cons = DB::table('atenciones as a')
-        ->select('a.id','a.tipo_origen','a.id_origen','a.id_tipo','a.sede','a.usuario','a.created_at','a.estatus','a.id_paciente','a.tipo_atencion','a.monto','a.abono','a.tipo_pago','b.nombres','b.apellidos','b.dni','c.name as nameo','c.lastname as lasto','d.name as nameu','d.lastname as lastu','s.nombre as detalle')
+        ->select('a.id','a.tipo_origen','a.id_origen','a.id_tipo','a.pagado','a.atendido','a.sede','a.usuario','a.created_at','a.estatus','a.id_paciente','a.tipo_atencion','a.monto','a.abono','a.tipo_pago','b.nombres','b.apellidos','b.dni','c.name as nameo','c.lastname as lasto','d.name as nameu','d.lastname as lastu','s.nombre as detalle')
         ->join('pacientes as b','b.id','a.id_paciente')
         ->join('users as c','c.id','a.id_origen')
         ->join('users as d','d.id','a.usuario')
@@ -71,11 +73,12 @@ class AtencionesController extends Controller
         ->where('a.estatus', '=', 1)
         ->where('a.tipo_atencion', '=', 5)
         ->where('a.monto', '!=', '0')
-        ->where('a.created_at','=',$f1)
+        ->whereBetween('a.created_at', [date('Y-m-d 00:00:00', strtotime($f1)), date('Y-m-d 23:59:59', strtotime($f1))])
+        ->orderBy('a.id','DESC')
         ->where('a.sede', '=', $request->session()->get('sede'));
 
         $meto = DB::table('atenciones as a')
-        ->select('a.id','a.tipo_origen','a.id_origen','a.id_tipo','a.sede','a.usuario','a.created_at','a.estatus','a.id_paciente','a.tipo_atencion','a.monto','a.abono','a.tipo_pago','b.nombres','b.apellidos','b.dni','c.name as nameo','c.lastname as lasto','d.name as nameu','d.lastname as lastu','s.nombre as detalle')
+        ->select('a.id','a.tipo_origen','a.id_origen','a.id_tipo','a.pagado','a.atendido','a.sede','a.usuario','a.created_at','a.estatus','a.id_paciente','a.tipo_atencion','a.monto','a.abono','a.tipo_pago','b.nombres','b.apellidos','b.dni','c.name as nameo','c.lastname as lasto','d.name as nameu','d.lastname as lastu','s.nombre as detalle')
         ->join('pacientes as b','b.id','a.id_paciente')
         ->join('users as c','c.id','a.id_origen')
         ->join('users as d','d.id','a.usuario')
@@ -83,11 +86,12 @@ class AtencionesController extends Controller
         ->where('a.estatus', '=', 1)
         ->where('a.tipo_atencion', '=', 6)
         ->where('a.monto', '!=', '0')
-        ->where('a.created_at','=',$f1)
+        ->whereBetween('a.created_at', [date('Y-m-d 00:00:00', strtotime($f1)), date('Y-m-d 23:59:59', strtotime($f1))])
+        ->orderBy('a.id','DESC')
         ->where('a.sede', '=', $request->session()->get('sede'));
 
         $ana = DB::table('atenciones as a')
-        ->select('a.id','a.tipo_origen','a.id_origen','a.id_tipo','a.sede','a.usuario','a.created_at','a.estatus','a.id_paciente','a.tipo_atencion','a.monto','a.abono','a.tipo_pago','b.nombres','b.apellidos','b.dni','c.name as nameo','c.lastname as lasto','d.name as nameu','d.lastname as lastu','s.nombre as detalle')
+        ->select('a.id','a.tipo_origen','a.id_origen','a.id_tipo','a.pagado','a.atendido','a.sede','a.usuario','a.created_at','a.estatus','a.id_paciente','a.tipo_atencion','a.monto','a.abono','a.tipo_pago','b.nombres','b.apellidos','b.dni','c.name as nameo','c.lastname as lasto','d.name as nameu','d.lastname as lastu','s.nombre as detalle')
         ->join('pacientes as b','b.id','a.id_paciente')
         ->join('users as c','c.id','a.id_origen')
         ->join('users as d','d.id','a.usuario')
@@ -95,11 +99,12 @@ class AtencionesController extends Controller
         ->where('a.estatus', '=', 1)
         ->where('a.tipo_atencion', '=', 4)
         ->where('a.monto', '!=', '0')
-        ->where('a.created_at','=',$f1)
+        ->whereBetween('a.created_at', [date('Y-m-d 00:00:00', strtotime($f1)), date('Y-m-d 23:59:59', strtotime($f1))])
+        ->orderBy('a.id','DESC')
         ->where('a.sede', '=', $request->session()->get('sede'));
 
         $paq = DB::table('atenciones as a')
-        ->select('a.id','a.tipo_origen','a.id_origen','a.id_tipo','a.sede','a.usuario','a.created_at','a.estatus','a.id_paciente','a.tipo_atencion','a.monto','a.abono','a.tipo_pago','b.nombres','b.apellidos','b.dni','c.name as nameo','c.lastname as lasto','d.name as nameu','d.lastname as lastu','s.nombre as detalle')
+        ->select('a.id','a.tipo_origen','a.id_origen','a.id_tipo','a.pagado','a.atendido','a.sede','a.usuario','a.created_at','a.estatus','a.id_paciente','a.tipo_atencion','a.monto','a.abono','a.tipo_pago','b.nombres','b.apellidos','b.dni','c.name as nameo','c.lastname as lasto','d.name as nameu','d.lastname as lastu','s.nombre as detalle')
         ->join('pacientes as b','b.id','a.id_paciente')
         ->join('users as c','c.id','a.id_origen')
         ->join('users as d','d.id','a.usuario')
@@ -107,12 +112,13 @@ class AtencionesController extends Controller
         ->where('a.estatus', '=', 1)
         ->where('a.tipo_atencion', '=', 7)
         ->where('a.monto', '!=', '0')
-        ->where('a.created_at','=',$f1)
+        ->whereBetween('a.created_at', [date('Y-m-d 00:00:00', strtotime($f1)), date('Y-m-d 23:59:59', strtotime($f1))])
+        ->orderBy('a.id','DESC')
         ->where('a.sede', '=', $request->session()->get('sede'));
 
 
         $metodos = DB::table('atenciones as a')
-        ->select('a.id','a.tipo_origen','a.id_origen','a.id_tipo','a.sede','a.usuario','a.created_at','a.estatus','a.id_paciente','a.tipo_atencion','a.monto','a.abono','a.tipo_pago','b.nombres','b.apellidos','b.dni','c.name as nameo','c.lastname as lasto','d.name as nameu','d.lastname as lastu','s.nombre as detalle')
+        ->select('a.id','a.tipo_origen','a.id_origen','a.id_tipo','a.pagado','a.atendido','a.sede','a.usuario','a.created_at','a.estatus','a.id_paciente','a.tipo_atencion','a.monto','a.abono','a.tipo_pago','b.nombres','b.apellidos','b.dni','c.name as nameo','c.lastname as lasto','d.name as nameu','d.lastname as lastu','s.nombre as detalle')
         ->join('pacientes as b','b.id','a.id_paciente')
         ->join('users as c','c.id','a.id_origen')
         ->join('users as d','d.id','a.usuario')
@@ -120,14 +126,15 @@ class AtencionesController extends Controller
         ->where('a.estatus', '=', 1)
         ->where('a.tipo_atencion', '=', 6)
         ->where('a.monto', '!=', '0')
-        ->where('a.created_at','=',$f1)
+        ->whereBetween('a.created_at', [date('Y-m-d 00:00:00', strtotime($f1)), date('Y-m-d 23:59:59', strtotime($f1))])
+        ->orderBy('a.id','DESC')
         ->where('a.sede', '=', $request->session()->get('sede'));
         //->get(); 
 
      
 
         $atenciones = DB::table('atenciones as a')
-        ->select('a.id','a.tipo_origen','a.id_origen','a.id_tipo','a.sede','a.usuario','a.created_at','a.estatus','a.id_paciente','a.tipo_atencion','a.monto','a.abono','a.tipo_pago','b.nombres','b.apellidos','b.dni','c.name as nameo','c.lastname as lasto','d.name as nameu','d.lastname as lastu','s.nombre as detalle')
+        ->select('a.id','a.tipo_origen','a.id_origen','a.id_tipo','a.pagado','a.atendido','a.sede','a.usuario','a.created_at','a.estatus','a.id_paciente','a.tipo_atencion','a.monto','a.abono','a.tipo_pago','b.nombres','b.apellidos','b.dni','c.name as nameo','c.lastname as lasto','d.name as nameu','d.lastname as lastu','s.nombre as detalle')
         ->join('pacientes as b','b.id','a.id_paciente')
         ->join('users as c','c.id','a.id_origen')
         ->join('users as d','d.id','a.usuario')
@@ -136,8 +143,8 @@ class AtencionesController extends Controller
         ->where('a.tipo_atencion', '=', 3)
         ->where('a.monto', '!=', '0')
         ->where('a.sede', '=', $request->session()->get('sede'))
-        ->where('a.created_at','=',$f1)
-        ->orderBy('a.created_at','ASC')
+        ->whereBetween('a.created_at', [date('Y-m-d 00:00:00', strtotime($f1)), date('Y-m-d 23:59:59', strtotime($f1))])
+        ->orderBy('a.id','DESC')
         ->union($serv)
         ->union($eco)
         ->union($ana)
@@ -152,7 +159,7 @@ class AtencionesController extends Controller
         $f1 = date('Y-m-d');
 
         $serv = DB::table('atenciones as a')
-        ->select('a.id','a.tipo_origen','a.id_origen','a.id_tipo','a.sede','a.usuario','a.created_at','a.estatus','a.id_paciente','a.tipo_atencion','a.monto','a.abono','a.tipo_pago','b.nombres','b.apellidos','b.dni','c.name as nameo','c.lastname as lasto','d.name as nameu','d.lastname as lastu','s.nombre as detalle')
+        ->select('a.id','a.tipo_origen','a.id_origen','a.id_tipo','a.pagado','a.atendido','a.sede','a.usuario','a.created_at','a.estatus','a.id_paciente','a.tipo_atencion','a.monto','a.abono','a.tipo_pago','b.nombres','b.apellidos','b.dni','c.name as nameo','c.lastname as lasto','d.name as nameu','d.lastname as lastu','s.nombre as detalle')
         ->join('pacientes as b','b.id','a.id_paciente')
         ->join('users as c','c.id','a.id_origen')
         ->join('users as d','d.id','a.usuario')
@@ -160,12 +167,14 @@ class AtencionesController extends Controller
         ->where('a.estatus', '=', 1)
         ->where('a.tipo_atencion', '=', 1)
         ->where('a.monto', '!=', '0')
-        ->where('a.created_at','=',date('Y-m-d'))
-        ->where('a.sede', '=', $request->session()->get('sede'));
-       // ->get(); 
+        ->whereBetween('a.created_at', [date('Y-m-d 00:00:00', strtotime($f1)), date('Y-m-d 23:59:59', strtotime($f1))])
+        ->where('a.sede', '=', $request->session()->get('sede'))
+        ->orderBy('a.id','desc');
+
+     
 
         $eco = DB::table('atenciones as a')
-        ->select('a.id','a.tipo_origen','a.id_origen','a.id_tipo','a.sede','a.usuario','a.created_at','a.estatus','a.id_paciente','a.tipo_atencion','a.monto','a.abono','a.tipo_pago','b.nombres','b.apellidos','b.dni','c.name as nameo','c.lastname as lasto','d.name as nameu','d.lastname as lastu','s.nombre as detalle')
+        ->select('a.id','a.tipo_origen','a.id_origen','a.id_tipo','a.pagado','a.atendido','a.sede','a.usuario','a.created_at','a.estatus','a.id_paciente','a.tipo_atencion','a.monto','a.abono','a.tipo_pago','b.nombres','b.apellidos','b.dni','c.name as nameo','c.lastname as lasto','d.name as nameu','d.lastname as lastu','s.nombre as detalle')
         ->join('pacientes as b','b.id','a.id_paciente')
         ->join('users as c','c.id','a.id_origen')
         ->join('users as d','d.id','a.usuario')
@@ -173,11 +182,13 @@ class AtencionesController extends Controller
         ->where('a.estatus', '=', 1)
         ->where('a.tipo_atencion', '=', 2)
         ->where('a.monto', '!=', '0')
-        ->where('a.created_at','=',date('Y-m-d'))
-        ->where('a.sede', '=', $request->session()->get('sede'));
+        ->whereBetween('a.created_at', [date('Y-m-d 00:00:00', strtotime($f1)), date('Y-m-d 23:59:59', strtotime($f1))])
+        ->where('a.sede', '=', $request->session()->get('sede'))
+        ->orderBy('a.id','desc');
+
 
         $cons = DB::table('atenciones as a')
-        ->select('a.id','a.tipo_origen','a.id_origen','a.id_tipo','a.sede','a.usuario','a.created_at','a.estatus','a.id_paciente','a.tipo_atencion','a.monto','a.abono','a.tipo_pago','b.nombres','b.apellidos','b.dni','c.name as nameo','c.lastname as lasto','d.name as nameu','d.lastname as lastu','s.nombre as detalle')
+        ->select('a.id','a.tipo_origen','a.id_origen','a.id_tipo','a.pagado','a.atendido','a.sede','a.usuario','a.created_at','a.estatus','a.id_paciente','a.tipo_atencion','a.monto','a.abono','a.tipo_pago','b.nombres','b.apellidos','b.dni','c.name as nameo','c.lastname as lasto','d.name as nameu','d.lastname as lastu','s.nombre as detalle')
         ->join('pacientes as b','b.id','a.id_paciente')
         ->join('users as c','c.id','a.id_origen')
         ->join('users as d','d.id','a.usuario')
@@ -185,11 +196,13 @@ class AtencionesController extends Controller
         ->where('a.estatus', '=', 1)
         ->where('a.tipo_atencion', '=', 5)
         ->where('a.monto', '!=', '0')
-        ->where('a.created_at','=',date('Y-m-d'))
-        ->where('a.sede', '=', $request->session()->get('sede'));
+        ->whereBetween('a.created_at', [date('Y-m-d 00:00:00', strtotime($f1)), date('Y-m-d 23:59:59', strtotime($f1))])
+        ->where('a.sede', '=', $request->session()->get('sede'))
+        ->orderBy('a.id','desc');
+
 
         $meto = DB::table('atenciones as a')
-        ->select('a.id','a.tipo_origen','a.id_origen','a.id_tipo','a.sede','a.usuario','a.created_at','a.estatus','a.id_paciente','a.tipo_atencion','a.monto','a.abono','a.tipo_pago','b.nombres','b.apellidos','b.dni','c.name as nameo','c.lastname as lasto','d.name as nameu','d.lastname as lastu','s.nombre as detalle')
+        ->select('a.id','a.tipo_origen','a.id_origen','a.id_tipo','a.pagado','a.atendido','a.sede','a.usuario','a.created_at','a.estatus','a.id_paciente','a.tipo_atencion','a.monto','a.abono','a.tipo_pago','b.nombres','b.apellidos','b.dni','c.name as nameo','c.lastname as lasto','d.name as nameu','d.lastname as lastu','s.nombre as detalle')
         ->join('pacientes as b','b.id','a.id_paciente')
         ->join('users as c','c.id','a.id_origen')
         ->join('users as d','d.id','a.usuario')
@@ -197,11 +210,13 @@ class AtencionesController extends Controller
         ->where('a.estatus', '=', 1)
         ->where('a.tipo_atencion', '=', 6)
         ->where('a.monto', '!=', '0')
-        ->where('a.created_at','=',date('Y-m-d'))
-        ->where('a.sede', '=', $request->session()->get('sede'));
+        ->whereBetween('a.created_at', [date('Y-m-d 00:00:00', strtotime($f1)), date('Y-m-d 23:59:59', strtotime($f1))])
+        ->where('a.sede', '=', $request->session()->get('sede'))   
+        ->orderBy('a.id','desc');
+
 
         $ana = DB::table('atenciones as a')
-        ->select('a.id','a.tipo_origen','a.id_origen','a.id_tipo','a.sede','a.usuario','a.created_at','a.estatus','a.id_paciente','a.tipo_atencion','a.monto','a.abono','a.tipo_pago','b.nombres','b.apellidos','b.dni','c.name as nameo','c.lastname as lasto','d.name as nameu','d.lastname as lastu','s.nombre as detalle')
+        ->select('a.id','a.tipo_origen','a.id_origen','a.id_tipo','a.pagado','a.atendido','a.sede','a.usuario','a.created_at','a.estatus','a.id_paciente','a.tipo_atencion','a.monto','a.abono','a.tipo_pago','b.nombres','b.apellidos','b.dni','c.name as nameo','c.lastname as lasto','d.name as nameu','d.lastname as lastu','s.nombre as detalle')
         ->join('pacientes as b','b.id','a.id_paciente')
         ->join('users as c','c.id','a.id_origen')
         ->join('users as d','d.id','a.usuario')
@@ -209,11 +224,13 @@ class AtencionesController extends Controller
         ->where('a.estatus', '=', 1)
         ->where('a.tipo_atencion', '=', 4)
         ->where('a.monto', '!=', '0')
-        ->where('a.created_at','=',date('Y-m-d'))
-        ->where('a.sede', '=', $request->session()->get('sede'));
+        ->whereBetween('a.created_at', [date('Y-m-d 00:00:00', strtotime($f1)), date('Y-m-d 23:59:59', strtotime($f1))])
+        ->where('a.sede', '=', $request->session()->get('sede'))
+        ->orderBy('a.id','desc');
+
 
         $paq = DB::table('atenciones as a')
-        ->select('a.id','a.tipo_origen','a.id_origen','a.id_tipo','a.sede','a.usuario','a.created_at','a.estatus','a.id_paciente','a.tipo_atencion','a.monto','a.abono','a.tipo_pago','b.nombres','b.apellidos','b.dni','c.name as nameo','c.lastname as lasto','d.name as nameu','d.lastname as lastu','s.nombre as detalle')
+        ->select('a.id','a.tipo_origen','a.id_origen','a.id_tipo','a.pagado','a.atendido','a.sede','a.usuario','a.created_at','a.estatus','a.id_paciente','a.tipo_atencion','a.monto','a.abono','a.tipo_pago','b.nombres','b.apellidos','b.dni','c.name as nameo','c.lastname as lasto','d.name as nameu','d.lastname as lastu','s.nombre as detalle')
         ->join('pacientes as b','b.id','a.id_paciente')
         ->join('users as c','c.id','a.id_origen')
         ->join('users as d','d.id','a.usuario')
@@ -221,11 +238,12 @@ class AtencionesController extends Controller
         ->where('a.estatus', '=', 1)
         ->where('a.tipo_atencion', '=', 7)
         ->where('a.monto', '!=', '0')
-        ->where('a.created_at','=',date('Y-m-d'))
-        ->where('a.sede', '=', $request->session()->get('sede'));
+        ->where('a.sede', '=', $request->session()->get('sede'))
+        ->whereBetween('a.created_at', [date('Y-m-d 00:00:00', strtotime($f1)), date('Y-m-d 23:59:59', strtotime($f1))])
+        ->orderBy('a.id','desc');
 
         $metodos = DB::table('atenciones as a')
-        ->select('a.id','a.tipo_origen','a.id_origen','a.id_tipo','a.sede','a.usuario','a.created_at','a.estatus','a.id_paciente','a.tipo_atencion','a.monto','a.abono','a.tipo_pago','b.nombres','b.apellidos','b.dni','c.name as nameo','c.lastname as lasto','d.name as nameu','d.lastname as lastu','s.nombre as detalle')
+        ->select('a.id','a.tipo_origen','a.id_origen','a.id_tipo','a.pagado','a.atendido','a.sede','a.usuario','a.created_at','a.estatus','a.id_paciente','a.tipo_atencion','a.monto','a.abono','a.tipo_pago','b.nombres','b.apellidos','b.dni','c.name as nameo','c.lastname as lasto','d.name as nameu','d.lastname as lastu','s.nombre as detalle')
         ->join('pacientes as b','b.id','a.id_paciente')
         ->join('users as c','c.id','a.id_origen')
         ->join('users as d','d.id','a.usuario')
@@ -233,14 +251,16 @@ class AtencionesController extends Controller
         ->where('a.estatus', '=', 1)
         ->where('a.tipo_atencion', '=', 6)
         ->where('a.monto', '!=', '0')
-        ->where('a.created_at','=',date('Y-m-d'))
-        ->where('a.sede', '=', $request->session()->get('sede'));
+        ->whereBetween('a.created_at', [date('Y-m-d 00:00:00', strtotime($f1)), date('Y-m-d 23:59:59', strtotime($f1))])
+        ->where('a.sede', '=', $request->session()->get('sede'))
+        ->orderBy('a.id','desc');
+
         //->get(); 
 
      
 
         $atenciones = DB::table('atenciones as a')
-        ->select('a.id','a.tipo_origen','a.id_origen','a.id_tipo','a.sede','a.usuario','a.created_at','a.estatus','a.id_paciente','a.tipo_atencion','a.monto','a.abono','a.tipo_pago','b.nombres','b.apellidos','b.dni','c.name as nameo','c.lastname as lasto','d.name as nameu','d.lastname as lastu','s.nombre as detalle')
+        ->select('a.id','a.tipo_origen','a.id_origen','a.id_tipo','a.pagado','a.atendido','a.sede','a.usuario','a.created_at','a.estatus','a.id_paciente','a.tipo_atencion','a.monto','a.abono','a.tipo_pago','b.nombres','b.apellidos','b.dni','c.name as nameo','c.lastname as lasto','d.name as nameu','d.lastname as lastu','s.nombre as detalle')
         ->join('pacientes as b','b.id','a.id_paciente')
         ->join('users as c','c.id','a.id_origen')
         ->join('users as d','d.id','a.usuario')
@@ -249,14 +269,19 @@ class AtencionesController extends Controller
         ->where('a.tipo_atencion', '=', 3)
         ->where('a.monto', '!=', '0')
         ->where('a.sede', '=', $request->session()->get('sede'))
-        ->where('a.created_at','=',date('Y-m-d'))
-        ->orderBy('a.created_at','ASC')
+        ->whereBetween('a.created_at', [date('Y-m-d 00:00:00', strtotime($f1)), date('Y-m-d 23:59:59', strtotime($f1))])
         ->union($serv)
         ->union($eco)
         ->union($ana)
         ->union($metodos)
         ->union($paq)
+        ->orderBy('id','desc')
         ->get(); 
+
+ 
+
+
+
 
 
       }
@@ -942,6 +967,10 @@ return view('atenciones.particular');
         } elseif($aten->tipo_atencion == 7){
 
           $consultas = Consultas::where('id_atencion','=',$id)->get();
+          $res = ResultadosServicios::where('id_atencion','=',$id)->get();
+          $rel = ResultadosLaboratorio::where('id_atencion','=',$id)->get();
+
+
 
           foreach ($consultas as $con) {
             $id_consulta = $con->id;
@@ -949,6 +978,24 @@ return view('atenciones.particular');
               $con = Consultas::where('id','=',$id_consulta)->first();
               $con->estatus = 0;
               $con->save();
+             }
+           }
+
+           foreach ($res as $rs) {
+            $id_rs = $rs->id;
+            if(!is_null($id_rs)){
+              $rsf = ResultadosServicios::where('id','=',$id_rs)->first();
+              $rsf->estatus = 0;
+              $rsf->save();
+             }
+           }
+
+           foreach ($rel as $rl) {
+            $id_rl = $rl->id;
+            if(!is_null($id_rs)){
+              $rsf = ResultadosLaboratorio::where('id','=',$id_rl)->first();
+              $rsf->estatus = 0;
+              $rsf->save();
              }
            }
 
@@ -967,14 +1014,14 @@ return view('atenciones.particular');
         $com = Comisiones::where('id_atencion','=',$id)->first();
         $com->estatus = 0;
         $com->save();
-
+/*
         $rs = ResultadosServicios::where('id_atencion','=',$id)->first();
         $rs->estatus = 0;
         $rs->delete();
 
         $rl = ResultadosLaboratorio::where('id_atencion','=',$id)->first();
         $rl->estatus = 0;
-        $rl->save();
+        $rl->save();*/
 
         return redirect()->action('AtencionesController@index')
         ->with('success','Eliminado Exitosamente!');
