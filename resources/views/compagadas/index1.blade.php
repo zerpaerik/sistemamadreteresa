@@ -136,7 +136,7 @@
                     @else
                     <td><span class="badge bg-success">Método</span></td>
                     @endif
-                    <td>Detalle</td>
+                    <td>{{$an->detalle}}</td>
                     <td>{{$an->total}}</td>
                     <td>{{$an->porcentaje}}</td>
                     <td>{{$an->monto}}</td>
