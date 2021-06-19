@@ -104,14 +104,12 @@
                 <table id="example1" class="table table-bordered table-striped">
                   <thead>
                   <tr>
-                    <th>Fecha</th>
+                  <th>Recibo</th>
+                  <th>Fecha</th>
                     <th>Paciente</th>
                     <th>Origen</th>
                     <th>Tipo</th>
                     <th>Detalle</th>
-                    <th>MontoAT</th>
-                    <th>Porcentaje</th>
-                    <th>MontoPG</th>
                     <th>RP</th>
                     <th>Acciones</th>
                   </tr>
@@ -120,7 +118,8 @@
 
                   @foreach($comisiones as $an)
                   <tr>
-                  <td>{{date('d-M-y', strtotime($an->created_at))}}</td>
+                    <td>REC-2021-{{$an->recibo}}</td>
+                    <td>{{date('d-M-y', strtotime($an->created_at))}}</td>
                     <td>{{substr($an->apellidos,0,5)}} {{substr($an->nombres,0,5)}}</td>
                     <td>{{substr($an->lasto,0,5)}} {{substr($an->nameo,0,5)}}</td>
                     @if($an->tipo_atencion == 1)
@@ -137,9 +136,6 @@
                     <td><span class="badge bg-success">Método</span></td>
                     @endif
                     <td width="5%">{{$an->detalle}}</td>
-                    <td>{{$an->total}}</td>
-                    <td>{{$an->porcentaje}}</td>
-                    <td>{{$an->monto}}</td>
                     <td>{{$an->nameu}} {{$an->lastu}}</td>
 
                     <td>
@@ -156,14 +152,12 @@
                   </tbody>
                   <tfoot>
                   <tr>
+                  <th>Recibo</th>
                   <th>Fecha</th>
                     <th>Paciente</th>
                     <th>Origen</th>
                     <th>Tipo</th>
                     <th>Detalle</th>
-                    <th>MontoAT</th>
-                    <th>Porcentaje</th>
-                    <th>MontoPG</th>
                     <th>RP</th>
                     <th>Acciones</th>
                   </tr>

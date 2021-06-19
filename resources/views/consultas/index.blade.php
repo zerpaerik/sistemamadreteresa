@@ -109,7 +109,6 @@
                     <th>Paciente</th>
                     <th>Especialista</th>
                     <th>Tipo</th>
-                    <th>Monto</th>
                     <th>RP</th>
                     <th>Acciones</th>
                   </tr>
@@ -128,7 +127,6 @@
                     @else
                     <td><span class="badge bg-success">CONTROL</span></td>
                     @endif
-                    <td>{{$an->monto}}</td>
                     <td>{{$an->nameo}} {{$an->lasto}}</td>
 
                     <td>
@@ -150,7 +148,6 @@
                     <th>Paciente</th>
                     <th>Especialista</th>
                     <th>Tipo</th>
-                    <th>Monto</th>
                     <th>RP</th>
                     <th>Acciones</th>
                   </tr>

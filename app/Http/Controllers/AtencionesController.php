@@ -38,7 +38,7 @@ class AtencionesController extends Controller
       
 
         $serv = DB::table('atenciones as a')
-        ->select('a.id','a.tipo_origen','a.id_origen','a.id_tipo','a.pagado'.'a.atendido','a.sede','a.usuario','a.created_at','a.estatus','a.id_paciente','a.tipo_atencion','a.monto','a.abono','a.tipo_pago','b.nombres','b.apellidos','b.dni','c.name as nameo','c.lastname as lasto','d.name as nameu','d.lastname as lastu','s.nombre as detalle')
+        ->select('a.id','a.tipo_origen','a.id_origen','a.id_tipo','a.pagado','a.atendido','a.sede','a.usuario','a.created_at','a.estatus','a.id_paciente','a.tipo_atencion','a.monto','a.abono','a.tipo_pago','b.nombres','b.apellidos','b.dni','c.name as nameo','c.lastname as lasto','d.name as nameu','d.lastname as lastu','s.nombre as detalle')
         ->join('pacientes as b','b.id','a.id_paciente')
         ->join('users as c','c.id','a.id_origen')
         ->join('users as d','d.id','a.usuario')
@@ -129,6 +129,19 @@ class AtencionesController extends Controller
         ->whereBetween('a.created_at', [date('Y-m-d 00:00:00', strtotime($f1)), date('Y-m-d 23:59:59', strtotime($f1))])
         ->orderBy('a.id','DESC')
         ->where('a.sede', '=', $request->session()->get('sede'));
+
+        $consultas = DB::table('atenciones as a')
+        ->select('a.id','a.tipo_origen','a.id_origen','a.id_tipo','a.pagado','a.atendido','a.sede','a.usuario','a.created_at','a.estatus','a.id_paciente','a.tipo_atencion','a.monto','a.abono','a.tipo_pago','b.nombres','b.apellidos','b.dni','c.name as nameo','c.lastname as lasto','d.name as nameu','d.lastname as lastu','s.nombre as detalle')
+        ->join('pacientes as b','b.id','a.id_paciente')
+        ->join('users as c','c.id','a.id_origen')
+        ->join('users as d','d.id','a.usuario')
+        ->join('tipo_con as s','s.id','a.id_tipo')
+        ->where('a.estatus', '=', 1)
+        ->where('a.tipo_atencion', '=', 5)
+        ->where('a.monto', '!=', '0')
+        ->whereBetween('a.created_at', [date('Y-m-d 00:00:00', strtotime($f1)), date('Y-m-d 23:59:59', strtotime($f1))])
+        ->orderBy('a.id','DESC')
+        ->where('a.sede', '=', $request->session()->get('sede'));
         //->get(); 
 
      
@@ -150,6 +163,7 @@ class AtencionesController extends Controller
         ->union($ana)
         ->union($metodos)
         ->union($paq)
+        ->union($consultas)
         ->get(); 
 
 
@@ -255,6 +269,20 @@ class AtencionesController extends Controller
         ->where('a.sede', '=', $request->session()->get('sede'))
         ->orderBy('a.id','desc');
 
+        
+        $consultas = DB::table('atenciones as a')
+        ->select('a.id','a.tipo_origen','a.id_origen','a.id_tipo','a.pagado','a.atendido','a.sede','a.usuario','a.created_at','a.estatus','a.id_paciente','a.tipo_atencion','a.monto','a.abono','a.tipo_pago','b.nombres','b.apellidos','b.dni','c.name as nameo','c.lastname as lasto','d.name as nameu','d.lastname as lastu','s.nombre as detalle')
+        ->join('pacientes as b','b.id','a.id_paciente')
+        ->join('users as c','c.id','a.id_origen')
+        ->join('users as d','d.id','a.usuario')
+        ->join('tipo_con as s','s.id','a.id_tipo')
+        ->where('a.estatus', '=', 1)
+        ->where('a.tipo_atencion', '=', 5)
+        ->where('a.monto', '!=', '0')
+        ->whereBetween('a.created_at', [date('Y-m-d 00:00:00', strtotime($f1)), date('Y-m-d 23:59:59', strtotime($f1))])
+        ->where('a.sede', '=', $request->session()->get('sede'))
+        ->orderBy('a.id','desc');
+
         //->get(); 
 
      
@@ -274,6 +302,7 @@ class AtencionesController extends Controller
         ->union($eco)
         ->union($ana)
         ->union($metodos)
+        ->union($consultas)
         ->union($paq)
         ->orderBy('id','desc')
         ->get(); 
@@ -404,8 +433,8 @@ return view('atenciones.particular');
         
         if(!is_null($request->precio_con)){
             $lab = new Atenciones();
-            $lab->tipo_origen =  $request->origen;
-            $lab->id_origen = $searchUsuarioID->id;
+            $lab->tipo_origen =  3;
+            $lab->id_origen = 1;
             $lab->id_paciente =  $request->paciente;
             $lab->tipo_atencion = 5;
             $lab->id_tipo = $request->tipo_con;
