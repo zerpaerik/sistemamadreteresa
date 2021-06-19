@@ -43,7 +43,8 @@ class ComisionesPagadasController extends Controller
         ->orWhere('at.tipo_atencion', '=', 2)
         ->orWhere('at.tipo_atencion', '=', 3)
         ->whereBetween('a.created_at', [$f1, $f2])
-        ->where('at.sede', '=', $request->session()->get('sede'));
+        ->where('at.sede', '=', $request->session()->get('sede'))
+        ->groupBy('a.recibo');
 
             $eco = DB::table('comisiones as a')
         ->select('a.id', 'a.estatus', 'a.id_atencion', 'a.recibo','a.created_at','a.usuario', 'a.porcentaje', 'a.monto', 'a.estatus', 'at.id_paciente', 'at.tipo_atencion', 'at.sede', 'at.tipo_origen', 'at.id_origen', 'at.monto as total', 'b.nombres', 'b.apellidos', 'c.name as nameo', 'c.lastname as lasto', 'd.name as nameu', 'd.lastname as lastu', 's.nombre as detalle')
@@ -84,6 +85,7 @@ class ComisionesPagadasController extends Controller
         ->where('at.sede', '=', $request->session()->get('sede'))
         ->whereBetween('a.created_at', [$f1, $f2])
         ->orderBy('a.created_at','ASC')
+        ->groupBy('a.recibo')      
         ->union($ser)
         ->get();
 
