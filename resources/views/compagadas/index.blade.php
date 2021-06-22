@@ -125,6 +125,12 @@
 
                     <td>
                     @if(Auth::user()->rol == 1)
+
+                    <a target="_blank" class="btn btn-success btn-sm" href="comisionep-ticket-{{$an->recibo}}">
+                              <i class="fas fa-print">
+                              </i>
+                              Recibo
+                          </a>
                    
                          
 

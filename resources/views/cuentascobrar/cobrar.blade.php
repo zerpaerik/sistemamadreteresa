@@ -13,17 +13,26 @@
               {{ csrf_field() }}                
                     <div class="card-body">
                     <div class="row">
-                    <div class="col-md-4">
-                    <label for="exampleInputEmail1">Monto Total</label>
+                    <div class="col-md-3">
+                    <label for="exampleInputEmail1">Total</label>
                     <input type="text" disabled class="form-control"  value="{{$cobrar->monto}}" name="cantidad" placeholder="cantidad">
                   </div>
-                  <div class="col-md-4">
-                    <label for="exampleInputEmail1">Monto Restante</label>
+                  <div class="col-md-3">
+                    <label for="exampleInputEmail1">Restante</label>
                     <input type="text" disabled class="form-control"  value="{{$cobrar->resta}}" placeholder="cantidad">
                   </div>
-                    <div class="col-md-4">
-                    <label for="exampleInputEmail1">Monto Pagar</label>
+                    <div class="col-md-3">
+                    <label for="exampleInputEmail1">Pagar</label>
                     <input type="number" class="form-control"  name="pagar" placeholder="Pagar">
+                  </div>
+                  <div class="col-md-3">
+                  <label>TipoPago</label>
+                        <select class="form-control" name="tipopago">
+                            <option value="EF">Efectivo</option>
+                            <option value="TJ">Tarjeta</option>
+                            <option value="DP">Depósito</option>
+                            <option value="YP">Yape</option>
+                        </select>
                   </div>
                   </div>
                   <br>

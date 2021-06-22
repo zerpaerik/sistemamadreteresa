@@ -10,7 +10,7 @@ class Comisiones extends Model
     protected $table="comisiones";
 
     protected $fillable = [
-        'id_atencion', 'monto', 'porcentaje', 'usuario','estatus','recibo','fecha_pago'
+        'id_atencion', 'monto', 'porcentaje', 'usuario','estatus','recibo','fecha_pago','detalle'
     ];
     //
 }

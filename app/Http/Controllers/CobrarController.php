@@ -78,15 +78,14 @@ class CobrarController extends Controller
         $f2 = $request->fin;
 
         $historial = DB::table('historial_cobros as a')
-        ->select('a.id', 'a.estatus', 'a.id_atencion','a.detalle','a.created_at','a.resta', 'at.id_paciente','at.usuario',  'at.tipo_atencion', 'at.sede', 'at.tipo_origen', 'at.id_origen', 'at.monto as total', 'b.nombres', 'b.apellidos', 'c.name as nameo', 'c.lastname as lasto', 'd.name as nameu', 'd.lastname as lastu', 'se.nombre as sedename')
-        ->join('atenciones as at', 'at.id', 'a.id_atencion')
+        ->select('a.id', 'a.id_cobro', 'a.tipopago','a.monto','a.created_at','a.sede', 'co.id_atencion','co.resta','at.id_paciente','at.usuario',  'at.tipo_atencion', 'at.sede', 'at.tipo_origen', 'at.id_origen', 'at.monto as total', 'b.nombres', 'b.apellidos', 'c.name as nameo', 'c.lastname as lasto', 'd.name as nameu', 'd.lastname as lastu', 'se.nombre as sedename')
+        ->join('cobros as co', 'co.id', 'a.id_cobro')
+        ->join('atenciones as at', 'at.id', 'co.id_atencion')
         ->join('pacientes as b', 'b.id', 'at.id_paciente')
         ->join('users as c', 'c.id', 'at.id_origen')
         ->join('users as d', 'd.id', 'at.usuario')
         ->join('sedes as se', 'se.id', 'at.sede')
         ->whereBetween('a.created_at', [$f1, $f2])
-        ->where('a.estatus', '=', 1)
-        ->where('a.resta', '!=', 0)
         ->get();
 
 
@@ -96,18 +95,17 @@ class CobrarController extends Controller
         $f2 = date('Y-m-d');
 
 
-
         $historial = DB::table('historial_cobros as a')
-        ->select('a.id', 'a.estatus', 'a.id_atencion','a.detalle','a.created_at','a.resta', 'at.id_paciente','at.usuario',  'at.tipo_atencion', 'at.sede', 'at.tipo_origen', 'at.id_origen', 'at.monto as total', 'b.nombres', 'b.apellidos', 'c.name as nameo', 'c.lastname as lasto', 'd.name as nameu', 'd.lastname as lastu', 'se.nombre as sedename')
-        ->join('atenciones as at', 'at.id', 'a.id_atencion')
+        ->select('a.id', 'a.id_cobro', 'a.tipopago','a.monto','a.created_at','a.sede', 'co.id_atencion','co.resta','at.id_paciente','at.usuario',  'at.tipo_atencion', 'at.sede', 'at.tipo_origen', 'at.id_origen', 'at.monto as total', 'b.nombres', 'b.apellidos', 'c.name as nameo', 'c.lastname as lasto', 'd.name as nameu', 'd.lastname as lastu', 'se.nombre as sedename')
+        ->join('cuentas_cobrar as co', 'co.id', 'a.id_cobro')
+        ->join('atenciones as at', 'at.id', 'co.id_atencion')
         ->join('pacientes as b', 'b.id', 'at.id_paciente')
         ->join('users as c', 'c.id', 'at.id_origen')
         ->join('users as d', 'd.id', 'at.usuario')
         ->join('sedes as se', 'se.id', 'at.sede')
         ->whereBetween('a.created_at', [$f1, $f2])
-        ->where('a.estatus', '=', 1)
-        ->where('a.resta', '!=', 0)
         ->get();
+
 
     }
 
@@ -115,31 +113,39 @@ class CobrarController extends Controller
        
     }
 
-
-
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create(Request $request)
+    public function ticket($id)
     {
-        $ecografias = Servicios::where('estatus','=',1)->where('tipo','=','ECOGRAFIA')->get();
-        $rayos = Servicios::where('estatus','=',1)->where('tipo','=','RAYOS')->get();
-        $otros = Servicios::where('estatus','=',1)->where('tipo','=','OTROS')->get();
-        $analisis = Analisis::where('estatus','=',1)->get();
 
-        if(!is_null($request->pac)){
-            $paciente = Pacientes::where('dni','=',$request->pac)->first();
-            $res = 'SI';
-            } else {
-            $paciente = Pacientes::where('dni','=','LABORATORIO')->first();
-            $res = 'NO';
-            }
 
-        return view('atenciones.create', compact('ecografias','rayos','otros','analisis','paciente','res'));
-    }
+        $ticket = DB::table('historial_cobros as a')
+        ->select('a.id', 'a.id_cobro', 'a.tipopago','a.monto','a.created_at','a.sede', 'co.id_atencion','co.resta','at.id_paciente','at.usuario',  'at.tipo_atencion', 'at.sede', 'at.tipo_origen', 'at.id_origen', 'at.monto as total', 'b.nombres', 'b.apellidos', 'c.name as nameo', 'c.lastname as lasto', 'd.name as nameu', 'd.lastname as lastu', 'se.nombre as sedename')
+        ->join('cuentas_cobrar as co', 'co.id', 'a.id_cobro')
+        ->join('atenciones as at', 'at.id', 'co.id_atencion')
+        ->join('pacientes as b', 'b.id', 'at.id_paciente')
+        ->join('users as c', 'c.id', 'at.id_origen')
+        ->join('users as d', 'd.id', 'at.usuario')
+        ->join('sedes as se', 'se.id', 'at.sede')
+        ->where('a.id','=', $id)
+        ->first();
 
+      
+
+
+
+        $view = \View::make('cuentascobrar.ticket', compact('ticket'));
+        $pdf = \App::make('dompdf.wrapper');
+        //$pdf->setPaper('A5', 'landscape');
+        //$pdf->setPaper(array(0,0,600.00,360.00));
+        $pdf->setPaper(array(0,0,800.00,3000.00));
+        $pdf->loadHTML($view);
+     
+       
+        return $pdf->stream('ticket-pedido'.'.pdf'); 
+       }
+
+
+
+    
 
 
     public function cobrar($id)
@@ -169,6 +175,7 @@ class CobrarController extends Controller
       $cb = new HistorialCobros();
       $cb->id_cobro =  $request->id;
       $cb->monto = $request->pagar;
+      $cb->tipopago = $request->tipopago;
       $cb->sede = $request->session()->get('sede');
       $cb->save();
 

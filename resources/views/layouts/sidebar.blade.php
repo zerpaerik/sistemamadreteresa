@@ -121,7 +121,13 @@
                 </a>
               </li>
 
-            
+              <li class="nav-item">
+                <a href="{{route('historialc.index')}}" class="nav-link">
+                  <i class="fas fa-cart-arrow-down nav-icon"></i>
+                  <p>Historial de Cobros</p>
+                </a>
+              </li>
+
             
               
             </ul>

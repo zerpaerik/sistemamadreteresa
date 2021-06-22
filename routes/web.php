@@ -202,7 +202,9 @@ Route::get('atenciones/particular','AtencionesController@particular');
 
 
 Route::get('cobrar', 'CobrarController@index')->name('cobrar.index');
+Route::get('historial_cobros', 'CobrarController@historial')->name('historialc.index');
 Route::get('atenciones/cobrar/{id}', 'CobrarController@cobrar');
+Route::get('cobro-ticket-{id}', 'CobrarController@ticket');
 Route::get('cobrar-create', 'CobrarController@create')->name('cobrar.create')->middleware('auth');
 Route::post('cobrar/procesar', 'CobrarController@procesar')->middleware('auth');
 Route::get('cobrar-delete-{id}', 'IngresosController@delete')->middleware('auth');
@@ -224,6 +226,7 @@ Route::post('pagarmultiple', 'ComisionesPagarController@pagarmultiple');
 
 Route::get('comisionesp', 'ComisionesPagadasController@index')->name('comisionesp.index');
 Route::get('comisionesp1', 'ComisionesPagadasController@index1')->name('comisionesp.index1');
+Route::get('comisionep-ticket-{id}', 'ComisionesPagadasController@ticket')->middleware('auth');
 
 
 

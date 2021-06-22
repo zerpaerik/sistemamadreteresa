@@ -30,81 +30,19 @@ class ComisionesPagarController extends Controller
             $f2 = $request->fin;
 
          
-            $ser = DB::table('comisiones as a')
-        ->select('a.id', 'a.estatus', 'a.id_atencion', 'a.created_at','a.usuario', 'a.porcentaje', 'a.monto', 'a.estatus', 'at.id_paciente', 'at.tipo_atencion', 'at.sede', 'at.tipo_origen', 'at.id_origen', 'at.monto as total', 'b.nombres', 'b.apellidos', 'c.name as nameo', 'c.lastname as lasto', 'd.name as nameu', 'd.lastname as lastu', 's.nombre as detalle')
-        ->join('atenciones as at', 'at.id', 'a.id_atencion')
-        ->join('pacientes as b', 'b.id', 'at.id_paciente')
-        ->join('users as c', 'c.id', 'at.id_origen')
-        ->join('users as d', 'd.id', 'a.usuario')
-        ->join('servicios as s', 's.id', 'at.id_tipo')
-        ->where('a.estatus', '=', 1)
-        ->where('at.tipo_origen', '=', 1)
-        ->where('at.tipo_atencion', '=', 1)
-        ->whereBetween('a.created_at', [$f1, $f2])
-        ->where('at.id_origen','=',$request->origen)
-        ->where('at.sede', '=', $request->session()->get('sede'));
-
-            $eco = DB::table('comisiones as a')
-        ->select('a.id', 'a.estatus', 'a.id_atencion', 'a.created_at','a.usuario', 'a.porcentaje', 'a.monto', 'a.estatus', 'at.id_paciente', 'at.tipo_atencion', 'at.sede', 'at.tipo_origen', 'at.id_origen', 'at.monto as total', 'b.nombres', 'b.apellidos', 'c.name as nameo', 'c.lastname as lasto', 'd.name as nameu', 'd.lastname as lastu', 's.nombre as detalle')
-        ->join('atenciones as at', 'at.id', 'a.id_atencion')
-        ->join('pacientes as b', 'b.id', 'at.id_paciente')
-        ->join('users as c', 'c.id', 'at.id_origen')
-        ->join('users as d', 'd.id', 'a.usuario')
-        ->join('servicios as s', 's.id', 'at.id_tipo')
-        ->where('a.estatus', '=', 1)
-        ->where('at.tipo_origen', '=', 1)
-        ->where('at.tipo_atencion', '=', 2)
-        ->whereBetween('a.created_at', [$f1, $f2])
-        ->where('at.id_origen','=',$request->origen)
-        ->where('at.sede', '=', $request->session()->get('sede'));
-
-            $ray = DB::table('comisiones as a')
-        ->select('a.id', 'a.estatus', 'a.id_atencion', 'a.created_at','a.usuario', 'a.porcentaje', 'a.monto', 'a.estatus', 'at.id_paciente', 'at.tipo_atencion', 'at.sede', 'at.tipo_origen', 'at.id_origen', 'at.monto as total', 'b.nombres', 'b.apellidos', 'c.name as nameo', 'c.lastname as lasto', 'd.name as nameu', 'd.lastname as lastu', 's.nombre as detalle')
-        ->join('atenciones as at', 'at.id', 'a.id_atencion')
-        ->join('pacientes as b', 'b.id', 'at.id_paciente')
-        ->join('users as c', 'c.id', 'at.id_origen')
-        ->join('users as d', 'd.id', 'a.usuario')
-        ->join('servicios as s', 's.id', 'at.id_tipo')
-        ->where('a.estatus', '=', 1)
-        ->where('at.tipo_origen', '=', 1)
-        ->where('at.tipo_atencion', '=', 3)
-        ->whereBetween('a.created_at', [$f1, $f2])
-        ->where('at.id_origen','=',$request->origen)
-        ->where('at.sede', '=', $request->session()->get('sede'));
-
         
-        $paq = DB::table('comisiones as a')
-        ->select('a.id', 'a.estatus', 'a.id_atencion', 'a.created_at','a.usuario', 'a.porcentaje', 'a.monto', 'a.estatus', 'at.id_paciente', 'at.tipo_atencion', 'at.sede', 'at.tipo_origen', 'at.id_origen', 'at.monto as total', 'b.nombres', 'b.apellidos', 'c.name as nameo', 'c.lastname as lasto', 'd.name as nameu', 'd.lastname as lastu', 's.nombre as detalle')
-        ->join('atenciones as at', 'at.id', 'a.id_atencion')
-        ->join('pacientes as b', 'b.id', 'at.id_paciente')
-        ->join('users as c', 'c.id', 'at.id_origen')
-        ->join('users as d', 'd.id', 'a.usuario')
-        ->join('paquetes as s', 's.id', 'at.id_tipo')
-        ->where('a.estatus', '=', 1)
-        ->where('at.tipo_origen', '=', 1)
-        ->where('at.tipo_atencion', '=', 7)
-        ->whereBetween('a.created_at', [$f1, $f2])
-        ->where('at.id_origen','=',$request->origen)
-        ->where('at.sede', '=', $request->session()->get('sede'));
-
         $comisiones = DB::table('comisiones as a')
-        ->select('a.id', 'a.estatus', 'a.id_atencion','a.created_at','a.usuario', 'a.porcentaje', 'a.monto', 'a.estatus', 'at.id_paciente', 'at.tipo_atencion', 'at.sede', 'at.tipo_origen', 'at.id_origen', 'at.monto as total', 'b.nombres', 'b.apellidos', 'c.name as nameo', 'c.lastname as lasto', 'd.name as nameu', 'd.lastname as lastu', 's.nombre as detalle')
+        ->select('a.id', 'a.estatus', 'a.id_atencion','a.created_at','a.detalle','a.usuario', 'a.porcentaje', 'a.monto', 'a.estatus', 'at.id_paciente', 'at.tipo_atencion', 'at.sede', 'at.tipo_origen', 'at.id_origen', 'at.monto as total', 'b.nombres', 'b.apellidos', 'c.name as nameo', 'c.lastname as lasto', 'd.name as nameu', 'd.lastname as lastu')
         ->join('atenciones as at', 'at.id', 'a.id_atencion')
         ->join('pacientes as b', 'b.id', 'at.id_paciente')
         ->join('users as c', 'c.id', 'at.id_origen')
         ->join('users as d', 'd.id', 'a.usuario')
-        ->join('analisis as s', 's.id', 'at.id_tipo')
         ->where('a.estatus', '=', 1)
         ->where('at.tipo_origen', '=', 1)
-        ->where('at.tipo_atencion', '=', 4)
         ->where('at.sede', '=', $request->session()->get('sede'))
         ->where('at.id_origen','=',$request->origen)
         ->whereBetween('a.created_at', [$f1, $f2])
         ->orderBy('a.created_at','ASC')
-        ->union($ser)
-        ->union($eco)
-        ->union($ray)
-        ->union($paq)
         ->get();
 
 
@@ -129,76 +67,21 @@ class ComisionesPagarController extends Controller
 
       
 
-            $ser = DB::table('comisiones as a')
-        ->select('a.id', 'a.estatus', 'a.id_atencion', 'a.created_at','a.usuario', 'a.porcentaje', 'a.monto', 'a.estatus', 'at.id_paciente', 'at.tipo_atencion', 'at.sede', 'at.tipo_origen', 'at.id_origen', 'at.monto as total', 'b.nombres', 'b.apellidos', 'c.name as nameo', 'c.lastname as lasto', 'd.name as nameu', 'd.lastname as lastu', 's.nombre as detalle')
+        $comisiones = DB::table('comisiones as a')
+        ->select('a.id', 'a.estatus', 'a.id_atencion','a.created_at','a.detalle','a.usuario', 'a.porcentaje', 'a.monto', 'a.estatus', 'at.id_paciente', 'at.tipo_atencion', 'at.sede', 'at.tipo_origen', 'at.id_origen', 'at.monto as total', 'b.nombres', 'b.apellidos', 'c.name as nameo', 'c.lastname as lasto', 'd.name as nameu', 'd.lastname as lastu')
         ->join('atenciones as at', 'at.id', 'a.id_atencion')
         ->join('pacientes as b', 'b.id', 'at.id_paciente')
         ->join('users as c', 'c.id', 'at.id_origen')
         ->join('users as d', 'd.id', 'a.usuario')
-        ->join('servicios as s', 's.id', 'at.id_tipo')
         ->where('a.estatus', '=', 1)
         ->where('at.tipo_origen', '=', 1)
-        ->where('at.tipo_atencion', '=', 1)
-        ->where('a.created_at','=',date('Y-m-d'))
-        ->where('at.sede', '=', $request->session()->get('sede'));
-
-            $eco = DB::table('comisiones as a')
-        ->select('a.id', 'a.estatus', 'a.id_atencion', 'a.created_at','a.usuario', 'a.porcentaje', 'a.monto', 'a.estatus', 'at.id_paciente', 'at.tipo_atencion', 'at.sede', 'at.tipo_origen', 'at.id_origen', 'at.monto as total', 'b.nombres', 'b.apellidos', 'c.name as nameo', 'c.lastname as lasto', 'd.name as nameu', 'd.lastname as lastu', 's.nombre as detalle')
-        ->join('atenciones as at', 'at.id', 'a.id_atencion')
-        ->join('pacientes as b', 'b.id', 'at.id_paciente')
-        ->join('users as c', 'c.id', 'at.id_origen')
-        ->join('users as d', 'd.id', 'a.usuario')
-        ->join('servicios as s', 's.id', 'at.id_tipo')
-        ->where('a.estatus', '=', 1)
-        ->where('at.tipo_origen', '=', 1)
-        ->where('at.tipo_atencion', '=', 2)
-        ->where('a.created_at','=',date('Y-m-d'))
-        ->where('at.sede', '=', $request->session()->get('sede'));
-
-            $ray = DB::table('comisiones as a')
-        ->select('a.id', 'a.estatus', 'a.id_atencion', 'a.created_at','a.usuario', 'a.porcentaje', 'a.monto', 'a.estatus', 'at.id_paciente', 'at.tipo_atencion', 'at.sede', 'at.tipo_origen', 'at.id_origen', 'at.monto as total', 'b.nombres', 'b.apellidos', 'c.name as nameo', 'c.lastname as lasto', 'd.name as nameu', 'd.lastname as lastu', 's.nombre as detalle')
-        ->join('atenciones as at', 'at.id', 'a.id_atencion')
-        ->join('pacientes as b', 'b.id', 'at.id_paciente')
-        ->join('users as c', 'c.id', 'at.id_origen')
-        ->join('users as d', 'd.id', 'a.usuario')
-        ->join('servicios as s', 's.id', 'at.id_tipo')
-        ->where('a.estatus', '=', 1)
-        ->where('at.tipo_origen', '=', 1)
-        ->where('at.tipo_atencion', '=', 3)
-        ->where('a.created_at','=',date('Y-m-d'))
-        ->where('at.sede', '=', $request->session()->get('sede'));
-
-        $paq = DB::table('comisiones as a')
-        ->select('a.id', 'a.estatus', 'a.id_atencion', 'a.created_at','a.usuario', 'a.porcentaje', 'a.monto', 'a.estatus', 'at.id_paciente', 'at.tipo_atencion', 'at.sede', 'at.tipo_origen', 'at.id_origen', 'at.monto as total', 'b.nombres', 'b.apellidos', 'c.name as nameo', 'c.lastname as lasto', 'd.name as nameu', 'd.lastname as lastu', 's.nombre as detalle')
-        ->join('atenciones as at', 'at.id', 'a.id_atencion')
-        ->join('pacientes as b', 'b.id', 'at.id_paciente')
-        ->join('users as c', 'c.id', 'at.id_origen')
-        ->join('users as d', 'd.id', 'a.usuario')
-        ->join('paquetes as s', 's.id', 'at.id_tipo')
-        ->where('a.estatus', '=', 1)
-        ->where('at.tipo_origen', '=', 1)
-        ->where('at.tipo_atencion', '=', 7)
-        ->where('a.created_at','=',date('Y-m-d'))
-        ->where('at.sede', '=', $request->session()->get('sede'));
-
-            $comisiones = DB::table('comisiones as a')
-        ->select('a.id', 'a.estatus', 'a.id_atencion', 'a.created_at','a.usuario', 'a.porcentaje', 'a.monto', 'a.estatus', 'at.id_paciente', 'at.tipo_atencion', 'at.sede', 'at.tipo_origen', 'at.id_origen', 'at.monto as total', 'b.nombres', 'b.apellidos', 'c.name as nameo', 'c.lastname as lasto', 'd.name as nameu', 'd.lastname as lastu', 's.nombre as detalle')
-        ->join('atenciones as at', 'at.id', 'a.id_atencion')
-        ->join('pacientes as b', 'b.id', 'at.id_paciente')
-        ->join('users as c', 'c.id', 'at.id_origen')
-        ->join('users as d', 'd.id', 'a.usuario')
-        ->join('analisis as s', 's.id', 'at.id_tipo')
-        ->where('a.estatus', '=', 1)
-        ->where('at.tipo_origen', '=', 1)
-        ->where('at.tipo_atencion', '=', 4)
         ->where('at.sede', '=', $request->session()->get('sede'))
-        ->where('a.created_at','=',date('Y-m-d'))
+       // ->where('at.id_origen','=',$request->origen)
+        ->whereBetween('a.created_at', [$f1, $f2])
         ->orderBy('a.created_at','ASC')
-        ->union($ser)
-        ->union($eco)
-        ->union($ray)
-        ->union($paq)
         ->get();
+
+      //  dd($comisiones);
 
 
         
@@ -237,7 +120,7 @@ class ComisionesPagarController extends Controller
             $f2 = $request->fin;
 
          
-            $ser = DB::table('comisiones as a')
+         /*   $ser = DB::table('comisiones as a')
         ->select('a.id', 'a.estatus', 'a.id_atencion', 'a.created_at','a.usuario', 'a.porcentaje', 'a.monto', 'a.estatus', 'at.id_paciente', 'at.tipo_atencion', 'at.sede', 'at.tipo_origen', 'at.id_origen', 'at.monto as total', 'b.nombres', 'b.apellidos', 'c.name as nameo', 'c.lastname as lasto', 'd.name as nameu', 'd.lastname as lastu', 's.nombre as detalle')
         ->join('atenciones as at', 'at.id', 'a.id_atencion')
         ->join('pacientes as b', 'b.id', 'at.id_paciente')
@@ -274,24 +157,20 @@ class ComisionesPagarController extends Controller
         ->where('at.tipo_origen', '=', 2)
         ->where('at.tipo_atencion', '=', 3)
         ->whereBetween('a.created_at', [$f1, $f2])
-        ->where('at.sede', '=', $request->session()->get('sede'));
+        ->where('at.sede', '=', $request->session()->get('sede'));*/
 
         $comisiones = DB::table('comisiones as a')
-        ->select('a.id', 'a.estatus', 'a.id_atencion','a.created_at','a.usuario', 'a.porcentaje', 'a.monto', 'a.estatus', 'at.id_paciente', 'at.tipo_atencion', 'at.sede', 'at.tipo_origen', 'at.id_origen', 'at.monto as total', 'b.nombres', 'b.apellidos', 'c.name as nameo', 'c.lastname as lasto', 'd.name as nameu', 'd.lastname as lastu', 's.nombre as detalle')
+        ->select('a.id', 'a.estatus', 'a.id_atencion','a.created_at','a.detalle','a.usuario', 'a.porcentaje', 'a.monto', 'a.estatus', 'at.id_paciente', 'at.tipo_atencion', 'at.sede', 'at.tipo_origen', 'at.id_origen', 'at.monto as total', 'b.nombres', 'b.apellidos', 'c.name as nameo', 'c.lastname as lasto', 'd.name as nameu', 'd.lastname as lastu')
         ->join('atenciones as at', 'at.id', 'a.id_atencion')
         ->join('pacientes as b', 'b.id', 'at.id_paciente')
         ->join('users as c', 'c.id', 'at.id_origen')
         ->join('users as d', 'd.id', 'a.usuario')
-        ->join('analisis as s', 's.id', 'at.id_tipo')
         ->where('a.estatus', '=', 1)
         ->where('at.tipo_origen', '=', 2)
-        ->where('at.tipo_atencion', '=', 4)
         ->where('at.sede', '=', $request->session()->get('sede'))
+        ->where('at.id_origen','=',$request->origen)
         ->whereBetween('a.created_at', [$f1, $f2])
         ->orderBy('a.created_at','ASC')
-        ->union($ser)
-        ->union($eco)
-        ->union($ray)
         ->get();
 
         $origen = DB::table('comisiones as a')
@@ -314,61 +193,19 @@ class ComisionesPagarController extends Controller
 
       
 
-            $ser = DB::table('comisiones as a')
-        ->select('a.id', 'a.estatus', 'a.id_atencion', 'a.created_at','a.usuario', 'a.porcentaje', 'a.monto', 'a.estatus', 'at.id_paciente', 'at.tipo_atencion', 'at.sede', 'at.tipo_origen', 'at.id_origen', 'at.monto as total', 'b.nombres', 'b.apellidos', 'c.name as nameo', 'c.lastname as lasto', 'd.name as nameu', 'd.lastname as lastu', 's.nombre as detalle')
-        ->join('atenciones as at', 'at.id', 'a.id_atencion')
-        ->join('pacientes as b', 'b.id', 'at.id_paciente')
-        ->join('users as c', 'c.id', 'at.id_origen')
-        ->join('users as d', 'd.id', 'a.usuario')
-        ->join('servicios as s', 's.id', 'at.id_tipo')
-        ->where('a.estatus', '=', 1)
-        ->where('at.tipo_origen', '=', 2)
-        ->where('at.tipo_atencion', '=', 1)
-        ->where('a.created_at','=',date('Y-m-d'))
-        ->where('at.sede', '=', $request->session()->get('sede'));
+      
 
-            $eco = DB::table('comisiones as a')
-        ->select('a.id', 'a.estatus', 'a.id_atencion', 'a.created_at','a.usuario', 'a.porcentaje', 'a.monto', 'a.estatus', 'at.id_paciente', 'at.tipo_atencion', 'at.sede', 'at.tipo_origen', 'at.id_origen', 'at.monto as total', 'b.nombres', 'b.apellidos', 'c.name as nameo', 'c.lastname as lasto', 'd.name as nameu', 'd.lastname as lastu', 's.nombre as detalle')
+        $comisiones = DB::table('comisiones as a')
+        ->select('a.id', 'a.estatus', 'a.id_atencion','a.created_at','a.detalle','a.usuario', 'a.porcentaje', 'a.monto', 'a.estatus', 'at.id_paciente', 'at.tipo_atencion', 'at.sede', 'at.tipo_origen', 'at.id_origen', 'at.monto as total', 'b.nombres', 'b.apellidos', 'c.name as nameo', 'c.lastname as lasto', 'd.name as nameu', 'd.lastname as lastu')
         ->join('atenciones as at', 'at.id', 'a.id_atencion')
         ->join('pacientes as b', 'b.id', 'at.id_paciente')
         ->join('users as c', 'c.id', 'at.id_origen')
         ->join('users as d', 'd.id', 'a.usuario')
-        ->join('servicios as s', 's.id', 'at.id_tipo')
         ->where('a.estatus', '=', 1)
         ->where('at.tipo_origen', '=', 2)
-        ->where('at.tipo_atencion', '=', 2)
-        ->where('a.created_at','=',date('Y-m-d'))
-        ->where('at.sede', '=', $request->session()->get('sede'));
-
-            $ray = DB::table('comisiones as a')
-        ->select('a.id', 'a.estatus', 'a.id_atencion', 'a.created_at','a.usuario', 'a.porcentaje', 'a.monto', 'a.estatus', 'at.id_paciente', 'at.tipo_atencion', 'at.sede', 'at.tipo_origen', 'at.id_origen', 'at.monto as total', 'b.nombres', 'b.apellidos', 'c.name as nameo', 'c.lastname as lasto', 'd.name as nameu', 'd.lastname as lastu', 's.nombre as detalle')
-        ->join('atenciones as at', 'at.id', 'a.id_atencion')
-        ->join('pacientes as b', 'b.id', 'at.id_paciente')
-        ->join('users as c', 'c.id', 'at.id_origen')
-        ->join('users as d', 'd.id', 'a.usuario')
-        ->join('servicios as s', 's.id', 'at.id_tipo')
-        ->where('a.estatus', '=', 1)
-        ->where('at.tipo_origen', '=', 2)
-        ->where('at.tipo_atencion', '=', 3)
-        ->where('a.created_at','=',date('Y-m-d'))
-        ->where('at.sede', '=', $request->session()->get('sede'));
-
-            $comisiones = DB::table('comisiones as a')
-        ->select('a.id', 'a.estatus', 'a.id_atencion', 'a.created_at','a.usuario', 'a.porcentaje', 'a.monto', 'a.estatus', 'at.id_paciente', 'at.tipo_atencion', 'at.sede', 'at.tipo_origen', 'at.id_origen', 'at.monto as total', 'b.nombres', 'b.apellidos', 'c.name as nameo', 'c.lastname as lasto', 'd.name as nameu', 'd.lastname as lastu', 's.nombre as detalle')
-        ->join('atenciones as at', 'at.id', 'a.id_atencion')
-        ->join('pacientes as b', 'b.id', 'at.id_paciente')
-        ->join('users as c', 'c.id', 'at.id_origen')
-        ->join('users as d', 'd.id', 'a.usuario')
-        ->join('analisis as s', 's.id', 'at.id_tipo')
-        ->where('a.estatus', '=', 1)
-        ->where('at.tipo_origen', '=', 2)
-        ->where('at.tipo_atencion', '=', 4)
         ->where('at.sede', '=', $request->session()->get('sede'))
-        ->where('a.created_at','=',date('Y-m-d'))
+        ->whereBetween('a.created_at', [$f1, $f2])
         ->orderBy('a.created_at','ASC')
-        ->union($ser)
-        ->union($eco)
-        ->union($ray)
         ->get();
 
         $origen = DB::table('comisiones as a')
