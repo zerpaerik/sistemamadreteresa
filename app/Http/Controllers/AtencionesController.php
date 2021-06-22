@@ -837,7 +837,6 @@ return view('atenciones.particular');
 
                 $rs = new ResultadosServicios();
                 $rs->id_atencion =  $lab->id;
-                $cb->detalle =  $servicio->nombre;
                 $rs->id_servicio = $eco['ecografia'];
                 $rs->save();
 
@@ -846,6 +845,7 @@ return view('atenciones.particular');
 
                 $cb = new Cobrar();
                 $cb->id_atencion =  $lab->id;
+                $cb->detalle =  $servicio->nombre;
                 $cb->resta =(float)$request->monto_s['ecografias'][$key]['monto'] - (float)$request->monto_abol['ecografias'][$key]['abono'];
                 $cb->save();
             
