@@ -14,6 +14,7 @@ use App\Consultas;
 use App\Metodos;
 use App\MetoPro;
 use App\Comisiones;
+use App\Cobrar;
 use App\ResultadosServicios;
 use App\ResultadosLaboratorio;
 
@@ -445,6 +446,11 @@ return view('atenciones.particular');
             $lab->sede = $request->session()->get('sede');
             $lab->save();
 
+
+            if($request->precio_con > $request->precio_con){
+
+            }
+
             $con = new Consultas();
             $con->id_paciente =  $request->paciente;
             $con->id_atencion =  $lab->id;
@@ -511,6 +517,16 @@ return view('atenciones.particular');
                 $rs->id_atencion =  $lab->id;
                 $rs->id_servicio = $serv['servicio'];
                 $rs->save();
+
+                if($request->monto_s['servicios'][$key]['monto'] > $request->monto_abol['servicios'][$key]['abono']){
+
+                  $cb = new Cobrar();
+                  $cb->id_atencion =  $lab->id;
+                  $cb->detalle =  $servicio->nombre;
+                  $cb->resta =(float)$request->monto_s['servicios'][$key]['monto'] - (float)$request->monto_abol['servicios'][$key]['abono'];
+                  $cb->save();
+              
+                }
 
 
 
@@ -585,6 +601,18 @@ return view('atenciones.particular');
                 $rs->save();
 
 
+                if($request->monto_s['analisis'][$key]['monto'] > $request->monto_abol['analisis'][$key]['abono']){
+
+                  $cb = new Cobrar();
+                  $cb->id_atencion =  $lab->id;
+                  $cb->detalle =  $analisis->nombre;
+                  $cb->resta =(float)$request->monto_s['analisis'][$key]['monto'] - (float)$request->monto_abol['analisis'][$key]['abono'];
+                  $cb->save();
+              
+                }
+
+
+
                 if($request->origen == 2){
                   $com = new Comisiones();
                   $com->id_atencion =  $lab->id;
@@ -626,6 +654,18 @@ return view('atenciones.particular');
               $lab->usuario = Auth::user()->id;
               $lab->sede = $request->session()->get('sede');
               $lab->save();
+
+
+              
+              if($request->monto_s['paquetes'][$key]['monto'] > $request->monto_abol['paquetes'][$key]['abono']){
+
+                $cb = new Cobrar();
+                $cb->id_atencion =  $lab->id;
+                $cb->detalle =  $paquetes->nombre;
+                $cb->resta =(float)$request->monto_s['paquetes'][$key]['monto'] - (float)$request->monto_abol['paquetes'][$key]['abono'];
+                $cb->save();
+            
+              }
 
 
               if($request->origen == 1){
@@ -797,8 +837,19 @@ return view('atenciones.particular');
 
                 $rs = new ResultadosServicios();
                 $rs->id_atencion =  $lab->id;
+                $cb->detalle =  $servicio->nombre;
                 $rs->id_servicio = $eco['ecografia'];
                 $rs->save();
+
+                   
+              if($request->monto_s['ecografias'][$key]['monto'] > $request->monto_abol['ecografias'][$key]['abono']){
+
+                $cb = new Cobrar();
+                $cb->id_atencion =  $lab->id;
+                $cb->resta =(float)$request->monto_s['ecografias'][$key]['monto'] - (float)$request->monto_abol['ecografias'][$key]['abono'];
+                $cb->save();
+            
+              }
 
 
                 if($request->origen == 1){
@@ -864,6 +915,16 @@ return view('atenciones.particular');
                 $rs->id_atencion =  $lab->id;
                 $rs->id_servicio =$ray['rayo'];
                 $rs->save();
+
+                if($request->monto_s['rayos'][$key]['monto'] > $request->monto_abol['rayos'][$key]['abono']){
+
+                  $cb = new Cobrar();
+                  $cb->id_atencion =  $lab->id;
+                  $cb->detalle =  $servicio->nombre;
+                  $cb->resta =(float)$request->monto_s['rayos'][$key]['monto'] - (float)$request->monto_abol['rayos'][$key]['abono'];
+                  $cb->save();
+              
+                }
 
                 if($request->origen == 1){
                   $lab = new Comisiones();
@@ -1043,6 +1104,10 @@ return view('atenciones.particular');
         $com = Comisiones::where('id_atencion','=',$id)->first();
         $com->estatus = 0;
         $com->save();
+
+        $cb = Cobrar::where('id_atencion','=',$id)->first();
+        $cb->estatus = 0;
+        $cb->save();
 /*
         $rs = ResultadosServicios::where('id_atencion','=',$id)->first();
         $rs->estatus = 0;

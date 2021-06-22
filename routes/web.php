@@ -202,8 +202,9 @@ Route::get('atenciones/particular','AtencionesController@particular');
 
 
 Route::get('cobrar', 'CobrarController@index')->name('cobrar.index');
+Route::get('atenciones/cobrar/{id}', 'CobrarController@cobrar');
 Route::get('cobrar-create', 'CobrarController@create')->name('cobrar.create')->middleware('auth');
-Route::post('cobrar/create', 'CobrarController@store')->middleware('auth');
+Route::post('cobrar/procesar', 'CobrarController@procesar')->middleware('auth');
 Route::get('cobrar-delete-{id}', 'IngresosController@delete')->middleware('auth');
 Route::get('cobrar-edit-{id}', 'IngresosController@edit')->name('ingresos.edit');
 Route::post('cobrar/edit', 'IngresosController@update');

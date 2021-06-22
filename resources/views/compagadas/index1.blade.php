@@ -104,42 +104,23 @@
                 <table id="example1" class="table table-bordered table-striped">
                   <thead>
                   <tr>
-                    <th>Id</th>
+                  <th>Recibo</th>
+                  <th>Fecha</th>
                     <th>Paciente</th>
                     <th>Origen</th>
-                    <th>Tipo</th>
-                    <th>Detalle</th>
-                    <th>MontoAT</th>
-                    <th>Porcentaje</th>
-                    <th>MontoPG</th>
                     <th>RP</th>
                     <th>Acciones</th>
+                  </tr>
                   </tr>
                   </thead>
                   <tbody>
 
                   @foreach($comisiones as $an)
                   <tr>
-                    <td>{{$an->id}}</td>
-                    <td>{{substr($an->apellidos,0,5)}} {{substr($an->nombres,0,5)}}</td>
-                    <td>{{substr($an->lasto,0,5)}} {{substr($an->nameo,0,5)}}</td>
-                    @if($an->tipo_atencion == 1)
-                    <td><span class="badge bg-success">Servicio</span></td>
-                    @elseif($an->tipo_atencion == 2)
-                    <td><span class="badge bg-success">Ecografia</span></td>
-                    @elseif($an->tipo_atencion == 3)
-                    <td><span class="badge bg-success">RayosX</span></td>
-                    @elseif($an->tipo_atencion == 4)
-                    <td><span class="badge bg-success">Laboratorio</span></td>
-                    @elseif($an->tipo_atencion == 5)
-                    <td><span class="badge bg-success">Consulta</span></td>
-                    @else
-                    <td><span class="badge bg-success">Método</span></td>
-                    @endif
-                    <td>{{$an->detalle}}</td>
-                    <td>{{$an->total}}</td>
-                    <td>{{$an->porcentaje}}</td>
-                    <td>{{$an->monto}}</td>
+                    <td>REC-2021-{{$an->recibo}}</td>
+                    <td>{{$an->created_at}}</td>
+                    <td>{{$an->apellidos}} {{$an->nombres}}</td>
+                    <td>{{$an->lasto}} {{$an->nameo}}</td>
                     <td>{{$an->nameu}} {{$an->lastu}}</td>
 
                     <td>
@@ -158,16 +139,13 @@
                   </tbody>
                   <tfoot>
                   <tr>
-                  <th>Id</th>
+                  <th>Recibo</th>
+                  <th>Fecha</th>
                     <th>Paciente</th>
                     <th>Origen</th>
-                    <th>Tipo</th>
-                    <th>Detalle</th>
-                    <th>MontoAT</th>
-                    <th>Porcentaje</th>
-                    <th>MontoPG</th>
                     <th>RP</th>
                     <th>Acciones</th>
+                  </tr>
                   </tr>
                   </tfoot>
                 </table>
