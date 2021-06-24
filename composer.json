@@ -19,6 +19,8 @@
         "laravel/ui": "^2.1",
         "maatwebsite/excel": "^3.1",
         "oriceon/toastr-5-laravel": "dev-master",
+        "phpoffice/phpword": "^0.18.2",
+        "rkorebrits/htmltoopenxml": "^0.1.9",
         "yoeunes/toastr": "^1.2"
     },
     "require-dev": {

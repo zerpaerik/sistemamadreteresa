@@ -215,6 +215,19 @@ Route::get('cobrar-ticket-{id}', 'IngresosController@ticket');
 Route::get('resultados', 'ResultadosController@index')->name('resultados.index');
 Route::get('resultadosl', 'ResultadosController@index1')->name('resultados.index1');
 
+Route::get('resultados-asoc-{id}', 'ResultadosController@asociar');
+Route::get('resultados-asocl-{id}', 'ResultadosController@asociarl');
+Route::get('resultados-desoc-{id}', 'ResultadosController@desoc');
+Route::get('resultados-desocl-{id}', 'ResultadosController@desocl');
+Route::get('modelo-informe-{id}-{id2}', 'ResultadosController@modelo_informe');
+Route::get('resultados-guardar-{id}', 'ResultadosController@guardar_informe');
+Route::get('resultados-guardarl-{id}', 'ResultadosController@guardar_informel');
+Route::post('resultados_guardar', 'ResultadosController@guardar');
+Route::post('resultados_guardarl', 'ResultadosController@guardarl');
+
+Route::get('resultadosg', 'ResultadosController@indexg')->name('resultados.indexg');
+Route::get('resultadosgl', 'ResultadosController@indexg1')->name('resultados.indexg1');
+
 
 
 Route::get('comisiones', 'ComisionesPagarController@index')->name('comisiones.index');
@@ -362,6 +375,25 @@ Route::get('caja-delete-{id}','CajaController@delete');
 Route::get('caja-ticket-{id}','CajaController@ticket');
 Route::get('caja-cerrar-{id}','CajaController@cerrar');
 Route::get('saldo/view/{id}', 'CajaController@saldo');
+
+Route::get('download2/{filename}', function($filename)
+{
+    // Check if file exists in 
+    $file_path = public_path().'/informes/'. $filename;
+    if (file_exists($file_path))
+    {
+        // Send Download
+        return Response::download($file_path, $filename, [
+            'Content-Length: '. filesize($file_path),
+            'Content-Type: ' . mime_content_type($file_path)
+        ]);
+    }
+    else
+    {
+        // Error
+        exit('Requested file does not exist on our server!');
+    }
+})->name('descargar2');
 
 
 

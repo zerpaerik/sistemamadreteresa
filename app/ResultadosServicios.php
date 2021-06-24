@@ -16,7 +16,7 @@ class ResultadosServicios extends Model
     protected $table="resultados_servicios";
 
     protected $fillable = [
-        'id_atencion','id_servicio','estatus','informe'
+        'id_atencion','id_servicio','estatus','informe','usuario_informe','informe_guarda'
     ];
 
     

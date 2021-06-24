@@ -224,6 +224,21 @@
                 </a>
               </li>
 
+              <li class="nav-item">
+                <a href="{{route('resultados.indexg')}}" class="nav-link">
+                  <i class="fas fa-hand-holding-usd nav-icon"></i>
+                  <p>Guardados Servicio</p>
+                </a>
+              </li>
+
+
+              <li class="nav-item">
+                <a href="{{route('resultados.indexg1')}}" class="nav-link">
+                  <i class="fas fa-cart-arrow-down nav-icon"></i>
+                  <p>Guardados Laboratorio</p>
+                </a>
+              </li>
+
             
             
               

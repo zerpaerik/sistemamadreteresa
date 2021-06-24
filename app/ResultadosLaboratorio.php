@@ -16,7 +16,7 @@ class ResultadosLaboratorio extends Model
     protected $table="resultados_laboratorio";
 
     protected $fillable = [
-        'id_atencion','id_laboratorio','estatus','informe'
+        'id_atencion','id_laboratorio','estatus','informe','usuario_informe','informe_guarda'
     ];
 
     

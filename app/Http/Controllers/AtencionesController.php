@@ -513,10 +513,10 @@ return view('atenciones.particular');
                 $lab->sede = $request->session()->get('sede');
                 $lab->save();
 
-                $rs = new ResultadosServicios();
+              /*  $rs = new ResultadosServicios();
                 $rs->id_atencion =  $lab->id;
                 $rs->id_servicio = $serv['servicio'];
-                $rs->save();
+                $rs->save();*/
 
                 if($request->monto_s['servicios'][$key]['monto'] > $request->monto_abol['servicios'][$key]['abono']){
 
@@ -703,10 +703,12 @@ return view('atenciones.particular');
                 
                 if(! is_null($id_servicio)){
 
-                  $rs = new ResultadosServicios();
-                  $rs->id_atencion =  $lab->id;
-                  $rs->id_servicio = $id_servicio;
-                  $rs->save();
+                  if($servdetalle->tipo != 'OTROS'){
+                      $rs = new ResultadosServicios();
+                      $rs->id_atencion =  $lab->id;
+                      $rs->id_servicio = $id_servicio;
+                      $rs->save();
+                  }
                     
                     }
                 }
