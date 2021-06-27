@@ -131,6 +131,23 @@
 
                     <td>
                     @if(Auth::user()->rol == 1)
+                    @if($an->historia == 0)
+                    @if($an->tipo == 1)
+
+                    <a class="btn btn-danger btn-sm" href="historia-crear-{{$an->id}}">
+                              <i class="fas fa-pencil-alt">
+                              </i>
+                              Historia
+                          </a>
+                    @else
+                    <a class="btn btn-danger btn-sm" href="control-crear-{{$an->id}}">
+                              <i class="fas fa-pencil-alt">
+                              </i>
+                              Control
+                    </a>
+                    @endif
+
+                    @endif
 
                          
 

@@ -122,7 +122,6 @@
                     <td>{{$an->apellidos}} {{$an->nombres}}</td>
                     <td>{{$an->lasto}} {{$an->nameo}}</td>
                     <td>{{$an->nameu}} {{$an->lastu}}</td>
-
                     <td>
                     @if(Auth::user()->rol == 1)
                     <a target="_blank" class="btn btn-success btn-sm" href="comisionep-ticket-{{$an->recibo}}">

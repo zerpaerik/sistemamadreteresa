@@ -250,6 +250,13 @@ Route::get('consultas-delete-{id}', 'ConsultasController@delete')->middleware('a
 Route::get('cobrconsultasar-edit-{id}', 'ConsultasController@edit')->name('ingresos.edit');
 Route::post('consultas/edit', 'ConsultasController@update');
 Route::get('consultas-ticket-{id}', 'ConsultasController@ticket');
+Route::get('historia-crear-{id}', 'ConsultasController@historia_crear');
+Route::get('control-crear-{id}', 'ConsultasController@control_crear');
+Route::post('historia/guardar', 'ConsultasController@guardar_historia');
+Route::post('historiab/guardar', 'ConsultasController@guardar_historiab');
+Route::post('control/guardar', 'ConsultasController@guardar_control');
+Route::post('controlh/guardar', 'ConsultasController@guardar_controlh');
+
 
 Route::get('metodos', 'MetodosController@index')->name('metodos.index');
 Route::get('metodos-create', 'ConsultasController@create')->name('metodos.create')->middleware('auth');
@@ -258,6 +265,7 @@ Route::get('metodos-delete-{id}', 'ConsultasController@delete')->middleware('aut
 Route::get('metodos-edit-{id}', 'ConsultasController@edit')->name('ingresos.edit');
 Route::post('metodos/edit', 'ConsultasController@update');
 Route::get('metodos-ticket-{id}', 'ConsultasController@ticket');
+
 
 
 
