@@ -374,7 +374,7 @@ class AtencionesController extends Controller
 
     public function personal(){
      
-        $personal = User::where('estatus','=',1)->where('tipo','=',1)->get();
+        $personal = User::where('estatus','=',1)->where('tipo','=',1)->where('tipo_personal','=','ProfSalud')->orderBy('name','desc')->get();
 
  
      return view('atenciones.personal', compact('personal'));
@@ -530,7 +530,7 @@ return view('atenciones.particular');
 
 
 
-                if($request->origen == 1){
+                if($request->origen == 1 && $servicio->porcentaje > 0){
                   $com = new Comisiones();
                   $com->id_atencion =  $lab->id;
                   $com->porcentaje = $servicio->porcentaje;
@@ -540,7 +540,8 @@ return view('atenciones.particular');
                   $com->usuario = Auth::user()->id;
                   $com->save();
 
-                } elseif($request->origen == 2) {
+                } elseif($request->origen == 2 && $servicio->porcentaje1 > 0) {
+
                   $com = new Comisiones();
                   $com->id_atencion =  $lab->id;
                   $com->porcentaje = $servicio->porcentaje1;
@@ -552,14 +553,14 @@ return view('atenciones.particular');
 
                 } else {
 
-                  $com = new Comisiones();
+                /* $com = new Comisiones();
                   $com->id_atencion =  $lab->id;
                   $com->porcentaje = $servicio->porcentaje2;
                   $com->detalle =  $servicio->nombre;
                   $com->monto = (float)$request->monto_s['servicios'][$key]['monto'] * $servicio->porcentaje2 / 100;
                   $com->estatus = 1;
                   $com->usuario = Auth::user()->id;
-                  $com->save();
+                  $com->save();*/
 
                 }
 
@@ -672,7 +673,7 @@ return view('atenciones.particular');
               }
 
 
-              if($request->origen == 1){
+              if($request->origen == 1 && $paquetes->porcentaje > 0){
                 $com = new Comisiones();
                 $com->id_atencion =  $lab->id;
                 $com->detalle =  $paquetes->nombre;
@@ -859,7 +860,8 @@ return view('atenciones.particular');
               }
 
 
-                if($request->origen == 1){
+                if($request->origen == 1  && $servicio->porcentaje > 0){
+
                   $com = new Comisiones();
                   $com->id_atencion =  $lab->id;
                   $com->detalle =  $servicio->nombre;
@@ -869,7 +871,8 @@ return view('atenciones.particular');
                   $com->usuario = Auth::user()->id;
                   $com->save();
 
-                } elseif($request->origen == 2) {
+                } elseif($request->origen == 2 && $servicio->porcentaje1 > 0) {
+                  
                   $com = new Comisiones();
                   $com->id_atencion =  $lab->id;
                   $com->detalle =  $servicio->nombre;
@@ -881,14 +884,14 @@ return view('atenciones.particular');
 
                 } else {
 
-                  $com = new Comisiones();
+                 /* $com = new Comisiones();
                   $com->id_atencion =  $lab->id;
                   $com->detalle =  $servicio->nombre;
                   $com->porcentaje = $servicio->porcentaje2;
                   $com->monto = (float)$request->monto_s['ecografias'][$key]['monto'] * $servicio->porcentaje2 / 100;
                   $com->estatus = 1;
                   $com->usuario = Auth::user()->id;
-                  $com->save();
+                  $com->save();*/
 
                 }
 
@@ -936,7 +939,7 @@ return view('atenciones.particular');
               
                 }
 
-                if($request->origen == 1){
+                if($request->origen == 1 && $servicio->porcentaje > 0){
                   $lab = new Comisiones();
                   $lab->id_atencion =  $lab->id;
                   $lab->porcentaje = $servicio->porcentaje;
@@ -946,7 +949,7 @@ return view('atenciones.particular');
                   $lab->usuario = Auth::user()->id;
                   $lab->save();
 
-                } elseif($request->origen == 2) {
+                } elseif($request->origen == 2 && $servicio->porcentaje1 > 0) {
                   $lab = new Comisiones();
                   $lab->id_atencion =  $lab->id;
                   $lab->porcentaje = $servicio->porcentaje1;
@@ -958,14 +961,14 @@ return view('atenciones.particular');
 
                 } else {
 
-                  $lab = new Comisiones();
+                /*  $lab = new Comisiones();
                   $lab->id_atencion =  $lab->id;
                   $lab->porcentaje = $servicio->porcentaje2;
                   $lab->detalle =  $servicio->nombre;
                   $lab->monto = (float)$request->monto_s['rayos'][$key]['monto'] * $servicio->porcentaje2 / 100;
                   $lab->estatus = 1;
                   $lab->usuario = Auth::user()->id;
-                  $lab->save();
+                  $lab->save();*/
 
                 }
 
@@ -1019,6 +1022,70 @@ return view('atenciones.particular');
         return view('atenciones.edit', compact('atencion')); //
     }
 
+    public function edits($id)
+    {
+        $atencion = Atenciones::where('id','=',$id)->first();
+
+     
+        if($atencion->tipo_atencion == 1){
+          $servicio = Servicios::where('estatus','=',1)->where('tipo','=','OTROS')->get();
+        } else if($atencion->tipo_atencion == 2) {
+          $servicio = Servicios::where('estatus','=',1)->where('tipo','=','ECOGRAFIA')->get();
+        } else {
+          $servicio = Servicios::where('estatus','=',1)->where('tipo','=','RAYOS')->get();
+        }
+
+        if ($atencion->tipo_origen == 1) {
+          $usuario = User::where('estatus', '=', 1)->where('tipo', '=', 1)->get();
+        } else {
+          $usuario = User::where('estatus', '=', 1)->where('tipo', '=', 2)->get();
+        }
+
+
+
+
+        return view('atenciones.edits', compact('atencion','servicio','usuario')); //
+    }
+
+
+    public function editl($id)
+    {
+          $atencion = Atenciones::where('id','=',$id)->first();
+
+          $analisis = Analisis::where('estatus','=',1)->get();
+     
+        if ($atencion->tipo_origen == 1) {
+          $usuario = User::where('estatus', '=', 1)->where('tipo', '=', 1)->get();
+        } else {
+          $usuario = User::where('estatus', '=', 1)->where('tipo', '=', 2)->get();
+        }
+
+
+
+
+        return view('atenciones.editl', compact('atencion','analisis','usuario')); //
+    }
+
+    
+    public function editp($id)
+    {
+          $atencion = Atenciones::where('id','=',$id)->first();
+
+     
+        if ($atencion->tipo_origen == 1) {
+          $usuario = User::where('estatus', '=', 1)->where('tipo', '=', 1)->get();
+        } else {
+          $usuario = User::where('estatus', '=', 1)->where('tipo', '=', 2)->get();
+        }
+
+
+
+
+        return view('atenciones.editp', compact('atencion','usuario')); //
+    }
+
+
+
     /**
      * Update the specified resource in storage.
      *
@@ -1045,6 +1112,124 @@ return view('atenciones.particular');
 
         //
     }
+
+    public function updates(Request $request)
+    {
+
+
+      $serv = Servicios::where('id','=',$request->id_tipo)->first();
+
+      $rsf = ResultadosServicios::where('id_atencion','=',$request->id)->first();
+      $rsf->id_servicio = $request->id_tipo;
+      $rsf->save();
+
+      if($request->tipo_origen == 1 && $serv->porcentaje > 0){
+
+        $csf = Comisiones::where('id_atencion','=',$request->id)->first();
+        $csf->detalle = $serv->nombre;
+        $csf->porcentaje = $serv->porcentaje;
+        $csf->monto = $request->monto * $serv->porcentaje / 100;
+        $csf->save();
+
+      } else if($request->tipo_origen == 2 && $serv->porcentaje1 > 0){
+
+        $csf = Comisiones::where('id_atencion','=',$request->id)->first();
+        $csf->porcentaje = $serv->nombre;
+        $csf->monto =  $request->monto * $serv->porcentaje1 / 100;
+        $csf->detalle = $serv->porcentaje1;
+        $csf->save();
+
+      } else {
+
+      }
+
+      $p = Atenciones::find($request->id);
+      $p->monto =$request->monto;
+      $p->abono =$request->abono;
+      $p->tipo_pago =$request->tipo_pago;
+      $p->tipo_origen =$request->tipo_origen;
+      $p->id_origen =$request->origen_usuario;
+      $p->id_tipo =$request->id_tipo;
+      $res = $p->update();
+    
+        return redirect()->action('AtencionesController@index')
+        ->with('success','Modificado Exitosamente!');
+
+        //
+    }
+
+    public function updatel(Request $request)
+    {
+
+
+      $serv = Analisis::where('id','=',$request->id_tipo)->first();
+
+      $rsf = ResultadosLaboratorio::where('id_atencion','=',$request->id)->first();
+      $rsf->id_laboratorio = $request->id_tipo;
+      $rsf->save();
+
+      if($request->tipo_origen == 2 && $serv->porcentaje > 0){
+
+        $csf = Comisiones::where('id_atencion','=',$request->id)->first();
+        $csf->detalle = $serv->nombre;
+        $csf->porcentaje = $serv->porcentaje;
+        $csf->monto = $request->monto * $serv->porcentaje / 100;
+        $csf->save();
+
+      } 
+
+      $p = Atenciones::find($request->id);
+      $p->monto =$request->monto;
+      $p->abono =$request->abono;
+      $p->tipo_pago =$request->tipo_pago;
+      $p->tipo_origen =$request->tipo_origen;
+      $p->id_origen =$request->origen_usuario;
+      $p->id_tipo =$request->id_tipo;
+      $res = $p->update();
+    
+        return redirect()->action('AtencionesController@index')
+        ->with('success','Modificado Exitosamente!');
+
+        //
+    }
+
+    public function updatep(Request $request)
+    {
+
+      $com = Comisiones::where('id_atencion','=',$request->id)->first();
+
+
+      if($request->tipo_origen == 1){
+
+        $csf = Comisiones::where('id_atencion','=',$request->id)->first();
+        $csf->monto = $request->monto * $com->porcentaje / 100;
+        $csf->save();
+
+      } else if($request->tipo_origen == 2){
+
+        $csf = Comisiones::where('id_atencion','=',$request->id)->first();
+        $csf->monto =  $request->monto * $com->porcentaje / 100;
+        $csf->save();
+
+      } else {
+
+      }
+
+
+      $p = Atenciones::find($request->id);
+      $p->monto =$request->monto;
+      $p->abono =$request->abono;
+      $p->tipo_pago =$request->tipo_pago;
+      $p->tipo_origen =$request->tipo_origen;
+      $p->id_origen =$request->origen_usuario;
+      $res = $p->update();
+    
+        return redirect()->action('AtencionesController@index')
+        ->with('success','Modificado Exitosamente!');
+
+        //
+    }
+
 
  
     public function delete($id)

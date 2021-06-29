@@ -191,15 +191,22 @@ Route::get('atenciones', 'AtencionesController@index')->name('atenciones.index')
 Route::get('atenciones-create', 'AtencionesController@create')->name('atenciones.create')->middleware('auth');
 Route::post('atenciones/create', 'AtencionesController@store')->middleware('auth');
 Route::get('atenciones-delete-{id}', 'AtencionesController@delete')->middleware('auth');
-Route::get('atenciones-edit-{id}', 'AtencionesController@edit')->name('atenciones.edit');
+Route::get('atenciones-edits-{id}', 'AtencionesController@edits')->name('atenciones.edits');
+Route::get('atenciones-editl-{id}', 'AtencionesController@editl')->name('atenciones.editl');
+Route::get('atenciones-editp-{id}', 'AtencionesController@editp')->name('atenciones.editp');
+Route::get('atenciones-editc-{id}', 'AtencionesController@editc')->name('atenciones.editc');
+Route::get('atenciones-editm-{id}', 'AtencionesController@editm')->name('atenciones.editm');
+
 Route::post('atenciones/edit', 'AtencionesController@update');
+Route::post('atenciones/edits', 'AtencionesController@updates');
+Route::post('atenciones/editl', 'AtencionesController@updatel');
+Route::post('atenciones/editp', 'AtencionesController@updatep');
 Route::get('atenciones/getServicio/{id}', 'AtencionesController@getServicio')->middleware('auth');
 Route::get('atenciones/getAnalisis/{id}', 'AtencionesController@getAnalisis')->middleware('auth');
 Route::get('atenciones/getPaquetes/{id}', 'AtencionesController@getPaquetes')->middleware('auth');
 Route::get('atenciones/personal','AtencionesController@personal');
 Route::get('atenciones/profesionales','AtencionesController@profesionales');
 Route::get('atenciones/particular','AtencionesController@particular');
-
 
 Route::get('cobrar', 'CobrarController@index')->name('cobrar.index');
 Route::get('historial_cobros', 'CobrarController@historial')->name('historialc.index');

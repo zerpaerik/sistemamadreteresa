@@ -145,10 +145,50 @@
                     <td>
                     @if(Auth::user()->rol == 1)
 
-                          <a class="btn btn-info btn-sm" href="atenciones-edit-{{$an->id}}">
+                         @if($an->tipo_atencion == 1)
+
+                          <a class="btn btn-info btn-sm" href="atenciones-edits-{{$an->id}}">
                               <i class="fas fa-pencil-alt">
                               </i>
                           </a>
+
+                        @elseif($an->tipo_atencion == 2)
+                        
+                        <a class="btn btn-info btn-sm" href="atenciones-edits-{{$an->id}}">
+                              <i class="fas fa-pencil-alt">
+                              </i>
+                          </a>
+                        @elseif($an->tipo_atencion == 3)
+                        
+                        <a class="btn btn-info btn-sm" href="atenciones-edits-{{$an->id}}">
+                              <i class="fas fa-pencil-alt">
+                              </i>
+                          </a>
+                        @elseif($an->tipo_atencion == 4)
+                        
+                        <a class="btn btn-info btn-sm" href="atenciones-editl-{{$an->id}}">
+                              <i class="fas fa-pencil-alt">
+                              </i>
+                          </a>
+                          @elseif($an->tipo_atencion == 5)
+                        
+                        <a class="btn btn-info btn-sm" href="atenciones-editc-{{$an->id}}">
+                              <i class="fas fa-pencil-alt">
+                              </i>
+                          </a>
+                          @elseif($an->tipo_atencion == 6)
+                        
+                        <a class="btn btn-info btn-sm" href="atenciones-editm-{{$an->id}}">
+                              <i class="fas fa-pencil-alt">
+                              </i>
+                          </a>
+                        @else
+                        
+                        <a class="btn btn-info btn-sm" href="atenciones-editp-{{$an->id}}">
+                              <i class="fas fa-pencil-alt">
+                              </i>
+                          </a>
+                        @endif
                           <a class="btn btn-danger btn-sm" href="atenciones-delete-{{$an->id}}" onclick="return confirm('¿Desea Eliminar este registro?')">
                               <i class="fas fa-trash">
                               </i>
