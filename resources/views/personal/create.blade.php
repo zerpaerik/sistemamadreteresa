@@ -130,6 +130,7 @@
                     <option value="ProfSalud">ProfSalud</option>
                     <option value="Mantenimiento">Mantenimiento</option>
                     <option value="Seguridad">Seguridad</option>
+                    <option value="Recepcionista">Recepcionista</option>
                     <option value="Otro">Otro</option>
 
                         </select>
