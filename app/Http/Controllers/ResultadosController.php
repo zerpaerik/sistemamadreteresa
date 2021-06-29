@@ -10,6 +10,7 @@ use App\Pacientes;
 use App\Servicios;
 use App\User;
 use App\Atenciones;
+use App\Comisiones;
 use App\ResultadosServicios;
 use App\ResultadosLaboratorio;
 use Auth;
@@ -336,6 +337,38 @@ class ResultadosController extends Controller
 
 
     public function guardar(Request $request){
+
+      $res = ResultadosServicios::where('id','=',$request->id)->first();
+
+      $servicio = Servicios::where('id','=',$res->id_servicio)->first();
+
+      $atenc = Atenciones::where('id','=',$res->id_atencion)->first();
+
+
+      $usuario = DB::table('users')
+      ->select('*')
+      ->where('id','=', Auth::user()->id)
+      ->first();
+
+
+
+      if($usuario->tipo_personal == 'Tecnólogo' && $servicio->porcentaje2 > 0){
+
+
+
+        $com = new Comisiones();
+        $com->id_atencion =  $res->id_atencion;
+        $com->detalle =  $servicio->nombre;
+        $com->porcentaje = $servicio->porcentaje2;
+        $com->monto = $atenc->monto * $servicio->porcentaje2 / 100;
+        $com->estatus = 1;
+        $com->tecnologo = 1;
+        $com->usuario = Auth::user()->id;
+        $com->save();
+
+
+      }
+
 
 
 
