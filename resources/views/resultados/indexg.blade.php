@@ -76,23 +76,37 @@
       <div class="container-fluid">
       <div class="card">
               <div class="card-header">
-              <form method="get" action="resultados">					
+              <form method="get" action="resultadosg">					
                   <label for="exampleInputEmail1">Filtros de Busqueda</label>
 
                     <div class="row">
                   <div class="col-md-3">
-                    <label for="exampleInputEmail1">Fecha Inicio</label>
-                    <input type="date" class="form-control" value="{{$f1}}" name="inicio">
+                    <label for="exampleInputEmail1">Buscar por Apellidos</label>
+                    <input type="text" class="form-control"  name="filtro">
                   </div>
 
-                  <div class="col-md-3">
-                    <label for="exampleInputEmail1">Fecha Fin</label>
-                    <input type="date" class="form-control" value="{{$f2}}" name="fin">
-                  </div>
-                  
-                
-                 
                   <div class="col-md-2" style="margin-top: 30px;">
+                  <button type="submit" class="btn btn-primary">Buscar</button>
+
+                  </div>
+                  </div>
+
+                  </form>
+
+                  <form method="get" action="resultadosg">					
+                  <label for="exampleInputEmail1">Seleccione el Paciente</label>
+
+                    <div class="row">
+                  <div class="col-md-3">
+                  <select class="form-control" name="id_paciente">
+                    @foreach($pacientes as $role)
+                      <option value="{{$role->id}}">{{$role->apellidos}},{{$role->nombres}}-{{$role->dni}}</option>
+                    @endforeach
+                  </select>
+                   
+                  </div>
+
+                  <div class="col-md-2" style="margin-top: 1px;">
                   <button type="submit" class="btn btn-primary">Buscar</button>
 
                   </div>

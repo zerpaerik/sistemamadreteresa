@@ -105,11 +105,12 @@ class CobrarController extends Controller
         ->join('users as d', 'd.id', 'at.usuario')
         ->join('sedes as se', 'se.id', 'at.sede')
         ->join('sedes as sec', 'sec.id', 'a.sede')
-        ->whereBetween('a.created_at', [$f1, $f2])
+       // ->whereBetween('a.created_at', [$f1, $f2])
         ->get();
 
 
     }
+    
 
       return view('cuentascobrar.historial', compact('historial','f1','f2'));
        

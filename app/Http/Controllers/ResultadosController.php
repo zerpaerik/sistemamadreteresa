@@ -127,55 +127,51 @@ class ResultadosController extends Controller
     public function indexg(Request $request)
     {
 
-        if ($request->inicio) {
-            $f1 = $request->inicio;
-            $f2 = $request->fin;
-  
+      
 
+        if ($request->id_paciente != null) {
             $resultados = DB::table('resultados_servicios as a')
-        ->select('a.id', 'a.id_atencion', 'a.id_servicio', 'a.informe','a.informe_guarda','b.estatus','b.usuario', 'a.created_at', 'a.estatus', 'b.id_paciente', 'b.id_origen', 's.nombre as servicio', 'pa.nombres', 'pa.apellidos', 'c.name', 'c.lastname')
+        ->select('a.id', 'a.id_atencion', 'a.id_servicio', 'a.informe', 'a.informe_guarda', 'b.estatus', 'b.usuario', 'a.created_at', 'a.estatus', 'b.id_paciente', 'b.id_origen', 's.nombre as servicio', 'pa.nombres', 'pa.apellidos', 'c.name', 'c.lastname')
         ->join('atenciones as b', 'b.id', 'a.id_atencion')
         ->join('users as c', 'c.id', 'b.id_origen')
         ->join('pacientes as pa', 'pa.id', 'b.id_paciente')
         ->join('servicios as s', 's.id', 'a.id_servicio')
         ->where('b.estatus', '=', 1)
         ->where('a.estatus', '=', 3)
-        ->whereBetween('a.created_at', [$f1, $f2])
-        //->where('a.monto', '!=', '0')
+        ->where('b.id_paciente', '=', $request->id_paciente)
         ->get();
         } else {
-
-            $f1 = date('Y-m-d');
-            $f2 = date('Y-m-d');
-
-
-            $resultados = DB::table('resultados_servicios as a')
-            ->select('a.id', 'a.id_atencion', 'a.id_servicio','a.informe','a.informe_guarda','b.estatus', 'b.usuario', 'a.created_at', 'a.estatus', 'b.id_paciente', 'b.id_origen', 's.nombre as servicio', 'pa.nombres', 'pa.apellidos', 'c.name', 'c.lastname')
-            ->join('atenciones as b', 'b.id', 'a.id_atencion')
-            ->join('users as c', 'c.id', 'b.id_origen')
-            ->join('pacientes as pa', 'pa.id', 'b.id_paciente')
-            ->join('servicios as s', 's.id', 'a.id_servicio')
-            ->where('b.estatus', '=', 1)
-            ->where('a.estatus', '=', 3)
-            ->where('a.created_at', '=', date('Y-m-d'))
-            ->get();
-
-            //->where('
+          $resultados = DB::table('resultados_servicios as a')
+          ->select('a.id', 'a.id_atencion', 'a.id_servicio', 'a.informe', 'a.informe_guarda', 'b.estatus', 'b.usuario', 'a.created_at', 'a.estatus', 'b.id_paciente', 'b.id_origen', 's.nombre as servicio', 'pa.nombres', 'pa.apellidos', 'c.name', 'c.lastname')
+          ->join('atenciones as b', 'b.id', 'a.id_atencion')
+          ->join('users as c', 'c.id', 'b.id_origen')
+          ->join('pacientes as pa', 'pa.id', 'b.id_paciente')
+          ->join('servicios as s', 's.id', 'a.id_servicio')
+          ->where('b.estatus', '=', 1)
+          ->where('a.estatus', '=', 999)
+          ->where('a.created_at', '=', date('Y-m-d'))
+          ->get();
 
         }
 
 
-        return view('resultados.indexg', compact('resultados','f1','f2'));
+        
+    if(!is_null($request->filtro)){
+      $pacientes =Pacientes::where("estatus", '=', 1)->where('apellidos','like','%'.$request->filtro.'%')->orderby('apellidos','asc')->get();
+      }else{
+      $pacientes =Pacientes::where("estatus", '=', 9)->orderby('nombres','asc')->get();
+      }
+
+
+        return view('resultados.indexg', compact('resultados','pacientes'));
         //
     }
 
     public function indexg1(Request $request)
     {
 
-        if ($request->inicio) {
-            $f1 = $request->inicio;
-            $f2 = $request->fin;
-  
+        if ($request->id_paciente) {
+          
 
             $resultados = DB::table('resultados_laboratorio as a')
         ->select('a.id', 'a.id_atencion', 'a.id_laboratorio', 'a.informe','a.informe_guarda','b.estatus as sta_ate','b.usuario', 'a.created_at', 'a.estatus', 'b.id_paciente', 'b.id_origen', 's.nombre as laboratorio', 'pa.nombres', 'pa.apellidos', 'c.name', 'c.lastname')
@@ -184,14 +180,11 @@ class ResultadosController extends Controller
         ->join('pacientes as pa', 'pa.id', 'b.id_paciente')
         ->join('analisis as s', 's.id', 'a.id_laboratorio')
         ->where('a.estatus', '=', 3)
-        ->whereBetween('a.created_at', [$f1, $f2])
-        //->where('a.monto', '!=', '0')
+        ->where('b.id_paciente', '=', $request->id_paciente)
         ->get();
         } else {
 
-            $f1 = date('Y-m-d');
-            $f2 = date('Y-m-d');
-
+       
 
             $resultados = DB::table('resultados_laboratorio as a')
             ->select('a.id', 'a.id_atencion', 'a.id_laboratorio','a.informe', 'a.informe_guarda','b.estatus as sta_ate','b.usuario', 'a.created_at', 'a.estatus', 'b.id_paciente', 'b.id_origen', 's.nombre as laboratorio', 'pa.nombres', 'pa.apellidos', 'c.name', 'c.lastname')
@@ -199,7 +192,7 @@ class ResultadosController extends Controller
             ->join('users as c', 'c.id', 'b.id_origen')
             ->join('pacientes as pa', 'pa.id', 'b.id_paciente')
             ->join('analisis as s', 's.id', 'a.id_laboratorio')
-            ->where('a.estatus', '=', 3)
+            ->where('a.estatus', '=', 999)
             ->where('a.created_at', '=', date('Y-m-d'))
             ->get();
 
@@ -207,8 +200,15 @@ class ResultadosController extends Controller
 
         }
 
+        if(!is_null($request->filtro)){
+          $pacientes =Pacientes::where("estatus", '=', 1)->where('apellidos','like','%'.$request->filtro.'%')->orderby('apellidos','asc')->get();
+          }else{
+          $pacientes =Pacientes::where("estatus", '=', 9)->orderby('nombres','asc')->get();
+          }
+    
 
-        return view('resultados.indexgl', compact('resultados','f1','f2'));
+
+        return view('resultados.indexgl', compact('resultados','pacientes'));
         //
     }
 
