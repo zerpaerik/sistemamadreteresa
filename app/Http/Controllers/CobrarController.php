@@ -85,7 +85,7 @@ class CobrarController extends Controller
         ->join('users as c', 'c.id', 'at.id_origen')
         ->join('users as d', 'd.id', 'at.usuario')
         ->join('sedes as se', 'se.id', 'at.sede')
-        ->join('sedes as sec', 'se.id', 'a.sede')
+        ->join('sedes as sec', 'sec.id', 'a.sede')
         ->whereBetween('a.created_at', [$f1, $f2])
         ->get();
 
@@ -104,7 +104,7 @@ class CobrarController extends Controller
         ->join('users as c', 'c.id', 'at.id_origen')
         ->join('users as d', 'd.id', 'at.usuario')
         ->join('sedes as se', 'se.id', 'at.sede')
-        ->join('sedes as sec', 'se.id', 'a.sede')
+        ->join('sedes as sec', 'sec.id', 'a.sede')
         ->whereBetween('a.created_at', [$f1, $f2])
         ->get();
 
