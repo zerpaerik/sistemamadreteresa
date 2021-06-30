@@ -166,7 +166,12 @@ class CobrarController extends Controller
     {
 
       $conh = Cobrar::where('id','=',$request->id)->first();
+      $atencio = Atenciones::where('id','=',$conh->id_atencion)->first();
 
+      $at = Atenciones::where('id','=',$conh->id_atencion)->first();
+      $at->abono = $atencio->abono + $request->pagar;
+      $at->resta = $atencio->resta - $request->pagar;
+      $at->save();
 
       $con = Cobrar::where('id','=',$request->id)->first();
       $con->resta = $conh->resta - $request->pagar;

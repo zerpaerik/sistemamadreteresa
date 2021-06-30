@@ -530,6 +530,7 @@ return view('atenciones.particular');
                 $lab->id_tipo = $serv['servicio'];
                 $lab->monto = (float)$request->monto_s['servicios'][$key]['monto'];
                 $lab->abono = (float)$request->monto_abol['servicios'][$key]['abono'];
+                $lab->resta = (float)$request->monto_s['servicios'][$key]['monto'] - (float)$request->monto_abol['servicios'][$key]['abono'];
                 $lab->tipo_pago = $request->id_pago['servicios'][$key]['tipop'];
                 $lab->usuario = Auth::user()->id;
                 $lab->sede = $request->session()->get('sede');
@@ -626,6 +627,7 @@ return view('atenciones.particular');
                 $lab->id_tipo = $laboratorio['analisi'];
                 $lab->monto = (float)$request->monto_s['analisis'][$key]['monto'];
                 $lab->abono = (float)$request->monto_abol['analisis'][$key]['abono'];
+                $lab->resta = (float)$request->monto_s['analisis'][$key]['monto'] - (float)$request->monto_abol['analisis'][$key]['abono'];
                 $lab->tipo_pago = $request->id_pago['analisis'][$key]['tipop'];
                 $lab->usuario = Auth::user()->id;
                 $lab->sede = $request->session()->get('sede');
@@ -697,6 +699,7 @@ return view('atenciones.particular');
               $lab->id_tipo = $paq['paquete'];
               $lab->monto = (float)$request->monto_s['paquetes'][$key]['monto'];
               $lab->abono = (float)$request->monto_abol['paquetes'][$key]['abono'];
+              $lab->resta = (float)$request->monto_s['paquetes'][$key]['monto'] - (float)$request->monto_abol['paquetes'][$key]['abono'];
               $lab->tipo_pago = $request->id_pago['paquetes'][$key]['tipop'];
               $lab->usuario = Auth::user()->id;
               $lab->sede = $request->session()->get('sede');
@@ -890,6 +893,7 @@ return view('atenciones.particular');
                 $lab->id_tipo = $eco['ecografia'];
                 $lab->monto = (float)$request->monto_s['ecografias'][$key]['monto'];
                 $lab->abono = (float)$request->monto_abol['ecografias'][$key]['abono'];
+                $lab->resta = (float)$request->monto_s['ecografias'][$key]['monto'] - (float)$request->monto_abol['ecografias'][$key]['abono'];
                 $lab->tipo_pago = $request->id_pago['ecografias'][$key]['tipop'];
                 $lab->usuario = Auth::user()->id;
                 $lab->sede = $request->session()->get('sede');
@@ -982,6 +986,7 @@ return view('atenciones.particular');
                 $lab->id_tipo = $ray['rayo'];
                 $lab->monto = (float)$request->monto_s['rayos'][$key]['monto'];
                 $lab->abono = (float)$request->monto_abol['rayos'][$key]['abono'];
+                $lab->resta = (float)$request->monto_s['rayos'][$key]['monto'] - (float)$request->monto_abol['rayos'][$key]['abono'];
                 $lab->tipo_pago = $request->id_pago['rayos'][$key]['tipop'];
                 $lab->usuario = Auth::user()->id;
                 $lab->sede =$request->session()->get('sede');
@@ -1229,21 +1234,42 @@ return view('atenciones.particular');
       $rsf->id_servicio = $request->id_tipo;
       $rsf->save();
 
+      $csf = Comisiones::where('id_atencion','=',$request->id)->first();
+      $csf->delete();
+
       if($request->tipo_origen == 1 && $serv->porcentaje > 0){
 
-        $csf = Comisiones::where('id_atencion','=',$request->id)->first();
+        $com = new Comisiones();
+        $com->id_atencion = $request->id;
+        $com->porcentaje =$serv->porcentaje;
+        $com->detalle =  $serv->nombre;
+        $com->monto = $request->monto * $serv->porcentaje / 100;
+        $com->estatus = 1;
+        $com->usuario = Auth::user()->id;
+        $com->save();
+
+       /* $csf = Comisiones::where('id_atencion','=',$request->id)->first();
         $csf->detalle = $serv->nombre;
         $csf->porcentaje = $serv->porcentaje;
         $csf->monto = $request->monto * $serv->porcentaje / 100;
-        $csf->save();
+        $csf->save();*/
 
       } else if($request->tipo_origen == 2 && $serv->porcentaje1 > 0){
 
-        $csf = Comisiones::where('id_atencion','=',$request->id)->first();
+        $com = new Comisiones();
+        $com->id_atencion = $request->id;
+        $com->porcentaje =$serv->porcentaje;
+        $com->detalle =  $serv->nombre;
+        $com->monto = $request->monto * $serv->porcentaje1 / 100;
+        $com->estatus = 1;
+        $com->usuario = Auth::user()->id;
+        $com->save();
+
+       /* $csf = Comisiones::where('id_atencion','=',$request->id)->first();
         $csf->porcentaje = $serv->nombre;
         $csf->monto =  $request->monto * $serv->porcentaje1 / 100;
         $csf->detalle = $serv->porcentaje1;
-        $csf->save();
+        $csf->save();*/
 
       } else {
 
@@ -1274,13 +1300,19 @@ return view('atenciones.particular');
       $rsf->id_laboratorio = $request->id_tipo;
       $rsf->save();
 
+      $csf = Comisiones::where('id_atencion','=',$request->id)->first();
+      $csf->delete();
+
       if($request->tipo_origen == 2 && $serv->porcentaje > 0){
 
-        $csf = Comisiones::where('id_atencion','=',$request->id)->first();
-        $csf->detalle = $serv->nombre;
-        $csf->porcentaje = $serv->porcentaje;
-        $csf->monto = $request->monto * $serv->porcentaje / 100;
-        $csf->save();
+        $com = new Comisiones();
+        $com->id_atencion = $request->id;
+        $com->porcentaje =$serv->porcentaje;
+        $com->detalle =  $serv->nombre;
+        $com->monto = $request->monto * $serv->porcentaje / 100;
+        $com->estatus = 1;
+        $com->usuario = Auth::user()->id;
+        $com->save();
 
       } 
 

@@ -39,12 +39,13 @@ class ResultadosController extends Controller
   
 
             $resultados = DB::table('resultados_servicios as a')
-        ->select('a.id', 'a.id_atencion', 'a.id_servicio', 'a.informe','b.usuario', 'a.created_at', 'a.estatus', 'b.id_paciente','b.estatus', 'b.id_origen', 's.nombre as servicio', 'pa.nombres', 'pa.apellidos', 'c.name', 'c.lastname')
+        ->select('a.id', 'a.id_atencion', 'a.id_servicio', 'a.informe','b.usuario', 'a.created_at', 'a.estatus','b.resta', 'b.id_paciente','b.estatus', 'b.id_origen', 's.nombre as servicio', 'pa.nombres', 'pa.apellidos', 'c.name', 'c.lastname')
         ->join('atenciones as b', 'b.id', 'a.id_atencion')
         ->join('users as c', 'c.id', 'b.id_origen')
         ->join('pacientes as pa', 'pa.id', 'b.id_paciente')
         ->join('servicios as s', 's.id', 'a.id_servicio')
         ->where('b.estatus', '=', 1)
+        ->where('b.resta', '=', 0)
         ->where('a.estatus', '=', 1)
         ->whereBetween('a.created_at', [$f1, $f2])
         //->where('a.monto', '!=', '0')
@@ -56,13 +57,14 @@ class ResultadosController extends Controller
 
 
             $resultados = DB::table('resultados_servicios as a')
-            ->select('a.id', 'a.id_atencion', 'a.id_servicio','a.informe', 'b.usuario', 'a.created_at', 'a.estatus', 'b.estatus','b.id_paciente', 'b.id_origen', 's.nombre as servicio', 'pa.nombres', 'pa.apellidos', 'c.name', 'c.lastname')
+            ->select('a.id', 'a.id_atencion', 'a.id_servicio','a.informe', 'b.usuario','b.resta', 'a.created_at', 'a.estatus', 'b.estatus','b.id_paciente', 'b.id_origen', 's.nombre as servicio', 'pa.nombres', 'pa.apellidos', 'c.name', 'c.lastname')
             ->join('atenciones as b', 'b.id', 'a.id_atencion')
             ->join('users as c', 'c.id', 'b.id_origen')
             ->join('pacientes as pa', 'pa.id', 'b.id_paciente')
             ->join('servicios as s', 's.id', 'a.id_servicio')
             ->where('b.estatus', '=', 1)
             ->where('a.estatus', '=', 1)
+            ->where('b.resta', '=', 0)
             ->where('a.created_at', '=', date('Y-m-d'))
             ->get();
 
@@ -84,13 +86,14 @@ class ResultadosController extends Controller
   
 
             $resultados = DB::table('resultados_laboratorio as a')
-        ->select('a.id', 'a.id_atencion', 'a.id_laboratorio', 'a.informe','b.usuario', 'a.created_at', 'a.estatus', 'b.estatus','b.id_paciente', 'b.id_origen', 's.nombre as laboratorio', 'pa.nombres', 'pa.apellidos', 'c.name', 'c.lastname')
+        ->select('a.id', 'a.id_atencion', 'a.id_laboratorio', 'a.informe','b.usuario','b.resta', 'a.created_at', 'a.estatus', 'b.estatus','b.id_paciente', 'b.id_origen', 's.nombre as laboratorio', 'pa.nombres', 'pa.apellidos', 'c.name', 'c.lastname')
         ->join('atenciones as b', 'b.id', 'a.id_atencion')
         ->join('users as c', 'c.id', 'b.id_origen')
         ->join('pacientes as pa', 'pa.id', 'b.id_paciente')
         ->join('analisis as s', 's.id', 'a.id_laboratorio')
         ->where('b.estatus', '=', 1)
         ->where('a.estatus', '=', 1)
+        ->where('b.resta', '=', 0)
         ->whereBetween('a.created_at', [$f1, $f2])
         //->where('a.monto', '!=', '0')
         ->get();
@@ -101,13 +104,14 @@ class ResultadosController extends Controller
 
 
             $resultados = DB::table('resultados_laboratorio as a')
-            ->select('a.id', 'a.id_atencion', 'a.id_laboratorio','a.informe', 'b.usuario', 'a.created_at', 'a.estatus','b.estatus', 'b.id_paciente', 'b.id_origen', 's.nombre as laboratorio', 'pa.nombres', 'pa.apellidos', 'c.name', 'c.lastname')
+            ->select('a.id', 'a.id_atencion', 'a.id_laboratorio','a.informe','b.resta', 'b.usuario', 'a.created_at', 'a.estatus','b.estatus', 'b.id_paciente', 'b.id_origen', 's.nombre as laboratorio', 'pa.nombres', 'pa.apellidos', 'c.name', 'c.lastname')
             ->join('atenciones as b', 'b.id', 'a.id_atencion')
             ->join('users as c', 'c.id', 'b.id_origen')
             ->join('pacientes as pa', 'pa.id', 'b.id_paciente')
             ->join('analisis as s', 's.id', 'a.id_laboratorio')
             ->where('b.estatus', '=', 1)
             ->where('a.estatus', '=', 1)
+            ->where('b.resta', '=', 0)
             ->where('a.created_at', '=', date('Y-m-d'))
             ->get();
 
@@ -369,6 +373,11 @@ class ResultadosController extends Controller
 
       }
 
+        $at = Atenciones::where('id','=',$res->id_atencion)->first();
+        $at->atendido =  2;
+        $at->save();
+
+
 
 
 
@@ -391,6 +400,14 @@ class ResultadosController extends Controller
 
       public function guardarl(Request $request){
 
+        $res = ResultadosLaboratorio::where('id','=',$request->id)->first();
+
+        $atenc = Atenciones::where('id','=',$res->id_atencion)->first();
+
+        
+        $at = Atenciones::where('id','=',$res->id_atencion)->first();
+        $at->atendido =  2;
+        $at->save();
 
 
         $rs = ResultadosLaboratorio::where('id','=',$request->id)->first();
