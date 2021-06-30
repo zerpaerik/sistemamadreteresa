@@ -136,6 +136,7 @@
                     @else
                     <td><span class="badge bg-success">SI</span></td>
                     @endif
+                    @if($an->atendido == 1)
                     <td><span class="badge bg-danger">NO</span></td>
                     @else
                     <td><span class="badge bg-success">SI</span></td>
