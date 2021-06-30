@@ -1233,9 +1233,12 @@ return view('atenciones.particular');
       $rsf = ResultadosServicios::where('id_atencion','=',$request->id)->first();
       $rsf->id_servicio = $request->id_tipo;
       $rsf->save();
-
-      $csf = Comisiones::where('id_atencion','=',$request->id)->first();
-      $csf->delete();
+      
+      $csf1 = Comisiones::where('id_atencion','=',$request->id)->first();
+      if ($csf1 != null) {
+          $csf = Comisiones::where('id_atencion', '=', $request->id)->first();
+          $csf->delete();
+      }
 
       if($request->tipo_origen == 1 && $serv->porcentaje > 0){
 
@@ -1300,8 +1303,14 @@ return view('atenciones.particular');
       $rsf->id_laboratorio = $request->id_tipo;
       $rsf->save();
 
-      $csf = Comisiones::where('id_atencion','=',$request->id)->first();
-      $csf->delete();
+      $csf1 = Comisiones::where('id_atencion','=',$request->id)->first();
+
+      if($csf1 != null){
+        $csf = Comisiones::where('id_atencion','=',$request->id)->first();
+        $csf->delete();
+
+      }
+     
 
       if($request->tipo_origen == 2 && $serv->porcentaje > 0){
 
