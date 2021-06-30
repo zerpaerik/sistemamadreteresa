@@ -113,7 +113,8 @@
                     <th>Monto Abonado</th>
                     <th>Monto Resta</th>
                     <th>TP</th>
-                    <th>Sede</th>
+                    <th>Sede Origen</th>
+                    <th>Sede Cobro</th>
                     <th>RP</th>
                     <th>Acciones</th>
                   </tr>
@@ -131,6 +132,7 @@
                     <td style="background: red;">{{$an->resta}}</td>
                     <td>{{$an->tipopago}}</td>
                     <td>{{$an->sedename}}</td>
+                    <td>{{$an->sedec}}</td>
                     <td>{{$an->nameu}} {{$an->lastu}}</td>
 
                     <td>
@@ -156,7 +158,8 @@
                     <th>Monto Abonado</th>
                     <th>Monto Resta</th>
                     <th>TP</th>
-                    <th>Sede</th>
+                    <th>Sede Origen</th>
+                    <th>Sede Cobro</th>
                     <th>RP</th>
                     <th>Acciones</th>
                   </tr>

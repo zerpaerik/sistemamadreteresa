@@ -136,7 +136,6 @@
                     @else
                     <td><span class="badge bg-success">SI</span></td>
                     @endif
-                    @if($an->atendido == 1)
                     <td><span class="badge bg-danger">NO</span></td>
                     @else
                     <td><span class="badge bg-success">SI</span></td>
@@ -144,6 +143,8 @@
                     <td>{{substr($an->lastu,0,5)}} {{substr($an->nameu,0,5)}}</td>
                     <td>
                     @if(Auth::user()->rol == 1)
+
+                    @if($an->atendido == 1)
 
                          @if($an->tipo_atencion == 1)
 
@@ -189,10 +190,13 @@
                               </i>
                           </a>
                         @endif
+                          @if($an->atendido == 1)
                           <a class="btn btn-danger btn-sm" href="atenciones-delete-{{$an->id}}" onclick="return confirm('¿Desea Eliminar este registro?')">
                               <i class="fas fa-trash">
                               </i>
                           </a>
+                          @endif
+
                           <a class="btn btn-default btn-sm">
                               <i class="fas fa-eye">
                               </i>

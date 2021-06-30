@@ -78,13 +78,14 @@ class CobrarController extends Controller
         $f2 = $request->fin;
 
         $historial = DB::table('historial_cobros as a')
-        ->select('a.id', 'a.id_cobro', 'a.tipopago','a.monto','a.created_at','a.sede', 'co.id_atencion','co.resta','at.id_paciente','at.usuario',  'at.tipo_atencion', 'at.sede', 'at.tipo_origen', 'at.id_origen', 'at.monto as total', 'b.nombres', 'b.apellidos', 'c.name as nameo', 'c.lastname as lasto', 'd.name as nameu', 'd.lastname as lastu', 'se.nombre as sedename')
+        ->select('a.id', 'a.id_cobro', 'a.tipopago','a.monto','a.created_at','a.sede', 'co.id_atencion','co.resta','at.id_paciente','at.usuario',  'at.tipo_atencion', 'at.sede', 'at.tipo_origen', 'at.id_origen', 'at.monto as total', 'b.nombres', 'b.apellidos', 'c.name as nameo', 'c.lastname as lasto', 'd.name as nameu', 'd.lastname as lastu', 'se.nombre as sedename','sec.nombres as sedec')
         ->join('cobros as co', 'co.id', 'a.id_cobro')
         ->join('atenciones as at', 'at.id', 'co.id_atencion')
         ->join('pacientes as b', 'b.id', 'at.id_paciente')
         ->join('users as c', 'c.id', 'at.id_origen')
         ->join('users as d', 'd.id', 'at.usuario')
         ->join('sedes as se', 'se.id', 'at.sede')
+        ->join('sedes as sec', 'se.id', 'a.sede')
         ->whereBetween('a.created_at', [$f1, $f2])
         ->get();
 
@@ -96,13 +97,14 @@ class CobrarController extends Controller
 
 
         $historial = DB::table('historial_cobros as a')
-        ->select('a.id', 'a.id_cobro', 'a.tipopago','a.monto','a.created_at','a.sede', 'co.id_atencion','co.resta','at.id_paciente','at.usuario',  'at.tipo_atencion', 'at.sede', 'at.tipo_origen', 'at.id_origen', 'at.monto as total', 'b.nombres', 'b.apellidos', 'c.name as nameo', 'c.lastname as lasto', 'd.name as nameu', 'd.lastname as lastu', 'se.nombre as sedename')
+        ->select('a.id', 'a.id_cobro', 'a.tipopago','a.monto','a.created_at','a.sede', 'co.id_atencion','co.resta','at.id_paciente','at.usuario',  'at.tipo_atencion', 'at.sede', 'at.tipo_origen', 'at.id_origen', 'at.monto as total', 'b.nombres', 'b.apellidos', 'c.name as nameo', 'c.lastname as lasto', 'd.name as nameu', 'd.lastname as lastu', 'se.nombre as sedename','sec.nombres as sedec')
         ->join('cuentas_cobrar as co', 'co.id', 'a.id_cobro')
         ->join('atenciones as at', 'at.id', 'co.id_atencion')
         ->join('pacientes as b', 'b.id', 'at.id_paciente')
         ->join('users as c', 'c.id', 'at.id_origen')
         ->join('users as d', 'd.id', 'at.usuario')
         ->join('sedes as se', 'se.id', 'at.sede')
+        ->join('sedes as sec', 'se.id', 'a.sede')
         ->whereBetween('a.created_at', [$f1, $f2])
         ->get();
 
