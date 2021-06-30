@@ -201,6 +201,9 @@ Route::post('atenciones/edit', 'AtencionesController@update');
 Route::post('atenciones/edits', 'AtencionesController@updates');
 Route::post('atenciones/editl', 'AtencionesController@updatel');
 Route::post('atenciones/editp', 'AtencionesController@updatep');
+Route::post('atenciones/editc', 'AtencionesController@updatec');
+Route::post('atenciones/editm', 'AtencionesController@updatem');
+
 Route::get('atenciones/getServicio/{id}', 'AtencionesController@getServicio')->middleware('auth');
 Route::get('atenciones/getAnalisis/{id}', 'AtencionesController@getAnalisis')->middleware('auth');
 Route::get('atenciones/getPaquetes/{id}', 'AtencionesController@getPaquetes')->middleware('auth');

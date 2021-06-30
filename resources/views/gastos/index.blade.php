@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <title>Laboratorio | Admin</title>
+  <title>MadreTeresa | Admin</title>
   <!-- Tell the browser to be responsive to screen width -->
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <!-- Font Awesome -->
@@ -109,8 +109,10 @@
                 <table id="example1" class="table table-bordered table-striped">
                   <thead>
                   <tr>
+                    <th>Tipo</th>
                     <th>Descripción</th>
                     <th>Monto</th>
+                    <th>Recibido Por</th>
                     <th>Registrado Por:</th>
                     <th>Fecha</th>
                     <th>Acciones</th>
@@ -120,8 +122,10 @@
 
                   @foreach($gastos as $client)
                   <tr>
+                    <td>{{$client->tipo}}</td>
                     <td>{{$client->descripcion}}</td>
                     <td>{{$client->monto}}</td>
+                    <td>{{$client->recibido}}</td>
                     <td>{{$client->name}}</td>
                     <td>{{$client->created_at}}</td>
                     <td>
@@ -149,8 +153,10 @@
                   </tbody>
                   <tfoot>
                   <tr>
-                  <th>Descripción</th>
+                  <th>Tipo</th>
+                    <th>Descripción</th>
                     <th>Monto</th>
+                    <th>Recibido Por</th>
                     <th>Registrado Por:</th>
                     <th>Fecha</th>
                     <th>Acciones</th>

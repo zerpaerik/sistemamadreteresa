@@ -84,13 +84,40 @@
               {{ csrf_field() }}                
                     <div class="card-body">
                     <div class="row">
-                  <div class="col-md-4">
+
+                    <div class="col-md-3">
+                  <label>Tipo</label>
+                        <select class="form-control" name="tipo">
+                           @if($gastos->tipo == 'CAJA')
+							              <option value="CAJA" selected>CAJA</option>
+                            <option value="EXTERNO">EXTERNO</option>
+                            <option value="RETIRO DE EFECTIVO">RETIRO DE EFECTIVO</option>
+                            @elseif($gastos->tipo == 'EXTERNO')
+                            <option value="CAJA">CAJA</option>
+                            <option value="EXTERNO" selected>EXTERNO</option>
+                            <option value="RETIRO DE EFECTIVO">RETIRO DE EFECTIVO</option>
+                            @else
+                            <option value="CAJA">CAJA</option>
+                            <option value="EXTERNO">EXTERNO</option>
+                            <option value="RETIRO DE EFECTIVO" selected>RETIRO DE EFECTIVO</option>
+                            @endif
+
+                        </select>
+                  </div>
+                 
+                  <div class="col-md-3">
+                    <label for="exampleInputEmail1">Descripción</label>
+                    <input type="text" class="form-control" id="email" name="descripcion" value="{{$gastos->descripcion}}" placeholder="Descripción">
+                  </div>
+
+                  <div class="col-md-3">
                     <label for="exampleInputEmail1">Monto</label>
                     <input type="float" class="form-control" id="name" name="monto" value="{{$gastos->monto}}" placeholder="Monto">
                   </div>
-                  <div class="col-md-4">
-                    <label for="exampleInputEmail1">Descripción</label>
-                    <input type="text" class="form-control" id="email" name="descripcion" value="{{$gastos->descripcion}}" placeholder="Descripción">
+
+                  <div class="col-md-3">
+                    <label for="exampleInputEmail1">Recibido Por</label>
+                    <input type="text" class="form-control" id="email" name="recibido" value="{{$gastos->recibido}}" placeholder="Recibido Por">
                   </div>
                  
                   </div>

@@ -15,7 +15,7 @@ class Debitos extends Model
     protected $table="debitos";
 
     protected $fillable = [
-        'descripcion','tipopago','usuario','monto','solicitud','origen','nombre','fecha'
+        'descripcion','tipopago','usuario','monto','sede','origen','tipo','recibido'
     ];
 
     

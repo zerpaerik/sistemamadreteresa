@@ -15,6 +15,7 @@ use App\Metodos;
 use App\MetoPro;
 use App\Comisiones;
 use App\Cobrar;
+use App\Creditos;
 use App\ResultadosServicios;
 use App\ResultadosLaboratorio;
 
@@ -446,6 +447,16 @@ return view('atenciones.particular');
             $lab->sede = $request->session()->get('sede');
             $lab->save();
 
+            $cre = new Creditos();
+            $cre->origen = 'CONSULTAS';
+            $cre->descripcion = 'INGRESO POR CONSULTA';
+            $cre->id_atencion =  $lab->id;
+            $cre->monto = $request->precio_con;
+            $cre->usuario = Auth::user()->id;
+            $cre->tipopago = $request->tipop_con;
+            $cre->sede = $request->session()->get('sede');
+            $cre->save();
+
 
             if($request->precio_con > $request->precio_con){
 
@@ -480,6 +491,17 @@ return view('atenciones.particular');
             $lab->sede = $request->session()->get('sede');
             $lab->save();
 
+            $cre = new Creditos();
+            $cre->origen = 'METODO';
+            $cre->descripcion = 'INGRESO POR METODO';
+            $cre->id_atencion =  $lab->id;
+            $cre->monto = $request->precio_met;
+            $cre->tipopago = $request->tipop_met;
+            $cre->usuario = Auth::user()->id;
+            $cre->sede = $request->session()->get('sede');
+            $cre->save();
+
+
             $met = new Metodos();
             $met->id_paciente =  $request->paciente;
             $met->id_atencion =  $lab->id;
@@ -512,6 +534,16 @@ return view('atenciones.particular');
                 $lab->usuario = Auth::user()->id;
                 $lab->sede = $request->session()->get('sede');
                 $lab->save();
+
+                $cre = new Creditos();
+                $cre->origen = 'SERVICIO';
+                $cre->descripcion = 'INGRESO POR SERVICIO';
+                $cre->id_atencion =  $lab->id;
+                $cre->tipopago =  $request->id_pago['servicios'][$key]['tipop'];
+                $cre->monto = (float)$request->monto_abol['servicios'][$key]['abono'];
+                $cre->usuario = Auth::user()->id;
+                $cre->sede = $request->session()->get('sede');
+                $cre->save();
 
               /*  $rs = new ResultadosServicios();
                 $rs->id_atencion =  $lab->id;
@@ -599,6 +631,16 @@ return view('atenciones.particular');
                 $lab->sede = $request->session()->get('sede');
                 $lab->save();
 
+                $cre = new Creditos();
+                $cre->origen = 'ANALISIS';
+                $cre->descripcion = 'INGRESO POR ANALISIS';
+                $cre->id_atencion =  $lab->id;
+                $cre->tipopago =  $request->id_pago['analisis'][$key]['tipop'];
+                $cre->monto = (float)$request->monto_abol['analisis'][$key]['abono'];
+                $cre->usuario = Auth::user()->id;
+                $cre->sede = $request->session()->get('sede');
+                $cre->save();
+
                 $rs = new ResultadosLaboratorio();
                 $rs->id_atencion =  $lab->id;
                 $rs->id_laboratorio =$laboratorio['analisi'];
@@ -659,6 +701,16 @@ return view('atenciones.particular');
               $lab->usuario = Auth::user()->id;
               $lab->sede = $request->session()->get('sede');
               $lab->save();
+
+              $cre = new Creditos();
+              $cre->origen = 'PAQUETES';
+              $cre->descripcion = 'INGRESO POR PAQUETE';
+              $cre->id_atencion =  $lab->id;
+              $cre->tipopago =  $request->id_pago['paquetes'][$key]['tipop'];
+              $cre->monto = (float)$request->monto_abol['paquetes'][$key]['abono'];
+              $cre->usuario = Auth::user()->id;
+              $cre->sede = $request->session()->get('sede');
+              $cre->save();
 
 
               
@@ -843,6 +895,17 @@ return view('atenciones.particular');
                 $lab->sede = $request->session()->get('sede');
                 $lab->save();
 
+                
+              $cre = new Creditos();
+              $cre->origen = 'ECOGRAFIA';
+              $cre->descripcion = 'INGRESO POR ECOGRAFIA';
+              $cre->id_atencion =  $lab->id;
+              $cre->tipopago =  $request->id_pago['ecografias'][$key]['tipop'];
+              $cre->monto = (float)$request->monto_abol['ecografias'][$key]['abono'];
+              $cre->usuario = Auth::user()->id;
+              $cre->sede = $request->session()->get('sede');
+              $cre->save();
+
                 $rs = new ResultadosServicios();
                 $rs->id_atencion =  $lab->id;
                 $rs->id_servicio = $eco['ecografia'];
@@ -923,6 +986,16 @@ return view('atenciones.particular');
                 $lab->usuario = Auth::user()->id;
                 $lab->sede =$request->session()->get('sede');
                 $lab->save();
+
+                $cre = new Creditos();
+                $cre->origen = 'RAYOSX';
+                $cre->descripcion = 'INGRESO POR RAYOSX';
+                $cre->id_atencion =  $lab->id;
+                $cre->tipopago =  $request->id_pago['rayos'][$key]['tipop'];
+                $cre->monto = (float)$request->monto_abol['rayos'][$key]['abono'];
+                $cre->usuario = Auth::user()->id;
+                $cre->sede = $request->session()->get('sede');
+                $cre->save();
 
                 $rs = new ResultadosServicios();
                 $rs->id_atencion =  $lab->id;
@@ -1036,7 +1109,7 @@ return view('atenciones.particular');
         }
 
         if ($atencion->tipo_origen == 1) {
-          $usuario = User::where('estatus', '=', 1)->where('tipo', '=', 1)->get();
+          $usuario = User::where('estatus', '=', 1)->where('tipo', '=', 1)->where('tipo_personal', '=', 'ProfSalud')->get();
         } else {
           $usuario = User::where('estatus', '=', 1)->where('tipo', '=', 2)->get();
         }
@@ -1055,7 +1128,7 @@ return view('atenciones.particular');
           $analisis = Analisis::where('estatus','=',1)->get();
      
         if ($atencion->tipo_origen == 1) {
-          $usuario = User::where('estatus', '=', 1)->where('tipo', '=', 1)->get();
+          $usuario = User::where('estatus', '=', 1)->where('tipo', '=', 1)->where('tipo_personal', '=', 'ProfSalud')->get();
         } else {
           $usuario = User::where('estatus', '=', 1)->where('tipo', '=', 2)->get();
         }
@@ -1073,7 +1146,7 @@ return view('atenciones.particular');
 
      
         if ($atencion->tipo_origen == 1) {
-          $usuario = User::where('estatus', '=', 1)->where('tipo', '=', 1)->get();
+          $usuario = User::where('estatus', '=', 1)->where('tipo', '=', 1)->where('tipo_personal', '=', 'ProfSalud')->get();
         } else {
           $usuario = User::where('estatus', '=', 1)->where('tipo', '=', 2)->get();
         }
@@ -1083,6 +1156,39 @@ return view('atenciones.particular');
 
         return view('atenciones.editp', compact('atencion','usuario')); //
     }
+
+    public function editc($id)
+    {
+          $atencion = Atenciones::where('id','=',$id)->first();
+
+          $consulta = Consultas::where('id_atencion','=',$id)->first();
+
+          
+       // $met = MetoPro::where('estatus','=',1)->get();
+
+        $personal = User::where('estatus','=',1)->where('tipo','=',1)->where('tipo_personal','=','Especialista')->get();
+
+
+        return view('atenciones.editc', compact('atencion','personal','consulta')); //
+    }
+
+    public function editm($id)
+    {
+          $atencion = Atenciones::where('id','=',$id)->first();
+
+          $met = Metodos::where('id_atencion','=',$id)->first();
+
+
+          
+        $metodos = MetoPro::where('estatus','=',1)->get();
+
+       // $personal = User::where('estatus','=',1)->where('tipo','=',1)->where('tipo_personal','=','Especialista')->get();
+
+
+        return view('atenciones.editm', compact('atencion','metodos','met')); //
+    }
+
+
 
 
 
@@ -1230,6 +1336,57 @@ return view('atenciones.particular');
         //
     }
 
+    public function updatec(Request $request)
+    {
+
+
+
+      
+      $p = Consultas::where('id_atencion','=',$request->id)->first();
+      $p->id_especialista =$request->especialista;
+      $p->monto =$request->monto;
+      $p->tipo =$request->tipo;
+      $res = $p->update();
+
+
+      $p = Atenciones::find($request->id);
+      $p->monto =$request->monto;
+      $p->abono =$request->abono;
+      $p->tipo_pago =$request->tipo_pago;
+      $p->id_tipo =$request->tipo;
+      $res = $p->update();
+    
+        return redirect()->action('AtencionesController@index')
+        ->with('success','Modificado Exitosamente!');
+
+        //
+    }
+
+    public function updatem(Request $request)
+    {
+
+
+
+      
+      $m = Metodos::where('id_atencion','=',$request->id)->first();
+      $m->id_producto =$request->metodo;
+      $m->monto =$request->monto;
+      $resm = $m->update();
+
+
+      $p = Atenciones::find($request->id);
+      $p->monto =$request->monto;
+      $p->abono =$request->abono;
+      $p->tipo_pago =$request->tipo_pago;
+      $p->id_tipo = $request->metodo;
+      $res = $p->update();
+    
+        return redirect()->action('AtencionesController@index')
+        ->with('success','Modificado Exitosamente!');
+
+        //
+    }
+
 
  
     public function delete($id)
@@ -1299,13 +1456,19 @@ return view('atenciones.particular');
         $atencion->eliminado_por= $searchUsuarioID->name.' '.$searchUsuarioID->lastname;
         $atencion->save();
 
-        $com = Comisiones::where('id_atencion','=',$id)->first();
-        $com->estatus = 0;
-        $com->save();
+        $coms = Comisiones::where('id_atencion','=',$id)->first();
+        if ($coms != null) {
+            $com = Comisiones::where('id_atencion', '=', $id)->first();
+            $com->estatus = 0;
+            $com->save();
+        }
 
         $cb = Cobrar::where('id_atencion','=',$id)->first();
         $cb->estatus = 0;
         $cb->save();
+
+        $creditos = Creditos::where('id_atencion','=',$id)->first();
+        $creditos->delete();
 /*
         $rs = ResultadosServicios::where('id_atencion','=',$id)->first();
         $rs->estatus = 0;

@@ -113,6 +113,13 @@
                 </a>
               </li>
 
+              <li class="nav-item">
+                <a href="{{route('gastos.index')}}" class="nav-link">
+                  <i class="fas fa-hand-holding-usd nav-icon"></i>
+                  <p>Gastos</p>
+                </a>
+              </li>
+
 
               <li class="nav-item">
                 <a href="{{route('cobrar.index')}}" class="nav-link">

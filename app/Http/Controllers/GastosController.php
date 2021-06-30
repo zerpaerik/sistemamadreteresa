@@ -23,16 +23,16 @@ class GastosController extends Controller
     {
 
         if($request->inicio){
+            $f1 = $request->inicio;
 
         $gastos = DB::table('debitos as a')
-        ->select('a.id','a.descripcion','a.monto','a.usuario','a.cliente','a.created_at','b.name')
+        ->select('a.id','a.descripcion','a.monto','a.recibido','a.usuario','a.tipo','a.created_at','b.name')
         ->join('users as b','b.id','a.usuario')
-        ->where('a.created_at','=', $request->inicio)
+        ->whereDate('a.created_at', date('Y-m-d 00:00:00', strtotime($f1)))
         ->get(); 
-        $f1 = $request->inicio;
 
 
-        $deb = Debitos::where('created_at', '=',$request->inicio)
+        $deb = Debitos::whereDate('created_at', date('Y-m-d 00:00:00', strtotime($f1)))
         ->select(DB::raw('COUNT(*) as cantidad, SUM(monto) as monto'))
         ->first();
 
@@ -43,17 +43,19 @@ class GastosController extends Controller
 
 
         } else {
-            $gastos = DB::table('debitos as a')
-            ->select('a.id','a.descripcion','a.monto','a.usuario','a.cliente','a.created_at','b.name')
-            ->join('users as b','b.id','a.usuario')
-            ->where('a.created_at', date('Y-m-d'))
-            ->get(); 
-
             $f1 =date('Y-m-d');
             $f2 = date('Y-m-d');
 
+            $gastos = DB::table('debitos as a')
+            ->select('a.id','a.descripcion','a.monto','a.recibido','a.usuario','a.tipo','a.created_at','b.name')
+            ->join('users as b','b.id','a.usuario')
+            ->whereDate('a.created_at', date('Y-m-d 00:00:00', strtotime($f1)))
+            ->get(); 
+
+          
+
             
-        $deb = Debitos::where('created_at', '=',$f1)
+        $deb = Debitos::whereDate('created_at', date('Y-m-d 00:00:00', strtotime($f1)))
         ->select(DB::raw('COUNT(*) as cantidad, SUM(monto) as monto'))
         ->first();
 
@@ -91,12 +93,12 @@ class GastosController extends Controller
 
         $gastos = new Debitos();
         $gastos->descripcion =$request->descripcion;
-        $gastos->tipopago ='EF';
-        $gastos->fecha =date('Y-m-d H:i:s');
+        $gastos->tipo =$request->tipo;
         $gastos->monto =$request->monto;
         $gastos->origen ='GASTOS';
-        $gastos->nombre =Auth::user()->name;
+        $gastos->recibido =$request->recibido;
         $gastos->usuario =Auth::user()->id;
+        $gastos->sede =$request->session()->get('sede');
         $gastos->save();
 
         
@@ -116,7 +118,7 @@ class GastosController extends Controller
     public function edit($id)
     {
         
-        $gastos = Creditos::where('id','=',$id)->first();
+        $gastos = Debitos::where('id','=',$id)->first();
 
         return view('gastos.edit', compact('gastos')); //
     }
@@ -133,8 +135,9 @@ class GastosController extends Controller
 
       $p = Debitos::find($request->id);
       $p->descripcion =$request->descripcion;
+      $p->tipo =$request->tipo;
       $p->monto =$request->monto;
-      $p->tipopago =$request->tipopago;
+      $p->recibido =$request->recibido;
       $res = $p->update();
       return redirect()->action('GastosController@index');
 

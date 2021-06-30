@@ -85,60 +85,28 @@
               </div>
               <!-- /.card-header -->
               <!-- form start -->
-              <form method="post" action="atenciones/editl">					
+              <form method="post" action="atenciones/editm">					
               {{ csrf_field() }}                
                     <div class="card-body">
                     <div class="row">
-                    <div class="col-md-4">
-                    <label for="exampleInputEmail1">Origen</label>
-                            <select class="form-control" name="tipo_origen" id="el2">
-                                    @if($atencion->tipo_origen == 1)
-                                    <option value="1" selected>Personal</option>
-                                    <option value="2" >Profesional</option>
-                                    <option value="3" >Otro</option>
-
-                                    @elseif($atencion->tipo_origen == 2)
-                                    <option value="1" >Personal</option>
-                                    <option value="2" selected>Profesional</option>
-                                    <option value="3" >Otro</option>
-                                    @else
-                                    <option value="1" >Personal</option>
-                                    <option value="2" >Profesional</option>
-                                    <option value="3" selected>Otro</option>
-                                    @endif
-                            </select>
-                    </div>
-
-                    <div class="col-md-4">
-                    <div id="origen_usuario">
-                   </div>
                    
-                    <label for="exampleInputEmail1">Origen Guardado</label>
-                            <select class="form-control" name="origen_usuario" id="el2">
-                            @foreach($usuario as $u)
-                                @if($atencion->id_origen == $u->id)
-                                <option value="{{$u->id}}" selected="selected">{{$u->lastname}} {{$u->name}}-{{$u->dni}}</option>
+
+                    <div class="col-md-4">
+                    
+                   
+                    <label for="exampleInputEmail1">Metodo Anticonceptivo</label>
+                            <select class="form-control" name="metodo">
+                            @foreach($metodos as $u)
+                                @if($met->id_producto == $u->id)
+                                <option value="{{$u->id}}" selected="selected">{{$u->nombre}} </option>
                                 @else
-                                <option value="{{$u->id}}">{{$u->lastname}} {{$u->name}}-{{$u->dni}}</option>
+                                <option value="{{$u->id}}">{{$u->nombre}} </option>
                                 @endif
                             @endforeach
                                 
                             </select>
                     </div>
 
-                    <div class="col-md-4">
-                    <label for="exampleInputEmail1">Detalle</label>
-                            <select class="form-control" name="id_tipo" id="el2">
-                            @foreach($analisis as $s)
-                                @if($atencion->id_tipo == $s->id)
-                                <option value="{{$s->id}}" selected="selected">{{$s->nombre}}</option>
-                                @else
-                                <option value="{{$s->id}}">{{$s->nombre}}</option>
-                                @endif
-                            @endforeach
-                                
-                            </select>
-                    </div>
                 
                   </div>
                   <br>

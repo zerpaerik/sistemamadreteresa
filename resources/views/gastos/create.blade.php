@@ -84,13 +84,28 @@
               {{ csrf_field() }}                
                     <div class="card-body">
                     <div class="row">
-                  <div class="col-md-4">
+                    <div class="col-md-3">
+                  <label>Tipo</label>
+                        <select class="form-control" name="tipo">
+							              <option value="CAJA">CAJA</option>
+                            <option value="EXTERNO">EXTERNO</option>
+                            <option value="RETIRO DE EFECTIVO">RETIRO DE EFECTIVO</option>
+
+                        </select>
+                  </div>
+                  
+                  <div class="col-md-3">
+                    <label for="exampleInputEmail1">Descripción</label>
+                    <input type="text" class="form-control" id="email" name="descripcion" placeholder="Descripción">
+                  </div>
+                  <div class="col-md-3">
                     <label for="exampleInputEmail1">Monto</label>
                     <input type="float" class="form-control" id="name" name="monto" placeholder="Monto">
                   </div>
-                  <div class="col-md-4">
-                    <label for="exampleInputEmail1">Descripción</label>
-                    <input type="text" class="form-control" id="email" name="descripcion" placeholder="Descripción">
+
+                  <div class="col-md-3">
+                    <label for="exampleInputEmail1">Recibido Por</label>
+                    <input type="text" class="form-control" id="email" name="recibido" placeholder="Recibido Por">
                   </div>
                   
                   </div>
