@@ -145,7 +145,6 @@
                     <td>
                     @if(Auth::user()->rol == 1)
 
-                    @if($an->atendido == 1)
 
                          @if($an->tipo_atencion == 1)
 
