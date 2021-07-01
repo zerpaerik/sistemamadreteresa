@@ -192,6 +192,34 @@ class CobrarController extends Controller
       
     }
 
+    public function reversar($id,$id2)
+    {
+
+      $conh = Cobrar::where('id','=',$id)->first();
+      $atencio = Atenciones::where('id','=',$conh->id_atencion)->first();
+      $hisco = HistorialCobros::where('id','=',$id2)->first();
+
+
+      $at = Atenciones::where('id','=',$conh->id_atencion)->first();
+      $at->abono = $atencio->abono - $hisco->monto;
+      $at->resta = $atencio->resta + $hisco->monto;
+      $at->save();
+
+      $con = Cobrar::where('id','=',$id)->first();
+      $con->resta = $conh->resta + $hisco->monto;
+      $con->save();
+
+      $hisc = HistorialCobros::where('id','=',$id2)->first();
+      $hisc->delete();
+
+     
+
+      return back();
+
+      
+    }
+
+
    
 
 

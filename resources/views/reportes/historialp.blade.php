@@ -57,12 +57,12 @@
       <div class="container-fluid">
         <div class="row mb-2">
           <div class="col-sm-6">
-            <h1 class="m-0 text-dark">Historial de Cobros</h1>
+            <h1 class="m-0 text-dark">Historial de Pacientes</h1>
           </div><!-- /.col -->
           <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">
               <li class="breadcrumb-item"><a href="#">Home</a></li>
-              <li class="breadcrumb-item active">Historial de Cobros</li>
+              <li class="breadcrumb-item active">Historial de Pacientes</li>
             </ol>
           </div><!-- /.col -->
         </div><!-- /.row -->
@@ -76,28 +76,42 @@
       <div class="container-fluid">
       <div class="card">
               <div class="card-header">
-
-              <form method="get" action="historial_cobros">					
+              <form method="get" action="historial_pacientes">					
                   <label for="exampleInputEmail1">Filtros de Busqueda</label>
 
                     <div class="row">
+                    <form method="get" action="historial_pacientes">					
                   <div class="col-md-3">
-                    <label for="exampleInputEmail1">Fecha Inicio</label>
-                    <input type="date" class="form-control" value="{{$f1}}" name="inicio">
+                    <label for="exampleInputEmail1">Buscar por Apellidos</label>
+                    <input type="text" class="form-control"  name="filtro">
                   </div>
 
-                  <div class="col-md-3">
-                    <label for="exampleInputEmail1">Fecha Fin</label>
-                    <input type="date" class="form-control" value="{{$f2}}" name="fin">
-                  </div>
-
-            
                   <div class="col-md-2" style="margin-top: 30px;">
+                  <button type="submit" class="btn btn-primary">Buscar</button>
+                  </div>
+                  </form>
+
+                  </div>
+
+
+                  <form method="get" action="historial_pacientes">					
+                  <label for="exampleInputEmail1">Seleccione el Paciente</label>
+
+                    <div class="row">
+                  <div class="col-md-3">
+                  <select class="form-control" name="id_paciente">
+                    @foreach($pacientes as $role)
+                      <option value="{{$role->id}}">{{$role->apellidos}},{{$role->nombres}}-{{$role->dni}}</option>
+                    @endforeach
+                  </select>
+                   
+                  </div>
+
+                  <div class="col-md-2" style="margin-top: 1px;">
                   <button type="submit" class="btn btn-primary">Buscar</button>
 
                   </div>
                   </form>
-             
               
               </div>
               <!-- /.card-header -->
@@ -105,71 +119,65 @@
                 <table id="example1" class="table table-bordered table-striped">
                   <thead>
                   <tr>
-                    <th>Id</th>
-                    <th>Fecha</th>
+                  <th>Fecha</th>
                     <th>Paciente</th>
                     <th>Origen</th>
-                    <th>Monto Total</th>
-                    <th>Monto Abonado</th>
-                    <th>Monto Resta</th>
-                    <th>TP</th>
-                    <th>Sede Origen</th>
-                    <th>Sede Cobro</th>
+                    <th>Detalle</th>
+                    <th>Mto</th>
+                    <th>Abo</th>
+                    <th>Tp</th>
+                    <th>PG</th>
+                    <th>AT</th>
                     <th>RP</th>
                     <th>Acciones</th>
                   </tr>
                   </thead>
                   <tbody>
 
-                  @foreach($historial as $an)
+                  
+                  @foreach($atenciones as $an)
                   <tr>
-                    <td>{{$an->id}}</td>
-                    <td>{{$an->created_at}}</td>
-                    <td>{{$an->nombres}} {{$an->apellidos}}</td>
-                    <td>{{$an->nameo}} {{$an->lasto}}</td>
-                    <td>{{$an->total}}</td>
+                    <td>{{date('d-M-y H:i', strtotime($an->created_at))}}</td>
+                    <td>{{$an->apellidos}} {{$an->nombres}}</td>
+                    <td>{{$an->lasto}} {{$an->nameo}}</td>
+                    <td>{{$an->detalle}}</td>
                     <td>{{$an->monto}}</td>
-                    <td style="background: red;">{{$an->resta}}</td>
-                    <td>{{$an->tipopago}}</td>
-                    <td>{{$an->sedename}}</td>
-                    <td>{{$an->sedec}}</td>
-                    <td>{{$an->nameu}} {{$an->lastu}}</td>
-
+                    <td>{{$an->abono}}</td>
+                    <td >{{$an->tipo_pago}}</td>
+                    @if($an->pagado == 1)
+                    <td><span class="badge bg-danger">NO</span></td>
+                    @else
+                    <td><span class="badge bg-success">SI</span></td>
+                    @endif
+                    @if($an->atendido == 1)
+                    <td><span class="badge bg-danger">NO</span></td>
+                    @else
+                    <td><span class="badge bg-success">SI</span></td>
+                    @endif
+                    <td>{{substr($an->lastu,0,5)}} {{substr($an->nameu,0,5)}}</td>
                     <td>
-                    @if(Auth::user()->rol == 1)
-
-                    <a target="_blank" class="btn btn-success btn-sm" href="cobro-ticket-{{$an->id}}">
-                              <i class="fas fa-print">
-                              </i>
-                              Ticket
-                          </a>
-
-                          <a  class="btn btn-danger btn-sm" href="historialc-reversar-{{$an->id_cobro}}-{{$an->id}}">
-                              <i class="fas fa-edit">
-                              </i>
-                              Reversar
-                          </a>
-                    @endif</td>
+                  
                   </tr>
                   @endforeach
                  
                   </tbody>
                   <tfoot>
                   <tr>
-                  <th>Id</th>
-                    <th>Fecha</th>
+                  <th>Fecha</th>
                     <th>Paciente</th>
                     <th>Origen</th>
-                    <th>Monto Total</th>
-                    <th>Monto Abonado</th>
-                    <th>Monto Resta</th>
-                    <th>TP</th>
-                    <th>Sede Origen</th>
-                    <th>Sede Cobro</th>
+                    <th>Detalle</th>
+                    <th>Mto</th>
+                    <th>Abo</th>
+                    <th>Tp</th>
+                    <th>PG</th>
+                    <th>AT</th>
                     <th>RP</th>
                     <th>Acciones</th>
                   </tr>
+                 
                   </tfoot>
+
                 </table>
               </div>
               <!-- /.card-body -->
@@ -185,22 +193,6 @@
     <!-- /.content -->
   </div>
   </div>
-  <div class="modal fade" id="viewTicket">
-        <div class="modal-dialog">
-          <div class="modal-content">
-            <div class="modal-header">
-              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                <span aria-hidden="true">&times;</span>
-              </button>
-            </div>
-            <div class="modal-body">
-            </div>
-           
-          </div>
-          <!-- /.modal-content -->
-        </div>
-        <!-- /.modal-dialog -->
-      </div>
   </section>
 
   <!-- /.content-wrapper -->
@@ -248,43 +240,20 @@
 <!-- AdminLTE for demo purposes -->
 <script src="dist/js/demo.js"></script>
 
+<script src="http://cdn.bootcss.com/jquery/2.2.4/jquery.min.js"></script>
+<script src="http://cdn.bootcss.com/toastr.js/latest/js/toastr.min.js"></script>
+
+
 <!-- DataTables -->
 <script src="../../plugins/datatables/jquery.dataTables.min.js"></script>
 <script src="../../plugins/datatables-bs4/js/dataTables.bootstrap4.min.js"></script>
 <script src="../../plugins/datatables-responsive/js/dataTables.responsive.min.js"></script>
 <script src="../../plugins/datatables-responsive/js/responsive.bootstrap4.min.js"></script>
-
-<script type="text/javascript" src="https://cdn.datatables.net/buttons/1.6.1/js/dataTables.buttons.min.js"></script> 
-<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.1.3/jszip.min.js"></script>
-<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/pdfmake.min.js"></script>
-<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/vfs_fonts.js"></script>
-<script type="text/javascript" src="https://cdn.datatables.net/buttons/1.6.1/js/buttons.html5.min.js"></script>
-<script type="text/javascript" src="https://cdn.datatables.net/buttons/1.6.1/js/buttons.print.min.js"></script>
 <!-- AdminLTE App -->
 <script src="../../dist/js/adminlte.min.js"></script>
 <!-- AdminLTE for demo purposes -->
 <script src="../../dist/js/demo.js"></script>
 <!-- page script -->
-
-<script type="text/javascript">
-		function view(e){
-		    var id = $(e).attr('id');
-		    
-		    $.ajax({
-		        type: "GET",
-		        url: "/atenciones/cobrar/"+id,
-		        success: function (data) {
-		            $("#viewTicket .modal-body").html(data);
-		            $('#viewTicket').modal('show');
-		        },
-		        error: function (data) {
-		            console.log('Error:', data);
-		        }
-		    });
-		}
-
-	
-	</script>
 <script>
   $(function () {
     $("#example1").DataTable({

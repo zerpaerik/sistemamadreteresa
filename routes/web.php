@@ -217,7 +217,10 @@ Route::get('atenciones/cobrar/{id}', 'CobrarController@cobrar');
 Route::get('cobro-ticket-{id}', 'CobrarController@ticket');
 Route::get('cobrar-create', 'CobrarController@create')->name('cobrar.create')->middleware('auth');
 Route::post('cobrar/procesar', 'CobrarController@procesar')->middleware('auth');
+Route::get('historialc-reversar-{id}-{id2}', 'CobrarController@reversar')->middleware('auth');
 Route::get('cobrar-delete-{id}', 'IngresosController@delete')->middleware('auth');
+Route::get('cobrar-delete-{id}', 'IngresosController@delete')->middleware('auth');
+Route::get('historialc-reversar-{id}', 'IngresosController@delete')->middleware('auth');
 Route::get('cobrar-edit-{id}', 'IngresosController@edit')->name('ingresos.edit');
 Route::post('cobrar/edit', 'IngresosController@update');
 Route::get('cobrar-ticket-{id}', 'IngresosController@ticket');
@@ -237,6 +240,9 @@ Route::post('resultados_guardarl', 'ResultadosController@guardarl');
 
 Route::get('resultadosg', 'ResultadosController@indexg')->name('resultados.indexg');
 Route::get('resultadosgl', 'ResultadosController@indexg1')->name('resultados.indexg1');
+
+Route::get('historial_pacientes', 'ReportesController@historial_pacientes')->name('historial.pacientes');
+
 
 
 

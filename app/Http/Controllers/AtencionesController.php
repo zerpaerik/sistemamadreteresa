@@ -1261,7 +1261,7 @@ return view('atenciones.particular');
 
         $com = new Comisiones();
         $com->id_atencion = $request->id;
-        $com->porcentaje =$serv->porcentaje;
+        $com->porcentaje =$serv->porcentaje1;
         $com->detalle =  $serv->nombre;
         $com->monto = $request->monto * $serv->porcentaje1 / 100;
         $com->estatus = 1;
