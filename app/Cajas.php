@@ -10,7 +10,7 @@ class Cajas extends Model
     protected $table="cajas";
 
     protected $fillable = [
-        'usuario_init', 'usuario_fin', 'monto_init', 'monto_fin', 'fecha_init','fecha_fin','estatus'
+        'primer_turno', 'segundo_turno', 'usuario_primer', 'usuario_segundo', 'fecha','total','estatus','sede'
     ];
     //
 }

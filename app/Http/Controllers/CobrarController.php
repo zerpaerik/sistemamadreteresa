@@ -12,6 +12,7 @@ use App\User;
 use App\Atenciones;
 use App\Cobrar;
 use App\HistorialCobros;
+use App\Creditos;
 use Auth;
 use Illuminate\Http\Request;
 use DB;
@@ -187,6 +188,17 @@ class CobrarController extends Controller
       $cb->sede = $request->session()->get('sede');
       $cb->save();
 
+      
+      $cre = new Creditos();
+      $cre->origen = 'COBRO';
+      $cre->descripcion = 'CUENTAS POR COBRAR';
+      $cre->id_cobro =  $cb->id;
+      $cre->tipopago =  $request->tipopago;
+      $cre->monto = $request->pagar;
+      $cre->usuario = Auth::user()->id;
+      $cre->sede = $request->session()->get('sede');
+      $cre->save();
+
       return back();
 
       
@@ -211,6 +223,9 @@ class CobrarController extends Controller
 
       $hisc = HistorialCobros::where('id','=',$id2)->first();
       $hisc->delete();
+
+      $cred = Creditos::where('id_cobro','=',$id2)->first();
+      $cred->delete();
 
      
 

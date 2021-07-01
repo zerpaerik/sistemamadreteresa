@@ -102,7 +102,7 @@
                     <form action="/cierre-caja-create" method="post">
                     {{ csrf_field() }}
                     <input type="hidden" value="{{$total}}" name="total">
-                    <input type="submit" class="btn btn-danger" value="Abrir Turno" onclick="return confirm('¿Desea Abrir este turno?')">
+                    <input type="submit" class="btn btn-danger" value="Cerrar Turno" onclick="return confirm('¿Desea Cerrar este turno?')">
                 </form>
 
                 </div>
@@ -113,9 +113,9 @@
                   <thead>
                   <tr>
                     <th>Fecha</th>
-                    <th>Monto</th>
-                    <th>Inicio de Turno</th>
-                    <th>Fin de Turno</th>
+                    <th>Primer Turno</th>
+                    <th>Segundo Turno</th>
+                    <th>Total</th>
                     <th>Estatus</th>
                     <th>Registrado Por</th>
                     <th>Acciones</th>
@@ -126,9 +126,9 @@
                   @foreach($caja as $c)
                   <tr>
                     <td>{{$c->created_at}}</td>
-                    <td>{{$c->monto_fin}}</td>
-                    <td>{{$c->fecha_init}}</td>  
-                    <td>{{$c->fecha_fin}}</td>
+                    <td>{{$c->primer_turno}}</td>
+                    <td>{{$c->segundo_turno}}</td>  
+                    <td>{{$c->total}}</td>
                     @if($c->estatus == 1)
                     <td><span class="badge bg-primary">Abierto</span></td>
                     @else
@@ -139,36 +139,30 @@
 
                     <td>
 
-                    <a class="btn btn-success btn-sm" href="caja-ticket-{{$c->id}}">
+                   
+                    @if($c->primer_turno > 0)
+                    <a target="_blank" class="btn btn-primary btn-sm" href="caja-consolidado-{{$c->id}}">
                         <i class="fas fa-print">
                         </i>
-                        Ticket
+                        Consolidado
                     </a>
-
-                    <a class="btn btn-primary btn-sm"  onclick="view(this)" data-id="{{$c->id}}">
+                    @else
+                    <a target="_blank" class="btn btn-primary btn-sm" href="caja-consolidado2/{{$c->id}}/{{$c->fecha}}/{{$c->fecha}}">
                         <i class="fas fa-print">
                         </i>
-                        Vista Previa
+                        Consolidado
                     </a>
-
-
+                    @endif
 
                     @if(Auth::user()->rol == 1)
-                    <a class="btn btn-primary btn-sm" href="caja-cerrar-{{$c->id}}" onclick="return confirm('¿Desea Cerrar este Turno?')">
-                        <i class="fas fa-lock">
-                        </i>
-                        Cerrar Turno
-                    </a>
-
-                   
-                    <a class="btn btn-danger btn-sm" href="caja-delete-{{$c->id}}" onclick="return confirm('¿Desea Eliminar este registro?')">
+                  
+                    <a class="btn btn-danger btn-sm" href="caja-delete-{{$c->id}}" onclick="return confirm('¿Desea Reversar este Cierre?')">
                         <i class="fas fa-trash">
                         </i>
                         Reversar
                     </a>
                     @endif</td>
-                    
-                       
+                      
                   </td>
                   </tr>
                   @endforeach
@@ -180,9 +174,10 @@
                   </tbody>
                   <tfoot>
                   <tr>
-                  <th>Fecha</th>
-                    <th>Monto de Inicio</th>
-                    <th>Monto de Fin</th>
+                    <th>Fecha</th>
+                    <th>Primer Turno</th>
+                    <th>Segundo Turno</th>
+                    <th>Total</th>
                     <th>Estatus</th>
                     <th>Registrado Por</th>
                     <th>Acciones</th>

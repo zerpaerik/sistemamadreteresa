@@ -15,7 +15,7 @@ class Creditos extends Model
     protected $table="creditos";
 
     protected $fillable = [
-        'origen','descripcion','tipopago','usuario', 'solicitud','monto','nombre','efectivo','tarjeta','fecha','id_atencion','sede'
+        'origen','descripcion','tipopago','usuario', 'solicitud','monto','nombre','efectivo','tarjeta','fecha','id_atencion','sede','id_cobro'
     ];
 
     

@@ -1233,6 +1233,13 @@ return view('atenciones.particular');
       $rsf = ResultadosServicios::where('id_atencion','=',$request->id)->first();
       $rsf->id_servicio = $request->id_tipo;
       $rsf->save();
+
+      $creditos = Creditos::where('id_atencion','=',$request->id)->first();
+      $creditos->monto = $request->monto;
+      $creditos->tipopago =$request->tipo_pago;
+      $creditos->save();
+
+   
       
       $csf1 = Comisiones::where('id_atencion','=',$request->id)->first();
       if ($csf1 != null) {
@@ -1303,6 +1310,11 @@ return view('atenciones.particular');
       $rsf->id_laboratorio = $request->id_tipo;
       $rsf->save();
 
+      $creditos = Creditos::where('id_atencion','=',$request->id)->first();
+      $creditos->monto = $request->monto;
+      $creditos->tipopago =$request->tipo_pago;
+      $creditos->save();
+
       $csf1 = Comisiones::where('id_atencion','=',$request->id)->first();
 
       if($csf1 != null){
@@ -1344,6 +1356,11 @@ return view('atenciones.particular');
     {
 
       $com = Comisiones::where('id_atencion','=',$request->id)->first();
+
+      $creditos = Creditos::where('id_atencion','=',$request->id)->first();
+      $creditos->monto = $request->monto;
+      $creditos->tipopago =$request->tipo_pago;
+      $creditos->save();
 
 
       if($request->tipo_origen == 1){
@@ -1389,6 +1406,11 @@ return view('atenciones.particular');
       $p->tipo =$request->tipo;
       $res = $p->update();
 
+      $creditos = Creditos::where('id_atencion','=',$request->id)->first();
+      $creditos->monto = $request->monto;
+      $creditos->tipopago =$request->tipo_pago;
+      $creditos->save();
+
 
       $p = Atenciones::find($request->id);
       $p->monto =$request->monto;
@@ -1413,6 +1435,11 @@ return view('atenciones.particular');
       $m->id_producto =$request->metodo;
       $m->monto =$request->monto;
       $resm = $m->update();
+
+      $creditos = Creditos::where('id_atencion','=',$request->id)->first();
+      $creditos->monto = $request->monto;
+      $creditos->tipopago =$request->tipo_pago;
+      $creditos->save();
 
 
       $p = Atenciones::find($request->id);

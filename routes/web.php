@@ -396,6 +396,8 @@ Route::get('cierre-caja','CajaController@index')->name('cierre.index')->middlewa
 Route::get('cierre-caja-reporte-{fecha}','CajaController@reporte_pdf')->name('cierre.reporte')->middleware('auth');
 Route::post('cierre-caja-create','CajaController@create')->name('cierre.create')->middleware('auth');
 Route::get('caja-delete-{id}','CajaController@delete');
+Route::get('caja-consolidado-{id}','CajaController@consolidado');
+Route::get('caja-consolidado2/{id}/{fecha1?}/{fecha2?}','CajaController@consolidado2');
 Route::get('caja-ticket-{id}','CajaController@ticket');
 Route::get('caja-cerrar-{id}','CajaController@cerrar');
 Route::get('saldo/view/{id}', 'CajaController@saldo');
