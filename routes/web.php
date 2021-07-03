@@ -140,7 +140,9 @@ Route::get('paquetes/ver/{id}', 'PaquetesController@ver')->middleware('auth');
 
 Route::get('pacientes', 'PacientesController@index')->name('pacientes.index');
 Route::get('pacientes-create', 'PacientesController@create')->name('pacientes.create')->middleware('auth');
+Route::get('pacientes-create2', 'PacientesController@create2')->name('pacientes.create2')->middleware('auth');
 Route::post('pacientes/create', 'PacientesController@store')->middleware('auth');
+Route::post('pacientes/create2', 'PacientesController@store2')->middleware('auth');
 Route::get('pacientes-delete-{id}', 'PacientesController@delete')->middleware('auth');
 Route::get('pacientes-edit-{id}', 'PacientesController@edit')->name('pacientes.edit');
 Route::post('pacientes/edit', 'PacientesController@update');

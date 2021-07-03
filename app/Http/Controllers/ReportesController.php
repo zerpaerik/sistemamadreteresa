@@ -298,7 +298,7 @@ class ReportesController extends Controller
       if($request->id_paciente != null){
 
         $serv = DB::table('atenciones as a')
-        ->select('a.id','a.tipo_origen','a.id_origen','a.id_tipo','a.pagado','a.atendido','a.sede','a.usuario','a.created_at','a.estatus','a.id_paciente','a.tipo_atencion','a.monto','a.abono','a.tipo_pago','b.nombres','b.apellidos','b.dni','c.name as nameo','c.lastname as lasto','d.name as nameu','d.lastname as lastu','s.nombre as detalle')
+        ->select('a.id','a.tipo_origen','a.id_origen','a.informe','a.id_tipo','a.pagado','a.atendido','a.sede','a.usuario','a.created_at','a.estatus','a.id_paciente','a.tipo_atencion','a.monto','a.abono','a.tipo_pago','b.nombres','b.apellidos','b.dni','c.name as nameo','c.lastname as lasto','d.name as nameu','d.lastname as lastu','s.nombre as detalle')
         ->join('pacientes as b','b.id','a.id_paciente')
         ->join('users as c','c.id','a.id_origen')
         ->join('users as d','d.id','a.usuario')
@@ -311,7 +311,7 @@ class ReportesController extends Controller
        // ->get(); 
 
         $eco = DB::table('atenciones as a')
-        ->select('a.id','a.tipo_origen','a.id_origen','a.id_tipo','a.pagado','a.atendido','a.sede','a.usuario','a.created_at','a.estatus','a.id_paciente','a.tipo_atencion','a.monto','a.abono','a.tipo_pago','b.nombres','b.apellidos','b.dni','c.name as nameo','c.lastname as lasto','d.name as nameu','d.lastname as lastu','s.nombre as detalle')
+        ->select('a.id','a.tipo_origen','a.id_origen','a.informe','a.id_tipo','a.pagado','a.atendido','a.sede','a.usuario','a.created_at','a.estatus','a.id_paciente','a.tipo_atencion','a.monto','a.abono','a.tipo_pago','b.nombres','b.apellidos','b.dni','c.name as nameo','c.lastname as lasto','d.name as nameu','d.lastname as lastu','s.nombre as detalle')
         ->join('pacientes as b','b.id','a.id_paciente')
         ->join('users as c','c.id','a.id_origen')
         ->join('users as d','d.id','a.usuario')
@@ -323,7 +323,7 @@ class ReportesController extends Controller
         ->where('a.id_paciente', '=', $request->id_paciente);
 
         $cons = DB::table('atenciones as a')
-        ->select('a.id','a.tipo_origen','a.id_origen','a.id_tipo','a.pagado','a.atendido','a.sede','a.usuario','a.created_at','a.estatus','a.id_paciente','a.tipo_atencion','a.monto','a.abono','a.tipo_pago','b.nombres','b.apellidos','b.dni','c.name as nameo','c.lastname as lasto','d.name as nameu','d.lastname as lastu','s.nombre as detalle')
+        ->select('a.id','a.tipo_origen','a.id_origen','a.informe','a.id_tipo','a.pagado','a.atendido','a.sede','a.usuario','a.created_at','a.estatus','a.id_paciente','a.tipo_atencion','a.monto','a.abono','a.tipo_pago','b.nombres','b.apellidos','b.dni','c.name as nameo','c.lastname as lasto','d.name as nameu','d.lastname as lastu','s.nombre as detalle')
         ->join('pacientes as b','b.id','a.id_paciente')
         ->join('users as c','c.id','a.id_origen')
         ->join('users as d','d.id','a.usuario')
@@ -335,7 +335,7 @@ class ReportesController extends Controller
         ->where('a.id_paciente', '=', $request->id_paciente);
 
         $meto = DB::table('atenciones as a')
-        ->select('a.id','a.tipo_origen','a.id_origen','a.id_tipo','a.pagado','a.atendido','a.sede','a.usuario','a.created_at','a.estatus','a.id_paciente','a.tipo_atencion','a.monto','a.abono','a.tipo_pago','b.nombres','b.apellidos','b.dni','c.name as nameo','c.lastname as lasto','d.name as nameu','d.lastname as lastu','s.nombre as detalle')
+        ->select('a.id','a.tipo_origen','a.id_origen','a.informe','a.id_tipo','a.pagado','a.atendido','a.sede','a.usuario','a.created_at','a.estatus','a.id_paciente','a.tipo_atencion','a.monto','a.abono','a.tipo_pago','b.nombres','b.apellidos','b.dni','c.name as nameo','c.lastname as lasto','d.name as nameu','d.lastname as lastu','s.nombre as detalle')
         ->join('pacientes as b','b.id','a.id_paciente')
         ->join('users as c','c.id','a.id_origen')
         ->join('users as d','d.id','a.usuario')
@@ -347,7 +347,7 @@ class ReportesController extends Controller
         ->where('a.id_paciente', '=', $request->id_paciente);
 
         $ana = DB::table('atenciones as a')
-        ->select('a.id','a.tipo_origen','a.id_origen','a.id_tipo','a.pagado','a.atendido','a.sede','a.usuario','a.created_at','a.estatus','a.id_paciente','a.tipo_atencion','a.monto','a.abono','a.tipo_pago','b.nombres','b.apellidos','b.dni','c.name as nameo','c.lastname as lasto','d.name as nameu','d.lastname as lastu','s.nombre as detalle')
+        ->select('a.id','a.tipo_origen','a.id_origen','a.informe','a.id_tipo','a.pagado','a.atendido','a.sede','a.usuario','a.created_at','a.estatus','a.id_paciente','a.tipo_atencion','a.monto','a.abono','a.tipo_pago','b.nombres','b.apellidos','b.dni','c.name as nameo','c.lastname as lasto','d.name as nameu','d.lastname as lastu','s.nombre as detalle')
         ->join('pacientes as b','b.id','a.id_paciente')
         ->join('users as c','c.id','a.id_origen')
         ->join('users as d','d.id','a.usuario')
@@ -359,7 +359,7 @@ class ReportesController extends Controller
         ->where('a.id_paciente', '=', $request->id_paciente);
 
         $paq = DB::table('atenciones as a')
-        ->select('a.id','a.tipo_origen','a.id_origen','a.id_tipo','a.pagado','a.atendido','a.sede','a.usuario','a.created_at','a.estatus','a.id_paciente','a.tipo_atencion','a.monto','a.abono','a.tipo_pago','b.nombres','b.apellidos','b.dni','c.name as nameo','c.lastname as lasto','d.name as nameu','d.lastname as lastu','s.nombre as detalle')
+        ->select('a.id','a.tipo_origen','a.id_origen','a.informe','a.id_tipo','a.pagado','a.atendido','a.sede','a.usuario','a.created_at','a.estatus','a.id_paciente','a.tipo_atencion','a.monto','a.abono','a.tipo_pago','b.nombres','b.apellidos','b.dni','c.name as nameo','c.lastname as lasto','d.name as nameu','d.lastname as lastu','s.nombre as detalle')
         ->join('pacientes as b','b.id','a.id_paciente')
         ->join('users as c','c.id','a.id_origen')
         ->join('users as d','d.id','a.usuario')
@@ -372,7 +372,7 @@ class ReportesController extends Controller
 
 
         $metodos = DB::table('atenciones as a')
-        ->select('a.id','a.tipo_origen','a.id_origen','a.id_tipo','a.pagado','a.atendido','a.sede','a.usuario','a.created_at','a.estatus','a.id_paciente','a.tipo_atencion','a.monto','a.abono','a.tipo_pago','b.nombres','b.apellidos','b.dni','c.name as nameo','c.lastname as lasto','d.name as nameu','d.lastname as lastu','s.nombre as detalle')
+        ->select('a.id','a.tipo_origen','a.id_origen','a.informe','a.id_tipo','a.pagado','a.atendido','a.sede','a.usuario','a.created_at','a.estatus','a.id_paciente','a.tipo_atencion','a.monto','a.abono','a.tipo_pago','b.nombres','b.apellidos','b.dni','c.name as nameo','c.lastname as lasto','d.name as nameu','d.lastname as lastu','s.nombre as detalle')
         ->join('pacientes as b','b.id','a.id_paciente')
         ->join('users as c','c.id','a.id_origen')
         ->join('users as d','d.id','a.usuario')
@@ -384,7 +384,7 @@ class ReportesController extends Controller
         ->where('a.id_paciente', '=', $request->id_paciente);
 
         $consultas = DB::table('atenciones as a')
-        ->select('a.id','a.tipo_origen','a.id_origen','a.id_tipo','a.pagado','a.atendido','a.sede','a.usuario','a.created_at','a.estatus','a.id_paciente','a.tipo_atencion','a.monto','a.abono','a.tipo_pago','b.nombres','b.apellidos','b.dni','c.name as nameo','c.lastname as lasto','d.name as nameu','d.lastname as lastu','s.nombre as detalle')
+        ->select('a.id','a.tipo_origen','a.id_origen','a.informe','a.id_tipo','a.pagado','a.atendido','a.sede','a.usuario','a.created_at','a.estatus','a.id_paciente','a.tipo_atencion','a.monto','a.abono','a.tipo_pago','b.nombres','b.apellidos','b.dni','c.name as nameo','c.lastname as lasto','d.name as nameu','d.lastname as lastu','s.nombre as detalle')
         ->join('pacientes as b','b.id','a.id_paciente')
         ->join('users as c','c.id','a.id_origen')
         ->join('users as d','d.id','a.usuario')
@@ -399,7 +399,7 @@ class ReportesController extends Controller
      
 
         $atenciones = DB::table('atenciones as a')
-        ->select('a.id','a.tipo_origen','a.id_origen','a.id_tipo','a.pagado','a.atendido','a.sede','a.usuario','a.created_at','a.estatus','a.id_paciente','a.tipo_atencion','a.monto','a.abono','a.tipo_pago','b.nombres','b.apellidos','b.dni','c.name as nameo','c.lastname as lasto','d.name as nameu','d.lastname as lastu','s.nombre as detalle')
+        ->select('a.id','a.tipo_origen','a.id_origen','a.informe','a.id_tipo','a.pagado','a.atendido','a.sede','a.usuario','a.created_at','a.estatus','a.id_paciente','a.tipo_atencion','a.monto','a.abono','a.tipo_pago','b.nombres','b.apellidos','b.dni','c.name as nameo','c.lastname as lasto','d.name as nameu','d.lastname as lastu','s.nombre as detalle')
         ->join('pacientes as b','b.id','a.id_paciente')
         ->join('users as c','c.id','a.id_origen')
         ->join('users as d','d.id','a.usuario')
@@ -421,7 +421,7 @@ class ReportesController extends Controller
     } else {
 
         $serv = DB::table('atenciones as a')
-        ->select('a.id','a.tipo_origen','a.id_origen','a.id_tipo','a.pagado','a.atendido','a.sede','a.usuario','a.created_at','a.estatus','a.id_paciente','a.tipo_atencion','a.monto','a.abono','a.tipo_pago','b.nombres','b.apellidos','b.dni','c.name as nameo','c.lastname as lasto','d.name as nameu','d.lastname as lastu','s.nombre as detalle')
+        ->select('a.id','a.tipo_origen','a.id_origen','a.informe','a.id_tipo','a.pagado','a.atendido','a.sede','a.usuario','a.created_at','a.estatus','a.id_paciente','a.tipo_atencion','a.monto','a.abono','a.tipo_pago','b.nombres','b.apellidos','b.dni','c.name as nameo','c.lastname as lasto','d.name as nameu','d.lastname as lastu','s.nombre as detalle')
         ->join('pacientes as b','b.id','a.id_paciente')
         ->join('users as c','c.id','a.id_origen')
         ->join('users as d','d.id','a.usuario')
@@ -434,7 +434,7 @@ class ReportesController extends Controller
        // ->get(); 
 
         $eco = DB::table('atenciones as a')
-        ->select('a.id','a.tipo_origen','a.id_origen','a.id_tipo','a.pagado','a.atendido','a.sede','a.usuario','a.created_at','a.estatus','a.id_paciente','a.tipo_atencion','a.monto','a.abono','a.tipo_pago','b.nombres','b.apellidos','b.dni','c.name as nameo','c.lastname as lasto','d.name as nameu','d.lastname as lastu','s.nombre as detalle')
+        ->select('a.id','a.tipo_origen','a.id_origen','a.informe','a.id_tipo','a.pagado','a.atendido','a.sede','a.usuario','a.created_at','a.estatus','a.id_paciente','a.tipo_atencion','a.monto','a.abono','a.tipo_pago','b.nombres','b.apellidos','b.dni','c.name as nameo','c.lastname as lasto','d.name as nameu','d.lastname as lastu','s.nombre as detalle')
         ->join('pacientes as b','b.id','a.id_paciente')
         ->join('users as c','c.id','a.id_origen')
         ->join('users as d','d.id','a.usuario')
@@ -446,7 +446,7 @@ class ReportesController extends Controller
         ->where('a.sede', '=', 99999999);
 
         $cons = DB::table('atenciones as a')
-        ->select('a.id','a.tipo_origen','a.id_origen','a.id_tipo','a.pagado','a.atendido','a.sede','a.usuario','a.created_at','a.estatus','a.id_paciente','a.tipo_atencion','a.monto','a.abono','a.tipo_pago','b.nombres','b.apellidos','b.dni','c.name as nameo','c.lastname as lasto','d.name as nameu','d.lastname as lastu','s.nombre as detalle')
+        ->select('a.id','a.tipo_origen','a.id_origen','a.informe','a.id_tipo','a.pagado','a.atendido','a.sede','a.usuario','a.created_at','a.estatus','a.id_paciente','a.tipo_atencion','a.monto','a.abono','a.tipo_pago','b.nombres','b.apellidos','b.dni','c.name as nameo','c.lastname as lasto','d.name as nameu','d.lastname as lastu','s.nombre as detalle')
         ->join('pacientes as b','b.id','a.id_paciente')
         ->join('users as c','c.id','a.id_origen')
         ->join('users as d','d.id','a.usuario')
@@ -458,7 +458,7 @@ class ReportesController extends Controller
         ->where('a.sede', '=', 9999999);
 
         $meto = DB::table('atenciones as a')
-        ->select('a.id','a.tipo_origen','a.id_origen','a.id_tipo','a.pagado','a.atendido','a.sede','a.usuario','a.created_at','a.estatus','a.id_paciente','a.tipo_atencion','a.monto','a.abono','a.tipo_pago','b.nombres','b.apellidos','b.dni','c.name as nameo','c.lastname as lasto','d.name as nameu','d.lastname as lastu','s.nombre as detalle')
+        ->select('a.id','a.tipo_origen','a.id_origen','a.informe','a.id_tipo','a.pagado','a.atendido','a.sede','a.usuario','a.created_at','a.estatus','a.id_paciente','a.tipo_atencion','a.monto','a.abono','a.tipo_pago','b.nombres','b.apellidos','b.dni','c.name as nameo','c.lastname as lasto','d.name as nameu','d.lastname as lastu','s.nombre as detalle')
         ->join('pacientes as b','b.id','a.id_paciente')
         ->join('users as c','c.id','a.id_origen')
         ->join('users as d','d.id','a.usuario')
@@ -470,7 +470,7 @@ class ReportesController extends Controller
         ->where('a.sede', '=', 9999999);
 
         $ana = DB::table('atenciones as a')
-        ->select('a.id','a.tipo_origen','a.id_origen','a.id_tipo','a.pagado','a.atendido','a.sede','a.usuario','a.created_at','a.estatus','a.id_paciente','a.tipo_atencion','a.monto','a.abono','a.tipo_pago','b.nombres','b.apellidos','b.dni','c.name as nameo','c.lastname as lasto','d.name as nameu','d.lastname as lastu','s.nombre as detalle')
+        ->select('a.id','a.tipo_origen','a.id_origen','a.informe','a.id_tipo','a.pagado','a.atendido','a.sede','a.usuario','a.created_at','a.estatus','a.id_paciente','a.tipo_atencion','a.monto','a.abono','a.tipo_pago','b.nombres','b.apellidos','b.dni','c.name as nameo','c.lastname as lasto','d.name as nameu','d.lastname as lastu','s.nombre as detalle')
         ->join('pacientes as b','b.id','a.id_paciente')
         ->join('users as c','c.id','a.id_origen')
         ->join('users as d','d.id','a.usuario')
@@ -482,7 +482,7 @@ class ReportesController extends Controller
         ->where('a.sede', '=', 9999999);
 
         $paq = DB::table('atenciones as a')
-        ->select('a.id','a.tipo_origen','a.id_origen','a.id_tipo','a.pagado','a.atendido','a.sede','a.usuario','a.created_at','a.estatus','a.id_paciente','a.tipo_atencion','a.monto','a.abono','a.tipo_pago','b.nombres','b.apellidos','b.dni','c.name as nameo','c.lastname as lasto','d.name as nameu','d.lastname as lastu','s.nombre as detalle')
+        ->select('a.id','a.tipo_origen','a.id_origen','a.informe','a.id_tipo','a.pagado','a.atendido','a.sede','a.usuario','a.created_at','a.estatus','a.id_paciente','a.tipo_atencion','a.monto','a.abono','a.tipo_pago','b.nombres','b.apellidos','b.dni','c.name as nameo','c.lastname as lasto','d.name as nameu','d.lastname as lastu','s.nombre as detalle')
         ->join('pacientes as b','b.id','a.id_paciente')
         ->join('users as c','c.id','a.id_origen')
         ->join('users as d','d.id','a.usuario')
@@ -495,7 +495,7 @@ class ReportesController extends Controller
 
 
         $metodos = DB::table('atenciones as a')
-        ->select('a.id','a.tipo_origen','a.id_origen','a.id_tipo','a.pagado','a.atendido','a.sede','a.usuario','a.created_at','a.estatus','a.id_paciente','a.tipo_atencion','a.monto','a.abono','a.tipo_pago','b.nombres','b.apellidos','b.dni','c.name as nameo','c.lastname as lasto','d.name as nameu','d.lastname as lastu','s.nombre as detalle')
+        ->select('a.id','a.tipo_origen','a.id_origen','a.informe','a.id_tipo','a.pagado','a.atendido','a.sede','a.usuario','a.created_at','a.estatus','a.id_paciente','a.tipo_atencion','a.monto','a.abono','a.tipo_pago','b.nombres','b.apellidos','b.dni','c.name as nameo','c.lastname as lasto','d.name as nameu','d.lastname as lastu','s.nombre as detalle')
         ->join('pacientes as b','b.id','a.id_paciente')
         ->join('users as c','c.id','a.id_origen')
         ->join('users as d','d.id','a.usuario')
@@ -507,7 +507,7 @@ class ReportesController extends Controller
         ->where('a.sede', '=', 999999999);
 
         $consultas = DB::table('atenciones as a')
-        ->select('a.id','a.tipo_origen','a.id_origen','a.id_tipo','a.pagado','a.atendido','a.sede','a.usuario','a.created_at','a.estatus','a.id_paciente','a.tipo_atencion','a.monto','a.abono','a.tipo_pago','b.nombres','b.apellidos','b.dni','c.name as nameo','c.lastname as lasto','d.name as nameu','d.lastname as lastu','s.nombre as detalle')
+        ->select('a.id','a.tipo_origen','a.id_origen','a.informe','a.id_tipo','a.pagado','a.atendido','a.sede','a.usuario','a.created_at','a.estatus','a.id_paciente','a.tipo_atencion','a.monto','a.abono','a.tipo_pago','b.nombres','b.apellidos','b.dni','c.name as nameo','c.lastname as lasto','d.name as nameu','d.lastname as lastu','s.nombre as detalle')
         ->join('pacientes as b','b.id','a.id_paciente')
         ->join('users as c','c.id','a.id_origen')
         ->join('users as d','d.id','a.usuario')
@@ -522,7 +522,7 @@ class ReportesController extends Controller
      
 
         $atenciones = DB::table('atenciones as a')
-        ->select('a.id','a.tipo_origen','a.id_origen','a.id_tipo','a.pagado','a.atendido','a.sede','a.usuario','a.created_at','a.estatus','a.id_paciente','a.tipo_atencion','a.monto','a.abono','a.tipo_pago','b.nombres','b.apellidos','b.dni','c.name as nameo','c.lastname as lasto','d.name as nameu','d.lastname as lastu','s.nombre as detalle')
+        ->select('a.id','a.tipo_origen','a.id_origen','a.informe','a.id_tipo','a.pagado','a.atendido','a.sede','a.usuario','a.created_at','a.estatus','a.id_paciente','a.tipo_atencion','a.monto','a.abono','a.tipo_pago','b.nombres','b.apellidos','b.dni','c.name as nameo','c.lastname as lasto','d.name as nameu','d.lastname as lastu','s.nombre as detalle')
         ->join('pacientes as b','b.id','a.id_paciente')
         ->join('users as c','c.id','a.id_origen')
         ->join('users as d','d.id','a.usuario')

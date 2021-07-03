@@ -37,8 +37,8 @@
     <br><br>
 
     <div  style="font-size: 15px; text-align: center;margin-bottom:-60px;margin-top: -30px;">
-		<p><strong>INVERSIONES ORIENTALES M & D S.A.C</strong></p>
-		<p style="margin-top: -20px;"><strong>RUC: 20492126072</strong></p>
+		<p><strong>TICKET INGRESO</strong></p>
+		<p style="margin-top: -20px;"><strong></strong></p>
 
 
     <p><strong>FECHA:</strong> {{$ingreso->created_at}} </p>
@@ -53,7 +53,6 @@
 	</div>
     <br><br>
     <div  style="font-size: 15px; text-align: left;margin-bottom:-60px;margin-top: 20px;">
-		<p style="margin-left: -40px;"><strong>CLIENTE:</strong> {{ $ingreso->nombre}}</p>
 	
 	</div>
   <br><br><br>
@@ -62,7 +61,7 @@
       <thead>
         <tr>
           <th style="font-size: 15px"><center>Cantidad.<center></th>
-          <th style="font-size: 15px"><center>Servicio.<center></th>
+          <th style="font-size: 15px"><center>Descripción.<center></th>
           <th style="font-size: 15px"><center>Monto.<center></th>
         </tr>
       </thead>

@@ -27,45 +27,51 @@ class HomeController extends Controller
      *
      * @return \Illuminate\Contracts\Support\Renderable
      */
-    public function index()
+    public function index(Request $request)
     {
         $sedes = Sedes::all();
 
-        $total = Atenciones::where('estatus','=',1)
+
+        $total = Creditos::whereDate('created_at', date('Y-m-d 00:00:00', strtotime(date('Y-m-d'))))
         ->select(DB::raw('SUM(monto) as monto'))
-        ->where('created_at','=',date('Y-m-d'))
+        ->where('sede','=',$request->session()->get('sede'))
         ->first();
 
-        $count = Atenciones::where('estatus','=',1)
+       /* $count = Atenciones::where('estatus','=',1)
         ->select(DB::raw('COUNT(*)'))
         ->where('created_at','=',date('Y-m-d'))
-        ->first();
+        ->first();*/
 
-        $efec = Atenciones::where('estatus','=',1)
+        $efec = Creditos::whereDate('created_at', date('Y-m-d 00:00:00', strtotime(date('Y-m-d'))))
         ->select(DB::raw('SUM(monto) as monto'))
-        ->where('created_at','=',date('Y-m-d'))
-        ->where('tipo_pago','=','EF')
+        ->where('tipopago','=','EF')
+        ->where('sede','=',$request->session()->get('sede'))
         ->first();
 
 
-        $tarj = Atenciones::where('estatus','=',1)
+        $tarj = Creditos::whereDate('created_at', date('Y-m-d 00:00:00', strtotime(date('Y-m-d'))))
         ->select(DB::raw('SUM(monto) as monto'))
-        ->where('created_at','=',date('Y-m-d'))
-        ->where('tipo_pago','=','TJ')
+        ->where('tipopago','=','TJ')
+        ->where('sede','=',$request->session()->get('sede'))
         ->first();
 
-        $dep = Atenciones::where('estatus','=',1)
+        $dep = Creditos::whereDate('created_at', date('Y-m-d 00:00:00', strtotime(date('Y-m-d'))))
         ->select(DB::raw('SUM(monto) as monto'))
-        ->where('created_at','=',date('Y-m-d'))
-        ->where('tipo_pago','=','DP')
+        ->where('tipopago','=','DP')
+        ->where('sede','=',$request->session()->get('sede'))
         ->first();
 
-        $yap = Atenciones::where('estatus','=',1)
+        $yap = Creditos::whereDate('created_at', date('Y-m-d 00:00:00', strtotime(date('Y-m-d'))))
         ->select(DB::raw('SUM(monto) as monto'))
-        ->where('created_at','=',date('Y-m-d'))
-        ->where('tipo_pago','=','YP')
+        ->where('tipopago','=','YP')
+        ->where('sede','=',$request->session()->get('sede'))
         ->first();
 
-        return view('home',compact('sedes', 'total','efec','tarj','dep','count','yap'));
+        $egresos = Debitos::whereDate('created_at', date('Y-m-d 00:00:00', strtotime(date('Y-m-d'))))
+        ->select(DB::raw('SUM(monto) as monto'))
+        ->where('sede','=',$request->session()->get('sede'))
+        ->first();
+
+        return view('home',compact('sedes', 'total','efec','tarj','dep','count','yap','egresos'));
     }
 }

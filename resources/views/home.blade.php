@@ -67,14 +67,15 @@
     <!-- Main content -->
     <section class="content">
     <div class="row">
-    @if($total->monto != null)
           <div class="col-lg-3 col-6">
             <!-- small box -->
             <div class="small-box bg-info">
               <div class="inner">
-                <h3>{{$total->monto}} Soles</h3>
+              @if($efec != null)
+                <h3>{{$efec->monto}} Soles</h3>
+                @endif
 
-                <p>Ingresos del Dia</p>
+                <p>EFECTIVO</p>
               </div>
               <div class="icon">
                 <i class="ion ion-bag"></i>
@@ -82,35 +83,16 @@
               <a href="#" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
             </div>
           </div>
-      @endif
           <!-- ./col -->
-
-          @if($efec->monto != null)
-          <div class="col-lg-3 col-6">
-            <!-- small box -->
-            <div class="small-box bg-success">
-              <div class="inner">
-                <h3>{{$efec->monto}} Soles<sup style="font-size: 20px"></sup></h3>
-
-                <p>Total Efectivo</p>
-              </div>
-              <div class="icon">
-                <i class="ion ion-stats-bars"></i>
-              </div>
-              <a href="#" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
-            </div>
-          </div>
-          @endif
-          <!-- ./col -->
-          @if($tarj->monto != null)
-
           <div class="col-lg-3 col-6">
             <!-- small box -->
             <div class="small-box bg-warning">
               <div class="inner">
+              @if($tarj != null)
                 <h3>{{$tarj->monto}} Soles</h3>
+                @endif
 
-                <p>Total Tarjeta</p>
+                <p>TARJETA</p>
               </div>
               <div class="icon">
                 <i class="ion ion-person-add"></i>
@@ -118,17 +100,37 @@
               <a href="#" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
             </div>
           </div>
-          @endif
+
+        
           <!-- ./col -->
-          @if($dep->monto != null)
 
           <div class="col-lg-3 col-6">
             <!-- small box -->
-            <div class="small-box bg-danger">
+            <div class="small-box bg-warning">
               <div class="inner">
+              @if($dep != null)
                 <h3>{{$dep->monto}} Soles</h3>
+                @endif
 
-                <p>Total Deposito</p>
+                <p>DEPÓSITO</p>
+              </div>
+              <div class="icon">
+                <i class="ion ion-person-add"></i>
+              </div>
+              <a href="#" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
+            </div>
+          </div>
+          <!-- ./col -->
+
+          <div class="col-lg-3 col-6">
+            <!-- small box -->
+            <div class="small-box bg-warning">
+              <div class="inner">
+              @if($yap != null)
+                <h3>{{$yap->monto}} Soles</h3>
+                @endif
+
+                <p>YAPE</p>
               </div>
               <div class="icon">
                 <i class="ion ion-pie-graph"></i>
@@ -136,19 +138,19 @@
               <a href="#" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
             </div>
           </div>
-          @endif
           <!-- ./col -->
         </div>
 
         <div class="row">
-        @if($yap->monto != null)
           <div class="col-lg-3 col-6">
             <!-- small box -->
-            <div class="small-box bg-info">
+            <div class="small-box bg-danger">
               <div class="inner">
-                <h3>{{$yap->monto}} Soles</h3>
+                @if($egresos != null)
+                <h3>{{$egresos->monto}} Soles</h3>
+                @endif
 
-                <p>Total Yape</p>
+                <p>GASTOS</p>
               </div>
               <div class="icon">
                 <i class="ion ion-bag"></i>
@@ -156,8 +158,21 @@
               <a href="#" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
             </div>
           </div>
-          @endif
           <!-- ./col -->
+          <div class="col-lg-3 col-6">
+            <!-- small box -->
+            <div class="small-box bg-success">
+              <div class="inner">
+                <h3>{{$efec->monto - $egresos->monto}}  Soles</h3>
+
+                <p>TOTAL EFECTIVO</p>
+              </div>
+              <div class="icon">
+                <i class="ion ion-bag"></i>
+              </div>
+              <a href="#" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
+            </div>
+          </div>
          
           <!-- ./col -->
         </div>

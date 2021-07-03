@@ -95,8 +95,28 @@
                   <div class="col-md-4">
                   <label>Tipo de Ingreso</label>
                         <select class="form-control" name="tipopago">
-							<option value="EF">EF</option>
-                            <option value="TJ">TJ</option>
+                        @if($ingresos->tipopago == 'EF')
+                        <option value="EF" selected>EFECTIVO</option>
+                            <option value="TJ" >TARJETA</option>
+                            <option value="DP" >DEPOSITO</option>
+                            <option value="YP" >YAPE</option>  
+                        @elseif($ingresos->tipopago == 'TJ')
+                        <option value="EF">EFECTIVO</option>
+                            <option value="TJ" selected>TARJETA</option>
+                            <option value="DP" >DEPOSITO</option>
+                            <option value="YP" >YAPE</option>  
+                        @elseif($ingresos->tipopago == 'DP')
+                        <option value="EF">EFECTIVO</option>
+                            <option value="TJ">TARJETA</option>
+                            <option value="DP" selected>DEPOSITO</option>
+                            <option value="YP" >YAPE</option>  
+                        @else
+                            <option value="EF">EFECTIVO</option>
+                            <option value="TJ">TARJETA</option>
+                            <option value="DP">DEPOSITO</option>
+                            <option value="YP" selected>YAPE</option>  
+                        @endif
+
 							
                         </select>
                   </div>

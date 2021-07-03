@@ -429,9 +429,10 @@ return view('atenciones.particular');
         ->where('id','=', $request->origen_usuario)
         ->first();  
 
-       // dd($request->precio_con);
 
         //GUARDANDO CONSULTAS
+
+     
         
         if(!is_null($request->precio_con)){
             $lab = new Atenciones();
@@ -480,7 +481,11 @@ return view('atenciones.particular');
         if(!is_null($request->precio_met)){
             $lab = new Atenciones();
             $lab->tipo_origen =  $request->origen;
-            $lab->id_origen = $searchUsuarioID->id;
+            if($request->origen == 3){
+              $lab->id_origen = 9999999;
+            }else{
+              $lab->id_origen = $searchUsuarioID->id;
+            }
             $lab->id_paciente =  $request->paciente;
             $lab->tipo_atencion = 6;
             $lab->id_tipo = $request->metodo;
@@ -524,8 +529,11 @@ return view('atenciones.particular');
                 //TIPO ATENCION SERVICIOS= 1
                 $lab = new Atenciones();
                 $lab->tipo_origen =  $request->origen;
-                $lab->id_origen = $searchUsuarioID->id;
-                $lab->id_paciente =  $request->paciente;
+                if($request->origen == 3){
+                  $lab->id_origen = 9999999;
+                }else{
+                  $lab->id_origen = $searchUsuarioID->id;
+                }                $lab->id_paciente =  $request->paciente;
                 $lab->tipo_atencion = 1;
                 $lab->id_tipo = $serv['servicio'];
                 $lab->monto = (float)$request->monto_s['servicios'][$key]['monto'];
@@ -621,7 +629,11 @@ return view('atenciones.particular');
                 //TIPO ATENCION LABORATORIO= 4
                 $lab = new Atenciones();
                 $lab->tipo_origen =  $request->origen;
-                $lab->id_origen = $searchUsuarioID->id;
+                if($request->origen == 3){
+                  $lab->id_origen = 9999999;
+                }else{
+                  $lab->id_origen = $searchUsuarioID->id;
+                }
                 $lab->id_paciente =  $request->paciente;
                 $lab->tipo_atencion = 4;
                 $lab->id_tipo = $laboratorio['analisi'];
@@ -693,7 +705,11 @@ return view('atenciones.particular');
               //TIPO ATENCION PAQUETE= 7
               $lab = new Atenciones();
               $lab->tipo_origen =  $request->origen;
-              $lab->id_origen = $searchUsuarioID->id;
+              if($request->origen == 3){
+                $lab->id_origen = 9999999;
+              }else{
+                $lab->id_origen = $searchUsuarioID->id;
+              }             
               $lab->id_paciente =  $request->paciente;
               $lab->tipo_atencion = 7;
               $lab->id_tipo = $paq['paquete'];
@@ -887,7 +903,11 @@ return view('atenciones.particular');
                 //TIPO ATENCION ECOGRAFIA= 2
                 $lab = new Atenciones();
                 $lab->tipo_origen =  $request->origen;
-                $lab->id_origen = $searchUsuarioID->id;
+                if($request->origen == 3){
+                  $lab->id_origen = 9999999;
+                }else{
+                  $lab->id_origen = $searchUsuarioID->id;
+                }                
                 $lab->id_paciente =  $request->paciente;
                 $lab->tipo_atencion = 2;
                 $lab->id_tipo = $eco['ecografia'];
@@ -980,7 +1000,11 @@ return view('atenciones.particular');
                 //TIPO ATENCION RAYOS= 3
                 $lab = new Atenciones();
                 $lab->tipo_origen =  $request->origen;
-                $lab->id_origen = $searchUsuarioID->id;
+                if($request->origen == 3){
+                  $lab->id_origen = 9999999;
+                }else{
+                  $lab->id_origen = $searchUsuarioID->id;
+                }                
                 $lab->id_paciente =  $request->paciente;
                 $lab->tipo_atencion = 3;
                 $lab->id_tipo = $ray['rayo'];

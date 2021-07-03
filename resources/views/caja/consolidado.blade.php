@@ -142,6 +142,12 @@
 			<td style="padding: 0;width: 5%;text-overflow: ellipsis;">{{ $metodos->cantidad }}</td>
 			<td style="padding: 0;width: 5%;text-overflow: ellipsis;">{{ $metodos->monto }}</td>
 		</tr>
+
+		<tr>
+			<td style="padding: 0;width: 5%;text-overflow: ellipsis;">Otros Ingresos</td>
+			<td style="padding: 0;width: 5%;text-overflow: ellipsis;">{{ $ingresos->cantidad }}</td>
+			<td style="padding: 0;width: 5%;text-overflow: ellipsis;">{{ $ingresos->monto }}</td>
+		</tr>
 		
 	</table>
 </div>
@@ -185,6 +191,7 @@
 			<th style="padding: 0;width: 5%;text-overflow: ellipsis;">tarjeta</th>
 			<th style="padding: 0;width: 5%;text-overflow: ellipsis;">deposito</th>
 			<th style="padding: 0;width: 5%;text-overflow: ellipsis;"> yape</th>
+			<th style="padding: 0;width: 5%;text-overflow: ellipsis;"> total</th>
 
 		</tr>
 		<tr>
@@ -192,15 +199,10 @@
 			<td style="padding: 0;width: 5%;text-overflow: ellipsis;">{{ $tarjeta->monto }}</td>
 			<td style="padding: 0;width: 5%;text-overflow: ellipsis;">{{ $deposito->monto }}</td>
 			<td style="padding: 0;width: 5%;text-overflow: ellipsis;">{{ $yape->monto }}</td>
+			<td style="padding: 0;width: 5%;text-overflow: ellipsis;">{{ $efectivo->monto + $tarjeta->monto + $deposito->monto + $yape->monto}}</td>
 
 		</tr>
-		<tr>
-			<td style="padding: 0;width: 5%;text-overflow: ellipsis;">Total</td>
-			<td></td>
-			<td width="80" style="padding: 0;width: 5%;text-overflow: ellipsis;">
-				{{ $efectivo->monto + $tarjeta->monto + $deposito->monto + $yape->monto}}
-			</td>
-		</tr>
+		
 	</table>
 </div>
 <div style="font-weight: bold; font-size: 14px">

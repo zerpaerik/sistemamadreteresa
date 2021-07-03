@@ -80,9 +80,16 @@
               <div class="card-header">
                 <h3 class="card-title">Agregar</h3>
               </div>
+
+             
               <!-- /.card-header -->
               <!-- form start -->
                     <div class="card-body">
+                      <a class="btn btn-success btn-sm" href="pacientes-create2">
+                        <i class="fas fa-add">
+                        </i>
+                        Crear Paciente
+                    </a>
                     <form method="get" action="atenciones-create">		
                     {{ csrf_field() }}  
 			
@@ -103,6 +110,7 @@
                   
                   </div>
                   <br>
+                  
                     <form method="post" action="atenciones/create" >			
                   {{ csrf_field() }}  
                   @if($paciente && $res == 'SI')

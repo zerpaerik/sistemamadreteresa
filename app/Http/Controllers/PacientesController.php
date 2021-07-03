@@ -44,6 +44,12 @@ class PacientesController extends Controller
         return view('pacientes.create');
     }
 
+    public function create2()
+    {
+       
+        return view('pacientes.create2');
+    }
+
     /**
      * Store a newly created resource in storage.
      *
@@ -78,6 +84,38 @@ class PacientesController extends Controller
         $pacientes->save();
 
         return redirect()->action('PacientesController@index', ["created" => true, "pacientes" => Pacientes::all()]);
+    }
+
+    }
+
+    public function store2(Request $request)
+    {
+
+        $validator = \Validator::make($request->all(), [
+        'dni' => 'required|unique:pacientes'
+            
+          ]);
+          if($validator->fails()) {
+            $request->session()->flash('error', 'El Paciente ya esta Registrado.');
+           // Toastr::error('Error Registrando.', 'Paciente- DNI YA REGISTRADO!', ['progressBar' => true]);
+            return redirect()->action('PacientesController@create', ['errors' => $validator->errors()]);
+          } else {
+
+        $pacientes = new Pacientes();
+        $pacientes->nombres =$request->nombres;
+        $pacientes->apellidos =$request->apellidos;
+        $pacientes->dni =$request->dni;
+        $pacientes->telefono =$request->telefono;
+        $pacientes->email =$request->email;
+        $pacientes->direccion =$request->direccion;
+        $pacientes->edocivil =$request->edocivil;
+        $pacientes->ocupacion =$request->ocupacion;
+        $pacientes->fechanac =$request->fechanac;
+        $pacientes->sexo =$request->sexo;
+        $pacientes->usuario =Auth::user()->id;
+        $pacientes->save();
+
+        return redirect()->action('AtencionesController@create');
     }
 
     }

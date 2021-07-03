@@ -374,6 +374,9 @@ class ResultadosController extends Controller
       }
 
         $at = Atenciones::where('id','=',$res->id_atencion)->first();
+        $img = $request->file('informe');
+        $nombre_imagen=$img->getClientOriginalName();
+        $at->informe =  $nombre_imagen;
         $at->atendido =  2;
         $at->save();
 
@@ -406,6 +409,9 @@ class ResultadosController extends Controller
 
         
         $at = Atenciones::where('id','=',$res->id_atencion)->first();
+        $img = $request->file('informe');
+        $nombre_imagen=$img->getClientOriginalName();
+        $at->informe =  $nombre_imagen;
         $at->atendido =  2;
         $at->save();
 
