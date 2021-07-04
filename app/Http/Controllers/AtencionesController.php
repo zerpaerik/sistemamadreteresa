@@ -333,15 +333,15 @@ class AtencionesController extends Controller
      */
     public function create(Request $request)
     {
-        $ecografias = Servicios::where('estatus','=',1)->where('tipo','=','ECOGRAFIA')->get();
-        $rayos = Servicios::where('estatus','=',1)->where('tipo','=','RAYOS')->get();
-        $otros = Servicios::where('estatus','=',1)->where('tipo','=','OTROS')->get();
-        $analisis = Analisis::where('estatus','=',1)->get();
-        $paquetes = Paquetes::where('estatus','=',1)->get();
+        $ecografias = Servicios::where('estatus','=',1)->where('tipo','=','ECOGRAFIA')->orderBy('nombre','ASC')->get();
+        $rayos = Servicios::where('estatus','=',1)->where('tipo','=','RAYOS')->orderBy('nombre','ASC')->get();
+        $otros = Servicios::where('estatus','=',1)->where('tipo','=','OTROS')->orderBy('nombre','ASC')->get();
+        $analisis = Analisis::where('estatus','=',1)->orderBy('nombre','ASC')->get();
+        $paquetes = Paquetes::where('estatus','=',1)->orderBy('nombre','ASC')->get();
 
-        $met = MetoPro::where('estatus','=',1)->get();
+        $met = MetoPro::where('estatus','=',1)->orderBy('nombre','ASC')->get();
 
-        $personal = User::where('estatus','=',1)->where('tipo','=',1)->where('tipo_personal','=','Especialista')->get();
+        $personal = User::where('estatus','=',1)->where('tipo','=',1)->where('tipo_personal','=','Especialista')->orderBy('name','ASC')->get();
 
 
         if(!is_null($request->pac)){
@@ -375,7 +375,7 @@ class AtencionesController extends Controller
 
     public function personal(){
      
-        $personal = User::where('estatus','=',1)->where('tipo','=',1)->where('tipo_personal','=','ProfSalud')->orderBy('name','desc')->get();
+        $personal = User::where('estatus','=',1)->where('tipo','=',1)->where('tipo_personal','=','ProfSalud')->orderBy('lastname','ASC')->get();
 
  
      return view('atenciones.personal', compact('personal'));
@@ -383,7 +383,7 @@ class AtencionesController extends Controller
 
    public function profesionales(){
      
-    $profesionales = User::where('estatus','=',1)->where('tipo','=',2)->get();
+    $profesionales = User::where('estatus','=',1)->where('tipo','=',2)->orderBy('lastname','ASC')->get();
 
 
  return view('atenciones.profesionales', compact('profesionales'));

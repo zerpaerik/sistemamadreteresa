@@ -206,7 +206,7 @@
                       <option value="">Seleccionar Servicio</option>
                         @foreach($otros as $ot)
                           <option value="{{$ot->id}}">
-                            {{$ot->nombre}}
+                            {{$ot->nombre}} Precio:{{$ot->precio}}
                           </option>
                         @endforeach
                       </select>
@@ -272,7 +272,7 @@
                         <option value="">Seleccionar Ecografia</option>
                         @foreach($ecografias as $eco)
                           <option value="{{$eco->id}}">
-                            {{$eco->nombre}}
+                            {{$eco->nombre}} Precio:{{$eco->precio}}
                           </option>
                         @endforeach
                       </select>
@@ -340,7 +340,7 @@
                         <option value="">Seleccionar Rayos X</option>
                         @foreach($rayos as $ray)
                           <option value="{{$ray->id}}">
-                            {{$ray->nombre}}
+                            {{$ray->nombre}} Precio:{{$ray->precio}}
                           </option>
                         @endforeach
                       </select>
@@ -409,7 +409,7 @@
                         <option value="" >Seleccionar Labo.</option>
                         @foreach($analisis as $ana)
                           <option value="{{$ana->id}}">
-                            {{$ana->nombre}}
+                            {{$ana->nombre}} Precio:{{$ana->precio}}
                           </option>
                         @endforeach
                       </select>
@@ -479,7 +479,7 @@
                   <option value="" >Seleccionar Paquete.</option>
                   @foreach($paquetes as $paq)
                     <option value="{{$paq->id}}">
-                      {{$paq->nombre}}
+                      {{$paq->nombre}} Precio:{{$paq->precio}}
                     </option>
                   @endforeach
                 </select>

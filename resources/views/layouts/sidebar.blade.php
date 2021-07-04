@@ -276,6 +276,22 @@
                   <p>Lista de Consultas</p>
                 </a>
               </li>
+
+              
+            <li class="nav-item">
+                <a href="{{route('historias.index')}}" class="nav-link">
+                  <i class="fas fa-hand-holding-usd nav-icon"></i>
+                  <p>Ver Historias</p>
+                </a>
+              </li>
+
+                  
+            <li class="nav-item">
+                <a href="{{route('controles.index')}}" class="nav-link">
+                  <i class="fas fa-hand-holding-usd nav-icon"></i>
+                  <p>Ver Controles</p>
+                </a>
+              </li>
               
             </ul>
           </li>

@@ -268,6 +268,10 @@ Route::get('consultas-delete-{id}', 'ConsultasController@delete')->middleware('a
 Route::get('cobrconsultasar-edit-{id}', 'ConsultasController@edit')->name('ingresos.edit');
 Route::post('consultas/edit', 'ConsultasController@update');
 Route::get('consultas-ticket-{id}', 'ConsultasController@ticket');
+Route::get('historias', 'ConsultasController@historias')->name('historias.index');
+Route::get('historias-ver-{id}', 'ConsultasController@ver_historias');
+Route::get('controles', 'ConsultasController@controles')->name('controles.index');
+Route::get('controles-ver-{id}', 'ConsultasController@ver_controles');
 Route::get('historia-crear-{id}', 'ConsultasController@historia_crear');
 Route::get('control-crear-{id}', 'ConsultasController@control_crear');
 Route::post('historia/guardar', 'ConsultasController@guardar_historia');

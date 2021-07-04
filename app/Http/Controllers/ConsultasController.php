@@ -333,5 +333,115 @@ class ConsultasController extends Controller
         ->with('success','Eliminado Exitosamente!');
         //
     }
+
+
+    public function historias(Request $request)
+    {
+
+
+        if($request->id_paciente != null){
+         // $historias = Historias::where('id_paciente','=',$request->id_paciente)->get();
+
+          $historias = DB::table('historia as a')
+          ->select('a.id_paciente','a.id','a.created_at','b.nombres','b.apellidos','b.dni')
+          ->join('pacientes as b','b.id','a.id_paciente')
+          ->where('a.id_paciente', '=',$request->id_paciente)
+          ->get(); 
+  
+        } else {
+          //$historias = Historias::where('id_paciente','=',77777777777)->get();
+
+          $historias = DB::table('historia as a')
+          ->select('a.id_paciente','a.id','a.created_at','b.nombres','b.apellidos','b.dni')
+          ->join('pacientes as b','b.id','a.id_paciente')
+          ->where('a.id_paciente', '=',77777777777)
+          ->get(); 
+        }
+
+        if(!is_null($request->filtro)){
+        $pacientes =Pacientes::where("estatus", '=', 1)->where('apellidos','like','%'.$request->filtro.'%')->orderby('apellidos','ASC')->get();
+        }else{
+        $pacientes =Pacientes::where("estatus", '=', 9)->orderby('apellidos','ASC')->get();
+        }
+
+
+
+
+        return view('consultas.historias', compact('pacientes','historias'));
+
+
+    }
+
+    public function controles(Request $request)
+    {
+
+
+        if($request->id_paciente != null){
+         // $historias = Historias::where('id_paciente','=',$request->id_paciente)->get();
+
+          $controles = DB::table('control as a')
+          ->select('a.id_paciente','a.id','a.created_at','b.nombres','b.apellidos','b.dni')
+          ->join('pacientes as b','b.id','a.id_paciente')
+          ->where('a.id_paciente', '=',$request->id_paciente)
+          ->get(); 
+  
+        } else {
+          //$historias = Historias::where('id_paciente','=',77777777777)->get();
+
+          $controles = DB::table('control as a')
+          ->select('a.id_paciente','a.id','a.created_at','b.nombres','b.apellidos','b.dni')
+          ->join('pacientes as b','b.id','a.id_paciente')
+          ->where('a.id_paciente', '=',77777777777)
+          ->get(); 
+        }
+
+        if(!is_null($request->filtro)){
+        $pacientes =Pacientes::where("estatus", '=', 1)->where('apellidos','like','%'.$request->filtro.'%')->orderby('apellidos','ASC')->get();
+        }else{
+        $pacientes =Pacientes::where("estatus", '=', 9)->orderby('apellidos','ASC')->get();
+        }
+
+
+
+
+        return view('consultas.controles', compact('pacientes','controles'));
+
+
+    }
+
+    public function ver_historias($id)
+    {
+
+
+         $hist = Historia::where('id','=',$id)->first();
+
+         $historias_base = HistoriaBase::where('id_paciente','=',$hist->id_paciente)->first();
+
+         $paciente = Pacientes::where('id','=',$id)->first();
+
+        return view('consultas.historias_ver', compact('hist','historias_base','paciente'));
+
+
+    }
+
+    public function ver_controles($id)
+    {
+
+
+         $cont = Control::where('id','=',$id)->first();
+
+         $ant = AntecedentesObstetricos::where('id_paciente','=',$cont->id_paciente)->first();
+
+         $paciente = Pacientes::where('id','=',$id)->first();
+
+        return view('consultas.controles_ver', compact('ant','cont','paciente'));
+
+
+    }
+
+
+
+
+
 }
 
