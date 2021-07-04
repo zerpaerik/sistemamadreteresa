@@ -251,6 +251,122 @@ class ComisionesPagadasController extends Controller
         //
     }
 
+
+    public function reporte_pagadas(Request $request){
+
+        $pagadas = DB::table('comisiones as a')
+        ->select('a.id', 'a.estatus','a.recibo', 'a.id_atencion','a.fecha_pago','a.created_at','a.detalle','a.usuario', 'a.porcentaje', 'a.monto', 'a.estatus', 'at.id_paciente', 'at.tipo_atencion', 'at.sede', 'at.tipo_origen', 'at.id_origen', 'at.monto as total', 'b.nombres', 'b.apellidos', 'c.name as nameo', 'c.lastname as lasto', 'd.name as nameu', 'd.lastname as lastu',DB::raw('SUM(a.monto) as totalrecibo'), DB::raw('COUNT(DISTINCT a.recibo) as total'))
+        ->join('atenciones as at', 'at.id', 'a.id_atencion')
+        ->join('pacientes as b', 'b.id', 'at.id_paciente')
+        ->join('users as c', 'c.id', 'at.id_origen')
+        ->join('users as d', 'd.id', 'a.usuario')
+        ->where('a.estatus', '=', 2)
+        ->where('at.tipo_origen', '=', 1)
+        ->where('at.sede', '=', $request->session()->get('sede'))
+       // ->where('at.id_origen','=',$request->origen)
+        ->whereBetween('a.created_at', [$request->f1, $request->f2])
+        ->groupBy('a.recibo')      
+        ->get();
+
+        $total_sobres = DB::table('comisiones as a')
+        ->select('a.id', 'a.estatus','a.recibo', 'a.id_atencion','a.fecha_pago','a.created_at','a.detalle','a.usuario', 'a.porcentaje', 'a.monto', 'a.estatus', 'at.id_paciente', 'at.tipo_atencion', 'at.sede', 'at.tipo_origen', 'at.id_origen', 'at.monto as total', 'b.nombres', 'b.apellidos', 'c.name as nameo', 'c.lastname as lasto', 'd.name as nameu', 'd.lastname as lastu',DB::raw('SUM(a.monto) as totalrecibo'), DB::raw('COUNT(DISTINCT a.recibo) as total'))
+        ->join('atenciones as at', 'at.id', 'a.id_atencion')
+        ->join('pacientes as b', 'b.id', 'at.id_paciente')
+        ->join('users as c', 'c.id', 'at.id_origen')
+        ->join('users as d', 'd.id', 'a.usuario')
+        ->where('a.estatus', '=', 2)
+        ->where('at.tipo_origen', '=', 1)
+        ->where('at.sede', '=', $request->session()->get('sede'))
+       // ->where('at.id_origen','=',$request->origen)
+        ->whereBetween('a.created_at', [$request->f1, $request->f2])
+        ->groupBy('a.recibo')      
+        ->first();
+    
+   
+   
+      /*$aten = Comisiones::where('id_sede','=', $request->session()->get('sede'))
+                                      ->whereBetween('fecha_pago', [date('Y-m-d', strtotime($request->f1)), date('Y-m-d', strtotime($request->f2))])
+                                        ->where('origen','=',1)
+                                        ->select(DB::raw('SUM(monto) as monto'))
+                                       ->first();
+           if ($aten->monto == 0) {
+           }*/
+   
+       /* $sobres = Atenciones::where('id_sede','=', $request->session()->get('sede'))
+                                       ->whereBetween('fecha_pago_comision', [date('Y-m-d 00:00:00', strtotime($request->f1)), date('Y-m-d 23:59:59', strtotime($request->f2))])
+                                        ->where('origen','=',1)
+                                       ->select(DB::raw('COUNT(DISTINCT recibo) as total'))
+                                       ->first();
+           if ($sobres->total == 0) {
+           }*/
+   
+           $view = \View::make('compagadas.reporte')->with('pagadas', $pagadas)->with('sobres', $total_sobres);
+           $pdf = \App::make('dompdf.wrapper');
+           $pdf->loadHTML($view);
+           return $pdf->stream('comisiones_pagadas');
+   
+     }
+
+     public function reporte_pagadas1(Request $request){
+
+        $pagadas = DB::table('comisiones as a')
+        ->select('a.id', 'a.estatus','a.recibo', 'a.id_atencion','a.fecha_pago','a.created_at','a.detalle','a.usuario', 'a.porcentaje', 'a.monto', 'a.estatus', 'at.id_paciente', 'at.tipo_atencion', 'at.sede', 'at.tipo_origen', 'at.id_origen', 'at.monto as total', 'b.nombres', 'b.apellidos', 'c.name as nameo', 'c.lastname as lasto', 'd.name as nameu', 'd.lastname as lastu',DB::raw('SUM(a.monto) as totalrecibo'), DB::raw('COUNT(DISTINCT a.recibo) as total'))
+        ->join('atenciones as at', 'at.id', 'a.id_atencion')
+        ->join('pacientes as b', 'b.id', 'at.id_paciente')
+        ->join('users as c', 'c.id', 'at.id_origen')
+        ->join('users as d', 'd.id', 'a.usuario')
+        ->where('a.estatus', '=', 2)
+        ->where('at.tipo_origen', '=', 2)
+        ->where('at.sede', '=', $request->session()->get('sede'))
+       // ->where('at.id_origen','=',$request->origen)
+        ->whereBetween('a.created_at', [$request->f1, $request->f2])
+        ->groupBy('a.recibo')      
+        ->get();
+
+        $total_sobres = DB::table('comisiones as a')
+        ->select('a.id', 'a.estatus','a.recibo', 'a.id_atencion','a.fecha_pago','a.created_at','a.detalle','a.usuario', 'a.porcentaje', 'a.monto', 'a.estatus', 'at.id_paciente', 'at.tipo_atencion', 'at.sede', 'at.tipo_origen', 'at.id_origen', 'at.monto as total', 'b.nombres', 'b.apellidos', 'c.name as nameo', 'c.lastname as lasto', 'd.name as nameu', 'd.lastname as lastu',DB::raw('SUM(a.monto) as totalrecibo'), DB::raw('COUNT(DISTINCT a.recibo) as total'))
+        ->join('atenciones as at', 'at.id', 'a.id_atencion')
+        ->join('pacientes as b', 'b.id', 'at.id_paciente')
+        ->join('users as c', 'c.id', 'at.id_origen')
+        ->join('users as d', 'd.id', 'a.usuario')
+        ->where('a.estatus', '=', 2)
+        ->where('at.tipo_origen', '=', 1)
+        ->where('at.sede', '=', $request->session()->get('sede'))
+       // ->where('at.id_origen','=',$request->origen)
+        ->whereBetween('a.created_at', [$request->f1, $request->f2])
+        ->groupBy('a.recibo')      
+        ->first();
+    
+   
+   
+      /*$aten = Comisiones::where('id_sede','=', $request->session()->get('sede'))
+                                      ->whereBetween('fecha_pago', [date('Y-m-d', strtotime($request->f1)), date('Y-m-d', strtotime($request->f2))])
+                                        ->where('origen','=',1)
+                                        ->select(DB::raw('SUM(monto) as monto'))
+                                       ->first();
+           if ($aten->monto == 0) {
+           }*/
+   
+       /* $sobres = Atenciones::where('id_sede','=', $request->session()->get('sede'))
+                                       ->whereBetween('fecha_pago_comision', [date('Y-m-d 00:00:00', strtotime($request->f1)), date('Y-m-d 23:59:59', strtotime($request->f2))])
+                                        ->where('origen','=',1)
+                                       ->select(DB::raw('COUNT(DISTINCT recibo) as total'))
+                                       ->first();
+           if ($sobres->total == 0) {
+           }*/
+   
+           $view = \View::make('compagadas.reporte1')->with('pagadas', $pagadas)->with('sobres', $total_sobres);
+           $pdf = \App::make('dompdf.wrapper');
+           $pdf->loadHTML($view);
+           return $pdf->stream('comisiones_pagadas');
+   
+     }
+
+
+
+
+
+
     static function unique_multidim_array($array, $key) {
         $temp_array = array();
         $i = 0;

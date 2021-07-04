@@ -143,6 +143,10 @@
                     @endif
                     <td>{{substr($an->lastu,0,5)}} {{substr($an->nameu,0,5)}}</td>
                     <td>
+                    <a class="btn btn-success btn-sm" target="_blank" href="atenciones-ticket-{{$an->id_atec}}">
+                              <i class="fas fa-print">
+                              </i>
+                          </a>
                     @if(Auth::user()->rol == 1)
 
 
@@ -197,14 +201,7 @@
                           </a>
                           @endif
 
-                          <a class="btn btn-default btn-sm">
-                              <i class="fas fa-eye">
-                              </i>
-                          </a>
-                          <a class="btn btn-success btn-sm">
-                              <i class="fas fa-print">
-                              </i>
-                          </a>
+                        
 
                         
                           @endif</td>

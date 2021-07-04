@@ -193,6 +193,7 @@ Route::get('atenciones', 'AtencionesController@index')->name('atenciones.index')
 Route::get('atenciones-create', 'AtencionesController@create')->name('atenciones.create')->middleware('auth');
 Route::post('atenciones/create', 'AtencionesController@store')->middleware('auth');
 Route::get('atenciones-delete-{id}', 'AtencionesController@delete')->middleware('auth');
+Route::get('atenciones-ticket-{id}', 'AtencionesController@ticket')->middleware('auth');
 Route::get('atenciones-edits-{id}', 'AtencionesController@edits')->name('atenciones.edits');
 Route::get('atenciones-editl-{id}', 'AtencionesController@editl')->name('atenciones.editl');
 Route::get('atenciones-editp-{id}', 'AtencionesController@editp')->name('atenciones.editp');
@@ -255,9 +256,13 @@ Route::get('comisiones-pagar-{id}', 'ComisionesPagarController@pagar')->middlewa
 Route::post('pagarmultiple', 'ComisionesPagarController@pagarmultiple');
 
 
+
 Route::get('comisionesp', 'ComisionesPagadasController@index')->name('comisionesp.index');
 Route::get('comisionesp1', 'ComisionesPagadasController@index1')->name('comisionesp.index1');
 Route::get('comisionep-ticket-{id}', 'ComisionesPagadasController@ticket')->middleware('auth');
+Route::get('reporte/pagadas', 'ComisionesPagadasController@reporte_pagadas');
+Route::get('reporte/pagadas1', 'ComisionesPagadasController@reporte_pagadas1');
+
 
 
 

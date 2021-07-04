@@ -565,6 +565,16 @@ class ComisionesPagarController extends Controller
 
       $com = Comisiones::where('id','=',$id)->first();
 
+      $last = Comisiones::select('recibo')->orderby('recibo', 'DESC')->first();
+      if (!empty($last->recibo)) {
+        $last = explode("-", $last->recibo);
+        $last = array_pop($last);
+      } else {
+        $last = 0;
+      }
+
+      $recibo = $last + 1;
+
       $a = Atenciones::where('id','=',$com->id_atencion)->first();
       $a->pagado =2;
       $resa = $a->update();
@@ -572,6 +582,7 @@ class ComisionesPagarController extends Controller
 
       $p = Comisiones::find($id);
       $p->estatus =2;
+      $p->recibo = $recibo;
       $res = $p->update();
     
       return back();

@@ -99,6 +99,18 @@
                   </form>
               
               </div>
+              @if($f1 != null)
+              <div class="row">
+              <form action="reporte/pagadas1" method="get">
+
+                <input type="hidden" value="{{$f1}}" name="f1">
+                  <input type="hidden" value="{{$f2}}" name="f2">
+                  
+                  <button style="margin-left:15px;" type="submit" class="btn btn-primary">Generar Reporte</button>
+              </form>
+
+              </div>
+              @endif
               <!-- /.card-header -->
               <div class="card-body">
                 <table id="example1" class="table table-bordered table-striped">
