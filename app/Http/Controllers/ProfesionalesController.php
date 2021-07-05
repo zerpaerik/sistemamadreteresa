@@ -60,14 +60,7 @@ class ProfesionalesController extends Controller
     {
 
 
-        $validator = \Validator::make($request->all(), [
-            'cmp' => 'required|unique:users',
-                
-              ]);
-              if($validator->fails()) {
-                $request->session()->flash('error', 'El Profesional ya está REGISTRADO - CMP deben se único.');
-                return redirect()->action('ProfesionalesController@create', ['errors' => $validator->errors()]);
-              } else {
+      
         $personal = new User();
         $personal->name =$request->nombres;
         $personal->lastname =$request->apellidos;
@@ -79,7 +72,7 @@ class ProfesionalesController extends Controller
         $personal->save();
 
         return redirect()->action('ProfesionalesController@index', ["created" => true, "personal" => User::all()]);
-    }
+    
     }
 
     /**
