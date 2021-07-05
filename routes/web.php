@@ -342,6 +342,7 @@ Route::get('siniestros-delete-{id}', 'SiniestrosController@delete')->middleware(
 Route::get('siniestros-edit-{id}', 'SiniestrosController@edit')->name('siniestros.edit');
 Route::post('siniestros/edit', 'SiniestrosController@update');
 
+Route::get('reporte_ingresos', 'ReportesController@ingresos')->name('reporte_ingresos.index');
 Route::get('consolidado', 'ReportesController@consolidado')->name('consolidado.index');
 Route::get('detallado', 'ReportesController@detallado')->name('detallado.index');
 Route::get('general', 'ReportesController@general')->name('general.index');

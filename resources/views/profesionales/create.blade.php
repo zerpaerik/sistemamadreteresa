@@ -94,31 +94,22 @@
                     <label for="exampleInputEmail1">Apellidos</label>
                     <input type="text" onkeyup="javascript:this.value=this.value.toUpperCase();" class="form-control" id="nombre" name="apellidos" placeholder="Apellidos">
                   </div>
-
-                  <div class="col-md-4">
-                    <label for="exampleInputEmail1">Email</label>
-                    <input type="text" class="form-control" id="nombre" name="email" placeholder="email">
-                  </div>
-                 
-                  </div>
-                  <div class="row">
-                  <div class="col-md-4">
-                    <label for="exampleInputEmail1">Teléfono</label>
-                    <input type="text" onkeyup="javascript:this.value=this.value.toUpperCase();" class="form-control" id="telefono" name="telefono" placeholder="Teléfono">
-                  </div>
                   <div class="col-md-4">
                     <label for="exampleInputEmail1">CMP</label>
                     <input type="text" onkeyup="javascript:this.value=this.value.toUpperCase();" class="form-control" id="nombre" name="cmp" placeholder="CMP">
                   </div>
+
                  
-                  <div class="col-md-4">
-                    <label for="exampleInputEmail1">Nacimiento</label>
-                    <input type="date" class="form-control" id="nombre" name="nacimiento" placeholder="Telefono de contacto">
-                  </div>
-                 
-                  
                   </div>
                   <div class="row">
+                 
+                
+                  </div>
+                  <div class="row">
+                  <div class="col-md-4">
+                    <label for="exampleInputEmail1">Teléfono</label>
+                    <input type="text" onkeyup="javascript:this.value=this.value.toUpperCase();" class="form-control" id="nombre" name="telefono" placeholder="Teléfono">
+                  </div>
                   <div class="col-md-4">
                     <label for="exampleInputEmail1">Especialidad</label>
                     <select class="form-control" name="especialidad">
@@ -140,26 +131,11 @@
                         </select>                    
                         </div>
 
-                        <div class="col-md-4">
-                    <label for="exampleInputEmail1">N° Cuenta</label>
-                    <input type="text" class="form-control" id="nombre" name="cuenta" placeholder="Cuenta de Banco">
-                  </div>
-                 
+                      
                   
                  
                   </div>
-                  <div class="row">
-
-
-                  <div class="col-md-4">
-                    <label for="exampleInputEmail1">Sesión</label>
-                    <select class="form-control" name="ses" id="el2">
-                    <option value="0">NO</option>
-                    <option value="1">SI</option>
                  
-                        </select>
-                  </div>
-                  </div>
 
 
 

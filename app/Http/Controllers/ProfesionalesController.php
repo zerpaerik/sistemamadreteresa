@@ -62,25 +62,19 @@ class ProfesionalesController extends Controller
 
         $validator = \Validator::make($request->all(), [
             'cmp' => 'required|unique:users',
-            'email' => 'required|unique:users'
                 
               ]);
               if($validator->fails()) {
-                $request->session()->flash('error', 'El Profesional ya está REGISTRADO - DNI y EMAIL deben ser únicos.');
+                $request->session()->flash('error', 'El Profesional ya está REGISTRADO - CMP deben se único.');
                 return redirect()->action('ProfesionalesController@create', ['errors' => $validator->errors()]);
               } else {
         $personal = new User();
         $personal->name =$request->nombres;
         $personal->lastname =$request->apellidos;
         $personal->cmp =$request->cmp;
-        $personal->email =$request->email;
         $personal->telefono =$request->telefono;
         $personal->centro =$request->centro;
-        $personal->cuenta =$request->cuenta;
         $personal->especialidad =$request->especialidad;
-        $personal->nacimiento =$request->nacimiento;
-        $personal->rol =$request->rol;
-        $personal->password =Hash::make($request['password']);
         $personal->tipo =2;
         $personal->save();
 
@@ -137,12 +131,9 @@ class ProfesionalesController extends Controller
       $personal->name =$request->nombres;
       $personal->lastname =$request->apellidos;
       $personal->cmp =$request->cmp;
-      $personal->email =$request->email;
       $personal->telefono =$request->telefono;
       $personal->centro =$request->centro;
-      $personal->cuenta =$request->cuenta;
       $personal->especialidad =$request->especialidad;
-      $personal->nacimiento =$request->nacimiento;
       $res = $personal->update();
 
     
