@@ -26,7 +26,7 @@ class IngresosController extends Controller
 
             $f1 = $request->inicio;
             $ingresos = DB::table('creditos as a')
-        ->select('a.id', 'a.origen', 'a.descripcion', 'a.monto', 'a.nombre', 'a.usuario', 'a.created_at', 'b.name')
+        ->select('a.id', 'a.origen', 'a.descripcion', 'a.monto',  'a.usuario', 'a.created_at', 'b.name')
         ->join('users as b', 'b.id', 'a.usuario')
         ->where('a.origen', '=', 'INGRESOS')
         ->whereDate('a.created_at', date('Y-m-d 00:00:00', strtotime($f1)))

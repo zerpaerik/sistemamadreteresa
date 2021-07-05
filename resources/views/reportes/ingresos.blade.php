@@ -31,7 +31,6 @@
 <link rel="stylesheet" href="../../plugins/datatables-responsive/css/responsive.bootstrap4.min.css">
 <link rel="stylesheet" href="http://cdn.bootcss.com/toastr.js/latest/css/toastr.min.css"> 
 
-
 </head>
 <body class="hold-transition sidebar-mini layout-fixed">
 <div class="wrapper">
@@ -58,12 +57,12 @@
       <div class="container-fluid">
         <div class="row mb-2">
           <div class="col-sm-6">
-            <h1 class="m-0 text-dark">Atenciones</h1>
+            <h1 class="m-0 text-dark">Reporte de Ingresos</h1>
           </div><!-- /.col -->
           <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">
-              <li class="breadcrumb-item"><a href="#">Home</a></li>
-              <li class="breadcrumb-item active">Atenciones</li>
+              <li class="breadcrumb-item"><a href="#">Reporte</a></li>
+              <li class="breadcrumb-item active">Ingresos</li>
             </ol>
           </div><!-- /.col -->
         </div><!-- /.row -->
@@ -73,55 +72,82 @@
 
     <!-- Main content -->
     <section class="content">
-    <!-- @include('flash-message') -->
+    @include('flash-message')
       <div class="container-fluid">
       <div class="card">
               <div class="card-header">
-                <a class="btn btn-primary btn-sm" href="{{route('atenciones.create')}}">
-                              <i class="fas fa-folder">
-                              </i>
-                              Agregar
-                          </a>
-                          <form method="get" action="atenciones">					
-                  <label for="exampleInputEmail1">Filtros de Busqueda</label>
+         
+
+
+                  <form method="get" action="reporte_ingresos">					
 
                     <div class="row">
-                  <div class="col-md-3">
-                    <label for="exampleInputEmail1">Fecha </label>
-                    <input type="date" class="form-control" value="{{$f1}}" name="inicio" placeholder="Buscar por dni" onsubmit="datapac()">
+
+                    <div class="col-md-3">
+                    <label for="exampleInputEmail1">Fecha Inicio</label>
+                    <input type="date" class="form-control" value="{{$f1}}" name="inicio">
                   </div>
 
-               
+                  <div class="col-md-3">
+                    <label for="exampleInputEmail1">Fecha Fin</label>
+                    <input type="date" class="form-control" value="{{$f2}}" name="fin">
+                  </div>
                   
-                
-                 
-                  <div class="col-md-2" style="margin-top: 30px;">
+
+                  <div class="col-md-2" style="margin-top: 1px;">
                   <button type="submit" class="btn btn-primary">Buscar</button>
 
                   </div>
                   </form>
+                  <div class="row" style="margin-left: 5px;">
+
+                    <div class="col-md-2">
+                    <label for="exampleInputEmail1">Total</label>
+                    <input type="text" disabled class="form-control" value="{{$total->monto}}">
+                  </div>
+
+                  <div class="col-md-2">
+                    <label for="exampleInputEmail1">Efectivo</label>
+                    <input type="text" disabled class="form-control" value="{{$efec->monto}}" >
+                  </div>
+                  <div class="col-md-2">
+                    <label for="exampleInputEmail1">Tarjeta</label>
+                    <input type="text" disabled class="form-control" value="{{$tarj->monto}}" >
+                  </div>
+                  <div class="col-md-2">
+                    <label for="exampleInputEmail1">Depósito</label>
+                    <input type="text" disabled class="form-control" value="{{$dep->monto}}">
+                  </div>
+                  <div class="col-md-2">
+                    <label for="exampleInputEmail1">Yape</label>
+                    <input type="text" disabled class="form-control" value="{{$yap->monto}}">
+                  </div>
+                  
+
+                
+
+                  </div>
+
+              
               </div>
               <!-- /.card-header -->
               <div class="card-body">
-                <table id="" class="table table-bordered table-striped">
+                <table id="example1" class="table table-bordered table-striped">
                   <thead>
                   <tr>
                     <th>Fecha</th>
                     <th>Paciente</th>
                     <th>Origen</th>
                     <th>Detalle</th>
-                    <th>Mto</th>
-                    <th>Abo</th>
-                    <th>Tp</th>
-                    <th>PG</th>
-                    <th>AT</th>
+                    <th>Monto</th>
+                    <th>Abono</th>
+                    <th>TipoPago</th>
                     <th>RP</th>
-                    <th>Acciones</th>
                   </tr>
                   </thead>
                   <tbody>
 
-
+                  
                   @foreach($atenciones as $an)
                   <tr>
                     <td>{{date('d-M-y H:i', strtotime($an->created_at))}}</td>
@@ -129,89 +155,12 @@
                     <td>{{$an->lasto}} {{$an->nameo}}</td>
                     <td>{{$an->detalle}}</td>
                     <td>{{$an->monto}}</td>
-                    <td>{{$an->abono}}</td>
+                    <td>{{$an->ingreso}}</td>
                     <td >{{$an->tipo_pago}}</td>
-                    @if($an->pagado == 1)
-                    <td><span class="badge bg-danger">NO</span></td>
-                    @else
-                    <td><span class="badge bg-success">SI</span></td>
-                    @endif
-                    @if($an->atendido == 1)
-                    <td><span class="badge bg-danger">NO</span></td>
-                    @else
-                    <td><span class="badge bg-success">SI</span></td>
-                    @endif
+                 
                     <td>{{substr($an->lastu,0,5)}} {{substr($an->nameu,0,5)}}</td>
-                    <td>
-
-                    @if($an->estatus == 1)
-                    <a class="btn btn-success btn-sm" target="_blank" href="atenciones-ticket-{{$an->id_atec}}">
-                              <i class="fas fa-print">
-                              </i>
-                          </a>
-                    @if(Auth::user()->rol == 1)
-
-
-                         @if($an->tipo_atencion == 1)
-
-                          <a class="btn btn-info btn-sm" href="atenciones-edits-{{$an->id}}">
-                              <i class="fas fa-pencil-alt">
-                              </i>
-                          </a>
-
-                        @elseif($an->tipo_atencion == 2)
-                        
-                        <a class="btn btn-info btn-sm" href="atenciones-edits-{{$an->id}}">
-                              <i class="fas fa-pencil-alt">
-                              </i>
-                          </a>
-                        @elseif($an->tipo_atencion == 3)
-                        
-                        <a class="btn btn-info btn-sm" href="atenciones-edits-{{$an->id}}">
-                              <i class="fas fa-pencil-alt">
-                              </i>
-                          </a>
-                        @elseif($an->tipo_atencion == 4)
-                        
-                        <a class="btn btn-info btn-sm" href="atenciones-editl-{{$an->id}}">
-                              <i class="fas fa-pencil-alt">
-                              </i>
-                          </a>
-                          @elseif($an->tipo_atencion == 5)
-                        
-                        <a class="btn btn-info btn-sm" href="atenciones-editc-{{$an->id}}">
-                              <i class="fas fa-pencil-alt">
-                              </i>
-                          </a>
-                          @elseif($an->tipo_atencion == 6)
-                        
-                        <a class="btn btn-info btn-sm" href="atenciones-editm-{{$an->id}}">
-                              <i class="fas fa-pencil-alt">
-                              </i>
-                          </a>
-                        @else
-                        
-                        <a class="btn btn-info btn-sm" href="atenciones-editp-{{$an->id}}">
-                              <i class="fas fa-pencil-alt">
-                              </i>
-                          </a>
-                        @endif
-                          @if($an->atendido == 1)
-                          <a class="btn btn-danger btn-sm" href="atenciones-delete-{{$an->id}}" onclick="return confirm('¿Desea Eliminar este registro?')">
-                              <i class="fas fa-trash">
-                              </i>
-                          </a>
-                          @endif
-
-                        
-
-                        
-                          @endif
-                          @else
-                          <p>Eliminado Por: {{$an->eliminado_por}}</p>
-
-                          @endif
-                          </td>
+                
+                  
                   </tr>
                   @endforeach
                  
@@ -222,13 +171,93 @@
                     <th>Paciente</th>
                     <th>Origen</th>
                     <th>Detalle</th>
-                    <th>Mto</th>
-                    <th>Abo</th>
-                    <th>Tp</th>
-                    <th>PG</th>
-                    <th>AT</th>
+                    <th>Monto</th>
+                    <th>Abono</th>
+                    <th>TipoPago</th>
                     <th>RP</th>
-                    <th>Acciones</th>
+                  </tr>
+                 
+                  </tfoot>
+
+                </table>
+                <table id="example1" class="table table-bordered table-striped">
+                  <thead>
+                  <tr>
+                    <th>Id</th>
+                    <th>Fecha</th>
+                    <th>Paciente</th>
+                    <th>Origen</th>
+                    <th>Monto Abonado</th>
+                    <th>TP</th>
+                    <th>Sede Origen</th>
+                    <th>Sede Cobro</th>
+                    <th>RP</th>
+                  </tr>
+                  </thead>
+                  <tbody>
+
+                  @foreach($historial as $an)
+                  <tr>
+                    <td>{{$an->id}}</td>
+                    <td>{{$an->created_at}}</td>
+                    <td>{{$an->nombres}} {{$an->apellidos}}</td>
+                    <td>{{$an->nameo}} {{$an->lasto}}</td>
+                    <td>{{$an->monto}}</td>
+                    <td>{{$an->tipopago}}</td>
+                    <td>{{$an->sedename}}</td>
+                    <td>{{$an->sedec}}</td>
+                    <td>{{$an->nameu}} {{$an->lastu}}</td>
+
+                  </tr>
+                  @endforeach
+                 
+                  </tbody>
+                  <tfoot>
+                  <tr>
+                  <th>Id</th>
+                    <th>Fecha</th>
+                    <th>Paciente</th>
+                    <th>Origen</th>
+                    <th>Monto Abonado</th>
+                    <th>TP</th>
+                    <th>Sede Origen</th>
+                    <th>Sede Cobro</th>
+                    <th>RP</th>
+                  </tr>
+                  </tfoot>
+                </table>
+                <br>
+                <table id="example1" class="table table-bordered table-striped">
+                  <thead>
+                  <tr>
+                    <th>Origen</th>
+                    <th>Descripción</th>
+                    <th>Monto</th>
+                    <th>Registrado Por:</th>
+                    <th>Fecha</th>
+                  </tr>
+                  </thead>
+                  <tbody>
+
+                  @foreach($ingresos as $client)
+                  <tr>
+                    <td>{{$client->origen}}</td>
+                    <td>{{$client->descripcion}}</td>
+                    <td>{{$client->monto}}</td>
+                    <td>{{$client->name}}</td>
+                    <td>{{$client->created_at}}</td>
+                    
+                  </tr>
+                  @endforeach
+                 
+                  </tbody>
+                  <tfoot>
+                  <tr>
+                  <th>Origen</th>
+                    <th>Descripción</th>
+                    <th>Monto</th>
+                    <th>Registrado Por:</th>
+                    <th>Fecha</th>
                   </tr>
                   </tfoot>
                 </table>
@@ -306,53 +335,6 @@
 <script src="../../dist/js/adminlte.min.js"></script>
 <!-- AdminLTE for demo purposes -->
 <script src="../../dist/js/demo.js"></script>
-
-<script>
-  @if(Session::has('message'))
-  toastr.options =
-  {
-  	"closeButton" : true,
-  	"progressBar" : true
-  }
-  		toastr.success("{{ session('message') }}");
-  @endif
-
-  @if(Session::has('error'))
-  toastr.options =
-  {
-  	"closeButton" : true,
-  	"progressBar" : true
-  }
-  		toastr.error("{{ session('error') }}");
-  @endif
-
-  @if(Session::has('info'))
-  toastr.options =
-  {
-  	"closeButton" : true,
-  	"progressBar" : true
-  }
-  		toastr.info("{{ session('info') }}");
-  @endif
-
-  @if(Session::has('success'))
-  toastr.options =
-  {
-  	"closeButton" : true,
-  	"progressBar" : true
-  }
-  		toastr.info("{{ session('success') }}");
-  @endif
-
-  @if(Session::has('warning'))
-  toastr.options =
-  {
-  	"closeButton" : true,
-  	"progressBar" : true
-  }
-  		toastr.warning("{{ session('warning') }}");
-  @endif
-</script>
 <!-- page script -->
 <script>
   $(function () {

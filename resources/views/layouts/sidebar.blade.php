@@ -325,6 +325,12 @@
               </p>
             </a>
             <ul class="nav nav-treeview">
+            <li class="nav-item">
+                <a href="{{route('reporte_ingresos.index')}}" class="nav-link">
+                  <i class="fas fa-hand-holding-usd nav-icon"></i>
+                  <p>Ingresos</p>
+                </a>
+              </li>
 
             <li class="nav-item">
                 <a href="{{route('cierre.index')}}" class="nav-link">
@@ -726,6 +732,13 @@
               </p>
             </a>
             <ul class="nav nav-treeview">
+
+            <li class="nav-item">
+                <a href="{{route('reporte_ingresos.index')}}" class="nav-link">
+                  <i class="fas fa-hand-holding-usd nav-icon"></i>
+                  <p>Ingresos</p>
+                </a>
+              </li>
 
             <li class="nav-item">
                 <a href="{{route('cierre.index')}}" class="nav-link">
