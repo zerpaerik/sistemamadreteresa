@@ -1423,7 +1423,7 @@ return view('atenciones.particular');
       $rsf->save();
 
       $creditos = Creditos::where('id_atencion','=',$request->id)->first();
-      $creditos->monto = $request->monto;
+      $creditos->monto = $request->abono;
       $creditos->tipopago =$request->tipo_pago;
       $creditos->save();
 
@@ -1499,7 +1499,7 @@ return view('atenciones.particular');
       $rsf->save();
 
       $creditos = Creditos::where('id_atencion','=',$request->id)->first();
-      $creditos->monto = $request->monto;
+      $creditos->monto = $request->abono;
       $creditos->tipopago =$request->tipo_pago;
       $creditos->save();
 
@@ -1546,7 +1546,7 @@ return view('atenciones.particular');
       $com = Comisiones::where('id_atencion','=',$request->id)->first();
 
       $creditos = Creditos::where('id_atencion','=',$request->id)->first();
-      $creditos->monto = $request->monto;
+      $creditos->monto = $request->abono;
       $creditos->tipopago =$request->tipo_pago;
       $creditos->save();
 
@@ -1595,7 +1595,7 @@ return view('atenciones.particular');
       $res = $p->update();
 
       $creditos = Creditos::where('id_atencion','=',$request->id)->first();
-      $creditos->monto = $request->monto;
+      $creditos->monto = $request->abono;
       $creditos->tipopago =$request->tipo_pago;
       $creditos->save();
 
