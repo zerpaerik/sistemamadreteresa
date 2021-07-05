@@ -463,13 +463,27 @@ class AtencionesController extends Controller
       ->orderBy('id','desc')
       ->first(); 
 
+
+      $total = Atenciones::where('id_atec', $id)
+         ->select(DB::raw('SUM(monto) as monto'))
+         ->first();
+      
+         $abono = Atenciones::where('id_atec', $id)
+         ->select(DB::raw('SUM(abono) as monto'))
+         ->first();
+
+       
+         $resta = Atenciones::where('id_atec', $id)
+         ->select(DB::raw('SUM(resta) as monto'))
+         ->first();
+
        
 
 
     
 
 
-        $view = \View::make('atenciones.ticket')->with('ticket', $atenciones)->with('header', $aten);
+        $view = \View::make('atenciones.ticket')->with('ticket', $atenciones)->with('header', $aten)->with('total', $total)->with('abono', $abono)->with('resta', $resta);
         $customPaper = array(0,0,800.00,200.00);
 
         $pdf = \App::make('dompdf.wrapper');

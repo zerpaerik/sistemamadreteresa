@@ -104,7 +104,7 @@
             <td style="font-size: 15px; line-height: 30px;" align="center">{{ $at->detalle}}</td>
             <td style="font-size: 15px; line-height: 30px;" align="center">{{ $at->abono}}</td>
           </tr>
-    @endforeach
+      @endforeach
       </tbody>
     </table>
 
@@ -123,15 +123,15 @@
 
                     <tr>
                       <td align="left" style="font-size: 15px;margin-left:150px;">TOTAL</td>
-                      <td align="right" style="font-size: 15px;margin-left:150px;"></td>
+                      <td align="right" style="font-size: 15px;margin-left:150px;">{{ $total->monto}}<</td>
                     </tr>
 					<tr>
                       <td align="left" style="font-size: 15px;margin-left:150px;">PAGADO</td>
-                      <td align="right" style="font-size: 15px;margin-left:150px;"></td>
+                      <td align="right" style="font-size: 15px;margin-left:150px;">{{ $abono->monto}}</td>
                     </tr>
 					<tr>
                       <td align="left" style="font-size: 15px;margin-left:150px;">RESTA</td>
-                      <td align="right" style="font-size: 15px;margin-left:150px;"></td>
+                      <td align="right" style="font-size: 15px;margin-left:150px;">{{ $resta->monto}}</td>
                     </tr>
               </tbody>
             </table>
