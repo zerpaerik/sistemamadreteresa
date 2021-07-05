@@ -140,7 +140,7 @@
       </tbody>
     </table>
 
-	<br><br>
+	<br>
 	<center><p style="font-size: 15px;">COMUNICADO</p></center>
 	<p style="text-align: justify;font-size: 15px;">Estimado cliente se informa, que todo estudio que quede pendiente de su realizaciòn <strong>tiene un plazo no mayor a 30 dias,</strong>contando desde la fecha de su cancelaciòn, <strong>pasado este tiempo quedarà como anulado dicho estudio</strong>. Asi mismo las <strong>consultas de reevaluaciòn tienen un plazo de 15 dias,</strong> pasado este tiempo el paciente deberà cancelar por su consulta.</p>
 
