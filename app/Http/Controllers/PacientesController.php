@@ -19,14 +19,26 @@ class PacientesController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
 
+
+        
+      if(!is_null($request->filtro)){
         $pacientes = DB::table('pacientes as a')
         ->select('a.id','a.nombres','a.dni','a.apellidos','a.fechanac','a.email','a.sexo','a.telefono','a.empresa','a.estatus')
         ->where('a.estatus', '=', 1)
+        ->where('a.apellidos','like','%'.$request->filtro.'%')
+        ->orderby('apellidos','asc')
         ->get(); 
+        }else{
+          $pacientes = DB::table('pacientes as a')
+          ->select('a.id','a.nombres','a.dni','a.apellidos','a.fechanac','a.email','a.sexo','a.telefono','a.empresa','a.estatus')
+          ->where('a.estatus', '=', 999999999)
+          ->get(); 
+          }
 
+       
         return view('pacientes.index', compact('pacientes'));
         //
     }

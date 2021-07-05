@@ -77,6 +77,21 @@
                               </i>
                               Agregar
                           </a>
+                          <form method="get" action="pacientes">					
+                  <label for="exampleInputEmail1">Filtros de Busqueda</label>
+
+                    <div class="row">
+                    <form method="get" action="pacientes">					
+                  <div class="col-md-3">
+                    <label for="exampleInputEmail1">Buscar por Apellidos</label>
+                    <input type="text" class="form-control"  name="filtro">
+                  </div>
+
+                  <div class="col-md-2" style="margin-top: 30px;">
+                  <button type="submit" class="btn btn-primary">Buscar</button>
+                  </div>
+                  </form>
+
               </div>
               <!-- /.card-header -->
               <div class="card-body">
