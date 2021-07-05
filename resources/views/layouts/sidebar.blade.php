@@ -1025,7 +1025,7 @@
     </div>
     @endif
 
-    @if(\Auth::user()->rol == 12)
+    @if(\Auth::user()->rol == 10)
 
 <a href="{{route('home')}}" class="brand-link">
 <img src="logo.jpeg" class="img-circle elevation-2" alt="User Image" width="40">
