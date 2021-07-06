@@ -640,7 +640,7 @@ return view('atenciones.particular');
             $lab = new Atenciones();
             $lab->tipo_origen =  $request->origen;
             if($request->origen == 3){
-              $lab->id_origen = 9999999;
+              $lab->id_origen = 99;
             }else{
               $lab->id_origen = $searchUsuarioID->id;
             }
@@ -689,7 +689,7 @@ return view('atenciones.particular');
                 $lab = new Atenciones();
                 $lab->tipo_origen =  $request->origen;
                 if($request->origen == 3){
-                  $lab->id_origen = 9999999;
+                  $lab->id_origen = 99;
                 }else{
                   $lab->id_origen = $searchUsuarioID->id;
                 }                $lab->id_paciente =  $request->paciente;
@@ -790,7 +790,7 @@ return view('atenciones.particular');
                 $lab = new Atenciones();
                 $lab->tipo_origen =  $request->origen;
                 if($request->origen == 3){
-                  $lab->id_origen = 9999999;
+                  $lab->id_origen = 99;
                 }else{
                   $lab->id_origen = $searchUsuarioID->id;
                 }
@@ -867,7 +867,7 @@ return view('atenciones.particular');
               $lab = new Atenciones();
               $lab->tipo_origen =  $request->origen;
               if($request->origen == 3){
-                $lab->id_origen = 9999999;
+                $lab->id_origen = 99;
               }else{
                 $lab->id_origen = $searchUsuarioID->id;
               }             
@@ -1066,7 +1066,7 @@ return view('atenciones.particular');
                 $lab = new Atenciones();
                 $lab->tipo_origen =  $request->origen;
                 if($request->origen == 3){
-                  $lab->id_origen = 9999999;
+                  $lab->id_origen = 99;
                 }else{
                   $lab->id_origen = $searchUsuarioID->id;
                 }                
@@ -1164,7 +1164,7 @@ return view('atenciones.particular');
                 $lab = new Atenciones();
                 $lab->tipo_origen =  $request->origen;
                 if($request->origen == 3){
-                  $lab->id_origen = 9999999;
+                  $lab->id_origen = 99;
                 }else{
                   $lab->id_origen = $searchUsuarioID->id;
                 }                
