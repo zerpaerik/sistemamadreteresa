@@ -37,7 +37,7 @@
     <br><br>
 
 	<div class="" style="font-size: 35px; text-align: center;margin-bottom: 15px;">
-		<img src="/var/www/html/sistemamadreteresa/public/logo.jpeg"  style="width: 40%;"/>
+		<img src="/var/www/html/sistemamadreteresa/public/logo.jpeg"  style="width: 40%; color: black;"/>
 	</div>
 
     <div  style="font-size: 15px; text-align: center;margin-bottom:-60px;margin-top: -30px;">
@@ -141,11 +141,9 @@
     </table>
 
 	<br>
-	<center><p style="font-size: 13px;">COMUNICADO</p></center>
-	<p style="text-align: justify;font-size: 13px;">Estimado cliente se informa, que todo estudio que quede pendiente de su realizaciòn <strong>tiene un plazo no mayor a 30 dias,</strong>contando desde la fecha de su cancelaciòn, <strong>pasado este tiempo quedarà como anulado dicho estudio</strong>. Asi mismo las <strong>consultas de reevaluaciòn tienen un plazo de 15 dias,</strong> pasado este tiempo el paciente deberà cancelar por su consulta.</p>
   <br><br><br>
 	<div class="" style="font-size: 35px; text-align: center;margin-bottom: 15px;">
-		<img src="/var/www/html/sistemamadreteresa/public/logo.jpeg"  style="width: 40%;"/>
+		<img src="/var/www/html/sistemamadreteresa/public/logo.jpeg"  style="width: 40%; color: black;"/>
 	</div>
 
     <div  style="font-size: 15px; text-align: center;margin-bottom:-60px;margin-top: -30px;">
