@@ -576,7 +576,7 @@ class ReportesController extends Controller
   
           $serv = DB::table('atenciones as a')
           ->select('a.id','a.tipo_origen','a.id_origen','a.informe','a.id_tipo','a.pagado','a.atendido','a.sede','a.usuario','a.created_at','a.estatus','a.id_paciente','a.tipo_atencion','a.monto','a.abono','a.tipo_pago','cre.monto as ingreso','cre.tipopago','b.nombres','b.apellidos','b.dni','c.name as nameo','c.lastname as lasto','d.name as nameu','d.lastname as lastu','s.nombre as detalle')
-          ->join('creditos as cre','cre.id','a.id')
+          ->join('creditos as cre','cre.id_atencion','a.id')
           ->join('pacientes as b','b.id','a.id_paciente')
           ->join('users as c','c.id','a.id_origen')
           ->join('users as d','d.id','a.usuario')
@@ -591,7 +591,7 @@ class ReportesController extends Controller
   
           $eco = DB::table('atenciones as a')
           ->select('a.id','a.tipo_origen','a.id_origen','a.informe','a.id_tipo','a.pagado','a.atendido','a.sede','a.usuario','a.created_at','a.estatus','a.id_paciente','a.tipo_atencion','a.monto','a.abono','a.tipo_pago','cre.monto as ingreso','cre.tipopago','b.nombres','b.apellidos','b.dni','c.name as nameo','c.lastname as lasto','d.name as nameu','d.lastname as lastu','s.nombre as detalle')
-          ->join('creditos as cre','cre.id','a.id')
+          ->join('creditos as cre','cre.id_atencion','a.id')
           ->join('pacientes as b','b.id','a.id_paciente')
           ->join('users as c','c.id','a.id_origen')
           ->join('users as d','d.id','a.usuario')
@@ -605,7 +605,7 @@ class ReportesController extends Controller
   
           $cons = DB::table('atenciones as a')
           ->select('a.id','a.tipo_origen','a.id_origen','a.informe','a.id_tipo','a.pagado','a.atendido','a.sede','a.usuario','a.created_at','a.estatus','a.id_paciente','a.tipo_atencion','a.monto','a.abono','a.tipo_pago','cre.monto as ingreso','cre.tipopago','b.nombres','b.apellidos','b.dni','c.name as nameo','c.lastname as lasto','d.name as nameu','d.lastname as lastu','s.nombre as detalle')
-          ->join('creditos as cre','cre.id','a.id')
+          ->join('creditos as cre','cre.id_atencion','a.id')
           ->join('pacientes as b','b.id','a.id_paciente')
           ->join('users as c','c.id','a.id_origen')
           ->join('users as d','d.id','a.usuario')
@@ -619,7 +619,7 @@ class ReportesController extends Controller
   
           $meto = DB::table('atenciones as a')
           ->select('a.id','a.tipo_origen','a.id_origen','a.informe','a.id_tipo','a.pagado','a.atendido','a.sede','a.usuario','a.created_at','a.estatus','a.id_paciente','a.tipo_atencion','a.monto','a.abono','a.tipo_pago','cre.monto as ingreso','cre.tipopago','b.nombres','b.apellidos','b.dni','c.name as nameo','c.lastname as lasto','d.name as nameu','d.lastname as lastu','s.nombre as detalle')
-          ->join('creditos as cre','cre.id','a.id')
+          ->join('creditos as cre','cre.id_atencion','a.id')
           ->join('pacientes as b','b.id','a.id_paciente')
           ->join('users as c','c.id','a.id_origen')
           ->join('users as d','d.id','a.usuario')
@@ -633,7 +633,7 @@ class ReportesController extends Controller
   
           $ana = DB::table('atenciones as a')
           ->select('a.id','a.tipo_origen','a.id_origen','a.informe','a.id_tipo','a.pagado','a.atendido','a.sede','a.usuario','a.created_at','a.estatus','a.id_paciente','a.tipo_atencion','a.monto','a.abono','a.tipo_pago','cre.monto as ingreso','cre.tipopago','b.nombres','b.apellidos','b.dni','c.name as nameo','c.lastname as lasto','d.name as nameu','d.lastname as lastu','s.nombre as detalle')
-          ->join('creditos as cre','cre.id','a.id')
+          ->join('creditos as cre','cre.id_atencion','a.id')
           ->join('pacientes as b','b.id','a.id_paciente')
           ->join('users as c','c.id','a.id_origen')
           ->join('users as d','d.id','a.usuario')
@@ -647,7 +647,7 @@ class ReportesController extends Controller
   
           $paq = DB::table('atenciones as a')
           ->select('a.id','a.tipo_origen','a.id_origen','a.informe','a.id_tipo','a.pagado','a.atendido','a.sede','a.usuario','a.created_at','a.estatus','a.id_paciente','a.tipo_atencion','a.monto','a.abono','a.tipo_pago','cre.monto as ingreso','cre.tipopago','b.nombres','b.apellidos','b.dni','c.name as nameo','c.lastname as lasto','d.name as nameu','d.lastname as lastu','s.nombre as detalle')
-          ->join('creditos as cre','cre.id','a.id')
+          ->join('creditos as cre','cre.id_atencion','a.id')
           ->join('pacientes as b','b.id','a.id_paciente')
           ->join('users as c','c.id','a.id_origen')
           ->join('users as d','d.id','a.usuario')
@@ -662,7 +662,7 @@ class ReportesController extends Controller
   
           $metodos = DB::table('atenciones as a')
           ->select('a.id','a.tipo_origen','a.id_origen','a.informe','a.id_tipo','a.pagado','a.atendido','a.sede','a.usuario','a.created_at','a.estatus','a.id_paciente','a.tipo_atencion','a.monto','a.abono','a.tipo_pago','cre.monto as ingreso','cre.tipopago','b.nombres','b.apellidos','b.dni','c.name as nameo','c.lastname as lasto','d.name as nameu','d.lastname as lastu','s.nombre as detalle')
-          ->join('creditos as cre','cre.id','a.id')
+          ->join('creditos as cre','cre.id_atencion','a.id')
           ->join('pacientes as b','b.id','a.id_paciente')
           ->join('users as c','c.id','a.id_origen')
           ->join('users as d','d.id','a.usuario')
@@ -676,7 +676,7 @@ class ReportesController extends Controller
   
           $consultas = DB::table('atenciones as a')
           ->select('a.id','a.tipo_origen','a.id_origen','a.informe','a.id_tipo','a.pagado','a.atendido','a.sede','a.usuario','a.created_at','a.estatus','a.id_paciente','a.tipo_atencion','a.monto','a.abono','a.tipo_pago','cre.monto as ingreso','cre.tipopago','b.nombres','b.apellidos','b.dni','c.name as nameo','c.lastname as lasto','d.name as nameu','d.lastname as lastu','s.nombre as detalle')
-          ->join('creditos as cre','cre.id','a.id')
+          ->join('creditos as cre','cre.id_atencion','a.id')
           ->join('pacientes as b','b.id','a.id_paciente')
           ->join('users as c','c.id','a.id_origen')
           ->join('users as d','d.id','a.usuario')
@@ -693,7 +693,7 @@ class ReportesController extends Controller
   
           $atenciones = DB::table('atenciones as a')
           ->select('a.id','a.tipo_origen','a.id_origen','a.informe','a.id_tipo','a.pagado','a.atendido','a.sede','a.usuario','a.created_at','a.estatus','a.id_paciente','a.tipo_atencion','a.monto','a.abono','a.tipo_pago','cre.monto as ingreso','cre.tipopago','b.nombres','b.apellidos','b.dni','c.name as nameo','c.lastname as lasto','d.name as nameu','d.lastname as lastu','s.nombre as detalle')
-          ->join('creditos as cre','cre.id','a.id')
+          ->join('creditos as cre','cre.id_atencion','a.id')
           ->join('pacientes as b','b.id','a.id_paciente')
           ->join('users as c','c.id','a.id_origen')
           ->join('users as d','d.id','a.usuario')
@@ -775,7 +775,7 @@ class ReportesController extends Controller
   
           $serv = DB::table('atenciones as a')
           ->select('a.id','a.tipo_origen','a.id_origen','a.informe','a.id_tipo','a.pagado','a.atendido','a.sede','a.usuario','a.created_at','a.estatus','a.id_paciente','a.tipo_atencion','a.monto','a.abono','a.tipo_pago','cre.monto as ingreso','cre.tipopago','b.nombres','b.apellidos','b.dni','c.name as nameo','c.lastname as lasto','d.name as nameu','d.lastname as lastu','s.nombre as detalle')
-          ->join('creditos as cre','cre.id','a.id')
+          ->join('creditos as cre','cre.id_atencion','a.id')
           ->join('pacientes as b','b.id','a.id_paciente')
           ->join('users as c','c.id','a.id_origen')
           ->join('users as d','d.id','a.usuario')
@@ -790,7 +790,7 @@ class ReportesController extends Controller
   
           $eco = DB::table('atenciones as a')
           ->select('a.id','a.tipo_origen','a.id_origen','a.informe','a.id_tipo','a.pagado','a.atendido','a.sede','a.usuario','a.created_at','a.estatus','a.id_paciente','a.tipo_atencion','a.monto','a.abono','a.tipo_pago','cre.monto as ingreso','cre.tipopago','b.nombres','b.apellidos','b.dni','c.name as nameo','c.lastname as lasto','d.name as nameu','d.lastname as lastu','s.nombre as detalle')
-          ->join('creditos as cre','cre.id','a.id')
+          ->join('creditos as cre','cre.id_atencion','a.id')
           ->join('pacientes as b','b.id','a.id_paciente')
           ->join('users as c','c.id','a.id_origen')
           ->join('users as d','d.id','a.usuario')
@@ -804,7 +804,7 @@ class ReportesController extends Controller
   
           $cons = DB::table('atenciones as a')
           ->select('a.id','a.tipo_origen','a.id_origen','a.informe','a.id_tipo','a.pagado','a.atendido','a.sede','a.usuario','a.created_at','a.estatus','a.id_paciente','a.tipo_atencion','a.monto','a.abono','a.tipo_pago','cre.monto as ingreso','cre.tipopago','b.nombres','b.apellidos','b.dni','c.name as nameo','c.lastname as lasto','d.name as nameu','d.lastname as lastu','s.nombre as detalle')
-          ->join('creditos as cre','cre.id','a.id')
+          ->join('creditos as cre','cre.id_atencion','a.id')
           ->join('pacientes as b','b.id','a.id_paciente')
           ->join('users as c','c.id','a.id_origen')
           ->join('users as d','d.id','a.usuario')
@@ -818,7 +818,7 @@ class ReportesController extends Controller
   
           $meto = DB::table('atenciones as a')
           ->select('a.id','a.tipo_origen','a.id_origen','a.informe','a.id_tipo','a.pagado','a.atendido','a.sede','a.usuario','a.created_at','a.estatus','a.id_paciente','a.tipo_atencion','a.monto','a.abono','a.tipo_pago','cre.monto as ingreso','cre.tipopago','b.nombres','b.apellidos','b.dni','c.name as nameo','c.lastname as lasto','d.name as nameu','d.lastname as lastu','s.nombre as detalle')
-          ->join('creditos as cre','cre.id','a.id')
+          ->join('creditos as cre','cre.id_atencion','a.id')
           ->join('pacientes as b','b.id','a.id_paciente')
           ->join('users as c','c.id','a.id_origen')
           ->join('users as d','d.id','a.usuario')
@@ -832,7 +832,7 @@ class ReportesController extends Controller
   
           $ana = DB::table('atenciones as a')
           ->select('a.id','a.tipo_origen','a.id_origen','a.informe','a.id_tipo','a.pagado','a.atendido','a.sede','a.usuario','a.created_at','a.estatus','a.id_paciente','a.tipo_atencion','a.monto','a.abono','a.tipo_pago','cre.monto as ingreso','cre.tipopago','b.nombres','b.apellidos','b.dni','c.name as nameo','c.lastname as lasto','d.name as nameu','d.lastname as lastu','s.nombre as detalle')
-          ->join('creditos as cre','cre.id','a.id')
+          ->join('creditos as cre','cre.id_atencion','a.id')
           ->join('pacientes as b','b.id','a.id_paciente')
           ->join('users as c','c.id','a.id_origen')
           ->join('users as d','d.id','a.usuario')
@@ -846,7 +846,7 @@ class ReportesController extends Controller
   
           $paq = DB::table('atenciones as a')
           ->select('a.id','a.tipo_origen','a.id_origen','a.informe','a.id_tipo','a.pagado','a.atendido','a.sede','a.usuario','a.created_at','a.estatus','a.id_paciente','a.tipo_atencion','a.monto','a.abono','a.tipo_pago','cre.monto as ingreso','cre.tipopago','b.nombres','b.apellidos','b.dni','c.name as nameo','c.lastname as lasto','d.name as nameu','d.lastname as lastu','s.nombre as detalle')
-          ->join('creditos as cre','cre.id','a.id')
+          ->join('creditos as cre','cre.id_atencion','a.id')
           ->join('pacientes as b','b.id','a.id_paciente')
           ->join('users as c','c.id','a.id_origen')
           ->join('users as d','d.id','a.usuario')
@@ -861,7 +861,7 @@ class ReportesController extends Controller
   
           $metodos = DB::table('atenciones as a')
           ->select('a.id','a.tipo_origen','a.id_origen','a.informe','a.id_tipo','a.pagado','a.atendido','a.sede','a.usuario','a.created_at','a.estatus','a.id_paciente','a.tipo_atencion','a.monto','a.abono','a.tipo_pago','cre.monto as ingreso','cre.tipopago','b.nombres','b.apellidos','b.dni','c.name as nameo','c.lastname as lasto','d.name as nameu','d.lastname as lastu','s.nombre as detalle')
-          ->join('creditos as cre','cre.id','a.id')
+          ->join('creditos as cre','cre.id_atencion','a.id')
           ->join('pacientes as b','b.id','a.id_paciente')
           ->join('users as c','c.id','a.id_origen')
           ->join('users as d','d.id','a.usuario')
@@ -875,7 +875,7 @@ class ReportesController extends Controller
   
           $consultas = DB::table('atenciones as a')
           ->select('a.id','a.tipo_origen','a.id_origen','a.informe','a.id_tipo','a.pagado','a.atendido','a.sede','a.usuario','a.created_at','a.estatus','a.id_paciente','a.tipo_atencion','a.monto','a.abono','a.tipo_pago','cre.monto as ingreso','cre.tipopago','b.nombres','b.apellidos','b.dni','c.name as nameo','c.lastname as lasto','d.name as nameu','d.lastname as lastu','s.nombre as detalle')
-          ->join('creditos as cre','cre.id','a.id')
+          ->join('creditos as cre','cre.id_atencion','a.id')
           ->join('pacientes as b','b.id','a.id_paciente')
           ->join('users as c','c.id','a.id_origen')
           ->join('users as d','d.id','a.usuario')
@@ -892,7 +892,7 @@ class ReportesController extends Controller
   
           $atenciones = DB::table('atenciones as a')
           ->select('a.id','a.tipo_origen','a.id_origen','a.informe','a.id_tipo','a.pagado','a.atendido','a.sede','a.usuario','a.created_at','a.estatus','a.id_paciente','a.tipo_atencion','a.monto','a.abono','a.tipo_pago','cre.monto as ingreso','cre.tipopago','b.nombres','b.apellidos','b.dni','c.name as nameo','c.lastname as lasto','d.name as nameu','d.lastname as lastu','s.nombre as detalle')
-          ->join('creditos as cre','cre.id','a.id')
+          ->join('creditos as cre','cre.id_atencion','a.id')
           ->join('pacientes as b','b.id','a.id_paciente')
           ->join('users as c','c.id','a.id_origen')
           ->join('users as d','d.id','a.usuario')
