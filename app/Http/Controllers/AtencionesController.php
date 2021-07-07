@@ -1478,7 +1478,11 @@ return view('atenciones.particular');
       $p->abono =$request->abono;
       $p->tipo_pago =$request->tipo_pago;
       $p->tipo_origen =$request->tipo_origen;
-      $p->id_origen =$request->origen_usuario;
+      if($request->tipo_origen == 3){
+        $p->id_origen =99;
+      }else{
+        $p->id_origen = $request->origen_usuario;
+      }  
       $p->id_tipo =$request->id_tipo;
       $res = $p->update();
     
@@ -1530,7 +1534,11 @@ return view('atenciones.particular');
       $p->abono =$request->abono;
       $p->tipo_pago =$request->tipo_pago;
       $p->tipo_origen =$request->tipo_origen;
-      $p->id_origen =$request->origen_usuario;
+      if($request->tipo_origen == 3){
+        $p->id_origen =99;
+      }else{
+        $p->id_origen = $request->origen_usuario;
+      }        
       $p->id_tipo =$request->id_tipo;
       $res = $p->update();
     
@@ -1573,7 +1581,11 @@ return view('atenciones.particular');
       $p->abono =$request->abono;
       $p->tipo_pago =$request->tipo_pago;
       $p->tipo_origen =$request->tipo_origen;
-      $p->id_origen =$request->origen_usuario;
+      if($request->tipo_origen == 3){
+        $p->id_origen =99;
+      }else{
+        $p->id_origen = $request->origen_usuario;
+      }        
       $res = $p->update();
     
         return redirect()->action('AtencionesController@index')

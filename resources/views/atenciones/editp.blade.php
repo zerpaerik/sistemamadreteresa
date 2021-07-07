@@ -113,10 +113,13 @@
                     <div id="origen_usuario">
                    </div>
                    
+                   @if($atencion->tipo_origen == 1 || $atencion->tipo_origen == 2)
+
+                   
                     <label for="exampleInputEmail1">Origen Guardado</label>
                             <select class="form-control" name="origen_usuario" id="el2">
                             @foreach($usuario as $u)
-                                @if($atencion->origen_usuario == $u->id)
+                                @if($atencion->id_origen == $u->id)
                                 <option value="{{$u->id}}" selected="selected">{{$u->lastname}} {{$u->name}}-{{$u->dni}}</option>
                                 @else
                                 <option value="{{$u->id}}">{{$u->lastname}} {{$u->name}}-{{$u->dni}}</option>
@@ -124,6 +127,7 @@
                             @endforeach
                                 
                             </select>
+                    @endif
                     </div>
 
                 

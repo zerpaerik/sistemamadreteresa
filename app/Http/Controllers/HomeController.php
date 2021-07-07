@@ -32,45 +32,105 @@ class HomeController extends Controller
         $sedes = Sedes::all();
 
 
-        $total = Creditos::whereDate('created_at', date('Y-m-d 00:00:00', strtotime(date('Y-m-d'))))
-        ->select(DB::raw('SUM(monto) as monto'))
-        ->where('sede','=',$request->session()->get('sede'))
-        ->first();
-
-       /* $count = Atenciones::where('estatus','=',1)
-        ->select(DB::raw('COUNT(*)'))
-        ->where('created_at','=',date('Y-m-d'))
-        ->first();*/
-
-        $efec = Creditos::whereDate('created_at', date('Y-m-d 00:00:00', strtotime(date('Y-m-d'))))
-        ->select(DB::raw('SUM(monto) as monto'))
-        ->where('tipopago','=','EF')
-        ->where('sede','=',$request->session()->get('sede'))
+        $caja = DB::table('cajas as  a')
+        ->select('a.id','a.primer_turno','a.segundo_turno','a.created_at','a.fecha','a.sede','a.total','a.usuario_primer','b.name','b.lastname')
+        ->join('users as b','b.id','a.usuario_primer')
+        ->where('a.sede','=',$request->session()->get('sede'))
+        ->whereDate('a.created_at', date('Y-m-d 00:00:00', strtotime(date('Y-m-d'))))
         ->first();
 
 
-        $tarj = Creditos::whereDate('created_at', date('Y-m-d 00:00:00', strtotime(date('Y-m-d'))))
+
+        if ($caja == null) {
+            $total = Creditos::whereDate('created_at', date('Y-m-d 00:00:00', strtotime(date('Y-m-d'))))
         ->select(DB::raw('SUM(monto) as monto'))
-        ->where('tipopago','=','TJ')
-        ->where('sede','=',$request->session()->get('sede'))
+        ->where('sede', '=', $request->session()->get('sede'))
         ->first();
 
-        $dep = Creditos::whereDate('created_at', date('Y-m-d 00:00:00', strtotime(date('Y-m-d'))))
+          
+
+            $efec = Creditos::whereDate('created_at', date('Y-m-d 00:00:00', strtotime(date('Y-m-d'))))
         ->select(DB::raw('SUM(monto) as monto'))
-        ->where('tipopago','=','DP')
-        ->where('sede','=',$request->session()->get('sede'))
+        ->where('tipopago', '=', 'EF')
+        ->where('sede', '=', $request->session()->get('sede'))
         ->first();
 
-        $yap = Creditos::whereDate('created_at', date('Y-m-d 00:00:00', strtotime(date('Y-m-d'))))
+
+            $tarj = Creditos::whereDate('created_at', date('Y-m-d 00:00:00', strtotime(date('Y-m-d'))))
         ->select(DB::raw('SUM(monto) as monto'))
-        ->where('tipopago','=','YP')
-        ->where('sede','=',$request->session()->get('sede'))
+        ->where('tipopago', '=', 'TJ')
+        ->where('sede', '=', $request->session()->get('sede'))
         ->first();
 
-        $egresos = Debitos::whereDate('created_at', date('Y-m-d 00:00:00', strtotime(date('Y-m-d'))))
+            $dep = Creditos::whereDate('created_at', date('Y-m-d 00:00:00', strtotime(date('Y-m-d'))))
         ->select(DB::raw('SUM(monto) as monto'))
-        ->where('sede','=',$request->session()->get('sede'))
+        ->where('tipopago', '=', 'DP')
+        ->where('sede', '=', $request->session()->get('sede'))
         ->first();
+
+            $yap = Creditos::whereDate('created_at', date('Y-m-d 00:00:00', strtotime(date('Y-m-d'))))
+        ->select(DB::raw('SUM(monto) as monto'))
+        ->where('tipopago', '=', 'YP')
+        ->where('sede', '=', $request->session()->get('sede'))
+        ->first();
+
+            $egresos = Debitos::whereDate('created_at', date('Y-m-d 00:00:00', strtotime(date('Y-m-d'))))
+        ->select(DB::raw('SUM(monto) as monto'))
+        ->where('sede', '=', $request->session()->get('sede'))
+        ->first();
+        } else {
+
+            $fecha=$caja->created_at;
+            $fechainic=date('Y-m-d H:i:s', strtotime($caja->fecha));
+            $fechafin=$caja->fecha." 23:59:59";
+
+
+            $total = Creditos::whereRaw("created_at >= ? AND created_at <= ?", 
+            array($fecha, $fechafin))
+        ->select(DB::raw('SUM(monto) as monto'))
+        ->where('sede', '=', $request->session()->get('sede'))
+        ->first();
+
+          
+
+            $efec = Creditos::whereRaw("created_at >= ? AND created_at <= ?", 
+            array($fecha, $fechafin))
+        ->select(DB::raw('SUM(monto) as monto'))
+        ->where('tipopago', '=', 'EF')
+        ->where('sede', '=', $request->session()->get('sede'))
+        ->first();
+
+
+            $tarj = Creditos::whereRaw("created_at >= ? AND created_at <= ?", 
+            array($fecha, $fechafin))
+        ->select(DB::raw('SUM(monto) as monto'))
+        ->where('tipopago', '=', 'TJ')
+        ->where('sede', '=', $request->session()->get('sede'))
+        ->first();
+
+            $dep = Creditos::whereRaw("created_at >= ? AND created_at <= ?", 
+            array($fecha, $fechafin))
+        ->select(DB::raw('SUM(monto) as monto'))
+        ->where('tipopago', '=', 'DP')
+        ->where('sede', '=', $request->session()->get('sede'))
+        ->first();
+
+            $yap = Creditos::whereRaw("created_at >= ? AND created_at <= ?", 
+            array($fecha, $fechafin))
+        ->select(DB::raw('SUM(monto) as monto'))
+        ->where('tipopago', '=', 'YP')
+        ->where('sede', '=', $request->session()->get('sede'))
+        ->first();
+
+            $egresos = Debitos::whereRaw("created_at >= ? AND created_at <= ?", 
+            array($fecha, $fechafin))
+        ->select(DB::raw('SUM(monto) as monto'))
+        ->where('sede', '=', $request->session()->get('sede'))
+        ->first();
+
+
+
+        }
 
         return view('home',compact('sedes', 'total','efec','tarj','dep','count','yap','egresos'));
     }

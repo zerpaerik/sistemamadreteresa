@@ -112,6 +112,9 @@
                     <div class="col-md-4">
                     <div id="origen_usuario">
                    </div>
+
+                   @if($atencion->tipo_origen == 1 || $atencion->tipo_origen == 2)
+
                    
                     <label for="exampleInputEmail1">Origen Guardado</label>
                             <select class="form-control" name="origen_usuario" id="el2">
@@ -124,6 +127,7 @@
                             @endforeach
                                 
                             </select>
+                    @endif
                     </div>
 
                     <div class="col-md-4">
