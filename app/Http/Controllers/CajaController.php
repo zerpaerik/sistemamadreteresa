@@ -25,16 +25,17 @@ class CajaController extends Controller
 
      // $caja = DB::table('cajas')->select('*')->where('sede','=',$request->session()->get('sede'))->whereBetween('fecha', [date('Y-m-d', strtotime($f1)), date('Y-m-d', strtotime($f2))])->get();
 
-
       $caja = DB::table('cajas as  a')
-        ->select('a.id','a.primer_turno','a.segundo_turno','a.estatus','a.total','a.usuario_primer','a.fecha','b.name','a.created_at')
+        ->select('a.id','a.primer_turno','a.segundo_turno','a.sede','a.estatus','a.total','a.usuario_primer','a.fecha','b.name','a.created_at')
         ->join('users as b','b.id','a.usuario_primer')
+        ->where('a.sede','=',$request->session()->get('sede'))
         ->whereBetween('a.created_at', [date('Y-m-d', strtotime($f1)), date('Y-m-d', strtotime($f2))])
         ->get();
 
         $aten = Creditos::whereBetween('created_at', [date('Y-m-d 00:00:00', strtotime($f1)), date('Y-m-d 23:59:59', strtotime($f2))])
-                       ->select(DB::raw('SUM(monto) as monto'))
-                       ->first();
+              ->where('sede','=',$request->session()->get('sede'))
+              ->select(DB::raw('SUM(monto) as monto'))
+                            ->first();
       
 
         $mensaje;                      
@@ -55,24 +56,28 @@ class CajaController extends Controller
 
 
         $caja = DB::table('cajas as  a')
-        ->select('a.id','a.primer_turno','a.segundo_turno','a.estatus','a.total','a.usuario_primer','a.fecha','b.name','a.created_at')
+        ->select('a.id','a.primer_turno','a.segundo_turno','a.sede','a.estatus','a.total','a.usuario_primer','a.fecha','b.name','a.created_at')
         ->join('users as b','b.id','a.usuario_primer')
+        ->where('a.sede','=',$request->session()->get('sede'))
         ->where('a.fecha','=',date('Y-m-d'))
         ->get();
 
 
   
         $cajaa = DB::table('cajas')
+        ->where('sede','=',$request->session()->get('sede'))
                        ->select('*')->get()->last();
 
 
         if($cajaa != null){
             
         $aten = Creditos::where('fecha','>',$cajaa->created_at)
+        ->where('sede','=',$request->session()->get('sede'))
         ->select(DB::raw('SUM(monto) as monto'))
         ->first();
 
         $deb = Debitos::where('fecha','>',$cajaa->created_at)
+        ->where('sede','=',$request->session()->get('sede'))
         ->select(DB::raw('SUM(monto) as monto'))
         ->first();
 
@@ -82,9 +87,11 @@ class CajaController extends Controller
         } else {
 
         $aten = Creditos::select(DB::raw('SUM(monto) as monto'))
+        ->where('sede','=',$request->session()->get('sede'))
         ->first();
 
         $deb = Debitos::select(DB::raw('SUM(monto) as monto'))
+        ->where('sede','=',$request->session()->get('sede'))
         ->first();
 
         $total = $aten->monto - $deb->monto;
