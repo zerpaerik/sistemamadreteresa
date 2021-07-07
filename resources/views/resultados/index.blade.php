@@ -453,15 +453,16 @@
                                 </select>
 
                                 </td>
-                                <td>
-
-                                <input type="hidden" name="id" value="{{$an->id}}">
-
-                    
-                                <input type="submit" class="btn btn-success" value="Asociar">
-                                </td>
+                             
 
                                 @endif
+                                <td>
+
+                                  <input type="hidden" name="id" value="{{$an->id}}">
+
+
+                                  <input type="submit" class="btn btn-success" value="Asociar">
+                                  </td>
 
                               </tr>
                               </form>
