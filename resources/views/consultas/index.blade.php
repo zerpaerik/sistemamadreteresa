@@ -130,7 +130,6 @@
                     <td>{{$an->nameo}} {{$an->lasto}}</td>
 
                     <td>
-                    @if(Auth::user()->rol == 1)
                     @if($an->historia == 0)
                     @if($an->tipo == 1)
 
@@ -152,7 +151,6 @@
                          
 
                         
-                          @endif
                           </td>
                   </tr>
                   @endforeach
