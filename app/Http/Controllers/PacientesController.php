@@ -179,17 +179,7 @@ class PacientesController extends Controller
     public function update(Request $request, Pacientes $pacientes)
     {
 
-        $validator = \Validator::make($request->all(), [
-            'dni' => 'required|unique:pacientes'
-                
-              ]);
-              if($validator->fails()) {
-                $request->session()->flash('error', 'El Paciente ya esta Registrado.');
-               // Toastr::error('Error Registrando.', 'Paciente- DNI YA REGISTRADO!', ['progressBar' => true]);
-                return redirect()->action('PacientesController@edit', ['errors' => $validator->errors()]);
-              } else {
-
-      $pacientes = Pacientes::find($request->id);
+      $pacientes = Pacientes::where('id','=',$request->id)->first();
       $pacientes->nombres =$request->nombres;
       $pacientes->apellidos =$request->apellidos;
       $pacientes->dni =$request->dni;
@@ -199,10 +189,10 @@ class PacientesController extends Controller
       $pacientes->edocivil =$request->edocivil;
       $pacientes->ocupacion =$request->ocupacion;
       $pacientes->fechanac =$request->fechanac;
-      $res = $pacientes->update();
+      $res = $pacientes->save();
       return redirect()->action('PacientesController@index');
 
-    }
+    
 
         //
     }

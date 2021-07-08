@@ -141,7 +141,10 @@
     </table>
 
 	<br>
-  <br><br><br>
+  <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+
+
+
 	<div class="" style="font-size: 35px; text-align: center;margin-bottom: 15px;">
 		<img src="/var/www/html/sistemamadreteresa/public/logo.jpeg"  style="width: 40%; color: black;"/>
 	</div>

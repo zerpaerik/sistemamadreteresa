@@ -1417,10 +1417,13 @@ return view('atenciones.particular');
 
 
       $serv = Servicios::where('id','=',$request->id_tipo)->first();
+      $rsfd = ResultadosServicios::where('id_atencion','=',$request->id)->first();
 
-      $rsf = ResultadosServicios::where('id_atencion','=',$request->id)->first();
-      $rsf->id_servicio = $request->id_tipo;
-      $rsf->save();
+      if ($rsfd != null) {
+          $rsf = ResultadosServicios::where('id_atencion', '=', $request->id)->first();
+          $rsf->id_servicio = $request->id_tipo;
+          $rsf->save();
+      }
 
       $creditos = Creditos::where('id_atencion','=',$request->id)->first();
       $creditos->monto = $request->abono;
@@ -1538,7 +1541,7 @@ return view('atenciones.particular');
         $p->id_origen =99;
       }else{
         $p->id_origen = $request->origen_usuario;
-      }        
+      }         
       $p->id_tipo =$request->id_tipo;
       $res = $p->update();
     
