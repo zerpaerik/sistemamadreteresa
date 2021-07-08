@@ -694,7 +694,8 @@ return view('atenciones.particular');
                   $lab->id_origen = 99;
                 }else{
                   $lab->id_origen = $searchUsuarioID->id;
-                }                $lab->id_paciente =  $request->paciente;
+                }                
+                $lab->id_paciente =  $request->paciente;
                 $lab->tipo_atencion = 1;
                 $lab->id_tipo = $serv['servicio'];
                 $lab->monto = (float)$request->monto_s['servicios'][$key]['monto'];
@@ -738,6 +739,7 @@ return view('atenciones.particular');
                   $com = new Comisiones();
                   $com->id_atencion =  $lab->id;
                   $com->porcentaje = $servicio->porcentaje;
+                  $com->id_responsable = $searchUsuarioID->id;
                   $com->detalle =  $servicio->nombre;
                   $com->monto = (float)$request->monto_s['servicios'][$key]['monto'] * $servicio->porcentaje / 100;
                   $com->estatus = 1;
@@ -749,6 +751,7 @@ return view('atenciones.particular');
                   $com = new Comisiones();
                   $com->id_atencion =  $lab->id;
                   $com->porcentaje = $servicio->porcentaje1;
+                  $com->id_responsable = $searchUsuarioID->id;
                   $com->detalle =  $servicio->nombre;
                   $com->monto = (float)$request->monto_s['servicios'][$key]['monto'] * $servicio->porcentaje1 / 100;
                   $com->estatus = 1;
@@ -843,6 +846,7 @@ return view('atenciones.particular');
                   $com->id_atencion =  $lab->id;
                   $com->detalle =  $analisis->nombre;
                   $com->porcentaje = $analisis->porcentaje;
+                  $com->id_responsable = $searchUsuarioID->id;
                   $com->monto = (float)$request->monto_s['analisis'][$key]['monto'] * $analisis->porcentaje / 100;
                   $com->estatus = 1;
                   $com->usuario = Auth::user()->id;
@@ -916,6 +920,7 @@ return view('atenciones.particular');
                 $com->id_atencion =  $lab->id;
                 $com->detalle =  $paquetes->nombre;
                 $com->porcentaje = $paquetes->porcentaje;
+                $com->id_responsable = $searchUsuarioID->id;
                 $com->monto = (float)$request->monto_s['paquetes'][$key]['monto'] * $paquetes->porcentaje / 100;
                 $com->estatus = 1;
                 $com->usuario = Auth::user()->id;
@@ -1122,6 +1127,7 @@ return view('atenciones.particular');
                   $com->id_atencion =  $lab->id;
                   $com->detalle =  $servicio->nombre;
                   $com->porcentaje = $servicio->porcentaje;
+                  $com->id_responsable = $searchUsuarioID->id;
                   $com->monto = (float)$request->monto_s['ecografias'][$key]['monto'] * $servicio->porcentaje / 100;
                   $com->estatus = 1;
                   $com->usuario = Auth::user()->id;
@@ -1133,6 +1139,7 @@ return view('atenciones.particular');
                   $com->id_atencion =  $lab->id;
                   $com->detalle =  $servicio->nombre;
                   $com->porcentaje = $servicio->porcentaje1;
+                  $com->id_responsable = $searchUsuarioID->id;
                   $com->monto = (float)$request->monto_s['ecografias'][$key]['monto'] * $servicio->porcentaje1 / 100;
                   $com->estatus = 1;
                   $com->usuario = Auth::user()->id;
@@ -1217,6 +1224,7 @@ return view('atenciones.particular');
                   $lab->id_atencion =  $lab->id;
                   $lab->porcentaje = $servicio->porcentaje;
                   $lab->detalle =  $servicio->nombre;
+                  $com->id_responsable = $searchUsuarioID->id;
                   $lab->monto = (float)$request->monto_s['rayos'][$key]['monto'] * $servicio->porcentaje / 100;
                   $lab->estatus = 1;
                   $lab->usuario = Auth::user()->id;
@@ -1227,6 +1235,7 @@ return view('atenciones.particular');
                   $lab->id_atencion =  $lab->id;
                   $lab->porcentaje = $servicio->porcentaje1;
                   $lab->detalle =  $servicio->nombre;
+                  $com->id_responsable = $searchUsuarioID->id;
                   $lab->monto = (float)$request->monto_s['rayos'][$key]['monto'] * $servicio->porcentaje1 / 100;
                   $lab->estatus = 1;
                   $lab->usuario = Auth::user()->id;
@@ -1450,6 +1459,7 @@ return view('atenciones.particular');
         $com = new Comisiones();
         $com->id_atencion = $request->id;
         $com->porcentaje =$serv->porcentaje;
+        $com->id_responsable = $request->origen_usuario != null ? $request->origen_usuario : $request->origen_usuario2;
         $com->detalle =  $serv->nombre;
         $com->monto = $request->monto * $serv->porcentaje / 100;
         $com->estatus = 1;
@@ -1468,6 +1478,7 @@ return view('atenciones.particular');
         $com->id_atencion = $request->id;
         $com->porcentaje =$serv->porcentaje1;
         $com->detalle =  $serv->nombre;
+        $com->id_responsable = $request->origen_usuario != null ? $request->origen_usuario : $request->origen_usuario2;
         $com->monto = $request->monto * $serv->porcentaje1 / 100;
         $com->estatus = 1;
         $com->usuario = Auth::user()->id;
@@ -1491,7 +1502,7 @@ return view('atenciones.particular');
       if($request->tipo_origen == 3){
         $p->id_origen =99;
       }else{
-        $p->id_origen = $request->origen_usuario;
+        $p->id_origen = $request->origen_usuario != null ? $request->origen_usuario : $request->origen_usuario2;
       }  
       $p->id_tipo =$request->id_tipo;
       $res = $p->update();
@@ -1532,6 +1543,7 @@ return view('atenciones.particular');
         $com->id_atencion = $request->id;
         $com->porcentaje =$serv->porcentaje;
         $com->detalle =  $serv->nombre;
+        $com->id_responsable = $request->origen_usuario != null ? $request->origen_usuario : $request->origen_usuario2;
         $com->monto = $request->monto * $serv->porcentaje / 100;
         $com->estatus = 1;
         $com->usuario = Auth::user()->id;
@@ -1547,7 +1559,7 @@ return view('atenciones.particular');
       if($request->tipo_origen == 3){
         $p->id_origen =99;
       }else{
-        $p->id_origen = $request->origen_usuario;
+        $p->id_origen = $request->origen_usuario != null ? $request->origen_usuario : $request->origen_usuario2;
       }         
       $p->id_tipo =$request->id_tipo;
       $res = $p->update();
@@ -1573,12 +1585,14 @@ return view('atenciones.particular');
 
         $csf = Comisiones::where('id_atencion','=',$request->id)->first();
         $csf->monto = $request->monto * $com->porcentaje / 100;
+        $com->id_responsable = $request->origen_usuario != null ? $request->origen_usuario : $request->origen_usuario2;
         $csf->save();
 
       } else if($request->tipo_origen == 2){
 
         $csf = Comisiones::where('id_atencion','=',$request->id)->first();
         $csf->monto =  $request->monto * $com->porcentaje / 100;
+        $com->id_responsable = $request->origen_usuario != null ? $request->origen_usuario : $request->origen_usuario2;
         $csf->save();
 
       } else {
@@ -1594,7 +1608,7 @@ return view('atenciones.particular');
       if($request->tipo_origen == 3){
         $p->id_origen =99;
       }else{
-        $p->id_origen = $request->origen_usuario;
+        $p->id_origen = $request->origen_usuario != null ? $request->origen_usuario : $request->origen_usuario2;
       }        
       $res = $p->update();
     

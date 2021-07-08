@@ -117,7 +117,7 @@
 
                    
                     <label for="exampleInputEmail1">Origen Guardado</label>
-                            <select class="form-control" name="origen_usuario" id="el2">
+                            <select class="form-control" name="origen_usuario2" id="el2">
                             @foreach($usuario as $u)
                                 @if($atencion->id_origen == $u->id)
                                 <option value="{{$u->id}}" selected="selected">{{$u->lastname}} {{$u->name}}-{{$u->dni}}</option>

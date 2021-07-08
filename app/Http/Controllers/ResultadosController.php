@@ -358,13 +358,11 @@ class ResultadosController extends Controller
 
       $res = ResultadosServicios::where('id','=',$request->id)->first();
 
+
       $servicio = Servicios::where('id','=',$res->id_servicio)->first();
 
+
       $atenc = Atenciones::where('id','=',$res->id_atencion)->first();
-
-
-    
-
 
 
       if($usuario->tipo_personal == 'Tecnólogo' && $servicio->porcentaje2 > 0){
@@ -374,7 +372,8 @@ class ResultadosController extends Controller
         $com = new Comisiones();
         $com->id_atencion =  $res->id_atencion;
         $com->detalle =  $servicio->nombre;
-        $com->porcentaje = $servicio->porcentaje2;
+        $com->porcentaje = Auth::user()->id;
+        $com->id_responsable = $servicio->porcentaje2;
         $com->monto = $atenc->monto * $servicio->porcentaje2 / 100;
         $com->estatus = 1;
         $com->tecnologo = 1;
