@@ -243,9 +243,15 @@ class ConsultasController extends Controller
       $con_fin->historia = 1;
       $con_fin->save();
 
+      $usuario = DB::table('users')
+      ->select('*')
+      ->where('id','=', Auth::user()->id)
+      ->first();  
+
 
       $at_fin = Atenciones::where('id','=',$request->consulta)->first();
       $at_fin->atendido = 2;
+      $at_fin->atendido_por = $usuario->lastname.' '.$usuario->name;
       $at_fin->save();
 
       return redirect()->action('ConsultasController@index')
@@ -255,6 +261,12 @@ class ConsultasController extends Controller
     }
 
     public function guardar_control(Request $request){
+
+      $usuario = DB::table('users')
+      ->select('*')
+      ->where('id','=', Auth::user()->id)
+      ->first();  
+
 
 
 
@@ -305,6 +317,7 @@ class ConsultasController extends Controller
 
       $at_fin = Atenciones::where('id','=',$request->consulta)->first();
       $at_fin->atendido = 2;
+      $at_fin->atendido_por = $usuario->lastname.' '.$usuario->name;
       $at_fin->save();
 
       return redirect()->action('ConsultasController@index')
@@ -413,9 +426,10 @@ class ConsultasController extends Controller
     {
 
 
-         $hist = Historia::where('id','=',$id)->first();
+         $hist = Historia::where('id_paciente','=',$id)->first();
 
-         $historias_base = HistoriaBase::where('id_paciente','=',$hist->id_paciente)->first();
+
+         $historias_base = HistoriaBase::where('id_paciente','=',$id)->first();
 
          $paciente = Pacientes::where('id','=',$id)->first();
 

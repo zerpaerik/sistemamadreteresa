@@ -325,10 +325,19 @@
               </p>
             </a>
             <ul class="nav nav-treeview">
-            <li class="nav-item">
+           
+
+                    <!--  <li class="nav-item">
                 <a href="{{route('reporte_ingresos.index')}}" class="nav-link">
                   <i class="fas fa-hand-holding-usd nav-icon"></i>
                   <p>Ingresos</p>
+                </a>
+              </li> -->
+
+              <li class="nav-item">
+                <a href="{{route('detallado.index')}}" class="nav-link">
+                  <i class="fas fa-hand-holding-usd nav-icon"></i>
+                  <p>Detallado por Sede</p>
                 </a>
               </li>
 
@@ -344,6 +353,21 @@
                 <a href="{{route('historial.pacientes')}}" class="nav-link">
                   <i class="fas fa-hand-holding-usd nav-icon"></i>
                   <p>Historial de Pacientes</p>
+                </a>
+              </li>
+
+              <li class="nav-item">
+                <a href="{{route('compagar.index')}}" class="nav-link">
+                  <i class="fas fa-hand-holding-usd nav-icon"></i>
+                  <p>ComPagar Personal</p>
+                </a>
+              </li>
+
+              
+              <li class="nav-item">
+                <a href="{{route('compagar1.index')}}" class="nav-link">
+                  <i class="fas fa-hand-holding-usd nav-icon"></i>
+                  <p>ComPagar Profesionales</p>
                 </a>
               </li>
               

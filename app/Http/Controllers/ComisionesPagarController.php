@@ -516,29 +516,303 @@ class ComisionesPagarController extends Controller
 
     }
 
-    public function ver($id)
+    public function reporte_compagar(Request $request)
     {
-	  
-        $req = DB::table('requerimientos as a')
-        ->select('a.id','a.asunto','a.prioridad','a.categoria','a.descripcion','a.estatus','a.estado','a.empresa','b.nombre as empresa')
-        ->join('clientes as b','b.id','a.empresa')
-        ->where('a.empresa', '=', Auth::user()->empresa)
+        if ($request->inicio) {
+            $f1 = $request->inicio;
+            $f2 = $request->fin;
+
+         
+        
+        $comisiones = DB::table('comisiones as a')
+        ->select('a.id', 'a.estatus', 'a.id_atencion','a.created_at','a.detalle','a.usuario', 'a.porcentaje', 'a.monto', 'a.estatus', 'at.id_paciente','at.resta', 'at.tipo_atencion', 'at.sede','at.atendido', 'at.tipo_origen', 'at.id_origen','at.abono', 'at.monto as total', 'b.nombres', 'b.apellidos', 'c.name as nameo', 'c.lastname as lasto', 'd.name as nameu', 'd.lastname as lastu')
+        ->join('atenciones as at', 'at.id', 'a.id_atencion')
+        ->join('pacientes as b', 'b.id', 'at.id_paciente')
+        ->join('users as c', 'c.id', 'at.id_origen')
+        ->join('users as d', 'd.id', 'a.usuario')
         ->where('a.estatus', '=', 1)
-        ->where('a.id', '=', $id)
-        ->first(); 
+        ->where('at.tipo_origen', '=', 1)
+        ->where('at.atendido', '=', 2)
+        ->where('at.resta', '=', 0)
+        ->where('at.sede', '=', $request->session()->get('sede'))
+        ->where('at.id_origen','=',$request->origen)
+        ->whereBetween('a.created_at', [$f1, $f2])
+        ->orderBy('a.created_at','ASC')
+        ->get();
 
-        //$equipos = ActivosRequerimientos::
+        
+       
 
-        $equipos = DB::table('activos_requerimientos as a')
-        ->select('a.id','a.activo','a.ticket','b.nombre','b.modelo','b.serial')
-        ->join('equipos as b','b.id','a.activo')
-        ->where('ticket','=',$id)
+
+         
+        $origen = DB::table('comisiones as a')
+        ->select('a.id', 'a.estatus', 'a.id_atencion', 'a.created_at','a.usuario', 'a.porcentaje', 'a.monto', 'a.estatus', 'at.id_paciente', 'at.tipo_atencion','at.resta', 'at.sede', 'at.tipo_origen','at.atendido', 'at.id_origen','at.abono', 'at.monto as total',  'c.name as nameo', 'c.lastname as lasto','c.id as idorigen')
+        ->join('atenciones as at', 'at.id', 'a.id_atencion')
+        ->join('users as c', 'c.id', 'at.id_origen')
+        ->where('a.estatus', '=', 1)
+        ->where('at.tipo_origen', '=', 1)
+        ->where('at.atendido', '=', 2)
+        ->where('at.resta', '=', 0)
+        ->where('at.sede', '=', $request->session()->get('sede'))
+        ->where('at.id_origen','=',$request->origen)
+        ->groupBy('at.id_origen')
+        ->get();
+
+        $total = DB::table('comisiones')
+        ->join('atenciones', 'atenciones.id', '=', 'comisiones.id_atencion')
+       // ->join('orders', 'users.id', '=', 'orders.user_id')
+        ->where('atenciones.sede','=',$request->session()->get('sede'))
+        ->where('atenciones.tipo_origen','=',1)
+        ->where('atenciones.atendido','=',2)
+        ->where('atenciones.resta','=',0)
+        ->where('atenciones.id_origen','=',$request->origen)
+        ->where('comisiones.estatus','=',1)
+        ->whereBetween('comisiones.created_at', [$f1, $f2])
+        ->select(DB::raw('COUNT(*) as cantidad, SUM(comisiones.monto) as monto'))
+        ->groupBy('atenciones.id_origen')
+        ->first();
+
+
+        } else {
+
+            $f1 = date('Y-m-d');
+            $f2 = date('Y-m-d');
+
+      
+
+        $comisiones = DB::table('comisiones as a')
+        ->select('a.id', 'a.estatus', 'a.id_atencion','a.created_at','a.detalle','a.usuario', 'a.porcentaje', 'a.monto', 'a.estatus', 'at.id_paciente','at.resta', 'at.tipo_atencion', 'at.sede', 'at.atendido','at.tipo_origen','at.abono', 'at.id_origen', 'at.monto as total', 'b.nombres', 'b.apellidos', 'c.name as nameo', 'c.lastname as lasto', 'd.name as nameu', 'd.lastname as lastu')
+        ->join('atenciones as at', 'at.id', 'a.id_atencion')
+        ->join('pacientes as b', 'b.id', 'at.id_paciente')
+        ->join('users as c', 'c.id', 'at.id_origen')
+        ->join('users as d', 'd.id', 'a.usuario')
+        ->where('a.estatus', '=', 1)
+        ->where('at.tipo_origen', '=', 1)
+        ->where('at.atendido', '=', 2)
+        ->where('at.resta', '=', 0)
+       // ->where('at.monto', 'at.abono')
+        ->where('at.sede', '=', $request->session()->get('sede'))
+       // ->where('at.id_origen','=',$request->origen)
+        ->whereBetween('a.created_at', [$f1, $f2])
+        ->orderBy('a.created_at','ASC')
         ->get();
 
 
-	  
-      return view('requerimientos.ver', compact('req','equipos'));
-    }	  
+
+        
+       /* $origen = DB::table('comisiones as a')
+        ->select('a.id', 'a.estatus', 'a.id_atencion', 'a.created_at','a.usuario', 'a.porcentaje', 'a.monto', 'a.estatus', 'at.id_paciente','at.resta', 'at.tipo_atencion', 'at.sede', 'at.tipo_origen','at.atendido', 'at.abono','at.id_origen', 'at.monto as total',  'c.name as nameo', 'c.lastname as lasto','c.id as idorigen')
+        ->join('atenciones as at', 'at.id', 'a.id_atencion')
+        ->join('users as c', 'c.id', 'at.id_origen')
+        ->where('a.estatus', '=', 1)
+        ->where('at.tipo_origen', '=', 1)
+        ->where('at.atendido', '=', 2)
+        ->where('at.resta', '=', 0)
+        ->where('at.monto','at.abono')
+        ->where('at.sede', '=', $request->session()->get('sede'))
+        ->where('a.created_at','=',date('Y-m-d'))
+        ->groupBy('at.id_origen')
+        ->get();*/
+        $origen = DB::table('comisiones as a')
+        ->select('a.id', 'a.estatus', 'a.id_atencion', 'a.created_at','a.usuario', 'a.porcentaje', 'a.monto', 'a.estatus', 'at.id_paciente', 'at.tipo_atencion','at.resta', 'at.sede', 'at.tipo_origen','at.atendido', 'at.id_origen','at.abono', 'at.monto as total',  'c.name as nameo', 'c.lastname as lasto','c.id as idorigen')
+        ->join('atenciones as at', 'at.id', 'a.id_atencion')
+        ->join('users as c', 'c.id', 'at.id_origen')
+        ->where('a.estatus', '=', 1)
+        ->where('at.tipo_origen', '=', 1)
+        ->where('at.atendido', '=', 2)
+        ->where('at.resta', '=', 0)
+        ->where('at.sede', '=', $request->session()->get('sede'))
+        ->groupBy('at.id_origen')
+        ->get();
+
+        /*$total = Comisiones::whereBetween('created_at', [$f1, $f2])
+        ->select(DB::raw('COUNT(*) as cantidad, SUM(monto) as monto'))
+        ->where('estatus', '=', 1)
+        ->where('sede','=',$request->session()->get('sede'))
+        ->first();*/
+
+        $total = DB::table('comisiones')
+            ->join('atenciones', 'atenciones.id', '=', 'comisiones.id_atencion')
+           // ->join('orders', 'users.id', '=', 'orders.user_id')
+            ->where('atenciones.sede','=',$request->session()->get('sede'))
+            ->where('atenciones.tipo_origen','=',1)
+            ->where('atenciones.atendido','=',2)
+            ->where('atenciones.resta','=',0)
+            ->where('comisiones.estatus','=',1)
+            ->whereBetween('comisiones.created_at', [$f1, $f2])
+            ->select(DB::raw('COUNT(*) as cantidad, SUM(comisiones.monto) as monto'))
+            ->groupBy('atenciones.id_origen')
+            ->first();
+
+
+
+
+
+
+
+
+
+
+        }
+        //->where('a.monto', '!=', '0')
+        //->get(); 
+
+        
+
+
+        return view('compagar.reporte', compact('comisiones','f1','f2','origen','total'));
+        //
+    }
+
+    public function reporte_compagar1(Request $request)
+    {
+        if ($request->inicio) {
+            $f1 = $request->inicio;
+            $f2 = $request->fin;
+
+         
+        
+        $comisiones = DB::table('comisiones as a')
+        ->select('a.id', 'a.estatus', 'a.id_atencion','a.created_at','a.detalle','a.usuario', 'a.porcentaje', 'a.monto', 'a.estatus', 'at.id_paciente','at.resta', 'at.tipo_atencion', 'at.sede','at.atendido', 'at.tipo_origen', 'at.id_origen','at.abono', 'at.monto as total', 'b.nombres', 'b.apellidos', 'c.name as nameo', 'c.lastname as lasto', 'd.name as nameu', 'd.lastname as lastu')
+        ->join('atenciones as at', 'at.id', 'a.id_atencion')
+        ->join('pacientes as b', 'b.id', 'at.id_paciente')
+        ->join('users as c', 'c.id', 'at.id_origen')
+        ->join('users as d', 'd.id', 'a.usuario')
+        ->where('a.estatus', '=', 1)
+        ->where('at.tipo_origen', '=', 2)
+        ->where('at.atendido', '=', 2)
+        ->where('at.resta', '=', 0)
+        ->where('at.sede', '=', $request->session()->get('sede'))
+        ->where('at.id_origen','=',$request->origen)
+        ->whereBetween('a.created_at', [$f1, $f2])
+        ->orderBy('a.created_at','ASC')
+        ->get();
+
+        
+       
+
+
+         
+        $origen = DB::table('comisiones as a')
+        ->select('a.id', 'a.estatus', 'a.id_atencion', 'a.created_at','a.usuario', 'a.porcentaje', 'a.monto', 'a.estatus', 'at.id_paciente', 'at.tipo_atencion','at.resta', 'at.sede', 'at.tipo_origen','at.atendido', 'at.id_origen','at.abono', 'at.monto as total',  'c.name as nameo', 'c.lastname as lasto','c.id as idorigen')
+        ->join('atenciones as at', 'at.id', 'a.id_atencion')
+        ->join('users as c', 'c.id', 'at.id_origen')
+        ->where('a.estatus', '=', 1)
+        ->where('at.tipo_origen', '=', 2)
+        ->where('at.atendido', '=', 2)
+        ->where('at.resta', '=', 0)
+        ->where('at.sede', '=', $request->session()->get('sede'))
+        ->where('at.id_origen','=',$request->origen)
+        ->groupBy('at.id_origen')
+        ->get();
+
+        $total = DB::table('comisiones')
+        ->join('atenciones', 'atenciones.id', '=', 'comisiones.id_atencion')
+       // ->join('orders', 'users.id', '=', 'orders.user_id')
+        ->where('atenciones.sede','=',$request->session()->get('sede'))
+        ->where('atenciones.tipo_origen','=',2)
+        ->where('atenciones.atendido','=',2)
+        ->where('atenciones.resta','=',0)
+        ->where('atenciones.id_origen','=',$request->origen)
+        ->where('comisiones.estatus','=',1)
+        ->whereBetween('comisiones.created_at', [$f1, $f2])
+        ->select(DB::raw('COUNT(*) as cantidad, SUM(comisiones.monto) as monto'))
+        ->groupBy('atenciones.id_origen')
+        ->first();
+
+
+        } else {
+
+            $f1 = date('Y-m-d');
+            $f2 = date('Y-m-d');
+
+      
+
+        $comisiones = DB::table('comisiones as a')
+        ->select('a.id', 'a.estatus', 'a.id_atencion','a.created_at','a.detalle','a.usuario', 'a.porcentaje', 'a.monto', 'a.estatus', 'at.id_paciente','at.resta', 'at.tipo_atencion', 'at.sede', 'at.atendido','at.tipo_origen','at.abono', 'at.id_origen', 'at.monto as total', 'b.nombres', 'b.apellidos', 'c.name as nameo', 'c.lastname as lasto', 'd.name as nameu', 'd.lastname as lastu')
+        ->join('atenciones as at', 'at.id', 'a.id_atencion')
+        ->join('pacientes as b', 'b.id', 'at.id_paciente')
+        ->join('users as c', 'c.id', 'at.id_origen')
+        ->join('users as d', 'd.id', 'a.usuario')
+        ->where('a.estatus', '=', 1)
+        ->where('at.tipo_origen', '=', 2)
+        ->where('at.atendido', '=', 2)
+        ->where('at.resta', '=', 0)
+       // ->where('at.monto', 'at.abono')
+        ->where('at.sede', '=', $request->session()->get('sede'))
+       // ->where('at.id_origen','=',$request->origen)
+        ->whereBetween('a.created_at', [$f1, $f2])
+        ->orderBy('a.created_at','ASC')
+        ->get();
+
+
+
+        
+       /* $origen = DB::table('comisiones as a')
+        ->select('a.id', 'a.estatus', 'a.id_atencion', 'a.created_at','a.usuario', 'a.porcentaje', 'a.monto', 'a.estatus', 'at.id_paciente','at.resta', 'at.tipo_atencion', 'at.sede', 'at.tipo_origen','at.atendido', 'at.abono','at.id_origen', 'at.monto as total',  'c.name as nameo', 'c.lastname as lasto','c.id as idorigen')
+        ->join('atenciones as at', 'at.id', 'a.id_atencion')
+        ->join('users as c', 'c.id', 'at.id_origen')
+        ->where('a.estatus', '=', 1)
+        ->where('at.tipo_origen', '=', 1)
+        ->where('at.atendido', '=', 2)
+        ->where('at.resta', '=', 0)
+        ->where('at.monto','at.abono')
+        ->where('at.sede', '=', $request->session()->get('sede'))
+        ->where('a.created_at','=',date('Y-m-d'))
+        ->groupBy('at.id_origen')
+        ->get();*/
+        $origen = DB::table('comisiones as a')
+        ->select('a.id', 'a.estatus', 'a.id_atencion', 'a.created_at','a.usuario', 'a.porcentaje', 'a.monto', 'a.estatus', 'at.id_paciente', 'at.tipo_atencion','at.resta', 'at.sede', 'at.tipo_origen','at.atendido', 'at.id_origen','at.abono', 'at.monto as total',  'c.name as nameo', 'c.lastname as lasto','c.id as idorigen')
+        ->join('atenciones as at', 'at.id', 'a.id_atencion')
+        ->join('users as c', 'c.id', 'at.id_origen')
+        ->where('a.estatus', '=', 1)
+        ->where('at.tipo_origen', '=', 2)
+        ->where('at.atendido', '=', 2)
+        ->where('at.resta', '=', 0)
+        ->where('at.sede', '=', $request->session()->get('sede'))
+        ->groupBy('at.id_origen')
+        ->get();
+
+        /*$total = Comisiones::whereBetween('created_at', [$f1, $f2])
+        ->select(DB::raw('COUNT(*) as cantidad, SUM(monto) as monto'))
+        ->where('estatus', '=', 1)
+        ->where('sede','=',$request->session()->get('sede'))
+        ->first();*/
+
+        $total = DB::table('comisiones')
+            ->join('atenciones', 'atenciones.id', '=', 'comisiones.id_atencion')
+           // ->join('orders', 'users.id', '=', 'orders.user_id')
+            ->where('atenciones.sede','=',$request->session()->get('sede'))
+            ->where('atenciones.tipo_origen','=',2)
+            ->where('atenciones.atendido','=',2)
+            ->where('atenciones.resta','=',0)
+            ->where('comisiones.estatus','=',1)
+            ->whereBetween('comisiones.created_at', [$f1, $f2])
+            ->select(DB::raw('COUNT(*) as cantidad, SUM(comisiones.monto) as monto'))
+            ->groupBy('atenciones.id_origen')
+            ->first();
+
+
+
+
+
+
+
+
+
+
+        }
+        //->where('a.monto', '!=', '0')
+        //->get(); 
+
+        
+
+
+        return view('compagar.reporte1', compact('comisiones','f1','f2','origen','total'));
+        //
+    }
+
+    
 
     /**
      * Show the form for editing the specified resource.

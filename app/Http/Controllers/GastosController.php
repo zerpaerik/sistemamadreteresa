@@ -26,13 +26,17 @@ class GastosController extends Controller
             $f1 = $request->inicio;
 
         $gastos = DB::table('debitos as a')
-        ->select('a.id','a.descripcion','a.monto','a.recibido','a.usuario','a.tipo','a.created_at','b.name')
+        ->select('a.id','a.descripcion','a.monto','a.recibido','a.usuario','a.sede','a.tipo','a.created_at','b.name')
         ->join('users as b','b.id','a.usuario')
         ->whereDate('a.created_at', date('Y-m-d 00:00:00', strtotime($f1)))
+        ->where('a.sede','=',$request->session()->get('sede'))
         ->get(); 
+
+        
 
 
         $deb = Debitos::whereDate('created_at', date('Y-m-d 00:00:00', strtotime($f1)))
+        ->where('sede','=',$request->session()->get('sede'))
         ->select(DB::raw('COUNT(*) as cantidad, SUM(monto) as monto'))
         ->first();
 
@@ -47,15 +51,16 @@ class GastosController extends Controller
             $f2 = date('Y-m-d');
 
             $gastos = DB::table('debitos as a')
-            ->select('a.id','a.descripcion','a.monto','a.recibido','a.usuario','a.tipo','a.created_at','b.name')
+            ->select('a.id','a.descripcion','a.monto','a.recibido','a.sede','a.usuario','a.sede','a.tipo','a.created_at','b.name')
             ->join('users as b','b.id','a.usuario')
+            ->where('a.sede','=',$request->session()->get('sede'))
             ->whereDate('a.created_at', date('Y-m-d 00:00:00', strtotime($f1)))
             ->get(); 
 
           
-
             
         $deb = Debitos::whereDate('created_at', date('Y-m-d 00:00:00', strtotime($f1)))
+        ->where('sede','=',$request->session()->get('sede'))
         ->select(DB::raw('COUNT(*) as cantidad, SUM(monto) as monto'))
         ->first();
 

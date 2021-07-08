@@ -350,6 +350,12 @@ class ResultadosController extends Controller
 
     public function guardar(Request $request){
 
+      
+      $usuario = DB::table('users')
+      ->select('*')
+      ->where('id','=', Auth::user()->id)
+      ->first();  
+
       $res = ResultadosServicios::where('id','=',$request->id)->first();
 
       $servicio = Servicios::where('id','=',$res->id_servicio)->first();
@@ -357,10 +363,7 @@ class ResultadosController extends Controller
       $atenc = Atenciones::where('id','=',$res->id_atencion)->first();
 
 
-      $usuario = DB::table('users')
-      ->select('*')
-      ->where('id','=', Auth::user()->id)
-      ->first();
+    
 
 
 
@@ -386,6 +389,7 @@ class ResultadosController extends Controller
         $nombre_imagen=$img->getClientOriginalName();
         $at->informe =  $nombre_imagen;
         $at->atendido =  2;
+        $at->atendido_por =  $usuario->lastname.' '.$usuario->name;
         $at->save();
 
 
@@ -415,12 +419,18 @@ class ResultadosController extends Controller
 
         $atenc = Atenciones::where('id','=',$res->id_atencion)->first();
 
+        $usuario = DB::table('users')
+        ->select('*')
+        ->where('id','=', Auth::user()->id)
+        ->first();  
+
         
         $at = Atenciones::where('id','=',$res->id_atencion)->first();
         $img = $request->file('informe');
         $nombre_imagen=$img->getClientOriginalName();
         $at->informe =  $nombre_imagen;
         $at->atendido =  2;
+        $at->atendido_por =  $usuario->lastname.' '.$usuario->name;
         $at->save();
 
 

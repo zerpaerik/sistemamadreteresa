@@ -29,6 +29,8 @@
 <!-- DataTables -->
 <link rel="stylesheet" href="../../plugins/datatables-bs4/css/dataTables.bootstrap4.min.css">
 <link rel="stylesheet" href="../../plugins/datatables-responsive/css/responsive.bootstrap4.min.css">
+<link rel="stylesheet" href="http://cdn.bootcss.com/toastr.js/latest/css/toastr.min.css"> 
+
 </head>
 <body class="hold-transition sidebar-mini layout-fixed">
 <div class="wrapper">
@@ -49,17 +51,18 @@
 
   <!-- Content Wrapper. Contains page content -->
   <div class="content-wrapper">
+
     <!-- Content Header (Page header) -->
     <div class="content-header">
       <div class="container-fluid">
         <div class="row mb-2">
           <div class="col-sm-6">
-            <h1 class="m-0 text-dark">Reporte Detallado</h1>
+            <h1 class="m-0 text-dark">Reporte de Comisiones por Pagar a Personal</h1>
           </div><!-- /.col -->
           <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">
-              <li class="breadcrumb-item"><a href="#">Listado</a></li>
-              <li class="breadcrumb-item active">Reporte Detallado</li>
+              <li class="breadcrumb-item"><a href="#">Home</a></li>
+              <li class="breadcrumb-item active">Reporte de Comisiones por Pagar a Personal</li>
             </ol>
           </div><!-- /.col -->
         </div><!-- /.row -->
@@ -69,43 +72,117 @@
 
     <!-- Main content -->
     <section class="content">
+    @include('flash-message')
       <div class="container-fluid">
       <div class="card">
               <div class="card-header">
-               
-              <form method="post" action="report/detallado">
-            {{ csrf_field() }}						
+              <form method="get" action="reporte_compagar">					
                   <label for="exampleInputEmail1">Filtros de Busqueda</label>
 
                     <div class="row">
-                    <div class="col-md-3">
-                    <label for="exampleInputEmail1">Inicio</label>
+                  <div class="col-md-3">
+                    <label for="exampleInputEmail1">Fecha Inicio</label>
                     <input type="date" class="form-control" value="{{$f1}}" name="inicio">
                   </div>
+
                   <div class="col-md-3">
-                    <label for="exampleInputEmail1">Fin</label>
+                    <label for="exampleInputEmail1">Fecha Fin</label>
                     <input type="date" class="form-control" value="{{$f2}}" name="fin">
                   </div>
+
                   <div class="col-md-3">
-                  <label for="exampleInputEmail1">Sede</label>
-                  <select class="form-control" name="sede">
-                    <option value="1">PROCERES</option>
-                    <option value="2">CANTO REY</option>
-                    <option value="3">VIDA FELIZ</option>
-                    <option value="4">ZARATE</option>
+                    <label for="exampleInputEmail1">Seleccione el Personal</label>
+                    <select class="form-control" data-placeholder="Seleccione" style="width: 100%;" name="origen">
+                   @foreach($origen as $o)
+                   <option value="{{$o->idorigen}}">{{$o->lasto}} {{$o->nameo}}</option>
+                    @endforeach
                   </select>
-                   
                   </div>
+                  
+                
                  
                   <div class="col-md-2" style="margin-top: 30px;">
-                  <button type="submit" class="btn btn-primary">Generar</button>
+                  <button type="submit" class="btn btn-primary">Buscar</button>
 
                   </div>
                   </form>
-              </div>
+                  <div class="row" style="margin-left: 5px;">
+
+                    <div class="col-md-3">
+                    <label for="exampleInputEmail1">Items Total</label>
+                    <input type="text" disabled class="form-control" value="{{$total->cantidad}}">
+                  </div>
+
+                  <div class="col-md-3">
+                    <label for="exampleInputEmail1">Monto Total</label>
+                    <input type="text" disabled class="form-control" value="{{$total->monto}} Soles" >
+                  </div>
+
+                  </div>
+              
               </div>
               <!-- /.card-header -->
-             
+              <div class="card-body">
+                <table id="example1" class="table table-bordered table-striped">
+                <form action="/pagarmultiple" method="post">
+                  <thead>
+                  <tr>
+                  <th>Fecha</th>
+                    <th>Pac.</th>
+                    <th>Origen</th>
+                    <th>Det.</th>
+                    <th>MontoAT</th>
+                    <th>Porc</th>
+                    <th>MontPG</th>
+                    <th>RP</th>
+                  </tr>
+                  </thead>
+                  <tbody>
+
+                  @foreach($comisiones as $an)
+                  <tr>
+                   <td>{{$an->created_at}}</td>
+                    <td>{{$an->apellidos}} {{$an->nombres}}</td>
+                    <td>{{$an->lasto}} {{$an->nameo}}</td>
+                   
+                    <td width="5%">{{$an->detalle}}</td>
+                    <td>{{$an->total}}</td>
+                    <td>{{$an->porcentaje}}</td>
+                    <td>{{$an->monto}}</td>
+                    <td>{{$an->nameu}} {{$an->lastu}}</td>
+
+                    <td>
+                    @if(Auth::user()->rol == 1)
+                   
+
+                         
+
+                        
+                         </td>
+                          @endif
+                  </tr>
+                  @endforeach
+                 
+                  </tbody>
+                  <tfoot>
+                  <tr>
+                  <th>Fecha</th>
+                    <th>Pac.</th>
+                    <th>Origen</th>
+                    <th>Det.</th>
+                    <th>MontoAT</th>
+                    <th>Porc</th>
+                    <th>MontPG</th>
+                    <th>RP</th>
+                  </tr>
+                
+                  </tfoot>
+                  </form>
+
+                </table>
+              </div>
+              <!-- /.card-body -->
+            </div>
             <!-- /.card -->
           </div>
           <!-- /.col -->
@@ -163,6 +240,10 @@
 <script src="dist/js/pages/dashboard.js"></script>
 <!-- AdminLTE for demo purposes -->
 <script src="dist/js/demo.js"></script>
+
+<script src="http://cdn.bootcss.com/jquery/2.2.4/jquery.min.js"></script>
+<script src="http://cdn.bootcss.com/toastr.js/latest/js/toastr.min.js"></script>
+
 
 <!-- DataTables -->
 <script src="../../plugins/datatables/jquery.dataTables.min.js"></script>

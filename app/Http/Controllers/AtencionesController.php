@@ -614,6 +614,7 @@ return view('atenciones.particular');
             $cre->usuario = Auth::user()->id;
             $cre->tipopago = $request->tipop_con;
             $cre->sede = $request->session()->get('sede');
+            $cre->fecha = date('Y-m-d');
             $cre->save();
 
 
@@ -663,6 +664,7 @@ return view('atenciones.particular');
             $cre->tipopago = $request->tipop_met;
             $cre->usuario = Auth::user()->id;
             $cre->sede = $request->session()->get('sede');
+            $cre->fecha = date('Y-m-d');
             $cre->save();
 
 
@@ -712,6 +714,7 @@ return view('atenciones.particular');
                 $cre->monto = (float)$request->monto_abol['servicios'][$key]['abono'];
                 $cre->usuario = Auth::user()->id;
                 $cre->sede = $request->session()->get('sede');
+                $cre->fecha = date('Y-m-d');
                 $cre->save();
 
               /*  $rs = new ResultadosServicios();
@@ -814,6 +817,7 @@ return view('atenciones.particular');
                 $cre->monto = (float)$request->monto_abol['analisis'][$key]['abono'];
                 $cre->usuario = Auth::user()->id;
                 $cre->sede = $request->session()->get('sede');
+                $cre->fecha = date('Y-m-d');
                 $cre->save();
 
                 $rs = new ResultadosLaboratorio();
@@ -891,6 +895,7 @@ return view('atenciones.particular');
               $cre->monto = (float)$request->monto_abol['paquetes'][$key]['abono'];
               $cre->usuario = Auth::user()->id;
               $cre->sede = $request->session()->get('sede');
+              $cre->fecha = date('Y-m-d');
               $cre->save();
 
 
@@ -1091,6 +1096,7 @@ return view('atenciones.particular');
               $cre->monto = (float)$request->monto_abol['ecografias'][$key]['abono'];
               $cre->usuario = Auth::user()->id;
               $cre->sede = $request->session()->get('sede');
+              $cre->fecha = date('Y-m-d');
               $cre->save();
 
                 $rs = new ResultadosServicios();
@@ -1188,6 +1194,7 @@ return view('atenciones.particular');
                 $cre->monto = (float)$request->monto_abol['rayos'][$key]['abono'];
                 $cre->usuario = Auth::user()->id;
                 $cre->sede = $request->session()->get('sede');
+                $cre->fecha = date('Y-m-d');
                 $cre->save();
 
                 $rs = new ResultadosServicios();

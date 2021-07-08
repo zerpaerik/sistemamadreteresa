@@ -96,6 +96,7 @@ class IngresosController extends Controller
         $cre->usuario = Auth::user()->id;
         $cre->tipopago = $request->tipopago;
         $cre->sede = $request->session()->get('sede');
+        $cre->fecha = date('Y-m-d');
         $cre->save();
 
 

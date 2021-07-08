@@ -48,7 +48,6 @@
 
 <div>
 	<div class="text-center title-header col-12">
-	<center><strong>HOTEL MadreTeresa</strong> </center>
 		<center><strong>REPORTE DETALLADO</strong> </center>
 		<center><strong>DESDE: </strong>- {{ $f1 }} <strong>DESDE: </strong>{{ $f2 }}</center>
 
@@ -72,25 +71,29 @@
 <div style="background: #eaeaea;">
 	<table>
 		<tr>
-			<th style="padding: 0;width: 5%;text-overflow: ellipsis;">FECHA</th>
-			<th style="padding: 0;width: 10%;text-overflow: ellipsis;">DESCRIPCIÓN</th>
-			<th style="padding: 0;width: 5%;text-overflow: ellipsis;">MONTO</th>
-			<th style="padding: 0;width: 5%;text-overflow: ellipsis;">TP</th>
-			<th style="padding: 0;width: 10%;text-overflow: ellipsis;">CLIENTE</th>
-			<th style="padding: 0;width: 5%;text-overflow: ellipsis;">REGISTRADO POR</th>
+		   <th style="padding: 0;width: 5%;text-overflow: ellipsis;">FECHA</th>
+			<th style="padding: 0;width: 5%;text-overflow: ellipsis;">TOTAL</th>
+			<th style="padding: 0;width: 10%;text-overflow: ellipsis;">EFECTIVO</th>
+			<th style="padding: 0;width: 5%;text-overflow: ellipsis;">TARJETA</th>
+			<th style="padding: 0;width: 5%;text-overflow: ellipsis;">DEPÓSITO</th>
+			<th style="padding: 0;width: 10%;text-overflow: ellipsis;">YAPE</th>
+			<th style="padding: 0;width: 5%;text-overflow: ellipsis;">EGRESOS</th>
 
 
 
 
 		</tr>
-		@foreach($ingresos as $ingreso)
+		@foreach($efectivo as $ingreso)
 		<tr>
-			<td style="padding: 0;width: 5%;text-overflow: ellipsis;">{{ $ingreso->created_at }}</td>
-			<td style="padding: 0;width: 5%;text-overflow: ellipsis;">{{ $ingreso->descripcion }}</td>
+		    <td style="padding: 0;width: 5%;text-overflow: ellipsis;">{{ $ingreso->fecha }}</td>
 			<td style="padding: 0;width: 5%;text-overflow: ellipsis;">{{ $ingreso->monto }}</td>
-			<td style="padding: 0;width: 5%;text-overflow: ellipsis;">{{ $ingreso->tipopago }}</td>
-			<td style="padding: 0;width: 5%;text-overflow: ellipsis;">{{ $ingreso->nombre }}</td>
-			<td style="padding: 0;width: 5%;text-overflow: ellipsis;">{{ $ingreso->usuario }}</td>
+			@if($ingreso->tipopago == 'EF')
+			<td style="padding: 0;width: 5%;text-overflow: ellipsis;">{{ $ingreso->monto }}</td>
+			@endif
+			<td style="padding: 0;width: 5%;text-overflow: ellipsis;">{{ $ingreso->monto }}</td>
+			<td style="padding: 0;width: 5%;text-overflow: ellipsis;">{{ $ingreso->monto }}</td>
+			<td style="padding: 0;width: 5%;text-overflow: ellipsis;">{{ $ingreso->monto }}</td>
+			<td style="padding: 0;width: 5%;text-overflow: ellipsis;">{{ $ingreso->monto }}</td>
 			
 		</tr>
 		@endforeach

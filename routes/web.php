@@ -254,6 +254,9 @@ Route::get('comisiones1', 'ComisionesPagarController@index1')->name('comisiones.
 Route::get('comisiones2', 'ComisionesPagarController@index2')->name('comisiones.index2');
 Route::get('comisiones-pagar-{id}', 'ComisionesPagarController@pagar')->middleware('auth');
 Route::post('pagarmultiple', 'ComisionesPagarController@pagarmultiple');
+Route::get('reporte_compagar', 'ComisionesPagarController@reporte_compagar')->name('compagar.index');
+Route::get('reporte_compagar1', 'ComisionesPagarController@reporte_compagar1')->name('compagar1.index');
+
 
 
 

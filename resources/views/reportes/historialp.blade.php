@@ -157,6 +157,8 @@
                     <td>{{substr($an->lastu,0,5)}} {{substr($an->nameu,0,5)}}</td>
                     <td>
                     @if($an->informe != null)
+                    <p>Atendido Por: {{$an->atendido_por}}</p>
+
                     <a href="{{route('descargar2',$an->informe)}}" class="btn btn-success" target="_blank">Ver Informe</a>
                     @else
                     <p>NO HAY INFORME</p>
