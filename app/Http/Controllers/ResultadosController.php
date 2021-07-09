@@ -372,8 +372,8 @@ class ResultadosController extends Controller
         $com = new Comisiones();
         $com->id_atencion =  $res->id_atencion;
         $com->detalle =  $servicio->nombre;
-        $com->porcentaje = Auth::user()->id;
-        $com->id_responsable = $servicio->porcentaje2;
+        $com->porcentaje = $servicio->porcentaje2;
+        $com->id_responsable = Auth::user()->id;
         $com->monto = $atenc->monto * $servicio->porcentaje2 / 100;
         $com->estatus = 1;
         $com->tecnologo = 1;
