@@ -375,6 +375,7 @@ class ResultadosController extends Controller
         $com->porcentaje = $servicio->porcentaje2;
         $com->id_responsable = Auth::user()->id;
         $com->monto = $atenc->monto * $servicio->porcentaje2 / 100;
+        $com->id_origen = 1;
         $com->estatus = 1;
         $com->tecnologo = 1;
         $com->usuario = Auth::user()->id;
