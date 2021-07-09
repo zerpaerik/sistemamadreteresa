@@ -121,7 +121,6 @@
                     <th>MontoAT</th>
                     <th>Porcentaje</th>
                     <th>MontoPG</th>
-                    <th>RP</th>
                     <th>Acciones</th>
                   </tr>
                   </thead>
@@ -136,7 +135,6 @@
                     <td>{{$an->total}}</td>
                     <td>{{$an->porcentaje}}</td>
                     <td>{{$an->monto}}</td>
-                    <td>{{$an->nameu}} {{$an->lastu}}</td>
 
                     <td>
                     @if(Auth::user()->rol == 1)
@@ -164,7 +162,6 @@
                     <th>MontoAT</th>
                     <th>Porcentaje</th>
                     <th>MontoPG</th>
-                    <th>RP</th>
                     <th>Acciones</th>
                   </tr>
                   <th>
