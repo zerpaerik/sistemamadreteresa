@@ -467,7 +467,7 @@ class AtencionesController extends Controller
 
 
         $view = \View::make('atenciones.ticket')->with('ticket', $atenciones)->with('header', $aten)->with('total', $total)->with('abono', $abono)->with('resta', $resta);
-        $customPaper = array(0,0,800.00,200.00);
+        $customPaper = array(0,0,1000.00,200.00);
 
         $pdf = \App::make('dompdf.wrapper');
         $pdf->loadHTML($view)->setPaper($customPaper, 'landscape');
