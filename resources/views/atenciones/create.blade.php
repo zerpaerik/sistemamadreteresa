@@ -80,6 +80,7 @@
               <div class="card-header">
                 <h3 class="card-title">Agregar</h3>
               </div>
+              @include('flash-message')
 
              
               <!-- /.card-header -->

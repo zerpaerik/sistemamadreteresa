@@ -588,180 +588,185 @@ return view('atenciones.particular');
         ->first();  
 
 
-        $atec = new Atec();
-        $atec->save();
+        /*if($validator->fails()) {
+          $request->session()->flash('error', 'El Personal ya está REGISTRADO - DNI y EMAIL deben ser únicos.');
+          return redirect()->action('PersonalController@create', ['errors' => $validator->errors()]);
+        } else {*/
+
+          if($request->paciente == null){
+            $request->session()->flash('error', 'Debe Seleccionar un Paciente para poder hacer el ingreso.');
+            return back();
+
+          } else if($request->origen_usuario == null && $request->origen != 3){
+            $request->session()->flash('error', 'Debe Seleccionar un Origen para poder hacer el ingreso.');
+            return back();
+
+          } else {
+              $atec = new Atec();
+              $atec->save();
 
         
-        if(!is_null($request->precio_con)){
-            $lab = new Atenciones();
-            $lab->tipo_origen =  3;
-            $lab->id_origen = 1;
-            $lab->id_atec =  $atec->id;
-            $lab->id_paciente =  $request->paciente;
-            $lab->tipo_atencion = 5;
-            $lab->id_tipo = $request->tipo_con;
-            $lab->monto = $request->precio_con;
-            $lab->abono = $request->precio_con;
-            $lab->tipo_pago = $request->tipop_con;
-            $lab->usuario = Auth::user()->id;
-            $lab->sede = $request->session()->get('sede');
-            $lab->save();
+              if (!is_null($request->precio_con)) {
+                  $lab = new Atenciones();
+                  $lab->tipo_origen =  3;
+                  $lab->id_origen = 1;
+                  $lab->id_atec =  $atec->id;
+                  $lab->id_paciente =  $request->paciente;
+                  $lab->tipo_atencion = 5;
+                  $lab->id_tipo = $request->tipo_con;
+                  $lab->monto = $request->precio_con;
+                  $lab->abono = $request->precio_con;
+                  $lab->tipo_pago = $request->tipop_con;
+                  $lab->usuario = Auth::user()->id;
+                  $lab->sede = $request->session()->get('sede');
+                  $lab->save();
 
-            $cre = new Creditos();
-            $cre->origen = 'CONSULTAS';
-            $cre->descripcion = 'INGRESO POR CONSULTA';
-            $cre->id_atencion =  $lab->id;
-            $cre->monto = $request->precio_con;
-            $cre->usuario = Auth::user()->id;
-            $cre->tipopago = $request->tipop_con;
-            $cre->sede = $request->session()->get('sede');
-            $cre->fecha = date('Y-m-d');
-            $cre->save();
+                  $cre = new Creditos();
+                  $cre->origen = 'CONSULTAS';
+                  $cre->descripcion = 'INGRESO POR CONSULTA';
+                  $cre->id_atencion =  $lab->id;
+                  $cre->monto = $request->precio_con;
+                  $cre->usuario = Auth::user()->id;
+                  $cre->tipopago = $request->tipop_con;
+                  $cre->sede = $request->session()->get('sede');
+                  $cre->fecha = date('Y-m-d');
+                  $cre->save();
 
 
-            if($request->precio_con > $request->precio_con){
+                  if ($request->precio_con > $request->precio_con) {
+                  }
 
-            }
-
-            $con = new Consultas();
-            $con->id_paciente =  $request->paciente;
-            $con->id_atencion =  $lab->id;
-            $con->id_especialista =  $request->esp_con;
-            $con->tipo =  $request->tipo_con;
-            $con->monto = $request->precio_con;
-            $con->usuario = Auth::user()->id;
-            $con->sede = $request->session()->get('sede');
-            $con->save();
-
-        }
+                  $con = new Consultas();
+                  $con->id_paciente =  $request->paciente;
+                  $con->id_atencion =  $lab->id;
+                  $con->id_especialista =  $request->esp_con;
+                  $con->tipo =  $request->tipo_con;
+                  $con->monto = $request->precio_con;
+                  $con->usuario = Auth::user()->id;
+                  $con->sede = $request->session()->get('sede');
+                  $con->save();
+              }
 
         
-        //GUARDANDO METODOS
+              //GUARDANDO METODOS
         
-        if(!is_null($request->precio_met)){
-            $lab = new Atenciones();
-            $lab->tipo_origen =  $request->origen;
-            if($request->origen == 3){
-              $lab->id_origen = 99;
-            }else{
-              $lab->id_origen = $searchUsuarioID->id;
-            }
-            $lab->id_paciente =  $request->paciente;
-            $lab->tipo_atencion = 6;
-            $lab->id_atec =  $atec->id;
-            $lab->id_tipo = $request->metodo;
-            $lab->monto = $request->precio_met;
-            $lab->abono = $request->precio_met;
-            $lab->tipo_pago = $request->tipop_met;
-            $lab->usuario = Auth::user()->id;
-            $lab->sede = $request->session()->get('sede');
-            $lab->save();
+              if (!is_null($request->precio_met)) {
+                  $lab = new Atenciones();
+                  $lab->tipo_origen =  $request->origen;
+                  if ($request->origen == 3) {
+                      $lab->id_origen = 99;
+                  } else {
+                      $lab->id_origen = $searchUsuarioID->id;
+                  }
+                  $lab->id_paciente =  $request->paciente;
+                  $lab->tipo_atencion = 6;
+                  $lab->id_atec =  $atec->id;
+                  $lab->id_tipo = $request->metodo;
+                  $lab->monto = $request->precio_met;
+                  $lab->abono = $request->precio_met;
+                  $lab->tipo_pago = $request->tipop_met;
+                  $lab->usuario = Auth::user()->id;
+                  $lab->sede = $request->session()->get('sede');
+                  $lab->save();
 
-            $cre = new Creditos();
-            $cre->origen = 'METODO';
-            $cre->descripcion = 'INGRESO POR METODO';
-            $cre->id_atencion =  $lab->id;
-            $cre->monto = $request->precio_met;
-            $cre->tipopago = $request->tipop_met;
-            $cre->usuario = Auth::user()->id;
-            $cre->sede = $request->session()->get('sede');
-            $cre->fecha = date('Y-m-d');
-            $cre->save();
+                  $cre = new Creditos();
+                  $cre->origen = 'METODO';
+                  $cre->descripcion = 'INGRESO POR METODO';
+                  $cre->id_atencion =  $lab->id;
+                  $cre->monto = $request->precio_met;
+                  $cre->tipopago = $request->tipop_met;
+                  $cre->usuario = Auth::user()->id;
+                  $cre->sede = $request->session()->get('sede');
+                  $cre->fecha = date('Y-m-d');
+                  $cre->save();
 
 
-            $met = new Metodos();
-            $met->id_paciente =  $request->paciente;
-            $met->id_atencion =  $lab->id;
-            $met->id_producto =  $request->metodo;
-            $met->monto = $request->precio_met;
-            $met->usuario = Auth::user()->id;
-            $met->sede = $request->session()->get('sede');
-            $met->save();
+                  $met = new Metodos();
+                  $met->id_paciente =  $request->paciente;
+                  $met->id_atencion =  $lab->id;
+                  $met->id_producto =  $request->metodo;
+                  $met->monto = $request->precio_met;
+                  $met->usuario = Auth::user()->id;
+                  $met->sede = $request->session()->get('sede');
+                  $met->save();
+              }
 
-        }
-
-        //GUARDANDO SERVICIOS
+              //GUARDANDO SERVICIOS
         
-        if (isset($request->id_servicio)) {
-            foreach ($request->id_servicio['servicios'] as $key => $serv) {
-              if (!is_null($serv['servicio'])) {
+              if (isset($request->id_servicio)) {
+                  foreach ($request->id_servicio['servicios'] as $key => $serv) {
+                      if (!is_null($serv['servicio'])) {
+                          $servicio = Servicios::where('id', '=', $serv['servicio'])->first();
 
-                $servicio = Servicios::where('id','=',$serv['servicio'])->first();
+                          //TIPO ATENCION SERVICIOS= 1
+                          $lab = new Atenciones();
+                          $lab->tipo_origen =  $request->origen;
+                          if ($request->origen == 3) {
+                              $lab->id_origen = 99;
+                          } else {
+                              $lab->id_origen = $searchUsuarioID->id;
+                          }
+                          $lab->id_paciente =  $request->paciente;
+                          $lab->tipo_atencion = 1;
+                          $lab->id_tipo = $serv['servicio'];
+                          $lab->monto = (float)$request->monto_s['servicios'][$key]['monto'];
+                          $lab->abono = (float)$request->monto_abol['servicios'][$key]['abono'];
+                          $lab->resta = (float)$request->monto_s['servicios'][$key]['monto'] - (float)$request->monto_abol['servicios'][$key]['abono'];
+                          $lab->tipo_pago = $request->id_pago['servicios'][$key]['tipop'];
+                          $lab->usuario = Auth::user()->id;
+                          $lab->sede = $request->session()->get('sede');
+                          $lab->id_atec =  $atec->id;
+                          $lab->save();
 
-                //TIPO ATENCION SERVICIOS= 1
-                $lab = new Atenciones();
-                $lab->tipo_origen =  $request->origen;
-                if($request->origen == 3){
-                  $lab->id_origen = 99;
-                }else{
-                  $lab->id_origen = $searchUsuarioID->id;
-                }                
-                $lab->id_paciente =  $request->paciente;
-                $lab->tipo_atencion = 1;
-                $lab->id_tipo = $serv['servicio'];
-                $lab->monto = (float)$request->monto_s['servicios'][$key]['monto'];
-                $lab->abono = (float)$request->monto_abol['servicios'][$key]['abono'];
-                $lab->resta = (float)$request->monto_s['servicios'][$key]['monto'] - (float)$request->monto_abol['servicios'][$key]['abono'];
-                $lab->tipo_pago = $request->id_pago['servicios'][$key]['tipop'];
-                $lab->usuario = Auth::user()->id;
-                $lab->sede = $request->session()->get('sede');
-                $lab->id_atec =  $atec->id;
-                $lab->save();
+                          $cre = new Creditos();
+                          $cre->origen = 'SERVICIO';
+                          $cre->descripcion = 'INGRESO POR SERVICIO';
+                          $cre->id_atencion =  $lab->id;
+                          $cre->tipopago =  $request->id_pago['servicios'][$key]['tipop'];
+                          $cre->monto = (float)$request->monto_abol['servicios'][$key]['abono'];
+                          $cre->usuario = Auth::user()->id;
+                          $cre->sede = $request->session()->get('sede');
+                          $cre->fecha = date('Y-m-d');
+                          $cre->save();
 
-                $cre = new Creditos();
-                $cre->origen = 'SERVICIO';
-                $cre->descripcion = 'INGRESO POR SERVICIO';
-                $cre->id_atencion =  $lab->id;
-                $cre->tipopago =  $request->id_pago['servicios'][$key]['tipop'];
-                $cre->monto = (float)$request->monto_abol['servicios'][$key]['abono'];
-                $cre->usuario = Auth::user()->id;
-                $cre->sede = $request->session()->get('sede');
-                $cre->fecha = date('Y-m-d');
-                $cre->save();
+                          /*  $rs = new ResultadosServicios();
+                            $rs->id_atencion =  $lab->id;
+                            $rs->id_servicio = $serv['servicio'];
+                            $rs->save();*/
 
-              /*  $rs = new ResultadosServicios();
-                $rs->id_atencion =  $lab->id;
-                $rs->id_servicio = $serv['servicio'];
-                $rs->save();*/
-
-                if($request->monto_s['servicios'][$key]['monto'] > $request->monto_abol['servicios'][$key]['abono']){
-
-                  $cb = new Cobrar();
-                  $cb->id_atencion =  $lab->id;
-                  $cb->detalle =  $servicio->nombre;
-                  $cb->resta =(float)$request->monto_s['servicios'][$key]['monto'] - (float)$request->monto_abol['servicios'][$key]['abono'];
-                  $cb->save();
-              
-                }
+                          if ($request->monto_s['servicios'][$key]['monto'] > $request->monto_abol['servicios'][$key]['abono']) {
+                              $cb = new Cobrar();
+                              $cb->id_atencion =  $lab->id;
+                              $cb->detalle =  $servicio->nombre;
+                              $cb->resta =(float)$request->monto_s['servicios'][$key]['monto'] - (float)$request->monto_abol['servicios'][$key]['abono'];
+                              $cb->save();
+                          }
 
 
 
-                if($request->origen == 1 && $servicio->porcentaje > 0){
-                  $com = new Comisiones();
-                  $com->id_atencion =  $lab->id;
-                  $com->porcentaje = $servicio->porcentaje;
-                  $com->id_responsable = $searchUsuarioID->id;
-                  $com->id_origen = $request->origen;
-                  $com->detalle =  $servicio->nombre;
-                  $com->monto = (float)$request->monto_s['servicios'][$key]['monto'] * $servicio->porcentaje / 100;
-                  $com->estatus = 1;
-                  $com->usuario = Auth::user()->id;
-                  $com->save();
-
-                } elseif($request->origen == 2 && $servicio->porcentaje1 > 0) {
-
-                  $com = new Comisiones();
-                  $com->id_atencion =  $lab->id;
-                  $com->porcentaje = $servicio->porcentaje1;
-                  $com->id_responsable = $searchUsuarioID->id;
-                  $com->id_origen = $request->origen;
-                  $com->detalle =  $servicio->nombre;
-                  $com->monto = (float)$request->monto_s['servicios'][$key]['monto'] * $servicio->porcentaje1 / 100;
-                  $com->estatus = 1;
-                  $com->usuario = Auth::user()->id;
-                  $com->save();
-
-                } else {
+                          if ($request->origen == 1 && $servicio->porcentaje > 0) {
+                              $com = new Comisiones();
+                              $com->id_atencion =  $lab->id;
+                              $com->porcentaje = $servicio->porcentaje;
+                              $com->id_responsable = $searchUsuarioID->id;
+                              $com->id_origen = $request->origen;
+                              $com->detalle =  $servicio->nombre;
+                              $com->monto = (float)$request->monto_s['servicios'][$key]['monto'] * $servicio->porcentaje / 100;
+                              $com->estatus = 1;
+                              $com->usuario = Auth::user()->id;
+                              $com->save();
+                          } elseif ($request->origen == 2 && $servicio->porcentaje1 > 0) {
+                              $com = new Comisiones();
+                              $com->id_atencion =  $lab->id;
+                              $com->porcentaje = $servicio->porcentaje1;
+                              $com->id_responsable = $searchUsuarioID->id;
+                              $com->id_origen = $request->origen;
+                              $com->detalle =  $servicio->nombre;
+                              $com->monto = (float)$request->monto_s['servicios'][$key]['monto'] * $servicio->porcentaje1 / 100;
+                              $com->estatus = 1;
+                              $com->usuario = Auth::user()->id;
+                              $com->save();
+                          } else {
 
                 /* $com = new Comisiones();
                   $com->id_atencion =  $lab->id;
@@ -771,388 +776,347 @@ return view('atenciones.particular');
                   $com->estatus = 1;
                   $com->usuario = Auth::user()->id;
                   $com->save();*/
-
-                }
-
-
-
-              } 
-            }
-          }
-
-
-
-
-
-        //GUARDANDO ANALISIS
-
-
-        if (isset($request->id_analisi)) {
-            foreach ($request->id_analisi['analisis'] as $key => $laboratorio) {
-              if (!is_null($laboratorio['analisi'])) {
-
-
-                $analisis = Analisis::where('id','=',$laboratorio['analisi'])->first();
-
-
-                //TIPO ATENCION LABORATORIO= 4
-                $lab = new Atenciones();
-                $lab->tipo_origen =  $request->origen;
-                if($request->origen == 3){
-                  $lab->id_origen = 99;
-                }else{
-                  $lab->id_origen = $searchUsuarioID->id;
-                }
-                $lab->id_paciente =  $request->paciente;
-                $lab->tipo_atencion = 4;
-                $lab->id_tipo = $laboratorio['analisi'];
-                $lab->monto = (float)$request->monto_s['analisis'][$key]['monto'];
-                $lab->abono = (float)$request->monto_abol['analisis'][$key]['abono'];
-                $lab->resta = (float)$request->monto_s['analisis'][$key]['monto'] - (float)$request->monto_abol['analisis'][$key]['abono'];
-                $lab->tipo_pago = $request->id_pago['analisis'][$key]['tipop'];
-                $lab->usuario = Auth::user()->id;
-                $lab->sede = $request->session()->get('sede');
-                $lab->id_atec =  $atec->id;
-                $lab->save();
-
-                $cre = new Creditos();
-                $cre->origen = 'ANALISIS';
-                $cre->descripcion = 'INGRESO POR ANALISIS';
-                $cre->id_atencion =  $lab->id;
-                $cre->tipopago =  $request->id_pago['analisis'][$key]['tipop'];
-                $cre->monto = (float)$request->monto_abol['analisis'][$key]['abono'];
-                $cre->usuario = Auth::user()->id;
-                $cre->sede = $request->session()->get('sede');
-                $cre->fecha = date('Y-m-d');
-                $cre->save();
-
-                $rs = new ResultadosLaboratorio();
-                $rs->id_atencion =  $lab->id;
-                $rs->id_laboratorio =$laboratorio['analisi'];
-                $rs->save();
-
-
-                if($request->monto_s['analisis'][$key]['monto'] > $request->monto_abol['analisis'][$key]['abono']){
-
-                  $cb = new Cobrar();
-                  $cb->id_atencion =  $lab->id;
-                  $cb->detalle =  $analisis->nombre;
-                  $cb->resta =(float)$request->monto_s['analisis'][$key]['monto'] - (float)$request->monto_abol['analisis'][$key]['abono'];
-                  $cb->save();
-              
-                }
-
-
-
-                if($request->origen == 2){
-                  $com = new Comisiones();
-                  $com->id_atencion =  $lab->id;
-                  $com->detalle =  $analisis->nombre;
-                  $com->porcentaje = $analisis->porcentaje;
-                  $com->id_responsable = $searchUsuarioID->id;
-                  $com->id_origen = $request->origen;
-                  $com->monto = (float)$request->monto_s['analisis'][$key]['monto'] * $analisis->porcentaje / 100;
-                  $com->estatus = 1;
-                  $com->usuario = Auth::user()->id;
-                  $com->save();
-
-                } 
-
-
-
-
-              } 
-            }
-          }
-
-            //GUARDANDO PAQUETES
-
-
-        if (isset($request->id_paquete)) {
-          foreach ($request->id_paquete['paquetes_'] as $key => $paq) {
-            if (!is_null($paq['paquete'])) {
-
-
-              $paquetes = Paquetes::where('id','=',$paq['paquete'])->first();
-
-              //TIPO ATENCION PAQUETE= 7
-              $lab = new Atenciones();
-              $lab->tipo_origen =  $request->origen;
-              if($request->origen == 3){
-                $lab->id_origen = 99;
-              }else{
-                $lab->id_origen = $searchUsuarioID->id;
-              }             
-              $lab->id_paciente =  $request->paciente;
-              $lab->tipo_atencion = 7;
-              $lab->id_tipo = $paq['paquete'];
-              $lab->monto = (float)$request->monto_s['paquetes'][$key]['monto'];
-              $lab->abono = (float)$request->monto_abol['paquetes'][$key]['abono'];
-              $lab->resta = (float)$request->monto_s['paquetes'][$key]['monto'] - (float)$request->monto_abol['paquetes'][$key]['abono'];
-              $lab->tipo_pago = $request->id_pago['paquetes'][$key]['tipop'];
-              $lab->usuario = Auth::user()->id;
-              $lab->sede = $request->session()->get('sede');
-              $lab->id_atec =  $atec->id;
-              $lab->save();
-
-              $cre = new Creditos();
-              $cre->origen = 'PAQUETES';
-              $cre->descripcion = 'INGRESO POR PAQUETE';
-              $cre->id_atencion =  $lab->id;
-              $cre->tipopago =  $request->id_pago['paquetes'][$key]['tipop'];
-              $cre->monto = (float)$request->monto_abol['paquetes'][$key]['abono'];
-              $cre->usuario = Auth::user()->id;
-              $cre->sede = $request->session()->get('sede');
-              $cre->fecha = date('Y-m-d');
-              $cre->save();
-
-
-              
-              if($request->monto_s['paquetes'][$key]['monto'] > $request->monto_abol['paquetes'][$key]['abono']){
-
-                $cb = new Cobrar();
-                $cb->id_atencion =  $lab->id;
-                $cb->detalle =  $paquetes->nombre;
-                $cb->resta =(float)$request->monto_s['paquetes'][$key]['monto'] - (float)$request->monto_abol['paquetes'][$key]['abono'];
-                $cb->save();
-            
+                          }
+                      }
+                  }
               }
 
 
-              if($request->origen == 1 && $paquetes->porcentaje > 0){
-                $com = new Comisiones();
-                $com->id_atencion =  $lab->id;
-                $com->detalle =  $paquetes->nombre;
-                $com->porcentaje = $paquetes->porcentaje;
-                $com->id_responsable = $searchUsuarioID->id;
-                $com->id_origen = $request->origen;
-                $com->monto = (float)$request->monto_s['paquetes'][$key]['monto'] * $paquetes->porcentaje / 100;
-                $com->estatus = 1;
-                $com->usuario = Auth::user()->id;
-                $com->save();
-              } 
 
 
-              // VERIFICANDO SERVICIOS DE PAQUETE PARA GUARDAR SUS RESULTADPS
 
-              $searchServPaq = DB::table('paquetes_s')
+              //GUARDANDO ANALISIS
+
+
+              if (isset($request->id_analisi)) {
+                  foreach ($request->id_analisi['analisis'] as $key => $laboratorio) {
+                      if (!is_null($laboratorio['analisi'])) {
+                          $analisis = Analisis::where('id', '=', $laboratorio['analisi'])->first();
+
+
+                          //TIPO ATENCION LABORATORIO= 4
+                          $lab = new Atenciones();
+                          $lab->tipo_origen =  $request->origen;
+                          if ($request->origen == 3) {
+                              $lab->id_origen = 99;
+                          } else {
+                              $lab->id_origen = $searchUsuarioID->id;
+                          }
+                          $lab->id_paciente =  $request->paciente;
+                          $lab->tipo_atencion = 4;
+                          $lab->id_tipo = $laboratorio['analisi'];
+                          $lab->monto = (float)$request->monto_s['analisis'][$key]['monto'];
+                          $lab->abono = (float)$request->monto_abol['analisis'][$key]['abono'];
+                          $lab->resta = (float)$request->monto_s['analisis'][$key]['monto'] - (float)$request->monto_abol['analisis'][$key]['abono'];
+                          $lab->tipo_pago = $request->id_pago['analisis'][$key]['tipop'];
+                          $lab->usuario = Auth::user()->id;
+                          $lab->sede = $request->session()->get('sede');
+                          $lab->id_atec =  $atec->id;
+                          $lab->save();
+
+                          $cre = new Creditos();
+                          $cre->origen = 'ANALISIS';
+                          $cre->descripcion = 'INGRESO POR ANALISIS';
+                          $cre->id_atencion =  $lab->id;
+                          $cre->tipopago =  $request->id_pago['analisis'][$key]['tipop'];
+                          $cre->monto = (float)$request->monto_abol['analisis'][$key]['abono'];
+                          $cre->usuario = Auth::user()->id;
+                          $cre->sede = $request->session()->get('sede');
+                          $cre->fecha = date('Y-m-d');
+                          $cre->save();
+
+                          $rs = new ResultadosLaboratorio();
+                          $rs->id_atencion =  $lab->id;
+                          $rs->id_laboratorio =$laboratorio['analisi'];
+                          $rs->save();
+
+
+                          if ($request->monto_s['analisis'][$key]['monto'] > $request->monto_abol['analisis'][$key]['abono']) {
+                              $cb = new Cobrar();
+                              $cb->id_atencion =  $lab->id;
+                              $cb->detalle =  $analisis->nombre;
+                              $cb->resta =(float)$request->monto_s['analisis'][$key]['monto'] - (float)$request->monto_abol['analisis'][$key]['abono'];
+                              $cb->save();
+                          }
+
+
+
+                          if ($request->origen == 2) {
+                              $com = new Comisiones();
+                              $com->id_atencion =  $lab->id;
+                              $com->detalle =  $analisis->nombre;
+                              $com->porcentaje = $analisis->porcentaje;
+                              $com->id_responsable = $searchUsuarioID->id;
+                              $com->id_origen = $request->origen;
+                              $com->monto = (float)$request->monto_s['analisis'][$key]['monto'] * $analisis->porcentaje / 100;
+                              $com->estatus = 1;
+                              $com->usuario = Auth::user()->id;
+                              $com->save();
+                          }
+                      }
+                  }
+              }
+
+              //GUARDANDO PAQUETES
+
+
+              if (isset($request->id_paquete)) {
+                  foreach ($request->id_paquete['paquetes_'] as $key => $paq) {
+                      if (!is_null($paq['paquete'])) {
+                          $paquetes = Paquetes::where('id', '=', $paq['paquete'])->first();
+
+                          //TIPO ATENCION PAQUETE= 7
+                          $lab = new Atenciones();
+                          $lab->tipo_origen =  $request->origen;
+                          if ($request->origen == 3) {
+                              $lab->id_origen = 99;
+                          } else {
+                              $lab->id_origen = $searchUsuarioID->id;
+                          }
+                          $lab->id_paciente =  $request->paciente;
+                          $lab->tipo_atencion = 7;
+                          $lab->id_tipo = $paq['paquete'];
+                          $lab->monto = (float)$request->monto_s['paquetes'][$key]['monto'];
+                          $lab->abono = (float)$request->monto_abol['paquetes'][$key]['abono'];
+                          $lab->resta = (float)$request->monto_s['paquetes'][$key]['monto'] - (float)$request->monto_abol['paquetes'][$key]['abono'];
+                          $lab->tipo_pago = $request->id_pago['paquetes'][$key]['tipop'];
+                          $lab->usuario = Auth::user()->id;
+                          $lab->sede = $request->session()->get('sede');
+                          $lab->id_atec =  $atec->id;
+                          $lab->save();
+
+                          $cre = new Creditos();
+                          $cre->origen = 'PAQUETES';
+                          $cre->descripcion = 'INGRESO POR PAQUETE';
+                          $cre->id_atencion =  $lab->id;
+                          $cre->tipopago =  $request->id_pago['paquetes'][$key]['tipop'];
+                          $cre->monto = (float)$request->monto_abol['paquetes'][$key]['abono'];
+                          $cre->usuario = Auth::user()->id;
+                          $cre->sede = $request->session()->get('sede');
+                          $cre->fecha = date('Y-m-d');
+                          $cre->save();
+
+
+              
+                          if ($request->monto_s['paquetes'][$key]['monto'] > $request->monto_abol['paquetes'][$key]['abono']) {
+                              $cb = new Cobrar();
+                              $cb->id_atencion =  $lab->id;
+                              $cb->detalle =  $paquetes->nombre;
+                              $cb->resta =(float)$request->monto_s['paquetes'][$key]['monto'] - (float)$request->monto_abol['paquetes'][$key]['abono'];
+                              $cb->save();
+                          }
+
+
+                          if ($request->origen == 1 && $paquetes->porcentaje > 0) {
+                              $com = new Comisiones();
+                              $com->id_atencion =  $lab->id;
+                              $com->detalle =  $paquetes->nombre;
+                              $com->porcentaje = $paquetes->porcentaje;
+                              $com->id_responsable = $searchUsuarioID->id;
+                              $com->id_origen = $request->origen;
+                              $com->monto = (float)$request->monto_s['paquetes'][$key]['monto'] * $paquetes->porcentaje / 100;
+                              $com->estatus = 1;
+                              $com->usuario = Auth::user()->id;
+                              $com->save();
+                          }
+
+
+                          // VERIFICANDO SERVICIOS DE PAQUETE PARA GUARDAR SUS RESULTADPS
+
+                          $searchServPaq = DB::table('paquetes_s')
               ->select('*')
-              ->where('paquete','=', $paq['paquete'])
+              ->where('paquete', '=', $paq['paquete'])
               ->get();
 
-              //
+                          //
 
-              foreach ($searchServPaq as $serv) {
-                $id_servicio = $serv->servicio;
+                          foreach ($searchServPaq as $serv) {
+                              $id_servicio = $serv->servicio;
           
-                $servdetalle =  DB::table('servicios')
+                              $servdetalle =  DB::table('servicios')
                 ->select('*')
-                ->where('id','=',$id_servicio)
+                ->where('id', '=', $id_servicio)
                 ->first();
                 
-                if(! is_null($id_servicio)){
-
-                  if($servdetalle->tipo != 'OTROS'){
-                      $rs = new ResultadosServicios();
-                      $rs->id_atencion =  $lab->id;
-                      $rs->id_servicio = $id_servicio;
-                      $rs->save();
-                  }
-                    
-                    }
-                }
+                              if (! is_null($id_servicio)) {
+                                  if ($servdetalle->tipo != 'OTROS') {
+                                      $rs = new ResultadosServicios();
+                                      $rs->id_atencion =  $lab->id;
+                                      $rs->id_servicio = $id_servicio;
+                                      $rs->save();
+                                  }
+                              }
+                          }
 
 
 
-              // VERIFICANDO LABORATORIOS DE PAQUETE PARA GUARDAR SUS RESULTADPS
+                          // VERIFICANDO LABORATORIOS DE PAQUETE PARA GUARDAR SUS RESULTADPS
 
 
-              $searchLabPaq = DB::table('paquetes_l')
+                          $searchLabPaq = DB::table('paquetes_l')
               ->select('*')
-              ->where('paquete','=', $paq['paquete'])
+              ->where('paquete', '=', $paq['paquete'])
               ->get();
 
 
-              foreach ($searchLabPaq as $labp) {
-                $id_laboratorio = $labp->laboratorio;
-                if(!is_null($id_laboratorio)){
-                  $rs = new ResultadosLaboratorio();
-                  $rs->id_atencion =  $lab->id;
-                  $rs->id_laboratorio =$id_laboratorio;
-                  $rs->save();
-  
-                 }
-            }
+                          foreach ($searchLabPaq as $labp) {
+                              $id_laboratorio = $labp->laboratorio;
+                              if (!is_null($id_laboratorio)) {
+                                  $rs = new ResultadosLaboratorio();
+                                  $rs->id_atencion =  $lab->id;
+                                  $rs->id_laboratorio =$id_laboratorio;
+                                  $rs->save();
+                              }
+                          }
 
-            // VERIFICANDO CANTIDAD DE CONSULTAS EN PAQUETE
+                          // VERIFICANDO CANTIDAD DE CONSULTAS EN PAQUETE
 
-            $searchConsPaq = DB::table('paquetes_c')
+                          $searchConsPaq = DB::table('paquetes_c')
             ->select('*')
-            ->where('paquete','=', $paq['paquete'])
+            ->where('paquete', '=', $paq['paquete'])
             ->get();
     
-          if(count($searchConsPaq) > 0){
-    
-    
-              foreach ($searchConsPaq as $cons) {
-                $cantidad=$cons->cantidad;
-                 }
+                          if (count($searchConsPaq) > 0) {
+                              foreach ($searchConsPaq as $cons) {
+                                  $cantidad=$cons->cantidad;
+                              }
     
     
     
-             $contador=0;
+                              $contador=0;
 
              
-            while ($contador < $cantidad) {
-                $con = new Consultas();
-                $con->id_paciente =  $request->paciente;
-                $con->id_especialista =  $searchUsuarioID->id;
-                $con->id_atencion =  $lab->id;
-                $con->tipo =  1;
-                $con->monto = 0;
-                $con->usuario = Auth::user()->id;
-                $con->sede = $request->session()->get('sede');
-                $con->save();
+                              while ($contador < $cantidad) {
+                                  $con = new Consultas();
+                                  $con->id_paciente =  $request->paciente;
+                                  $con->id_especialista =  $searchUsuarioID->id;
+                                  $con->id_atencion =  $lab->id;
+                                  $con->tipo =  1;
+                                  $con->monto = 0;
+                                  $con->usuario = Auth::user()->id;
+                                  $con->sede = $request->session()->get('sede');
+                                  $con->save();
  
-               $contador++;
-             } 
-    
-           }
+                                  $contador++;
+                              }
+                          }
 
 
 
-            //
+                          //
 
-            // VERIFICANDO CANTIDAD DE CONTROLES EN PAQUETE
+                          // VERIFICANDO CANTIDAD DE CONTROLES EN PAQUETE
 
-            $searchConsPaq = DB::table('paquetes_co')
+                          $searchConsPaq = DB::table('paquetes_co')
             ->select('*')
-            ->where('paquete','=', $paq['paquete'])
+            ->where('paquete', '=', $paq['paquete'])
             ->get();
     
-          if(count($searchConsPaq) > 0){
-    
-    
-              foreach ($searchConsPaq as $cons) {
-                $cantidad=$cons->cantidad;
-                 }
+                          if (count($searchConsPaq) > 0) {
+                              foreach ($searchConsPaq as $cons) {
+                                  $cantidad=$cons->cantidad;
+                              }
     
     
     
-             $contador=0;
+                              $contador=0;
 
              
-            while ($contador < $cantidad) {
-                $con = new Consultas();
-                $con->id_paciente =  $request->paciente;
-                $con->id_especialista =  $searchUsuarioID->id;
-                $con->id_atencion =  $lab->id;
-                $con->tipo =  2;
-                $con->monto = 0;
-                $con->usuario = Auth::user()->id;
-                $con->sede = $request->session()->get('sede');
-                $con->save();
+                              while ($contador < $cantidad) {
+                                  $con = new Consultas();
+                                  $con->id_paciente =  $request->paciente;
+                                  $con->id_especialista =  $searchUsuarioID->id;
+                                  $con->id_atencion =  $lab->id;
+                                  $con->tipo =  2;
+                                  $con->monto = 0;
+                                  $con->usuario = Auth::user()->id;
+                                  $con->sede = $request->session()->get('sede');
+                                  $con->save();
  
-               $contador++;
-             } 
-    
-           }
-
-
-
-
-
-
-
-
-            } 
-          }
-        }
-
-          //GUARDANDO ECOGRAFIAS
-
-          if (isset($request->id_ecografia)) {
-            foreach ($request->id_ecografia['ecografias'] as $key => $eco) {
-              if (!is_null($eco['ecografia'])) {
-
-                $servicio = Servicios::where('id','=',$eco['ecografia'])->first();
-
-                //TIPO ATENCION ECOGRAFIA= 2
-                $lab = new Atenciones();
-                $lab->tipo_origen =  $request->origen;
-                if($request->origen == 3){
-                  $lab->id_origen = 99;
-                }else{
-                  $lab->id_origen = $searchUsuarioID->id;
-                }                
-                $lab->id_paciente =  $request->paciente;
-                $lab->tipo_atencion = 2;
-                $lab->id_tipo = $eco['ecografia'];
-                $lab->monto = (float)$request->monto_s['ecografias'][$key]['monto'];
-                $lab->abono = (float)$request->monto_abol['ecografias'][$key]['abono'];
-                $lab->resta = (float)$request->monto_s['ecografias'][$key]['monto'] - (float)$request->monto_abol['ecografias'][$key]['abono'];
-                $lab->tipo_pago = $request->id_pago['ecografias'][$key]['tipop'];
-                $lab->usuario = Auth::user()->id;
-                $lab->sede = $request->session()->get('sede');
-                $lab->id_atec =  $atec->id;
-                $lab->save();
-
-                
-              $cre = new Creditos();
-              $cre->origen = 'ECOGRAFIA';
-              $cre->descripcion = 'INGRESO POR ECOGRAFIA';
-              $cre->id_atencion =  $lab->id;
-              $cre->tipopago =  $request->id_pago['ecografias'][$key]['tipop'];
-              $cre->monto = (float)$request->monto_abol['ecografias'][$key]['abono'];
-              $cre->usuario = Auth::user()->id;
-              $cre->sede = $request->session()->get('sede');
-              $cre->fecha = date('Y-m-d');
-              $cre->save();
-
-                $rs = new ResultadosServicios();
-                $rs->id_atencion =  $lab->id;
-                $rs->id_servicio = $eco['ecografia'];
-                $rs->save();
-
-                   
-              if($request->monto_s['ecografias'][$key]['monto'] > $request->monto_abol['ecografias'][$key]['abono']){
-
-                $cb = new Cobrar();
-                $cb->id_atencion =  $lab->id;
-                $cb->detalle =  $servicio->nombre;
-                $cb->resta =(float)$request->monto_s['ecografias'][$key]['monto'] - (float)$request->monto_abol['ecografias'][$key]['abono'];
-                $cb->save();
-            
+                                  $contador++;
+                              }
+                          }
+                      }
+                  }
               }
 
+              //GUARDANDO ECOGRAFIAS
 
-                if($request->origen == 1  && $servicio->porcentaje > 0){
+              if (isset($request->id_ecografia)) {
+                  foreach ($request->id_ecografia['ecografias'] as $key => $eco) {
+                      if (!is_null($eco['ecografia'])) {
+                          $servicio = Servicios::where('id', '=', $eco['ecografia'])->first();
 
-                  $com = new Comisiones();
-                  $com->id_atencion =  $lab->id;
-                  $com->detalle =  $servicio->nombre;
-                  $com->porcentaje = $servicio->porcentaje;
-                  $com->id_responsable = $searchUsuarioID->id;
-                  $com->id_origen = $request->origen;
-                  $com->monto = (float)$request->monto_s['ecografias'][$key]['monto'] * $servicio->porcentaje / 100;
-                  $com->estatus = 1;
-                  $com->usuario = Auth::user()->id;
-                  $com->save();
+                          //TIPO ATENCION ECOGRAFIA= 2
+                          $lab = new Atenciones();
+                          $lab->tipo_origen =  $request->origen;
+                          if ($request->origen == 3) {
+                              $lab->id_origen = 99;
+                          } else {
+                              $lab->id_origen = $searchUsuarioID->id;
+                          }
+                          $lab->id_paciente =  $request->paciente;
+                          $lab->tipo_atencion = 2;
+                          $lab->id_tipo = $eco['ecografia'];
+                          $lab->monto = (float)$request->monto_s['ecografias'][$key]['monto'];
+                          $lab->abono = (float)$request->monto_abol['ecografias'][$key]['abono'];
+                          $lab->resta = (float)$request->monto_s['ecografias'][$key]['monto'] - (float)$request->monto_abol['ecografias'][$key]['abono'];
+                          $lab->tipo_pago = $request->id_pago['ecografias'][$key]['tipop'];
+                          $lab->usuario = Auth::user()->id;
+                          $lab->sede = $request->session()->get('sede');
+                          $lab->id_atec =  $atec->id;
+                          $lab->save();
 
-                } elseif($request->origen == 2 && $servicio->porcentaje1 > 0) {
-                  
-                  $com = new Comisiones();
-                  $com->id_atencion =  $lab->id;
-                  $com->detalle =  $servicio->nombre;
-                  $com->porcentaje = $servicio->porcentaje1;
-                  $com->id_responsable = $searchUsuarioID->id;
-                  $com->id_origen = $request->origen;
-                  $com->monto = (float)$request->monto_s['ecografias'][$key]['monto'] * $servicio->porcentaje1 / 100;
-                  $com->estatus = 1;
-                  $com->usuario = Auth::user()->id;
-                  $com->save();
+                
+                          $cre = new Creditos();
+                          $cre->origen = 'ECOGRAFIA';
+                          $cre->descripcion = 'INGRESO POR ECOGRAFIA';
+                          $cre->id_atencion =  $lab->id;
+                          $cre->tipopago =  $request->id_pago['ecografias'][$key]['tipop'];
+                          $cre->monto = (float)$request->monto_abol['ecografias'][$key]['abono'];
+                          $cre->usuario = Auth::user()->id;
+                          $cre->sede = $request->session()->get('sede');
+                          $cre->fecha = date('Y-m-d');
+                          $cre->save();
 
-                } else {
+                          $rs = new ResultadosServicios();
+                          $rs->id_atencion =  $lab->id;
+                          $rs->id_servicio = $eco['ecografia'];
+                          $rs->save();
+
+                   
+                          if ($request->monto_s['ecografias'][$key]['monto'] > $request->monto_abol['ecografias'][$key]['abono']) {
+                              $cb = new Cobrar();
+                              $cb->id_atencion =  $lab->id;
+                              $cb->detalle =  $servicio->nombre;
+                              $cb->resta =(float)$request->monto_s['ecografias'][$key]['monto'] - (float)$request->monto_abol['ecografias'][$key]['abono'];
+                              $cb->save();
+                          }
+
+
+                          if ($request->origen == 1  && $servicio->porcentaje > 0) {
+                              $com = new Comisiones();
+                              $com->id_atencion =  $lab->id;
+                              $com->detalle =  $servicio->nombre;
+                              $com->porcentaje = $servicio->porcentaje;
+                              $com->id_responsable = $searchUsuarioID->id;
+                              $com->id_origen = $request->origen;
+                              $com->monto = (float)$request->monto_s['ecografias'][$key]['monto'] * $servicio->porcentaje / 100;
+                              $com->estatus = 1;
+                              $com->usuario = Auth::user()->id;
+                              $com->save();
+                          } elseif ($request->origen == 2 && $servicio->porcentaje1 > 0) {
+                              $com = new Comisiones();
+                              $com->id_atencion =  $lab->id;
+                              $com->detalle =  $servicio->nombre;
+                              $com->porcentaje = $servicio->porcentaje1;
+                              $com->id_responsable = $searchUsuarioID->id;
+                              $com->id_origen = $request->origen;
+                              $com->monto = (float)$request->monto_s['ecografias'][$key]['monto'] * $servicio->porcentaje1 / 100;
+                              $com->estatus = 1;
+                              $com->usuario = Auth::user()->id;
+                              $com->save();
+                          } else {
 
                  /* $com = new Comisiones();
                   $com->id_atencion =  $lab->id;
@@ -1162,95 +1126,86 @@ return view('atenciones.particular');
                   $com->estatus = 1;
                   $com->usuario = Auth::user()->id;
                   $com->save();*/
+                          }
+                      }
+                  }
+              }
 
-                }
+              //GUARDANDO RAYOS X
 
-
-
-              } 
-            }
-          }
-
-          //GUARDANDO RAYOS X
-
-          if (isset($request->id_rayo)) {
-            foreach ($request->id_rayo['rayos'] as $key => $ray) {
-              if (!is_null($ray['rayo'])) {
-
-                $servicio = Servicios::where('id','=',$ray['rayo'])->first();
+              if (isset($request->id_rayo)) {
+                  foreach ($request->id_rayo['rayos'] as $key => $ray) {
+                      if (!is_null($ray['rayo'])) {
+                          $servicio = Servicios::where('id', '=', $ray['rayo'])->first();
 
 
-                //TIPO ATENCION RAYOS= 3
-                $lab = new Atenciones();
-                $lab->tipo_origen =  $request->origen;
-                if($request->origen == 3){
-                  $lab->id_origen = 99;
-                }else{
-                  $lab->id_origen = $searchUsuarioID->id;
-                }                
-                $lab->id_paciente =  $request->paciente;
-                $lab->tipo_atencion = 3;
-                $lab->id_tipo = $ray['rayo'];
-                $lab->monto = (float)$request->monto_s['rayos'][$key]['monto'];
-                $lab->abono = (float)$request->monto_abol['rayos'][$key]['abono'];
-                $lab->resta = (float)$request->monto_s['rayos'][$key]['monto'] - (float)$request->monto_abol['rayos'][$key]['abono'];
-                $lab->tipo_pago = $request->id_pago['rayos'][$key]['tipop'];
-                $lab->usuario = Auth::user()->id;
-                $lab->sede =$request->session()->get('sede');
-                $lab->id_atec =  $atec->id;
-                $lab->save();
+                          //TIPO ATENCION RAYOS= 3
+                          $lab = new Atenciones();
+                          $lab->tipo_origen =  $request->origen;
+                          if ($request->origen == 3) {
+                              $lab->id_origen = 99;
+                          } else {
+                              $lab->id_origen = $searchUsuarioID->id;
+                          }
+                          $lab->id_paciente =  $request->paciente;
+                          $lab->tipo_atencion = 3;
+                          $lab->id_tipo = $ray['rayo'];
+                          $lab->monto = (float)$request->monto_s['rayos'][$key]['monto'];
+                          $lab->abono = (float)$request->monto_abol['rayos'][$key]['abono'];
+                          $lab->resta = (float)$request->monto_s['rayos'][$key]['monto'] - (float)$request->monto_abol['rayos'][$key]['abono'];
+                          $lab->tipo_pago = $request->id_pago['rayos'][$key]['tipop'];
+                          $lab->usuario = Auth::user()->id;
+                          $lab->sede =$request->session()->get('sede');
+                          $lab->id_atec =  $atec->id;
+                          $lab->save();
 
-                $cre = new Creditos();
-                $cre->origen = 'RAYOSX';
-                $cre->descripcion = 'INGRESO POR RAYOSX';
-                $cre->id_atencion =  $lab->id;
-                $cre->tipopago =  $request->id_pago['rayos'][$key]['tipop'];
-                $cre->monto = (float)$request->monto_abol['rayos'][$key]['abono'];
-                $cre->usuario = Auth::user()->id;
-                $cre->sede = $request->session()->get('sede');
-                $cre->fecha = date('Y-m-d');
-                $cre->save();
+                          $cre = new Creditos();
+                          $cre->origen = 'RAYOSX';
+                          $cre->descripcion = 'INGRESO POR RAYOSX';
+                          $cre->id_atencion =  $lab->id;
+                          $cre->tipopago =  $request->id_pago['rayos'][$key]['tipop'];
+                          $cre->monto = (float)$request->monto_abol['rayos'][$key]['abono'];
+                          $cre->usuario = Auth::user()->id;
+                          $cre->sede = $request->session()->get('sede');
+                          $cre->fecha = date('Y-m-d');
+                          $cre->save();
 
-                $rs = new ResultadosServicios();
-                $rs->id_atencion =  $lab->id;
-                $rs->id_servicio =$ray['rayo'];
-                $rs->save();
+                          $rs = new ResultadosServicios();
+                          $rs->id_atencion =  $lab->id;
+                          $rs->id_servicio =$ray['rayo'];
+                          $rs->save();
 
-                if($request->monto_s['rayos'][$key]['monto'] > $request->monto_abol['rayos'][$key]['abono']){
+                          if ($request->monto_s['rayos'][$key]['monto'] > $request->monto_abol['rayos'][$key]['abono']) {
+                              $cb = new Cobrar();
+                              $cb->id_atencion =  $lab->id;
+                              $cb->detalle =  $servicio->nombre;
+                              $cb->resta =(float)$request->monto_s['rayos'][$key]['monto'] - (float)$request->monto_abol['rayos'][$key]['abono'];
+                              $cb->save();
+                          }
 
-                  $cb = new Cobrar();
-                  $cb->id_atencion =  $lab->id;
-                  $cb->detalle =  $servicio->nombre;
-                  $cb->resta =(float)$request->monto_s['rayos'][$key]['monto'] - (float)$request->monto_abol['rayos'][$key]['abono'];
-                  $cb->save();
-              
-                }
-
-                if($request->origen == 1 && $servicio->porcentaje > 0){
-                  $lab = new Comisiones();
-                  $lab->id_atencion =  $lab->id;
-                  $lab->porcentaje = $servicio->porcentaje;
-                  $lab->detalle =  $servicio->nombre;
-                  $com->id_responsable = $searchUsuarioID->id;
-                  $com->id_origen = $request->origen;
-                  $lab->monto = (float)$request->monto_s['rayos'][$key]['monto'] * $servicio->porcentaje / 100;
-                  $lab->estatus = 1;
-                  $lab->usuario = Auth::user()->id;
-                  $lab->save();
-
-                } elseif($request->origen == 2 && $servicio->porcentaje1 > 0) {
-                  $lab = new Comisiones();
-                  $lab->id_atencion =  $lab->id;
-                  $lab->porcentaje = $servicio->porcentaje1;
-                  $lab->detalle =  $servicio->nombre;
-                  $com->id_responsable = $searchUsuarioID->id;
-                  $com->id_origen = $request->origen;
-                  $lab->monto = (float)$request->monto_s['rayos'][$key]['monto'] * $servicio->porcentaje1 / 100;
-                  $lab->estatus = 1;
-                  $lab->usuario = Auth::user()->id;
-                  $lab->save();
-
-                } else {
+                          if ($request->origen == 1 && $servicio->porcentaje > 0) {
+                              $lab = new Comisiones();
+                              $lab->id_atencion =  $lab->id;
+                              $lab->porcentaje = $servicio->porcentaje;
+                              $lab->detalle =  $servicio->nombre;
+                              $com->id_responsable = $searchUsuarioID->id;
+                              $com->id_origen = $request->origen;
+                              $lab->monto = (float)$request->monto_s['rayos'][$key]['monto'] * $servicio->porcentaje / 100;
+                              $lab->estatus = 1;
+                              $lab->usuario = Auth::user()->id;
+                              $lab->save();
+                          } elseif ($request->origen == 2 && $servicio->porcentaje1 > 0) {
+                              $lab = new Comisiones();
+                              $lab->id_atencion =  $lab->id;
+                              $lab->porcentaje = $servicio->porcentaje1;
+                              $lab->detalle =  $servicio->nombre;
+                              $com->id_responsable = $searchUsuarioID->id;
+                              $com->id_origen = $request->origen;
+                              $lab->monto = (float)$request->monto_s['rayos'][$key]['monto'] * $servicio->porcentaje1 / 100;
+                              $lab->estatus = 1;
+                              $lab->usuario = Auth::user()->id;
+                              $lab->save();
+                          } else {
 
                 /*  $lab = new Comisiones();
                   $lab->id_atencion =  $lab->id;
@@ -1260,12 +1215,10 @@ return view('atenciones.particular');
                   $lab->estatus = 1;
                   $lab->usuario = Auth::user()->id;
                   $lab->save();*/
-
-                }
-
-
-              } 
-            }
+                          }
+                      }
+                  }
+              }
           }
 
 
