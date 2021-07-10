@@ -457,65 +457,12 @@
             </a>
             <ul class="nav nav-treeview">
 
-            <li class="nav-item">
-                <a href="{{route('personal.index')}}" class="nav-link">
-                  <i class="far fa-circle nav-icon"></i>
-                  <p>Personal</p>
-                </a>
-              </li>
-
-              <li class="nav-item">
-                <a href="{{route('centros.index')}}" class="nav-link">
-                  <i class="far fa-circle nav-icon"></i>
-                  <p>Centros</p>
-                </a>
-              </li>
-
-              <li class="nav-item">
-                <a href="{{route('profesionales.index')}}" class="nav-link">
-                  <i class="far fa-circle nav-icon"></i>
-                  <p>Profesionales</p>
-                </a>
-              </li>
-
-              <li class="nav-item">
-                <a href="{{route('laboratorio.index')}}" class="nav-link">
-                  <i class="far fa-circle nav-icon"></i>
-                  <p>Laboratorios</p>
-                </a>
-              </li>
-
-              <li class="nav-item">
-                <a href="{{route('analisis.index')}}" class="nav-link">
-                  <i class="far fa-circle nav-icon"></i>
-                  <p>Analisis</p>
-                </a>
-              </li>
-
-              <li class="nav-item">
-                <a href="{{route('servicios.index')}}" class="nav-link">
-                  <i class="far fa-circle nav-icon"></i>
-                  <p>Servicios</p>
-                </a>
-              </li>
-
-              <li class="nav-item">
-                <a href="{{route('paquetes.index')}}" class="nav-link">
-                  <i class="far fa-circle nav-icon"></i>
-                  <p>Paquetes</p>
-                </a>
-              </li>
+        
               
               <li class="nav-item">
                 <a href="{{route('pacientes.index')}}" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
                   <p>Pacientes</p>
-                </a>
-              </li>
-              <li class="nav-item">
-                <a href="{{route('roles.index')}}" class="nav-link">
-                  <i class="far fa-circle nav-icon"></i>
-                  <p>Roles</p>
                 </a>
               </li>
             
@@ -757,12 +704,7 @@
             </a>
             <ul class="nav nav-treeview">
 
-            <li class="nav-item">
-                <a href="{{route('reporte_ingresos.index')}}" class="nav-link">
-                  <i class="fas fa-hand-holding-usd nav-icon"></i>
-                  <p>Ingresos</p>
-                </a>
-              </li>
+     
 
             <li class="nav-item">
                 <a href="{{route('cierre.index')}}" class="nav-link">
@@ -809,18 +751,7 @@
                 </a>
               </li>
               
-              <li class="nav-item">
-                <a href="{{route('usuarios.index')}}" class="nav-link">
-                  <i class="far fa-circle nav-icon"></i>
-                  <p>Usuarios</p>
-                </a>
-              </li>
-              <li class="nav-item">
-                <a href="{{route('roles.index')}}" class="nav-link">
-                  <i class="far fa-circle nav-icon"></i>
-                  <p>Roles</p>
-                </a>
-              </li>
+         
             
               
             </ul>
