@@ -105,6 +105,24 @@
                   <button type="submit" class="btn btn-primary">Buscar</button>
 
                   </div>
+
+                  <div class="col-md-2">
+                    <label for="exampleInputEmail1">Total</label>
+
+                    <input class="number form-control" type="text" name="total" id="total" readonly="readonly" value="0.00">
+                    </div>
+                    
+                  <div class="col-md-2">
+                    <label for="exampleInputEmail1">Abono</label>
+
+                    <input class="form-control" type="text" name="abono" id="abono" readonly="readonly" value="0.00">
+                    </div>
+
+                    <div class="col-md-2">
+                      <label for="exampleInputEmail1">Resta</label>
+  
+                      <input class="form-control" type="text" name="resta" id="resta" readonly="readonly" value="0.00">
+                      </div>
                  
                   </form>
 
@@ -217,13 +235,13 @@
                     <div class="col-sm-1">
                       <input id="servicios_#index#_montoHidden" name="monto_h[servicios][#index#][montoHidden]" class="text" type="hidden" value="">
 
-                      <input id="servicios_#index#_monto" name="monto_s[servicios][#index#][monto]" type="text" class="number form-control monto" placeholder="Precio" data-toggle="tooltip" data-placement="bottom" title="Precio">
+                      <input id="servicios_#index#_monto" name="monto_s[servicios][#index#][monto]" type="text" class="number form-control monto" placeholder="Precio" data-toggle="tooltip" data-placement="bottom" title="Precio" onchange="sumar();">
                     </div>
 
                     <label for="servicios_#index#_abonoS" class="col-sm-1 control-label">Abono.</label>
                     <div class="col-sm-1">
 
-                      <input id="servicios_#index#_abonoS" name="monto_abol[servicios][#index#][abono]" type="number" class="number form-control abonoS" placeholder="Abono" data-toggle="tooltip" data-placement="bottom" title="Abono">
+                      <input id="servicios_#index#_abonoS" name="monto_abol[servicios][#index#][abono]" type="number" class="number form-control abonoS abono" onchange="sumar_ab();" placeholder="Abono" data-toggle="tooltip" data-placement="bottom" title="Abono">
                     </div>
                     <label for="servicios_#index#_tipop" class="col-sm-1 control-label">TipoPago</label>
                     <div class="col-sm-2">
@@ -283,13 +301,13 @@
                     <div class="col-sm-1">
                       <input id="ecografias_#index#_montoHidden" name="monto_h[ecografias][#index#][montoHidden]" class="text" type="hidden" value="">
 
-                      <input id="ecografias_#index#_monto" name="monto_s[ecografias][#index#][monto]" type="text" class="number form-control monto" placeholder="Precio" data-toggle="tooltip" data-placement="bottom" title="Precio">
+                      <input id="ecografias_#index#_monto" name="monto_s[ecografias][#index#][monto]" type="text" class="number form-control monto" onchange="sumar();" placeholder="Precio" data-toggle="tooltip" data-placement="bottom" title="Precio">
                     </div>
 
                     <label for="ecografias_#index#_abonoL" class="col-sm-1 control-label">Abono.</label>
                     <div class="col-sm-1">
 
-                      <input id="ecografias_#index#_abonoL" name="monto_abol[ecografias][#index#][abono]" type="number" class="number form-control abonoL" placeholder="Abono" data-toggle="tooltip" data-placement="bottom" title="Abono">
+                      <input id="ecografias_#index#_abonoL" name="monto_abol[ecografias][#index#][abono]" type="number" class="number form-control abonoL abono" onchange="sumar_ab();" placeholder="Abono" data-toggle="tooltip" data-placement="bottom" title="Abono">
                     </div>
 
                     <label for="ecografias_#index#_tipop" class="col-sm-1 control-label">TipoPago</label>
@@ -351,13 +369,13 @@
                     <div class="col-sm-1">
                       <input id="rayos_#index#_montoHidden" name="monto_h[rayos][#index#][montoHidden]" class="text" type="hidden" value="">
 
-                      <input id="rayos_#index#_monto" name="monto_s[rayos][#index#][monto]" type="text" class="number form-control monto" placeholder="Precio" data-toggle="tooltip" data-placement="bottom" title="Precio">
+                      <input id="rayos_#index#_monto" name="monto_s[rayos][#index#][monto]" type="text" class="number form-control monto" onchange="sumar();" placeholder="Precio" data-toggle="tooltip" data-placement="bottom" title="Precio">
                     </div>
 
                     <label for="rayos_#index#_abonoL" class="col-sm-1 control-label">Abono.</label>
                     <div class="col-sm-1">
 
-                      <input id="rayos_#index#_abonoL" name="monto_abol[rayos][#index#][abono]" type="number" class="number form-control abonoL" placeholder="Abono" data-toggle="tooltip" data-placement="bottom" title="Abono">
+                      <input id="rayos_#index#_abonoL" name="monto_abol[rayos][#index#][abono]" type="number" class="number form-control abonoL abono" onchange="sumar_ab();" placeholder="Abono" data-toggle="tooltip" data-placement="bottom" title="Abono">
                     </div>
 
                     <label for="rayos_#index#_tipop" class="col-sm-1 control-label">TipoPago</label>
@@ -420,13 +438,13 @@
                     <div class="col-sm-1">
                       <input id="analisis_#index#_montoHidden" name="monto_h[analisis][#index#][montoHidden]" class="text" type="hidden" value="">
 
-                      <input id="analisis_#index#_monto" name="monto_s[analisis][#index#][monto]" type="text" class="number form-control monto" placeholder="Precio" data-toggle="tooltip" data-placement="bottom" title="Precio">
+                      <input id="analisis_#index#_monto" name="monto_s[analisis][#index#][monto]" type="text" class="number form-control monto" onchange="sumar();" placeholder="Precio" data-toggle="tooltip" data-placement="bottom" title="Precio">
                     </div>
 
                     <label for="analisis_#index#_abonoL" class="col-sm-1 control-label">Abono.</label>
                     <div class="col-sm-1">
 
-                      <input id="analisis_#index#_abonoL" name="monto_abol[analisis][#index#][abono]" type="number" class="number form-control abonoL" placeholder="Abono" data-toggle="tooltip" data-placement="bottom" title="Abono">
+                      <input id="analisis_#index#_abonoL" name="monto_abol[analisis][#index#][abono]" type="number" class="number form-control abonoL abono" onchange="sumar_ab();" placeholder="Abono" data-toggle="tooltip" data-placement="bottom" title="Abono">
                     </div>
 
                     
@@ -490,13 +508,13 @@
               <div class="col-sm-1">
                 <input id="paquetes_#index#_montoHidden" name="monto_h[paquetes][#index#][montoHidden]" class="text" type="hidden" value="">
 
-                <input id="paquetes_#index#_monto" name="monto_s[paquetes][#index#][monto]" type="text" class="number form-control monto" placeholder="Precio" data-toggle="tooltip" data-placement="bottom" title="Precio">
+                <input id="paquetes_#index#_monto" name="monto_s[paquetes][#index#][monto]" type="text" class="number form-control monto" onchange="sumar();" placeholder="Precio" data-toggle="tooltip" data-placement="bottom" title="Precio">
               </div>
 
               <label for="paquetes_#index#_abonoL" class="col-sm-1 control-label">Abono.</label>
               <div class="col-sm-1">
 
-                <input id="paquetes_#index#_abonoL" name="monto_abol[paquetes][#index#][abono]" type="number" class="number form-control abonoL" placeholder="Abono" data-toggle="tooltip" data-placement="bottom" title="Abono">
+                <input id="paquetes_#index#_abonoL" name="monto_abol[paquetes][#index#][abono]" type="number" class="number form-control abonoL abono" onchange="sumar_ab();" placeholder="Abono" data-toggle="tooltip" data-placement="bottom" title="Abono">
               </div>
 
               
@@ -557,7 +575,7 @@
                   </div>
                   <div class="col-md-3">
                     <label for="exampleInputEmail1">Precio</label>
-                    <input type="float" class="form-control" id="email" name="precio_con" placeholder="Precio">
+                    <input type="float" class="form-control monto" id="email" name="precio_con" placeholder="Precio" onchange="sumar();">
                   </div>
                   <div class="col-md-3">
                   <label>TipoPago</label>
@@ -592,7 +610,7 @@
                   </div>
                   <div class="col-md-4">
                     <label for="exampleInputEmail1">Precio</label>
-                    <input type="float" class="form-control" id="email" name="precio_met" placeholder="Precio">
+                    <input type="float" class="form-control monto" id="email" name="precio_met" placeholder="Precio" onchange="sumar();">
                   </div>
                   <div class="col-md-4">
                   <label>TipoPago</label>
@@ -769,9 +787,45 @@ function datapac(){
       });
        
     </script>
+<script type="text/javascript">
 
 
-<script>
+function sumar()
+{
+  const $total = document.getElementById('total');
+  let subtotal = 0;
+  [ ...document.getElementsByClassName( "monto" ) ].forEach( function ( element ) {
+    if(element.value !== '') {
+      subtotal += parseFloat(element.value);
+    }
+  });
+  $total.value = subtotal;
+}
+
+
+function sumar_ab()
+{
+  const $abono = document.getElementById('abono');
+  const $resta = document.getElementById('resta');
+  let subtotal = 0;
+  [ ...document.getElementsByClassName( "abono" ) ].forEach( function ( element ) {
+    if(element.value !== '') {
+      subtotal += parseFloat(element.value);
+    }
+  });
+  $abono.value = subtotal;
+  $resta.value = total.value - subtotal;
+}
+
+</script>
+
+
+
+
+<script type="text/javascript">
+  $(document).ready(function() {
+
+
 
 
 $(".abonoL, .abonoS, .abonop").keyup(function(){
@@ -833,6 +887,8 @@ $(".abonoL, .abonoS, .abonop").keyup(function(){
 
 
 
+
+
 $(document).on('change','.selectServ',function(){
       var labId = $(this).attr('id');
       var labArr = labId.split('_');
@@ -842,9 +898,10 @@ $(document).on('change','.selectServ',function(){
          type: "GET",
          url:  "atenciones/getServicio/"+$(this).val(),
          success: function(a) {
-           
             $('#servicios_'+id+'_montoHidden').val(a.precio);
             $('#servicios_'+id+'_monto').val(a.precio);
+            var total = parseFloat($('#total').val());
+            $("#total").val(total + parseFloat(a.precio));
           
          }
       });
@@ -859,9 +916,11 @@ $(document).on('change','.selectServ',function(){
          type: "GET",
          url:  "atenciones/getServicio/"+$(this).val(),
          success: function(a) {
-           
             $('#ecografias_'+id+'_montoHidden').val(a.precio);
             $('#ecografias_'+id+'_monto').val(a.precio);
+            var total = parseFloat($('#total').val());
+            $("#total").val(total + parseFloat(a.precio));
+          
           
          }
       });
@@ -879,6 +938,9 @@ $(document).on('change','.selectServ',function(){
            
             $('#rayos_'+id+'_montoHidden').val(a.precio);
             $('#rayos_'+id+'_monto').val(a.precio);
+            var total = parseFloat($('#total').val());
+            $("#total").val(total + parseFloat(a.precio));
+          
           
          }
       });
@@ -896,6 +958,9 @@ $(document).on('change','.selectServ',function(){
            
             $('#analisis_'+id+'_montoHidden').val(a.precio);
             $('#analisis_'+id+'_monto').val(a.precio);
+            var total = parseFloat($('#total').val());
+            $("#total").val(total + parseFloat(a.precio));
+          
           
          }
       });
@@ -913,6 +978,9 @@ $(document).on('change','.selectServ',function(){
            
             $('#paquetes_'+id+'_montoHidden').val(a.precio);
             $('#paquetes_'+id+'_monto').val(a.precio);
+            var total = parseFloat($('#total').val());
+            $("#total").val(total + parseFloat(a.precio));
+          
           
          }
       });
@@ -938,8 +1006,9 @@ var botonDisabled = true;
 
         removeAllConfirmationMsg: 'Seguro que quieres eliminar todos?',
         afterRemoveCurrent: function(source, event){
-          calcular();
-          calculo_general();
+          sumar();
+          sumar_ab();
+
         }
     });
 
@@ -957,8 +1026,8 @@ var botonDisabled = true;
 
         removeAllConfirmationMsg: 'Seguro que quieres eliminar todos?',
         afterRemoveCurrent: function(source, event){
-          calcular();
-          calculo_general();
+          sumar();
+          sumar_ab();
         }
     });
 
@@ -976,8 +1045,8 @@ var botonDisabled = true;
 
         removeAllConfirmationMsg: 'Seguro que quieres eliminar todos?',
         afterRemoveCurrent: function(source, event){
-          calcular();
-          calculo_general();
+          sumar();
+          sumar_ab();
         }
     });
 
@@ -996,8 +1065,8 @@ var botonDisabled = true;
 
         removeAllConfirmationMsg: 'Seguro que quieres eliminar todos?',
         afterRemoveCurrent: function(source, event){
-          calcular();
-          calculo_general();
+          sumar();
+          sumar_ab();
         }
     });
 
@@ -1015,10 +1084,17 @@ var botonDisabled = true;
 
         removeAllConfirmationMsg: 'Seguro que quieres eliminar todos?',
         afterRemoveCurrent: function(source, event){
-          calcular();
-          calculo_general();
+         sumar();
+         sumar_ab();
+
         }
     });
+
+  });
+
+
+
+
 
 </script>
 
