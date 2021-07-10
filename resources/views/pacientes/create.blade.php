@@ -84,14 +84,15 @@
 					{{ csrf_field() }}                
                     <div class="card-body">
                     <div class="row">
+                    <div class="col-md-4">
+                    <label for="exampleInputEmail1">Apellidos</label>
+                    <input type="text" onkeyup="javascript:this.value=this.value.toUpperCase();" class="form-control" id="nombre" name="apellidos" placeholder="Apellidos">
+                  </div>
                   <div class="col-md-4">
                     <label for="exampleInputEmail1">Nombres</label>
                     <input type="text" onkeyup="javascript:this.value=this.value.toUpperCase();" class="form-control" id="nombre" name="nombres" placeholder="Nombres">
                   </div>
-                  <div class="col-md-4">
-                    <label for="exampleInputEmail1">Apellidos</label>
-                    <input type="text" onkeyup="javascript:this.value=this.value.toUpperCase();" class="form-control" id="nombre" name="apellidos" placeholder="Apellidos">
-                  </div>
+                 
                   <div class="col-md-4">
                     <label for="exampleInputEmail1">DNI</label>
                     <input type="text" class="form-control" id="nombre" name="dni" placeholder="DNI">

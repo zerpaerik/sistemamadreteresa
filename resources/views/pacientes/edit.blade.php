@@ -84,14 +84,15 @@
 					{{ csrf_field() }}                
                     <div class="card-body">
                     <div class="row">
+                    <div class="col-md-4">
+                    <label for="exampleInputEmail1">Apellidos</label>
+                    <input type="text" class="form-control" id="nombre" name="apellidos" value="{{$pacientes->apellidos}}" placeholder="Apellidos">
+                  </div>
                   <div class="col-md-4">
                     <label for="exampleInputEmail1">Nombres</label>
                     <input type="text" class="form-control" id="nombre" name="nombres" value="{{$pacientes->nombres}}" placeholder="Nombres">
                   </div>
-                  <div class="col-md-4">
-                    <label for="exampleInputEmail1">Apellidos</label>
-                    <input type="text" class="form-control" id="nombre" name="apellidos" value="{{$pacientes->apellidos}}" placeholder="Apellidos">
-                  </div>
+                
                   <div class="col-md-4">
                     <label for="exampleInputEmail1">DNI</label>
                     <input type="text" class="form-control" id="nombre" name="dni" value="{{$pacientes->dni}}" placeholder="DNI">
