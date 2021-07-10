@@ -575,7 +575,7 @@
                   </div>
                   <div class="col-md-3">
                     <label for="exampleInputEmail1">Precio</label>
-                    <input type="float" class="form-control monto" id="email" name="precio_con" placeholder="Precio" onchange="sumar();">
+                    <input type="float" class="form-control monto abono" id="email" name="precio_con" placeholder="Precio" onchange="sumar();sumar_ab()" >
                   </div>
                   <div class="col-md-3">
                   <label>TipoPago</label>
@@ -610,7 +610,7 @@
                   </div>
                   <div class="col-md-4">
                     <label for="exampleInputEmail1">Precio</label>
-                    <input type="float" class="form-control monto" id="email" name="precio_met" placeholder="Precio" onchange="sumar();">
+                    <input type="float" class="form-control monto abono" id="email" name="precio_met" placeholder="Precio" onchange="sumar();sumar_ab()">
                   </div>
                   <div class="col-md-4">
                   <label>TipoPago</label>
