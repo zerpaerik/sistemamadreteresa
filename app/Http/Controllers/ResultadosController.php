@@ -483,8 +483,12 @@ class ResultadosController extends Controller
         ->first();
 
 
-        
-       $edad = Carbon::parse($resultados->fechanac)->age;
+        if ($resultados->fechanac != null) {
+            $edad = Carbon::parse($resultados->fechanac)->age;
+        } else {
+          $edad = "X";
+
+        }
 
   
         $informe->setValue('name', $resultados->apellidos. ' '.$resultados->nombres. ' Edad: '.$edad);
