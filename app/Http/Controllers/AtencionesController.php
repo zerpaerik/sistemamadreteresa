@@ -16,6 +16,7 @@ use App\Metodos;
 use App\MetoPro;
 use App\Comisiones;
 use App\Cobrar;
+use App\HistorialCobros;
 use App\Creditos;
 use App\ResultadosServicios;
 use App\ResultadosLaboratorio;
@@ -1449,6 +1450,18 @@ return view('atenciones.particular');
           $rsf->save();
       }
 
+      $cob = Cobrar::where('id_atencion','=',$request->id)->first();
+      if($cob != null){
+        $hcob = HistorialCobros::where('id_cobro', '=', $request->id)->first();
+        if ($hcob != null) {
+            $hcobf = HistorialCobros::where('id_cobro', '=', $request->id)->first();
+            $hcobf->delete();
+        }
+          $cobf = Cobrar::where('id_atencion', '=', $request->id)->first();
+          $cobf->delete();
+      }
+
+
       $creditos = Creditos::where('id_atencion','=',$request->id)->first();
       $creditos->monto = $request->abono;
       $creditos->tipopago =$request->tipo_pago;
@@ -1503,6 +1516,20 @@ return view('atenciones.particular');
       } else {
 
       }
+
+      
+      if($request->monto > $request->abono){
+
+        $cb = new Cobrar();
+        $cb->id_atencion =  $request->id;
+        $cb->detalle =  $serv->nombre;
+        $cb->resta =$request->monto - $request->abono;
+        $cb->save();
+    
+      }
+
+
+
 
       $p = Atenciones::find($request->id);
       $p->monto =$request->monto;
@@ -1562,6 +1589,28 @@ return view('atenciones.particular');
 
       } 
 
+      $cob = Cobrar::where('id_atencion','=',$request->id)->first();
+      if($cob != null){
+        $hcob = HistorialCobros::where('id_cobro', '=', $request->id)->first();
+        if ($hcob != null) {
+            $hcobf = HistorialCobros::where('id_cobro', '=', $request->id)->first();
+            $hcobf->delete();
+        }
+          $cobf = Cobrar::where('id_atencion', '=', $request->id)->first();
+          $cobf->delete();
+      }
+
+      if($request->monto > $request->abono){
+
+        $cb = new Cobrar();
+        $cb->id_atencion =  $request->id;
+        $cb->detalle =  $serv->nombre;
+        $cb->resta =$request->monto - $request->abono;
+        $cb->save();
+    
+      }
+
+
       $p = Atenciones::find($request->id);
       $p->monto =$request->monto;
       $p->abono =$request->abono;
@@ -1585,6 +1634,8 @@ return view('atenciones.particular');
     {
 
       $com = Comisiones::where('id_atencion','=',$request->id)->first();
+      $serv = Paquetes::where('id','=',$request->id_tipo)->first();
+
 
       $creditos = Creditos::where('id_atencion','=',$request->id)->first();
       $creditos->monto = $request->abono;
@@ -1611,6 +1662,28 @@ return view('atenciones.particular');
       } else {
 
       }
+
+      $cob = Cobrar::where('id_atencion','=',$request->id)->first();
+      if($cob != null){
+        $hcob = HistorialCobros::where('id_cobro', '=', $request->id)->first();
+        if ($hcob != null) {
+            $hcobf = HistorialCobros::where('id_cobro', '=', $request->id)->first();
+            $hcobf->delete();
+        }
+          $cobf = Cobrar::where('id_atencion', '=', $request->id)->first();
+          $cobf->delete();
+      }
+
+      if($request->monto > $request->abono){
+
+        $cb = new Cobrar();
+        $cb->id_atencion =  $request->id;
+        $cb->detalle =  $serv->nombre;
+        $cb->resta =$request->monto - $request->abono;
+        $cb->save();
+    
+      }
+
 
 
       $p = Atenciones::find($request->id);
