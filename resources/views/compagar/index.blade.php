@@ -110,6 +110,8 @@
               </div>
               <!-- /.card-header -->
               <div class="card-body">
+              <label><input type="checkbox" id="checkTodos" />Seleccionar Todos</label>
+
                 <table id="example1" class="table table-bordered table-striped">
                 <form action="/pagarmultiple" method="post">
                   <thead>
@@ -254,6 +256,15 @@
 <script src="../../dist/js/demo.js"></script>
 <!-- page script -->
 <script>
+
+$('document').ready(function(){
+   $("#checkTodos").change(function () {
+      $("input:checkbox").prop('checked', $(this).prop("checked"));
+  });
+});
+
+
+
   $(function () {
     $("#example1").DataTable({
       "responsive": true,

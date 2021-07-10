@@ -49,7 +49,7 @@ class ComisionesPagarController extends Controller
 
 
          
-        $origen = DB::table('comisiones as a')
+       /* $origen = DB::table('comisiones as a')
         ->select('a.id', 'a.estatus', 'a.id_atencion','a.id_origen', 'a.created_at','a.usuario', 'a.porcentaje', 'a.monto', 'a.estatus', 'at.id_paciente', 'at.tipo_atencion','at.resta', 'at.sede', 'at.tipo_origen','at.atendido', 'at.id_origen','at.abono', 'at.monto as total',  'c.name as nameo', 'c.lastname as lasto','c.id as idorigen')
         ->join('atenciones as at', 'at.id', 'a.id_atencion')
         ->join('users as c', 'c.id', 'at.id_origen')
@@ -58,6 +58,20 @@ class ComisionesPagarController extends Controller
         ->where('at.atendido', '=', 2)
         ->where('at.resta', '=', 0)
         ->where('at.sede', '=', $request->session()->get('sede'))
+        ->where('at.id_origen','=',$request->origen)
+        ->groupBy('at.id_origen')
+        ->get();*/
+
+        $origen = DB::table('comisiones as a')
+        ->select('a.id', 'a.estatus', 'a.id_atencion','a.id_origen', 'a.id_responsable','a.created_at','a.usuario', 'a.porcentaje', 'a.monto', 'a.estatus', 'at.id_paciente', 'at.tipo_atencion', 'at.atendido','at.sede', 'at.resta','at.tipo_origen', 'at.id_origen', 'at.monto as total',  'c.name as nameo', 'c.lastname as lasto','c.id as idorigen')
+        ->join('atenciones as at', 'at.id', 'a.id_atencion')
+        ->join('users as c', 'c.id', 'a.id_responsable')
+        ->where('a.estatus', '=', 1)
+        ->where('a.id_origen', '=', 1)
+        ->where('at.atendido', '=', 2)
+        ->where('at.resta', '=', 0)
+        ->where('at.sede', '=', $request->session()->get('sede'))
+        ->whereBetween('a.created_at', [$f1, $f2])
         ->where('at.id_origen','=',$request->origen)
         ->groupBy('at.id_origen')
         ->get();
@@ -90,7 +104,7 @@ class ComisionesPagarController extends Controller
 
 
         
-        $origen = DB::table('comisiones as a')
+       /* $origen = DB::table('comisiones as a')
         ->select('a.id', 'a.estatus', 'a.id_atencion','a.id_origen','a.id_responsable', 'a.created_at','a.usuario', 'a.porcentaje', 'a.monto', 'a.estatus', 'at.id_paciente','at.resta', 'at.tipo_atencion', 'at.sede', 'at.tipo_origen','at.atendido', 'at.abono','at.id_origen', 'at.monto as total',  'c.name as nameo', 'c.lastname as lasto','c.id as idorigen')
         ->join('atenciones as at', 'at.id', 'a.id_atencion')
         ->join('users as c', 'c.id', 'a.id_responsable')
@@ -101,6 +115,19 @@ class ComisionesPagarController extends Controller
         ->where('at.monto','at.abono')
         ->where('at.sede', '=', $request->session()->get('sede'))
         ->where('a.created_at','=',date('Y-m-d'))
+        ->groupBy('at.id_origen')
+        ->get();*/
+
+        $origen = DB::table('comisiones as a')
+        ->select('a.id', 'a.estatus', 'a.id_atencion','a.id_origen', 'a.id_responsable','a.created_at','a.usuario', 'a.porcentaje', 'a.monto', 'a.estatus', 'at.id_paciente', 'at.tipo_atencion', 'at.atendido','at.sede', 'at.resta','at.tipo_origen', 'at.id_origen', 'at.monto as total',  'c.name as nameo', 'c.lastname as lasto','c.id as idorigen')
+        ->join('atenciones as at', 'at.id', 'a.id_atencion')
+        ->join('users as c', 'c.id', 'a.id_responsable')
+        ->where('a.estatus', '=', 1)
+        ->where('a.id_origen', '=', 1)
+        ->where('at.atendido', '=', 2)
+        ->where('at.resta', '=', 0)
+        ->where('at.sede', '=', $request->session()->get('sede'))
+        ->where('a.created_at', '=',date('Y-m-d'))
         ->groupBy('at.id_origen')
         ->get();
 
