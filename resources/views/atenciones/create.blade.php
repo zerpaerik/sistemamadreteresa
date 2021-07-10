@@ -35,7 +35,7 @@
 <link rel="stylesheet" href="../../plugins/datatables-bs4/css/dataTables.bootstrap4.min.css">
 <link rel="stylesheet" href="../../plugins/datatables-responsive/css/responsive.bootstrap4.min.css">
 </head>
-<body class="hold-transition sidebar-mini layout-fixed">
+<body class="hold-transition sidebar-mini layout-fixed" OnKeyPress="return disableEnterKey(event)">
 <div class="wrapper">
 
   <!-- Navbar -->
@@ -706,15 +706,20 @@
 <!-- page script -->
 <!-- Summernote -->
 <script src="../../plugins/summernote/summernote-bs4.min.js"></script>
-<script>
-  document.addEventListener('DOMContentLoaded', () => {
-    document.querySelectorAll('input[type=text]').forEach( node => node.addEventListener('keypress', e => {
-      if(e.keyCode == 13) {
-        e.preventDefault();
-      }
-    }))
-  });
+
+<script language="javascript">
+
+function disableEnterKey(e) 
+{ 
+  var key; 
+  if(window.event) 
+     key = window.event.keyCode; 
+   else key = e.which; //firefox 
+   return (key != 13); 
+  }
+
 </script>
+
 <script>
 function datapac(){
       
