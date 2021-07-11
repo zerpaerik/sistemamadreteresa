@@ -140,7 +140,24 @@
                               </i>
                               Cobrar
                           </a> 
-                    @endif</td>
+                    @endif
+                    @if(Auth::user()->rol == 2)
+
+                  <a class="btn btn-danger btn-sm" id="{{$an->id}}" onclick="view(this)">
+                            <i class="fas fa-pencil-alt">
+                            </i>
+                            Cobrar
+                        </a> 
+                  @endif
+                  @if(Auth::user()->rol == 7)
+
+                  <a class="btn btn-danger btn-sm" id="{{$an->id}}" onclick="view(this)">
+                            <i class="fas fa-pencil-alt">
+                            </i>
+                            Cobrar
+                        </a> 
+                  @endif
+                    </td>
                   </tr>
                   @endforeach
                  
