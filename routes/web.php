@@ -127,6 +127,9 @@ Route::post('servicios/create', 'ServiciosController@store')->middleware('auth')
 Route::get('servicios-delete-{id}', 'ServiciosController@delete')->middleware('auth');
 Route::get('servicios-edit-{id}', 'ServiciosController@edit')->name('servicios.edit');
 Route::post('servicios/edit', 'ServiciosController@update');
+Route::get('servicios/sesiones', 'ServiciosController@sesiones');
+Route::get('servicios/nada', 'ServiciosController@nada');
+
 
 Route::get('paquetes', 'PaquetesController@index')->name('paquetes.index');
 Route::get('paquetes-create', 'PaquetesController@create')->name('paquetes.create')->middleware('auth');
@@ -199,6 +202,21 @@ Route::get('atenciones-editl-{id}', 'AtencionesController@editl')->name('atencio
 Route::get('atenciones-editp-{id}', 'AtencionesController@editp')->name('atenciones.editp');
 Route::get('atenciones-editc-{id}', 'AtencionesController@editc')->name('atenciones.editc');
 Route::get('atenciones-editm-{id}', 'AtencionesController@editm')->name('atenciones.editm');
+Route::get('atenciones-editsa-{id}', 'AtencionesController@editsa')->name('atenciones.editsa');
+
+Route::get('pagos-personal', 'PagosPersonalController@index')->name('pagosp.index');
+Route::get('pagosp-create', 'PagosPersonalController@create')->name('pagosp.create')->middleware('auth');
+Route::post('pagosp/create', 'PagosPersonalController@store')->middleware('auth');
+Route::get('pagosp-delete-{id}', 'PagosPersonalController@delete')->middleware('auth');
+Route::get('pagosp/edit/{id}', 'PagosPersonalController@edit');
+Route::post('pagosp/editar', 'PagosPersonalController@update');
+Route::get('pagosp-ticket-{id}', 'PagosPersonalController@ticket');
+
+Route::get('sesiones', 'AtencionesController@sesiones1')->name('sesiones.index');
+Route::get('sesiones-atendidas', 'AtencionesController@sesiones2')->name('sesiones1.index');
+Route::get('sesiones-atender', 'AtencionesController@atender_sesion');
+
+
 
 Route::post('atenciones/edit', 'AtencionesController@update');
 Route::post('atenciones/edits', 'AtencionesController@updates');
@@ -235,6 +253,8 @@ Route::get('resultados-asoc-{id}', 'ResultadosController@asociar');
 Route::get('resultados-asocl-{id}', 'ResultadosController@asociarl');
 Route::get('resultados-desoc-{id}', 'ResultadosController@desoc');
 Route::get('resultados-desocl-{id}', 'ResultadosController@desocl');
+Route::get('resultados-reversar-{id}', 'ResultadosController@reversar');
+Route::get('resultados-reversarl-{id}', 'ResultadosController@reversarl');
 Route::get('modelo-informe-{id}-{id2}', 'ResultadosController@modelo_informe');
 Route::get('resultados-guardar-{id}', 'ResultadosController@guardar_informe');
 Route::get('resultados-guardarl-{id}', 'ResultadosController@guardar_informel');

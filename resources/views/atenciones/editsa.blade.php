@@ -34,10 +34,6 @@
 <!-- DataTables -->
 <link rel="stylesheet" href="../../plugins/datatables-bs4/css/dataTables.bootstrap4.min.css">
 <link rel="stylesheet" href="../../plugins/datatables-responsive/css/responsive.bootstrap4.min.css">
-<link rel="stylesheet" href="http://cdn.bootcss.com/toastr.js/latest/css/toastr.min.css"> 
-
-
-
 </head>
 <body class="hold-transition sidebar-mini layout-fixed">
 <div class="wrapper">
@@ -63,12 +59,12 @@
       <div class="container-fluid">
         <div class="row mb-2">
           <div class="col-sm-6">
-            <h1 class="m-0 text-dark">Servicios</h1>
+            <h1 class="m-0 text-dark">Atenciones</h1>
           </div><!-- /.col -->
           <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">
-              <li class="breadcrumb-item"><a href="#">Home</a></li>
-              <li class="breadcrumb-item active">Servicios</li>
+              <li class="breadcrumb-item"><a href="#">Movimientos</a></li>
+              <li class="breadcrumb-item active">Atenciones</li>
             </ol>
           </div><!-- /.col -->
         </div><!-- /.row -->
@@ -85,54 +81,121 @@
             <!-- general form elements -->
             <div class="card card-primary">
               <div class="card-header">
-                <h3 class="card-title">Agregar</h3>
+                <h3 class="card-title">Editar</h3>
               </div>
               <!-- /.card-header -->
               <!-- form start -->
-              <form method="post" action="servicios/create" accept-charset="UTF-8" enctype="multipart/form-data">					
+              <form method="post" action="atenciones/edits">					
               {{ csrf_field() }}                
                     <div class="card-body">
                     <div class="row">
-                  <div class="col-md-3">
-                    <label for="exampleInputEmail1">Nombre</label>
-                    <input onkeyup="javascript:this.value=this.value.toUpperCase();" type="text" class="form-control" id="name" name="nombre" placeholder="Nombre de Servicio" required>
-                  </div>
-                  <div class="col-md-3">
-                    <label for="exampleInputEmail1">Precio</label>
-                    <input type="float" class="form-control" id="email" name="precio" placeholder="Precio" required>
-                  </div>
-                  <div class="col-md-3">
-                    <label for="exampleInputEmail1">Porcentaje Pers</label>
-                    <input type="float" class="form-control" id="name" name="porcentaje" placeholder="Porcentaje Personal" required>
-                  </div>
-                  <div class="col-md-3">
-                    <label for="exampleInputEmail1">Porcentaje Prof</label>
-                    <input type="float" class="form-control" id="email" name="porcentaje1" placeholder="Porcentaje Profesional" required>
-                  </div>
-                 
-                  </div>
-                  <div class="row">
-                  
-                  <div class="col-md-3">
-                    <label for="exampleInputEmail1">Porcentaje Tecn</label>
-                    <input type="float" class="form-control" id="email" name="porcentaje2" placeholder="Porcentaje Tecnólogo" required>
-                  </div>
-                  <div class="col-md-3">
-                    <label for="exampleInputEmail1">Tipo de Servicio</label>
-                    <select class="form-control" name="tipo" id="el2">
-						              	<option value="ECOGRAFIA">ECOGRAFIA</option>
-                            <option value="RAYOS">RAYOS X</option>
-                            <option value="SALUD">SALUD MENTAL</option>
-                            <option value="OTROS">OTROS</option>
-                        </select>
-                  </div>
-                  <div class="col-md-4" id="sesiones">
-                  </div>
+                    <div class="col-md-4">
+                    <label for="exampleInputEmail1">Origen</label>
+                            <select class="form-control" name="tipo_origen" id="el2">
+                                    @if($atencion->tipo_origen == 1)
+                                    <option value="1" selected>Personal</option>
+                                    <option value="2" >Profesional</option>
+                                    <option value="3" >Otro</option>
 
-                 
+                                    @elseif($atencion->tipo_origen == 2)
+                                    <option value="1" >Personal</option>
+                                    <option value="2" selected>Profesional</option>
+                                    <option value="3" >Otro</option>
+                                    @else
+                                    <option value="1" >Personal</option>
+                                    <option value="2" >Profesional</option>
+                                    <option value="3" selected>Otro</option>
+                                    @endif
+                            </select>
+                    </div>
+
+                    <div class="col-md-4">
+                    <div id="origen_usuario">
+                   </div>
+
+                   @if($atencion->tipo_origen == 1 || $atencion->tipo_origen == 2)
+
+                   
+                    <label for="exampleInputEmail1">Origen Guardado</label>
+                            <select class="form-control" name="origen_usuario2" id="el2">
+                            @foreach($usuario as $u)
+                                @if($atencion->id_origen == $u->id)
+                                <option value="{{$u->id}}" selected="selected">{{$u->lastname}} {{$u->name}}-{{$u->dni}}</option>
+                                @else
+                                <option value="{{$u->id}}">{{$u->lastname}} {{$u->name}}-{{$u->dni}}</option>
+                                @endif
+                            @endforeach
+                                
+                            </select>
+                    @endif
+                    </div>
+
+                    <div class="col-md-4">
+                    <label for="exampleInputEmail1">Detalle</label>
+                            <select class="form-control" name="id_tipo" id="el2">
+                            @foreach($servicio as $s)
+                                @if($atencion->id_tipo == $s->id)
+                                <option value="{{$s->id}}" selected="selected">{{$s->nombre}} {{$s->id}}</option>
+                                @else
+                                <option value="{{$s->id}}">{{$s->nombre}} {{$s->id}}</option>
+                                @endif
+                            @endforeach
+                                
+                            </select>
+                    </div>
+                
                   </div>
                   <br>
-                  
+
+                    <div class="row">
+                  <div class="col-md-4">
+                    <label for="exampleInputEmail1">Monto</label>
+                    <input type="text" class="form-control" id="name" name="monto" value="{{$atencion->monto}}" placeholder="Nombre de Analisis">
+                  </div>
+                  <div class="col-md-4">
+                    <label for="exampleInputEmail1">Abono</label>
+                    <input type="text" class="form-control" id="email" name="abono" value="{{$atencion->abono}}" placeholder="Descripción">
+                  </div>
+                  <div class="col-md-4">
+                  <label for="exampleInputEmail1">Tipo de Pago</label>
+                  <select class="form-control" name="tipo_pago">
+
+                            @if($atencion->tipo_pago == 'EF')
+                                <option selected="selected" value="EF">Efectivo</option>
+                                <option value="TJ">Tarjeta</option>
+                                <option value="DP">Depósito</option>
+                                <option value="YP">Yape</option>
+                            @elseif($atencion->tipo_pago == 'TJ')
+                            <option  value="EF">Efectivo</option>
+                                <option value="TJ selected="selected>Tarjeta</option>
+                                <option value="DP">Depósito</option>
+                                <option value="YP">Yape</option>
+                            @elseif($atencion->tipo_pago == 'DP')
+                               <option value="EF">Efectivo</option>
+                                <option value="TJ">Tarjeta</option>
+                                <option value="DP" selected="selected">Depósito</option>
+                                <option value="YP">Yape</option>
+
+                            @else
+                            <option  value="EF">Efectivo</option>
+                                <option value="TJ">Tarjeta</option>
+                                <option value="DP">Depósito</option>
+                            <option value="YP"selected="selected">Yape</option>
+                            @endif
+                                
+                            </select>
+                    
+                  </div>
+
+
+                  </div>
+
+               
+                  <br>
+                
+
+                  <input type="hidden" name="id" value="{{$atencion->id}}">
+
                   
             
 
@@ -220,9 +283,6 @@
 <script src="../../plugins/datatables-responsive/js/responsive.bootstrap4.min.js"></script>
 <script src="../../plugins/select2/js/select2.full.min.js"></script>
 
-<script src="http://cdn.bootcss.com/jquery/2.2.4/jquery.min.js"></script>
-<script src="http://cdn.bootcss.com/toastr.js/latest/js/toastr.min.js"></script>
-
 <!-- AdminLTE App -->
 <script src="../../dist/js/adminlte.min.js"></script>
 <!-- AdminLTE for demo purposes -->
@@ -230,22 +290,31 @@
 <!-- page script -->
 <!-- Summernote -->
 <script src="../../plugins/summernote/summernote-bs4.min.js"></script>
+<script>
+  $(function () {
+    // Summernote
+    $('.textarea').summernote()
+  })
+</script>
 
 <script type="text/javascript">
       $(document).ready(function(){
         $('#el2').on('change',function(){
           var link;
-          if ($(this).val() == 'SALUD') {
-            link = '/servicios/sesiones/';
+          if ($(this).val() == 1) {
+            link = '/atenciones/personal/';
+
+          }else if ($(this).val() == 2) {
+            link = '/atenciones/profesionales/';
           } else {
-		    link = '/servicios/nada/';
+		    link = '/atenciones/particular/';
 		  }
 
           $.ajax({
                  type: "get",
                  url:  link,
                  success: function(a) {
-                    $('#sesiones').html(a);
+                    $('#origen_usuario').html(a);
                  }
           });
 
@@ -255,12 +324,9 @@
       });
        
     </script>
+
+
 <script>
-  $(function () {
-    // Summernote
-    $('.textarea').summernote()
-  })
-</script>
 <script>
   $(function () {
     //Initialize Select2 Elements

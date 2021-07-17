@@ -141,6 +141,13 @@
                 </a>
               </li>
 
+              <li class="nav-item">
+                <a href="{{route('pagosp.index')}}" class="nav-link">
+                  <i class="fas fa-cart-arrow-down nav-icon"></i>
+                  <p>Pagos a Personal</p>
+                </a>
+              </li>
+
             
               
             </ul>
@@ -206,6 +213,37 @@
               </li>
 
             
+            
+              
+            </ul>
+          </li>
+
+          <li class="nav-item has-treeview">
+            <a href="#" class="nav-link">
+              <i class="nav-icon fas fa-money-check-alt"></i>
+              <p>
+                Sesiones
+                <i class="fas fa-angle-left right"></i>
+              </p>
+            </a>
+            <ul class="nav nav-treeview">
+
+
+            <li class="nav-item">
+                <a href="{{route('sesiones.index')}}" class="nav-link">
+                  <i class="fas fa-hand-holding-usd nav-icon"></i>
+                  <p>Por Atender</p>
+                </a>
+              </li>
+
+
+              <li class="nav-item">
+                <a href="{{route('sesiones1.index')}}" class="nav-link">
+                  <i class="fas fa-cart-arrow-down nav-icon"></i>
+                  <p>Atendidos</p>
+                </a>
+              </li>
+
             
               
             </ul>
@@ -513,6 +551,13 @@
               </li>
 
               <li class="nav-item">
+                <a href="{{route('pagosp.index')}}" class="nav-link">
+                  <i class="fas fa-cart-arrow-down nav-icon"></i>
+                  <p>Pagos a Personal</p>
+                </a>
+              </li>
+
+              <li class="nav-item">
                 <a href="{{route('historialc.index')}}" class="nav-link">
                   <i class="fas fa-cart-arrow-down nav-icon"></i>
                   <p>Historial de Cobros</p>
@@ -584,6 +629,37 @@
               </li>
 
             
+            
+              
+            </ul>
+          </li>
+
+          <li class="nav-item has-treeview">
+            <a href="#" class="nav-link">
+              <i class="nav-icon fas fa-money-check-alt"></i>
+              <p>
+                Sesiones
+                <i class="fas fa-angle-left right"></i>
+              </p>
+            </a>
+            <ul class="nav nav-treeview">
+
+
+            <li class="nav-item">
+                <a href="{{route('sesiones.index')}}" class="nav-link">
+                  <i class="fas fa-hand-holding-usd nav-icon"></i>
+                  <p>Por Atender</p>
+                </a>
+              </li>
+
+
+              <li class="nav-item">
+                <a href="{{route('sesiones1.index')}}" class="nav-link">
+                  <i class="fas fa-cart-arrow-down nav-icon"></i>
+                  <p>Atendidos</p>
+                </a>
+              </li>
+
             
               
             </ul>
@@ -832,6 +908,37 @@
                 <a href="{{route('historialc.index')}}" class="nav-link">
                   <i class="fas fa-cart-arrow-down nav-icon"></i>
                   <p>Historial de Cobros</p>
+                </a>
+              </li>
+
+            
+              
+            </ul>
+          </li>
+
+          <li class="nav-item has-treeview">
+            <a href="#" class="nav-link">
+              <i class="nav-icon fas fa-money-check-alt"></i>
+              <p>
+                Sesiones
+                <i class="fas fa-angle-left right"></i>
+              </p>
+            </a>
+            <ul class="nav nav-treeview">
+
+
+            <li class="nav-item">
+                <a href="{{route('sesiones.index')}}" class="nav-link">
+                  <i class="fas fa-hand-holding-usd nav-icon"></i>
+                  <p>Por Atender</p>
+                </a>
+              </li>
+
+
+              <li class="nav-item">
+                <a href="{{route('sesiones1.index')}}" class="nav-link">
+                  <i class="fas fa-cart-arrow-down nav-icon"></i>
+                  <p>Atendidos</p>
                 </a>
               </li>
 

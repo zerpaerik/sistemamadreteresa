@@ -18,6 +18,7 @@ use App\Comisiones;
 use App\Cobrar;
 use App\HistorialCobros;
 use App\Creditos;
+use App\Sesiones;
 use App\ResultadosServicios;
 use App\ResultadosLaboratorio;
 
@@ -90,6 +91,18 @@ class AtencionesController extends Controller
         ->orderBy('a.id','DESC')
         ->where('a.sede', '=', $request->session()->get('sede'));
 
+        $salud = DB::table('atenciones as a')
+        ->select('a.id','a.tipo_origen','a.id_origen','a.eliminado_por','a.id_atec','a.id_tipo','a.pagado','a.atendido','a.sede','a.usuario','a.created_at','a.estatus','a.id_paciente','a.tipo_atencion','a.monto','a.abono','a.tipo_pago','b.nombres','b.apellidos','b.dni','c.name as nameo','c.lastname as lasto','d.name as nameu','d.lastname as lastu','s.nombre as detalle')
+        ->join('pacientes as b','b.id','a.id_paciente')
+        ->join('users as c','c.id','a.id_origen')
+        ->join('users as d','d.id','a.usuario')
+        ->join('servicios as s','s.id','a.id_tipo')
+        ->where('a.tipo_atencion', '=', 8)
+        ->where('a.monto', '!=', '0')
+        ->whereBetween('a.created_at', [date('Y-m-d 00:00:00', strtotime($f1)), date('Y-m-d 23:59:59', strtotime($f1))])
+        ->orderBy('a.id','DESC')
+        ->where('a.sede', '=', $request->session()->get('sede'));
+
         $ana = DB::table('atenciones as a')
         ->select('a.id','a.tipo_origen','a.id_origen','a.eliminado_por','a.id_atec','a.id_tipo','a.pagado','a.atendido','a.sede','a.usuario','a.created_at','a.estatus','a.id_paciente','a.tipo_atencion','a.monto','a.abono','a.tipo_pago','b.nombres','b.apellidos','b.dni','c.name as nameo','c.lastname as lasto','d.name as nameu','d.lastname as lastu','s.nombre as detalle')
         ->join('pacientes as b','b.id','a.id_paciente')
@@ -157,6 +170,7 @@ class AtencionesController extends Controller
         ->union($eco)
         ->union($ana)
         ->union($metodos)
+        ->union($salud)
         ->union($paq)
         ->union($consultas)
         ->get(); 
@@ -214,6 +228,18 @@ class AtencionesController extends Controller
         ->join('users as d','d.id','a.usuario')
         ->join('servicios as s','s.id','a.id_tipo')
         ->where('a.tipo_atencion', '=', 6)
+        ->where('a.monto', '!=', '0')
+        ->whereBetween('a.created_at', [date('Y-m-d 00:00:00', strtotime($f1)), date('Y-m-d 23:59:59', strtotime($f1))])
+        ->where('a.sede', '=', $request->session()->get('sede'))   
+        ->orderBy('a.id','desc');
+
+        $salud = DB::table('atenciones as a')
+        ->select('a.id','a.tipo_origen','a.id_origen','a.eliminado_por','a.id_atec','a.id_tipo','a.pagado','a.atendido','a.sede','a.usuario','a.created_at','a.estatus','a.id_paciente','a.tipo_atencion','a.monto','a.abono','a.tipo_pago','b.nombres','b.apellidos','b.dni','c.name as nameo','c.lastname as lasto','d.name as nameu','d.lastname as lastu','s.nombre as detalle')
+        ->join('pacientes as b','b.id','a.id_paciente')
+        ->join('users as c','c.id','a.id_origen')
+        ->join('users as d','d.id','a.usuario')
+        ->join('servicios as s','s.id','a.id_tipo')
+        ->where('a.tipo_atencion', '=', 8)
         ->where('a.monto', '!=', '0')
         ->whereBetween('a.created_at', [date('Y-m-d 00:00:00', strtotime($f1)), date('Y-m-d 23:59:59', strtotime($f1))])
         ->where('a.sede', '=', $request->session()->get('sede'))   
@@ -288,6 +314,7 @@ class AtencionesController extends Controller
         ->union($eco)
         ->union($ana)
         ->union($metodos)
+        ->union($salud)
         ->union($consultas)
         ->union($paq)
         ->orderBy('id','desc')
@@ -494,8 +521,10 @@ class AtencionesController extends Controller
         $ecografias = Servicios::where('estatus','=',1)->where('tipo','=','ECOGRAFIA')->orderBy('nombre','ASC')->get();
         $rayos = Servicios::where('estatus','=',1)->where('tipo','=','RAYOS')->orderBy('nombre','ASC')->get();
         $otros = Servicios::where('estatus','=',1)->where('tipo','=','OTROS')->orderBy('nombre','ASC')->get();
+        $salud = Servicios::where('estatus','=',1)->where('tipo','=','SALUD')->orderBy('nombre','ASC')->get();
         $analisis = Analisis::where('estatus','=',1)->orderBy('nombre','ASC')->get();
         $paquetes = Paquetes::where('estatus','=',1)->orderBy('nombre','ASC')->get();
+
 
         $met = MetoPro::where('estatus','=',1)->orderBy('nombre','ASC')->get();
 
@@ -510,7 +539,7 @@ class AtencionesController extends Controller
             $res = 'NO';
             }
 
-        return view('atenciones.create', compact('paquetes','personal','ecografias','rayos','otros','analisis','paciente','res','met'));
+        return view('atenciones.create', compact('paquetes','personal','ecografias','rayos','otros','analisis','paciente','res','met','salud'));
     }
 
     public function getServicio($id)
@@ -781,6 +810,121 @@ return view('atenciones.particular');
                   }
               }
 
+            //GUARDANDO SALUD MENTAL
+
+            //dd($request->all());
+
+            if (isset($request->id_salu)) {
+              foreach ($request->id_salu['salud'] as $key => $serv) {
+                  if (!is_null($serv['salu'])) {
+                      $servicio = Servicios::where('id', '=', $serv['salu'])->first();
+
+
+                     
+
+
+
+                      //
+
+                      //TIPO ATENCION SERVICIOS= 1
+                      $lab = new Atenciones();
+                      $lab->tipo_origen =  $request->origen;
+                      if ($request->origen == 3) {
+                          $lab->id_origen = 99;
+                      } else {
+                          $lab->id_origen = $searchUsuarioID->id;
+                      }
+                      $lab->id_paciente =  $request->paciente;
+                      $lab->tipo_atencion = 8;
+                      $lab->id_tipo = $serv['salu'];
+                      $lab->monto = (float)$request->monto_s['salud'][$key]['monto'];
+                      $lab->abono = (float)$request->monto_abol['salud'][$key]['abono'];
+                      $lab->resta = (float)$request->monto_s['salud'][$key]['monto'] - (float)$request->monto_abol['servicios'][$key]['abono'];
+                      $lab->tipo_pago = $request->id_pago['salud'][$key]['tipop'];
+                      $lab->usuario = Auth::user()->id;
+                      $lab->sede = $request->session()->get('sede');
+                      $lab->id_atec =  $atec->id;
+                      $lab->save();
+
+                      $cre = new Creditos();
+                      $cre->origen = 'SERVICIO';
+                      $cre->descripcion = 'INGRESO POR SERVICIO';
+                      $cre->id_atencion =  $lab->id;
+                      $cre->tipopago =  $request->id_pago['salud'][$key]['tipop'];
+                      $cre->monto = (float)$request->monto_abol['salud'][$key]['abono'];
+                      $cre->usuario = Auth::user()->id;
+                      $cre->sede = $request->session()->get('sede');
+                      $cre->fecha = date('Y-m-d');
+                      $cre->save();
+
+                       //VERIFICAR SESIONES
+
+                       $contador=0;
+                      
+                       if ($servicio->sesiones != 0) {
+                           while ($contador < $servicio->sesiones) {
+                               $ses = new Sesiones();
+                               $ses->id_paciente =   $request->paciente;
+                               $ses->id_atencion =  $lab->id;
+                               $ses->save();
+
+                               $contador++;
+                           }
+                       }
+
+                      
+
+
+                  
+
+                      if ($request->monto_s['salud'][$key]['monto'] > $request->monto_abol['salud'][$key]['abono']) {
+                          $cb = new Cobrar();
+                          $cb->id_atencion =  $lab->id;
+                          $cb->detalle =  $servicio->nombre;
+                          $cb->resta =(float)$request->monto_s['salud'][$key]['monto'] - (float)$request->monto_abol['salud'][$key]['abono'];
+                          $cb->save();
+                      }
+
+
+
+                      if ($request->origen == 1 && $servicio->porcentaje > 0) {
+                          $com = new Comisiones();
+                          $com->id_atencion =  $lab->id;
+                          $com->porcentaje = $servicio->porcentaje;
+                          $com->id_responsable = $searchUsuarioID->id;
+                          $com->id_origen = $request->origen;
+                          $com->detalle =  $servicio->nombre;
+                          $com->monto = (float)$request->monto_s['salud'][$key]['monto'] * $servicio->porcentaje / 100;
+                          $com->estatus = 1;
+                          $com->usuario = Auth::user()->id;
+                          $com->save();
+                      } elseif ($request->origen == 2 && $servicio->porcentaje1 > 0) {
+                          $com = new Comisiones();
+                          $com->id_atencion =  $lab->id;
+                          $com->porcentaje = $servicio->porcentaje1;
+                          $com->id_responsable = $searchUsuarioID->id;
+                          $com->id_origen = $request->origen;
+                          $com->detalle =  $servicio->nombre;
+                          $com->monto = (float)$request->monto_s['salud'][$key]['monto'] * $servicio->porcentaje1 / 100;
+                          $com->estatus = 1;
+                          $com->usuario = Auth::user()->id;
+                          $com->save();
+                      } else {
+
+            /* $com = new Comisiones();
+              $com->id_atencion =  $lab->id;
+              $com->porcentaje = $servicio->porcentaje2;
+              $com->detalle =  $servicio->nombre;
+              $com->monto = (float)$request->monto_s['servicios'][$key]['monto'] * $servicio->porcentaje2 / 100;
+              $com->estatus = 1;
+              $com->usuario = Auth::user()->id;
+              $com->save();*/
+                      }
+                  }
+              }
+          }
+
+
 
 
 
@@ -924,9 +1068,9 @@ return view('atenciones.particular');
                           // VERIFICANDO SERVICIOS DE PAQUETE PARA GUARDAR SUS RESULTADPS
 
                           $searchServPaq = DB::table('paquetes_s')
-              ->select('*')
-              ->where('paquete', '=', $paq['paquete'])
-              ->get();
+                          ->select('*')
+                          ->where('paquete', '=', $paq['paquete'])
+                          ->get();
 
                           //
 
@@ -934,9 +1078,25 @@ return view('atenciones.particular');
                               $id_servicio = $serv->servicio;
           
                               $servdetalle =  DB::table('servicios')
-                ->select('*')
-                ->where('id', '=', $id_servicio)
-                ->first();
+                              ->select('*')
+                              ->where('id', '=', $id_servicio)
+                              ->first();
+
+                              $contador=0;
+                      
+                              if ($servdetalle->sesiones != 0) {
+                                  while ($contador < $servicio->sesiones) {
+                                      $ses = new Sesiones();
+                                      $ses->id_paciente =   $request->paciente;
+                                      $ses->id_atencion =  $lab->id;
+                                      $ses->save();
+       
+                                      $contador++;
+                                  }
+                              }
+       
+
+
                 
                               if (! is_null($id_servicio)) {
                                   if ($servdetalle->tipo != 'OTROS') {
@@ -1291,6 +1451,31 @@ return view('atenciones.particular');
         return view('atenciones.edits', compact('atencion','servicio','usuario')); //
     }
 
+    public function editsa($id)
+    {
+        $atencion = Atenciones::where('id','=',$id)->first();
+
+     
+        if($atencion->tipo_atencion == 1){
+          $servicio = Servicios::where('estatus','=',1)->where('tipo','=','OTROS')->get();
+        } else if($atencion->tipo_atencion == 2) {
+          $servicio = Servicios::where('estatus','=',1)->where('tipo','=','ECOGRAFIA')->get();
+        } else {
+          $servicio = Servicios::where('estatus','=',1)->where('tipo','=','RAYOS')->get();
+        }
+
+        if ($atencion->tipo_origen == 1) {
+          $usuario = User::where('estatus', '=', 1)->where('tipo', '=', 1)->where('tipo_personal', '=', 'ProfSalud')->get();
+        } else {
+          $usuario = User::where('estatus', '=', 1)->where('tipo', '=', 2)->get();
+        }
+
+
+
+
+        return view('atenciones.editsa', compact('atencion','servicio','usuario')); //
+    }
+
 
     public function editl($id)
     {
@@ -1396,6 +1581,33 @@ return view('atenciones.particular');
 
       $serv = Servicios::where('id','=',$request->id_tipo)->first();
       $rsfd = ResultadosServicios::where('id_atencion','=',$request->id)->first();
+      $atenciod = Atenciones::where('id','=',$request->id)->first();
+
+
+      $sesio = Sesiones::where('id_atencion','=',$request->id)->get();
+      if ($sesio != null) {
+          foreach ($sesio as $rs) {
+              $id_rs = $rs->id;
+              if (!is_null($id_rs)) {
+                  $rsf = Sesiones::where('id', '=', $id_rs)->first();
+                  $rsf->delete();
+              }
+          }
+      }
+
+      
+      $contador=0;
+                      
+      if ($serv->sesiones != 0) {
+          while ($contador < $serv->sesiones) {
+              $ses = new Sesiones();
+              $ses->id_paciente =   $atenciod->id_paciente;
+              $ses->id_atencion =  $atenciod->id;
+              $ses->save();
+
+              $contador++;
+          }
+      }
 
       if ($rsfd != null) {
           $rsf = ResultadosServicios::where('id_atencion', '=', $request->id)->first();
@@ -1426,6 +1638,12 @@ return view('atenciones.particular');
       if ($csf1 != null) {
           $csf = Comisiones::where('id_atencion', '=', $request->id)->first();
           $csf->delete();
+      }
+
+      $sesio = Sesiones::where('id_atencion','=',$request->id)->first();
+      if ($sesio != null) {
+          $ses = Sesiones::where('id_atencion', '=', $request->id)->first();
+          $ses->delete();
       }
 
       if($request->tipo_origen == 1 && $serv->porcentaje > 0){
@@ -1718,6 +1936,130 @@ return view('atenciones.particular');
         //
     }
 
+    public function sesiones1(Request $request)
+    {
+
+      if ($request->id_paciente != null) {
+      
+
+        $sesiones = DB::table('sesiones as a')
+        ->select('a.id', 'a.id_atencion','a.created_at', 'a.estatus','at.id_tipo','at.id_paciente','b.nombres','b.apellidos','b.dni','s.nombre as servicio')
+        ->join('atenciones as at', 'at.id', 'a.id_atencion')
+        ->join('pacientes as b', 'b.id', 'at.id_paciente')
+        ->join('servicios as s', 's.id', 'at.id_tipo')
+        ->where('a.estatus', '=',0)
+        ->where('a.id_paciente','=', $request->id_paciente)
+        ->get();
+
+
+    } else {
+
+        $f1 = date('Y-m-d');
+        $f2 = date('Y-m-d');
+
+
+        $sesiones = DB::table('sesiones as a')
+        ->select('a.id', 'a.id_atencion','a.created_at', 'a.estatus','at.id_tipo','at.id_paciente','b.nombres','b.apellidos','b.dni','s.nombre as servicio')
+        ->join('atenciones as at', 'at.id', 'a.id_atencion')
+        ->join('pacientes as b', 'b.id', 'at.id_paciente')
+        ->join('servicios as s', 's.id', 'at.id_tipo')
+        ->where('a.estatus', '=',0)
+        ->where('a.id_paciente','=', 'CCCCCCC')
+       // ->whereBetween('a.created_at', [$f1, $f2])
+        ->get();
+
+
+    }
+
+    if(!is_null($request->filtro)){
+      $pacientes =Pacientes::where("estatus", '=', 1)->where('apellidos','like','%'.$request->filtro.'%')->orderby('apellidos','asc')->get();
+      }else{
+      $pacientes =Pacientes::where("estatus", '=', 9)->orderby('nombres','asc')->get();
+      }
+
+      $personal = User::where('estatus','=',1)->where('tipo','=',1)->where('tipo_personal','=','ProfSalud')->orderBy('lastname','ASC')->get();
+
+
+
+
+
+    
+
+      return view('sesiones.index', compact('sesiones','pacientes','personal'));
+       
+    }
+
+    public function sesiones2(Request $request)
+    {
+
+      if ($request->id_paciente != null) {
+      
+
+        $sesiones = DB::table('sesiones as a')
+        ->select('a.id', 'a.id_atencion','a.created_at', 'a.id_personal','a.estatus','at.id_tipo','at.id_paciente','b.nombres','b.apellidos','b.dni','s.nombre as servicio','u.name','u.lastname')
+        ->join('atenciones as at', 'at.id', 'a.id_atencion')
+        ->join('pacientes as b', 'b.id', 'at.id_paciente')
+        ->join('servicios as s', 's.id', 'at.id_tipo')
+        ->join('users as u', 'u.id', 'a.id_personal')
+        ->where('a.estatus', '=',1)
+        ->where('a.id_paciente','=', $request->id_paciente)
+        ->get();
+
+
+    } else {
+
+        $f1 = date('Y-m-d');
+        $f2 = date('Y-m-d');
+
+
+        $sesiones = DB::table('sesiones as a')
+        ->select('a.id', 'a.id_atencion','a.created_at', 'a.id_personal','a.estatus','at.id_tipo','at.id_paciente','b.nombres','b.apellidos','b.dni','s.nombre as servicio','u.name','u.lastname')
+        ->join('atenciones as at', 'at.id', 'a.id_atencion')
+        ->join('pacientes as b', 'b.id', 'at.id_paciente')
+        ->join('servicios as s', 's.id', 'at.id_tipo')
+        ->join('users as u', 'u.id', 'a.id_personal')
+        ->where('a.estatus', '=',1)
+        ->where('a.id_paciente','=', 'CCCCCCC')
+       // ->whereBetween('a.created_at', [$f1, $f2])
+        ->get();
+
+
+    }
+
+    if(!is_null($request->filtro)){
+      $pacientes =Pacientes::where("estatus", '=', 1)->where('apellidos','like','%'.$request->filtro.'%')->orderby('apellidos','asc')->get();
+      }else{
+      $pacientes =Pacientes::where("estatus", '=', 9)->orderby('nombres','asc')->get();
+      }
+
+      $personal = User::where('estatus','=',1)->where('tipo','=',1)->where('tipo_personal','=','ProfSalud')->orderBy('lastname','ASC')->get();
+
+
+
+
+
+      return view('sesiones.index1', compact('sesiones','pacientes','personal'));
+       
+    }
+
+    public function atender_sesion(Request $request)
+    {
+
+
+       
+
+      $p = Sesiones::find($request->id);
+      $p->estatus =1;
+      $p->id_personal =$request->personal;
+    
+      $res = $p->update();
+    
+    
+    return back();
+
+        //
+    }
+
 
  
     public function delete($id)
@@ -1801,6 +2143,18 @@ return view('atenciones.particular');
             $cb->estatus = 0;
             $cb->save();
         }
+
+        $sesio = Sesiones::where('id_atencion','=',$id)->get();
+        if ($sesio != null) {
+            foreach ($sesio as $rs) {
+                $id_rs = $rs->id;
+                if (!is_null($id_rs)) {
+                    $rsf = Sesiones::where('id', '=', $id_rs)->first();
+                    $rsf->delete();
+                }
+            }
+        }
+       
 
         $creditos = Creditos::where('id_atencion','=',$id)->first();
         $creditos->delete();

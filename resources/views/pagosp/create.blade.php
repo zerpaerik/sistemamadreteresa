@@ -34,10 +34,6 @@
 <!-- DataTables -->
 <link rel="stylesheet" href="../../plugins/datatables-bs4/css/dataTables.bootstrap4.min.css">
 <link rel="stylesheet" href="../../plugins/datatables-responsive/css/responsive.bootstrap4.min.css">
-<link rel="stylesheet" href="http://cdn.bootcss.com/toastr.js/latest/css/toastr.min.css"> 
-
-
-
 </head>
 <body class="hold-transition sidebar-mini layout-fixed">
 <div class="wrapper">
@@ -63,13 +59,10 @@
       <div class="container-fluid">
         <div class="row mb-2">
           <div class="col-sm-6">
-            <h1 class="m-0 text-dark">Servicios</h1>
+            <h1 class="m-0 text-dark">Pagos a Personal</h1>
           </div><!-- /.col -->
           <div class="col-sm-6">
-            <ol class="breadcrumb float-sm-right">
-              <li class="breadcrumb-item"><a href="#">Home</a></li>
-              <li class="breadcrumb-item active">Servicios</li>
-            </ol>
+            
           </div><!-- /.col -->
         </div><!-- /.row -->
       </div><!-- /.container-fluid -->
@@ -89,55 +82,67 @@
               </div>
               <!-- /.card-header -->
               <!-- form start -->
-              <form method="post" action="servicios/create" accept-charset="UTF-8" enctype="multipart/form-data">					
-              {{ csrf_field() }}                
                     <div class="card-body">
-                    <div class="row">
-                  <div class="col-md-3">
-                    <label for="exampleInputEmail1">Nombre</label>
-                    <input onkeyup="javascript:this.value=this.value.toUpperCase();" type="text" class="form-control" id="name" name="nombre" placeholder="Nombre de Servicio" required>
-                  </div>
-                  <div class="col-md-3">
-                    <label for="exampleInputEmail1">Precio</label>
-                    <input type="float" class="form-control" id="email" name="precio" placeholder="Precio" required>
-                  </div>
-                  <div class="col-md-3">
-                    <label for="exampleInputEmail1">Porcentaje Pers</label>
-                    <input type="float" class="form-control" id="name" name="porcentaje" placeholder="Porcentaje Personal" required>
-                  </div>
-                  <div class="col-md-3">
-                    <label for="exampleInputEmail1">Porcentaje Prof</label>
-                    <input type="float" class="form-control" id="email" name="porcentaje1" placeholder="Porcentaje Profesional" required>
-                  </div>
-                 
-                  </div>
-                  <div class="row">
-                  
-                  <div class="col-md-3">
-                    <label for="exampleInputEmail1">Porcentaje Tecn</label>
-                    <input type="float" class="form-control" id="email" name="porcentaje2" placeholder="Porcentaje Tecnólogo" required>
-                  </div>
-                  <div class="col-md-3">
-                    <label for="exampleInputEmail1">Tipo de Servicio</label>
-                    <select class="form-control" name="tipo" id="el2">
-						              	<option value="ECOGRAFIA">ECOGRAFIA</option>
-                            <option value="RAYOS">RAYOS X</option>
-                            <option value="SALUD">SALUD MENTAL</option>
-                            <option value="OTROS">OTROS</option>
-                        </select>
-                  </div>
-                  <div class="col-md-4" id="sesiones">
-                  </div>
+                    <form method="post" action="pagosp/create" >			
+                  {{ csrf_field() }}  					
 
-                 
-                  </div>
-                  <br>
-                  
-                  
+             
+
+             <div class="row">
+            <label class="col-sm-12 alert"><i class="fa fa-tasks" aria-hidden="true"></i> Personal seleccionados</label>
+            <!-- sheepIt Form -->
+            <div id="servicios" class="embed ">
             
+                <!-- Form template-->
+                <div id="servicios_template" class="template row">
 
-               
-        
+                <label for="laboratorios_#index#_laboratorio" class="col-sm-2 control-label">Personal</label>
+                    <div class="col-sm-4">
+                      <select id="laboratorios_#index#_laboratorio" name="id_laboratorio[laboratorios][#index#][laboratorio]" class="form-control">
+                        <option value="1">Seleccionar Personal</option>
+                        @foreach($personal as $pac)
+                          <option value="{{$pac->id}}">
+                            {{$pac->lastname}}  {{$pac->name}}
+                          </option>
+                        @endforeach
+                      </select>
+                    </div>
+
+                  
+
+                    <label for="laboratorios_#index#_abonoL" class="col-sm-2 control-label">Monto a Pagar.</label>
+                    <div class="col-sm-2">
+
+                      <input id="laboratorios_#index#_abonoL" name="monto_abol[laboratorios][#index#][abono]" type="number" class="number form-control monto" placeholder="Cantidad" data-toggle="tooltip" data-placement="bottom" title="Cantidad">
+                    </div>
+
+                   
+
+                    <a id="servicios_remove_current" style="cursor: pointer;"><i class="fa fa-times-circle" aria-hidden="true"></i></a>
+                </div>
+                <!-- /Form template-->
+                
+                <!-- No forms template -->
+                <div id="servicios_noforms_template" class="noItems col-sm-12 text-center">Ningún Producto</div>
+                <!-- /No forms template-->
+                
+                <!-- Controls -->
+                <div id="servicios_controls" class="controls col-sm-11 col-sm-offset-1">
+                    <div id="servicios_add" class="btn btn-default form add"><a><span><i class="fa fa-plus-circle"></i> Agregar Producto</span></a></div>
+                    <div id="servicios_remove_last" class="btn form removeLast"><a><span><i class="fa fa-close-circle"></i> Eliminar ultimo</span></a></div>
+                    <div id="servicios_remove_all" class="btn form removeAll"><a><span><i class="fa fa-close-circle"></i> Eliminar todos</span></a></div>
+                </div>
+                <!-- /Controls -->
+                
+            </div>
+            <!-- /sheepIt Form --> 
+          </div>
+
+         
+           
+
+
+            
                 <!-- /.card-body -->
 
                 <div class="card-footer">
@@ -213,15 +218,16 @@
 <!-- AdminLTE for demo purposes -->
 <script src="dist/js/demo.js"></script>
 
+<!-- sheepit -->
+
+<script src="../../plugins/sheepit/jquery.sheepItPlugin.min.js"></script>
+
 <!-- DataTables -->
 <script src="../../plugins/datatables/jquery.dataTables.min.js"></script>
 <script src="../../plugins/datatables-bs4/js/dataTables.bootstrap4.min.js"></script>
 <script src="../../plugins/datatables-responsive/js/dataTables.responsive.min.js"></script>
 <script src="../../plugins/datatables-responsive/js/responsive.bootstrap4.min.js"></script>
 <script src="../../plugins/select2/js/select2.full.min.js"></script>
-
-<script src="http://cdn.bootcss.com/jquery/2.2.4/jquery.min.js"></script>
-<script src="http://cdn.bootcss.com/toastr.js/latest/js/toastr.min.js"></script>
 
 <!-- AdminLTE App -->
 <script src="../../dist/js/adminlte.min.js"></script>
@@ -230,32 +236,86 @@
 <!-- page script -->
 <!-- Summernote -->
 <script src="../../plugins/summernote/summernote-bs4.min.js"></script>
-
 <script type="text/javascript">
-      $(document).ready(function(){
-        $('#el2').on('change',function(){
-          var link;
-          if ($(this).val() == 'SALUD') {
-            link = '/servicios/sesiones/';
-          } else {
-		    link = '/servicios/nada/';
-		  }
 
-          $.ajax({
-                 type: "get",
-                 url:  link,
-                 success: function(a) {
-                    $('#sesiones').html(a);
-                 }
-          });
+function sumar()
+{
+  const $total = document.getElementById('total');
+  let subtotal = 0;
+  [ ...document.getElementsByClassName( "monto" ) ].forEach( function ( element ) {
+    if(element.value !== '') {
+      subtotal += parseFloat(element.value);
+    }
+  });
+  $total.value = subtotal;
+}
+</script>
 
-        });
-        
-
-      });
-       
-    </script>
 <script>
+function datapac(){
+      
+      $('#el1').on('submit',function(){
+           var link;
+             link = '/solicitudes/dataPacientes/'+$(this).val();
+   
+   
+           $.ajax({
+                  type: "get",
+                  url:  link,
+                  success: function(a) {
+                     $('#pacientes').html(a);
+                  }
+           });
+   
+         });
+       }
+
+</script>
+
+<script>
+
+$(document).on('change','.selectServ',function(){
+      var labId = $(this).attr('id');
+      var labArr = labId.split('_');
+      var id = labArr[1];
+
+      $.ajax({
+         type: "GET",
+         url:  "productos/getProducto/"+$(this).val(),
+         success: function(a) {
+           
+            $('#servicios_'+id+'_montoHidden').val(a.medida);
+            $('#servicios_'+id+'_monto').val(a.medida);
+          
+         }
+      });
+    })
+
+var botonDisabled = true;
+
+    // Main sheepIt form
+    var phonesForm = $("#servicios").sheepIt({
+        separator: '',
+        allowRemoveCurrent: true,
+        allowAdd: true,
+        allowRemoveAll: true,
+        allowRemoveLast: true,
+
+        // Limits
+        maxFormsCount: 50,
+        minFormsCount: 1,
+        iniFormsCount: 0,
+
+        removeAllConfirmationMsg: 'Seguro que quieres eliminar todos?',
+        afterRemoveCurrent: function(source, event){
+        sumar();
+        }
+    });
+
+</script>
+
+<script>
+
   $(function () {
     // Summernote
     $('.textarea').summernote()
@@ -334,6 +394,7 @@
 
   })
 </script>
+
 
 </body>
 </html>

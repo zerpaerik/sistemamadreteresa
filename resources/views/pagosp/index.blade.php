@@ -31,7 +31,6 @@
 <link rel="stylesheet" href="../../plugins/datatables-responsive/css/responsive.bootstrap4.min.css">
 <link rel="stylesheet" href="http://cdn.bootcss.com/toastr.js/latest/css/toastr.min.css"> 
 
-
 </head>
 <body class="hold-transition sidebar-mini layout-fixed">
 <div class="wrapper">
@@ -58,12 +57,12 @@
       <div class="container-fluid">
         <div class="row mb-2">
           <div class="col-sm-6">
-            <h1 class="m-0 text-dark">Atenciones</h1>
+            <h1 class="m-0 text-dark">Pagos a Personal</h1>
           </div><!-- /.col -->
           <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">
               <li class="breadcrumb-item"><a href="#">Home</a></li>
-              <li class="breadcrumb-item active">Atenciones</li>
+              <li class="breadcrumb-item active">Pagos a Personal</li>
             </ol>
           </div><!-- /.col -->
         </div><!-- /.row -->
@@ -73,22 +72,27 @@
 
     <!-- Main content -->
     <section class="content">
-    <!-- @include('flash-message') -->
+    @include('flash-message')
       <div class="container-fluid">
       <div class="card">
               <div class="card-header">
-                <a class="btn btn-primary btn-sm" href="{{route('atenciones.create')}}">
+              <a class="btn btn-primary btn-sm" href="{{route('pagosp.create')}}">
                               <i class="fas fa-folder">
                               </i>
                               Agregar
                           </a>
-                          <form method="get" action="atenciones">					
+              <form method="get" action="pagos-personal">					
                   <label for="exampleInputEmail1">Filtros de Busqueda</label>
 
                     <div class="row">
                   <div class="col-md-3">
-                    <label for="exampleInputEmail1">Fecha </label>
-                    <input type="date" class="form-control" value="{{$f1}}" name="inicio" placeholder="Buscar por dni" onsubmit="datapac()">
+                    <label for="exampleInputEmail1">Fecha Inicio</label>
+                    <input type="date" class="form-control" value="{{$f1}}" name="inicio">
+                  </div>
+
+                  <div class="col-md-3">
+                    <label for="exampleInputEmail1">Fecha Fin</label>
+                    <input type="date" class="form-control" value="{{$f2}}" name="fin">
                   </div>
 
                
@@ -100,125 +104,46 @@
 
                   </div>
                   </form>
+              
               </div>
               <!-- /.card-header -->
               <div class="card-body">
-                <table id="" class="table table-bordered table-striped">
+
+                <table id="example1" class="table table-bordered table-striped">
+                <form action="/pagarmultiple" method="post">
                   <thead>
                   <tr>
                     <th>Fecha</th>
-                    <th>Paciente</th>
-                    <th>Origen</th>
-                    <th>Detalle</th>
-                    <th>Mto</th>
-                    <th>Abo</th>
-                    <th>Tp</th>
-                    <th>PG</th>
-                    <th>AT</th>
-                    <th>RP</th>
+                    <th>Personal.</th>
+                    <th>Monto</th>
+                    <th>Registrado Por</th>
                     <th>Acciones</th>
                   </tr>
                   </thead>
                   <tbody>
 
-
-                  @foreach($atenciones as $an)
+                  @foreach($pagosp as $an)
                   <tr>
-                    <td>{{date('d-M-y H:i', strtotime($an->created_at))}}</td>
-                    <td>{{$an->apellidos}} {{$an->nombres}}</td>
-                    <td>{{$an->lasto}} {{$an->nameo}}</td>
-                    <td>{{$an->detalle}}</td>
+                   <td>{{$an->created_at}}</td>
+                    <td>{{$an->lastname}} {{$an->name}}</td>
                     <td>{{$an->monto}}</td>
-                    <td>{{$an->abono}}</td>
-                    <td >{{$an->tipo_pago}}</td>
-                    @if($an->pagado == 1)
-                    <td><span class="badge bg-danger">NO</span></td>
-                    @else
-                    <td><span class="badge bg-success">SI</span></td>
-                    @endif
-                    @if($an->atendido == 1)
-                    <td><span class="badge bg-danger">NO</span></td>
-                    @else
-                    <td><span class="badge bg-success">SI</span></td>
-                    @endif
-                    <td>{{substr($an->lastu,0,5)}} {{substr($an->nameu,0,5)}}</td>
+                    <td>{{$an->lastu}} {{$an->nameu}}</td>
+    
                     <td>
-
-                    @if($an->estatus == 1)
-                    <a class="btn btn-success btn-sm" target="_blank" href="atenciones-ticket-{{$an->id_atec}}">
-                              <i class="fas fa-print">
-                              </i>
-                          </a>
                     @if(Auth::user()->rol == 1)
+                    <a class="btn btn-danger btn-sm" href="pagosp-delete-{{$an->id}}" onclick="return confirm('¿Desea Eliminar este registro?')">
+                              <i class="fas fa-trash"> Eliminar
+                              </i>
+                          </a>  
+                          
+                          <a class="btn btn-primary btn-sm" id="{{$an->id}}" onclick="view(this)">
+                              <i class="fas fa-edit"> Editar
+                              </i>
+                          </a>      
 
-
-                         @if($an->tipo_atencion == 1)
-
-                          <a class="btn btn-info btn-sm" href="atenciones-edits-{{$an->id}}">
-                              <i class="fas fa-pencil-alt">
-                              </i>
-                          </a>
-
-                        @elseif($an->tipo_atencion == 2)
-                        
-                        <a class="btn btn-info btn-sm" href="atenciones-edits-{{$an->id}}">
-                              <i class="fas fa-pencil-alt">
-                              </i>
-                          </a>
-                        @elseif($an->tipo_atencion == 3)
-                        
-                        <a class="btn btn-info btn-sm" href="atenciones-edits-{{$an->id}}">
-                              <i class="fas fa-pencil-alt">
-                              </i>
-                          </a>
-                        @elseif($an->tipo_atencion == 4)
-                        
-                        <a class="btn btn-info btn-sm" href="atenciones-editl-{{$an->id}}">
-                              <i class="fas fa-pencil-alt">
-                              </i>
-                          </a>
-                          @elseif($an->tipo_atencion == 5)
-                        
-                        <a class="btn btn-info btn-sm" href="atenciones-editc-{{$an->id}}">
-                              <i class="fas fa-pencil-alt">
-                              </i>
-                          </a>
-                          @elseif($an->tipo_atencion == 6)
-                        
-                        <a class="btn btn-info btn-sm" href="atenciones-editm-{{$an->id}}">
-                              <i class="fas fa-pencil-alt">
-                              </i>
-                          </a>
-
-                          @elseif($an->tipo_atencion == 8)
-                        
-                        <a class="btn btn-info btn-sm" href="atenciones-editsa-{{$an->id}}">
-                              <i class="fas fa-pencil-alt">
-                              </i>
-                          </a>
-                        @else
-                        
-                        <a class="btn btn-info btn-sm" href="atenciones-editp-{{$an->id}}">
-                              <i class="fas fa-pencil-alt">
-                              </i>
-                          </a>
-                        @endif
-                          @if($an->atendido == 1)
-                          <a class="btn btn-danger btn-sm" href="atenciones-delete-{{$an->id}}" onclick="return confirm('¿Desea Eliminar este registro?')">
-                              <i class="fas fa-trash">
-                              </i>
-                          </a>
+                         
+                         </td>
                           @endif
-
-                        
-
-                        
-                          @endif
-                          @else
-                          <p>Eliminado Por: {{$an->eliminado_por}}</p>
-
-                          @endif
-                          </td>
                   </tr>
                   @endforeach
                  
@@ -226,18 +151,15 @@
                   <tfoot>
                   <tr>
                   <th>Fecha</th>
-                    <th>Paciente</th>
-                    <th>Origen</th>
-                    <th>Detalle</th>
-                    <th>Mto</th>
-                    <th>Abo</th>
-                    <th>Tp</th>
-                    <th>PG</th>
-                    <th>AT</th>
-                    <th>RP</th>
+                    <th>Personal.</th>
+                    <th>Monto</th>
+                    <th>Registrado Por</th>
                     <th>Acciones</th>
                   </tr>
+                
                   </tfoot>
+                  </form>
+
                 </table>
               </div>
               <!-- /.card-body -->
@@ -253,6 +175,23 @@
     <!-- /.content -->
   </div>
   </div>
+
+  <div class="modal fade" id="viewTicket">
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="modal-body">
+            </div>
+           
+          </div>
+          <!-- /.modal-content -->
+        </div>
+        <!-- /.modal-dialog -->
+      </div>
   </section>
 
   <!-- /.content-wrapper -->
@@ -300,68 +239,54 @@
 <!-- AdminLTE for demo purposes -->
 <script src="dist/js/demo.js"></script>
 
-<script src="http://cdn.bootcss.com/jquery/2.2.4/jquery.min.js"></script>
-<script src="http://cdn.bootcss.com/toastr.js/latest/js/toastr.min.js"></script>
-
-
 <!-- DataTables -->
 <script src="../../plugins/datatables/jquery.dataTables.min.js"></script>
 <script src="../../plugins/datatables-bs4/js/dataTables.bootstrap4.min.js"></script>
 <script src="../../plugins/datatables-responsive/js/dataTables.responsive.min.js"></script>
 <script src="../../plugins/datatables-responsive/js/responsive.bootstrap4.min.js"></script>
+
+<script type="text/javascript" src="https://cdn.datatables.net/buttons/1.6.1/js/dataTables.buttons.min.js"></script> 
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.1.3/jszip.min.js"></script>
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/pdfmake.min.js"></script>
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/vfs_fonts.js"></script>
+<script type="text/javascript" src="https://cdn.datatables.net/buttons/1.6.1/js/buttons.html5.min.js"></script>
+<script type="text/javascript" src="https://cdn.datatables.net/buttons/1.6.1/js/buttons.print.min.js"></script>
 <!-- AdminLTE App -->
 <script src="../../dist/js/adminlte.min.js"></script>
 <!-- AdminLTE for demo purposes -->
 <script src="../../dist/js/demo.js"></script>
 
-<script>
-  @if(Session::has('message'))
-  toastr.options =
-  {
-  	"closeButton" : true,
-  	"progressBar" : true
-  }
-  		toastr.success("{{ session('message') }}");
-  @endif
+<script type="text/javascript">
+		function view(e){
+		    var id = $(e).attr('id');
+		    
+		    $.ajax({
+		        type: "GET",
+		        url: "/pagosp/edit/"+id,
+		        success: function (data) {
+		            $("#viewTicket .modal-body").html(data);
+		            $('#viewTicket').modal('show');
+		        },
+		        error: function (data) {
+		            console.log('Error:', data);
+		        }
+		    });
+		}
 
-  @if(Session::has('error'))
-  toastr.options =
-  {
-  	"closeButton" : true,
-  	"progressBar" : true
-  }
-  		toastr.error("{{ session('error') }}");
-  @endif
+	
+	</script>
 
-  @if(Session::has('info'))
-  toastr.options =
-  {
-  	"closeButton" : true,
-  	"progressBar" : true
-  }
-  		toastr.info("{{ session('info') }}");
-  @endif
-
-  @if(Session::has('success'))
-  toastr.options =
-  {
-  	"closeButton" : true,
-  	"progressBar" : true
-  }
-  		toastr.info("{{ session('success') }}");
-  @endif
-
-  @if(Session::has('warning'))
-  toastr.options =
-  {
-  	"closeButton" : true,
-  	"progressBar" : true
-  }
-  		toastr.warning("{{ session('warning') }}");
-  @endif
-</script>
 <!-- page script -->
 <script>
+
+$('document').ready(function(){
+   $("#checkTodos").change(function () {
+      $("input:checkbox").prop('checked', $(this).prop("checked"));
+  });
+});
+
+
+
   $(function () {
     $("#example1").DataTable({
       "responsive": true,

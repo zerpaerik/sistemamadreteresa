@@ -66,6 +66,7 @@ class ServiciosController extends Controller
             $analisis->porcentaje1 =$request->porcentaje1;
             $analisis->porcentaje =$request->porcentaje;
             $analisis->porcentaje2 =$request->porcentaje2;
+            $analisis->sesiones =$request->sesiones;
             $analisis->usuario =Auth::user()->id;
             $analisis->save();
                
@@ -143,6 +144,20 @@ class ServiciosController extends Controller
     ->with('success','Modificado Exitosamente!');
 
         //
+    }
+
+    public function sesiones()
+    {
+     
+
+        return view('servicios.sesiones'); //
+    }
+
+    public function nada()
+    {
+     
+
+        return view('servicios.nada'); //
     }
 
   

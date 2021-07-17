@@ -185,7 +185,7 @@
                   				
                   <ul class="nav nav-tabs">
   <li class="nav-item">
-    <a class="nav-link active" data-toggle="tab" href="#serv">Servicios</a>
+    <a class="nav-link active" data-toggle="tab" href="#serv">Procedimiento</a>
   </li>
   <li class="nav-item">
     <a class="nav-link" data-toggle="tab" href="#eco">Ecografias</a>
@@ -193,6 +193,9 @@
   </li>
   <li class="nav-item">
     <a class="nav-link" data-toggle="tab" href="#ray">Rayos X</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" data-toggle="tab" href="#sal">Salud Mental</a>
   </li>
   <li class="nav-item">
     <a class="nav-link" data-toggle="tab" href="#lab">Laboratorios</a>
@@ -212,17 +215,17 @@
 <div class="tab-content">
   <div class="tab-pane container active" id="serv">
   <div class="row">
-            <label class="col-sm-6 alert"><i class="fa fa-tasks" aria-hidden="true"></i> Servicios Seleccionadas</label>
+            <label class="col-sm-6 alert"><i class="fa fa-tasks" aria-hidden="true"></i> Procedimiento Seleccionadas</label>
             <!-- sheepIt Form -->
             <div id="servicios" class="embed ">
             
                 <!-- Form template-->
                 <div id="servicios_template" class="template row">
 
-                <label for="servicios_#index#_servicio" class="col-sm-1 control-label">Servicios</label>
+                <label for="servicios_#index#_servicio" class="col-sm-1 control-label">Procedimiento</label>
                     <div class="col-sm-3">
                       <select id="servicios_#index#_servicio" name="id_servicio[servicios][#index#][servicio]" class="selectServ form-control">
-                      <option value="">Seleccionar Servicio</option>
+                      <option value="">Seleccionar Procedimiento</option>
                         @foreach($otros as $ot)
                           <option value="{{$ot->id}}">
                             {{$ot->nombre}} Precio:{{$ot->precio}}
@@ -261,12 +264,12 @@
                 <!-- /Form template-->
                 
                 <!-- No forms template -->
-                <div id="servicios_noforms_template" class="noItems col-sm-12 text-center">Ningún Producto</div>
+                <div id="servicios_noforms_template" class="noItems col-sm-12 text-center">Ningún Procedimiento</div>
                 <!-- /No forms template-->
                 
                 <!-- Controls -->
                 <div id="servicios_controls" class="controls col-sm-11 col-sm-offset-1">
-                    <div id="servicios_add" class="btn btn-default form add"><a><span><i class="fa fa-plus-circle"></i> Agregar Servicio</span></a></div>
+                    <div id="servicios_add" class="btn btn-default form add"><a><span><i class="fa fa-plus-circle"></i> Agregar Procedimiento</span></a></div>
                     <div id="servicios_remove_last" class="btn form removeLast"><a><span><i class="fa fa-close-circle"></i> Eliminar ultimo</span></a></div>
                     <div id="servicios_remove_all" class="btn form removeAll"><a><span><i class="fa fa-close-circle"></i> Eliminar todos</span></a></div>
                 </div>
@@ -413,6 +416,77 @@
           </div>
 
   </div>
+
+  <div class="tab-pane container fade" id="sal">
+    <div class="row">
+              <label class="col-sm-6 alert"><i class="fa fa-tasks" aria-hidden="true"></i> Salud M Seleccionadas</label>
+              <!-- sheepIt Form -->
+              <div id="salud" class="embed ">
+              
+                  <!-- Form template-->
+                  <div id="salud_template" class="template row">
+  
+                  <label for="salud_#index#_salu" class="col-sm-1 control-label">Salud Mental</label>
+                      <div class="col-sm-3">
+                        <select id="salud_#index#_salu" name="id_salu[salud][#index#][salu]" class="selectSalud form-control">
+                          <option value="">Seleccionar Salud M</option>
+                          @foreach($salud as $sa)
+                            <option value="{{$sa->id}}">
+                              {{$sa->nombre}} Precio:{{$sa->precio}}
+                            </option>
+                          @endforeach
+                        </select>
+                      </div>
+  
+                      <label for="salud_#index#_monto" class="col-sm-1 control-label">Monto</label>
+                      <div class="col-sm-1">
+                        <input id="salud_#index#_montoHidden" name="monto_h[salud][#index#][montoHidden]" class="text" type="hidden" value="">
+  
+                        <input id="salud_#index#_monto" name="monto_s[salud][#index#][monto]" type="text" class="number form-control monto" onchange="sumar();" placeholder="Precio" data-toggle="tooltip" data-placement="bottom" title="Precio">
+                      </div>
+  
+                      <label for="salud_#index#_abonoL" class="col-sm-1 control-label">Abono.</label>
+                      <div class="col-sm-1">
+  
+                        <input id="salud_#index#_abonoL" name="monto_abol[salud][#index#][abono]" type="number" class="number form-control abonoL abono" onchange="sumar_ab();" placeholder="Abono" data-toggle="tooltip" data-placement="bottom" title="Abono">
+                      </div>
+  
+                      <label for="salud_#index#_tipop" class="col-sm-1 control-label">TipoPago</label>
+                      <div class="col-sm-2">
+                        <select id="salud_#index#_salu" name="id_pago[salud][#index#][tipop]" class="form-control">
+                        <option value="" disabled>Seleccione</option>
+                          <option value="EF">Efectivo</option>
+                          <option value="TJ">Tarjeta</option>
+                          <option value="DP">Depósito</option>
+                          <option value="YP">Yape</option>
+  
+                        </select>
+                      </div>
+  
+                     
+  
+                      <a id="salud_remove_current" style="cursor: pointer;"><i class="fa fa-times-circle" aria-hidden="true"></i></a>
+                  </div>
+                  <!-- /Form template-->
+                  
+                  <!-- No forms template -->
+                  <div id="salud_noforms_template" class="noItems col-sm-12 text-center">Ningún Producto</div>
+                  <!-- /No forms template-->
+                  
+                  <!-- Controls -->
+                  <div id="salud_controls" class="controls col-sm-11 col-sm-offset-1">
+                      <div id="salud_add" class="btn btn-default form add"><a><span><i class="fa fa-plus-circle"></i> Agregar SaludM</span></a></div>
+                      <div id="salud_remove_last" class="btn form removeLast"><a><span><i class="fa fa-close-circle"></i> Eliminar ultimo</span></a></div>
+                      <div id="salud_remove_all" class="btn form removeAll"><a><span><i class="fa fa-close-circle"></i> Eliminar todos</span></a></div>
+                  </div>
+                  <!-- /Controls -->
+                  
+              </div>
+              <!-- /sheepIt Form --> 
+            </div>
+  
+    </div>
+
   <div class="tab-pane container fade" id="lab">
   <div class="row">
             <label class="col-sm-6 alert"><i class="fa fa-tasks" aria-hidden="true"></i> Laboratorios Seleccionadas</label>
@@ -946,6 +1020,26 @@ $(document).on('change','.selectServ',function(){
       });
     });
 
+    $(document).on('change','.selectSalud',function(){
+      var labId = $(this).attr('id');
+      var labArr = labId.split('_');
+      var id = labArr[1];
+
+      $.ajax({
+         type: "GET",
+         url:  "atenciones/getServicio/"+$(this).val(),
+         success: function(a) {
+           
+            $('#salud_'+id+'_montoHidden').val(a.precio);
+            $('#salud_'+id+'_monto').val(a.precio);
+            var total = parseFloat($('#total').val());
+            $("#total").val(total + parseFloat(a.precio));
+          
+          
+         }
+      });
+    });
+
     $(document).on('change','.selectLab',function(){
       var labId = $(this).attr('id');
       var labArr = labId.split('_');
@@ -1047,6 +1141,26 @@ var botonDisabled = true;
         afterRemoveCurrent: function(source, event){
           sumar();
           sumar_ab();
+        }
+    });
+
+    var phonesForm = $("#salud").sheepIt({
+        separator: '',
+        allowRemoveCurrent: true,
+        allowAdd: true,
+        allowRemoveAll: true,
+        allowRemoveLast: true,
+
+        // Limits
+        maxFormsCount: 10,
+        minFormsCount: 1,
+        iniFormsCount: 0,
+
+        removeAllConfirmationMsg: 'Seguro que quieres eliminar todos?',
+        afterRemoveCurrent: function(source, event){
+         sumar();
+         sumar_ab();
+
         }
     });
 
