@@ -146,9 +146,8 @@ class ReportesController extends Controller
         ->get();
 
 
-        $efectivo = Creditos::where('tipopago', 'EF')
-        ->where('created_at','=', $request->inicio)
-                ->select(DB::raw('SUM(monto) as monto'))
+        $efectivo = Creditos::where('created_at','=', $request->inicio)
+                ->select(DB::raw('SUM(monto) as monto'),DB::raw('SUM(efectivo) as efectivo'),DB::raw('SUM(tarjeta) as tarjeta'),DB::raw('SUM(dep) as deposito'),DB::raw('SUM(yap) as yape'))
                 ->first();
         if (is_null($efectivo->monto)) {
         $efectivo->monto = 0;
@@ -209,11 +208,11 @@ class ReportesController extends Controller
         ->select('a.id','a.created_at','a.fecha','a.sede',DB::raw('SUM(monto) as monto'))
         ->where('a.sede','=',  $request->sede)
         ->whereBetween('a.fecha', [$f1,$f2])
-        ->groupBy('a.fecha')
-        ->get();  
+       // ->groupBy('a.fecha')
+        ->first();  
 
         $efectivo = DB::table('creditos as a')
-        ->select('a.id','a.created_at','a.fecha','a.tipopago','a.sede',DB::raw('SUM(monto) as monto'))
+        ->select('a.id','a.created_at','a.fecha','a.tipopago','a.sede',DB::raw('SUM(monto) as monto'),DB::raw('SUM(efectivo) as efectivo'),DB::raw('SUM(tarjeta) as tarjeta'),DB::raw('SUM(dep) as deposito'),DB::raw('SUM(yap) as yape'))
         ->where('a.sede','=',  $request->sede)
        // ->where('a.tipopago','=',  'EF')
         ->whereBetween('a.fecha', [$f1,$f2])
@@ -247,11 +246,14 @@ class ReportesController extends Controller
 
 
         $egresos = DB::table('debitos as a')
-        ->select('a.id','a.origen','a.descripcion','a.monto','a.tipopago','a.sede','a.fecha','a.created_at','a.usuario','b.name as usuario')
+        ->select('a.id','a.origen','a.descripcion','a.monto','a.tipopago','a.sede','a.fecha','a.updated_at','a.created_at','a.usuario','b.name as usuario')
         ->join('users as b','b.id','a.usuario' )
         ->where('a.sede','=',  $request->sede)
-        ->whereBetween('a.fecha', [$f1,$f2])
+        ->whereBetween('a.updated_at', [$f1,$f2])
         ->get(); 
+
+       // dd($egresos);
+
 
 
         $totalingreso = Creditos::whereBetween('created_at', [date('Y-m-d', strtotime($f1)), date('Y-m-d', strtotime($f2))])
@@ -263,12 +265,7 @@ class ReportesController extends Controller
             $totalingreso->monto = 0;
         }
 
-        $egresos = DB::table('debitos as a')
-        ->select('a.id','a.origen','a.descripcion','a.monto','a.tipopago','a.sede','a.created_at','a.usuario','b.name as usuario')
-        ->join('users as b','b.id','a.usuario' )
-        ->where('a.sede','=',$request->sede)
-        ->whereBetween('a.created_at', [date('Y-m-d', strtotime($f1)), date('Y-m-d', strtotime($f2))])
-        ->get(); 
+     
 
         $totalegreso = Debitos::whereBetween('created_at', [date('Y-m-d', strtotime($f1)), date('Y-m-d', strtotime($f2))])
         ->where('sede','=',$request->sede)
@@ -285,7 +282,7 @@ class ReportesController extends Controller
 
 
 
-         $view = \View::make('reportes.viewd', compact('f1','f2','ingresos','efectivo','totalingreso','egresos','totalegreso'));
+         $view = \View::make('reportes.viewd', compact('f1','f2','ingresos','efectivo','totalingreso','egresos','totalegreso','total'));
 
         $pdf = \App::make('dompdf.wrapper');
         $pdf->loadHTML($view);

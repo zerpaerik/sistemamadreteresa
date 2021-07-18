@@ -77,7 +77,6 @@
 			<th style="padding: 0;width: 5%;text-overflow: ellipsis;">TARJETA</th>
 			<th style="padding: 0;width: 5%;text-overflow: ellipsis;">DEPÓSITO</th>
 			<th style="padding: 0;width: 10%;text-overflow: ellipsis;">YAPE</th>
-			<th style="padding: 0;width: 5%;text-overflow: ellipsis;">EGRESOS</th>
 
 
 
@@ -87,19 +86,14 @@
 		<tr>
 		    <td style="padding: 0;width: 5%;text-overflow: ellipsis;">{{ $ingreso->fecha }}</td>
 			<td style="padding: 0;width: 5%;text-overflow: ellipsis;">{{ $ingreso->monto }}</td>
-			@if($ingreso->tipopago == 'EF')
-			<td style="padding: 0;width: 5%;text-overflow: ellipsis;">{{ $ingreso->monto }}</td>
-			@endif
-			<td style="padding: 0;width: 5%;text-overflow: ellipsis;">{{ $ingreso->monto }}</td>
-			<td style="padding: 0;width: 5%;text-overflow: ellipsis;">{{ $ingreso->monto }}</td>
-			<td style="padding: 0;width: 5%;text-overflow: ellipsis;">{{ $ingreso->monto }}</td>
-			<td style="padding: 0;width: 5%;text-overflow: ellipsis;">{{ $ingreso->monto }}</td>
-			
+			<td style="padding: 0;width: 5%;text-overflow: ellipsis;">{{ $ingreso->efectivo }}</td>
+			<td style="padding: 0;width: 5%;text-overflow: ellipsis;">{{ $ingreso->tarjeta }}</td>
+			<td style="padding: 0;width: 5%;text-overflow: ellipsis;">{{ $ingreso->deposito }}</td>
+			<td style="padding: 0;width: 5%;text-overflow: ellipsis;">{{ $ingreso->yape }}</td>
 		</tr>
 		@endforeach
 	</table>
 
-	<strong>TOTAL INGRESOS:</strong>{{ $totalingreso->monto }}<br>
 
 </div>
 <br>

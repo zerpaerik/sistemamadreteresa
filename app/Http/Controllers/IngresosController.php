@@ -97,6 +97,15 @@ class IngresosController extends Controller
         $cre->monto = $request->monto;
         $cre->usuario = Auth::user()->id;
         $cre->tipopago = $request->tipopago;
+        if ($request->tipopago == 'EF') {
+            $cre->efectivo = $request->monto;
+          } elseif($request->tipopago == 'TJ') {
+            $cre->tarjeta = $request->monto;
+          } elseif($request->tipopago == 'DP') {
+            $cre->dep = $request->monto;
+          } else {
+            $cre->yap = $request->monto;
+          }
         $cre->sede = $request->session()->get('sede');
         $cre->fecha = date('Y-m-d');
         $cre->save();
@@ -158,6 +167,27 @@ class IngresosController extends Controller
       $p = Creditos::find($request->id);
       $p->descripcion =$request->descripcion;
       $p->tipopago =$request->tipopago;
+      if ($request->tipopago == 'EF') {
+        $p->efectivo = $request->monto;
+        $p->tarjeta = '0';
+        $p->dep = '0';
+        $p->yap = '0';
+      } elseif($request->tipopago == 'TJ') {
+        $p->tarjeta = $request->monto;
+        $p->efectivo = '0';
+        $p->dep = '0';
+        $p->yap = '0';
+      } elseif($request->tipopago == 'DP') {
+        $p->dep = $request->monto;
+        $p->efectivo = '0';
+        $p->tarjeta = '0';
+        $p->yap = '0';
+      } else {
+        $p->efectivo = '0';
+        $p->tarjeta = '0';
+        $p->dep = '0';
+        $p->yap = $request->monto;
+      }
       $p->monto =$request->monto;
       $res = $p->update();
       return redirect()->action('IngresosController@index');
