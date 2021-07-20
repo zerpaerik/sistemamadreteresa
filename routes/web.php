@@ -256,6 +256,8 @@ Route::get('resultados-desocl-{id}', 'ResultadosController@desocl');
 Route::get('resultados-reversar-{id}', 'ResultadosController@reversar');
 Route::get('resultados-reversarl-{id}', 'ResultadosController@reversarl');
 Route::get('modelo-informe-{id}-{id2}', 'ResultadosController@modelo_informe');
+Route::get('modelo-informel-{id}-{id2}', 'ResultadosController@modelo_informel');
+
 Route::get('resultados-guardar-{id}', 'ResultadosController@guardar_informe');
 Route::get('resultados-guardarl-{id}', 'ResultadosController@guardar_informel');
 Route::post('resultados_guardar', 'ResultadosController@guardar');

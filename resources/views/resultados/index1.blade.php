@@ -125,7 +125,7 @@
 
                       <a href="resultados-desocl-{{$an->id}}" class="btn btn-danger">Reversar</a>
 
-                      <a href="/modelo-informe-{{$an->id}}-{{$an->informe}}" class="btn btn-primary" target="_blank">Descargar Modelo</a>
+                      <a href="/modelo-informel-{{$an->id}}-{{$an->informe}}" class="btn btn-primary" target="_blank">Descargar Modelo</a>
 
                       <a href="resultados-guardarl-{{$an->id}}" class="btn btn-success">Adjuntar Informe</a>
 

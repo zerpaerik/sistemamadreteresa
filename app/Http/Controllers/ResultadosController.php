@@ -501,6 +501,54 @@ class ResultadosController extends Controller
 
     }
 
+    public function modelo_informel($id,$informe)
+    {
+
+        File::delete(File::glob('*.docx'));
+        $informe = $templateProcessor = new TemplateProcessor(public_path('modelos_informes/'.$informe));
+      /*  $resultados = ReportesController::elasticSearch($id);
+        $resultados1 = DB::table('atenciones as a')
+        ->select('a.id','a.id_paciente','a.origen_usuario','a.es_servicio','a.es_laboratorio','a.created_at','a.origen','a.id_servicio','a.pendiente','a.id_laboratorio','a.monto','a.porcentaje','a.informe','a.abono','a.resultado','b.nombres as nombrePaciente','b.apellidos as apellidoPaciente','b.fechanac','c.detalle as servicio','e.name','e.dni as dniprof','e.lastname','d.name as laboratorio','b.dni')
+        ->join('pacientes as b','b.id','a.id_paciente')
+        ->join('servicios as c','c.id','a.id_servicio')
+        ->join('analises as d','d.id','a.id_laboratorio')
+        ->join('users as e','e.id','a.origen_usuario')
+        ->whereNotIn('a.monto',[0,0.00])
+        ->where('a.resultado','=', NULL)
+        ->where('a.id','=',$id)
+        ->first();*/
+
+        $resultados = DB::table('resultados_laboratorio as a')
+        ->select('a.id', 'a.id_atencion', 'a.id_laboratorio', 'a.informe','b.usuario', 'a.created_at', 'a.estatus', 'b.id_paciente', 'b.id_origen', 's.nombre as servicio', 'pa.fechanac','pa.nombres', 'pa.apellidos','pa.dni', 'c.name', 'c.lastname')
+        ->join('atenciones as b', 'b.id', 'a.id_atencion')
+        ->join('users as c', 'c.id', 'b.id_origen')
+        ->join('pacientes as pa', 'pa.id', 'b.id_paciente')
+        ->join('analisis as s', 's.id', 'a.id_laboratorio')
+        //->where('a.estatus', '=', 1)
+        ->where('a.id',  '=', $id)
+        //->where('a.monto', '!=', '0')
+        ->first();
+
+
+        if ($resultados->fechanac != null) {
+            $edad = Carbon::parse($resultados->fechanac)->age;
+        } else {
+          $edad = "X";
+
+        }
+
+  
+        $informe->setValue('name', $resultados->apellidos. ' '.$resultados->nombres. ' Edad: '.$edad);
+        $informe->setValue('descripcion',$resultados->servicio);
+        $informe->setValue('date',date('d-m-Y'));    
+        $informe->setValue('indicacion','MADRE TERESA');
+    
+        $informe->saveAs($resultados->id.'-'.$resultados->apellidos.'-'.$resultados->nombres.'-'.$resultados->dni.'.docx');
+        return response()->download($resultados->id.'-'.$resultados->apellidos.'-'.$resultados->nombres.'-'.$resultados->dni.'.docx');
+
+    }
+
+
 
     /**
      * Store a newly created resource in storage.
