@@ -398,6 +398,19 @@ class ReportesController extends Controller
         ->orderBy('a.id','DESC')
         ->where('a.id_paciente', '=', $request->id_paciente);
 
+        
+        $salud = DB::table('atenciones as a')
+        ->select('a.id','a.tipo_origen','a.id_origen','a.informe','a.atendido_por','a.id_tipo','a.pagado','a.atendido','a.sede','a.usuario','a.created_at','a.estatus','a.id_paciente','a.tipo_atencion','a.monto','a.abono','a.tipo_pago','b.nombres','b.apellidos','b.dni','c.name as nameo','c.lastname as lasto','d.name as nameu','d.lastname as lastu','s.nombre as detalle')
+        ->join('pacientes as b','b.id','a.id_paciente')
+        ->join('users as c','c.id','a.id_origen')
+        ->join('users as d','d.id','a.usuario')
+        ->join('servicios as s','s.id','a.id_tipo')
+        ->where('a.estatus', '=', 1)
+        ->where('a.tipo_atencion', '=', 8)
+        ->where('a.monto', '!=', '0')
+        ->orderBy('a.id','DESC')
+        ->where('a.id_paciente', '=', $request->id_paciente);
+
         $ana = DB::table('atenciones as a')
         ->select('a.id','a.tipo_origen','a.id_origen','a.informe','a.atendido_por','a.id_tipo','a.pagado','a.atendido','a.sede','a.usuario','a.created_at','a.estatus','a.id_paciente','a.tipo_atencion','a.monto','a.abono','a.tipo_pago','b.nombres','b.apellidos','b.dni','c.name as nameo','c.lastname as lasto','d.name as nameu','d.lastname as lastu','s.nombre as detalle')
         ->join('pacientes as b','b.id','a.id_paciente')
@@ -467,6 +480,7 @@ class ReportesController extends Controller
         ->union($metodos)
         ->union($paq)
         ->union($consultas)
+        ->union($salud)
         ->get(); 
 
 
@@ -517,6 +531,18 @@ class ReportesController extends Controller
         ->join('servicios as s','s.id','a.id_tipo')
         ->where('a.estatus', '=', 1)
         ->where('a.tipo_atencion', '=', 6)
+        ->where('a.monto', '!=', '0')
+        ->orderBy('a.id','DESC')
+        ->where('a.sede', '=', 9999999);
+
+        $salud = DB::table('atenciones as a')
+        ->select('a.id','a.tipo_origen','a.id_origen','a.informe','a.atendido_por','a.id_tipo','a.pagado','a.atendido','a.sede','a.usuario','a.created_at','a.estatus','a.id_paciente','a.tipo_atencion','a.monto','a.abono','a.tipo_pago','b.nombres','b.apellidos','b.dni','c.name as nameo','c.lastname as lasto','d.name as nameu','d.lastname as lastu','s.nombre as detalle')
+        ->join('pacientes as b','b.id','a.id_paciente')
+        ->join('users as c','c.id','a.id_origen')
+        ->join('users as d','d.id','a.usuario')
+        ->join('servicios as s','s.id','a.id_tipo')
+        ->where('a.estatus', '=', 1)
+        ->where('a.tipo_atencion', '=', 8)
         ->where('a.monto', '!=', '0')
         ->orderBy('a.id','DESC')
         ->where('a.sede', '=', 9999999);
@@ -590,6 +616,7 @@ class ReportesController extends Controller
         ->union($metodos)
         ->union($paq)
         ->union($consultas)
+        ->union($salud)
         ->get(); 
 
     }
