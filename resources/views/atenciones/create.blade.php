@@ -244,7 +244,7 @@
                     <label for="servicios_#index#_abonoS" class="col-sm-1 control-label">Abono.</label>
                     <div class="col-sm-1">
 
-                      <input id="servicios_#index#_abonoS" name="monto_abol[servicios][#index#][abono]" type="number" class="number form-control abonoS abono" onchange="sumar_ab();" placeholder="Abono" data-toggle="tooltip" data-placement="bottom" title="Abono">
+                      <input id="servicios_#index#_abonoS" name="monto_abol[servicios][#index#][abono]" type="float" class="number form-control abonoS abono" onchange="sumar_ab();" placeholder="Abono" data-toggle="tooltip" data-placement="bottom" title="Abono">
                     </div>
                     <label for="servicios_#index#_tipop" class="col-sm-1 control-label">TipoPago</label>
                     <div class="col-sm-2">
@@ -310,7 +310,7 @@
                     <label for="ecografias_#index#_abonoL" class="col-sm-1 control-label">Abono.</label>
                     <div class="col-sm-1">
 
-                      <input id="ecografias_#index#_abonoL" name="monto_abol[ecografias][#index#][abono]" type="number" class="number form-control abonoL abono" onchange="sumar_ab();" placeholder="Abono" data-toggle="tooltip" data-placement="bottom" title="Abono">
+                      <input id="ecografias_#index#_abonoL" name="monto_abol[ecografias][#index#][abono]" type="float" class="number form-control abonoL abono" onchange="sumar_ab();" placeholder="Abono" data-toggle="tooltip" data-placement="bottom" title="Abono">
                     </div>
 
                     <label for="ecografias_#index#_tipop" class="col-sm-1 control-label">TipoPago</label>
@@ -378,7 +378,7 @@
                     <label for="rayos_#index#_abonoL" class="col-sm-1 control-label">Abono.</label>
                     <div class="col-sm-1">
 
-                      <input id="rayos_#index#_abonoL" name="monto_abol[rayos][#index#][abono]" type="number" class="number form-control abonoL abono" onchange="sumar_ab();" placeholder="Abono" data-toggle="tooltip" data-placement="bottom" title="Abono">
+                      <input id="rayos_#index#_abonoL" name="monto_abol[rayos][#index#][abono]" type="float" class="number form-control abonoL abono" onchange="sumar_ab();" placeholder="Abono" data-toggle="tooltip" data-placement="bottom" title="Abono">
                     </div>
 
                     <label for="rayos_#index#_tipop" class="col-sm-1 control-label">TipoPago</label>
@@ -448,7 +448,7 @@
                       <label for="salud_#index#_abonoL" class="col-sm-1 control-label">Abono.</label>
                       <div class="col-sm-1">
   
-                        <input id="salud_#index#_abonoL" name="monto_abol[salud][#index#][abono]" type="number" class="number form-control abonoL abono" onchange="sumar_ab();" placeholder="Abono" data-toggle="tooltip" data-placement="bottom" title="Abono">
+                        <input id="salud_#index#_abonoL" name="monto_abol[salud][#index#][abono]" type="float" class="number form-control abonoL abono" onchange="sumar_ab();" placeholder="Abono" data-toggle="tooltip" data-placement="bottom" title="Abono">
                       </div>
   
                       <label for="salud_#index#_tipop" class="col-sm-1 control-label">TipoPago</label>
@@ -518,7 +518,7 @@
                     <label for="analisis_#index#_abonoL" class="col-sm-1 control-label">Abono.</label>
                     <div class="col-sm-1">
 
-                      <input id="analisis_#index#_abonoL" name="monto_abol[analisis][#index#][abono]" type="number" class="number form-control abonoL abono" onchange="sumar_ab();" placeholder="Abono" data-toggle="tooltip" data-placement="bottom" title="Abono">
+                      <input id="analisis_#index#_abonoL" name="monto_abol[analisis][#index#][abono]" type="float" class="number form-control abonoL abono" onchange="sumar_ab();" placeholder="Abono" data-toggle="tooltip" data-placement="bottom" title="Abono">
                     </div>
 
                     
@@ -588,7 +588,7 @@
               <label for="paquetes_#index#_abonoL" class="col-sm-1 control-label">Abono.</label>
               <div class="col-sm-1">
 
-                <input id="paquetes_#index#_abonoL" name="monto_abol[paquetes][#index#][abono]" type="number" class="number form-control abonoL abono" onchange="sumar_ab();" placeholder="Abono" data-toggle="tooltip" data-placement="bottom" title="Abono">
+                <input id="paquetes_#index#_abonoL" name="monto_abol[paquetes][#index#][abono]" type="float" class="number form-control abonoL abono" onchange="sumar_ab();" placeholder="Abono" data-toggle="tooltip" data-placement="bottom" title="Abono">
               </div>
 
               

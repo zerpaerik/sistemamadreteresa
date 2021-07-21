@@ -128,8 +128,8 @@
                     <td>{{$an->apellidos}} {{$an->nombres}}</td>
                     <td>{{$an->lasto}} {{$an->nameo}}</td>
                     <td>{{$an->detalle}}</td>
-                    <td>{{$an->monto}}</td>
-                    <td>{{$an->abono}}</td>
+                    <td>{{round($an->monto,2)}}</td>
+                    <td>{{round($an->abono,2)}}</td>
                     <td >{{$an->tipo_pago}}</td>
                     @if($an->pagado == 1)
                     <td><span class="badge bg-danger">NO</span></td>
