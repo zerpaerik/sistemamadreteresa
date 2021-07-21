@@ -1137,7 +1137,7 @@ return view('atenciones.particular');
                               $contador=0;
                       
                               if ($servdetalle->sesiones != 0) {
-                                  while ($contador < $servicio->sesiones) {
+                                  while ($contador < $servdetalle->sesiones) {
                                       $ses = new Sesiones();
                                       $ses->id_paciente =   $request->paciente;
                                       $ses->id_atencion =  $lab->id;
@@ -2221,15 +2221,14 @@ return view('atenciones.particular');
 
       $pr = Sesiones::where('id','=',$request->id)->first();
 
-
       $p = Sesiones::find($request->id);
       $p->estatus =1;
       $p->id_personal =$request->personal;
       $res = $p->update();
 
-      $at = Atenciones::where('id','=',$pr->id)->first();
-      $at->atendido =1;
-      $res = $at->update();
+      $at = Atenciones::where('id','=',$pr->id_atencion)->first();
+      $at->atendido =2;
+      $rest = $at->update();
 
 
     
