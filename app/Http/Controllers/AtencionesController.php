@@ -866,7 +866,7 @@ return view('atenciones.particular');
                       $lab->id_tipo = $serv['salu'];
                       $lab->monto = (float)$request->monto_s['salud'][$key]['monto'];
                       $lab->abono = (float)$request->monto_abol['salud'][$key]['abono'];
-                      $lab->resta = (float)$request->monto_s['salud'][$key]['monto'] - (float)$request->monto_abol['servicios'][$key]['abono'];
+                      $lab->resta = (float)$request->monto_s['salud'][$key]['monto'] - (float)$request->monto_abol['salud'][$key]['abono'];
                       $lab->tipo_pago = $request->id_pago['salud'][$key]['tipop'];
                       $lab->usuario = Auth::user()->id;
                       $lab->sede = $request->session()->get('sede');
