@@ -211,13 +211,25 @@ class ReportesController extends Controller
        // ->groupBy('a.fecha')
         ->first();  
 
+        $gastos = DB::table('debitos as a')
+        ->select('a.id','a.updated_at','a.fecha','a.tipopago','a.sede',DB::raw('SUM(monto) as monto'),DB::raw('SUM(monto) as monto'),DB::raw('SUM(monto) as monto'),DB::raw('SUM(monto) as monto'),DB::raw('SUM(monto) as monto'))
+        ->where('a.sede','=',  $request->sede)
+       // ->where('a.tipopago','=',  'EF')
+        ->whereBetween('a.updated_at', [$f1,$f2])
+        ->groupBy('a.updated_at');
+    
+
+
+
         $efectivo = DB::table('creditos as a')
-        ->select('a.id','a.created_at','a.fecha','a.tipopago','a.sede',DB::raw('SUM(monto) as monto'),DB::raw('SUM(efectivo) as efectivo'),DB::raw('SUM(tarjeta) as tarjeta'),DB::raw('SUM(dep) as deposito'),DB::raw('SUM(yap) as yape'))
+        ->select('a.id','a.created_at','a.fecha','a.tipopago','a.sede',DB::raw('SUM(monto) as monto'),DB::raw('SUM(efectivo) as efectivo'),DB::raw('SUM(tarjeta) as tarjeta'),DB::raw('SUM(dep) as deposito'),DB::raw('SUM(yap) as yape'),DB::raw('SUM(egreso) as egre'))
         ->where('a.sede','=',  $request->sede)
        // ->where('a.tipopago','=',  'EF')
         ->whereBetween('a.fecha', [$f1,$f2])
         ->groupBy('a.fecha')
         ->get(); 
+
+       
 
         $tarjeta = DB::table('creditos as a')
         ->select('a.id','a.created_at','a.fecha','a.tipopago','a.sede',DB::raw('SUM(monto) as monto'))

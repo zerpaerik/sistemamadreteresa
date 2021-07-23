@@ -106,6 +106,17 @@ class GastosController extends Controller
         $gastos->sede =$request->session()->get('sede');
         $gastos->save();
 
+        $cre = new Creditos();
+        $cre->origen = 'EGRESO';
+        $cre->descripcion = 'EGRESO';
+        $cre->id_egreso =  $gastos->id;
+        $cre->egreso = $request->monto;
+        $cre->usuario = Auth::user()->id;
+        $cre->tipopago = 'EG';
+        $cre->sede = $request->session()->get('sede');
+        $cre->fecha = date('Y-m-d');
+        $cre->save();
+
         
 
         return redirect()->action('GastosController@index', ["created" => true, "gastos" => Debitos::all()]);
@@ -144,6 +155,12 @@ class GastosController extends Controller
       $p->monto =$request->monto;
       $p->recibido =$request->recibido;
       $res = $p->update();
+
+      $deb = Creditos::where('id_egreso','=',$request->id)->first();
+      $deb->egreso =$request->monto;
+      $res1 = $deb->update();
+
+
       return redirect()->action('GastosController@index');
 
         //
@@ -158,8 +175,15 @@ class GastosController extends Controller
     public function delete($id)
     {
 
+        $deb = Debitos::where('id','=',$id)->first();
+
+
         $ingresos = Debitos::where('id','=',$id);
         $ingresos->delete();
+
+        $debito = Creditos::where('id_egreso','=',$id)->first();
+        $debito->delete();
+
 
         return redirect()->action('GastosController@index');
 

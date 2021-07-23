@@ -65,18 +65,21 @@
 <br>
 
 <div style="font-weight: bold; font-size: 14px">
-		INGRESOS
+		DETALLE
 </div>
 
 <div style="background: #eaeaea;">
 	<table>
 		<tr>
-		   <th style="padding: 0;width: 5%;text-overflow: ellipsis;">FECHA</th>
-			<th style="padding: 0;width: 5%;text-overflow: ellipsis;">TOTAL</th>
-			<th style="padding: 0;width: 10%;text-overflow: ellipsis;">EFECTIVO</th>
-			<th style="padding: 0;width: 5%;text-overflow: ellipsis;">TARJETA</th>
-			<th style="padding: 0;width: 5%;text-overflow: ellipsis;">DEPÓSITO</th>
+		   <th style="padding: 0;width: 10%;text-overflow: ellipsis;">FECHA</th>
+			<th style="padding: 0;width: 10%;text-overflow: ellipsis;">BRUTO</th>
+			<th style="padding: 0;width: 10%;text-overflow: ellipsis;">EFEC.</th>
+			<th style="padding: 0;width: 10%;text-overflow: ellipsis;">TARJ.</th>
+			<th style="padding: 0;width: 10%;text-overflow: ellipsis;">DEPOS.</th>
 			<th style="padding: 0;width: 10%;text-overflow: ellipsis;">YAPE</th>
+			<th style="padding: 0;width: 10%;text-overflow: ellipsis;">EGRESOS</th>
+			<th style="padding: 0;width: 10%;text-overflow: ellipsis;">TOTAL</th>
+
 
 
 
@@ -84,12 +87,15 @@
 		</tr>
 		@foreach($efectivo as $ingreso)
 		<tr>
-		    <td style="padding: 0;width: 5%;text-overflow: ellipsis;">{{ $ingreso->fecha }}</td>
+		    <td style="padding: 0;width: 10%;text-overflow: ellipsis;">{{ $ingreso->fecha }}</td>
 			<td style="padding: 0;width: 5%;text-overflow: ellipsis;">{{ $ingreso->monto }}</td>
 			<td style="padding: 0;width: 5%;text-overflow: ellipsis;">{{ $ingreso->efectivo }}</td>
 			<td style="padding: 0;width: 5%;text-overflow: ellipsis;">{{ $ingreso->tarjeta }}</td>
 			<td style="padding: 0;width: 5%;text-overflow: ellipsis;">{{ $ingreso->deposito }}</td>
 			<td style="padding: 0;width: 5%;text-overflow: ellipsis;">{{ $ingreso->yape }}</td>
+			<td style="padding: 0;width: 5%;text-overflow: ellipsis;">{{ $ingreso->egre }}</td>
+			<td style="padding: 0;width: 5%;text-overflow: ellipsis;">{{ $ingreso->monto - $ingreso->egre }}</td>
+
 		</tr>
 		@endforeach
 	</table>
@@ -98,41 +104,7 @@
 </div>
 <br>
 
-<div style="font-weight: bold; font-size: 14px">
-		EGRESOS
-</div>
 
-<div style="background: #eaeaea;">
-	<table>
-		<tr>
-			<th style="padding: 0;width: 5%;text-overflow: ellipsis;">FECHA</th>
-			<th style="padding: 0;width: 5%;text-overflow: ellipsis;">DESCRIPCIÓN</th>
-			<th style="padding: 0;width: 5%;text-overflow: ellipsis;">MONTO</th>
-			<th style="padding: 0;width: 5%;text-overflow: ellipsis;">TIPO DE PAGO</th>
-			<th style="padding: 0;width: 5%;text-overflow: ellipsis;">REGISTRADO POR</th>
-
-
-
-
-		</tr>
-		@foreach($egresos as $egreso)
-		<tr>
-			<td style="padding: 0;width: 5%;text-overflow: ellipsis;">{{ $egreso->created_at }}</td>
-			<td style="padding: 0;width: 5%;text-overflow: ellipsis;">{{ $egreso->descripcion }}</td>
-			<td style="padding: 0;width: 5%;text-overflow: ellipsis;">{{ $egreso->monto }}</td>
-			<td style="padding: 0;width: 5%;text-overflow: ellipsis;">{{ $egreso->tipopago }}</td>
-			<td style="padding: 0;width: 5%;text-overflow: ellipsis;">{{ $egreso->usuario }}</td>
-			
-		</tr>
-		@endforeach
-	</table>
-
-	<strong>TOTAL EGRESOS:</strong>{{ $totalegreso->monto }}<br>
-
-
-	
-	
-</div>
 
 
 
