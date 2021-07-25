@@ -6,6 +6,8 @@ use App\Requerimientos;
 use App\ActivosRequerimientos;
 use App\Clientes;
 use App\Creditos;
+use App\Comisiones;
+use App\PagosPersonal;
 use App\Debitos;
 use App\Pacientes;
 use App\Solicitudes;
@@ -1059,6 +1061,111 @@ class ReportesController extends Controller
   
 
           return view('reportes.ingresos', compact('f1','f2','atenciones','total','efec','dep','tarj','yap','historial','ingresos'));
+  
+         
+  
+      }
+
+      public function total(Request $request){
+
+
+        if ($request->mes) {
+           
+  
+
+          $total = Creditos::whereMonth('created_at','=',$request->mes)
+          ->select(DB::raw('SUM(monto) as monto'))
+          ->where('sede','=',$request->session()->get('sede'))
+          ->first();
+
+          $pagosp = PagosPersonal::whereMonth('created_at','=',$request->mes)
+          ->select(DB::raw('SUM(monto) as monto'))
+          ->where('sede','=',$request->session()->get('sede'))
+          ->first();
+
+          $gastosd = Debitos::whereMonth('created_at','=',$request->mes)
+          ->select(DB::raw('SUM(monto) as monto'))
+          ->where('sede','=',$request->session()->get('sede'))
+          ->where('tipo','!=','EXTERNO')
+          ->first();
+
+          
+          $gastose = Debitos::whereMonth('created_at','=',$request->mes)
+          ->select(DB::raw('SUM(monto) as monto'))
+          ->where('sede','=',$request->session()->get('sede'))
+          ->where('tipo','=','EXTERNO')
+          ->first();
+
+          $comisionesp = Comisiones::whereMonth('created_at','=',$request->mes)
+          ->select(DB::raw('SUM(monto) as monto'))
+          ->where('sede','=',$request->session()->get('sede'))
+          ->where('id_origen','=',1)
+          ->first();
+
+          $comisionespp = Comisiones::whereMonth('created_at','=',$request->mes)
+          ->select(DB::raw('SUM(monto) as monto'))
+          ->where('sede','=',$request->session()->get('sede'))
+          ->where('id_origen','=',2)
+          ->first();
+
+          $mes = $request->mes;
+  
+  
+      
+  
+         
+
+  
+      } else {
+
+        $mes = date('m');
+
+          
+        $total = Creditos::whereMonth('created_at','=',$mes)
+        ->select(DB::raw('SUM(monto) as monto'))
+        ->where('sede','=',$request->session()->get('sede'))
+        ->first();
+
+        $pagosp = PagosPersonal::whereMonth('created_at','=',$mes)
+        ->select(DB::raw('SUM(monto) as monto'))
+        ->where('sede','=',$request->session()->get('sede'))
+        ->first();
+
+        $gastosd = Debitos::whereMonth('created_at','=',$mes)
+        ->select(DB::raw('SUM(monto) as monto'))
+        ->where('sede','=',$request->session()->get('sede'))
+        ->where('tipo','!=','EXTERNO')
+        ->first();
+
+        
+        $gastose = Debitos::whereMonth('created_at','=',$mes)
+        ->select(DB::raw('SUM(monto) as monto'))
+        ->where('sede','=',$request->session()->get('sede'))
+        ->where('tipo','=','EXTERNO')
+        ->first();
+
+        
+        $comisionesp = Comisiones::whereMonth('created_at','=',$mes)
+        ->select(DB::raw('SUM(monto) as monto'))
+        ->where('sede','=',$request->session()->get('sede'))
+        ->where('id_origen','=',1)
+        ->first();
+
+        $comisionespp = Comisiones::whereMonth('created_at','=',$mes)
+        ->select(DB::raw('SUM(monto) as monto'))
+        ->where('sede','=',$request->session()->get('sede'))
+        ->where('id_origen','=',2)
+        ->first();
+
+
+
+
+
+
+      }
+  
+
+          return view('reportes.total', compact('total','gastosd','gastose','pagosp','comisionesp','comisionespp','mes'));
   
          
   

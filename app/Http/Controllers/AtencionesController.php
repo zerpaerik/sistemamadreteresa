@@ -810,6 +810,7 @@ return view('atenciones.particular');
                               $com->monto = (float)$request->monto_s['servicios'][$key]['monto'] * $servicio->porcentaje / 100;
                               $com->estatus = 1;
                               $com->usuario = Auth::user()->id;
+                              $com->sede = $request->session()->get('sede');
                               $com->save();
                           } elseif ($request->origen == 2 && $servicio->porcentaje1 > 0) {
                               $com = new Comisiones();
@@ -821,6 +822,7 @@ return view('atenciones.particular');
                               $com->monto = (float)$request->monto_s['servicios'][$key]['monto'] * $servicio->porcentaje1 / 100;
                               $com->estatus = 1;
                               $com->usuario = Auth::user()->id;
+                              $com->sede = $request->session()->get('sede');
                               $com->save();
                           } else {
 
@@ -931,6 +933,7 @@ return view('atenciones.particular');
                           $com->monto = (float)$request->monto_s['salud'][$key]['monto'] * $servicio->porcentaje / 100;
                           $com->estatus = 1;
                           $com->usuario = Auth::user()->id;
+                          $com->sede = $request->session()->get('sede');
                           $com->save();
                       } elseif ($request->origen == 2 && $servicio->porcentaje1 > 0) {
                           $com = new Comisiones();
@@ -942,6 +945,7 @@ return view('atenciones.particular');
                           $com->monto = (float)$request->monto_s['salud'][$key]['monto'] * $servicio->porcentaje1 / 100;
                           $com->estatus = 1;
                           $com->usuario = Auth::user()->id;
+                          $com->sede = $request->session()->get('sede');
                           $com->save();
                       } else {
 
@@ -1038,6 +1042,7 @@ return view('atenciones.particular');
                               $com->monto = (float)$request->monto_s['analisis'][$key]['monto'] * $analisis->porcentaje / 100;
                               $com->estatus = 1;
                               $com->usuario = Auth::user()->id;
+                              $com->sede = $request->session()->get('sede');
                               $com->save();
                           }
                       }
@@ -1113,6 +1118,7 @@ return view('atenciones.particular');
                               $com->monto = (float)$request->monto_s['paquetes'][$key]['monto'] * $paquetes->porcentaje / 100;
                               $com->estatus = 1;
                               $com->usuario = Auth::user()->id;
+                              $com->sede = $request->session()->get('sede');
                               $com->save();
                           }
 
@@ -1325,6 +1331,7 @@ return view('atenciones.particular');
                               $com->monto = (float)$request->monto_s['ecografias'][$key]['monto'] * $servicio->porcentaje / 100;
                               $com->estatus = 1;
                               $com->usuario = Auth::user()->id;
+                              $com->sede = $request->session()->get('sede');
                               $com->save();
                           } elseif ($request->origen == 2 && $servicio->porcentaje1 > 0) {
                               $com = new Comisiones();
@@ -1336,6 +1343,7 @@ return view('atenciones.particular');
                               $com->monto = (float)$request->monto_s['ecografias'][$key]['monto'] * $servicio->porcentaje1 / 100;
                               $com->estatus = 1;
                               $com->usuario = Auth::user()->id;
+                              $com->sede = $request->session()->get('sede');
                               $com->save();
                           } else {
 
@@ -1423,6 +1431,7 @@ return view('atenciones.particular');
                               $lab->monto = (float)$request->monto_s['rayos'][$key]['monto'] * $servicio->porcentaje / 100;
                               $lab->estatus = 1;
                               $lab->usuario = Auth::user()->id;
+                              $lab->sede = $request->session()->get('sede');
                               $lab->save();
                           } elseif ($request->origen == 2 && $servicio->porcentaje1 > 0) {
                               $lab = new Comisiones();
@@ -1434,6 +1443,7 @@ return view('atenciones.particular');
                               $lab->monto = (float)$request->monto_s['rayos'][$key]['monto'] * $servicio->porcentaje1 / 100;
                               $lab->estatus = 1;
                               $lab->usuario = Auth::user()->id;
+                              $lab->sede = $request->session()->get('sede');
                               $lab->save();
                           } else {
 

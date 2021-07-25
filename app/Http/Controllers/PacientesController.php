@@ -84,6 +84,7 @@ class PacientesController extends Controller
         $pacientes = new Pacientes();
         $pacientes->nombres =$request->nombres;
         $pacientes->apellidos =$request->apellidos;
+        $pacientes->tipo_doc =$request->tipo_doc;
         $pacientes->dni =$request->dni;
         $pacientes->telefono =$request->telefono;
         $pacientes->email =$request->email;
@@ -116,6 +117,7 @@ class PacientesController extends Controller
         $pacientes = new Pacientes();
         $pacientes->nombres =$request->nombres;
         $pacientes->apellidos =$request->apellidos;
+        $pacientes->tipo_doc =$request->tipo_doc;
         $pacientes->dni =$request->dni;
         $pacientes->telefono =$request->telefono;
         $pacientes->email =$request->email;
@@ -182,6 +184,7 @@ class PacientesController extends Controller
       $pacientes = Pacientes::where('id','=',$request->id)->first();
       $pacientes->nombres =$request->nombres;
       $pacientes->apellidos =$request->apellidos;
+      $pacientes->tipo_doc =$request->tipo_doc;
       $pacientes->dni =$request->dni;
       $pacientes->telefono =$request->telefono;
       $pacientes->email =$request->email;

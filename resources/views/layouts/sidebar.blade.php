@@ -365,12 +365,12 @@
             <ul class="nav nav-treeview">
            
 
-                    <!--  <li class="nav-item">
-                <a href="{{route('reporte_ingresos.index')}}" class="nav-link">
+            <li class="nav-item">
+                <a href="{{route('reporte_total.index')}}" class="nav-link">
                   <i class="fas fa-hand-holding-usd nav-icon"></i>
-                  <p>Ingresos</p>
+                  <p>Reporte Total</p>
                 </a>
-              </li> -->
+              </li> 
 
               <li class="nav-item">
                 <a href="{{route('detallado.index')}}" class="nav-link">

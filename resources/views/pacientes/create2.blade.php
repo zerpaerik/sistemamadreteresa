@@ -83,6 +83,7 @@
               <form role="form" method="post" action="pacientes/create2">
 					{{ csrf_field() }}                
                     <div class="card-body">
+
                     <div class="row">
                     <div class="col-md-4">
                     <label for="exampleInputEmail1">Apellidos</label>
@@ -92,14 +93,27 @@
                     <label for="exampleInputEmail1">Nombres</label>
                     <input type="text" onkeyup="javascript:this.value=this.value.toUpperCase();" class="form-control" id="nombre" name="nombres" placeholder="Nombres">
                   </div>
-                 
                   <div class="col-md-4">
-                    <label for="exampleInputEmail1">DNI</label>
-                    <input type="text" class="form-control" id="nombre" name="dni" placeholder="DNI">
+                    <label for="exampleInputEmail1">Tipo de Documento</label>
+                    <select class="form-control" name="tipo_doc">
+                    <option value="DNI">DNI</option>
+                    <option value="CE">CE</option>
+                    <option value="PTP">PTP</option>
+                    <option value="PASAPORTE">PASAPORTE</option>
+                    <option value="CPP">CPP</option>
+                    <option value="OTRO">OTRO</option>
+
+                  </select>
                   </div>
+                 
+                
                   </div>
                   <br>
                   <div class="row">
+                  <div class="col-md-4">
+                    <label for="exampleInputEmail1">Número de Documento</label>
+                    <input type="text" class="form-control" id="nombre" name="dni" placeholder="Número de Documento">
+                  </div>
                   <div class="col-md-4">
                     <label for="exampleInputEmail1">Direccion</label>
                     <input type="text" onkeyup="javascript:this.value=this.value.toUpperCase();" class="form-control" id="nombre" name="direccion" placeholder="Dirección de contacto">
@@ -108,14 +122,15 @@
                     <label for="exampleInputEmail1">Teléfono</label>
                     <input type="text" class="form-control" id="nombre" name="telefono" placeholder="Telefono de contacto">
                   </div>
-                  <div class="col-md-4">
-                    <label for="exampleInputEmail1">Email</label>
-                    <input type="email" class="form-control" id="nombre" name="email" placeholder="Email de contacto">
-                  </div>
+                
                   
                   </div>
                   <br>
                   <div class="row">
+                  <div class="col-md-4">
+                    <label for="exampleInputEmail1">Email</label>
+                    <input type="email" class="form-control" id="nombre" name="email" placeholder="Email de contacto">
+                  </div>
                   <div class="col-md-4">
                     <label for="exampleInputEmail1">Ocupación</label>
                     <input type="text" onkeyup="javascript:this.value=this.value.toUpperCase();" class="form-control" id="nombre" name="ocupacion" placeholder="Ocupación">
@@ -124,6 +139,12 @@
                     <label for="exampleInputEmail1">Fecha de Nac</label>
                     <input type="date" class="form-control" id="nombre" name="fechanac" placeholder="Nacimiento">
                   </div>
+               
+                  </div>
+                                                      
+
+                  <br>
+                  <div class="row">
                   <div class="col-md-4">
                     <label for="exampleInputEmail1">Edo Civil</label>
                     <select class="form-control" name="edocivil">
@@ -133,11 +154,6 @@
                     <option value="Concubinato">Concubinato</option>
                         </select>
                   </div>
-                  </div>
-                                                      
-
-                  <br>
-                  <div class="row">
                  
                   <div class="col-md-4">
                     <label>Sexo</label>
@@ -149,7 +165,7 @@
                   </div>
                   
                   </div>
-
+                   
                   
 
         

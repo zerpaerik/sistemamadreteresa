@@ -92,14 +92,66 @@
                     <label for="exampleInputEmail1">Nombres</label>
                     <input type="text" class="form-control" id="nombre" name="nombres" value="{{$pacientes->nombres}}" placeholder="Nombres">
                   </div>
-                
+
                   <div class="col-md-4">
-                    <label for="exampleInputEmail1">DNI</label>
-                    <input type="text" class="form-control" id="nombre" name="dni" value="{{$pacientes->dni}}" placeholder="DNI">
+                    <label for="exampleInputEmail1">Tipo de Documento</label>
+                    <select class="form-control" name="tipo_doc">
+                    @if($pacientes->tipo_doc == 'DNI')
+                    <option value="DNI" selected>DNI</option>
+                    <option value="CE">CE</option>
+                    <option value="PTP">PTP</option>
+                    <option value="PASAPORTE">PASAPORTE</option>
+                    <option value="CPP">CPP</option>
+                    <option value="OTRO">OTRO</option>
+                    @elseif($pacientes->tipo_doc == 'CE')
+                    <option value="DNI">DNI</option>
+                    <option value="CE" selected>CE</option>
+                    <option value="PTP">PTP</option>
+                    <option value="PASAPORTE">PASAPORTE</option>
+                    <option value="CPP">CPP</option>
+                    <option value="OTRO">OTRO</option> 
+                    @elseif($pacientes->tipo_doc == 'PTP')
+                    <option value="DNI" >DNI</option>
+                    <option value="CE" >CE</option>
+                    <option value="PTP" selected>PTP</option>
+                    <option value="PASAPORTE">PASAPORTE</option>
+                    <option value="CPP">CPP</option>
+                    <option value="OTRO">OTRO</option>                   
+                    @elseif($pacientes->tipo_doc == 'PASAPORTE')
+                    <option value="DNI" >DNI</option>
+                    <option value="CE" >CE</option>
+                    <option value="PTP" >PTP</option>
+                    <option value="PASAPORTE" selected>PASAPORTE</option>
+                    <option value="CPP">CPP</option>
+                    <option value="OTRO">OTRO</option>  
+                    @elseif($pacientes->tipo_doc == 'CPP')
+                    <option value="DNI" >DNI</option>
+                    <option value="CE" >CE</option>
+                    <option value="PTP" >PTP</option>
+                    <option value="PASAPORTE" >PASAPORTE</option>
+                    <option value="CPP" selected>CPP</option>
+                    <option value="OTRO">OTRO</option>  
+                    @else
+                    <option value="DNI" >DNI</option>
+                    <option value="CE" >CE</option>
+                    <option value="PTP" >PTP</option>
+                    <option value="PASAPORTE" >PASAPORTE</option>
+                    <option value="CPP" >CPP</option>
+                    <option value="OTRO" selected>OTRO</option> 
+                     @endif
+
+
+                        </select>
                   </div>
+                
+              
                   </div>
                   <br>
                   <div class="row">
+                  <div class="col-md-4">
+                    <label for="exampleInputEmail1">Número de Documento</label>
+                    <input type="text" class="form-control" id="nombre" name="dni" value="{{$pacientes->dni}}" placeholder="DNI">
+                  </div>
                   <div class="col-md-4">
                     <label for="exampleInputEmail1">Direccion</label>
                     <input type="text" class="form-control" id="nombre" name="direccion" value="{{$pacientes->direccion}}" placeholder="Dirección de contacto">
@@ -108,14 +160,15 @@
                     <label for="exampleInputEmail1">Teléfono</label>
                     <input type="text" class="form-control" id="nombre" name="telefono" value="{{$pacientes->telefono}}" placeholder="Telefono de contacto">
                   </div>
-                  <div class="col-md-4">
-                    <label for="exampleInputEmail1">Email</label>
-                    <input type="email" class="form-control" id="nombre" name="email" value="{{$pacientes->email}}" placeholder="Email de contacto">
-                  </div>
+              
                   
                   </div>
                   <br>
                   <div class="row">
+                  <div class="col-md-4">
+                    <label for="exampleInputEmail1">Email</label>
+                    <input type="email" class="form-control" id="nombre" name="email" value="{{$pacientes->email}}" placeholder="Email de contacto">
+                  </div>
                   <div class="col-md-4">
                     <label for="exampleInputEmail1">Ocupación</label>
                     <input type="text" class="form-control" id="nombre" name="ocupacion" value="{{$pacientes->ocupacion}}" placeholder="Ocupación">
@@ -133,6 +186,7 @@
                     <option value="Concubinato">Concubinato</option>
                         </select>
                   </div>
+                
                   
                   </div>
 
