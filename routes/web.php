@@ -369,6 +369,7 @@ Route::post('siniestros/edit', 'SiniestrosController@update');
 
 Route::get('reporte_ingresos', 'ReportesController@ingresos')->name('reporte_ingresos.index');
 Route::get('reporte_total', 'ReportesController@total')->name('reporte_total.index');
+Route::get('reporte_servicios', 'ReportesController@total_servicios')->name('reporte_servicios.index');
 Route::get('consolidado', 'ReportesController@consolidado')->name('consolidado.index');
 Route::get('detallado', 'ReportesController@detallado')->name('detallado.index');
 Route::get('general', 'ReportesController@general')->name('general.index');

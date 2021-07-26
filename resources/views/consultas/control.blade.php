@@ -566,6 +566,124 @@
 
               @endforeach
 
+              <div class="box-content">
+   	<div style="background: #eaeaea;">
+	<table style="width: 100%;text-align: center;margin: 10px 0;border:1px solid black;">
+
+		<tr>
+			<div>
+
+    <th scope="col" style="background: #2E9AFE;">CONTROLES PRENATALES</th>
+
+
+  
+
+
+  </tr>
+
+  <tr>
+    
+
+    <th style="background: #81BEF7;border: 1px solid black;">Fecha de Control</th>
+ @foreach($controles as $c)
+    <td style="border: 1px solid black;">{{$c->created_at}}</td>
+  @endforeach
+  </tr>
+
+   <tr>
+
+    <th style="background: #81BEF7;border: 1px solid black;">Edad Gest(Semanas)</th>
+ @foreach($controles as $c)
+    <td style="border: 1px solid black;">{{$c->sem}}</td>
+  @endforeach
+  </tr>
+
+   <tr>
+
+    <th style="background: #81BEF7;border: 1px solid black;">PesoMadre(Kg)</th>
+ @foreach($controles as $c)
+    <td style="border: 1px solid black;">{{$c->peso}}</td>
+  @endforeach
+  </tr>
+
+  <tr>
+
+    <th style="background: #81BEF7;border: 1px solid black;">Temperatura(ºC)</th>
+ @foreach($controles as $c)
+    <td style="border: 1px solid black;">{{$c->temp}}</td>
+  @endforeach
+  </tr>
+
+   <th style="background: #81BEF7;border: 1px solid black;">Tensiòn Arterial(mmHg)</th>
+ @foreach($controles as $c)
+    <td style="border: 1px solid black;">{{$c->ten}}</td>
+  @endforeach
+  </tr>
+
+   <th style="background: #81BEF7;border: 1px solid black;">Altura Uterina</th>
+ @foreach($controles as $c)
+    <td style="border: 1px solid black;">{{$c->alt}}</td>
+  @endforeach
+  </tr>
+
+   <th style="background: #81BEF7;border: 1px solid black;">Presentaciòn(C/P/T/NA)</th>
+ @foreach($controles as $c)
+    <td style="border: 1px solid black;">{{$c->pres}}</td>
+  @endforeach
+  </tr>
+
+     <th style="background: #81BEF7;border: 1px solid black;">FCF</th>
+ @foreach($controles as $c)
+    <td style="border: 1px solid black;">{{$c->fcf}}</td>
+  @endforeach
+  </tr>
+
+     <th style="background: #81BEF7;border: 1px solid black;">Mov. Fetal</th>
+ @foreach($controles as $c)
+    <td style="border: 1px solid black;">{{$c->mov}}</td>
+  @endforeach
+  </tr>
+
+   <th style="background: #81BEF7;border: 1px solid black;">Edema</th>
+ @foreach($controles as $c)
+    <td style="border: 1px solid black;">{{$c->edema}}</td>
+  @endforeach
+  </tr>
+
+   <th style="background: #81BEF7;border: 1px solid black;">Pulso Materno</th>
+ @foreach($controles as $c)
+    <td style="border: 1px solid black;">{{$c->pulso}}</td>
+  @endforeach
+  </tr>
+
+   <th style="background: #81BEF7;border: 1px solid black;">Consejeria PF</th>
+ @foreach($controles as $c)
+    <td style="border: 1px solid black;">{{$c->conse}}</td>
+  @endforeach
+  </tr>
+
+   <th style="background: #81BEF7;border: 1px solid black;">Sulfato Ferroso</th>
+ @foreach($controles as $c)
+    <td style="border: 1px solid black;">{{$c->sulfato}}</td>
+  @endforeach
+  </tr>
+
+     <th style="background: #81BEF7;border: 1px solid black;">Perfìl Biofìsico</th>
+ @foreach($controles as $c)
+    <td style="border: 1px solid black;">{{$c->perfil}}</td>
+  @endforeach
+  </tr>
+
+  
+
+
+
+      
+   </table>
+
+
+		    </div>
+
 
               <form role="form" method="post" action="control/guardar">
               {{ csrf_field() }}                

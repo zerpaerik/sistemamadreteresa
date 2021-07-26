@@ -77,19 +77,101 @@
       <div class="container-fluid">
       <div class="card">
               <div class="card-header">
-                <a class="btn btn-primary btn-sm" href="{{route('atenciones.create')}}">
-                              <i class="fas fa-folder">
-                              </i>
-                              Agregar
-                          </a>
-                          <form method="get" action="atenciones">					
+              
+                <form method="get" action="reporte_servicios">					
                   <label for="exampleInputEmail1">Filtros de Busqueda</label>
 
-                    <div class="row">
-                  <div class="col-md-3">
-                    <label for="exampleInputEmail1">Fecha </label>
-                    <input type="date" class="form-control" value="{{$f1}}" name="inicio" placeholder="Buscar por dni" onsubmit="datapac()">
+                    <div class="row" style="margin-left:10px;">
+                    <div class="col-md-3">
+                    <label for="exampleInputEmail1">Fecha Inicio</label>
+                    <input type="date" class="form-control" value="{{$f1}}" name="inicio">
                   </div>
+
+                  <div class="col-md-3">
+                    <label for="exampleInputEmail1">Fecha Fin</label>
+                    <input type="date" class="form-control" value="{{$f2}}" name="fin">
+                  </div>
+                  <div class="col-md-3">
+                    <label for="exampleInputEmail1">Tipo</label>
+                    <select class="form-control" name="tipo">
+                    @if($tipo == '1')
+                    <option value="1" selected>Procedimiento</option>
+                    <option value="2">Ecografia</option>
+                    <option value="3">Rayos X</option>
+                    <option value="8">Salud Mental</option>
+                    <option value="4">Laboratorios</option>
+                    <option value="7">Paquetes</option>
+                    <option value="5">Consultas/Controles</option>
+                    <option value="6">Métodos</option>
+                    @elseif($tipo == '2')
+                    <option value="1" >Procedimiento</option>
+                    <option value="2" selected>Ecografia</option>
+                    <option value="3">Rayos X</option>
+                    <option value="8">Salud Mental</option>
+                    <option value="4">Laboratorios</option>
+                    <option value="7">Paquetes</option>
+                    <option value="5">Consultas/Controles</option>
+                    <option value="6">Métodos</option>
+                    @elseif($tipo == '3')
+                    <option value="1" >Procedimiento</option>
+                    <option value="2" >Ecografia</option>
+                    <option value="3" selected>Rayos X</option>
+                    <option value="8">Salud Mental</option>
+                    <option value="4">Laboratorios</option>
+                    <option value="7">Paquetes</option>
+                    <option value="5">Consultas/Controles</option>
+                    <option value="6">Métodos</option>
+                    @elseif($tipo == '4')
+                    <option value="1" >Procedimiento</option>
+                    <option value="2" >Ecografia</option>
+                    <option value="3" >Rayos X</option>
+                    <option value="8">Salud Mental</option>
+                    <option value="4" selected>Laboratorios</option>
+                    <option value="7">Paquetes</option>
+                    <option value="5">Consultas/Controles</option>
+                    <option value="6">Métodos</option>
+                    @elseif($tipo == '5')
+                    <option value="1" >Procedimiento</option>
+                    <option value="2" >Ecografia</option>
+                    <option value="3" >Rayos X</option>
+                    <option value="8">Salud Mental</option>
+                    <option value="4" >Laboratorios</option>
+                    <option value="7">Paquetes</option>
+                    <option value="5" selected>Consultas/Controles</option>
+                    <option value="6">Métodos</option>
+                    @elseif($tipo == '6')
+                    <option value="1" >Procedimiento</option>
+                    <option value="2" >Ecografia</option>
+                    <option value="3" >Rayos X</option>
+                    <option value="8">Salud Mental</option>
+                    <option value="4" >Laboratorios</option>
+                    <option value="7">Paquetes</option>
+                    <option value="5" >Consultas/Controles</option>
+                    <option value="6" selected>Métodos</option>
+                    @elseif($tipo == '7')
+                    <option value="1" >Procedimiento</option>
+                    <option value="2" >Ecografia</option>
+                    <option value="3" >Rayos X</option>
+                    <option value="8">Salud Mental</option>
+                    <option value="4" >Laboratorios</option>
+                    <option value="7" selected>Paquetes</option>
+                    <option value="5" >Consultas/Controles</option>
+                    <option value="6" >Métodos</option>
+                    @else
+                    <option value="1" >Procedimiento</option>
+                    <option value="2" >Ecografia</option>
+                    <option value="3" >Rayos X</option>
+                    <option value="8" selected>Salud Mental</option>
+                    <option value="4" >Laboratorios</option>
+                    <option value="7" >Paquetes</option>
+                    <option value="5" >Consultas/Controles</option>
+                    <option value="6" >Métodos</option>
+                    @endif
+
+
+                  
+                    </select>                  
+                    </div>
 
                
                   
@@ -149,7 +231,7 @@
                               <i class="fas fa-print">
                               </i>
                           </a>
-                    @if(Auth::user()->rol == 1 || Auth::user()->rol == 2)
+                          @if(Auth::user()->rol == 1 || Auth::user()->rol == 2)
 
 
                          @if($an->tipo_atencion == 1)
