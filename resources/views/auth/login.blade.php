@@ -62,6 +62,9 @@
                             <option value="2">CANTO REY</option>
                             <option value="3">VIDA FELIZ</option>
                             <option value="4">ZARATE</option>
+                            <option value="5">INDEPENDENCIA</option>
+                            <option value="6">LOS OLIVOS</option>
+
                         </select>        
               <div class="input-group-append">
             <div class="input-group-text">
