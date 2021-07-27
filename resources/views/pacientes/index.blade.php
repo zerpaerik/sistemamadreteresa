@@ -104,6 +104,7 @@
                     <th>Email</th>
                     <th>Sexo</th>
                     <th>Telefono</th>
+                    <th>RP</th>
                     <th>Acciones</th>
                   </tr>
                   </thead>
@@ -117,10 +118,12 @@
                     <td>{{$p->email}}</td>
                     <td>{{$p->sexo}}</td>
                     <td>{{$p->telefono}}</td>
-                    <td><a class="btn btn-primary btn-sm" href="#">
-                              <i class="fas fa-folder">
+                    <td>{{$p->lastname}} {{$p->name}}</td>
+
+                    <td><a class="btn btn-primary btn-sm" id="{{$p->id}}" onclick="viewh(this)">
+                              <i class="fas fa-eye">
                               </i>
-                              View
+                              Ver
                           </a>
                           <a class="btn btn-info btn-sm" href="pacientes-edit-{{$p->id}}">
                               <i class="fas fa-pencil-alt">
@@ -146,7 +149,9 @@
                     <th>Apellidos</th>
                     <th>DNI</th>
                     <th>Email</th>
+                    <th>Sexo</th>
                     <th>Telefono</th>
+                    <th>RP</th>
                     <th>Acciones</th>
                   </tr>
                   </tfoot>
@@ -165,6 +170,23 @@
     <!-- /.content -->
   </div>
   </div>
+
+  <div class="modal fade" id="viewTicket">
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="modal-body">
+            </div>
+           
+          </div>
+          <!-- /.modal-content -->
+        </div>
+        <!-- /.modal-dialog -->
+      </div>
   </section>
 
   <!-- /.content-wrapper -->
@@ -217,16 +239,61 @@
 <script src="../../plugins/datatables-bs4/js/dataTables.bootstrap4.min.js"></script>
 <script src="../../plugins/datatables-responsive/js/dataTables.responsive.min.js"></script>
 <script src="../../plugins/datatables-responsive/js/responsive.bootstrap4.min.js"></script>
+
+<script type="text/javascript" src="https://cdn.datatables.net/buttons/1.6.1/js/dataTables.buttons.min.js"></script> 
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.1.3/jszip.min.js"></script>
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/pdfmake.min.js"></script>
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/vfs_fonts.js"></script>
+<script type="text/javascript" src="https://cdn.datatables.net/buttons/1.6.1/js/buttons.html5.min.js"></script>
+<script type="text/javascript" src="https://cdn.datatables.net/buttons/1.6.1/js/buttons.print.min.js"></script>
 <!-- AdminLTE App -->
 <script src="../../dist/js/adminlte.min.js"></script>
 <!-- AdminLTE for demo purposes -->
 <script src="../../dist/js/demo.js"></script>
+
+<script type="text/javascript">
+		function viewh(e){
+		    var id = $(e).attr('id');
+		    
+		    $.ajax({
+		        type: "GET",
+		        url: "/pacientes/ver/"+id,
+		        success: function (data) {
+		            $("#viewTicket .modal-body").html(data);
+		            $('#viewTicket').modal('show');
+		        },
+		        error: function (data) {
+		            console.log('Error:', data);
+		        }
+		    });
+		}
+
+	
+	</script>
+
+
 <!-- page script -->
+<script>
+
+$(document).ready(function() {
+    $('#example').DataTable( {
+        dom: 'Bfrtip',
+        buttons: [
+            'excel', 'pdf', 'print'
+        ]
+    } );
+} );
+</script>
+
 <script>
   $(function () {
     $("#example1").DataTable({
       "responsive": true,
       "autoWidth": false,
+      dom: 'Bfrtip',
+      buttons: [
+            'copy', 'csv', 'excel', 'pdf', 'print'
+        ]
     });
     $('#example2').DataTable({
       "paging": true,

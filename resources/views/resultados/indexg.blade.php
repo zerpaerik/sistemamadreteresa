@@ -135,6 +135,8 @@
                     <td>{{$an->lastname}} {{$an->name}}</td>
                     <td>{{$an->servicio}}</td>
                     <td>
+                    <a href="resultadosg-reversar-{{$an->id}}" class="btn btn-success">Reversar</a>
+
                     <a href="{{route('descargar2',$an->informe_guarda)}}" class="btn btn-success" target="_blank">Ver Informe</a>
 
 

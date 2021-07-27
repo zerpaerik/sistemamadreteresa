@@ -242,6 +242,40 @@ class ResultadosController extends Controller
 
     }
 
+    public function reversarg(Request $request){
+
+
+
+
+      $rs = ResultadosServicios::where('id','=',$request->id)->first();
+      $rs->estatus = 1;
+      $rs->usuario_informe = null;
+      $rs->informe_guarda = '';
+      $rs->save();
+
+       
+
+    return back();
+
+
+    }
+
+    public function reversargl(Request $request){
+
+
+
+      $rl = ResultadosLaboratorio::where('id','=',$request->id)->first();
+      $rl->estatus = 1;
+      $rl->usuario_informe = null;
+      $rl->informe_guarda = '';
+      $rl->save();
+
+
+    return back();
+
+
+    }
+
     public function asociarl(Request $request){
 
 

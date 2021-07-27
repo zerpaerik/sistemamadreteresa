@@ -57,7 +57,7 @@
       <div class="container-fluid">
         <div class="row mb-2">
           <div class="col-sm-6">
-            <h1 class="m-0 text-dark">Métodos</h1>
+            <h1 class="m-0 text-dark">Pacientes por Llamar</h1>
           </div><!-- /.col -->
           <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">
@@ -76,7 +76,7 @@
       <div class="container-fluid">
       <div class="card">
               <div class="card-header">
-              <form method="get" action="metodos">					
+              <form method="get" action="metodos_llamar">					
                   <label for="exampleInputEmail1">Filtros de Busqueda</label>
 
                     <div class="row">
@@ -107,6 +107,7 @@
                     <th>Id</th>
                     <th>Fecha</th>
                     <th>Paciente</th>
+                    <th>Telefono</th>
                     <th>Producto</th>
                     <th>Monto</th>
                     <th>RP</th>
@@ -120,18 +121,19 @@
                     <td>{{$an->id}}</td>
                     <td>{{date('d-M-y h:m', strtotime($an->created_at))}}</td>
                     <td>{{$an->nombres}} {{$an->apellidos}}</td>
+                    <td>{{$an->telefono}}</td>
                     <td>{{$an->producto}}</td>
                     <td>{{$an->monto}}</td>
                     <td>{{$an->nameo}} {{$an->lasto}}</td>
 
                     <td>
-                    @if($an->estatus == 2)
-                    <p>APLICADO POR: {{$an->usuario_aplica}} </p>
+                    @if($an->estatus == 3)
+                    <p>LLAMADO POR: {{$an->usuario_llama}} </p>
                     @else
-                    <a class="btn btn-primary btn-sm" id="{{$an->id}}" onclick="viewh(this)">
-                              <i class="fas fa-eye">
+                    <a class="btn btn-danger btn-sm" href="metodos-llamar-{{$an->id}}" onclick="return confirm('¿Desea marcar como llamado?')">
+                              <i class="fas fa-trash">
                               </i>
-                              Aplicar
+                              Llamar
                           </a>
                     @endif
                   
@@ -143,9 +145,10 @@
                   </tbody>
                   <tfoot>
                   <tr>
-                  <th>Id</th>
+                    <th>Id</th>
                     <th>Fecha</th>
                     <th>Paciente</th>
+                    <th>Telefono</th>
                     <th>Producto</th>
                     <th>Monto</th>
                     <th>RP</th>

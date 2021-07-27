@@ -148,6 +148,7 @@ Route::post('pacientes/create', 'PacientesController@store')->middleware('auth')
 Route::post('pacientes/create2', 'PacientesController@store2')->middleware('auth');
 Route::get('pacientes-delete-{id}', 'PacientesController@delete')->middleware('auth');
 Route::get('pacientes-edit-{id}', 'PacientesController@edit')->name('pacientes.edit');
+Route::get('pacientes/ver/{id}', 'PacientesController@ver');
 Route::post('pacientes/edit', 'PacientesController@update');
 
 Route::get('productos_usados', 'ProductosUsadosController@index')->name('productosu.index');
@@ -264,7 +265,10 @@ Route::post('resultados_guardar', 'ResultadosController@guardar');
 Route::post('resultados_guardarl', 'ResultadosController@guardarl');
 
 Route::get('resultadosg', 'ResultadosController@indexg')->name('resultados.indexg');
+Route::get('resultadosg-reversar-{id}', 'ResultadosController@reversarg');
 Route::get('resultadosgl', 'ResultadosController@indexg1')->name('resultados.indexg1');
+Route::get('resultadosgl-reversar-{id}', 'ResultadosController@reversargl');
+
 
 Route::get('historial_pacientes', 'ReportesController@historial_pacientes')->name('historial.pacientes');
 
@@ -311,10 +315,14 @@ Route::post('controlh/guardar', 'ConsultasController@guardar_controlh');
 
 
 Route::get('metodos', 'MetodosController@index')->name('metodos.index');
-Route::get('metodos-create', 'ConsultasController@create')->name('metodos.create')->middleware('auth');
+Route::get('metodos_llamar', 'MetodosController@llamar')->name('llamar.index');
+Route::get('metodos-create', 'MetodosController@create')->name('metodos.create')->middleware('auth');
+Route::get('metodos-llamar-{id}', 'MetodosController@llamarPost')->middleware('auth');
 Route::post('metodos/create', 'ConsultasController@store')->middleware('auth');
 Route::get('metodos-delete-{id}', 'ConsultasController@delete')->middleware('auth');
 Route::get('metodos-edit-{id}', 'ConsultasController@edit')->name('ingresos.edit');
+Route::get('metodos/aplicar/{id}', 'MetodosController@aplicar');
+Route::post('metodos/aplicar', 'MetodosController@aplicarPost');
 Route::post('metodos/edit', 'ConsultasController@update');
 Route::get('metodos-ticket-{id}', 'ConsultasController@ticket');
 

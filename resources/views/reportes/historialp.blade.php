@@ -120,6 +120,7 @@
                   <thead>
                   <tr>
                   <th>Fecha</th>
+                  <th>Sede</th>
                     <th>Paciente</th>
                     <th>Origen</th>
                     <th>Detalle</th>
@@ -138,6 +139,16 @@
                   @foreach($atenciones as $an)
                   <tr>
                     <td>{{date('d-M-y H:i', strtotime($an->created_at))}}</td>
+                    @if($an->sede == 1)
+                    <td>PROCERES</td>
+                    @elseif($an->sede == 2)
+                    <td>CANTO REY</td>
+                    @elseif($an->sede == 3)
+                    <td>VIDA FELIZ</td>
+                    @else
+                    <td>ZARATE</td>
+                    @endif
+                    <td>{{$an->sede}}</td>
                     <td>{{$an->apellidos}} {{$an->nombres}}</td>
                     <td>{{$an->lasto}} {{$an->nameo}}</td>
                     <td>{{$an->detalle}}</td>
@@ -172,6 +183,7 @@
                   <tfoot>
                   <tr>
                   <th>Fecha</th>
+                  <th>Sede</th>
                     <th>Paciente</th>
                     <th>Origen</th>
                     <th>Detalle</th>

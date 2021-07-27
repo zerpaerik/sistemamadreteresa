@@ -32,11 +32,10 @@ class MetodosController extends Controller
           $f2 = $request->fin;
 
           $metodos = DB::table('metodos as a')
-        ->select('a.id', 'a.id_paciente', 'a.usuario', 'a.id_producto', 'a.sede', 'a.created_at', 'a.estatus', 'a.monto', 'b.nombres', 'b.apellidos', 'c.name as nameo', 'c.lastname as lasto', 'mp.nombre as producto')
+        ->select('a.id', 'a.id_paciente', 'a.usuario', 'a.id_producto', 'a.sede', 'a.created_at', 'a.estatus', 'a.monto','a.aplicado_por','a.usuario_aplica','b.nombres', 'b.apellidos', 'c.name as nameo', 'c.lastname as lasto', 'mp.nombre as producto')
         ->join('pacientes as b', 'b.id', 'a.id_paciente')
         ->join('users as c', 'c.id', 'a.usuario')
         ->join('meto_pro as mp', 'mp.id', 'a.id_producto')
-        ->where('a.estatus', '=', 1)
         ->where('a.sede', '=', $request->session()->get('sede'))
         ->whereBetween('a.created_at', [date('Y-m-d 00:00:00', strtotime($f1)), date('Y-m-d 23:59:59', strtotime($f2))])
         ->get();
@@ -46,18 +45,52 @@ class MetodosController extends Controller
         $f2 = date('Y-m-d');
 
         $metodos = DB::table('metodos as a')
-        ->select('a.id', 'a.id_paciente', 'a.usuario', 'a.id_producto', 'a.sede', 'a.created_at', 'a.estatus', 'a.monto', 'b.nombres', 'b.apellidos', 'c.name as nameo', 'c.lastname as lasto', 'mp.nombre as producto')
+        ->select('a.id', 'a.id_paciente', 'a.usuario', 'a.id_producto', 'a.sede', 'a.created_at', 'a.estatus', 'a.monto','a.aplicado_por','a.usuario_aplica', 'b.nombres', 'b.apellidos', 'c.name as nameo', 'c.lastname as lasto', 'mp.nombre as producto')
         ->join('pacientes as b', 'b.id', 'a.id_paciente')
         ->join('users as c', 'c.id', 'a.usuario')
         ->join('meto_pro as mp', 'mp.id', 'a.id_producto')
-        ->where('a.estatus', '=', 1)
-        ->where('a.created_at', '=', date('Y-m-d'))
+        ->whereBetween('a.created_at', [date('Y-m-d 00:00:00', strtotime($f1)), date('Y-m-d 23:59:59', strtotime($f2))])
         ->where('a.sede', '=', $request->session()->get('sede'))
         ->get();
 
       }
 
         return view('metodos.index', compact('metodos','f1','f2'));
+        //
+    }
+
+    public function llamar(Request $request)
+    {
+
+      if ($request->inicio) {
+          $f1 = $request->inicio;
+          $f2 = $request->fin;
+
+          $metodos = DB::table('metodos as a')
+        ->select('a.id', 'a.id_paciente', 'a.usuario','a.usuario_llama', 'a.id_producto','a.prox_aplica', 'a.sede', 'a.created_at', 'a.estatus', 'a.monto','a.aplicado_por','a.usuario_aplica','b.nombres', 'b.apellidos', 'b.telefono','c.name as nameo', 'c.lastname as lasto', 'mp.nombre as producto')
+        ->join('pacientes as b', 'b.id', 'a.id_paciente')
+        ->join('users as c', 'c.id', 'a.usuario')
+        ->join('meto_pro as mp', 'mp.id', 'a.id_producto')
+        ->where('a.sede', '=', $request->session()->get('sede'))
+        ->whereBetween('a.prox_aplica', [date('Y-m-d', strtotime($f1)), date('Y-m-d', strtotime($f2))])
+        ->get();
+      } else {
+
+        $f1 = date('Y-m-d');
+        $f2 = date('Y-m-d');
+
+        $metodos = DB::table('metodos as a')
+        ->select('a.id', 'a.id_paciente', 'a.usuario', 'a.usuario_llama','a.id_producto','a.prox_aplica', 'a.sede', 'a.created_at', 'a.estatus', 'a.monto','a.aplicado_por','a.usuario_aplica', 'b.nombres', 'b.apellidos','b.telefono', 'c.name as nameo', 'c.lastname as lasto', 'mp.nombre as producto')
+        ->join('pacientes as b', 'b.id', 'a.id_paciente')
+        ->join('users as c', 'c.id', 'a.usuario')
+        ->join('meto_pro as mp', 'mp.id', 'a.id_producto')
+        ->where('a.prox_aplica','=', date('Y-m-d'))
+        ->where('a.sede', '=', $request->session()->get('sede'))
+        ->get();
+
+      }
+
+        return view('metodos.llamar', compact('metodos','f1','f2'));
         //
     }
 
@@ -348,6 +381,38 @@ class MetodosController extends Controller
         return view('atenciones.edit', compact('atencion')); //
     }
 
+    public function aplicar($id)
+    {
+        $metodo = Metodos::where('id','=',$id)->first();
+
+        return view('metodos.aplicar', compact('metodo')); //
+    }
+
+    public function aplicarPost(Request $request)
+    {
+    
+      $user = User::where('id','=',Auth::user()->id)->first();
+
+      //         $proximo=date("Y-m-d",strtotime($request->created_at."+ 30 days"));
+
+
+      $p = Metodos::find($request->id);
+      $p->peso =$request->peso;
+      $p->talla =$request->talla;
+      $p->observacion =$request->observacion;
+      $p->usuario_aplica =$user->lastname.' '.$user->name;
+      $p->fecha_aplica = date('Y-m-d');
+      $p->prox_aplica = date("Y-m-d",strtotime(date('Y-m-d')."+ 30 days"));
+      $p->estatus = 2;
+      $res = $p->update();
+    
+    
+    return redirect()->action('MetodosController@index')
+    ->with('success','Aplicado Exitosamente!');
+
+        //
+    }
+
     /**
      * Update the specified resource in storage.
      *
@@ -393,5 +458,24 @@ class MetodosController extends Controller
         ->with('success','Eliminado Exitosamente!');
         //
     }
+
+    public function llamarPost($id)
+    {
+
+        $searchUsuarioID = DB::table('users')
+        ->select('*')
+        ->where('id','=', Auth::user()->id)
+        ->first();  
+
+        $atencion = Metodos::find($id);
+        $atencion->estatus = 3;
+        $atencion->usuario_llama= $searchUsuarioID->lastname.' '.$searchUsuarioID->name;
+        $atencion->save();
+
+        return back();
+        //
+    }
+
+
 }
 

@@ -11,6 +11,8 @@ use App\User;
 use Auth;
 use Illuminate\Http\Request;
 use DB;
+use Carbon\Carbon;
+
 
 class PacientesController extends Controller
 {
@@ -26,7 +28,8 @@ class PacientesController extends Controller
         
       if(!is_null($request->filtro)){
         $pacientes = DB::table('pacientes as a')
-        ->select('a.id','a.nombres','a.dni','a.apellidos','a.fechanac','a.email','a.sexo','a.telefono','a.empresa','a.estatus')
+        ->select('a.id','a.nombres','a.dni','a.apellidos','a.usuario','a.fechanac','a.email','a.sexo','a.telefono','a.empresa','a.estatus','u.name','u.lastname')
+        ->join('users as u', 'u.id', 'a.usuario')
         ->where('a.estatus', '=', 1)
         ->where('a.apellidos','like','%'.$request->filtro.'%')
         ->orderby('apellidos','asc')
@@ -136,26 +139,20 @@ class PacientesController extends Controller
 
     public function ver($id)
     {
+
+      $pacientes = DB::table('pacientes as a')
+      ->select('a.id','a.nombres','a.dni','a.apellidos','a.ocupacion','a.tipo_doc','a.usuario','a.fechanac','a.email','a.sexo','a.telefono','a.empresa','a.estatus','u.name','u.lastname')
+      ->join('users as u', 'u.id', 'a.usuario')
+      ->where('a.id', '=', $id)
+      ->first(); 
+
+      $edad = Carbon::parse($pacientes->fechanac)->age;
 	  
-        $req = DB::table('requerimientos as a')
-        ->select('a.id','a.asunto','a.prioridad','a.categoria','a.descripcion','a.estatus','a.estado','a.empresa','b.nombre as empresa')
-        ->join('clientes as b','b.id','a.empresa')
-        ->where('a.empresa', '=', Auth::user()->empresa)
-        ->where('a.estatus', '=', 1)
-        ->where('a.id', '=', $id)
-        ->first(); 
-
-        //$equipos = ActivosRequerimientos::
-
-        $equipos = DB::table('activos_requerimientos as a')
-        ->select('a.id','a.activo','a.ticket','b.nombre','b.modelo','b.serial')
-        ->join('equipos as b','b.id','a.activo')
-        ->where('ticket','=',$id)
-        ->get();
+       
 
 
 	  
-      return view('requerimientos.ver', compact('req','equipos'));
+      return view('pacientes.ver', compact('pacientes', 'edad'));
     }	  
 
     /**

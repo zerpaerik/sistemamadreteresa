@@ -350,6 +350,13 @@
                   <p>Lista de Métodos</p>
                 </a>
               </li>
+
+              <li class="nav-item">
+                <a href="{{route('llamar.index')}}" class="nav-link">
+                  <i class="fas fa-hand-holding-usd nav-icon"></i>
+                  <p>Pacientes por Llamar</p>
+                </a>
+              </li>
               
             </ul>
           </li>
@@ -771,6 +778,13 @@
                 <a href="{{route('metodos.index')}}" class="nav-link">
                   <i class="fas fa-hand-holding-usd nav-icon"></i>
                   <p>Lista de Métodos</p>
+                </a>
+              </li>
+              
+              <li class="nav-item">
+                <a href="{{route('llamar.index')}}" class="nav-link">
+                  <i class="fas fa-hand-holding-usd nav-icon"></i>
+                  <p>Pacientes por Llamar</p>
                 </a>
               </li>
               
@@ -1231,6 +1245,13 @@
                 <a href="{{route('metodos.index')}}" class="nav-link">
                   <i class="fas fa-hand-holding-usd nav-icon"></i>
                   <p>Lista de Métodos</p>
+                </a>
+              </li>
+              
+              <li class="nav-item">
+                <a href="{{route('llamar.index')}}" class="nav-link">
+                  <i class="fas fa-hand-holding-usd nav-icon"></i>
+                  <p>Pacientes por Llamar</p>
                 </a>
               </li>
               
