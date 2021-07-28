@@ -280,14 +280,15 @@
                   </thead>
                   <tbody>
 
+
                   <tr>
                     <td><span class="badge bg-success">{{$total->monto}}</span></td>
-                    <td>{{$pagosp->monto}}</td>
-                    <td>{{$gastose->monto}}</td>
-                    <td>{{$comisionesp->monto}}</td>
-                    <td>{{$comisionespp->monto}}</td>
-                    <td>{{$gastosd->monto}}</td>
-                    <td>{{$total->monto - $pagosp->monto - $gastose->monto - $comisionesp->monto - $comisionespp->monto - $gastosd->monto}}</td>
+                    <td>{{round($pagosp->monto,2)}}</td>
+                    <td>{{round($gastose->monto,2)}}</td>
+                    <td>{{round($comisionesp->monto,2)}}</td>
+                    <td>{{round($comisionespp->monto,2)}}</td>
+                    <td>{{round($gastosd->monto,2)}}</td>
+                    <td>{{round($total->monto - $pagosp->monto - $gastose->monto - $comisionesp->monto - $comisionespp->monto - $gastosd->monto,2)}}</td>
                   
                   </tr>
                  

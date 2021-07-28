@@ -303,6 +303,8 @@ Route::get('cobrconsultasar-edit-{id}', 'ConsultasController@edit')->name('ingre
 Route::post('consultas/edit', 'ConsultasController@update');
 Route::get('consultas-ticket-{id}', 'ConsultasController@ticket');
 Route::get('historias', 'ConsultasController@historias')->name('historias.index');
+Route::get('historia/reevaluar/{id}', 'ConsultasController@reevaluar');
+Route::post('historia/reevaluar', 'ConsultasController@reevaluarPost');
 Route::get('historias-ver-{id}', 'ConsultasController@ver_historias');
 Route::get('controles', 'ConsultasController@controles')->name('controles.index');
 Route::get('controles-ver-{id}', 'ConsultasController@ver_controles');

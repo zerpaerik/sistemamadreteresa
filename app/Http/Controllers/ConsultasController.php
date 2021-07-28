@@ -356,7 +356,7 @@ class ConsultasController extends Controller
          // $historias = Historias::where('id_paciente','=',$request->id_paciente)->get();
 
           $historias = DB::table('historia as a')
-          ->select('a.id_paciente','a.id','a.created_at','b.nombres','b.apellidos','b.dni')
+          ->select('a.id_paciente','a.id','a.created_at','a.reevalua','a.observacion','a.usuario_reevalua','b.nombres','b.apellidos','b.dni')
           ->join('pacientes as b','b.id','a.id_paciente')
           ->where('a.id_paciente', '=',$request->id_paciente)
           ->get(); 
@@ -365,7 +365,7 @@ class ConsultasController extends Controller
           //$historias = Historias::where('id_paciente','=',77777777777)->get();
 
           $historias = DB::table('historia as a')
-          ->select('a.id_paciente','a.id','a.created_at','b.nombres','b.apellidos','b.dni')
+          ->select('a.id_paciente','a.id','a.created_at','a.reevalua','a.observacion','a.usuario_reevalua','b.nombres','b.apellidos','b.dni')
           ->join('pacientes as b','b.id','a.id_paciente')
           ->where('a.id_paciente', '=',77777777777)
           ->get(); 
@@ -452,6 +452,39 @@ class ConsultasController extends Controller
 
 
     }
+
+    
+    public function reevaluar($id)
+    {
+
+
+   
+
+        return view('consultas.reevaluar', compact('id'));
+
+
+    }
+
+    public function reevaluarPost(Request $request)
+    {
+
+        $searchUsuarioID = DB::table('users')
+        ->select('*')
+        ->where('id','=', Auth::user()->id)
+        ->first();  
+
+        $atencion = Historia::find($request->id);
+        $atencion->reevalua = 2;
+        $atencion->observacion = $request->observacion;
+        $atencion->usuario_reevalua= $searchUsuarioID->lastname.' '.$searchUsuarioID->name;
+        $atencion->save();
+
+        return back();
+
+
+    }
+
+
 
 
 

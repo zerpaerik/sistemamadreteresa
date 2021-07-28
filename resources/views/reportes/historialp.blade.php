@@ -148,7 +148,6 @@
                     @else
                     <td>ZARATE</td>
                     @endif
-                    <td>{{$an->sede}}</td>
                     <td>{{$an->apellidos}} {{$an->nombres}}</td>
                     <td>{{$an->lasto}} {{$an->nameo}}</td>
                     <td>{{$an->detalle}}</td>

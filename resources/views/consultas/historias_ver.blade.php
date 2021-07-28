@@ -301,6 +301,18 @@
                     <input type="date" onkeyup="javascript:this.value=this.value.toUpperCase();" class="form-control" disabled id="nombre" name="prox" placeholder="Observaciones" value="{{$hist->prox}}">
                    </div>
                     </div>
+                    <div class="row">
+                     <div class="col-md-12">
+                    <label for="exampleInputEmail1">Observaciones Reevaluación</label>
+                    <input type="text" onkeyup="javascript:this.value=this.value.toUpperCase();" class="form-control" id="nombre" disabled  name="sexo" value="{{$hist->observacion}}">
+                   </div>
+                    </div>
+                    <div class="row">
+                     <div class="col-md-12">
+                    <label for="exampleInputEmail1">Reevaluado Por:</label>
+                    <input type="text" onkeyup="javascript:this.value=this.value.toUpperCase();" class="form-control" id="nombre" disabled  name="sexo" value="{{$hist->usuario_reevalua}}">
+                   </div>
+                    </div>
                     <br>
 
 
