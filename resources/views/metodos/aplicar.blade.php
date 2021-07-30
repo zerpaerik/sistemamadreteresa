@@ -4,15 +4,53 @@
 			<div class="box-header">
 				<div class="box-name">					
 					<span>
-                    <center> <strong>APLICACIÓN DE MÉTODO ANTICONCEPTIVO</strong></center><br>
-                    <center>PRODUCTO: </center>
+                    <center>APLICACIONES ANTERIORES </center>
 					</span>
 				</div>
 			</div>
 
             <form method="post" action="metodos/aplicar">					
-              {{ csrf_field() }}                
+              {{ csrf_field() }}  
+
+              <div class="card-body">
+                    <div class="row">
+
+                    <table class="table">
+                  <thead>
+                    <tr>
+                      <th>Fecha</th>
+                      <th>Talla</th>
+                      <th>Peso</th>
+                      <th>Observación</th>
+                      <th>Usuario</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    @foreach($apli as $hist)
+                    <tr>
+                      <td>{{$hist->created_at}}</td>
+                      <td>{{$hist->talla}}</td>
+                      <td>{{$hist->peso}}</td>
+                      <td>{{$hist->observacion}}</td>
+                      <td>{{$hist->usuario}}</td>
+
+
+                    </tr>
+                  @endforeach
+                   
+                  </tbody>
+                </table>
+                   
+                 
+                  
+                  </div>
+                  <br>
+                </div>
+
                     <div class="card-body">
+                    <span>
+                    <center> <strong>APLICACIÓN DE MÉTODO ANTICONCEPTIVO</strong></center><br>
+				          	</span>
                     <div class="row">
                    
                   <div class="col-md-6">

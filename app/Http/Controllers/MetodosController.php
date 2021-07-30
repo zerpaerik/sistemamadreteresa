@@ -12,6 +12,7 @@ use App\User;
 use App\Atenciones;
 use App\Consultas;
 use App\Metodos;
+use App\ApliMetodos;
 use Auth;
 use Illuminate\Http\Request;
 use DB;
@@ -168,181 +169,6 @@ class MetodosController extends Controller
     }
 
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request)
-    {
-
-        $searchUsuarioID = DB::table('users')
-        ->select('*')
-        ->where('id','=', $request->origen_usuario)
-        ->first();  
-
-       // dd($request->precio_con);
-
-        //GUARDANDO CONSULTAS
-        
-        if(!is_null($request->precio_con)){
-            $lab = new Atenciones();
-            $lab->tipo_origen =  $request->origen;
-            $lab->id_origen = $searchUsuarioID->id;
-            $lab->id_paciente =  $request->paciente;
-            $lab->tipo_atencion = 5;
-            $lab->id_tipo = $request->esp_con;
-            $lab->monto = $request->precio_con;
-            $lab->abono = $request->precio_con;
-            $lab->tipo_pago = $request->tipop_con;
-            $lab->usuario = Auth::user()->id;
-            $lab->sede = $request->session()->get('sede');
-            $lab->save();
-
-            $con = new Consultas();
-            $con->id_paciente =  $request->paciente;
-            $con->monto = $request->precio_con;
-            $con->usuario = Auth::user()->id;
-            $con->sede = $request->session()->get('sede');
-            $con->save();
-
-        }
-
-        
-        //GUARDANDO METODOS
-        
-        if(!is_null($request->precio_met)){
-            $lab = new Atenciones();
-            $lab->tipo_origen =  $request->origen;
-            $lab->id_origen = $searchUsuarioID->id;
-            $lab->id_paciente =  $request->paciente;
-            $lab->tipo_atencion = 6;
-           // $lab->id_tipo = $request->esp_con;
-            $lab->monto = $request->precio_met;
-            $lab->abono = $request->precio_met;
-            $lab->tipo_pago = $request->tipop_met;
-            $lab->usuario = Auth::user()->id;
-            $lab->sede = $request->session()->get('sede');
-            $lab->save();
-
-            $met = new Metodos();
-            $met->id_paciente =  $request->paciente;
-            $met->monto = $request->precio_con;
-            $met->usuario = Auth::user()->id;
-            $met->sede = $request->session()->get('sede');
-            $met->save();
-
-        }
-
-        //GUARDANDO SERVICIOS
-        
-        if (isset($request->id_servicio)) {
-            foreach ($request->id_servicio['servicios'] as $key => $serv) {
-              if (!is_null($serv['servicio'])) {
-
-                //TIPO ATENCION SERVICIOS= 1
-                $lab = new Atenciones();
-                $lab->tipo_origen =  $request->origen;
-                $lab->id_origen = $searchUsuarioID->id;
-                $lab->id_paciente =  $request->paciente;
-                $lab->tipo_atencion = 1;
-                $lab->id_tipo = $serv['servicio'];
-                $lab->monto = (float)$request->monto_s['servicios'][$key]['monto'];
-                $lab->abono = (float)$request->monto_abol['servicios'][$key]['abono'];
-                $lab->tipo_pago = $request->id_pago['servicios'][$key]['tipop'];
-                $lab->usuario = Auth::user()->id;
-                $lab->sede = $request->session()->get('sede');
-                $lab->save();
-              } 
-            }
-          }
-
-
-
-
-
-        //GUARDANDO ANALISIS
-
-
-        if (isset($request->id_analisi)) {
-            foreach ($request->id_analisi['analisis'] as $key => $laboratorio) {
-              if (!is_null($laboratorio['analisi'])) {
-
-                //TIPO ATENCION LABORATORIO= 4
-                $lab = new Atenciones();
-                $lab->tipo_origen =  $request->origen;
-                $lab->id_origen = $searchUsuarioID->id;
-                $lab->id_paciente =  $request->paciente;
-                $lab->tipo_atencion = 4;
-                $lab->id_tipo = $laboratorio['analisi'];
-                $lab->monto = (float)$request->monto_s['analisis'][$key]['monto'];
-                $lab->abono = (float)$request->monto_abol['analisis'][$key]['abono'];
-                $lab->tipo_pago = $request->id_pago['analisis'][$key]['tipop'];
-                $lab->usuario = Auth::user()->id;
-                $lab->sede = $request->session()->get('sede');
-                $lab->save();
-              } 
-            }
-          }
-
-          //GUARDANDO ECOGRAFIAS
-
-          if (isset($request->id_ecografia)) {
-            foreach ($request->id_ecografia['ecografias'] as $key => $eco) {
-              if (!is_null($eco['ecografia'])) {
-
-                //TIPO ATENCION ECOGRAFIA= 2
-                $lab = new Atenciones();
-                $lab->tipo_origen =  $request->origen;
-                $lab->id_origen = $searchUsuarioID->id;
-                $lab->id_paciente =  $request->paciente;
-                $lab->tipo_atencion = 2;
-                $lab->id_tipo = $eco['ecografia'];
-                $lab->monto = (float)$request->monto_s['ecografias'][$key]['monto'];
-                $lab->abono = (float)$request->monto_abol['ecografias'][$key]['abono'];
-                $lab->tipo_pago = $request->id_pago['ecografias'][$key]['tipop'];
-                $lab->usuario = Auth::user()->id;
-                $lab->sede = $request->session()->get('sede');
-                $lab->save();
-              } 
-            }
-          }
-
-          //GUARDANDO RAYOS X
-
-          if (isset($request->id_rayo)) {
-            foreach ($request->id_rayo['rayos'] as $key => $ray) {
-              if (!is_null($ray['rayo'])) {
-
-                //TIPO ATENCION RAYOS= 3
-                $lab = new Atenciones();
-                $lab->tipo_origen =  $request->origen;
-                $lab->id_origen = $searchUsuarioID->id;
-                $lab->id_paciente =  $request->paciente;
-                $lab->tipo_atencion = 3;
-                $lab->id_tipo = $ray['rayo'];
-                $lab->monto = (float)$request->monto_s['rayos'][$key]['monto'];
-                $lab->abono = (float)$request->monto_abol['rayos'][$key]['abono'];
-                $lab->tipo_pago = $request->id_pago['rayos'][$key]['tipop'];
-                $lab->usuario = Auth::user()->id;
-                $lab->sede =$request->session()->get('sede');
-                $lab->save();
-              } 
-            }
-          }
-
-
-
-        
-    
-
-        return redirect()->action('AtencionesController@index')
-        ->with('success','Creado Exitosamente!');
-
-        //return redirect()->action('AnalisisController@index', ["created" => true, "analisis" => Analisis::all()]);
-
-    }
 
     public function ver($id)
     {
@@ -385,13 +211,19 @@ class MetodosController extends Controller
     {
         $metodo = Metodos::where('id','=',$id)->first();
 
-        return view('metodos.aplicar', compact('metodo')); //
+        $apli = ApliMetodos::where('paciente','=',$metodo->id_paciente)->get();
+
+
+        return view('metodos.aplicar', compact('metodo','apli')); //
     }
 
     public function aplicarPost(Request $request)
     {
     
       $user = User::where('id','=',Auth::user()->id)->first();
+
+      $m = Metodos::where('id','=',$request->id)->first();
+
 
       //         $proximo=date("Y-m-d",strtotime($request->created_at."+ 30 days"));
 
@@ -405,6 +237,15 @@ class MetodosController extends Controller
       $p->prox_aplica = date("Y-m-d",strtotime(date('Y-m-d')."+ 30 days"));
       $p->estatus = 2;
       $res = $p->update();
+
+        $apli = new ApliMetodos();
+        $apli->metodo =$request->id;
+        $apli->talla =$request->talla;
+        $apli->peso =$request->peso;
+        $apli->observacion =$request->observacion;
+        $apli->paciente =$m->id_paciente;
+        $apli->usuario = $user->lastname.' '.$user->name;
+        $apli->save();
     
     
     return redirect()->action('MetodosController@index')
