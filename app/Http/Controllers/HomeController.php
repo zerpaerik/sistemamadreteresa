@@ -75,6 +75,7 @@ class HomeController extends Controller
         ->first();
 
             $egresos = Debitos::whereDate('created_at', date('Y-m-d 00:00:00', strtotime(date('Y-m-d'))))
+            ->where('tipo', '!=', 'EXTERNO')
         ->select(DB::raw('SUM(monto) as monto'))
         ->where('sede', '=', $request->session()->get('sede'))
         ->first();
@@ -124,6 +125,7 @@ class HomeController extends Controller
 
             $egresos = Debitos::whereRaw("created_at >= ? AND created_at <= ?", 
             array($fecha, $fechafin))
+            ->where('tipo', '!=', 'EXTERNO')
         ->select(DB::raw('SUM(monto) as monto'))
         ->where('sede', '=', $request->session()->get('sede'))
         ->first();

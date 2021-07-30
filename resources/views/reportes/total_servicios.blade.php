@@ -198,7 +198,6 @@
                     <th>PG</th>
                     <th>AT</th>
                     <th>RP</th>
-                    <th>Acciones</th>
                   </tr>
                   </thead>
                   <tbody>
@@ -224,83 +223,8 @@
                     <td><span class="badge bg-success">SI</span></td>
                     @endif
                     <td>{{substr($an->lastu,0,5)}} {{substr($an->nameu,0,5)}}</td>
-                    <td>
 
-                    @if($an->estatus == 1)
-                    <a class="btn btn-success btn-sm" target="_blank" href="atenciones-ticket-{{$an->id_atec}}">
-                              <i class="fas fa-print">
-                              </i>
-                          </a>
-                          @if(Auth::user()->rol == 1 || Auth::user()->rol == 2)
-
-
-                         @if($an->tipo_atencion == 1)
-
-                          <a class="btn btn-info btn-sm" href="atenciones-edits-{{$an->id}}">
-                              <i class="fas fa-pencil-alt">
-                              </i>
-                          </a>
-
-                        @elseif($an->tipo_atencion == 2)
-                        
-                        <a class="btn btn-info btn-sm" href="atenciones-edits-{{$an->id}}">
-                              <i class="fas fa-pencil-alt">
-                              </i>
-                          </a>
-                        @elseif($an->tipo_atencion == 3)
-                        
-                        <a class="btn btn-info btn-sm" href="atenciones-edits-{{$an->id}}">
-                              <i class="fas fa-pencil-alt">
-                              </i>
-                          </a>
-                        @elseif($an->tipo_atencion == 4)
-                        
-                        <a class="btn btn-info btn-sm" href="atenciones-editl-{{$an->id}}">
-                              <i class="fas fa-pencil-alt">
-                              </i>
-                          </a>
-                          @elseif($an->tipo_atencion == 5)
-                        
-                        <a class="btn btn-info btn-sm" href="atenciones-editc-{{$an->id}}">
-                              <i class="fas fa-pencil-alt">
-                              </i>
-                          </a>
-                          @elseif($an->tipo_atencion == 6)
-                        
-                        <a class="btn btn-info btn-sm" href="atenciones-editm-{{$an->id}}">
-                              <i class="fas fa-pencil-alt">
-                              </i>
-                          </a>
-
-                          @elseif($an->tipo_atencion == 8)
-                        
-                        <a class="btn btn-info btn-sm" href="atenciones-editsa-{{$an->id}}">
-                              <i class="fas fa-pencil-alt">
-                              </i>
-                          </a>
-                        @else
-                        
-                        <a class="btn btn-info btn-sm" href="atenciones-editp-{{$an->id}}">
-                              <i class="fas fa-pencil-alt">
-                              </i>
-                          </a>
-                        @endif
-                          @if($an->atendido == 1)
-                          <a class="btn btn-danger btn-sm" href="atenciones-delete-{{$an->id}}" onclick="return confirm('¿Desea Eliminar este registro?')">
-                              <i class="fas fa-trash">
-                              </i>
-                          </a>
-                          @endif
-
-                        
-
-                        
-                          @endif
-                          @else
-                          <p>Eliminado Por: {{$an->eliminado_por}}</p>
-
-                          @endif
-                          </td>
+                  
                   </tr>
                   @endforeach
                  
@@ -317,7 +241,6 @@
                     <th>PG</th>
                     <th>AT</th>
                     <th>RP</th>
-                    <th>Acciones</th>
                   </tr>
                   </tfoot>
                 </table>

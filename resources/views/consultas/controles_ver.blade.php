@@ -255,69 +255,91 @@
                   
                    
             
-                    <div class="card-body">
-
-                    <div class="row">
-                    <div class="col-md-2">
-                    <label for="exampleInputEmail1">Semanas</label>
-                    <input type="text" onkeyup="javascript:this.value=this.value.toUpperCase();" class="form-control" id="nombre" name="sem" placeholder="" disabled  value="{{$cont->sem}}">
-                  </div>
-                  <div class="col-md-2">
-                    <label for="exampleInputEmail1">Peso Madre</label>
-                    <input type="text" onkeyup="javascript:this.value=this.value.toUpperCase();" class="form-control" id="nombre" name="peso" placeholder="" disabled  value="{{$cont->peso}}">
-                  </div>
-                  <div class="col-md-2">
-                    <label for="exampleInputEmail1">Temperatura</label>
-                    <input type="text" onkeyup="javascript:this.value=this.value.toUpperCase();" class="form-control" id="nombre" name="temp" placeholder="" disabled  value="{{$cont->temp}}">
-                  </div>
-                  <div class="col-md-2">
-                    <label for="exampleInputEmail1">Tensión</label>
-                    <input type="text" onkeyup="javascript:this.value=this.value.toUpperCase();" class="form-control" id="nombre" name="ten" placeholder="" disabled  value="{{$cont->ten}}">
-                  </div>
-                  <div class="col-md-2">
-                    <label for="exampleInputEmail1">Alt Uterina</label>
-                    <input type="text" onkeyup="javascript:this.value=this.value.toUpperCase();" class="form-control" id="nombre" name="alt" placeholder="" disabled  value="{{$cont->alt}}">
-                  </div>
-                  <div class="col-md-2">
-                    <label for="exampleInputEmail1">Presentación</label>
-                    <input type="text" onkeyup="javascript:this.value=this.value.toUpperCase();" class="form-control" id="nombre" name="pres" placeholder="" disabled  value="{{$cont->pres}}">
-                  </div>
-                 
-                    </div>
+                    
                     <br>
-                    <div class="row">
-                   
-                  <div class="col-md-2">
-                    <label for="exampleInputEmail1">FCF</label>
-                    <input type="text" onkeyup="javascript:this.value=this.value.toUpperCase();" class="form-control" id="nombre" name="fcf" placeholder="" disabled  value="{{$cont->fcf}}">
-                  </div>
-                  <div class="col-md-2">
-                    <label for="exampleInputEmail1">Movimiento</label>
-                    <input type="text" onkeyup="javascript:this.value=this.value.toUpperCase();" class="form-control" id="nombre" name="mov" placeholder="" disabled  value="{{$cont->mov}}">
-                  </div>
-                  <div class="col-md-2">
-                    <label for="exampleInputEmail1">Edema</label>
-                    <input type="text" onkeyup="javascript:this.value=this.value.toUpperCase();" class="form-control" id="nombre" name="edema" placeholder="" disabled  value="{{$cont->edema}}">
-                  </div>
-                  <div class="col-md-2">
-                    <label for="exampleInputEmail1">Pulso</label>
-                    <input type="text" onkeyup="javascript:this.value=this.value.toUpperCase();" class="form-control" id="nombre" name="pulso" placeholder="" disabled  value="{{$cont->pulso}}">
-                  </div>
-                  <div class="col-md-2">
-                    <label for="exampleInputEmail1">Consejeria</label>
-                    <input type="text" onkeyup="javascript:this.value=this.value.toUpperCase();" class="form-control" id="ant_fam" name="conse" placeholder="" disabled  value="{{$cont->conse}}">
+                    <div class="box-content">
+   	<div style="background: #eaeaea;">
+	<table style="width: 100%;text-align: center;margin: 10px 0;border:1px solid black;">
 
-                  </div>
-                  <div class="col-md-2">
-                    <label for="exampleInputEmail1">Sulfato Ferroso</label>
-                    <input type="text" onkeyup="javascript:this.value=this.value.toUpperCase();" class="form-control" id="ant_per" name="sulfa" placeholder="" disabled  value="{{$cont->sulfa}}">
-                    </div>
-                    <div class="col-md-2">
-                    <label for="exampleInputEmail1">Perfil Biofísico</label>
-                    <input type="text" onkeyup="javascript:this.value=this.value.toUpperCase();" class="form-control" id="ant_per" name="perfil" placeholder="" disabled  value="{{$cont->perfil}}">
-                    </div>
-                    </div>
-                    <br>
+		<tr>
+			<div>
+
+    <th scope="col" style="background: #2E9AFE;">CONTROLES PRENATALES</th>
+
+
+  
+
+  </tr>
+
+ 
+   <tr>
+
+    <th style="background: #81BEF7;border: 1px solid black;">Edad Gest(Semanas)</th>
+    <td style="border: 1px solid black;">{{$cont->sem}}</td>
+  </tr>
+
+   <tr>
+
+    <th style="background: #81BEF7;border: 1px solid black;">PesoMadre(Kg)</th>
+    <td style="border: 1px solid black;">{{$cont->peso}}</td>
+  </tr>
+
+  <tr>
+
+    <th style="background: #81BEF7;border: 1px solid black;">Temperatura(ºC)</th>
+    <td style="border: 1px solid black;">{{$cont->temp}}</td>
+  </tr>
+
+   <th style="background: #81BEF7;border: 1px solid black;">Tensiòn Arterial(mmHg)</th>
+    <td style="border: 1px solid black;">{{$cont->ten}}</td>
+  </tr>
+
+   <th style="background: #81BEF7;border: 1px solid black;">Altura Uterina</th>
+    <td style="border: 1px solid black;">{{$cont->alt}}</td>
+  </tr>
+
+   <th style="background: #81BEF7;border: 1px solid black;">Presentaciòn(C/P/T/NA)</th>
+    <td style="border: 1px solid black;">{{$cont->pres}}</td>
+  </tr>
+
+     <th style="background: #81BEF7;border: 1px solid black;">FCF</th>
+    <td style="border: 1px solid black;">{{$cont->fcf}}</td>
+  </tr>
+
+     <th style="background: #81BEF7;border: 1px solid black;">Mov. Fetal</th>
+    <td style="border: 1px solid black;">{{$cont->mov}}</td>
+  </tr>
+
+   <th style="background: #81BEF7;border: 1px solid black;">Edema</th>
+    <td style="border: 1px solid black;">{{$cont->edema}}</td>
+  
+  </tr>
+
+   <th style="background: #81BEF7;border: 1px solid black;">Pulso Materno</th>
+    <td style="border: 1px solid black;">{{$cont->pulso}}</td>
+  </tr>
+
+   <th style="background: #81BEF7;border: 1px solid black;">Consejeria PF</th>
+    <td style="border: 1px solid black;">{{$cont->conse}}</td>
+  </tr>
+
+   <th style="background: #81BEF7;border: 1px solid black;">Sulfato Ferroso</th>
+    <td style="border: 1px solid black;">{{$cont->sulfato}}</td>
+  </tr>
+
+     <th style="background: #81BEF7;border: 1px solid black;">Perfìl Biofìsico</th>
+    <td style="border: 1px solid black;">{{$cont->perfil}}</td>
+  </tr>
+
+  
+
+
+
+      
+   </table>
+
+
+		    </div>
                 
                   <div class="row">
                     <div class="col-md-2">
