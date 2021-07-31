@@ -125,16 +125,21 @@
                               </i>
                               Ver
                           </a>
+                          @if(Auth::user()->rol == 1 || Auth::user()->rol == 2)
                           <a class="btn btn-info btn-sm" href="pacientes-edit-{{$p->id}}">
                               <i class="fas fa-pencil-alt">
                               </i>
                               Edit
                           </a>
+                          @endif
+                          @if(Auth::user()->rol == 1)
                           <a class="btn btn-danger btn-sm" href="pacientes-delete-{{$p->id}}" onclick="return confirm('¿Desea Eliminar este registro?')">
                               <i class="fas fa-trash">
                               </i>
-                              Delete
-                          </a></td>
+                              Eliminar
+                          </a>
+                          @endif
+                          </td>
                   </tr>
                   @endforeach
                  
