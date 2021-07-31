@@ -462,7 +462,7 @@ class AtencionesController extends Controller
       ->join('users as d','d.id','a.usuario')
       ->join('servicios as s','s.id','a.id_tipo')
       ->where('a.estatus', '=', 1)
-      ->where('a.tipo_atencion', '=', 3)
+     // ->where('a.tipo_atencion', '=', 3)
       ->where('a.id_atec', '=', $id)
       ->union($serv)
       ->union($eco)
