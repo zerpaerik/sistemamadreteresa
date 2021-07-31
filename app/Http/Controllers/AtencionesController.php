@@ -2228,6 +2228,9 @@ return view('atenciones.particular');
     public function atender_sesion(Request $request)
     {
 
+      $atencion = Atenciones::where('id','=',$pr->id_atencion)->first();
+
+
 
       $pr = Sesiones::where('id','=',$request->id)->first();
 
@@ -2239,6 +2242,25 @@ return view('atenciones.particular');
       $at = Atenciones::where('id','=',$pr->id_atencion)->first();
       $at->atendido =2;
       $rest = $at->update();
+
+      //PARA CIRUHIA MENOR AGREGAR COMISOON DE 120 CUANDO LO ATIENDA
+
+      if($atencion->id_tipo == 123){
+
+        $com = new Comisiones();
+        $com->id_atencion = $atencion->id;
+        $com->porcentaje = '0';
+        $com->detalle =  'CIRUGIA MENOR';
+        $com->id_responsable = Auth::user()->id;;
+        $com->id_origen = 1;
+        $com->monto = 120;
+        $com->estatus = 1;
+        $com->usuario = Auth::user()->id;
+        $com->save();
+
+
+
+      }
 
 
     
