@@ -2228,11 +2228,13 @@ return view('atenciones.particular');
     public function atender_sesion(Request $request)
     {
 
+      $pr = Sesiones::where('id','=',$request->id)->first();
+
+
       $atencion = Atenciones::where('id','=',$pr->id_atencion)->first();
 
 
 
-      $pr = Sesiones::where('id','=',$request->id)->first();
 
       $p = Sesiones::find($request->id);
       $p->estatus =1;
