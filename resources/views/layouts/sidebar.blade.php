@@ -1045,6 +1045,34 @@
             <a href="#" class="nav-link">
               <i class="nav-icon fas fa-money-check-alt"></i>
               <p>
+                Métodos Anticonceptivos
+                <i class="fas fa-angle-left right"></i>
+              </p>
+            </a>
+            <ul class="nav nav-treeview">
+
+
+            <li class="nav-item">
+                <a href="{{route('metodos.index')}}" class="nav-link">
+                  <i class="fas fa-hand-holding-usd nav-icon"></i>
+                  <p>Lista de Métodos</p>
+                </a>
+              </li>
+
+              <li class="nav-item">
+                <a href="{{route('llamar.index')}}" class="nav-link">
+                  <i class="fas fa-hand-holding-usd nav-icon"></i>
+                  <p>Pacientes por Llamar</p>
+                </a>
+              </li>
+              
+            </ul>
+          </li>
+
+          <li class="nav-item has-treeview">
+            <a href="#" class="nav-link">
+              <i class="nav-icon fas fa-money-check-alt"></i>
+              <p>
                 Consultas
                 <i class="fas fa-angle-left right"></i>
               </p>
