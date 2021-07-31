@@ -102,11 +102,13 @@ class ConsultasController extends Controller
       $cie1 = Ciexes::all();
       $consulta = Consultas::where('id','=',$consulta)->first();
       $hist = HistoriaBase::where('id_paciente','=',$consulta->id_paciente)->first();
+      $historias = Historia::where('id_paciente','=',$consulta->id_paciente)->get();
 
 
 
 
-        return view('consultas.historia',compact('cie','cie1','consulta','hist'));
+
+        return view('consultas.historia',compact('cie','cie1','consulta','hist','historias'));
     }
 
     
