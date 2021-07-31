@@ -227,10 +227,20 @@ class MetodosController extends Controller
 
     public function aplicarPost(Request $request)
     {
+
+      $searchUsuarioID = DB::table('users')
+      ->select('*')
+      ->where('id','=', Auth::user()->id)
+      ->first();  
     
       $user = User::where('id','=',Auth::user()->id)->first();
 
       $m = Metodos::where('id','=',$request->id)->first();
+
+      $atencion = Atenciones::where('id','=',$m->id_atencion)->first();
+      $atencion->atendido = 2;
+      $atencion->atendido_por= $searchUsuarioID->name.' '.$searchUsuarioID->lastname;
+      $atencion->save();
 
 
       //         $proximo=date("Y-m-d",strtotime($request->created_at."+ 30 days"));

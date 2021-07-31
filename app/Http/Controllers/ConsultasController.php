@@ -117,8 +117,10 @@ class ConsultasController extends Controller
 
       $consulta = Consultas::where('id','=',$consulta)->first();
 
-      $ant = AntecedentesObstetricos::where('id','=',$consulta->id_paciente)->first();
-      $controles = Control::where('id','=',$consulta->id_paciente)->get();
+      $ant = AntecedentesObstetricos::where('id_paciente','=',$consulta->id_paciente)->first();
+      $controles = Control::where('id_paciente','=',$consulta->id_paciente)->get();
+
+      //dd($controles);
 
 
 
