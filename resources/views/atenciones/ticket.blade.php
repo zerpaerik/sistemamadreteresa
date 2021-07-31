@@ -62,6 +62,18 @@
 2do piso SJL</strong></p>
 		<p style="margin-top: -20px;"><strong>Teléfono:  01 4596494</strong></p>
 		<p style="margin-top: -20px;"><strong>WhatsApp: 978 216 315</strong></p>
+    @elseif(Session::get('sedeName') == 'INDEPENDENCIA')
+   <p><strong>SYSMEDIC PERU SAC -INDEPENDENCIA</strong></p>
+		<p style="margin-top: -20px;"><strong>RUC: 20606283980</strong></p>
+        <p style="margin-top: -10px;"><strong>Dirección: AV.CHINCHAYSUYO 323 TAHUANTINSUYO</strong></p>
+		<p style="margin-top: -20px;"><strong>Teléfono: 01 5265711</strong></p>
+		<p style="margin-top: -20px;"><strong>WhatsApp: 940 309 507</strong></p>
+    @elseif(Session::get('sedeName') == 'LOS OLIVOS')
+   <p><strong>SYSMEDIC PERU SAC -LOS OLIVOS</strong></p>
+		<p style="margin-top: -20px;"><strong>RUC: 20606283980</strong></p>
+        <p style="margin-top: -10px;"><strong>Dirección: AV.PROCERES 7832 URB PRO</strong></p>
+		<p style="margin-top: -20px;"><strong>Teléfono: 01 5390547</strong></p>
+		<p style="margin-top: -20px;"><strong>WhatsApp: 940 309 506</strong></p>
     @else
     <p><strong>SYSMEDIC PERU SAC</strong></p>
 		<p style="margin-top: -20px;"><strong>RUC: 20606283980</strong></p>
