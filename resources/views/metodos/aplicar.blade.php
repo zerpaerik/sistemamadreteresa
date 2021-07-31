@@ -5,6 +5,8 @@
 				<div class="box-name">					
 					<span>
                     <center>APLICACIONES ANTERIORES </center>
+                    <center>MÉTODO:  {{$metodo->producto}}</center>
+
 					</span>
 				</div>
 			</div>
