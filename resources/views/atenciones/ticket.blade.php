@@ -68,18 +68,20 @@
         <p style="margin-top: -10px;"><strong>Dirección: AV.CHINCHAYSUYO 323 TAHUANTINSUYO</strong></p>
 		<p style="margin-top: -20px;"><strong>Teléfono: 01 5265711</strong></p>
 		<p style="margin-top: -20px;"><strong>WhatsApp: 940 309 507</strong></p>
-    @elseif(Session::get('sedeName') == 'LOS OLIVOS')
+    @elseif(Session::get('sedeName') == 'ZARATE')
+    <p><strong>SYSMEDIC PERU SAC</strong></p>
+    <p style="margin-top: -20px;"><strong>RUC: 20606283980</strong></p>
+        <p style="margin-top: -10px;"><strong>Dirección:  Av. gran chimu 745 Zarate SJL</strong></p>
+		<p style="margin-top: -20px;"><strong>Teléfono:   01 7820512</strong></p>
+		<p style="margin-top: -20px;"><strong>WhatsApp: 924 520 026</strong></p>
+
+    @else
    <p><strong>SYSMEDIC PERU SAC -LOS OLIVOS</strong></p>
 		<p style="margin-top: -20px;"><strong>RUC: 20606283980</strong></p>
         <p style="margin-top: -10px;"><strong>Dirección: AV.PROCERES 7832 URB PRO</strong></p>
 		<p style="margin-top: -20px;"><strong>Teléfono: 01 5390547</strong></p>
 		<p style="margin-top: -20px;"><strong>WhatsApp: 940 309 506</strong></p>
-    @else
-    <p><strong>SYSMEDIC PERU SAC</strong></p>
-		<p style="margin-top: -20px;"><strong>RUC: 20606283980</strong></p>
-        <p style="margin-top: -10px;"><strong>Dirección:  Av. gran chimu 745 Zarate SJL</strong></p>
-		<p style="margin-top: -20px;"><strong>Teléfono:   01 7820512</strong></p>
-		<p style="margin-top: -20px;"><strong>WhatsApp: 924 520 026</strong></p>
+	
     @endif
 		
 
