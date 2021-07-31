@@ -2253,7 +2253,7 @@ return view('atenciones.particular');
         $com->id_atencion = $atencion->id;
         $com->porcentaje = '0';
         $com->detalle =  'CIRUGIA MENOR';
-        $com->id_responsable = Auth::user()->id;;
+        $com->id_responsable = $request->personal;
         $com->id_origen = 1;
         $com->monto = 120;
         $com->estatus = 1;
