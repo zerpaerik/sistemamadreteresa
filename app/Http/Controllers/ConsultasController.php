@@ -251,7 +251,7 @@ class ConsultasController extends Controller
       ->first();  
 
 
-      $at_fin = Atenciones::where('id','=',$request->consulta)->first();
+      $at_fin = Atenciones::where('id','=',$consultaf->id_atencion)->first();
       $at_fin->atendido = 2;
       $at_fin->atendido_por = $usuario->lastname.' '.$usuario->name;
       $at_fin->save();
@@ -317,7 +317,7 @@ class ConsultasController extends Controller
       $con_fin->save();
 
 
-      $at_fin = Atenciones::where('id','=',$request->consulta)->first();
+      $at_fin = Atenciones::where('id','=',$consultaf->id_atencion)->first();
       $at_fin->atendido = 2;
       $at_fin->atendido_por = $usuario->lastname.' '.$usuario->name;
       $at_fin->save();
