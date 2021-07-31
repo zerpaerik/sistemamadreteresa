@@ -158,8 +158,8 @@
                   <div class="col-md-4">
                     <label>Sexo</label>
                     <select class="form-control" name="sexo">
-                    <option value="M">Masculino</option>
                     <option value="F">Femenino</option>
+                    <option value="M">Masculino</option>
                   
                         </select>
                   </div>
