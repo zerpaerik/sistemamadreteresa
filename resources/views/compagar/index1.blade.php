@@ -131,8 +131,8 @@
                   @foreach($comisiones as $an)
                   <tr>
                   <td><input value="{{$an->id}}" type="checkbox" name="com[]"></td>
-                    <td>{{substr($an->apellidos,0,5)}} {{substr($an->nombres,0,5)}}</td>
-                    <td>{{substr($an->lasto,0,5)}} {{substr($an->nameo,0,5)}}</td>
+                    <td>{{$an->apellidos}} {{$an->nombres}}</td>
+                    <td>{{$an->lasto}} {{$an->nameo}}</td>
                     <td>{{$an->detalle}}</td>
                     <td>{{$an->total}}</td>
                     <td>{{$an->porcentaje}}</td>

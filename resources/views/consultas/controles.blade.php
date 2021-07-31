@@ -137,7 +137,7 @@
                 
                    
                     <td>
-                    <a class="btn btn-primary btn-sm" href="controles-ver-{{$an->id_paciente}}">
+                    <a class="btn btn-primary btn-sm" href="controles-ver-{{$an->id}}">
                               <i class="fas fa-eye">
                               </i>
                               Ver Control

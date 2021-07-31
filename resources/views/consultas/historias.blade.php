@@ -136,7 +136,7 @@
                 
                    
                     <td>
-                    <a class="btn btn-primary btn-sm" href="historias-ver-{{$an->id_paciente}}">
+                    <a class="btn btn-primary btn-sm" href="historias-ver-{{$an->id}}">
                               <i class="fas fa-eye">
                               </i>
                               Ver Historia

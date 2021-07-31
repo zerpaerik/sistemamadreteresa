@@ -426,12 +426,12 @@ class ConsultasController extends Controller
     {
 
 
-         $hist = Historia::where('id_paciente','=',$id)->first();
+         $hist = Historia::where('id','=',$id)->first();
 
 
-         $historias_base = HistoriaBase::where('id_paciente','=',$id)->first();
+         $historias_base = HistoriaBase::where('id_paciente','=',$hist->id_paciente)->first();
 
-         $paciente = Pacientes::where('id','=',$id)->first();
+         $paciente = Pacientes::where('id','=',$hist->id_paciente)->first();
 
         return view('consultas.historias_ver', compact('hist','historias_base','paciente'));
 
@@ -446,7 +446,7 @@ class ConsultasController extends Controller
 
          $ant = AntecedentesObstetricos::where('id_paciente','=',$cont->id_paciente)->first();
 
-         $paciente = Pacientes::where('id','=',$id)->first();
+         $paciente = Pacientes::where('id','=',$cont->id_paciente)->first();
 
         return view('consultas.controles_ver', compact('ant','cont','paciente'));
 
