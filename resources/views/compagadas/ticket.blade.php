@@ -62,7 +62,6 @@
 
 
   <p><strong>DOCTOR:</strong>{{ $ticketu->lasto.' '.$ticketu->nameo}}</p>
-  <p><strong>CUENTA:</strong>{{ $ticketu->cuenta}}</p>
   <p><strong>CONSULTORIO:</strong>MADRE TERESA</p>
   <p><strong>RECIBO: </strong>REC-2021-{{ $ticketu->recibo}}</p>
 
@@ -98,7 +97,7 @@
  <p style="margin-left: 570px;"><strong>TOTAL:</strong>{{ $tot->totalrecibo}}</p>
   @endforeach
 
-<p style="text-align: left"><strong>FECHA EMISIÒN:</strong></p>
+<p style="text-align: left"><strong>FECHA EMISIÒN: {{$ticketu->fecha_pago}}</strong></p>
 
 
 
