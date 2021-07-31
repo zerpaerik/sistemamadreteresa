@@ -117,6 +117,7 @@
                   <thead>
                   <tr>
                     <th>Items</th>
+                    <th>Fecha</th>
                     <th>Paciente</th>
                     <th>Origen</th>
                     <th>Detalle</th>
@@ -131,6 +132,7 @@
                   @foreach($comisiones as $an)
                   <tr>
                   <td><input value="{{$an->id}}" type="checkbox" name="com[]"></td>
+                  <td>{{$an->created_at}}</td>
                     <td>{{$an->apellidos}} {{$an->nombres}}</td>
                     <td>{{$an->lasto}} {{$an->nameo}}</td>
                     <td>{{$an->detalle}}</td>
@@ -158,6 +160,7 @@
                   <tfoot>
                   <tr>
                   <th>Items</th>
+                    <th>Fecha</th>
                     <th>Paciente</th>
                     <th>Origen</th>
                     <th>Detalle</th>
