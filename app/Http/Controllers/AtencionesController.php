@@ -636,6 +636,16 @@ return view('atenciones.particular');
 
         
               if (!is_null($request->precio_con)) {
+
+                if($request->esp_con == null){
+                  $request->session()->flash('error', 'Debe Seleccionar un Especialista para hacer el ingreso.');
+                  return back();
+      
+                }
+
+
+
+
                   $lab = new Atenciones();
                   $lab->tipo_origen =  3;
                   $lab->id_origen = 1;
