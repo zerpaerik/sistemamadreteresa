@@ -2368,6 +2368,12 @@ return view('atenciones.particular');
             $com->save();
         }
 
+        $metodo = Metodos::where('id_atencion','=',$id)->first();
+        if ($metodo != null) {
+            $met_el = Metodos::where('id_atencion', '=', $id)->first();
+            $met_el->delete();
+        }
+
         $cbr = Cobrar::where('id_atencion','=',$id)->first();
 
         if ($cbr != null) {
