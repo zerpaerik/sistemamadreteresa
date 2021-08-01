@@ -1259,7 +1259,7 @@ class ReportesController extends Controller
                 ->join('pacientes as b','b.id','a.id_paciente')
                 ->join('users as c','c.id','a.id_origen')
                 ->join('users as d','d.id','a.usuario')
-                ->join('servicios as s','s.id','a.id_tipo')
+                ->join('meto_pro as s','s.id','a.id_tipo')
                 ->where('a.tipo_atencion', '=', 6)
                 ->where('a.monto', '!=', '0')
                 ->whereBetween('a.created_at', [date('Y-m-d 00:00:00', strtotime($f1)), date('Y-m-d 23:59:59', strtotime($f2))])
