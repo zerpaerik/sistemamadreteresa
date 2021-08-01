@@ -1261,7 +1261,7 @@ class ReportesController extends Controller
                 ->join('users as d','d.id','a.usuario')
                 ->join('meto_pro as s','s.id','a.id_tipo')
                 ->where('a.tipo_atencion', '=', 6)
-                ->where('a.monto', '!=', '0')
+                ->where('a.estatus', '!=', 0)
                 ->whereBetween('a.created_at', [date('Y-m-d 00:00:00', strtotime($f1)), date('Y-m-d 23:59:59', strtotime($f2))])
                 ->orderBy('a.id','DESC')
                 ->where('a.sede', '=', $request->session()->get('sede'))
