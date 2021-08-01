@@ -689,6 +689,16 @@ return view('atenciones.particular');
               //GUARDANDO METODOS
         
               if (!is_null($request->precio_met)) {
+
+
+                if($request->metodo == null){
+                  $request->session()->flash('error', 'Debe Seleccionar un Método para hacer el ingreso.');
+                  return back();
+      
+                }
+
+
+
                   $lab = new Atenciones();
                   $lab->tipo_origen =  $request->origen;
                   if ($request->origen == 3) {
