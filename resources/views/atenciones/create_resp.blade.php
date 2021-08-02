@@ -136,14 +136,11 @@
                   <input type="hidden" name="paciente" value="{{$paciente->id}}">
                   <p style="">Datos de Paciente</p>
                   <div class="row" style="background:yellowgreen;">
-                    <div class="col-md-2">
+                    <div class="col-md-3">
                       <strong>Nombres:</strong>{{$paciente->nombres}}
                     </div>
-                    <div class="col-md-2">
+                    <div class="col-md-3">
                       <strong>Apellidos:</strong>{{$paciente->apellidos}}
-                    </div>
-                    <div class="col-md-2">
-                      <strong>TipoDoc:</strong>{{$paciente->tipo_doc}}
                     </div>
                     <div class="col-md-2">
                       <strong>DNI:</strong>{{$paciente->dni}}
@@ -241,7 +238,7 @@
                     <div class="col-sm-1">
                       <input id="servicios_#index#_montoHidden" name="monto_h[servicios][#index#][montoHidden]" class="text" type="hidden" value="">
 
-                      <input id="servicios_#index#_monto" name="monto_s[servicios][#index#][monto]" type="number" class="number form-control monto" placeholder="Precio"  data-toggle="tooltip" data-placement="bottom" title="Precio">
+                      <input id="servicios_#index#_monto" name="monto_s[servicios][#index#][monto]" type="text" class="number form-control monto" placeholder="Precio" onchange="sumar();" data-toggle="tooltip" data-placement="bottom" title="Precio">
                     </div>
 
                     <label for="servicios_#index#_abonoS" class="col-sm-1 control-label">Abono.</label>
@@ -869,7 +866,6 @@ function datapac(){
 
 <script type="text/javascript">
   $(document).ready(function() {
-    var total = 0;
 
     $(".monto, .montol, .montop").keyup(function(event) {
       sumar();
@@ -1063,15 +1059,6 @@ $(document).on('change','.selectServ',function(){
       });
     });
 
-function sumar() {
-  var total = 0;
-      $(".monto").each(function(){
-        total += $(this).val();
-      })
-      console.log(total);
-      $("#total").val(total);
-}
-
 
 
 
@@ -1221,8 +1208,21 @@ var botonDisabled = true;
   total = document.getElementById('total');
 }*/
 
-
-
+function sumar (valor) {
+    var total = 0;	
+    valor = parseInt(valor); // Convertir el valor a un entero (número).
+	
+    total = document.getElementById('total').innerHTML;
+	
+    // Aquí valido si hay un valor previo, si no hay datos, le pongo un cero "0".
+    total = (total == null || total == undefined || total == "") ? 0 : total;
+	
+    /* Esta es la suma. */
+    total = (parseInt(total) + parseInt(valor));
+	
+    // Colocar el resultado de la suma en el control "span".
+    document.getElementById('total').innerHTML = total;
+}
 
 
 function sumar_ab()

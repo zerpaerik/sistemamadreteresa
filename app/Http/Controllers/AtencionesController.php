@@ -586,11 +586,10 @@ return view('atenciones.particular');
        
 
         $pacientes = DB::table('pacientes as a')
-       ->select('a.id','a.dni','a.nombres','a.apellidos','a.direccion','a.telefono','a.fechanac')
+       ->select('a.id','a.dni','a.nombres','a.apellidos','a.tipo_doc','a.direccion','a.telefono','a.fechanac')
        ->where('a.dni','=',$id)
        ->first();
 
-       dd($pacientes);
 
           // $edad = Carbon::parse($pacientes->fechanac)->age;
 

@@ -74,6 +74,11 @@ class PacientesController extends Controller
     public function store(Request $request)
     {
 
+      $pac = Pacientes::where('estatus','=',1)->latest()->first();
+
+
+      if ($request->tipo_doc != 'SIN DOC') {
+
         $validator = \Validator::make($request->all(), [
         'dni' => 'required|unique:pacientes'
             
@@ -83,29 +88,58 @@ class PacientesController extends Controller
            // Toastr::error('Error Registrando.', 'Paciente- DNI YA REGISTRADO!', ['progressBar' => true]);
             return redirect()->action('PacientesController@create', ['errors' => $validator->errors()]);
           } else {
+              $pacientes = new Pacientes();
+              $pacientes->nombres =$request->nombres;
+              $pacientes->apellidos =$request->apellidos;
+              $pacientes->tipo_doc =$request->tipo_doc;
+              $pacientes->dni =$request->dni;
+              $pacientes->telefono =$request->telefono;
+              $pacientes->email =$request->email;
+              $pacientes->direccion =$request->direccion;
+              $pacientes->edocivil =$request->edocivil;
+              $pacientes->ocupacion =$request->ocupacion;
+              $pacientes->fechanac =$request->fechanac;
+              $pacientes->sexo =$request->sexo;
+              $pacientes->usuario =Auth::user()->id;
+              $pacientes->save();
 
-        $pacientes = new Pacientes();
-        $pacientes->nombres =$request->nombres;
-        $pacientes->apellidos =$request->apellidos;
-        $pacientes->tipo_doc =$request->tipo_doc;
-        $pacientes->dni =$request->dni;
-        $pacientes->telefono =$request->telefono;
-        $pacientes->email =$request->email;
-        $pacientes->direccion =$request->direccion;
-        $pacientes->edocivil =$request->edocivil;
-        $pacientes->ocupacion =$request->ocupacion;
-        $pacientes->fechanac =$request->fechanac;
-        $pacientes->sexo =$request->sexo;
-        $pacientes->usuario =Auth::user()->id;
-        $pacientes->save();
+            
+          } 
+
+        } else {
+
+          $pacientes = new Pacientes();
+          $pacientes->nombres =$request->nombres;
+          $pacientes->apellidos =$request->apellidos;
+          $pacientes->tipo_doc =$request->tipo_doc;
+          $pacientes->dni =$pac->id + 1;
+          $pacientes->telefono =$request->telefono;
+          $pacientes->email =$request->email;
+          $pacientes->direccion =$request->direccion;
+          $pacientes->edocivil =$request->edocivil;
+          $pacientes->ocupacion =$request->ocupacion;
+          $pacientes->fechanac =$request->fechanac;
+          $pacientes->sexo =$request->sexo;
+          $pacientes->usuario =Auth::user()->id;
+          $pacientes->save();
+
+        }
+
+
+
 
         return redirect()->action('PacientesController@index', ["created" => true, "pacientes" => Pacientes::all()]);
     }
 
-    }
+    
 
     public function store2(Request $request)
     {
+
+      $pac = Pacientes::where('estatus','=',1)->latest()->first();
+
+
+      if ($request->tipo_doc != 'SIN DOC') {
 
         $validator = \Validator::make($request->all(), [
         'dni' => 'required|unique:pacientes'
@@ -116,24 +150,47 @@ class PacientesController extends Controller
            // Toastr::error('Error Registrando.', 'Paciente- DNI YA REGISTRADO!', ['progressBar' => true]);
             return redirect()->action('PacientesController@create', ['errors' => $validator->errors()]);
           } else {
+              $pacientes = new Pacientes();
+              $pacientes->nombres =$request->nombres;
+              $pacientes->apellidos =$request->apellidos;
+              $pacientes->tipo_doc =$request->tipo_doc;
+              $pacientes->dni =$request->dni;
+              $pacientes->telefono =$request->telefono;
+              $pacientes->email =$request->email;
+              $pacientes->direccion =$request->direccion;
+              $pacientes->edocivil =$request->edocivil;
+              $pacientes->ocupacion =$request->ocupacion;
+              $pacientes->fechanac =$request->fechanac;
+              $pacientes->sexo =$request->sexo;
+              $pacientes->usuario =Auth::user()->id;
+              $pacientes->save();
 
-        $pacientes = new Pacientes();
-        $pacientes->nombres =$request->nombres;
-        $pacientes->apellidos =$request->apellidos;
-        $pacientes->tipo_doc =$request->tipo_doc;
-        $pacientes->dni =$request->dni;
-        $pacientes->telefono =$request->telefono;
-        $pacientes->email =$request->email;
-        $pacientes->direccion =$request->direccion;
-        $pacientes->edocivil =$request->edocivil;
-        $pacientes->ocupacion =$request->ocupacion;
-        $pacientes->fechanac =$request->fechanac;
-        $pacientes->sexo =$request->sexo;
-        $pacientes->usuario =Auth::user()->id;
-        $pacientes->save();
+            
+          } 
+
+        } else {
+
+          $pacientes = new Pacientes();
+          $pacientes->nombres =$request->nombres;
+          $pacientes->apellidos =$request->apellidos;
+          $pacientes->tipo_doc =$request->tipo_doc;
+          $pacientes->dni =$pac->id + 1;
+          $pacientes->telefono =$request->telefono;
+          $pacientes->email =$request->email;
+          $pacientes->direccion =$request->direccion;
+          $pacientes->edocivil =$request->edocivil;
+          $pacientes->ocupacion =$request->ocupacion;
+          $pacientes->fechanac =$request->fechanac;
+          $pacientes->sexo =$request->sexo;
+          $pacientes->usuario =Auth::user()->id;
+          $pacientes->save();
+
+        }
+
+      
 
         return redirect()->action('AtencionesController@create');
-    }
+    
 
     }
 

@@ -103,6 +103,7 @@
                     <option value="PASAPORTE">PASAPORTE</option>
                     <option value="CPP">CPP</option>
                     <option value="OTRO">OTRO</option>
+                    <option value="SIN DOC">SIN DOC</option> 
                     @elseif($pacientes->tipo_doc == 'CE')
                     <option value="DNI">DNI</option>
                     <option value="CE" selected>CE</option>
@@ -110,13 +111,15 @@
                     <option value="PASAPORTE">PASAPORTE</option>
                     <option value="CPP">CPP</option>
                     <option value="OTRO">OTRO</option> 
+                    <option value="SIN DOC">SIN DOC</option> 
                     @elseif($pacientes->tipo_doc == 'PTP')
                     <option value="DNI" >DNI</option>
                     <option value="CE" >CE</option>
                     <option value="PTP" selected>PTP</option>
                     <option value="PASAPORTE">PASAPORTE</option>
                     <option value="CPP">CPP</option>
-                    <option value="OTRO">OTRO</option>                   
+                    <option value="OTRO">OTRO</option> 
+                    <option value="SIN DOC">SIN DOC</option>                   
                     @elseif($pacientes->tipo_doc == 'PASAPORTE')
                     <option value="DNI" >DNI</option>
                     <option value="CE" >CE</option>
@@ -124,20 +127,31 @@
                     <option value="PASAPORTE" selected>PASAPORTE</option>
                     <option value="CPP">CPP</option>
                     <option value="OTRO">OTRO</option>  
+                    <option value="SIN DOC">SIN DOC</option> 
                     @elseif($pacientes->tipo_doc == 'CPP')
                     <option value="DNI" >DNI</option>
                     <option value="CE" >CE</option>
                     <option value="PTP" >PTP</option>
                     <option value="PASAPORTE" >PASAPORTE</option>
                     <option value="CPP" selected>CPP</option>
-                    <option value="OTRO">OTRO</option>  
-                    @else
+                    <option value="OTRO">OTRO</option> 
+                    <option value="SIN DOC">SIN DOC</option>  
+                    @elseif($pacientes->tipo_doc == 'OTRO')
                     <option value="DNI" >DNI</option>
                     <option value="CE" >CE</option>
                     <option value="PTP" >PTP</option>
                     <option value="PASAPORTE" >PASAPORTE</option>
                     <option value="CPP" >CPP</option>
                     <option value="OTRO" selected>OTRO</option> 
+                    <option value="SIN DOC">SIN DOC</option> 
+                    @else
+                    <option value="DNI" >DNI</option>
+                    <option value="CE" >CE</option>
+                    <option value="PTP" >PTP</option>
+                    <option value="PASAPORTE" >PASAPORTE</option>
+                    <option value="CPP" >CPP</option>
+                    <option value="OTRO">OTRO</option> 
+                    <option value="SIN DOC" selected>SIN DOC</option> 
                      @endif
 
 

@@ -101,6 +101,8 @@
                     <option value="PASAPORTE">PASAPORTE</option>
                     <option value="CPP">CPP</option>
                     <option value="OTRO">OTRO</option>
+                    <option value="SIN DOC">SIN DOC</option>
+
 
                   </select>
                   </div>
