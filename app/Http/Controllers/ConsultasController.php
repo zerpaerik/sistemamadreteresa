@@ -252,7 +252,7 @@ class ConsultasController extends Controller
       $con->save();
 
       $con_fin = Consultas::where('id','=',$request->consulta)->first();
-      $con_fin->historia = 1;
+      $con_fin->historia = 2;
       $con_fin->save();
 
       $usuario = DB::table('users')
