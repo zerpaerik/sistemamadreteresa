@@ -1227,7 +1227,7 @@ return view('atenciones.particular');
                               while ($contador < $cantidad) {
                                   $con = new Consultas();
                                   $con->id_paciente =  $request->paciente;
-                                  $con->id_especialista =  100000097;
+                                  $con->id_especialista =  39;
                                   $con->id_atencion =  $lab->id;
                                   $con->tipo =  1;
                                   $con->monto = 0;
@@ -1263,7 +1263,7 @@ return view('atenciones.particular');
                               while ($contador < $cantidad) {
                                   $con = new Consultas();
                                   $con->id_paciente =  $request->paciente;
-                                  $con->id_especialista =  100000097;
+                                  $con->id_especialista =  39;
                                   $con->id_atencion =  $lab->id;
                                   $con->tipo =  2;
                                   $con->monto = 0;
