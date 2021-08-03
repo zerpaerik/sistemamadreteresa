@@ -45,6 +45,7 @@ class ConsultasController extends Controller
         ->where('a.estatus', '=', 1)
         ->where('a.sede', '=', $request->session()->get('sede'))
         ->whereBetween('a.created_at', [$f1, $f2])
+        ->orderBy('a.id','DESC')
         ->get(); 
 
       } else {
@@ -60,6 +61,7 @@ class ConsultasController extends Controller
         ->where('a.estatus', '=', 1)
         ->where('a.sede', '=', $request->session()->get('sede'))
         ->where('a.created_at', '=', date('Y-m-d'))
+        ->orderBy('a.id','DESC')
         ->get(); 
 
       }
@@ -104,11 +106,14 @@ class ConsultasController extends Controller
       $hist = HistoriaBase::where('id_paciente','=',$consulta->id_paciente)->first();
       $historias = Historia::where('id_paciente','=',$consulta->id_paciente)->get();
 
+      $paciente = Pacientes::where('id','=',$consulta->id_paciente)->first();
 
 
 
 
-        return view('consultas.historia',compact('cie','cie1','consulta','hist','historias'));
+
+
+        return view('consultas.historia',compact('cie','cie1','consulta','hist','historias','paciente'));
     }
 
     
@@ -124,9 +129,12 @@ class ConsultasController extends Controller
 
       //dd($controles);
 
+      $paciente = Pacientes::where('id','=',$consulta->id_paciente)->first();
 
 
-        return view('consultas.control',compact('consulta','ant','controles'));
+
+
+        return view('consultas.control',compact('consulta','ant','controles','paciente'));
     }
 
     public function guardar_controlh(Request $request){

@@ -106,6 +106,7 @@
                 <table id="" class="table table-bordered table-striped">
                   <thead>
                   <tr>
+                  <th>id</th>
                     <th>Fecha</th>
                     <th>Paciente</th>
                     <th>Origen</th>
@@ -124,6 +125,7 @@
 
                   @foreach($atenciones as $an)
                   <tr>
+                    <td>{{$an->id}}</td>
                     <td>{{date('d-M-y H:i', strtotime($an->created_at))}}</td>
                     <td>{{$an->apellidos}} {{$an->nombres}}</td>
                     <td>{{$an->lasto}} {{$an->nameo}}</td>
@@ -225,7 +227,8 @@
                   </tbody>
                   <tfoot>
                   <tr>
-                  <th>Fecha</th>
+                  <th>id</th>
+                    <th>Fecha</th>
                     <th>Paciente</th>
                     <th>Origen</th>
                     <th>Detalle</th>

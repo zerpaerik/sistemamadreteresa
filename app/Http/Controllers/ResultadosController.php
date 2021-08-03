@@ -49,6 +49,7 @@ class ResultadosController extends Controller
         ->where('a.estatus', '=', 1)
         ->where('b.sede', '=', $request->session()->get('sede'))
         ->whereBetween('a.created_at', [$f1, $f2])
+        ->orderBy('a.id','DESC')
         //->where('a.monto', '!=', '0')
         ->get();
         } else {
@@ -68,6 +69,7 @@ class ResultadosController extends Controller
             ->where('b.resta', '=', 0)
             ->where('b.sede', '=', $request->session()->get('sede'))
             ->where('a.created_at', '=', date('Y-m-d'))
+            ->orderBy('a.id','DESC')
             ->get();
 
             //->where('
@@ -98,7 +100,7 @@ class ResultadosController extends Controller
         ->where('b.resta', '=', 0)
         ->where('b.sede', '=', $request->session()->get('sede'))
         ->whereBetween('a.created_at', [$f1, $f2])
-        //->where('a.monto', '!=', '0')
+        ->orderBy('a.id','DESC')
         ->get();
         } else {
 
@@ -117,6 +119,7 @@ class ResultadosController extends Controller
             ->where('b.resta', '=', 0)
             ->where('b.sede', '=', $request->session()->get('sede'))
             ->where('a.created_at', '=', date('Y-m-d'))
+            ->orderBy('a.id','DESC')
             ->get();
 
             //->where('

@@ -82,7 +82,13 @@
               </div>
               <!-- /.card-header -->
               <!-- form start -->
-
+              <div class="row">
+                     <div class="col-md-3">
+                    <label for="exampleInputEmail1">PACIENTE</label>
+                    <input type="text" onkeyup="javascript:this.value=this.value.toUpperCase();" class="form-control" disabled id="nombre" value="{{$paciente->apellidos.' '.$paciente->nombres}} " name="gestas" placeholder="">
+                   </div>
+                  
+                    </div>
 
               @if($hist)
               <div class="card-body">

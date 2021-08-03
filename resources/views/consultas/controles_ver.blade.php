@@ -83,6 +83,14 @@
 
 
               <div class="card-body">
+              <div class="row">
+                     <div class="col-md-3">
+                    <label for="exampleInputEmail1">PACIENTE</label>
+                    <input type="text" onkeyup="javascript:this.value=this.value.toUpperCase();" class="form-control" disabled id="nombre" value="{{$paciente->apellidos.' '.$paciente->nombres}} " name="gestas" placeholder="">
+                   </div>
+                  
+                    </div>
+                  
               
                     
               <label for="exampleInputEmail1">ANTECEDENTES OBSTÉTRICOS</label>
@@ -270,6 +278,12 @@
   
 
   </tr>
+
+  <tr>
+
+<th style="background: #81BEF7;border: 1px solid black;">Fecha</th>
+<td style="border: 1px solid black;">{{$cont->created_at}}</td>
+</tr>
 
  
    <tr>

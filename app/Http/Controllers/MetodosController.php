@@ -39,6 +39,7 @@ class MetodosController extends Controller
         ->join('meto_pro as mp', 'mp.id', 'a.id_producto')
         ->where('a.sede', '=', $request->session()->get('sede'))
         ->whereBetween('a.created_at', [date('Y-m-d 00:00:00', strtotime($f1)), date('Y-m-d 23:59:59', strtotime($f2))])
+        ->orderBy('a.id','DESC')
         ->get();
       } else {
 
@@ -52,6 +53,7 @@ class MetodosController extends Controller
         ->join('meto_pro as mp', 'mp.id', 'a.id_producto')
         ->whereBetween('a.created_at', [date('Y-m-d 00:00:00', strtotime($f1)), date('Y-m-d 23:59:59', strtotime($f2))])
         ->where('a.sede', '=', $request->session()->get('sede'))
+        ->orderBy('a.id','DESC')
         ->get();
 
       }
