@@ -60,7 +60,7 @@ class ComisionesPagarController extends Controller
         ->where('at.resta', '=', 0)
         ->where('at.sede', '=', $request->session()->get('sede'))
         ->whereBetween('a.created_at', [$f1, $f2])
-        ->where('at.id_origen', '=', $request->origen)
+        //->where('at.id_origen', '=', $request->origen)
         //->groupBy('at.id_origen')
         ->get();
 
@@ -206,7 +206,7 @@ class ComisionesPagarController extends Controller
         ->where('at.resta', '=', 0)
         ->where('at.sede', '=', $request->session()->get('sede'))
         ->whereBetween('a.created_at', [$f1, $f2])
-        ->where('at.id_origen', '=', $request->origen)
+        //->where('at.id_origen', '=', $request->origen)
        // ->groupBy('at.id_origen')
         ->get();
         } else {
