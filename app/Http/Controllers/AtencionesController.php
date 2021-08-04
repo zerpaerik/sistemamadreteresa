@@ -2292,6 +2292,47 @@ return view('atenciones.particular');
         //
     }
 
+    public function reversar_sesion($id)
+    {
+
+      $pr = Sesiones::where('id','=',$id)->first();
+
+
+      $atencion = Atenciones::where('id','=',$pr->id_atencion)->first();
+
+
+
+
+      $p = Sesiones::find($id);
+      $p->estatus = 0;
+      $p->id_personal = null;
+      $res = $p->update();
+
+      $at = Atenciones::where('id','=',$pr->id_atencion)->first();
+      $at->atendido =1;
+      $rest = $at->update();
+
+      $com = Comisiones::where('id_atencion','=',$pr->id_atencion)->first();
+
+      if($com != null && $com->detalle == 'CIRUGIA MENOR'){
+        $comi = Comisiones::where('id_atencion','=',$pr->id_atencion)->first();
+        $comi->delete();
+
+      }
+
+
+      //PARA CIRUHIA MENOR AGREGAR COMISOON DE 120 CUANDO LO ATIENDA
+
+     
+
+
+
+    
+    return back();
+
+        //
+    }
+
 
  
     public function delete($id)

@@ -145,8 +145,12 @@
                     <td>CANTO REY</td>
                     @elseif($an->sede == 3)
                     <td>VIDA FELIZ</td>
-                    @else
+                    @elseif($an->sede == 4)
                     <td>ZARATE</td>
+                    @elseif($an->sede == 5)
+                    <td>INDEPENDENCIA</td>
+                    @else
+                    <td>LOS OLIVOS</td>
                     @endif
                     <td>{{$an->apellidos}} {{$an->nombres}}</td>
                     <td>{{$an->lasto}} {{$an->nameo}}</td>

@@ -125,6 +125,7 @@
                     <th>Paciente</th>
                     <th>Detalle</th>
                     <th>Atendido Por</th>
+                    <th>Acciones</th>
                   </tr>
                   </thead>
                   <tbody>
@@ -136,6 +137,15 @@
                     <td>{{$an->servicio}}</td>
                     <td>{{$an->lastname}} {{$an->name}}
                     </td>
+                    <td>
+                    @if(Auth::user()->rol == 1 || Auth::user()->rol == 2)
+
+                    <a class="btn btn-danger btn-sm" href="sesiones-reversar-{{$an->id}}" onclick="return confirm('¿Desea reversar este registro?')">
+                              <i class="fas fa-trash">
+                              </i>
+                              Reversar
+                          </a>
+                    @endif
                    
                     <td>
                    
@@ -148,7 +158,8 @@
                   <th>Fecha</th>
                     <th>Paciente</th>
                     <th>Detalle</th>
-                    <th>Personal</th>
+                    <th>Atendido Por</th>
+                    <th>Acciones</th>
                   </tr>
                   </tfoot>
                 </table>

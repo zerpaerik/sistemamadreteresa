@@ -216,6 +216,7 @@ Route::get('pagosp-ticket-{id}', 'PagosPersonalController@ticket');
 Route::get('sesiones', 'AtencionesController@sesiones1')->name('sesiones.index');
 Route::get('sesiones-atendidas', 'AtencionesController@sesiones2')->name('sesiones1.index');
 Route::get('sesiones-atender', 'AtencionesController@atender_sesion');
+Route::get('sesiones-reversar-{id}', 'AtencionesController@reversar_sesion');
 
 
 
