@@ -125,26 +125,25 @@
                   <select class="form-control" name="tipo_pago">
 
                             @if($atencion->tipo_pago == 'EF')
-                                <option selected="selected" value="EF">Efectivo</option>
+                                <option selected value="EF">Efectivo</option>
                                 <option value="TJ">Tarjeta</option>
                                 <option value="DP">Depósito</option>
                                 <option value="YP">Yape</option>
                             @elseif($atencion->tipo_pago == 'TJ')
-                            <option  value="EF">Efectivo</option>
-                                <option value="TJ selected="selected>Tarjeta</option>
+                                <option value="EF">Efectivo</option>
+                                <option value="TJ" selected>Tarjeta</option>
                                 <option value="DP">Depósito</option>
                                 <option value="YP">Yape</option>
                             @elseif($atencion->tipo_pago == 'DP')
-                               <option value="EF">Efectivo</option>
+                                <option value="EF">Efectivo</option>
                                 <option value="TJ">Tarjeta</option>
-                                <option value="DP" selected="selected">Depósito</option>
+                                <option value="DP" selected>Depósito</option>
                                 <option value="YP">Yape</option>
-
                             @else
-                            <option  value="EF">Efectivo</option>
+                                <option  value="EF">Efectivo</option>
                                 <option value="TJ">Tarjeta</option>
                                 <option value="DP">Depósito</option>
-                            <option value="YP"selected="selected">Yape</option>
+                                <option value="YP" selected>Yape</option>
                             @endif
                                 
                             </select>
