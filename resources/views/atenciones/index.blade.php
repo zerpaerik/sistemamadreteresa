@@ -151,19 +151,23 @@
                               <i class="fas fa-print">
                               </i>
                           </a>
-                          @if($an->atendido == 2 || $an->atendido == 1 || Auth::user()->rol == 1)
+                          @if($an->atendido == 2)
+                          @if(Auth::user()->rol == 1)
                           <a class="btn btn-danger btn-sm" href="atenciones-delete-{{$an->id}}" onclick="return confirm('¿Desea Eliminar este registro?')">
                               <i class="fas fa-trash">
                               </i>
                           </a>
                           @endif
-
+                          @else
                           @if($an->atendido == 1 && Auth::user()->rol != 1)
                           <a class="btn btn-danger btn-sm" href="atenciones-delete-{{$an->id}}" onclick="return confirm('¿Desea Eliminar este registro?')">
                               <i class="fas fa-trash">
                               </i>
                           </a>
                           @endif
+                          @endif
+
+                         
                     @if(Auth::user()->rol == 1 || Auth::user()->rol == 2)
 
 
