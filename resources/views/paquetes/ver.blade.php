@@ -25,7 +25,7 @@
 						</div>
 						@foreach($servicios as $servicio)
 							<div class="col-sm-12">
-								SERVICIO
+							 {{$servicio->nombre}}
 							</div>
 						@endforeach
 
@@ -39,7 +39,7 @@
 						</div>
 						@foreach($laboratorios as $laboratorio)
 							<div class="col-sm-12">
-                            LABORATORIO
+							{{$laboratorio->nombre}}
 							</div>
 						@endforeach
 

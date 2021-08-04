@@ -118,8 +118,18 @@ class PaquetesController extends Controller
     public function ver($id)
     {
       $paquete = Paquetes::where('id','=',$id)->first();
-      $servicios = PaqueteServ::where('paquete', $paquete->id)->with('servicio')->get();
-      $laboratorios = PaqueteLab::where('paquete', $paquete->id)->with('laboratorio')->get();
+     // $servicios = PaqueteServ::where('paquete', $paquete->id)->with('servicio')->get();
+
+      $servicios = DB::table('paquetes_s as a')
+      ->select('a.id','a.paquete','a.servicio', 'b.nombre as nombre')
+      ->join('servicios as b','b.id','a.servicio')
+      ->get(); 
+      
+      $laboratorios = DB::table('paquetes_l as a')
+      ->select('a.id','a.paquete','a.laboratorio', 'b.nombre as nombre')
+      ->join('analisis as b','b.id','a.laboratorio')
+      ->get(); 
+     // $laboratorios = PaqueteLab::where('paquete', $paquete->id)->with('laboratorio')->get();
       $consultas = PaqueteCon::where('paquete', $paquete->id)->get();
       $controles = PaqueteCont::where('paquete', $paquete->id)->get();
 
