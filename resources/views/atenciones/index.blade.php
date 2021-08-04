@@ -159,7 +159,7 @@
                           </a>
                           @endif
                           @else
-                          @if($an->atendido == 1 && Auth::user()->rol != 1)
+                          @if($an->atendido == 1 && Auth::user()->rol == 2)
                           <a class="btn btn-danger btn-sm" href="atenciones-delete-{{$an->id}}" onclick="return confirm('¿Desea Eliminar este registro?')">
                               <i class="fas fa-trash">
                               </i>
