@@ -118,7 +118,7 @@
                   @foreach($metodos as $an)
                   <tr>
                     <td>{{$an->id}}</td>
-                    <td>{{date('d-M-y h:m', strtotime($an->created_at))}}</td>
+                    <td>{{date('d-M-y H:i', strtotime($an->fecha))}}</td>
                     <td>{{$an->nombres}} {{$an->apellidos}}</td>
                     <td>{{$an->producto}}</td>
                     <td>{{$an->monto}}</td>

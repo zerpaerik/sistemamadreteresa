@@ -118,7 +118,7 @@
                   @foreach($consultas as $an)
                   <tr>
                     <td>{{$an->id}}</td>
-                    <td>{{date('d-M-y', strtotime($an->created_at))}}</td>
+                    <td>{{date('d-M-y H:i', strtotime($an->fecha))}}</td>
                     <td>{{$an->nombres}} {{$an->apellidos}}</td>
                     <td>{{$an->namee}} {{$an->laste}}</td>
                     @if($an->tipo == 1)

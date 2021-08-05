@@ -38,10 +38,11 @@ class ConsultasController extends Controller
         $f2 = $request->fin;
 
         $consultas = DB::table('consultas as a')
-        ->select('a.id','a.id_paciente','a.usuario','a.historia','a.id_especialista','a.tipo','a.sede','a.created_at','a.estatus','a.monto','b.nombres','b.apellidos','c.name as nameo','c.lastname as lasto','e.name as namee','e.lastname as laste')
+        ->select('a.id','a.id_paciente','a.id_atencion','a.usuario','a.historia','a.id_especialista','a.tipo','a.sede','a.created_at','a.estatus','a.monto','b.nombres','b.apellidos','c.name as nameo','c.lastname as lasto','e.name as namee','e.lastname as laste','at.created_at as fecha')
         ->join('pacientes as b','b.id','a.id_paciente')
         ->join('users as c','c.id','a.usuario')
         ->join('users as e','e.id','a.id_especialista')
+        ->join('atenciones as at','at.id','a.id_atencion')
         ->where('a.estatus', '=', 1)
         ->where('a.sede', '=', $request->session()->get('sede'))
         ->whereBetween('a.created_at', [$f1, $f2])
@@ -54,10 +55,11 @@ class ConsultasController extends Controller
         $f2 = date('Y-m-d');
 
         $consultas = DB::table('consultas as a')
-        ->select('a.id','a.id_paciente','a.usuario','a.historia','a.id_especialista','a.tipo','a.sede','a.created_at','a.estatus','a.monto','b.nombres','b.apellidos','c.name as nameo','c.lastname as lasto','e.name as namee','e.lastname as laste')
+        ->select('a.id','a.id_paciente','a.id_atencion','a.usuario','a.historia','a.id_especialista','a.tipo','a.sede','a.created_at','a.estatus','a.monto','b.nombres','b.apellidos','c.name as nameo','c.lastname as lasto','e.name as namee','e.lastname as laste','at.created_at as fecha')
         ->join('pacientes as b','b.id','a.id_paciente')
         ->join('users as c','c.id','a.usuario')
         ->join('users as e','e.id','a.id_especialista')
+        ->join('atenciones as at','at.id','a.id_atencion')
         ->where('a.estatus', '=', 1)
         ->where('a.sede', '=', $request->session()->get('sede'))
         ->where('a.created_at', '=', date('Y-m-d'))

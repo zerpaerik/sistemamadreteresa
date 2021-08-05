@@ -33,10 +33,11 @@ class MetodosController extends Controller
           $f2 = $request->fin;
 
           $metodos = DB::table('metodos as a')
-        ->select('a.id', 'a.id_paciente', 'a.usuario', 'a.id_producto', 'a.sede', 'a.created_at', 'a.estatus', 'a.monto','a.aplicado_por','a.usuario_aplica','b.nombres', 'b.apellidos', 'c.name as nameo', 'c.lastname as lasto', 'mp.nombre as producto')
+        ->select('a.id', 'a.id_paciente', 'a.usuario','a.id_atencion','a.id_producto', 'a.sede', 'a.created_at', 'a.estatus', 'a.monto','a.aplicado_por','a.usuario_aplica','b.nombres', 'b.apellidos', 'c.name as nameo', 'c.lastname as lasto', 'mp.nombre as producto','at.created_at as fecha')
         ->join('pacientes as b', 'b.id', 'a.id_paciente')
         ->join('users as c', 'c.id', 'a.usuario')
         ->join('meto_pro as mp', 'mp.id', 'a.id_producto')
+        ->join('atenciones as at', 'at.id', 'a.id_atencion')
         ->where('a.sede', '=', $request->session()->get('sede'))
         ->whereBetween('a.created_at', [date('Y-m-d 00:00:00', strtotime($f1)), date('Y-m-d 23:59:59', strtotime($f2))])
         ->orderBy('a.id','DESC')
@@ -47,10 +48,11 @@ class MetodosController extends Controller
         $f2 = date('Y-m-d');
 
         $metodos = DB::table('metodos as a')
-        ->select('a.id', 'a.id_paciente', 'a.usuario', 'a.id_producto', 'a.sede', 'a.created_at', 'a.estatus', 'a.monto','a.aplicado_por','a.usuario_aplica', 'b.nombres', 'b.apellidos', 'c.name as nameo', 'c.lastname as lasto', 'mp.nombre as producto')
+        ->select('a.id', 'a.id_paciente', 'a.usuario','a.id_atencion','a.id_producto', 'a.sede', 'a.created_at', 'a.estatus', 'a.monto','a.aplicado_por','a.usuario_aplica','b.nombres', 'b.apellidos', 'c.name as nameo', 'c.lastname as lasto', 'mp.nombre as producto','at.created_at as fecha')
         ->join('pacientes as b', 'b.id', 'a.id_paciente')
         ->join('users as c', 'c.id', 'a.usuario')
         ->join('meto_pro as mp', 'mp.id', 'a.id_producto')
+        ->join('atenciones as at', 'at.id', 'a.id_atencion')
         ->whereBetween('a.created_at', [date('Y-m-d 00:00:00', strtotime($f1)), date('Y-m-d 23:59:59', strtotime($f2))])
         ->where('a.sede', '=', $request->session()->get('sede'))
         ->orderBy('a.id','DESC')
