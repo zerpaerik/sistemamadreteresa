@@ -1679,6 +1679,7 @@ return view('atenciones.particular');
     {
 
 
+
       $serv = Servicios::where('id','=',$request->id_tipo)->first();
       $rsfd = ResultadosServicios::where('id_atencion','=',$request->id)->first();
       $atenciod = Atenciones::where('id','=',$request->id)->first();
