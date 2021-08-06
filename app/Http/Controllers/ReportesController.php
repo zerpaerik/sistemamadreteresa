@@ -198,29 +198,6 @@ class ReportesController extends Controller
 
 
 
-        $ingresos = DB::table('creditos as a')
-        ->select('a.id','a.origen','a.descripcion','a.monto','a.sede','a.tipopago','a.created_at','a.usuario','b.name as usuario')
-        ->join('users as b','b.id','a.usuario' )
-        ->where('a.sede','=',$request->sede)
-        ->whereBetween('a.created_at', [date('Y-m-d', strtotime($f1)), date('Y-m-d', strtotime($f2))])
-        ->get(); 
-
-        
-        $total = DB::table('creditos as a')
-        ->select('a.id','a.created_at','a.fecha','a.sede',DB::raw('SUM(monto) as monto'))
-        ->where('a.sede','=',  $request->sede)
-        ->whereBetween('a.fecha', [$f1,$f2])
-       // ->groupBy('a.fecha')
-        ->first();  
-
-        $gastos = DB::table('debitos as a')
-        ->select('a.id','a.updated_at','a.fecha','a.tipopago','a.sede',DB::raw('SUM(monto) as monto'),DB::raw('SUM(monto) as monto'),DB::raw('SUM(monto) as monto'),DB::raw('SUM(monto) as monto'),DB::raw('SUM(monto) as monto'))
-        ->where('a.sede','=',  $request->sede)
-       // ->where('a.tipopago','=',  'EF')
-        ->whereBetween('a.updated_at', [$f1,$f2])
-        ->groupBy('a.updated_at');
-    
-
 
 
         $efectivo = DB::table('creditos as a')
@@ -233,71 +210,9 @@ class ReportesController extends Controller
 
        
 
-        $tarjeta = DB::table('creditos as a')
-        ->select('a.id','a.created_at','a.fecha','a.tipopago','a.sede',DB::raw('SUM(monto) as monto'))
-        ->where('a.sede','=',  $request->sede)
-        ->where('a.tipopago','=',  'TJ')
-        ->whereBetween('a.fecha', [$f1,$f2])
-        ->groupBy('a.fecha')
-        ->get(); 
 
 
-        $deposito = DB::table('creditos as a')
-        ->select('a.id','a.created_at','a.fecha','a.tipopago','a.sede',DB::raw('SUM(monto) as monto'))
-        ->where('a.sede','=',  $request->sede)
-        ->where('a.tipopago','=',  'DP')
-        ->whereBetween('a.fecha', [$f1,$f2])
-        ->groupBy('a.fecha')
-        ->get();
-        
-        $yape = DB::table('creditos as a')
-        ->select('a.id','a.created_at','a.fecha','a.tipopago','a.sede',DB::raw('SUM(monto) as monto'))
-        ->where('a.sede','=',  $request->sede)
-        ->where('a.tipopago','=',  'YP')
-        ->whereBetween('a.fecha', [$f1,$f2])
-        ->groupBy('a.fecha')
-        ->get(); 
-
-
-        $egresos = DB::table('debitos as a')
-        ->select('a.id','a.origen','a.descripcion','a.monto','a.tipo','a.tipopago','a.sede','a.fecha','a.updated_at','a.created_at','a.usuario','b.name as usuario')
-        ->join('users as b','b.id','a.usuario' )
-        ->where('a.sede','=',  $request->sede)
-        ->where('a.tipo','!=', 'EXTERNO')
-        ->whereBetween('a.updated_at', [$f1,$f2])
-        ->get(); 
-
-       // dd($egresos);
-
-
-
-        $totalingreso = Creditos::whereBetween('created_at', [date('Y-m-d', strtotime($f1)), date('Y-m-d', strtotime($f2))])
-        ->where('sede','=',$request->sede)
-        ->select(DB::raw('SUM(monto) as monto'))
-         ->first();
-
-        if (is_null($totalingreso->monto)) {
-            $totalingreso->monto = 0;
-        }
-
-     
-
-        $totalegreso = Debitos::whereBetween('created_at', [date('Y-m-d', strtotime($f1)), date('Y-m-d', strtotime($f2))])
-        ->where('sede','=',$request->sede)
-        ->select(DB::raw('SUM(monto) as monto'))
-         ->first();
-         
-        if (is_null($totalingreso->monto)) {
-            $totalingreso->monto = 0;
-        }
-
-
-    
-
-
-
-
-         $view = \View::make('reportes.viewd', compact('f1','f2','ingresos','efectivo','totalingreso','egresos','totalegreso','total'));
+         $view = \View::make('reportes.viewd', compact('f1','f2','efectivo'));
 
         $pdf = \App::make('dompdf.wrapper');
         $pdf->loadHTML($view);

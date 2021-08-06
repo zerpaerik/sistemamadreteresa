@@ -195,6 +195,16 @@ class CobrarController extends Controller
       $cre->id_cobro =  $cb->id;
       $cre->tipopago =  $request->tipopago;
       $cre->monto = $request->pagar;
+      if ($request->tipopago == 'EF') {
+        $cre->efectivo = $request->pagar;
+      } elseif($request->tipopago == 'TJ') {
+        $cre->tarjeta =$request->pagar;
+      } elseif($request->tipopago == 'DP') {
+        $cre->dep = $request->pagar;
+      } else {
+        $cre->yap =$request->pagar;
+      }
+      $cre->fecha = date('Y-m-d');
       $cre->usuario = Auth::user()->id;
       $cre->sede = $request->session()->get('sede');
       $cre->save();
