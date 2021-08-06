@@ -91,8 +91,7 @@
                   
                     </div>
                   
-              
-                    
+                    @if($ant)
               <label for="exampleInputEmail1">ANTECEDENTES OBSTÉTRICOS</label>
                    <div class="row">
                      <div class="col-md-2">
@@ -260,6 +259,11 @@
                        
 
                         </div>
+                        @else 
+                        <label for="exampleInputEmail1">NO TIENE ANTECEDENTES OBSTÉTRICOS</label>
+
+
+                        @endif
                   
                    
             
