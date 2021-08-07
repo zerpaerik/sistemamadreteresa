@@ -966,6 +966,19 @@
 <script src="../../dist/js/adminlte.min.js"></script>
 <!-- AdminLTE for demo purposes -->
 <script src="../../dist/js/demo.js"></script>
+
+<script language="javascript">
+
+function disableEnterKey(e) 
+{ 
+  var key; 
+  if(window.event) 
+     key = window.event.keyCode; 
+   else key = e.which; //firefox 
+   return (key != 13); 
+  }
+
+</script>
 <!-- page script -->
 
 </body>
