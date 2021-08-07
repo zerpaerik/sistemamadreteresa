@@ -119,6 +119,7 @@
                   <th>Recibo</th>
                   <th>Fecha</th>
                     <th>Origen</th>
+                    <th>Total Recibo</th>
                     <th>Acciones</th>
                   </tr>
                   </tr>
@@ -130,6 +131,7 @@
                     <td>REC-2021-{{$an->recibo}}</td>
                     <td>{{$an->created_at}}</td>
                     <td>{{$an->lasto}} {{$an->nameo}}</td>
+                    <td>{{$an->totalrecibo}}</td>
                     <td>
                     @if(Auth::user()->rol == 1)
                     <a target="_blank" class="btn btn-success btn-sm" href="comisionep-ticket-{{$an->recibo}}">
@@ -158,6 +160,7 @@
                   <th>Recibo</th>
                   <th>Fecha</th>
                     <th>Origen</th>
+                    <th>Total Recibo</th>
                     <th>Acciones</th>
                   </tr>
                   </tr>

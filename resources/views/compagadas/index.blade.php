@@ -122,7 +122,7 @@
                   <th>Recibo</th>
                   <th>Fecha</th>
                     <th>Origen</th>
-                    <th>RP</th>
+                    <th>Total Recibo</th>
                     <th>Acciones</th>
                   </tr>
                   </thead>
@@ -133,8 +133,8 @@
                     <td>REC-2021-{{$an->recibo}}</td>
                     <td>{{date('d-M-y', strtotime($an->created_at))}}</td>
                     <td>{{substr($an->lasto,0,5)}} {{substr($an->nameo,0,5)}}</td>
+                    <td>{{$an->totalrecibo}}</td>
                    
-                    <td>{{$an->nameu}} {{$an->lastu}}</td>
 
                     <td>
                     @if(Auth::user()->rol == 1)
@@ -165,7 +165,7 @@
                   <th>Recibo</th>
                   <th>Fecha</th>
                     <th>Origen</th>
-                    <th>RP</th>
+                    <th>Total Recibo</th>
                     <th>Acciones</th>
                   </tr>
                   </tfoot>

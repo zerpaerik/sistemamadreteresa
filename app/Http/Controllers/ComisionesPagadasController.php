@@ -31,7 +31,7 @@ class ComisionesPagadasController extends Controller
 
         
         $comisiones = DB::table('comisiones as a')
-        ->select('a.id', 'a.estatus','a.recibo','a.id_origen', 'a.id_atencion','a.fecha_pago','a.created_at','a.detalle','a.usuario', 'a.porcentaje', 'a.monto', 'a.estatus', 'at.id_paciente', 'at.tipo_atencion', 'at.sede', 'at.tipo_origen', 'at.id_origen', 'at.monto as total', 'b.nombres', 'b.apellidos', 'c.name as nameo', 'c.lastname as lasto', 'd.name as nameu', 'd.lastname as lastu')
+        ->select('a.id', 'a.estatus','a.recibo','a.id_origen', 'a.id_atencion','a.fecha_pago','a.created_at','a.detalle','a.usuario', 'a.porcentaje', 'a.monto', 'a.estatus', 'at.id_paciente', 'at.tipo_atencion', 'at.sede', 'at.tipo_origen', 'at.id_origen', 'at.monto as total', 'b.nombres', 'b.apellidos', 'c.name as nameo', 'c.lastname as lasto', 'd.name as nameu', 'd.lastname as lastu',DB::raw('SUM(a.monto) as totalrecibo'))
         ->join('atenciones as at', 'at.id', 'a.id_atencion')
         ->join('pacientes as b', 'b.id', 'at.id_paciente')
         ->join('users as c', 'c.id', 'at.id_origen')
@@ -56,7 +56,7 @@ class ComisionesPagadasController extends Controller
       
 
         $comisiones = DB::table('comisiones as a')
-        ->select('a.id', 'a.estatus','a.recibo','a.id_origen','a.fecha_pago', 'a.id_atencion','a.created_at','a.detalle','a.usuario', 'a.porcentaje', 'a.monto', 'a.estatus', 'at.id_paciente', 'at.tipo_atencion', 'at.sede', 'at.tipo_origen', 'at.id_origen', 'at.monto as total', 'b.nombres', 'b.apellidos', 'c.name as nameo', 'c.lastname as lasto', 'd.name as nameu', 'd.lastname as lastu')
+        ->select('a.id', 'a.estatus','a.recibo','a.id_origen','a.fecha_pago', 'a.id_atencion','a.created_at','a.detalle','a.usuario', 'a.porcentaje', 'a.monto', 'a.estatus', 'at.id_paciente', 'at.tipo_atencion', 'at.sede', 'at.tipo_origen', 'at.id_origen', 'at.monto as total', 'b.nombres', 'b.apellidos', 'c.name as nameo', 'c.lastname as lasto', 'd.name as nameu', 'd.lastname as lastu',DB::raw('SUM(a.monto) as totalrecibo'))
         ->join('atenciones as at', 'at.id', 'a.id_atencion')
         ->join('pacientes as b', 'b.id', 'at.id_paciente')
         ->join('users as c', 'c.id', 'at.id_origen')
@@ -97,7 +97,7 @@ class ComisionesPagadasController extends Controller
             
 
         $comisiones = DB::table('comisiones as a')
-        ->select('a.id', 'a.estatus','a.recibo','a.id_origen','a.fecha_pago', 'a.id_atencion','a.created_at','a.detalle','a.usuario', 'a.porcentaje', 'a.monto', 'a.estatus', 'at.id_paciente', 'at.tipo_atencion', 'at.sede', 'at.tipo_origen', 'at.id_origen', 'at.monto as total', 'b.nombres', 'b.apellidos', 'c.name as nameo', 'c.lastname as lasto', 'd.name as nameu', 'd.lastname as lastu')
+        ->select('a.id', 'a.estatus','a.recibo','a.id_origen','a.fecha_pago', 'a.id_atencion','a.created_at','a.detalle','a.usuario', 'a.porcentaje', 'a.monto', 'a.estatus', 'at.id_paciente', 'at.tipo_atencion', 'at.sede', 'at.tipo_origen', 'at.id_origen', 'at.monto as total', 'b.nombres', 'b.apellidos', 'c.name as nameo', 'c.lastname as lasto', 'd.name as nameu', 'd.lastname as lastu',DB::raw('SUM(a.monto) as totalrecibo'))
         ->join('atenciones as at', 'at.id', 'a.id_atencion')
         ->join('pacientes as b', 'b.id', 'at.id_paciente')
         ->join('users as c', 'c.id', 'at.id_origen')
@@ -123,7 +123,7 @@ class ComisionesPagadasController extends Controller
          
 
         $comisiones = DB::table('comisiones as a')
-        ->select('a.id', 'a.estatus','a.recibo', 'a.id_origen','a.id_atencion','a.fecha_pago','a.created_at','a.detalle','a.usuario', 'a.porcentaje', 'a.monto', 'a.estatus', 'at.id_paciente', 'at.tipo_atencion', 'at.sede', 'at.tipo_origen', 'at.id_origen', 'at.monto as total', 'b.nombres', 'b.apellidos', 'c.name as nameo', 'c.lastname as lasto', 'd.name as nameu', 'd.lastname as lastu')
+        ->select('a.id', 'a.estatus','a.recibo', 'a.id_origen','a.id_atencion','a.fecha_pago','a.created_at','a.detalle','a.usuario', 'a.porcentaje', 'a.monto', 'a.estatus', 'at.id_paciente', 'at.tipo_atencion', 'at.sede', 'at.tipo_origen', 'at.id_origen', 'at.monto as total', 'b.nombres', 'b.apellidos', 'c.name as nameo', 'c.lastname as lasto', 'd.name as nameu', 'd.lastname as lastu',DB::raw('SUM(a.monto) as totalrecibo'))
         ->join('atenciones as at', 'at.id', 'a.id_atencion')
         ->join('pacientes as b', 'b.id', 'at.id_paciente')
         ->join('users as c', 'c.id', 'at.id_origen')
