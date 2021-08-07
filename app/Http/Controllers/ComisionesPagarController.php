@@ -320,11 +320,13 @@ class ComisionesPagarController extends Controller
 
     public function pagarmultiple(Request $request)
     {
+
+
       if(isset($request->com)){
         $last = Comisiones::select('recibo')->orderby('recibo', 'DESC')->first();
         if (!empty($last->recibo)) {
-          $last = explode("-", $last->recibo);
-          $last = array_pop($last);
+          $last = $last->recibo;
+         // $last = array_pop($last);
         } else {
           $last = 0;
         }
@@ -886,8 +888,8 @@ class ComisionesPagarController extends Controller
 
       $last = Comisiones::select('recibo')->orderby('recibo', 'DESC')->first();
       if (!empty($last->recibo)) {
-        $last = explode("-", $last->recibo);
-        $last = array_pop($last);
+        $last = $last->recibo;
+        //$last = array_pop($last);
       } else {
         $last = 0;
       }
@@ -902,6 +904,7 @@ class ComisionesPagarController extends Controller
       $p = Comisiones::find($id);
       $p->estatus =2;
       $p->recibo = $recibo;
+      $p->fecha_pago = date('Y-m-d');
       $res = $p->update();
     
       return back();
