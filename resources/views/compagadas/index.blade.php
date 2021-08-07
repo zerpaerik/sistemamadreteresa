@@ -121,7 +121,6 @@
                   <tr>
                   <th>Recibo</th>
                   <th>Fecha</th>
-                    <th>Paciente</th>
                     <th>Origen</th>
                     <th>RP</th>
                     <th>Acciones</th>
@@ -133,7 +132,6 @@
                   <tr>
                     <td>REC-2021-{{$an->recibo}}</td>
                     <td>{{date('d-M-y', strtotime($an->created_at))}}</td>
-                    <td>{{substr($an->apellidos,0,5)}} {{substr($an->nombres,0,5)}}</td>
                     <td>{{substr($an->lasto,0,5)}} {{substr($an->nameo,0,5)}}</td>
                    
                     <td>{{$an->nameu}} {{$an->lastu}}</td>
@@ -166,7 +164,6 @@
                   <tr>
                   <th>Recibo</th>
                   <th>Fecha</th>
-                    <th>Paciente</th>
                     <th>Origen</th>
                     <th>RP</th>
                     <th>Acciones</th>

@@ -118,7 +118,6 @@
                   <tr>
                   <th>Recibo</th>
                   <th>Fecha</th>
-                    <th>Paciente</th>
                     <th>Origen</th>
                     <th>Acciones</th>
                   </tr>
@@ -130,7 +129,6 @@
                   <tr>
                     <td>REC-2021-{{$an->recibo}}</td>
                     <td>{{$an->created_at}}</td>
-                    <td>{{$an->apellidos}} {{$an->nombres}}</td>
                     <td>{{$an->lasto}} {{$an->nameo}}</td>
                     <td>
                     @if(Auth::user()->rol == 1)
@@ -159,7 +157,6 @@
                   <tr>
                   <th>Recibo</th>
                   <th>Fecha</th>
-                    <th>Paciente</th>
                     <th>Origen</th>
                     <th>Acciones</th>
                   </tr>
