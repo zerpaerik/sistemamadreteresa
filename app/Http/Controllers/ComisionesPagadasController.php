@@ -251,6 +251,29 @@ class ComisionesPagadasController extends Controller
         //
     }
 
+    public function reversar($id)
+    {
+
+      $com = Comisiones::where('id','=',$id)->first();
+
+     
+      $a = Atenciones::where('id','=',$com->id_atencion)->first();
+      $a->pagado =1;
+      $resa = $a->update();
+     
+
+      $p = Comisiones::find($id);
+      $p->estatus =1;
+      $p->recibo = '';
+      $p->fecha_pago = NULL;
+      $res = $p->update();
+    
+      return back();
+
+        //
+    }
+
+
 
     public function reporte_pagadas(Request $request){
 

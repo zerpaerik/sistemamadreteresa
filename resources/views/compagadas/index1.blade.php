@@ -139,6 +139,11 @@
                               </i>
                               Recibo
                           </a>
+                          <a class="btn btn-danger btn-sm" href="comisionesp-reversar-{{$an->id}}" onclick="return confirm('¿Desea reversar este pago?')">
+                    <i class="fa fa-money" aria-hidden="true">
+                              </i>
+                              Reversar
+                          </a>
                    
                    
 

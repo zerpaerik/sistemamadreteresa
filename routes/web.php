@@ -289,6 +289,7 @@ Route::get('reporte_compagar1', 'ComisionesPagarController@reporte_compagar1')->
 
 Route::get('comisionesp', 'ComisionesPagadasController@index')->name('comisionesp.index');
 Route::get('comisionesp1', 'ComisionesPagadasController@index1')->name('comisionesp.index1');
+Route::get('comisionesp-reversar-{id}', 'ComisionesPagadasController@reversar');
 Route::get('comisionep-ticket-{id}', 'ComisionesPagadasController@ticket')->middleware('auth');
 Route::get('reporte/pagadas', 'ComisionesPagadasController@reporte_pagadas');
 Route::get('reporte/pagadas1', 'ComisionesPagadasController@reporte_pagadas1');
