@@ -76,7 +76,7 @@
       <div class="container-fluid">
       <div class="card">
               <div class="card-header">
-              <form method="get" action="comisiones1">					
+              <form method="get" action="comisionesp1">					
                   <label for="exampleInputEmail1">Filtros de Busqueda</label>
 
                     <div class="row">

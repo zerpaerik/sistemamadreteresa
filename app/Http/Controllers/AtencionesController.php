@@ -1441,41 +1441,19 @@ return view('atenciones.particular');
                               $cb->save();
                           }
 
-                          if ($request->origen == 1 && $servicio->porcentaje > 0) {
-                              $lab = new Comisiones();
-                              $lab->id_atencion =  $lab->id;
-                              $lab->porcentaje = $servicio->porcentaje;
-                              $lab->detalle =  $servicio->nombre;
-                              $lab->id_responsable = $searchUsuarioID->id;
-                              $lab->id_origen = $request->origen;
-                              $lab->monto = (float)$request->monto_s['rayos'][$key]['monto'] * $servicio->porcentaje / 100;
-                              $lab->estatus = 1;
-                              $lab->usuario = Auth::user()->id;
-                              $lab->sede = $request->session()->get('sede');
-                              $lab->save();
-                          } elseif ($request->origen == 2 && $servicio->porcentaje1 > 0) {
-                              $lab = new Comisiones();
-                              $lab->id_atencion =  $lab->id;
-                              $lab->porcentaje = $servicio->porcentaje1;
-                              $lab->detalle =  $servicio->nombre;
-                              $lab->id_responsable = $searchUsuarioID->id;
-                              $lab->id_origen = $request->origen;
-                              $lab->monto = (float)$request->monto_s['rayos'][$key]['monto'] * $servicio->porcentaje1 / 100;
-                              $lab->estatus = 1;
-                              $lab->usuario = Auth::user()->id;
-                              $lab->sede = $request->session()->get('sede');
-                              $lab->save();
-                          } else {
-
-                /*  $lab = new Comisiones();
-                  $lab->id_atencion =  $lab->id;
-                  $lab->porcentaje = $servicio->porcentaje2;
-                  $lab->detalle =  $servicio->nombre;
-                  $lab->monto = (float)$request->monto_s['rayos'][$key]['monto'] * $servicio->porcentaje2 / 100;
-                  $lab->estatus = 1;
-                  $lab->usuario = Auth::user()->id;
-                  $lab->save();*/
-                          }
+                         if ($request->origen == 2 && $servicio->porcentaje1 > 0) {
+                              $comision = new Comisiones();
+                              $comision->id_atencion =  $lab->id;
+                              $comision->porcentaje = $servicio->porcentaje1;
+                              $comision->detalle =  $servicio->nombre;
+                              $comision->id_responsable = $searchUsuarioID->id;
+                              $comision->id_origen = $request->origen;
+                              $comision->monto = (float)$request->monto_s['rayos'][$key]['monto'] * $servicio->porcentaje1 / 100;
+                              $comision->estatus = 1;
+                              $comision->usuario = Auth::user()->id;
+                              $comision->sede = $request->session()->get('sede');
+                              $comision->save();
+                          } 
                       }
                   }
               }
