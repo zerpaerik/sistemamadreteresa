@@ -45,7 +45,7 @@ class ResultadosController extends Controller
         ->join('pacientes as pa', 'pa.id', 'b.id_paciente')
         ->join('servicios as s', 's.id', 'a.id_servicio')
         ->where('b.estatus', '=', 1)
-        ->where('b.resta', '=', 0)
+       // ->where('b.resta', '=', 0)
         ->where('a.estatus', '=', 1)
         ->where('b.sede', '=', $request->session()->get('sede'))
         ->whereBetween('a.created_at', [$f1, $f2])
@@ -66,7 +66,7 @@ class ResultadosController extends Controller
             ->join('servicios as s', 's.id', 'a.id_servicio')
             ->where('b.estatus', '=', 1)
             ->where('a.estatus', '=', 1)
-            ->where('b.resta', '=', 0)
+            //->where('b.resta', '=', 0)
             ->where('b.sede', '=', $request->session()->get('sede'))
             ->where('a.created_at', '=', date('Y-m-d'))
             ->orderBy('a.id','DESC')
@@ -97,7 +97,7 @@ class ResultadosController extends Controller
         ->join('analisis as s', 's.id', 'a.id_laboratorio')
         ->where('b.estatus', '=', 1)
         ->where('a.estatus', '=', 1)
-        ->where('b.resta', '=', 0)
+       // ->where('b.resta', '=', 0)
         ->where('b.sede', '=', $request->session()->get('sede'))
         ->whereBetween('a.created_at', [$f1, $f2])
         ->orderBy('a.id','DESC')
@@ -116,7 +116,7 @@ class ResultadosController extends Controller
             ->join('analisis as s', 's.id', 'a.id_laboratorio')
             ->where('b.estatus', '=', 1)
             ->where('a.estatus', '=', 1)
-            ->where('b.resta', '=', 0)
+           // ->where('b.resta', '=', 0)
             ->where('b.sede', '=', $request->session()->get('sede'))
             ->where('a.created_at', '=', date('Y-m-d'))
             ->orderBy('a.id','DESC')
@@ -509,7 +509,7 @@ class ResultadosController extends Controller
         ->first();*/
 
         $resultados = DB::table('resultados_servicios as a')
-        ->select('a.id', 'a.id_atencion', 'a.id_servicio', 'a.informe','b.usuario', 'a.created_at', 'a.estatus', 'b.id_paciente', 'b.id_origen', 's.nombre as servicio', 'pa.fechanac','pa.nombres', 'pa.apellidos','pa.dni', 'c.name', 'c.lastname')
+        ->select('a.id', 'a.id_atencion', 'a.id_servicio', 'a.informe','b.usuario', 'a.created_at', 'a.estatus','b.tipo_origen', 'b.id_paciente', 'b.id_origen', 's.nombre as servicio', 'pa.fechanac','pa.nombres', 'pa.apellidos','pa.dni', 'c.name', 'c.lastname')
         ->join('atenciones as b', 'b.id', 'a.id_atencion')
         ->join('users as c', 'c.id', 'b.id_origen')
         ->join('pacientes as pa', 'pa.id', 'b.id_paciente')
@@ -530,9 +530,12 @@ class ResultadosController extends Controller
   
         $informe->setValue('name', $resultados->apellidos. ' '.$resultados->nombres. ' Edad: '.$edad);
         $informe->setValue('descripcion',$resultados->servicio);
-        $informe->setValue('date',date('d-m-Y'));    
+        $informe->setValue('date',date('d-m-Y'));  
+        if($resultados->tipo_origen == 2){
+        $informe->setValue('indicacion',$resultados->id_origen);
+        } else {
         $informe->setValue('indicacion','MADRE TERESA');
-    
+        } 
         $informe->saveAs($resultados->id.'-'.$resultados->apellidos.'-'.$resultados->nombres.'-'.$resultados->dni.'.docx');
         return response()->download($resultados->id.'-'.$resultados->apellidos.'-'.$resultados->nombres.'-'.$resultados->dni.'.docx');
 
@@ -556,7 +559,7 @@ class ResultadosController extends Controller
         ->first();*/
 
         $resultados = DB::table('resultados_laboratorio as a')
-        ->select('a.id', 'a.id_atencion', 'a.id_laboratorio', 'a.informe','b.usuario', 'a.created_at', 'a.estatus', 'b.id_paciente', 'b.id_origen', 's.nombre as servicio', 'pa.fechanac','pa.nombres', 'pa.apellidos','pa.dni', 'c.name', 'c.lastname')
+        ->select('a.id', 'a.id_atencion', 'a.id_laboratorio', 'a.informe','b.usuario', 'a.created_at', 'a.estatus','b.tipo_origen', 'b.id_paciente', 'b.id_origen', 's.nombre as servicio', 'pa.fechanac','pa.nombres', 'pa.apellidos','pa.dni', 'c.name', 'c.lastname')
         ->join('atenciones as b', 'b.id', 'a.id_atencion')
         ->join('users as c', 'c.id', 'b.id_origen')
         ->join('pacientes as pa', 'pa.id', 'b.id_paciente')
@@ -578,8 +581,11 @@ class ResultadosController extends Controller
         $informe->setValue('name', $resultados->apellidos. ' '.$resultados->nombres. ' Edad: '.$edad);
         $informe->setValue('descripcion',$resultados->servicio);
         $informe->setValue('date',date('d-m-Y'));    
-        $informe->setValue('indicacion','MADRE TERESA');
-    
+        if($resultados->tipo_origen == 2){
+          $informe->setValue('indicacion',$resultados->id_origen);
+          } else {
+          $informe->setValue('indicacion','MADRE TERESA');
+        }     
         $informe->saveAs($resultados->id.'-'.$resultados->apellidos.'-'.$resultados->nombres.'-'.$resultados->dni.'.docx');
         return response()->download($resultados->id.'-'.$resultados->apellidos.'-'.$resultados->nombres.'-'.$resultados->dni.'.docx');
 
