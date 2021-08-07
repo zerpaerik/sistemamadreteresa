@@ -188,6 +188,7 @@
                 <table id="" class="table table-bordered table-striped">
                   <thead>
                   <tr>
+                    <th>Id</th>
                     <th>Fecha</th>
                     <th>Paciente</th>
                     <th>Origen</th>
@@ -231,7 +232,8 @@
                   </tbody>
                   <tfoot>
                   <tr>
-                  <th>Fecha</th>
+                  <th>Id</th>
+                    <th>Fecha</th>
                     <th>Paciente</th>
                     <th>Origen</th>
                     <th>Detalle</th>
