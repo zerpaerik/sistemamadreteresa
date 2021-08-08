@@ -323,7 +323,8 @@ class ComisionesPagarController extends Controller
 
 
       if(isset($request->com)){
-        $last = Comisiones::select('recibo')->orderby('recibo', 'DESC')->first();
+        $last = Comisiones::select('recibo')->where('estatus','=',2)->orderby('recibo', 'desc')->max('recibo');
+
         if (!empty($last->recibo)) {
           $last = $last->recibo;
          // $last = array_pop($last);
@@ -886,8 +887,10 @@ class ComisionesPagarController extends Controller
 
       $com = Comisiones::where('id','=',$id)->first();
 
-      $last = Comisiones::select('recibo')->orderby('recibo', 'DESC')->first();
-      if (!empty($last->recibo)) {
+      $last = Comisiones::select('recibo')->where('estatus','=',2)->orderby('recibo', 'desc')->max('recibo');
+
+    
+      if ($last->recibo != NULL) {
         $last = $last->recibo;
         //$last = array_pop($last);
       } else {
