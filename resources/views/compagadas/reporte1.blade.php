@@ -45,7 +45,7 @@
 		padding: 8px 5px;
 	}
 </style>
-		 <img src="/var/www/html/sysmadeteresa/public/img/logo.jpeg"  style="width: 20%;"/>
+<img src="/var/www/html/sistemamadreteresa/public/image.png"  style="width: 20%; color: black;"/>
 
 <div>
 	<div class="text-center title-header col-12">

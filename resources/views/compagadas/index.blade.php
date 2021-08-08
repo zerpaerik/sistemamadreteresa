@@ -104,7 +104,7 @@
               <br>
               @if($f1 != null)
               <div class="row">
-              <form action="reporte/pagadas" method="get">
+              <form action="reporte/pagadas" method="get" target="_blank">
 
                 <input type="hidden" value="{{$f1}}" name="f1">
                   <input type="hidden" value="{{$f2}}" name="f2">
