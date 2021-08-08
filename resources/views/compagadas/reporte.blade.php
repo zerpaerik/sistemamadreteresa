@@ -57,9 +57,8 @@
 	<div class="col-6">
 		Fecha de Impresión: {{ Carbon\Carbon::now()->format('d/m/Y') }}
 	</div>
-	
-
 </div>
+
 
 <br>
 
@@ -81,9 +80,21 @@
 				<td style="padding: 0;text-overflow: ellipsis;">{{$atec->totalrecibo}}</td>
 			</tr>
 		@endforeach
+
+		<tr>
+			<th>TOTAL PAGADO</th>
+			<th>TOTAL SOBRES</th>
+		</tr>
+		<tr>
+			<td>{{$sobres->totalrecibo}}</td>
+			<td>{{$sobres->total}}</td>
+			
+		</tr>
 	
 	</table>
 </div>
+
+
 
 
 

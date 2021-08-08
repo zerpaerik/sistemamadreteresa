@@ -303,8 +303,9 @@ class ComisionesPagadasController extends Controller
         ->where('at.sede', '=', $request->session()->get('sede'))
        // ->where('at.id_origen','=',$request->origen)
         ->whereBetween('a.fecha_pago', [$request->f1, $request->f2])
-        ->groupBy('a.recibo')      
+        //->groupBy('a.recibo')      
         ->first();
+
     
    
    
@@ -354,7 +355,7 @@ class ComisionesPagadasController extends Controller
         ->join('users as c', 'c.id', 'at.id_origen')
         ->join('users as d', 'd.id', 'a.usuario')
         ->where('a.estatus', '=', 2)
-        ->where('at.tipo_origen', '=', 1)
+        ->where('at.tipo_origen', '=', 2)
         ->where('at.sede', '=', $request->session()->get('sede'))
        // ->where('at.id_origen','=',$request->origen)
         ->whereBetween('a.fecha_pago', [$request->f1, $request->f2])

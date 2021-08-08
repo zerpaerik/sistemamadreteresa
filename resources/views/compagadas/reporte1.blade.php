@@ -81,7 +81,18 @@
 				<td style="padding: 0;text-overflow: ellipsis;">{{$atec->totalrecibo}}</td>
 			</tr>
 		@endforeach
+		<tr>
+			<th>TOTAL PAGADO</th>
+			<th>TOTAL SOBRES</th>
+		</tr>
+		<tr>
+			<td>{{$sobres->totalrecibo}}</td>
+			<td>{{$sobres->total}}</td>
+			
+		</tr>
 	
 	</table>
 </div>
+
+
 

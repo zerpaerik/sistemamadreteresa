@@ -141,6 +141,11 @@
                               </i>
                               Delete
                           </a>
+                          <a class="btn btn-primary btn-sm" href="gastos-ticket-{{$client->id}}" target="_blank">
+                              <i class="fas fa-print">
+                              </i>
+                              Ticket
+                          </a>
                           @endif
                           </td>
                   </tr>

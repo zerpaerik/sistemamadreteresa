@@ -32,14 +32,16 @@ class PacientesController extends Controller
         ->join('users as u', 'u.id', 'a.usuario')
         ->where('a.estatus', '=', 1)
         ->where('a.apellidos','like','%'.$request->filtro.'%')
-        ->orderby('apellidos','asc')
+        ->orderby('a.apellidos','asc')
         ->get(); 
+
+        dd($pacientes);
         }else{
-          $pacientes = DB::table('pacientes as a')
+        $pacientes = DB::table('pacientes as a')
           ->select('a.id','a.nombres','a.dni','a.apellidos','a.fechanac','a.email','a.sexo','a.telefono','a.empresa','a.estatus')
           ->where('a.estatus', '=', 999999999)
           ->get(); 
-          }
+        }
 
        
         return view('pacientes.index', compact('pacientes'));

@@ -57,12 +57,12 @@
       <div class="container-fluid">
         <div class="row mb-2">
           <div class="col-sm-6">
-            <h1 class="m-0 text-dark">Reporte de Comisiones por Pagar a Personal</h1>
+            <h1 class="m-0 text-dark">Comisiones por Pagar a Personal</h1>
           </div><!-- /.col -->
           <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">
               <li class="breadcrumb-item"><a href="#">Home</a></li>
-              <li class="breadcrumb-item active">Reporte de Comisiones por Pagar a Personal</li>
+              <li class="breadcrumb-item active">Comisiones por Pagar a Personal</li>
             </ol>
           </div><!-- /.col -->
         </div><!-- /.row -->
@@ -110,15 +110,19 @@
 
                     <div class="col-md-3">
                     <label for="exampleInputEmail1">Items Total</label>
+                    @if($total != null)
                     <input type="text" disabled class="form-control" value="{{$total->cantidad}}">
-                  </div>
+                    @endif
+                    </div>
 
-                  <div class="col-md-3">
+                    <div class="col-md-3">
                     <label for="exampleInputEmail1">Monto Total</label>
+                    @if($total != null)
                     <input type="text" disabled class="form-control" value="{{$total->monto}} Soles" >
-                  </div>
+                    @endif
+                    </div>
 
-                  </div>
+                    </div>
               
               </div>
               <!-- /.card-header -->

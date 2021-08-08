@@ -57,12 +57,12 @@
       <div class="container-fluid">
         <div class="row mb-2">
           <div class="col-sm-6">
-            <h1 class="m-0 text-dark">Reporte de Comisiones por Pagar a Profesionales</h1>
+            <h1 class="m-0 text-dark">Comisiones por Pagar a Profesionales</h1>
           </div><!-- /.col -->
           <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">
               <li class="breadcrumb-item"><a href="#">Home</a></li>
-              <li class="breadcrumb-item active">Reporte de Comisiones por Pagar a Profesionales</li>
+              <li class="breadcrumb-item active">Comisiones por Pagar a Profesionales</li>
             </ol>
           </div><!-- /.col -->
         </div><!-- /.row -->

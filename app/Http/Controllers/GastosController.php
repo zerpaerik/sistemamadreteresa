@@ -139,6 +139,23 @@ class GastosController extends Controller
         return view('gastos.edit', compact('gastos')); //
     }
 
+    public function ticket($id)
+    {
+        
+
+        $gastos = DB::table('debitos as a')
+        ->select('a.id','a.descripcion','a.monto','a.recibido','a.usuario','a.sede','a.tipo','a.created_at','b.name')
+        ->join('users as b','b.id','a.usuario')
+        ->where('a.id','=',$id)
+        ->first(); 
+
+        $view = \View::make('gastos.ticket')->with('gasto', $gastos);;
+        $customPaper = array(0,0,1000.00,200.00);
+
+        $pdf = \App::make('dompdf.wrapper');
+        $pdf->loadHTML($view)->setPaper($customPaper, 'landscape');
+        return $pdf->stream('ticket_ver');    }
+
     /**
      * Update the specified resource in storage.
      *

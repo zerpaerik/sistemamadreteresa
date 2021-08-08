@@ -370,6 +370,7 @@ Route::get('gastos-create', 'GastosController@create')->name('gastos.create')->m
 Route::post('gastos/create', 'GastosController@store')->middleware('auth');
 Route::get('gastos-delete-{id}', 'GastosController@delete')->middleware('auth');
 Route::get('gastos-edit-{id}', 'GastosController@edit')->name('gastos.edit');
+Route::get('gastos-ticket-{id}', 'GastosController@ticket');
 Route::post('gastos/edit', 'GastosController@update');
 
 Route::get('siniestros', 'SiniestrosController@index')->name('siniestros.index');

@@ -411,7 +411,7 @@
               <li class="nav-item">
                 <a href="{{route('compagar.index')}}" class="nav-link">
                   <i class="fas fa-hand-holding-usd nav-icon"></i>
-                  <p>ComPagar Personal</p>
+                  <p>Comisiones Personal</p>
                 </a>
               </li>
 
@@ -419,7 +419,7 @@
               <li class="nav-item">
                 <a href="{{route('compagar1.index')}}" class="nav-link">
                   <i class="fas fa-hand-holding-usd nav-icon"></i>
-                  <p>ComPagar Profesionales</p>
+                  <p>Comisiones Profesionales</p>
                 </a>
               </li>
               
