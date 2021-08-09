@@ -35,7 +35,6 @@ class PacientesController extends Controller
         ->orderby('a.apellidos','asc')
         ->get(); 
 
-        dd($pacientes);
         }else{
         $pacientes = DB::table('pacientes as a')
           ->select('a.id','a.nombres','a.dni','a.apellidos','a.fechanac','a.email','a.sexo','a.telefono','a.empresa','a.estatus')
