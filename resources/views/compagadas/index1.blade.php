@@ -133,12 +133,13 @@
                     <td>{{$an->lasto}} {{$an->nameo}}</td>
                     <td>{{$an->totalrecibo}}</td>
                     <td>
-                    @if(Auth::user()->rol == 1)
                     <a target="_blank" class="btn btn-success btn-sm" href="comisionep-ticket-{{$an->recibo}}">
                               <i class="fas fa-print">
                               </i>
                               Recibo
                           </a>
+                    @if(Auth::user()->rol == 1)
+                    
                           <a class="btn btn-danger btn-sm" href="comisionesp-reversar-{{$an->id}}" onclick="return confirm('¿Desea reversar este pago?')">
                     <i class="fa fa-money" aria-hidden="true">
                               </i>
