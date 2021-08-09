@@ -104,6 +104,7 @@
                 <table id="" class="table table-bordered table-striped">
                   <thead>
                   <tr>
+                  <th>id</th>
                     <th>Fecha</th>
                     <th>Pac.</th>
                     <th>Origen</th>
@@ -115,6 +116,7 @@
 
                   @foreach($resultados as $an)
                   <tr>
+                  <td>{{$an->id}}</td>
                    <td>{{$an->created_at}}</td>
                     <td>{{$an->apellidos}} {{$an->nombres}}</td>
                     <td>{{$an->lastname}} {{$an->name}}</td>
@@ -233,6 +235,7 @@
                   </tbody>
                   <tfoot>
                   <tr>
+                  <th>id</th>
                     <th>Fecha</th>
                     <th>Pac.</th>
                     <th>Origen</th>
