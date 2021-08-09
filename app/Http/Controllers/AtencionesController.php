@@ -2360,13 +2360,15 @@ return view('atenciones.particular');
              }
            }
 
-           foreach ($rel as $rl) {
-            $id_rl = $rl->id;
-            if(!is_null($id_rs)){
-              $rsf = ResultadosLaboratorio::where('id','=',$id_rl)->first();
-              $rsf->estatus = 0;
-              $rsf->save();
-             }
+           if ($rel != null) {
+               foreach ($rel as $rl) {
+                   $id_rl = $rl->id;
+                   if (!is_null($id_rl)) {
+                       $rsll = ResultadosLaboratorio::where('id', '=', $id_rl)->first();
+                       $rsll->estatus = 0;
+                       $rsll->save();
+                   }
+               }
            }
 
          

@@ -129,6 +129,11 @@
                     <td>{{$client->name}}</td>
                     <td>{{$client->created_at}}</td>
                     <td>
+                    <a class="btn btn-primary btn-sm" href="gastos-ticket-{{$client->id}}" target="_blank">
+                              <i class="fas fa-print">
+                              </i>
+                              Ticket
+                          </a>
                     @if(Auth::user()->rol == 1)
 
                           <a class="btn btn-info btn-sm" href="gastos-edit-{{$client->id}}">
@@ -141,11 +146,7 @@
                               </i>
                               Delete
                           </a>
-                          <a class="btn btn-primary btn-sm" href="gastos-ticket-{{$client->id}}" target="_blank">
-                              <i class="fas fa-print">
-                              </i>
-                              Ticket
-                          </a>
+                        
                           @endif
                           </td>
                   </tr>
