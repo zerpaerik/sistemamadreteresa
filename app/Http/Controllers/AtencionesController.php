@@ -1705,10 +1705,13 @@ return view('atenciones.particular');
           $cobf->delete();
       }
 
+      $creditosa = Creditos::where('id_atencion','=',$request->id)->first();
+
 
       $creditos = Creditos::where('id_atencion','=',$request->id)->first();
       $creditos->monto = $request->abono;
       $creditos->tipopago =$request->tipo_pago;
+      $creditos->created_at =$creditosa->created_at;
       if ($request->tipo_pago == 'EF') {
         $creditos->efectivo = $request->abono;
         $creditos->tarjeta = '0';
