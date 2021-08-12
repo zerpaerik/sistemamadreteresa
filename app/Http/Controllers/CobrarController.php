@@ -59,7 +59,6 @@ class CobrarController extends Controller
         ->join('users as c', 'c.id', 'at.id_origen')
         ->join('users as d', 'd.id', 'at.usuario')
         ->join('sedes as se', 'se.id', 'at.sede')
-        ->whereBetween('a.created_at', [$f1, $f2])
         ->where('a.estatus', '=', 1)
         ->where('a.resta', '!=', 0)
         ->get();
