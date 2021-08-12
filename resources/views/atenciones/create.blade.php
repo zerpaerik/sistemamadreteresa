@@ -230,7 +230,7 @@
                 <label for="servicios_#index#_servicio" class="col-sm-1 control-label">Procedimiento</label>
                     <div class="col-sm-3">
                       <select id="servicios_#index#_servicio" name="id_servicio[servicios][#index#][servicio]" class="selectServ form-control">
-                      <option value="">Seleccionar Procedimiento</option>
+                      <option value="1">Seleccionar Procedimiento</option>
                         @foreach($otros as $ot)
                           <option value="{{$ot->id}}">
                             {{$ot->nombre}} Precio:{{$ot->precio}}
@@ -296,7 +296,7 @@
                 <label for="ecografias_#index#_ecografia" class="col-sm-1 control-label">Ecografias</label>
                     <div class="col-sm-3">
                       <select id="ecografias_#index#_ecografia" name="id_ecografia[ecografias][#index#][ecografia]" class="selectEco form-control">
-                        <option value="">Seleccionar Ecografia</option>
+                        <option value="1">Seleccionar Ecografia</option>
                         @foreach($ecografias as $eco)
                           <option value="{{$eco->id}}">
                             {{$eco->nombre}} Precio:{{$eco->precio}}
@@ -364,7 +364,7 @@
                 <label for="rayos_#index#_rayo" class="col-sm-1 control-label">Rayos X</label>
                     <div class="col-sm-3">
                       <select id="rayos_#index#_rayo" name="id_rayo[rayos][#index#][rayo]" class="selectRayos form-control">
-                        <option value="">Seleccionar Rayos X</option>
+                        <option value="1">Seleccionar Rayos X</option>
                         @foreach($rayos as $ray)
                           <option value="{{$ray->id}}">
                             {{$ray->nombre}} Precio:{{$ray->precio}}
@@ -434,7 +434,7 @@
                   <label for="salud_#index#_salu" class="col-sm-1 control-label">Salud Mental</label>
                       <div class="col-sm-3">
                         <select id="salud_#index#_salu" name="id_salu[salud][#index#][salu]" class="selectSalud form-control">
-                          <option value="">Seleccionar Salud M</option>
+                          <option value="1">Seleccionar Salud M</option>
                           @foreach($salud as $sa)
                             <option value="{{$sa->id}}">
                               {{$sa->nombre}} Precio:{{$sa->precio}}
@@ -504,7 +504,7 @@
                 <label for="analisis_#index#_rayo" class="col-sm-2 control-label">Laboratorios</label>
                     <div class="col-sm-3">
                       <select id="analisis_#index#_sayo" name="id_analisi[analisis][#index#][analisi]" class="selectLab form-control">
-                        <option value="" >Seleccionar Labo.</option>
+                        <option value="1" >Seleccionar Labo.</option>
                         @foreach($analisis as $ana)
                           <option value="{{$ana->id}}">
                             {{$ana->nombre}} Precio:{{$ana->precio}}
@@ -574,7 +574,7 @@
           <label for="paquetes_#index#_paquete" class="col-sm-2 control-label">Paquetes</label>
               <div class="col-sm-3">
                 <select id="paquetes_#index#_paquete" name="id_paquete[paquetes_][#index#][paquete]" class="selectPaq form-control">
-                  <option value="" >Seleccionar Paquete.</option>
+                  <option value="1" >Seleccionar Paquete.</option>
                   @foreach($paquetes as $paq)
                     <option value="{{$paq->id}}">
                       {{$paq->nombre}} Precio:{{$paq->precio}}

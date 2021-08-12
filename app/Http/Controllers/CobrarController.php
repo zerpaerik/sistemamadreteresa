@@ -106,7 +106,7 @@ class CobrarController extends Controller
         ->join('users as d', 'd.id', 'at.usuario')
         ->join('sedes as se', 'se.id', 'at.sede')
         ->join('sedes as sec', 'sec.id', 'a.sede')
-        ->whereBetween('a.created_at', [date('Y-m-d 00:00:00', strtotime($f1)), date('Y-m-d 23:59:59', strtotime($f2))])
+        //->whereBetween('a.created_at', [date('Y-m-d 00:00:00', strtotime($f1)), date('Y-m-d 23:59:59', strtotime($f2))])
         ->get();
 
 
@@ -122,7 +122,7 @@ class CobrarController extends Controller
 
 
         $ticket = DB::table('historial_cobros as a')
-        ->select('a.id', 'a.id_cobro', 'a.tipopago','a.monto','a.created_at','a.sede', 'co.id_atencion','co.resta','at.id_paciente','at.usuario',  'at.tipo_atencion', 'at.sede', 'at.tipo_origen', 'at.id_origen', 'at.monto as total', 'b.nombres', 'b.apellidos', 'c.name as nameo', 'c.lastname as lasto', 'd.name as nameu', 'd.lastname as lastu', 'se.nombre as sedename')
+        ->select('a.id', 'a.id_cobro', 'a.tipopago','a.monto','a.created_at','a.sede', 'co.id_atencion','co.resta','at.id_paciente','at.usuario',  'at.tipo_atencion', 'at.sede', 'at.tipo_origen', 'at.id_origen', 'at.monto as total', 'b.nombres', 'b.apellidos','b.dni', 'c.name as nameo', 'c.lastname as lasto', 'd.name as nameu', 'd.lastname as lastu', 'se.nombre as sedename')
         ->join('cuentas_cobrar as co', 'co.id', 'a.id_cobro')
         ->join('atenciones as at', 'at.id', 'co.id_atencion')
         ->join('pacientes as b', 'b.id', 'at.id_paciente')
@@ -137,14 +137,17 @@ class CobrarController extends Controller
 
 
         $view = \View::make('cuentascobrar.ticket', compact('ticket'));
-        $pdf = \App::make('dompdf.wrapper');
-        //$pdf->setPaper('A5', 'landscape');
-        //$pdf->setPaper(array(0,0,600.00,360.00));
-        $pdf->setPaper(array(0,0,800.00,3000.00));
-        $pdf->loadHTML($view);
-     
-       
-        return $pdf->stream('ticket-pedido'.'.pdf'); 
+      
+        //$view = \View::make('reportes.cierre_caja_ver')->with('caja', $caja);
+        $customPaper = array(0,0,900.00,200.00);
+ 
+         $pdf = \App::make('dompdf.wrapper');
+         $pdf->loadHTML($view)->setPaper($customPaper, 'landscape');
+        return $pdf->stream('cobro');
+
+
+
+
        }
 
 

@@ -758,8 +758,10 @@ return view('atenciones.particular');
               }
 
               //GUARDANDO SERVICIOS
+
+
         
-              if (isset($request->id_servicio)) {
+              if ($request->id_servicio != null && $request->id_servicio['servicios'][0]['servicio'] != '1') {
                   foreach ($request->id_servicio['servicios'] as $key => $serv) {
                       if (!is_null($serv['servicio'])) {
                           $servicio = Servicios::where('id', '=', $serv['servicio'])->first();
@@ -863,17 +865,11 @@ return view('atenciones.particular');
 
             //dd($request->all());
 
-            if (isset($request->id_salu)) {
+            if ($request->id_salu != null && $request->id_salu['salud'][0]['salu'] != '1') {
               foreach ($request->id_salu['salud'] as $key => $serv) {
                   if (!is_null($serv['salu'])) {
                       $servicio = Servicios::where('id', '=', $serv['salu'])->first();
 
-
-                     
-
-
-
-                      //
 
                       //TIPO ATENCION SERVICIOS= 1
                       $lab = new Atenciones();
@@ -990,7 +986,7 @@ return view('atenciones.particular');
               //GUARDANDO ANALISIS
 
 
-              if (isset($request->id_analisi)) {
+              if ($request->id_analisi != null && $request->id_analisi['analisis'][0]['analisi'] != '1') {
                   foreach ($request->id_analisi['analisis'] as $key => $laboratorio) {
                       if (!is_null($laboratorio['analisi'])) {
                           $analisis = Analisis::where('id', '=', $laboratorio['analisi'])->first();
@@ -1072,7 +1068,7 @@ return view('atenciones.particular');
               //GUARDANDO PAQUETES
 
 
-              if (isset($request->id_paquete)) {
+              if ($request->id_paquete != null && $request->id_paquete['paquetes_'][0]['paquete'] != '1') {
                   foreach ($request->id_paquete['paquetes_'] as $key => $paq) {
                       if (!is_null($paq['paquete'])) {
                           $paquetes = Paquetes::where('id', '=', $paq['paquete'])->first();
@@ -1280,7 +1276,7 @@ return view('atenciones.particular');
 
               //GUARDANDO ECOGRAFIAS
 
-              if (isset($request->id_ecografia)) {
+              if ($request->id_ecografia != null && $request->id_ecografia['ecografias'][0]['ecografia'] != '1') {
                   foreach ($request->id_ecografia['ecografias'] as $key => $eco) {
                       if (!is_null($eco['ecografia'])) {
                           $servicio = Servicios::where('id', '=', $eco['ecografia'])->first();
@@ -1382,7 +1378,7 @@ return view('atenciones.particular');
 
               //GUARDANDO RAYOS X
 
-              if (isset($request->id_rayo)) {
+              if ($request->id_rayo != null && $request->id_rayo['rayos'][0]['rayo'] != '1') {
                   foreach ($request->id_rayo['rayos'] as $key => $ray) {
                       if (!is_null($ray['rayo'])) {
                           $servicio = Servicios::where('id', '=', $ray['rayo'])->first();
@@ -1808,6 +1804,7 @@ return view('atenciones.particular');
       $p = Atenciones::find($request->id);
       $p->monto =$request->monto;
       $p->abono =$request->abono;
+      $p->resta =$request->monto - $request->abono;
       $p->tipo_pago =$request->tipo_pago;
       $p->tipo_origen =$request->tipo_origen;
       if($request->tipo_origen == 3){
@@ -1818,8 +1815,8 @@ return view('atenciones.particular');
       $p->id_tipo =$request->id_tipo;
       $res = $p->update();
     
-        return redirect()->action('AtencionesController@index')
-        ->with('success','Modificado Exitosamente!');
+      return redirect()->action('AtencionesController@index')
+      ->with('success','Modificado Exitosamente!');
 
         //
     }
@@ -1909,6 +1906,7 @@ return view('atenciones.particular');
       $p = Atenciones::find($request->id);
       $p->monto =$request->monto;
       $p->abono =$request->abono;
+      $p->resta =$request->monto - $request->abono;
       $p->tipo_pago =$request->tipo_pago;
       $p->tipo_origen =$request->tipo_origen;
       if($request->tipo_origen == 3){
@@ -2005,6 +2003,7 @@ return view('atenciones.particular');
       $p = Atenciones::find($request->id);
       $p->monto =$request->monto;
       $p->abono =$request->abono;
+      $p->resta =$request->monto - $request->abono;
       $p->tipo_pago =$request->tipo_pago;
       $p->tipo_origen =$request->tipo_origen;
       if($request->tipo_origen == 3){
