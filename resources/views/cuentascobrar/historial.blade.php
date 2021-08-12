@@ -136,13 +136,14 @@
                     <td>{{$an->nameu}} {{$an->lastu}}</td>
 
                     <td>
-                    @if(Auth::user()->rol == 1)
-
                     <a target="_blank" class="btn btn-success btn-sm" href="cobro-ticket-{{$an->id}}">
                               <i class="fas fa-print">
                               </i>
                               Ticket
                           </a>
+                    @if(Auth::user()->rol == 1)
+
+                   
 
                           <a  class="btn btn-danger btn-sm" href="historialc-reversar-{{$an->id_cobro}}-{{$an->id}}">
                               <i class="fas fa-edit">
