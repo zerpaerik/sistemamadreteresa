@@ -29,12 +29,20 @@ class CajaController extends Controller
         ->select('a.id','a.primer_turno','a.segundo_turno','a.sede','a.estatus','a.total','a.usuario_primer','a.fecha','b.name','a.created_at')
         ->join('users as b','b.id','a.usuario_primer')
         ->where('a.sede','=',$request->session()->get('sede'))
-        ->whereBetween('a.created_at', [date('Y-m-d', strtotime($f1)), date('Y-m-d', strtotime($f2))])
+        ->whereBetween('a.fecha', [date('Y-m-d', strtotime($f1)), date('Y-m-d', strtotime($f2))])
         ->get();
+
+
+        //dd($caja);
 
         $aten = Creditos::whereBetween('created_at', [date('Y-m-d 00:00:00', strtotime($f1)), date('Y-m-d 23:59:59', strtotime($f2))])
               ->where('sede','=',$request->session()->get('sede'))
               ->select(DB::raw('SUM(monto) as monto'))
+                            ->first();
+
+                            $deb = Debitos::whereBetween('created_at', [date('Y-m-d 00:00:00', strtotime($f1)), date('Y-m-d 23:59:59', strtotime($f2))])
+                            ->where('sede','=',$request->session()->get('sede'))
+                            ->select(DB::raw('SUM(monto) as monto'))
                             ->first();
       
 
@@ -47,7 +55,10 @@ class CajaController extends Controller
         if(count($caja) >= 1)
         {
             $mensaje = 'Segundo';
-        }  
+        } 
+        
+        $total = $aten->monto - $deb->monto;
+
 
 
 
@@ -118,7 +129,7 @@ class CajaController extends Controller
     	}
 
         }
-		              $hoy =date('Y-m-d H:i:s');
+		  $hoy =date('Y-m-d H:i:s');
 
 
 	    return view('caja.index',[
