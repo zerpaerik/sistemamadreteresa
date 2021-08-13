@@ -1534,6 +1534,8 @@ return view('atenciones.particular');
           $servicio = Servicios::where('estatus','=',1)->where('tipo','=','OTROS')->get();
         } else if($atencion->tipo_atencion == 2) {
           $servicio = Servicios::where('estatus','=',1)->where('tipo','=','ECOGRAFIA')->get();
+        } else if($atencion->tipo_atencion == 8) {
+          $servicio = Servicios::where('estatus','=',1)->where('tipo','=','SALUD')->get();
         } else {
           $servicio = Servicios::where('estatus','=',1)->where('tipo','=','RAYOS')->get();
         }

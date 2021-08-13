@@ -208,11 +208,25 @@ class ReportesController extends Controller
         ->groupBy('a.fecha')
         ->get(); 
 
+        if($request->sede == 1){
+            $sede = 'PROCERES';
+        } else if($request->sede == 2){
+            $sede = 'CANTO REY';
+        } else if($request->sede == 3){
+            $sede = 'VIDA FELIZ';
+        } else if($request->sede == 4){
+            $sede = 'ZARATE';
+        } else if($request->sede == 5){
+            $sede = 'INDEPENDENCIA';
+        } else {
+            $sede = 'LOS OLIVOS';
+        }
+
        
 
 
 
-         $view = \View::make('reportes.viewd', compact('f1','f2','efectivo'));
+         $view = \View::make('reportes.viewd', compact('f1','f2','efectivo','sede'));
 
         $pdf = \App::make('dompdf.wrapper');
         $pdf->loadHTML($view);

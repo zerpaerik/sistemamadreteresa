@@ -48,7 +48,7 @@
 
 <div>
 	<div class="text-center title-header col-12">
-		<center><strong>REPORTE DETALLADO</strong> </center>
+		<center><strong>REPORTE DETALLADO DE {{ $sede }}</strong> </center>
 		<center><strong>DESDE: </strong>- {{ $f1 }} <strong>DESDE: </strong>{{ $f2 }}</center>
 
 	</div>
