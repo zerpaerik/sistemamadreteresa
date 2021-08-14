@@ -284,9 +284,6 @@ Route::post('pagarmultiple', 'ComisionesPagarController@pagarmultiple');
 Route::get('reporte_compagar', 'ComisionesPagarController@reporte_compagar')->name('compagar.index');
 Route::get('reporte_compagar1', 'ComisionesPagarController@reporte_compagar1')->name('compagar1.index');
 
-
-
-
 Route::get('comisionesp', 'ComisionesPagadasController@index')->name('comisionesp.index');
 Route::get('comisionesp1', 'ComisionesPagadasController@index1')->name('comisionesp.index1');
 Route::get('comisionesp-reversar-{id}', 'ComisionesPagadasController@reversar');
@@ -294,8 +291,10 @@ Route::get('comisionep-ticket-{id}', 'ComisionesPagadasController@ticket')->midd
 Route::get('reporte/pagadas', 'ComisionesPagadasController@reporte_pagadas');
 Route::get('reporte/pagadas1', 'ComisionesPagadasController@reporte_pagadas1');
 
-
-
+Route::get('comisiones-por-entregar', 'VisitadorController@index')->name('comisionespe.index');
+Route::get('comisiones-entregadas', 'VisitadorController@index1')->name('comisionese.index');
+Route::get('entregar', 'VisitadorController@entregar');
+Route::get('comisionese-reversar-{id}', 'VisitadorController@reversar');
 
 Route::get('consultas', 'ConsultasController@index')->name('consultas.index');
 Route::get('consultas-create', 'ConsultasController@create')->name('consultas.create')->middleware('auth');

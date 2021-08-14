@@ -118,8 +118,12 @@
                   <tr>
                   <td>{{$an->id}}</td>
                    <td>{{$an->created_at}}</td>
+                   @if($an->monto > $an->abono)
+                    <td style="background: yellow;" title="ESTE PACIENTE TIENE DEUDA PENDIENTE">{{$an->apellidos}} {{$an->nombres}}</td>
+                    @else
                     <td>{{$an->apellidos}} {{$an->nombres}}</td>
-                    <td>{{$an->lastname}} {{$an->name}}</td>
+                    @endif                    
+                     <td>{{$an->lastname}} {{$an->name}}</td>
                     <td>{{$an->laboratorio}}</td>
 
                     <td>
