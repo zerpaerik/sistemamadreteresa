@@ -206,7 +206,15 @@ class ReportesController extends Controller
        // ->where('a.tipopago','=',  'EF')
         ->whereBetween('a.fecha', [$f1,$f2])
         ->groupBy('a.fecha')
-        ->get(); 
+        ->get();
+        
+        $totales = DB::table('creditos as a')
+        ->select('a.id','a.created_at','a.fecha','a.tipopago','a.sede',DB::raw('SUM(monto) as monto'),DB::raw('SUM(efectivo) as efectivo'),DB::raw('SUM(tarjeta) as tarjeta'),DB::raw('SUM(dep) as deposito'),DB::raw('SUM(yap) as yape'),DB::raw('SUM(egreso) as egre'))
+        ->where('a.sede','=',  $request->sede)
+       // ->where('a.tipopago','=',  'EF')
+        ->whereBetween('a.fecha', [$f1,$f2])
+        //->groupBy('a.fecha')
+        ->first(); 
 
         if($request->sede == 1){
             $sede = 'PROCERES';
@@ -226,7 +234,7 @@ class ReportesController extends Controller
 
 
 
-         $view = \View::make('reportes.viewd', compact('f1','f2','efectivo','sede'));
+         $view = \View::make('reportes.viewd', compact('f1','f2','efectivo','sede','totales'));
 
         $pdf = \App::make('dompdf.wrapper');
         $pdf->loadHTML($view);

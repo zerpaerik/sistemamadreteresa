@@ -100,6 +100,35 @@
 		@endforeach
 	</table>
 
+	<table>
+		<tr>
+		   <th style="padding: 0;width: 10%;text-overflow: ellipsis;">----</th>
+			<th style="padding: 0;width: 10%;text-overflow: ellipsis;">----</th>
+			<th style="padding: 0;width: 10%;text-overflow: ellipsis;">----</th>
+			<th style="padding: 0;width: 10%;text-overflow: ellipsis;">----</th>
+			<th style="padding: 0;width: 10%;text-overflow: ellipsis;">----</th>
+			<th style="padding: 0;width: 10%;text-overflow: ellipsis;">----</th>
+			<th style="padding: 0;width: 10%;text-overflow: ellipsis;">----</th>
+			<th style="padding: 0;width: 10%;text-overflow: ellipsis;">----</th>
+
+
+
+
+
+		</tr>
+		<tr>
+		    <td style="padding: 0;width: 10%;text-overflow: ellipsis;">TOTALES</td>
+			<td style="padding: 0;width: 5%;text-overflow: ellipsis;">{{ $totales->monto }}</td>
+			<td style="padding: 0;width: 5%;text-overflow: ellipsis;">{{ $totales->efectivo }}</td>
+			<td style="padding: 0;width: 5%;text-overflow: ellipsis;">{{ $totales->tarjeta }}</td>
+			<td style="padding: 0;width: 5%;text-overflow: ellipsis;">{{ $totales->deposito }}</td>
+			<td style="padding: 0;width: 5%;text-overflow: ellipsis;">{{ $totales->yape }}</td>
+			<td style="padding: 0;width: 5%;text-overflow: ellipsis;">{{ $totales->egre }}</td>
+			<td style="padding: 0;width: 5%;text-overflow: ellipsis;">{{ $totales->monto - $totales->egre }}</td>
+
+		</tr>
+	</table>
+
 
 </div>
 <br>
