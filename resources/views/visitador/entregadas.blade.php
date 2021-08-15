@@ -124,7 +124,7 @@
                     <td>REC-2021-{{$an->recibo}}</td>
                     <td>{{date('d-M-y', strtotime($an->fecha_pago))}}</td>
                     <td>{{date('d-M-y', strtotime($an->fecha_entrega))}}</td>
-                    <td>{{substr($an->lasto,0,5)}} {{substr($an->nameo,0,5)}}</td>
+                    <td>{{$an->lasto}} {{$an->nameo}}</td>
                     <td>{{$an->totalrecibo}}</td>
                     <td>{{$an->usuario_entrega}}</td>
                    
