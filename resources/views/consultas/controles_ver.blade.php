@@ -90,10 +90,7 @@
                    </div>
 
                    
-                   <div class="col-md-3">
-                    <label for="exampleInputEmail1">ATENDIDO POR:</label>
-                    <input type="text" onkeyup="javascript:this.value=this.value.toUpperCase();" class="form-control" disabled id="nombre" value="{{$hist->name.' '.$hist->lastname}} " name="gestas" placeholder="">
-                   </div>
+                
                   
                   
                     </div>

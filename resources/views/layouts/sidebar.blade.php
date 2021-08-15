@@ -1430,11 +1430,6 @@
           </li>
 
 
-          
-         
-          
-         
-         
       </nav>
       <!-- /.sidebar-menu -->
     </div>
@@ -1478,17 +1473,12 @@
                 </a>
               </li>
 
-
               <li class="nav-item">
                 <a href="{{route('comisionesp.index1')}}" class="nav-link">
                   <i class="fas fa-cart-arrow-down nav-icon"></i>
                   <p>Profesional</p>
                 </a>
               </li>
-
-            
-            
-              
             </ul>
           </li>
 
