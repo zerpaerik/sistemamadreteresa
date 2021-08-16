@@ -421,7 +421,7 @@
                         </div>
                         <div class="col-md-2">
                         <label for="exampleInputEmail1">Abdomen</label>
-                        <input type="text" onkeyup="javascript:this.value=this.value.toUpperCase();" class="form-control" id="nombre" name="abdomen" placeholder="" disabled  value="{{$cont->addomen}}">
+                        <input type="text" onkeyup="javascript:this.value=this.value.toUpperCase();" class="form-control" id="nombre" name="abdomen" placeholder="" disabled  value="{{$cont->abdomen}}">
                 
                         </div>
                         <div class="col-md-2">
