@@ -123,11 +123,13 @@ class PaquetesController extends Controller
       $servicios = DB::table('paquetes_s as a')
       ->select('a.id','a.paquete','a.servicio', 'b.nombre as nombre')
       ->join('servicios as b','b.id','a.servicio')
+      ->where('a.paquete', $paquete->id)
       ->get(); 
       
       $laboratorios = DB::table('paquetes_l as a')
       ->select('a.id','a.paquete','a.laboratorio', 'b.nombre as nombre')
       ->join('analisis as b','b.id','a.laboratorio')
+      ->where('a.paquete', $paquete->id)
       ->get(); 
      // $laboratorios = PaqueteLab::where('paquete', $paquete->id)->with('laboratorio')->get();
       $consultas = PaqueteCon::where('paquete', $paquete->id)->get();
