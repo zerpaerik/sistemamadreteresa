@@ -104,7 +104,6 @@
                     <th>Email</th>
                     <th>Sexo</th>
                     <th>Telefono</th>
-                    <th>RP</th>
                     <th>Acciones</th>
                   </tr>
                   </thead>
@@ -118,7 +117,6 @@
                     <td>{{$p->email}}</td>
                     <td>{{$p->sexo}}</td>
                     <td>{{$p->telefono}}</td>
-                    <td>{{$p->lastname}} {{$p->name}}</td>
 
                     <td><a class="btn btn-primary btn-sm" id="{{$p->id}}" onclick="viewh(this)">
                               <i class="fas fa-eye">
@@ -156,7 +154,6 @@
                     <th>Email</th>
                     <th>Sexo</th>
                     <th>Telefono</th>
-                    <th>RP</th>
                     <th>Acciones</th>
                   </tr>
                   </tfoot>

@@ -28,8 +28,7 @@ class PacientesController extends Controller
         
       if(!is_null($request->filtro)){
         $pacientes = DB::table('pacientes as a')
-        ->select('a.id','a.nombres','a.dni','a.apellidos','a.usuario','a.fechanac','a.email','a.sexo','a.telefono','a.empresa','a.estatus','u.name','u.lastname')
-        ->join('users as u', 'u.id', 'a.usuario')
+        ->select('a.id','a.nombres','a.dni','a.apellidos','a.usuario','a.fechanac','a.email','a.sexo','a.telefono','a.empresa','a.estatus')
         ->where('a.estatus', '=', 1)
         ->where('a.apellidos','like','%'.$request->filtro.'%')
         ->orderby('a.apellidos','asc')
@@ -41,6 +40,8 @@ class PacientesController extends Controller
           ->where('a.estatus', '=', 999999999)
           ->get(); 
         }
+
+      
 
        
         return view('pacientes.index', compact('pacientes'));
