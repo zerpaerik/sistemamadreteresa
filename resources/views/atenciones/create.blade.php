@@ -249,7 +249,7 @@
                     <label for="servicios_#index#_abonoS" class="col-sm-1 control-label">Abono.</label>
                     <div class="col-sm-1">
 
-                      <input id="servicios_#index#_abonoS" name="monto_abol[servicios][#index#][abono]" type="float" class="number form-control abonoS abono" onchange="sumar_ab();" placeholder="Abono" data-toggle="tooltip" data-placement="bottom" title="Abono">
+                      <input id="servicios_#index#_abonoS" name="monto_abol[servicios][#index#][abono]" type="float" class="number form-control abono" onchange="sumar_ab();" placeholder="Abono" data-toggle="tooltip" data-placement="bottom" title="Abono">
                     </div>
                     <label for="servicios_#index#_tipop" class="col-sm-1 control-label">TipoPago</label>
                     <div class="col-sm-2">
@@ -875,6 +875,7 @@ function datapac(){
 
     $(".monto, .montol, .montop").keyup(function(event) {
       sumar();
+      sumar_abono();
     });
 
 
@@ -1080,6 +1081,24 @@ function sumar()
 
 
 
+function sumar_ab()
+{
+  const $abono = document.getElementById('abono');
+  const $resta = document.getElementById('resta');
+  let subtotal = 0;
+  
+  [ ...document.getElementsByClassName( "abono" ) ].forEach( function ( element ) {
+    if(element.value !== '') {
+      subtotal += parseFloat(element.value);
+    }
+  });
+  $abono.value = subtotal;
+  $resta.value = total.value - subtotal;
+}
+
+
+
+
 
 
 var botonDisabled = true;
@@ -1213,6 +1232,23 @@ var botonDisabled = true;
 
 <script type="text/javascript">
 
+function sumar_ab()
+{
+  const $abono = document.getElementById('abono');
+  const $resta = document.getElementById('resta');
+  let subtotal = 0;
+  
+  [ ...document.getElementsByClassName( "abono" ) ].forEach( function ( element ) {
+    if(element.value !== '') {
+      subtotal += parseFloat(element.value);
+    }
+  });
+  $abono.value = subtotal;
+  $resta.value = total.value - subtotal;
+}
+
+
+
 
 
 /*function sumar()
@@ -1232,104 +1268,7 @@ var botonDisabled = true;
 
 
 
-function sumar_ab()
-{
-  const $abono = document.getElementById('abono');
-  const $resta = document.getElementById('resta');
-  let subtotal = 0;
-  
-  [ ...document.getElementsByClassName( "abono" ) ].forEach( function ( element ) {
-    if(element.value !== '') {
-      subtotal += parseFloat(element.value);
-    }
-  });
-  $abono.value = subtotal;
-  $resta.value = total.value - subtotal;
-}
 
-</script>
-
-
-
-<script>
-
-  $(function () {
-    // Summernote
-    $('.textarea').summernote()
-  })
-</script>
-<script>
-  $(function () {
-    //Initialize Select2 Elements
-    $('.select2').select2()
-
-    //Initialize Select2 Elements
-    $('.select2bs4').select2({
-      theme: 'bootstrap4'
-    })
-
-    //Datemask dd/mm/yyyy
-    $('#datemask').inputmask('dd/mm/yyyy', { 'placeholder': 'dd/mm/yyyy' })
-    //Datemask2 mm/dd/yyyy
-    $('#datemask2').inputmask('mm/dd/yyyy', { 'placeholder': 'mm/dd/yyyy' })
-    //Money Euro
-    $('[data-mask]').inputmask()
-
-    //Date range picker
-    $('#reservationdate').datetimepicker({
-        format: 'L'
-    });
-    //Date range picker
-    $('#reservation').daterangepicker()
-    //Date range picker with time picker
-    $('#reservationtime').daterangepicker({
-      timePicker: true,
-      timePickerIncrement: 30,
-      locale: {
-        format: 'MM/DD/YYYY hh:mm A'
-      }
-    })
-    //Date range as a button
-    $('#daterange-btn').daterangepicker(
-      {
-        ranges   : {
-          'Today'       : [moment(), moment()],
-          'Yesterday'   : [moment().subtract(1, 'days'), moment().subtract(1, 'days')],
-          'Last 7 Days' : [moment().subtract(6, 'days'), moment()],
-          'Last 30 Days': [moment().subtract(29, 'days'), moment()],
-          'This Month'  : [moment().startOf('month'), moment().endOf('month')],
-          'Last Month'  : [moment().subtract(1, 'month').startOf('month'), moment().subtract(1, 'month').endOf('month')]
-        },
-        startDate: moment().subtract(29, 'days'),
-        endDate  : moment()
-      },
-      function (start, end) {
-        $('#reportrange span').html(start.format('MMMM D, YYYY') + ' - ' + end.format('MMMM D, YYYY'))
-      }
-    )
-
-    //Timepicker
-    $('#timepicker').datetimepicker({
-      format: 'LT'
-    })
-    
-    //Bootstrap Duallistbox
-    $('.duallistbox').bootstrapDualListbox()
-
-    //Colorpicker
-    $('.my-colorpicker1').colorpicker()
-    //color picker with addon
-    $('.my-colorpicker2').colorpicker()
-
-    $('.my-colorpicker2').on('colorpickerChange', function(event) {
-      $('.my-colorpicker2 .fa-square').css('color', event.color.toString());
-    });
-
-    $("input[data-bootstrap-switch]").each(function(){
-      $(this).bootstrapSwitch('state', $(this).prop('checked'));
-    });
-
-  })
 </script>
 
 
