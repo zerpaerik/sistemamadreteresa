@@ -105,7 +105,7 @@
                   <button type="submit" class="btn btn-primary">Buscar</button>
 
                   </div>
-                  <!--
+                  
 
                   <div class="col-md-2">
                     <label for="exampleInputEmail1">Total</label>
@@ -124,7 +124,7 @@
   
                       <input class="form-control" type="text" name="resta" id="resta" readonly="readonly" value="0.00">
                       </div>
-                  -->
+                
                  
                   </form>
 
@@ -243,7 +243,7 @@
                     <div class="col-sm-1">
                       <input id="servicios_#index#_montoHidden" name="monto_h[servicios][#index#][montoHidden]" class="text" type="hidden" value="">
 
-                      <input id="servicios_#index#_monto" name="monto_s[servicios][#index#][monto]" type="number" class="number form-control monto" placeholder="Precio"  data-toggle="tooltip" data-placement="bottom" title="Precio">
+                      <input id="servicios_#index#_monto" name="monto_s[servicios][#index#][monto]" type="number" class="number form-control monto" onchange="sumar();"  placeholder="Precio"  data-toggle="tooltip" data-placement="bottom" title="Precio">
                     </div>
 
                     <label for="servicios_#index#_abonoS" class="col-sm-1 control-label">Abono.</label>
@@ -1065,14 +1065,19 @@ $(document).on('change','.selectServ',function(){
       });
     });
 
-function sumar() {
-  var total = 0;
-      $(".monto").each(function(){
-        total += $(this).val();
-      })
-      console.log(total);
-      $("#total").val(total);
+function sumar()
+{
+  const $total = document.getElementById('total');
+  let subtotal = 0;
+  [ ...document.getElementsByClassName( "monto" ) ].forEach( function ( element ) {
+    if(element.value !== '') {
+      subtotal += parseFloat(element.value);
+    }
+  });
+  $total.value = subtotal;
 }
+
+
 
 
 
