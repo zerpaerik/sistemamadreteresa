@@ -107,7 +107,7 @@
                   </div>
                   
 
-                  <!--
+                  
                   <div class="col-md-2">
                     <label for="exampleInputEmail1">Total</label>
 
@@ -124,8 +124,8 @@
                       <label for="exampleInputEmail1">Resta</label>
   
                       <input class="form-control" type="text" name="resta" id="resta" readonly="readonly" value="0.00">
-                      </div>
-                      -->
+                    </div>
+                      
                 
                  
                   </form>
@@ -251,7 +251,7 @@
                     <label for="servicios_#index#_abonoS" class="col-sm-1 control-label">Abono.</label>
                     <div class="col-sm-1">
 
-                      <input id="servicios_#index#_abonoS" name="monto_abol[servicios][#index#][abono]" type="float" class="number form-control abono" onchange="sumar_ab();" placeholder="Abono" data-toggle="tooltip" data-placement="bottom" title="Abono">
+                      <input id="servicios_#index#_abonoS" name="monto_abol[servicios][#index#][abono]" type="float" class="number form-control abonoS abono" onchange="sumar_ab();"  onkeyup="myFunction()" placeholder="Abono" data-toggle="tooltip" data-placement="bottom" title="Abono">
                     </div>
                     <label for="servicios_#index#_tipop" class="col-sm-1 control-label">TipoPago</label>
                     <div class="col-sm-2">
@@ -277,8 +277,6 @@
                 <!-- Controls -->
                 <div id="servicios_controls" class="controls col-sm-11 col-sm-offset-1">
                     <div id="servicios_add" class="btn btn-default form add"><a><span><i class="fa fa-plus-circle"></i> Agregar Procedimiento</span></a></div>
-                    <div id="servicios_remove_last" class="btn form removeLast"><a><span><i class="fa fa-close-circle"></i> Eliminar ultimo</span></a></div>
-                    <div id="servicios_remove_all" class="btn form removeAll"><a><span><i class="fa fa-close-circle"></i> Eliminar todos</span></a></div>
                 </div>
                 <!-- /Controls -->
                 
@@ -345,8 +343,6 @@
                 <!-- Controls -->
                 <div id="ecografias_controls" class="controls col-sm-11 col-sm-offset-1">
                     <div id="ecografias_add" class="btn btn-default form add"><a><span><i class="fa fa-plus-circle"></i> Agregar Ecografia</span></a></div>
-                    <div id="ecografias_remove_last" class="btn form removeLast"><a><span><i class="fa fa-close-circle"></i> Eliminar ultimo</span></a></div>
-                    <div id="ecografias_remove_all" class="btn form removeAll"><a><span><i class="fa fa-close-circle"></i> Eliminar todos</span></a></div>
                 </div>
                 <!-- /Controls -->
                 
@@ -413,8 +409,6 @@
                 <!-- Controls -->
                 <div id="rayos_controls" class="controls col-sm-11 col-sm-offset-1">
                     <div id="rayos_add" class="btn btn-default form add"><a><span><i class="fa fa-plus-circle"></i> Agregar Rayos X</span></a></div>
-                    <div id="rayos_remove_last" class="btn form removeLast"><a><span><i class="fa fa-close-circle"></i> Eliminar ultimo</span></a></div>
-                    <div id="rayos_remove_all" class="btn form removeAll"><a><span><i class="fa fa-close-circle"></i> Eliminar todos</span></a></div>
                 </div>
                 <!-- /Controls -->
                 
@@ -483,8 +477,6 @@
                   <!-- Controls -->
                   <div id="salud_controls" class="controls col-sm-11 col-sm-offset-1">
                       <div id="salud_add" class="btn btn-default form add"><a><span><i class="fa fa-plus-circle"></i> Agregar SaludM</span></a></div>
-                      <div id="salud_remove_last" class="btn form removeLast"><a><span><i class="fa fa-close-circle"></i> Eliminar ultimo</span></a></div>
-                      <div id="salud_remove_all" class="btn form removeAll"><a><span><i class="fa fa-close-circle"></i> Eliminar todos</span></a></div>
                   </div>
                   <!-- /Controls -->
                   
@@ -554,8 +546,6 @@
                 <!-- Controls -->
                 <div id="analisis_controls" class="controls col-sm-11 col-sm-offset-1">
                     <div id="analisis_add" class="btn btn-default form add"><a><span><i class="fa fa-plus-circle"></i> Agregar Laboratorio</span></a></div>
-                    <div id="analisis_remove_last" class="btn form removeLast"><a><span><i class="fa fa-close-circle"></i> Eliminar ultimo</span></a></div>
-                    <div id="analisis_remove_all" class="btn form removeAll"><a><span><i class="fa fa-close-circle"></i> Eliminar todos</span></a></div>
                 </div>
                 <!-- /Controls -->
                 
@@ -624,8 +614,6 @@
           <!-- Controls -->
           <div id="paquetes_controls" class="controls col-sm-11 col-sm-offset-1">
               <div id="paquetes_add" class="btn btn-default form add"><a><span><i class="fa fa-plus-circle"></i> Agregar Paquete</span></a></div>
-              <div id="paquetes_remove_last" class="btn form removeLast"><a><span><i class="fa fa-close-circle"></i> Eliminar ultimo</span></a></div>
-              <div id="apaquetes_remove_all" class="btn form removeAll"><a><span><i class="fa fa-close-circle"></i> Eliminar todos</span></a></div>
           </div>
           <!-- /Controls -->
           
@@ -821,6 +809,13 @@ function disableEnterKey(e)
 </script>
 
 <script>
+function myFunction() {
+  var x = document.getElementById("abonoS");
+  sumar_ab();
+}
+</script>
+
+<script>
 function datapac(){
       
       $('#el1').on('submit',function(){
@@ -877,67 +872,15 @@ function datapac(){
 
     $(".monto, .montol, .montop").keyup(function(event) {
       sumar();
-      sumar_abono();
     });
 
 
 
 
-$(".abonoL, .abonoS, .abonop").keyup(function(){
-      var total = 0;
-      var selectId = $(this).attr('id');
-      var selectArr = selectId.split('_');
-      
-      switch(selectArr[0]){
-
-        case 'servicios':
-            if(parseFloat($(this).val()) > parseFloat($("#servicios_"+selectArr[1]+"_monto").val())){
-                alert('La cantidad insertada en abono es mayor al monto.');
-                $(this).val('0.00');
-                calculo_general();
-            } else {
-                calculo_general();
-            }
-          break;
-
-        case 'laboratorios':
-            if(parseFloat($(this).val()) > parseFloat($("#laboratorios_"+selectArr[1]+"_monto").val())){
-                alert('La cantidad insertada en abono es mayor al monto.');
-                $(this).val('0.00');
-                calculo_general();
-            } else {
-                calculo_general();
-            }
-          break;
-
-        case 'paquetes':
-            if(parseFloat($(this).val()) > parseFloat($("#paquetes_"+selectArr[1]+"_monto").val())){
-              alert('La cantidad insertada en abono es mayor al monto.');
-                $(this).val('0.00');
-                calculo_general();
-            } else {
-                calculo_general();
-            }
-          break;
-      }
-      /*if(selectArr[0] == 'servicios'){
-          if(parseFloat($(this).val()) > parseFloat($("#servicios_"+selectArr[1]+"_monto").val())){
-              alert('La cantidad insertada en abono es mayor al monto.');
-              $(this).val('0.00');
-              calculo_general();
-          } else {
-              calculo_general();
-          }
-      } else {
-        if(parseFloat($(this).val()) > parseFloat($("#laboratorios_"+selectArr[1]+"_monto").val())){
-              alert('La cantidad insertada en abono es mayor al monto.');
-              $(this).val('0.00');
-              calculo_general();
-          } else {
-              calculo_general();
-          }
-      }*/
-    });
+$(".abonoS").keyup(function(){
+  alert('aquiiii');
+    
+});
 
 
 
@@ -1120,8 +1063,31 @@ var botonDisabled = true;
 
         removeAllConfirmationMsg: 'Seguro que quieres eliminar todos?',
         afterRemoveCurrent: function(source, event){
+          const $abono = document.getElementById('abono');
           sumar();
-          sumar_ab();
+          restar();
+         // alert(abono.value);
+        /*  let subtotal = 0;
+          let subtotall = 0;
+          const $resta = document.getElementById('resta');
+          [ ...document.getElementsByClassName( "abono" ) ].forEach( function ( element ) {
+            if(element.value !== '') {
+              subtotal += parseFloat(element.value);
+            }
+          });
+          [ ...document.getElementsByClassName( "monto" ) ].forEach( function ( element ) {
+            if(element.value !== '') {
+              subtotall += parseFloat(element.value);
+            }
+          });
+
+         alert(subtotall);*/
+
+          //alert(subtotal - resta.value);
+         /* const $resta = document.getElementById('resta');
+        //  console.log(subtotal);
+          $resta.value = total.value - 0;
+         // sumar_ab();*/
 
         }
     });
@@ -1141,7 +1107,7 @@ var botonDisabled = true;
         removeAllConfirmationMsg: 'Seguro que quieres eliminar todos?',
         afterRemoveCurrent: function(source, event){
           sumar();
-          sumar_ab();
+          restar();
         }
     });
 
@@ -1160,7 +1126,7 @@ var botonDisabled = true;
         removeAllConfirmationMsg: 'Seguro que quieres eliminar todos?',
         afterRemoveCurrent: function(source, event){
           sumar();
-          sumar_ab();
+          restar();
         }
     });
 
@@ -1179,7 +1145,7 @@ var botonDisabled = true;
         removeAllConfirmationMsg: 'Seguro que quieres eliminar todos?',
         afterRemoveCurrent: function(source, event){
          sumar();
-         sumar_ab();
+         restar();
 
         }
     });
@@ -1200,7 +1166,7 @@ var botonDisabled = true;
         removeAllConfirmationMsg: 'Seguro que quieres eliminar todos?',
         afterRemoveCurrent: function(source, event){
           sumar();
-          sumar_ab();
+          restar();
         }
     });
 
@@ -1219,7 +1185,7 @@ var botonDisabled = true;
         removeAllConfirmationMsg: 'Seguro que quieres eliminar todos?',
         afterRemoveCurrent: function(source, event){
          sumar();
-         sumar_ab();
+         restar();
 
         }
     });
@@ -1246,28 +1212,36 @@ function sumar_ab()
     }
   });
   $abono.value = subtotal;
+  console.log(subtotal);
   $resta.value = total.value - subtotal;
+  console.log(resta);
+
 }
 
 
 
+</script>
 
+<script type="text/javascript">
 
-/*function sumar()
+function restar()
 {
+  const $abono = document.getElementById('abono');
+  const $resta = document.getElementById('resta');
   let subtotal = 0;
-  var total = 0;
-  [ ...document.getElementsByClassName( "monto" ) ].forEach( function ( element ) {
+  
+  [ ...document.getElementsByClassName( "abono" ) ].forEach( function ( element ) {
     if(element.value !== '') {
       subtotal += parseFloat(element.value);
     }
   });
-  total.value = subtotal;
-  total = document.getElementById('total');
-}*/
 
+ // $abono.value = subtotal;
+ //console.log(subtotal);
+  $abono.value = subtotal;
+  $resta.value = total.value - subtotal;
 
-
+}
 
 
 
