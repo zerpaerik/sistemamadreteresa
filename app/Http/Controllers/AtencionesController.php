@@ -385,6 +385,18 @@ class AtencionesController extends Controller
       ->where('a.id_atec', '=', $id)
       ->orderBy('a.id','desc');
 
+      
+      $salud = DB::table('atenciones as a')
+      ->select('a.id','a.tipo_origen','a.id_origen','a.id_atec','a.id_tipo','a.pagado','a.atendido','a.sede','a.usuario','a.created_at','a.estatus','a.id_paciente','a.tipo_atencion','a.monto','a.abono','a.tipo_pago','b.nombres','b.apellidos','b.dni','c.name as nameo','c.lastname as lasto','d.name as nameu','d.lastname as lastu','s.nombre as detalle')
+      ->join('pacientes as b','b.id','a.id_paciente')
+      ->join('users as c','c.id','a.id_origen')
+      ->join('users as d','d.id','a.usuario')
+      ->join('servicios as s','s.id','a.id_tipo')
+      ->where('a.estatus', '=', 1)
+      ->where('a.tipo_atencion', '=', 8)
+      ->where('a.id_atec', '=', $id)
+      ->orderBy('a.id','desc');
+
 
       $ana = DB::table('atenciones as a')
       ->select('a.id','a.tipo_origen','a.id_origen','a.id_atec','a.id_tipo','a.pagado','a.atendido','a.sede','a.usuario','a.created_at','a.estatus','a.id_paciente','a.tipo_atencion','a.monto','a.abono','a.tipo_pago','b.nombres','b.apellidos','b.dni','c.name as nameo','c.lastname as lasto','d.name as nameu','d.lastname as lastu','s.nombre as detalle')
@@ -447,6 +459,7 @@ class AtencionesController extends Controller
       ->where('a.id_atec', '=', $id)
       ->union($serv)
       ->union($eco)
+      ->union($salud)
       ->union($ana)
       ->union($metodos)
       ->union($consultas)
@@ -466,6 +479,7 @@ class AtencionesController extends Controller
       ->where('a.id_atec', '=', $id)
       ->union($serv)
       ->union($eco)
+      ->union($salud)
       ->union($ana)
       ->union($metodos)
       ->union($consultas)
