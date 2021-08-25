@@ -599,6 +599,7 @@ class ComisionesPagarController extends Controller
         //->where('at.atendido', '=', 2)
         //->where('at.resta', '=', 0)
         ->where('at.sede', '=', $request->session()->get('sede'))
+        ->groupBy('at.id_origen')
         //->where('at.id_origen','=',$request->origen)
         ->get();
 
