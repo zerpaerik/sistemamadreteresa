@@ -660,7 +660,7 @@ class ComisionesPagarController extends Controller
         //->where('at.atendido', '=', 2)
         //->where('at.resta', '=', 0)
         ->where('at.sede', '=', $request->session()->get('sede'))
-        //->groupBy('at.id_origen')
+        ->groupBy('at.id_origen')
         ->get();
 
         /*$total = Comisiones::whereBetween('created_at', [$f1, $f2])
@@ -678,7 +678,7 @@ class ComisionesPagarController extends Controller
             //->where('atenciones.resta','=',0)
             ->whereBetween('comisiones.created_at', [$f1, $f2])
             ->select(DB::raw('COUNT(*) as cantidad, SUM(comisiones.monto) as monto'))
-            ->groupBy('atenciones.id_origen')
+           //->groupBy('atenciones.id_origen')
             ->first();
 
 
