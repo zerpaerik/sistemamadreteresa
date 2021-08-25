@@ -182,6 +182,19 @@
 
                   </div>
                   </form>
+
+                  @if($totales)
+                  <div class="row" style="margin-left: 5px;">
+                    <div class="col-md-2">
+                    <label for="exampleInputEmail1">Total</label>
+                    <input type="text" disabled class="form-control" value="{{$totales->monto}}">
+                  </div>
+                  <div class="col-md-2">
+                    <label for="exampleInputEmail1">Items</label>
+                    <input type="text" disabled class="form-control" value="{{$totales->cantidad}}" >
+                  </div>
+                  </div>
+                  @endif
               </div>
               <!-- /.card-header -->
               <div class="card-body">

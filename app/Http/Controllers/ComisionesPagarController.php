@@ -630,11 +630,7 @@ class ComisionesPagarController extends Controller
         ->join('users as c', 'c.id', 'at.id_origen')
         ->join('users as d', 'd.id', 'a.usuario')
         ->where('at.tipo_origen', '=', 1)
-        //->where('at.atendido', '=', 2)
-       // ->where('at.resta', '=', 0)
-       // ->where('at.monto', 'at.abono')
         ->where('at.sede', '=', $request->session()->get('sede'))
-       // ->where('at.id_origen','=',$request->origen)
         ->whereBetween('a.created_at', [$f1, $f2])
         ->orderBy('a.created_at','ASC')
         ->get();
@@ -664,7 +660,7 @@ class ComisionesPagarController extends Controller
         //->where('at.atendido', '=', 2)
         //->where('at.resta', '=', 0)
         ->where('at.sede', '=', $request->session()->get('sede'))
-        ->groupBy('at.id_origen')
+        //->groupBy('at.id_origen')
         ->get();
 
         /*$total = Comisiones::whereBetween('created_at', [$f1, $f2])
@@ -682,7 +678,7 @@ class ComisionesPagarController extends Controller
             //->where('atenciones.resta','=',0)
             ->whereBetween('comisiones.created_at', [$f1, $f2])
             ->select(DB::raw('COUNT(*) as cantidad, SUM(comisiones.monto) as monto'))
-            ->groupBy('atenciones.id_origen')
+           // ->groupBy('atenciones.id_origen')
             ->first();
 
 
@@ -812,7 +808,7 @@ class ComisionesPagarController extends Controller
             ->where('atenciones.tipo_origen','=',2)
             ->whereBetween('comisiones.created_at', [$f1, $f2])
             ->select(DB::raw('COUNT(*) as cantidad, SUM(comisiones.monto) as monto'))
-            ->groupBy('atenciones.id_origen')
+            //->groupBy('atenciones.id_origen')
             ->first();
 
 

@@ -72,11 +72,11 @@
 	<table>
 		<tr>
 		   <th style="padding: 0;width: 10%;text-overflow: ellipsis;">FECHA</th>
-			<th style="padding: 0;width: 10%;text-overflow: ellipsis;">BRUTO</th>
-			<th style="padding: 0;width: 10%;text-overflow: ellipsis;">EFEC.</th>
-			<th style="padding: 0;width: 10%;text-overflow: ellipsis;">TARJ.</th>
-			<th style="padding: 0;width: 10%;text-overflow: ellipsis;">DEPOS.</th>
-			<th style="padding: 0;width: 10%;text-overflow: ellipsis;">YAPE</th>
+			<th style="padding: 0;width: 10%;text-overflow: ellipsis;">VENTA TOTAL</th>
+			<th style="padding: 0;width: 10%;text-overflow: ellipsis;">P.EFE</th>
+			<th style="padding: 0;width: 10%;text-overflow: ellipsis;">P.TARJ</th>
+			<th style="padding: 0;width: 10%;text-overflow: ellipsis;">P.DEPOS</th>
+			<th style="padding: 0;width: 10%;text-overflow: ellipsis;">P.YAPE</th>
 			<th style="padding: 0;width: 10%;text-overflow: ellipsis;">EGRESOS</th>
 			<th style="padding: 0;width: 10%;text-overflow: ellipsis;">TOTAL</th>
 
@@ -94,7 +94,7 @@
 			<td style="padding: 0;width: 5%;text-overflow: ellipsis;">{{ $ingreso->deposito }}</td>
 			<td style="padding: 0;width: 5%;text-overflow: ellipsis;">{{ $ingreso->yape }}</td>
 			<td style="padding: 0;width: 5%;text-overflow: ellipsis;">{{ $ingreso->egre }}</td>
-			<td style="padding: 0;width: 5%;text-overflow: ellipsis;">{{ $ingreso->monto - $ingreso->egre }}</td>
+			<td style="padding: 0;width: 5%;text-overflow: ellipsis;">{{ $ingreso->efectivo - $ingreso->egre }}</td>
 
 		</tr>
 		@endforeach
@@ -124,7 +124,7 @@
 			<td style="padding: 0;width: 5%;text-overflow: ellipsis;">{{ $totales->deposito }}</td>
 			<td style="padding: 0;width: 5%;text-overflow: ellipsis;">{{ $totales->yape }}</td>
 			<td style="padding: 0;width: 5%;text-overflow: ellipsis;">{{ $totales->egre }}</td>
-			<td style="padding: 0;width: 5%;text-overflow: ellipsis;">{{ $totales->monto - $totales->egre }}</td>
+			<td style="padding: 0;width: 5%;text-overflow: ellipsis;">{{ $totales->efectivo - $totales->egre }}</td>
 
 		</tr>
 	</table>
