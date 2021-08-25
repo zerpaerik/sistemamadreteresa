@@ -387,7 +387,6 @@
                     <label for="rayos_#index#_tipop" class="col-sm-1 control-label">TipoPago</label>
                     <div class="col-sm-2">
                       <select id="rayos_#index#_rayo" name="id_pago[rayos][#index#][tipop]" class="form-control">
-                      <option value="1" >Seleccione</option>
                         <option value="EF">Efectivo</option>
                         <option value="TJ">Tarjeta</option>
                         <option value="DP">Depósito</option>
