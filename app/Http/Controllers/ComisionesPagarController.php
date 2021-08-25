@@ -599,7 +599,7 @@ class ComisionesPagarController extends Controller
         //->where('at.atendido', '=', 2)
         //->where('at.resta', '=', 0)
         ->where('at.sede', '=', $request->session()->get('sede'))
-        ->where('at.id_origen','=',$request->origen)
+        //->where('at.id_origen','=',$request->origen)
         ->get();
 
         $total = DB::table('comisiones')
@@ -733,7 +733,7 @@ class ComisionesPagarController extends Controller
         ->join('users as c', 'c.id', 'at.id_origen')
         ->where('at.tipo_origen', '=', 2)
         ->where('at.sede', '=', $request->session()->get('sede'))
-        ->where('at.id_origen','=',$request->origen)
+        //->where('at.id_origen','=',$request->origen)
         ->groupBy('at.id_origen')
         ->get();
 
