@@ -678,7 +678,7 @@ class ComisionesPagarController extends Controller
             //->where('atenciones.resta','=',0)
             ->whereBetween('comisiones.created_at', [$f1, $f2])
             ->select(DB::raw('COUNT(*) as cantidad, SUM(comisiones.monto) as monto'))
-           // ->groupBy('atenciones.id_origen')
+            ->groupBy('atenciones.id_origen')
             ->first();
 
 
