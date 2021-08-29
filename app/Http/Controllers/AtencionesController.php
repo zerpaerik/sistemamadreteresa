@@ -474,7 +474,6 @@ class AtencionesController extends Controller
       ->union($rayos)
       ->union($ana)
       ->union($metodos)
-      //->union($consultas)
       ->union($paq)
       ->orderBy('id','desc')
       ->get(); 
@@ -485,9 +484,9 @@ class AtencionesController extends Controller
       ->join('pacientes as b','b.id','a.id_paciente')
       ->join('users as c','c.id','a.id_origen')
       ->join('users as d','d.id','a.usuario')
-      ->join('servicios as s','s.id','a.id_tipo')
+      ->join('tipo_con as s','s.id','a.id_tipo')
       ->where('a.estatus', '=', 1)
-      ->where('a.tipo_atencion', '=', 3)
+      ->where('a.tipo_atencion', '=', 5)
       ->where('a.id_atec', '=', $id)
       ->union($serv)
       ->union($eco)
@@ -495,10 +494,10 @@ class AtencionesController extends Controller
       ->union($salud)
       ->union($ana)
       ->union($metodos)
-     // ->union($consultas)
       ->union($paq)
       ->orderBy('id','desc')
       ->first(); 
+
 
 
       $total = Atenciones::where('id_atec', $id)
