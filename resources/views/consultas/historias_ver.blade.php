@@ -83,12 +83,35 @@
 
 
               <div class="card-body">
+              <label for="exampleInputEmail1">DATOS DE PACIENTE</label>
 
               <div class="row">
                      <div class="col-md-3">
-                    <label for="exampleInputEmail1">PACIENTE</label>
+                    <label for="exampleInputEmail1">NOMBRES Y APELLIDOS</label>
                     <input type="text" onkeyup="javascript:this.value=this.value.toUpperCase();" class="form-control" disabled id="nombre" value="{{$paciente->apellidos.' '.$paciente->nombres}} " name="gestas" placeholder="">
                    </div>
+
+                   <div class="col-md-3">
+                    <label for="exampleInputEmail1">DNI:</label>
+                    <input type="text" onkeyup="javascript:this.value=this.value.toUpperCase();" class="form-control" disabled id="nombre" value="{{$paciente->dni}} " name="gestas" placeholder="">
+                   </div>
+
+                   <div class="col-md-3">
+                    <label for="exampleInputEmail1">FECHA DE NACIMIENTO:</label>
+                    <input type="text" onkeyup="javascript:this.value=this.value.toUpperCase();" class="form-control" disabled id="nombre" value="{{$paciente->fechanac}} " name="gestas" placeholder="">
+                   </div>
+                  
+                   <div class="col-md-3">
+                    <label for="exampleInputEmail1">TELÉFONO:</label>
+                    <input type="text" onkeyup="javascript:this.value=this.value.toUpperCase();" class="form-control" disabled id="nombre" value="{{$paciente->telefono}} " name="gestas" placeholder="">
+                   </div>
+                  
+                  
+                  
+                    </div>
+
+                    <div class="row">
+                   
 
                    <div class="col-md-3">
                     <label for="exampleInputEmail1">ATENDIDO POR:</label>

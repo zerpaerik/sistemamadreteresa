@@ -370,7 +370,7 @@ class ConsultasController extends Controller
          // $historias = Historias::where('id_paciente','=',$request->id_paciente)->get();
 
           $historias = DB::table('historia as a')
-          ->select('a.id_paciente','a.id','a.created_at','a.reevalua','a.observacion','a.usuario_reevalua','b.nombres','b.apellidos','b.dni')
+          ->select('a.id_paciente','a.id','a.created_at','a.reevalua','a.observacion','a.usuario_reevalua','b.nombres','b.apellidos','b.dni','b.fechanac','b.telefono','b.gradoinstruccion')
           ->join('pacientes as b','b.id','a.id_paciente')
           ->where('a.id_paciente', '=',$request->id_paciente)
           ->get(); 
@@ -379,7 +379,7 @@ class ConsultasController extends Controller
           //$historias = Historias::where('id_paciente','=',77777777777)->get();
 
           $historias = DB::table('historia as a')
-          ->select('a.id_paciente','a.id','a.created_at','a.reevalua','a.observacion','a.usuario_reevalua','b.nombres','b.apellidos','b.dni')
+          ->select('a.id_paciente','a.id','a.created_at','a.reevalua','a.observacion','a.usuario_reevalua','b.nombres','b.apellidos','b.dni','b.fechanac','b.telefono','b.gradoinstruccion')
           ->join('pacientes as b','b.id','a.id_paciente')
           ->where('a.id_paciente', '=',77777777777)
           ->get(); 
@@ -407,7 +407,7 @@ class ConsultasController extends Controller
          // $historias = Historias::where('id_paciente','=',$request->id_paciente)->get();
 
           $controles = DB::table('control as a')
-          ->select('a.id_paciente','a.id','a.created_at','b.nombres','b.apellidos','b.dni')
+          ->select('a.id_paciente','a.id','a.created_at','b.nombres','b.apellidos','b.dni','b.fechanac','b.telefono','b.gradoinstruccion')
           ->join('pacientes as b','b.id','a.id_paciente')
           ->where('a.id_paciente', '=',$request->id_paciente)
           ->get(); 
@@ -416,7 +416,7 @@ class ConsultasController extends Controller
           //$historias = Historias::where('id_paciente','=',77777777777)->get();
 
           $controles = DB::table('control as a')
-          ->select('a.id_paciente','a.id','a.created_at','b.nombres','b.apellidos','b.dni')
+          ->select('a.id_paciente','a.id','a.created_at','b.nombres','b.apellidos','b.dni','b.fechanac','b.telefono','b.gradoinstruccion')
           ->join('pacientes as b','b.id','a.id_paciente')
           ->where('a.id_paciente', '=',77777777777)
           ->get(); 

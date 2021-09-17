@@ -101,7 +101,7 @@
                   </div>
                  
                   <div class="col-md-2" style="margin-top: 30px;">
-                  <button type="submit" class="btn btn-primary">Generar</button>
+                  <button type="submit" class="btn btn-primary" formtarget="_blank">Generar</button>
 
                   </div>
                   </form>

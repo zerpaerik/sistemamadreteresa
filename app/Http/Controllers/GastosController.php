@@ -24,18 +24,20 @@ class GastosController extends Controller
 
         if($request->inicio){
             $f1 = $request->inicio;
+            $f2 = $request->fin;
+
 
         $gastos = DB::table('debitos as a')
         ->select('a.id','a.descripcion','a.monto','a.recibido','a.usuario','a.sede','a.tipo','a.created_at','b.name')
         ->join('users as b','b.id','a.usuario')
-        ->whereDate('a.created_at', date('Y-m-d 00:00:00', strtotime($f1)))
+        ->whereBetween('a.created_at', [date('Y-m-d 00:00:00', strtotime($f1)), date('Y-m-d 23:59:59', strtotime($f2))])
         ->where('a.sede','=',$request->session()->get('sede'))
         ->get(); 
 
         
 
 
-        $deb = Debitos::whereDate('created_at', date('Y-m-d 00:00:00', strtotime($f1)))
+        $deb = Debitos::whereBetween('created_at', [date('Y-m-d 00:00:00', strtotime($f1)), date('Y-m-d 23:59:59', strtotime($f2))])
         ->where('sede','=',$request->session()->get('sede'))
         ->select(DB::raw('COUNT(*) as cantidad, SUM(monto) as monto'))
         ->first();
@@ -70,7 +72,7 @@ class GastosController extends Controller
             
         }
 
-        return view('gastos.index', compact('gastos','f1','deb'));
+        return view('gastos.index', compact('gastos','f1','f2','deb'));
         //
     }
 
@@ -106,16 +108,18 @@ class GastosController extends Controller
         $gastos->sede =$request->session()->get('sede');
         $gastos->save();
 
-        $cre = new Creditos();
-        $cre->origen = 'EGRESO';
-        $cre->descripcion = 'EGRESO';
-        $cre->id_egreso =  $gastos->id;
-        $cre->egreso = $request->monto;
-        $cre->usuario = Auth::user()->id;
-        $cre->tipopago = 'EG';
-        $cre->sede = $request->session()->get('sede');
-        $cre->fecha = date('Y-m-d');
-        $cre->save();
+        if ($request->tipo != 'RETIRO DE EFECTIVO') {
+            $cre = new Creditos();
+            $cre->origen = 'EGRESO';
+            $cre->descripcion = 'EGRESO';
+            $cre->id_egreso =  $gastos->id;
+            $cre->egreso = $request->monto;
+            $cre->usuario = Auth::user()->id;
+            $cre->tipopago = 'EG';
+            $cre->sede = $request->session()->get('sede');
+            $cre->fecha = date('Y-m-d');
+            $cre->save();
+        }
 
         
 

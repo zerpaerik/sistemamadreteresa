@@ -172,7 +172,15 @@
                     <td>
                     @if($an->atendido_por != null)
                     <p>Atendido Por: {{$an->atendido_por}}</p>
-                    @if($an->tipo_atencion != 5)
+
+                    @if($an->tipo_atencion == 1)
+                    <a href="{{route('descargar2',$an->informe)}}" class="btn btn-success" target="_blank">Ver Informe</a>
+                    @endif
+                    @if($an->tipo_atencion == 2)
+                    <a href="{{route('descargar2',$an->informe)}}" class="btn btn-success" target="_blank">Ver Informe</a>
+                    @endif
+                    @if($an->tipo_atencion == 4)
+                    <a href="{{route('descargar2',$an->informe)}}" class="btn btn-success" target="_blank">Ver Informe</a>
                     @endif
                     @else
                     <p>NO HAY INFORME</p>
