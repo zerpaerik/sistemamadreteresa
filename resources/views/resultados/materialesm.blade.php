@@ -105,6 +105,7 @@
 
                   </div>
                   </form>
+                  @if($totales)
                   <div class="row" style="margin-left: 5px;">
 
                         <div class="col-md-3">
@@ -116,9 +117,8 @@
                         <label for="exampleInputEmail1">Cantidad</label>
                         <input type="text" disabled class="form-control" value="{{$totales->cantidad}}" >
                         </div>
-                       
-
                         </div>
+                  @endif
               </div>
               <!-- /.card-header -->
               <div class="card-body">

@@ -9,6 +9,7 @@ use App\Paquetes;
 use App\Pacientes;
 use App\Servicios;
 use App\PlacasUsadas;
+use App\PlacasMalogradas;
 use App\User;
 use App\Atenciones;
 use App\Atec;
@@ -2433,7 +2434,14 @@ return view('atenciones.particular');
         if ($placas_u != null) {
           $pu = PlacasUsadas::where('atencion', '=', $id)->first();
           $pu->delete();
-      }
+        }
+
+        $placas_m = PlacasMalogradas::where('atencion','=',$id)->first();
+
+        if ($placas_m != null) {
+          $pm = PlacasMalogradas::where('atencion', '=', $id)->first();
+          $pm->delete();
+        }
 
 
         $sesio = Sesiones::where('id_atencion','=',$id)->get();
