@@ -635,10 +635,12 @@ class ResultadosController extends Controller
         ->join('atenciones as at', 'at.id', 'a.atencion')
         ->join('servicios as sr', 'sr.id', 'at.id_tipo')
         ->whereBetween('a.created_at', [$f1, $f2])
+        ->where('a.cantidad','!=',0)
         ->orderBy('a.id','DESC')
         ->get();
 
         $totales = PlacasMalogradas::whereBetween('created_at', [$f1,$f2])
+        ->where('cantidad','!=',0)
         ->select(DB::raw('COUNT(*) as item, SUM(cantidad) as cantidad'))
         ->first();
 
@@ -657,11 +659,13 @@ class ResultadosController extends Controller
         ->join('servicios as sr', 'sr.id', 'at.id_tipo')
         ->whereBetween('a.created_at', [$f1, $f2])
         ->where('a.placa','=',$request->placa)
+        ->where('a.cantidad','!=',0)
         ->orderBy('a.id','DESC')
         ->get();
 
         $totales = PlacasMalogradas::whereBetween('created_at', [$f1,$f2])
         ->where('placa','=',$request->placa)
+        ->where('cantidad','!=',0)
         ->select(DB::raw('COUNT(*) as item, SUM(cantidad) as cantidad'))
         ->first();
 
@@ -681,6 +685,7 @@ class ResultadosController extends Controller
         ->join('atenciones as at', 'at.id', 'a.atencion')
         ->join('servicios as sr', 'sr.id', 'at.id_tipo')
         ->whereBetween('a.created_at', [$f1, $f2])
+        ->where('a.cantidad','!=',0)
         ->get();
 
         
