@@ -454,6 +454,13 @@
                   <p>Comisiones Profesionales</p>
                 </a>
               </li>
+
+              <li class="nav-item">
+                <a href="{{route('materiales.index')}}" class="nav-link">
+                  <i class="fas fa-hand-holding-usd nav-icon"></i>
+                  <p>Materiales Usados</p>
+                </a>
+              </li> 
               
             </ul>
           </li>

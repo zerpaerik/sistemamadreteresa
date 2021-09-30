@@ -94,6 +94,58 @@
                   <input type="hidden" name="id" value="{{$resultados->id}}">
                  
                   </div>
+
+                  @if($resultados->tipo_atencion == 3)
+                  <div class="row">
+            <label class="col-sm-6 alert"><i class="fa fa-tasks" aria-hidden="true" style="margin-top: 15px;"></i> Materiales Seleccionadas</label>
+            <!-- sheepIt Form -->
+            <div id="servicios" class="embed ">
+            
+                <!-- Form template-->
+                <div id="servicios_template" class="template row">
+
+                <label for="servicios_#index#_servicio" class="col-sm-3 control-label" style="margin-left: 20px;">Placas Disponibles</label>
+                    <div class="col-sm-4">
+                      <select id="servicios_#index#_servicio" name="id_servicio[servicios][#index#][servicio]" class="selectServ form-control">
+                      <option value="1">Seleccionar</option>
+                        @foreach($placas as $ot)
+                          <option value="{{$ot->id}}">
+                            {{$ot->nombre}} 
+                          </option>
+                        @endforeach
+                      </select>
+                    </div>
+
+                    <label for="servicios_#index#_monto" class="col-sm-2 control-label">Cantidad</label>
+                    <div class="col-sm-2">
+                      <input id="servicios_#index#_montoHidden" name="monto_h[servicios][#index#][montoHidden]" class="text" type="hidden" value="">
+
+                      <input id="servicios_#index#_monto" name="monto_s[servicios][#index#][monto]" type="number" class="number form-control monto" onchange="sumar();"  placeholder="Cantidad"  data-toggle="tooltip" data-placement="bottom" title="Precio">
+                    </div>
+
+                  
+                    
+
+
+                    <a id="servicios_remove_current" style="cursor: pointer;"><i class="fa fa-times-circle" aria-hidden="true"></i></a>
+                </div>
+                <!-- /Form template-->
+                
+                <!-- No forms template -->
+                <div id="servicios_noforms_template" class="noItems col-sm-12 text-center">Ningún Material</div>
+                <!-- /No forms template-->
+                
+                <!-- Controls -->
+                <div id="servicios_controls" class="controls col-sm-11 col-sm-offset-1">
+                    <div id="servicios_add" class="btn btn-default form add"><a><span><i class="fa fa-plus-circle"></i> Agregar Material</span></a></div>
+                </div>
+                <!-- /Controls -->
+                
+            </div>
+            <!-- /sheepIt Form --> 
+          </div>
+                  
+                  @endif
               
                   <br>
                   
@@ -187,7 +239,206 @@
 <script src="../../dist/js/adminlte.min.js"></script>
 <!-- AdminLTE for demo purposes -->
 <script src="../../dist/js/demo.js"></script>
+<script src="../../plugins/sheepit/jquery.sheepItPlugin.min.js"></script>
+
 <!-- page script -->
+
+<script language="javascript">
+
+function disableEnterKey(e) 
+{ 
+  var key; 
+  if(window.event) 
+     key = window.event.keyCode; 
+   else key = e.which; //firefox 
+   return (key != 13); 
+  }
+
+</script>
+
+
+<script type="text/javascript">
+      $(document).ready(function(){
+        $('#el2').on('change',function(){
+          var link;
+          if ($(this).val() == 1) {
+            link = '/atenciones/personal/';
+
+          }else if ($(this).val() == 2) {
+            link = '/atenciones/profesionales/';
+          } else {
+		    link = '/atenciones/particular/';
+		  }
+
+          $.ajax({
+                 type: "get",
+                 url:  link,
+                 success: function(a) {
+                    $('#siniestro').html(a);
+                 }
+          });
+
+        });
+        
+
+      });
+       
+    </script>
+
+
+
+<script type="text/javascript">
+  $(document).ready(function() {
+    var total = 0;
+
+    $(".monto, .montol, .montop").keyup(function(event) {
+      sumar();
+    });
+
+
+
+var botonDisabled = true;
+
+    // Main sheepIt form
+    var phonesForm = $("#servicios").sheepIt({
+        separator: '',
+        allowRemoveCurrent: true,
+        allowAdd: true,
+        allowRemoveAll: true,
+        allowRemoveLast: true,
+
+        // Limits
+        maxFormsCount: 10,
+        minFormsCount: 1,
+        iniFormsCount: 0,
+
+        removeAllConfirmationMsg: 'Seguro que quieres eliminar todos?',
+        afterRemoveCurrent: function(source, event){
+          const $abono = document.getElementById('abono');
+         // alert(abono.value);
+        /*  let subtotal = 0;
+          let subtotall = 0;
+          const $resta = document.getElementById('resta');
+          [ ...document.getElementsByClassName( "abono" ) ].forEach( function ( element ) {
+            if(element.value !== '') {
+              subtotal += parseFloat(element.value);
+            }
+          });
+          [ ...document.getElementsByClassName( "monto" ) ].forEach( function ( element ) {
+            if(element.value !== '') {
+              subtotall += parseFloat(element.value);
+            }
+          });
+
+         alert(subtotall);*/
+
+          //alert(subtotal - resta.value);
+         /* const $resta = document.getElementById('resta');
+        //  console.log(subtotal);
+          $resta.value = total.value - 0;
+         // sumar_ab();*/
+
+        }
+    });
+
+    var phonesForm = $("#ecografias").sheepIt({
+        separator: '',
+        allowRemoveCurrent: true,
+        allowAdd: true,
+        allowRemoveAll: true,
+        allowRemoveLast: true,
+
+        // Limits
+        maxFormsCount: 10,
+        minFormsCount: 1,
+        iniFormsCount: 0,
+
+        removeAllConfirmationMsg: 'Seguro que quieres eliminar todos?',
+        afterRemoveCurrent: function(source, event){
+        }
+    });
+
+    var phonesForm = $("#rayos").sheepIt({
+        separator: '',
+        allowRemoveCurrent: true,
+        allowAdd: true,
+        allowRemoveAll: true,
+        allowRemoveLast: true,
+
+        // Limits
+        maxFormsCount: 10,
+        minFormsCount: 1,
+        iniFormsCount: 0,
+
+        removeAllConfirmationMsg: 'Seguro que quieres eliminar todos?',
+        afterRemoveCurrent: function(source, event){
+        }
+    });
+
+    var phonesForm = $("#salud").sheepIt({
+        separator: '',
+        allowRemoveCurrent: true,
+        allowAdd: true,
+        allowRemoveAll: true,
+        allowRemoveLast: true,
+
+        // Limits
+        maxFormsCount: 10,
+        minFormsCount: 1,
+        iniFormsCount: 0,
+
+        removeAllConfirmationMsg: 'Seguro que quieres eliminar todos?',
+        afterRemoveCurrent: function(source, event){
+
+        }
+    });
+
+    
+    var phonesForm = $("#analisis").sheepIt({
+        separator: '',
+        allowRemoveCurrent: true,
+        allowAdd: true,
+        allowRemoveAll: true,
+        allowRemoveLast: true,
+
+        // Limits
+        maxFormsCount: 10,
+        minFormsCount: 1,
+        iniFormsCount: 0,
+
+        removeAllConfirmationMsg: 'Seguro que quieres eliminar todos?',
+        afterRemoveCurrent: function(source, event){
+        }
+    });
+
+    var phonesForm = $("#paquetes").sheepIt({
+        separator: '',
+        allowRemoveCurrent: true,
+        allowAdd: true,
+        allowRemoveAll: true,
+        allowRemoveLast: true,
+
+        // Limits
+        maxFormsCount: 10,
+        minFormsCount: 1,
+        iniFormsCount: 0,
+
+        removeAllConfirmationMsg: 'Seguro que quieres eliminar todos?',
+        afterRemoveCurrent: function(source, event){
+
+        }
+    });
+
+  });
+
+
+
+
+
+</script>
+
+
+
 
 </body>
 </html>

@@ -264,6 +264,8 @@ Route::get('resultados-guardar-{id}', 'ResultadosController@guardar_informe');
 Route::get('resultados-guardarl-{id}', 'ResultadosController@guardar_informel');
 Route::post('resultados_guardar', 'ResultadosController@guardar');
 Route::post('resultados_guardarl', 'ResultadosController@guardarl');
+Route::get('materiales-usados', 'ResultadosController@materiales')->name('materiales.index');
+
 
 Route::get('resultadosg', 'ResultadosController@indexg')->name('resultados.indexg');
 Route::get('resultadosg-reversar-{id}', 'ResultadosController@reversarg');

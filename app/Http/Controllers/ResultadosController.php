@@ -10,6 +10,8 @@ use App\Pacientes;
 use App\Servicios;
 use App\User;
 use App\Atenciones;
+use App\Placas;
+use App\PlacasUsadas;
 use App\Comisiones;
 use App\ResultadosServicios;
 use App\ResultadosLaboratorio;
@@ -345,7 +347,7 @@ class ResultadosController extends Controller
     {
 
         $resultados = DB::table('resultados_servicios as a')
-        ->select('a.id', 'a.id_atencion', 'a.id_servicio', 'a.informe','b.usuario', 'a.created_at', 'a.estatus', 'b.id_paciente', 'b.id_origen', 's.nombre as servicio', 'pa.fechanac','pa.nombres', 'pa.apellidos','pa.dni', 'c.name', 'c.lastname')
+        ->select('a.id', 'a.id_atencion', 'a.id_servicio', 'a.informe','b.usuario', 'a.created_at', 'a.estatus', 'b.id_paciente', 'b.id_origen','b.tipo_atencion', 's.nombre as servicio', 'pa.fechanac','pa.nombres', 'pa.apellidos','pa.dni', 'c.name', 'c.lastname')
         ->join('atenciones as b', 'b.id', 'a.id_atencion')
         ->join('users as c', 'c.id', 'b.id_origen')
         ->join('pacientes as pa', 'pa.id', 'b.id_paciente')
@@ -355,8 +357,9 @@ class ResultadosController extends Controller
         //->where('a.monto', '!=', '0')
         ->first();
 
+        $placas = Placas::all();
 
-        return view('resultados.guardar', compact('resultados'));
+        return view('resultados.guardar', compact('resultados','placas'));
 
       
     }
@@ -387,6 +390,9 @@ class ResultadosController extends Controller
 
     public function guardar(Request $request){
 
+
+      //dd($request->id_servicio);
+
       
       $usuario = DB::table('users')
       ->select('*')
@@ -403,9 +409,6 @@ class ResultadosController extends Controller
 
 
       if($usuario->tipo_personal == 'Tecnólogo' && $servicio->porcentaje2 > 0){
-
-
-
         $com = new Comisiones();
         $com->id_atencion =  $res->id_atencion;
         $com->detalle =  $servicio->nombre;
@@ -417,8 +420,6 @@ class ResultadosController extends Controller
         $com->tecnologo = 1;
         $com->usuario = Auth::user()->id;
         $com->save();
-
-
       }
 
         $at = Atenciones::where('id','=',$res->id_atencion)->first();
@@ -430,8 +431,25 @@ class ResultadosController extends Controller
         $at->save();
 
 
+        //guardado de placas usadas
 
+        if ($request->id_servicio != null) {
+          foreach ($request->id_servicio['servicios'] as $key => $serv) {
+              if (!is_null($serv['servicio'])) {
+                  $servicio = Placas::where('id', '=', $serv['servicio'])->first();
+                  //TIPO ATENCION SERVICIOS= 1
+                  $plac_u = new PlacasUsadas();
+                  $plac_u->paciente =  $atenc->id_paciente;
+                  $plac_u->placa = $servicio->id;
+                  $plac_u->cantidad = (float)$request->monto_s['servicios'][$key]['monto'];
+                  $plac_u->usuario = Auth::user()->id;
+                  $plac_u->resultado = $request->id;
+                  $plac_u->atencion =  $atenc->id;
+                  $plac_u->save();
 
+              }
+          }
+      }
 
         $rs = ResultadosServicios::where('id','=',$request->id)->first();
         $img = $request->file('informe');
@@ -487,6 +505,73 @@ class ResultadosController extends Controller
         ->with('success','Creado Exitosamente!');
            
       }
+
+
+
+    public function materiales(Request $request){
+
+
+        if ($request->inicio != null && $request->fin != null && $request->placa == null) {
+
+          
+
+          $f1 = $request->inicio;
+          $f2 = $request->fin;
+
+          $materiales = DB::table('placas_usadas as a')
+          ->select('a.id', 'a.placa', 'a.atencion','a.cantidad','a.paciente','a.usuario','a.created_at', 'b.nombres', 'b.apellidos', 'c.name as nameo', 'c.lastname as lasto', 'p.nombre as placa','at.id_tipo','sr.nombre as servicio')
+          ->join('pacientes as b', 'b.id', 'a.paciente')
+          ->join('users as c', 'c.id', 'a.usuario')
+          ->join('placas as p', 'p.id', 'a.placa')
+          ->join('atenciones as at', 'at.id', 'a.atencion')
+          ->join('servicios as sr', 'sr.id', 'at.id_tipo')
+          ->whereBetween('a.created_at', [$f1, $f2])
+          ->orderBy('a.id','DESC')
+          ->get();
+
+
+        } elseif ($request->inicio != null && $request->fin != null && $request->placa != null) {
+          $f1 = $request->inicio;
+          $f2 = $request->fin;
+
+          $materiales = DB::table('placas_usadas as a')
+          ->select('a.id', 'a.placa', 'a.atencion','a.cantidad','a.paciente','a.usuario','a.created_at', 'b.nombres', 'b.apellidos', 'c.name as nameo', 'c.lastname as lasto', 'p.nombre as placa','at.id_tipo','sr.nombre as servicio')
+          ->join('pacientes as b', 'b.id', 'a.paciente')
+          ->join('users as c', 'c.id', 'a.usuario')
+          ->join('placas as p', 'p.id', 'a.placa')
+          ->join('atenciones as at', 'at.id', 'a.atencion')
+          ->join('servicios as sr', 'sr.id', 'at.id_tipo')
+          ->whereBetween('a.created_at', [$f1, $f2])
+          ->where('a.placa','=',$request->placa)
+          ->orderBy('a.id','DESC')
+          ->get();
+        } else {
+
+          $f1 = date('Y-m-d');
+          $f2 = date('Y-m-d');
+
+
+          
+          $materiales = DB::table('placas_usadas as a')
+          ->select('a.id', 'a.placa', 'a.atencion','a.cantidad','a.paciente','a.usuario','a.created_at', 'b.nombres', 'b.apellidos', 'c.name as nameo', 'c.lastname as lasto', 'p.nombre as placa','at.id_tipo','sr.nombre as servicio')
+          ->join('pacientes as b', 'b.id', 'a.paciente')
+          ->join('users as c', 'c.id', 'a.usuario')
+          ->join('placas as p', 'p.id', 'a.placa')
+          ->join('atenciones as at', 'at.id', 'a.atencion')
+          ->join('servicios as sr', 'sr.id', 'at.id_tipo')
+          ->whereBetween('a.created_at', [$f1, $f2])
+          ->get();
+
+
+
+        }
+
+        $placas = Placas::all();
+
+        return view('resultados.materiales', compact('materiales','f1','f2','placas'));
+
+    }
+
 
 
 
