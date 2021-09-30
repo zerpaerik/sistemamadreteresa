@@ -105,6 +105,20 @@
 
                   </div>
                   </form>
+                  <div class="row" style="margin-left: 5px;">
+
+                        <div class="col-md-3">
+                        <label for="exampleInputEmail1">Items</label>
+                        <input type="text" disabled class="form-control" value="{{$totales->item}}">
+                        </div>
+
+                        <div class="col-md-3">
+                        <label for="exampleInputEmail1">Cantidad</label>
+                        <input type="text" disabled class="form-control" value="{{$totales->cantidad}}" >
+                        </div>
+                       
+
+                        </div>
               </div>
               <!-- /.card-header -->
               <div class="card-body">

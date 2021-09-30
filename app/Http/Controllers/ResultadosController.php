@@ -529,6 +529,11 @@ class ResultadosController extends Controller
           ->orderBy('a.id','DESC')
           ->get();
 
+          $totales = PlacasUsadas::whereBetween('created_at', [$f1,$f2])
+          ->select(DB::raw('COUNT(*) as item, SUM(cantidad) as cantidad'))
+          ->first();
+  
+
 
         } elseif ($request->inicio != null && $request->fin != null && $request->placa != null) {
           $f1 = $request->inicio;
@@ -545,6 +550,13 @@ class ResultadosController extends Controller
           ->where('a.placa','=',$request->placa)
           ->orderBy('a.id','DESC')
           ->get();
+
+          $totales = PlacasUsadas::whereBetween('created_at', [$f1,$f2])
+          ->where('placa','=',$request->placa)
+          ->select(DB::raw('COUNT(*) as item, SUM(cantidad) as cantidad'))
+          ->first();
+
+
         } else {
 
           $f1 = date('Y-m-d');
@@ -562,13 +574,19 @@ class ResultadosController extends Controller
           ->whereBetween('a.created_at', [$f1, $f2])
           ->get();
 
+          
+          $totales = PlacasUsadas::whereBetween('created_at', [$f1,$f2])
+          ->select(DB::raw('COUNT(*) as item, SUM(cantidad) as cantidad'))
+          ->first();
+  
+
 
 
         }
 
         $placas = Placas::all();
 
-        return view('resultados.materiales', compact('materiales','f1','f2','placas'));
+        return view('resultados.materiales', compact('materiales','f1','f2','placas','totales'));
 
     }
 

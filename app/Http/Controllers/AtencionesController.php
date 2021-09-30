@@ -8,6 +8,7 @@ use App\Tiempo;
 use App\Paquetes;
 use App\Pacientes;
 use App\Servicios;
+use App\PlacasUsadas;
 use App\User;
 use App\Atenciones;
 use App\Atec;
@@ -874,14 +875,7 @@ return view('atenciones.particular');
                               $com->save();
                           } else {
 
-                /* $com = new Comisiones();
-                  $com->id_atencion =  $lab->id;
-                  $com->porcentaje = $servicio->porcentaje2;
-                  $com->detalle =  $servicio->nombre;
-                  $com->monto = (float)$request->monto_s['servicios'][$key]['monto'] * $servicio->porcentaje2 / 100;
-                  $com->estatus = 1;
-                  $com->usuario = Auth::user()->id;
-                  $com->save();*/
+              
                           }
                       }
                   }
@@ -2433,6 +2427,14 @@ return view('atenciones.particular');
             $cb->estatus = 0;
             $cb->save();
         }
+
+        $placas_u = PlacasUsadas::where('atencion','=',$id)->first();
+
+        if ($placas_u != null) {
+          $pu = PlacasUsadas::where('atencion', '=', $id)->first();
+          $pu->delete();
+      }
+
 
         $sesio = Sesiones::where('id_atencion','=',$id)->get();
         if ($sesio != null) {
