@@ -120,7 +120,7 @@
                     <div class="col-sm-2">
                       <input id="servicios_#index#_montoHidden" name="monto_h[servicios][#index#][montoHidden]" class="text" type="hidden" value="">
 
-                      <input id="servicios_#index#_monto" name="monto_s[servicios][#index#][monto]" type="number" class="number form-control monto" onchange="sumar();"  placeholder="Cantidad"  data-toggle="tooltip" data-placement="bottom" title="Precio">
+                      <input id="servicios_#index#_monto" name="monto_s[servicios][#index#][monto]" type="number" class="number form-control monto"  placeholder="Cantidad"  data-toggle="tooltip" data-placement="bottom" title="Precio">
                     </div>
 
                   
@@ -144,6 +144,55 @@
             </div>
             <!-- /sheepIt Form --> 
           </div>
+
+          <div class="row">
+            <label class="col-sm-6 alert"><i class="fa fa-tasks" aria-hidden="true" style=""></i>Materiales Dañados</label>
+            <!-- sheepIt Form -->
+            <div id="ecografias" class="embed ">
+            
+                <!-- Form template-->
+                <div id="ecografias_template" class="template row">
+
+                <label for="ecografias_#index#_ecografia" class="col-sm-3 control-label" style="margin-left: 20px;">Placas Disponibles</label>
+                    <div class="col-sm-4">
+                      <select id="ecografias_#index#_ecografia" name="id_ecografia[ecografias][#index#][ecografia]" class="selectEco form-control">
+                        <option value="1">Seleccionar</option>
+                        @foreach($placas as $eco)
+                          <option value="{{$eco->id}}">
+                            {{$eco->nombre}}
+                          </option>
+                        @endforeach
+                      </select>
+                    </div>
+
+                    <label for="ecografias_#index#_monto" class="col-sm-2 control-label">Cantidad</label>
+                    <div class="col-sm-2">
+                      <input id="ecografias_#index#_montoHidden" name="monto_h[ecografias][#index#][montoHidden]" class="text" type="hidden" value="">
+
+                      <input id="ecografias_#index#_monto" name="monto_s[ecografias][#index#][monto]" type="text" class="number form-control monto"  placeholder="Cantidad" data-toggle="tooltip" data-placement="bottom" title="Precio">
+                    </div>
+
+                    <a id="ecografias_remove_current" style="cursor: pointer;"><i class="fa fa-times-circle" aria-hidden="true"></i></a>
+                </div>
+                <!-- /Form template-->
+                
+                <!-- No forms template -->
+                <div id="ecografias_noforms_template" class="noItems col-sm-12 text-center">Ningún Producto</div>
+                <!-- /No forms template-->
+                
+                <!-- Controls -->
+                <div id="ecografias_controls" class="controls col-sm-11 col-sm-offset-1">
+                    <div id="ecografias_add" class="btn btn-default form add"><a><span><i class="fa fa-plus-circle"></i> Agregar Ecografia</span></a></div>
+                </div>
+                <!-- /Controls -->
+                
+            </div>
+            <!-- /sheepIt Form --> 
+          </div>
+
+         
+
+
                   
                   @endif
               
@@ -292,7 +341,6 @@ function disableEnterKey(e)
     var total = 0;
 
     $(".monto, .montol, .montop").keyup(function(event) {
-      sumar();
     });
 
 

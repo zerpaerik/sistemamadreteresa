@@ -461,6 +461,13 @@
                   <p>Materiales Usados</p>
                 </a>
               </li> 
+
+              <li class="nav-item">
+                <a href="{{route('materialesm.index')}}" class="nav-link">
+                  <i class="fas fa-hand-holding-usd nav-icon"></i>
+                  <p>Materiales Malogrados</p>
+                </a>
+              </li> 
               
             </ul>
           </li>

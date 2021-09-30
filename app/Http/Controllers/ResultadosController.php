@@ -12,6 +12,7 @@ use App\User;
 use App\Atenciones;
 use App\Placas;
 use App\PlacasUsadas;
+use App\PlacasMalogradas;
 use App\Comisiones;
 use App\ResultadosServicios;
 use App\ResultadosLaboratorio;
@@ -451,6 +452,32 @@ class ResultadosController extends Controller
           }
       }
 
+
+      if ($request->id_ecografia != null) {
+        foreach ($request->id_ecografia['ecografias'] as $key => $eco) {
+            if (!is_null($eco['ecografia'])) {
+              $placa_m = Placas::where('id', '=', $eco['ecografia'])->first();
+
+              $plac_m = new PlacasMalogradas();
+              $plac_m->paciente =  $atenc->id_paciente;
+              $plac_m->placa = $placa_m->id;
+              $plac_m->cantidad = (float)$request->monto_s['ecografias'][$key]['monto'];
+              $plac_m->usuario = Auth::user()->id;
+              $plac_m->resultado = $request->id;
+              $plac_m->atencion =  $atenc->id;
+              $plac_m->save();
+
+
+                
+                }
+            }
+        }
+    
+
+
+
+
+
         $rs = ResultadosServicios::where('id','=',$request->id)->first();
         $img = $request->file('informe');
         $nombre_imagen=$img->getClientOriginalName();
@@ -589,6 +616,88 @@ class ResultadosController extends Controller
         return view('resultados.materiales', compact('materiales','f1','f2','placas','totales'));
 
     }
+
+    public function materialesm(Request $request){
+
+
+      if ($request->inicio != null && $request->fin != null && $request->placa == null) {
+
+        
+
+        $f1 = $request->inicio;
+        $f2 = $request->fin;
+
+        $materiales = DB::table('placas_malogradas as a')
+        ->select('a.id', 'a.placa', 'a.atencion','a.cantidad','a.paciente','a.usuario','a.created_at', 'b.nombres', 'b.apellidos', 'c.name as nameo', 'c.lastname as lasto', 'p.nombre as placa','at.id_tipo','sr.nombre as servicio')
+        ->join('pacientes as b', 'b.id', 'a.paciente')
+        ->join('users as c', 'c.id', 'a.usuario')
+        ->join('placas as p', 'p.id', 'a.placa')
+        ->join('atenciones as at', 'at.id', 'a.atencion')
+        ->join('servicios as sr', 'sr.id', 'at.id_tipo')
+        ->whereBetween('a.created_at', [$f1, $f2])
+        ->orderBy('a.id','DESC')
+        ->get();
+
+        $totales = PlacasMalogradas::whereBetween('created_at', [$f1,$f2])
+        ->select(DB::raw('COUNT(*) as item, SUM(cantidad) as cantidad'))
+        ->first();
+
+
+
+      } elseif ($request->inicio != null && $request->fin != null && $request->placa != null) {
+        $f1 = $request->inicio;
+        $f2 = $request->fin;
+
+        $materiales = DB::table('placas_malogradas as a')
+        ->select('a.id', 'a.placa', 'a.atencion','a.cantidad','a.paciente','a.usuario','a.created_at', 'b.nombres', 'b.apellidos', 'c.name as nameo', 'c.lastname as lasto', 'p.nombre as placa','at.id_tipo','sr.nombre as servicio')
+        ->join('pacientes as b', 'b.id', 'a.paciente')
+        ->join('users as c', 'c.id', 'a.usuario')
+        ->join('placas as p', 'p.id', 'a.placa')
+        ->join('atenciones as at', 'at.id', 'a.atencion')
+        ->join('servicios as sr', 'sr.id', 'at.id_tipo')
+        ->whereBetween('a.created_at', [$f1, $f2])
+        ->where('a.placa','=',$request->placa)
+        ->orderBy('a.id','DESC')
+        ->get();
+
+        $totales = PlacasMalogradas::whereBetween('created_at', [$f1,$f2])
+        ->where('placa','=',$request->placa)
+        ->select(DB::raw('COUNT(*) as item, SUM(cantidad) as cantidad'))
+        ->first();
+
+
+      } else {
+
+        $f1 = date('Y-m-d');
+        $f2 = date('Y-m-d');
+
+
+        
+        $materiales = DB::table('placas_malogradas as a')
+        ->select('a.id', 'a.placa', 'a.atencion','a.cantidad','a.paciente','a.usuario','a.created_at', 'b.nombres', 'b.apellidos', 'c.name as nameo', 'c.lastname as lasto', 'p.nombre as placa','at.id_tipo','sr.nombre as servicio')
+        ->join('pacientes as b', 'b.id', 'a.paciente')
+        ->join('users as c', 'c.id', 'a.usuario')
+        ->join('placas as p', 'p.id', 'a.placa')
+        ->join('atenciones as at', 'at.id', 'a.atencion')
+        ->join('servicios as sr', 'sr.id', 'at.id_tipo')
+        ->whereBetween('a.created_at', [$f1, $f2])
+        ->get();
+
+        
+        $totales = PlacasMalogradas::whereBetween('created_at', [$f1,$f2])
+        ->select(DB::raw('COUNT(*) as item, SUM(cantidad) as cantidad'))
+        ->first();
+
+
+
+
+      }
+
+      $placas = Placas::all();
+
+      return view('resultados.materialesm', compact('materiales','f1','f2','placas','totales'));
+
+  }
 
 
 
