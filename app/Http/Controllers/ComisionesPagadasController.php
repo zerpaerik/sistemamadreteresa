@@ -255,19 +255,51 @@ class ComisionesPagadasController extends Controller
     public function reversar($id)
     {
 
-      $com = Comisiones::where('id','=',$id)->first();
+
+      $com = Comisiones::where('recibo','=',$id)->first();
 
      
-      $a = Atenciones::where('id','=',$com->id_atencion)->first();
-      $a->pagado =1;
-      $resa = $a->update();
+      $at = Atenciones::where('id','=',$com->id_atencion)->get();
+      if ($at != null) {
+          foreach ($at as $rs) {
+              $id_at = $rs->id;
+              if (!is_null($id_at)) {
+                $p = Atenciones::find($id_at);
+                $p->pagado =1;
+                $res = $p->update();
+                 /* $rsf = Sesiones::where('id', '=', $id_rs)->first();
+                  $rsf->delete();*/
+              }
+          }
+      }
      
 
-      $p = Comisiones::find($id);
+     /* $p = Comisiones::find($id);
       $p->estatus =1;
       $p->recibo = '';
       $p->fecha_pago = NULL;
-      $res = $p->update();
+      $res = $p->update();*/
+
+
+      $comi_p = Comisiones::where('recibo','=',$id)->get();
+      if ($comi_p != null) {
+          foreach ($comi_p as $rs) {
+              $id_rs = $rs->id;
+              if (!is_null($id_rs)) {
+                $p = Comisiones::find($id_rs);
+                $p->estatus =1;
+                $p->recibo = NULL;
+                $p->fecha_pago = NULL;
+                $res = $p->update();
+                 /* $rsf = Sesiones::where('id', '=', $id_rs)->first();
+                  $rsf->delete();*/
+              }
+          }
+      }
+
+
+
+
     
       return back();
 
