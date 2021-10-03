@@ -1757,7 +1757,7 @@ return view('atenciones.particular');
    
       
       $csf1 = Comisiones::where('id_atencion','=',$request->id)->first();
-      if ($csf1 != null) {
+      if ($csf1 != null && $csf1->tecnologo != 1) {
           $csf = Comisiones::where('id_atencion', '=', $request->id)->first();
           $csf->delete();
       }
