@@ -1762,9 +1762,9 @@ return view('atenciones.particular');
           $csf->delete();*/
 
           foreach ($csf1 as $rs) {
-            $id_cms = $rs->id_atencion;
+            $id_cms = $rs->id;
             if (!is_null($id_cms)) {
-                $rsf = Comisiones::where('id_atencion', '=', $id_cms)->first();
+                $rsf = Comisiones::where('id', '=', $id_cms)->first();
                 $rsf->delete();
             }
         }
