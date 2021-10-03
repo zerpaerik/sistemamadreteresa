@@ -2358,6 +2358,33 @@ return view('atenciones.particular');
 
         $aten = Atenciones::where('id','=',$id)->first();
 
+        
+
+        $coms = Comisiones::where('id_atencion','=',$id)->get();
+
+
+        if ($coms != null) {
+          /*  $com = Comisiones::where('id_atencion', '=', $id)->first();
+            $com->estatus = 0;
+            $com->save();*/
+            foreach ($coms as $rs) {
+              $id_cm = $rs->id;
+              if (!is_null($id_cm)) {
+                $com = Comisiones::where('id', '=', $id_cm)->first();
+                $com->delete();
+
+              }
+          }
+
+
+
+
+        }
+
+
+
+
+
         if($aten->tipo_atencion == 5){
           $con = Consultas::where('id_atencion','=',$id)->first();
           $con->estatus = 0;
@@ -2417,26 +2444,7 @@ return view('atenciones.particular');
         $atencion->eliminado_por= $searchUsuarioID->name.' '.$searchUsuarioID->lastname;
         $atencion->save();
 
-        $coms = Comisiones::where('id_atencion','=',$id)->get();
-        if ($coms != null) {
-          /*  $com = Comisiones::where('id_atencion', '=', $id)->first();
-            $com->estatus = 0;
-            $com->save();*/
-
-
-            foreach ($coms as $rs) {
-              $id_cm = $rs->id_atencion;
-              if (!is_null($id_cm)) {
-                $com = Comisiones::where('id_atencion', '=', $id_cm)->first();
-                $com->estatus = 0;
-                $com->save();
-              }
-          }
-
-
-
-
-        }
+       
 
         $metodo = Metodos::where('id_atencion','=',$id)->first();
         if ($metodo != null) {
