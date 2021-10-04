@@ -406,24 +406,26 @@ class ResultadosController extends Controller
       $servicio = Servicios::where('id','=',$res->id_servicio)->first();
 
 
+
       $atenc = Atenciones::where('id','=',$res->id_atencion)->first();
 
+      
 
-      if($usuario->tipo_personal == 'Tecnólogo' && $servicio->porcentaje2 > 0 && $atenc->id_tipo != 7){
-        $com = new Comisiones();
-        $com->id_atencion =  $res->id_atencion;
-        $com->detalle =  $servicio->nombre;
-        $com->porcentaje = $servicio->porcentaje2;
-        $com->id_responsable = Auth::user()->id;
-        $com->monto = $atenc->monto * $servicio->porcentaje2 / 100;
-        $com->id_origen = 1;
-        $com->estatus = 1;
-        $com->tecnologo = 1;
-        $com->usuario = Auth::user()->id;
-        $com->save();
+      if ($usuario->tipo_personal == 'Tecnólogo' && $servicio->porcentaje2 > 0 && $atenc->tipo_atencion != 7) {
+          $com = new Comisiones();
+          $com->id_atencion =  $res->id_atencion;
+          $com->detalle =  $servicio->nombre;
+          $com->porcentaje = $servicio->porcentaje2;
+          $com->id_responsable = Auth::user()->id;
+          $com->monto = $atenc->monto * $servicio->porcentaje2 / 100;
+          $com->id_origen = 1;
+          $com->estatus = 1;
+          $com->tecnologo = 1;
+          $com->usuario = Auth::user()->id;
+          $com->save();
       }
 
-      if($usuario->tipo_personal == 'Tecnólogo' && $servicio->porcentaje2 > 0 && $atenc->id_tipo == 7){
+      if($usuario->tipo_personal == 'Tecnólogo' && $servicio->porcentaje2 > 0 && $atenc->tipo_atencion == 7){
         $com = new Comisiones();
         $com->id_atencion =  $res->id_atencion;
         $com->detalle =  $servicio->nombre;
