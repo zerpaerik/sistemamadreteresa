@@ -392,6 +392,11 @@ Route::get('general', 'ReportesController@general')->name('general.index');
 Route::post('report/consolidado', 'ReportesController@reportc');
 Route::post('report/detallado', 'ReportesController@reportd');
 Route::post('report/general', 'ReportesController@reportg');
+Route::get('produccion_servicios', 'ReportesController@prod_servicios')->name('prod_serv.index');
+Route::get('produccion_consultas', 'ReportesController@prod_consultas')->name('prod_cons.index');
+Route::get('produccion_sesiones', 'ReportesController@prod_sesiones')->name('prod_ses.index');
+
+
 
 Route::get('productos', 'ProductosController@index')->name('productos.index');
 Route::get('recepcion', 'ProductosController@recepcion')->name('productos.recepcion');
