@@ -636,7 +636,6 @@ class ReportesController extends Controller
         $usuarios = DB::table('resultados_servicios as a')
         ->select('a.id', 'a.id_atencion', 'a.usuario_informe','c.name', 'c.lastname','c.id as usuario')
         ->join('users as c', 'c.id', 'a.usuario_informe')
-        ->where('a.usuario_informe', '=', $request->usuario)
         ->whereBetween('a.created_at', [$f1, $f2])
         ->orderBy('a.id','DESC')
         ->groupBy('a.usuario_informe')
