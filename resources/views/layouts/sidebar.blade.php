@@ -476,6 +476,19 @@
                   <p>Producción Servicios</p>
                 </a>
               </li> 
+              <li class="nav-item">
+                <a href="{{route('prod_cons.index')}}" class="nav-link">
+                  <i class="fas fa-hand-holding-usd nav-icon"></i>
+                  <p>Producción Consultas</p>
+                </a>
+              </li> 
+
+              <li class="nav-item">
+                <a href="{{route('prod_ses.index')}}" class="nav-link">
+                  <i class="fas fa-hand-holding-usd nav-icon"></i>
+                  <p>Producción Sesiones</p>
+                </a>
+              </li> 
               
             </ul>
           </li>

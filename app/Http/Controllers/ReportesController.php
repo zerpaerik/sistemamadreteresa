@@ -734,6 +734,283 @@ class ReportesController extends Controller
 
     }
 
+    public function prod_consultas(Request $request){
+
+        if ($request->inicio && $request->inicio && $request->usuario) {
+            $f1 = $request->inicio;
+            $f2 = $request->fin;
+
+  
+
+         $resultados = DB::table('historia as a')
+        ->select('a.id', 'a.id_consulta', 'a.created_at','a.usuario','b.id_paciente','b.monto','b.id_paciente','c.name', 'c.lastname','pa.nombres','pa.apellidos')
+        ->join('consultas as b', 'b.id', 'a.id_consulta')
+        ->join('users as c', 'c.id', 'a.usuario')
+        ->join('pacientes as pa', 'pa.id', 'b.id_paciente')
+        ->where('a.usuario', '=', $request->usuario)
+        ->whereBetween('a.created_at', [$f1, $f2])
+        ->orderBy('a.id','DESC')
+        //->where('a.monto', '!=', '0')
+        ->get();
+
+        
+
+        $totales = DB::table('historia as a')
+        ->select('a.id', 'a.id_consulta', 'a.created_at','a.usuario','b.id_paciente',DB::raw('SUM(b.monto) as monto,COUNT(*) as cantidad'),'b.id_paciente','c.name', 'c.lastname','pa.nombres','pa.apellidos')
+        ->join('consultas as b', 'b.id', 'a.id_consulta')
+        ->join('users as c', 'c.id', 'a.usuario')
+        ->join('pacientes as pa', 'pa.id', 'b.id_paciente')
+        ->where('a.usuario', '=', $request->usuario)
+        ->whereBetween('a.created_at', [$f1, $f2])
+        ->orderBy('a.id','DESC')
+        //->where('a.monto', '!=', '0')
+        ->first();
+
+
+
+        $usuarios = DB::table('historia as a')
+        ->select('a.id', 'a.usuario','a.created_at','c.name', 'c.lastname','c.id as usuario')
+        ->join('users as c', 'c.id', 'a.usuario')
+        ->whereBetween('a.created_at', [$f1, $f2])
+        ->orderBy('a.id','DESC')
+        ->groupBy('a.usuario')
+        ->get();
+
+
+    } elseif($request->inicio && $request->inicio && $request->usuario == null) {
+
+        $f1 = $request->inicio;
+        $f2 = $request->fin;
+
+        $resultados = DB::table('historia as a')
+        ->select('a.id', 'a.id_consulta', 'a.created_at','a.usuario','b.id_paciente','b.monto','b.id_paciente','c.name', 'c.lastname','pa.nombres','pa.apellidos')
+        ->join('consultas as b', 'b.id', 'a.id_consulta')
+        ->join('users as c', 'c.id', 'a.usuario')
+        ->join('pacientes as pa', 'pa.id', 'b.id_paciente')
+        ->whereBetween('a.created_at', [$f1, $f2])
+        ->orderBy('a.id','DESC')
+        //->where('a.monto', '!=', '0')
+        ->get();
+
+        
+
+        $totales = DB::table('historia as a')
+        ->select('a.id', 'a.id_consulta', 'a.created_at','a.usuario','b.id_paciente',DB::raw('SUM(b.monto) as monto,COUNT(*) as cantidad'),'b.id_paciente','c.name', 'c.lastname','pa.nombres','pa.apellidos')
+        ->join('consultas as b', 'b.id', 'a.id_consulta')
+        ->join('users as c', 'c.id', 'a.usuario')
+        ->join('pacientes as pa', 'pa.id', 'b.id_paciente')
+        ->whereBetween('a.created_at', [$f1, $f2])
+        ->orderBy('a.id','DESC')
+        //->where('a.monto', '!=', '0')
+        ->first();
+
+
+
+        $usuarios = DB::table('historia as a')
+        ->select('a.id', 'a.usuario','a.created_at','c.name', 'c.lastname','c.id as usuario')
+        ->join('users as c', 'c.id', 'a.usuario')
+        ->whereBetween('a.created_at', [$f1, $f2])
+        ->orderBy('a.id','DESC')
+        ->groupBy('a.usuario')
+        ->get();
+
+
+        //DB::raw('SUM(monto) as monto'),
+
+
+
+
+        } else {
+
+            $f1 = date('Y-m-d');
+            $f2 = date('Y-m-d');
+
+
+            $resultados = DB::table('historia as a')
+        ->select('a.id', 'a.id_consulta', 'a.created_at','a.usuario','b.id_paciente','b.monto','b.id_paciente','c.name', 'c.lastname','pa.nombres','pa.apellidos')
+        ->join('consultas as b', 'b.id', 'a.id_consulta')
+        ->join('users as c', 'c.id', 'a.usuario')
+        ->join('pacientes as pa', 'pa.id', 'b.id_paciente')
+        ->whereBetween('a.created_at', [$f1, $f2])
+        ->orderBy('a.id','DESC')
+        //->where('a.monto', '!=', '0')
+        ->get();
+
+        
+
+        $totales = DB::table('historia as a')
+        ->select('a.id', 'a.id_consulta', 'a.created_at','a.usuario','b.id_paciente',DB::raw('SUM(b.monto) as monto,COUNT(*) as cantidad'),'b.id_paciente','c.name', 'c.lastname','pa.nombres','pa.apellidos')
+        ->join('consultas as b', 'b.id', 'a.id_consulta')
+        ->join('users as c', 'c.id', 'a.usuario')
+        ->join('pacientes as pa', 'pa.id', 'b.id_paciente')
+        ->whereBetween('a.created_at', [$f1, $f2])
+        ->orderBy('a.id','DESC')
+        //->where('a.monto', '!=', '0')
+        ->first();
+
+
+
+        $usuarios = DB::table('historia as a')
+        ->select('a.id', 'a.usuario','a.created_at','c.name', 'c.lastname','c.id as usuario')
+        ->join('users as c', 'c.id', 'a.usuario')
+        ->whereBetween('a.created_at', [$f1, $f2])
+        ->orderBy('a.id','DESC')
+        ->groupBy('a.usuario')
+        ->get();
+    
+
+            //->where('
+
+        }
+
+
+        return view('reportes.produccion_consultas', compact('resultados','f1','f2','usuarios','totales'));
+
+       
+
+    }
+
+    public function prod_sesiones(Request $request){
+
+        if ($request->inicio && $request->inicio && $request->usuario) {
+            $f1 = $request->inicio;
+            $f2 = $request->fin;
+
+  
+
+         $resultados = DB::table('sesiones as a')
+        ->select('a.id', 'a.id_atencion', 'a.created_at','a.id_personal','b.id_paciente','b.id_tipo','b.monto','b.id_paciente','c.name', 'c.lastname','pa.nombres','pa.apellidos','s.nombre as detalle')
+        ->join('atenciones as b', 'b.id', 'a.id_atencion')
+        ->join('users as c', 'c.id', 'a.id_personal')
+        ->join('pacientes as pa', 'pa.id', 'b.id_paciente')
+        ->join('servicios as s', 's.id', 'b.id_tipo')
+        ->where('a.id_personal', '=', $request->usuario)
+        ->whereBetween('a.created_at', [$f1, $f2])
+        ->orderBy('a.id','DESC')
+        //->where('a.monto', '!=', '0')
+        ->get();
+
+        
+
+        $totales = DB::table('sesiones as a')
+        ->select('a.id', 'a.id_atencion', 'a.created_at','a.id_personal','b.id_paciente','b.id_tipo','b.monto','b.id_paciente','c.name', 'c.lastname','pa.nombres','pa.apellidos','s.nombre as detalle')
+        ->join('atenciones as b', 'b.id', 'a.id_atencion')
+        ->join('users as c', 'c.id', 'a.id_personal')
+        ->join('pacientes as pa', 'pa.id', 'b.id_paciente')
+        ->join('servicios as s', 's.id', 'b.id_tipo')
+        ->where('a.id_personal', '=', $request->usuario)
+        ->whereBetween('a.created_at', [$f1, $f2])
+        ->orderBy('a.id','DESC')
+        //->where('a.monto', '!=', '0')
+        ->first();
+
+
+
+        $usuarios = DB::table('sesiones as a')
+        ->select('a.id', 'a.id_personal','a.created_at','c.name', 'c.lastname','c.id as usuario')
+        ->join('users as c', 'c.id', 'a.id_personal')
+        ->whereBetween('a.created_at', [$f1, $f2])
+        ->orderBy('a.id','DESC')
+        ->groupBy('a.id_personal')
+        ->get();
+
+
+    } elseif($request->inicio && $request->inicio && $request->usuario == null) {
+
+        $f1 = $request->inicio;
+        $f2 = $request->fin;
+
+        $resultados = DB::table('sesiones as a')
+        ->select('a.id', 'a.id_atencion', 'a.created_at','a.id_personal','b.id_paciente','b.id_tipo','b.monto','b.id_paciente','c.name', 'c.lastname','pa.nombres','pa.apellidos','s.nombre as detalle')
+        ->join('atenciones as b', 'b.id', 'a.id_atencion')
+        ->join('users as c', 'c.id', 'a.id_personal')
+        ->join('pacientes as pa', 'pa.id', 'b.id_paciente')
+        ->join('servicios as s', 's.id', 'b.id_tipo')
+        ->whereBetween('a.created_at', [$f1, $f2])
+        ->orderBy('a.id','DESC')
+        //->where('a.monto', '!=', '0')
+        ->get();
+
+        
+
+        $totales = DB::table('sesiones as a')
+        ->select('a.id', 'a.id_atencion', 'a.created_at','a.id_personal','b.id_paciente',DB::raw('SUM(b.monto) as monto,COUNT(*) as cantidad'),'b.id_paciente','c.name', 'c.lastname','pa.nombres','pa.apellidos')
+        ->join('atenciones as b', 'b.id', 'a.id_atencion')
+        ->join('users as c', 'c.id', 'a.id_personal')
+        ->join('pacientes as pa', 'pa.id', 'b.id_paciente')
+        ->whereBetween('a.created_at', [$f1, $f2])
+        ->orderBy('a.id','DESC')
+        //->where('a.monto', '!=', '0')
+        ->first();
+
+
+
+        $usuarios = DB::table('sesiones as a')
+        ->select('a.id', 'a.id_personal','a.created_at','c.name', 'c.lastname','c.id as usuario')
+        ->join('users as c', 'c.id', 'a.id_personal')
+        ->whereBetween('a.created_at', [$f1, $f2])
+        ->orderBy('a.id','DESC')
+        ->groupBy('a.id_personal')
+        ->get();
+
+
+        //DB::raw('SUM(monto) as monto'),
+
+
+
+
+        } else {
+
+            $f1 = date('Y-m-d');
+            $f2 = date('Y-m-d');
+
+
+            $resultados = DB::table('sesiones as a')
+            ->select('a.id', 'a.id_atencion', 'a.created_at','a.id_personal','b.id_paciente','b.id_tipo','b.monto','b.id_paciente','c.name', 'c.lastname','pa.nombres','pa.apellidos','s.nombre as detalle')
+            ->join('atenciones as b', 'b.id', 'a.id_atencion')
+            ->join('users as c', 'c.id', 'a.id_personal')
+            ->join('pacientes as pa', 'pa.id', 'b.id_paciente')
+            ->join('servicios as s', 's.id', 'b.id_tipo')
+        ->whereBetween('a.created_at', [$f1, $f2])
+        ->orderBy('a.id','DESC')
+        //->where('a.monto', '!=', '0')
+        ->get();
+
+        
+
+        $totales = DB::table('sesiones as a')
+        ->select('a.id', 'a.id_atencion', 'a.created_at','a.id_personal','b.id_paciente',DB::raw('SUM(b.monto) as monto,COUNT(*) as cantidad'),'b.id_paciente','c.name', 'c.lastname','pa.nombres','pa.apellidos')
+        ->join('atenciones as b', 'b.id', 'a.id_atencion')
+        ->join('users as c', 'c.id', 'a.id_personal')
+        ->join('pacientes as pa', 'pa.id', 'b.id_paciente')
+        ->whereBetween('a.created_at', [$f1, $f2])
+        ->orderBy('a.id','DESC')
+        //->where('a.monto', '!=', '0')
+        ->first();
+
+
+
+        $usuarios = DB::table('sesiones as a')
+        ->select('a.id', 'a.id_personal','a.created_at','c.name', 'c.lastname','c.id as usuario')
+        ->join('users as c', 'c.id', 'a.id_personal')
+        ->whereBetween('a.created_at', [$f1, $f2])
+        ->orderBy('a.id','DESC')
+        ->groupBy('a.id_personal')
+        ->get();
+    
+
+            //->where('
+
+        }
+
+
+        return view('reportes.produccion_sesiones', compact('resultados','f1','f2','usuarios','totales'));
+
+       
+
+    }
+
+
     public function ingresos(Request $request){
 
 
