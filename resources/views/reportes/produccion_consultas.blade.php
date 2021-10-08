@@ -111,12 +111,12 @@
 
                     <div class="col-md-2">
                     <label for="exampleInputEmail1">Items</label>
-                    <input type="text" disabled class="form-control" value="{{$totales->cantidad}}">
+                    <input type="text" disabled class="form-control" value="{{$totales->cantidad + $totalesc->cantidad}}">
                   </div>
 
                   <div class="col-md-3">
                     <label for="exampleInputEmail1">Total en Soles</label>
-                    <input type="text" disabled class="form-control" value="{{$totales->monto}}" >
+                    <input type="text" disabled class="form-control" value="{{$totales->monto  + $totalesc->monto}}" >
                   </div>
                   
 
@@ -141,7 +141,11 @@
                   @foreach($resultados as $an)
                   <tr>
                    <td>{{$an->created_at}}</td>
+                   @if($an->tipo == 1)
                    <td>CONSULTA</td>
+                   @else
+                   <td>CONTROL</td>
+                   @endif
                    <td>{{$an->monto}}</td>                 
                    <td>{{$an->lastname}} {{$an->name}}</td>
                   
