@@ -608,11 +608,11 @@ class ReportesController extends Controller
   
 
             $resultados = DB::table('resultados_servicios as a')
-        ->select('a.id', 'a.id_atencion', 'a.id_servicio','a.usuario_informe','a.informe','b.usuario', 'a.created_at', 'a.estatus','b.resta','b.monto','b.abono', 'b.id_paciente','b.estatus','b.sede', 'b.id_origen', 's.nombre as servicio', 'pa.nombres', 'pa.apellidos', 'c.name', 'c.lastname')
-        ->join('atenciones as b', 'b.id', 'a.id_atencion')
-        ->join('users as c', 'c.id', 'a.usuario_informe')
-        ->join('pacientes as pa', 'pa.id', 'b.id_paciente')
-        ->join('servicios as s', 's.id', 'a.id_servicio')
+            ->select('a.id', 'a.id_atencion', 'a.id_servicio','a.usuario_informe','a.informe','b.tipo_atencion', 'b.usuario','b.resta','b.monto', 'a.created_at', 'a.estatus', 'b.estatus','b.monto','b.abono','b.sede','b.id_paciente', 'b.id_origen', 's.nombre as servicio','s.precio as pre_ser', 'pa.nombres', 'pa.apellidos', 'c.name', 'c.lastname')
+            ->join('atenciones as b', 'b.id', 'a.id_atencion')
+            ->join('users as c', 'c.id', 'a.usuario_informe')
+            ->join('pacientes as pa', 'pa.id', 'b.id_paciente')
+            ->join('servicios as s', 's.id', 'a.id_servicio')
         ->where('a.usuario_informe', '=', $request->usuario)
         ->whereBetween('a.created_at', [$f1, $f2])
         ->orderBy('a.id','DESC')
@@ -648,7 +648,7 @@ class ReportesController extends Controller
         $f2 = $request->fin;
 
         $resultados = DB::table('resultados_servicios as a')
-        ->select('a.id', 'a.id_atencion', 'a.id_servicio','a.usuario_informe','a.informe','b.usuario', 'a.created_at', 'a.estatus','b.resta','b.monto','b.abono', 'b.id_paciente','b.estatus','b.sede', 'b.id_origen', 's.nombre as servicio', 'pa.nombres', 'pa.apellidos', 'c.name', 'c.lastname')
+        ->select('a.id', 'a.id_atencion', 'a.id_servicio','a.usuario_informe','a.informe','b.tipo_atencion', 'b.usuario','b.resta','b.monto', 'a.created_at', 'a.estatus', 'b.estatus','b.monto','b.abono','b.sede','b.id_paciente', 'b.id_origen', 's.nombre as servicio','s.precio as pre_ser', 'pa.nombres', 'pa.apellidos', 'c.name', 'c.lastname')
         ->join('atenciones as b', 'b.id', 'a.id_atencion')
         ->join('users as c', 'c.id', 'a.usuario_informe')
         ->join('pacientes as pa', 'pa.id', 'b.id_paciente')
@@ -693,7 +693,7 @@ class ReportesController extends Controller
 
 
             $resultados = DB::table('resultados_servicios as a')
-            ->select('a.id', 'a.id_atencion', 'a.id_servicio','a.usuario_informe','a.informe', 'b.usuario','b.resta','b.monto', 'a.created_at', 'a.estatus', 'b.estatus','b.monto','b.abono','b.sede','b.id_paciente', 'b.id_origen', 's.nombre as servicio', 'pa.nombres', 'pa.apellidos', 'c.name', 'c.lastname')
+            ->select('a.id', 'a.id_atencion', 'a.id_servicio','a.usuario_informe','a.informe','b.tipo_atencion', 'b.usuario','b.resta','b.monto', 'a.created_at', 'a.estatus', 'b.estatus','b.monto','b.abono','b.sede','b.id_paciente', 'b.id_origen', 's.nombre as servicio','s.precio as pre_ser', 'pa.nombres', 'pa.apellidos', 'c.name', 'c.lastname')
             ->join('atenciones as b', 'b.id', 'a.id_atencion')
             ->join('users as c', 'c.id', 'a.usuario_informe')
             ->join('pacientes as pa', 'pa.id', 'b.id_paciente')

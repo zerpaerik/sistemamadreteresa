@@ -142,7 +142,11 @@
                   <tr>
                    <td>{{$an->created_at}}</td>
                    <td>{{$an->servicio}}</td>
-                   <td>{{$an->monto}}</td>                 
+                    @if($an->tipo_atencion == 7)
+                    <td>{{$an->pre_ser}}</td>                 
+                    @else
+                    <td>{{$an->monto}}</td>                 
+                    @endif
                     <td>{{$an->lastname}} {{$an->name}}</td>
                   
                                
