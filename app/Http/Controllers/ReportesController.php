@@ -619,17 +619,35 @@ class ReportesController extends Controller
         //->where('a.monto', '!=', '0')
         ->get();
 
+
         $totales = DB::table('resultados_servicios as a')
-        ->select('a.id', 'a.id_atencion', 'a.id_servicio','a.usuario_informe','a.informe','b.usuario', 'a.created_at', 'a.estatus','b.resta',DB::raw('SUM(b.monto) as monto,COUNT(*) as cantidad'),'b.abono', 'b.id_paciente','b.estatus','b.sede', 'b.id_origen', 's.nombre as servicio', 'pa.nombres', 'pa.apellidos', 'c.name', 'c.lastname')
+        ->select('a.id', 'a.id_atencion', 'a.id_servicio','a.usuario_informe','a.informe','b.usuario', 'a.created_at', 'a.estatus','b.tipo_atencion','b.resta',DB::raw('SUM(b.monto) as monto,COUNT(*) as cantidad'),'b.abono', 'b.id_paciente','b.estatus','b.sede', 'b.id_origen', 's.nombre as servicio', 'pa.nombres', 'pa.apellidos', 'c.name', 'c.lastname')
         ->join('atenciones as b', 'b.id', 'a.id_atencion')
         ->join('users as c', 'c.id', 'a.usuario_informe')
         ->join('pacientes as pa', 'pa.id', 'b.id_paciente')
         ->join('servicios as s', 's.id', 'a.id_servicio')
         ->whereBetween('a.created_at', [$f1, $f2])
         ->where('a.usuario_informe', '=', $request->usuario)
+        ->where('b.tipo_atencion', '!=', 7)
         ->orderBy('a.id','DESC')
         //->where('a.monto', '!=', '0')
         ->first();
+
+        $totalesc = DB::table('resultados_servicios as a')
+        ->select('a.id', 'a.id_atencion', 'a.id_servicio','a.usuario_informe','a.informe','b.usuario', 'a.created_at', 'a.estatus','b.tipo_atencion','b.resta',DB::raw('SUM(s.precio) as monto,COUNT(*) as cantidad'),'b.abono', 'b.id_paciente','b.estatus','b.sede', 'b.id_origen', 's.nombre as servicio','s.precio', 'pa.nombres', 'pa.apellidos', 'c.name', 'c.lastname')
+        ->join('atenciones as b', 'b.id', 'a.id_atencion')
+        ->join('users as c', 'c.id', 'a.usuario_informe')
+        ->join('pacientes as pa', 'pa.id', 'b.id_paciente')
+        ->join('servicios as s', 's.id', 'a.id_servicio')
+        ->whereBetween('a.created_at', [$f1, $f2])
+        ->where('a.usuario_informe', '=', $request->usuario)
+        ->where('b.tipo_atencion', '=', 7)
+        ->orderBy('a.id','DESC')
+        //->where('a.monto', '!=', '0')
+        ->first();
+
+
+
 
 
 
@@ -668,13 +686,27 @@ class ReportesController extends Controller
         ->groupBy('a.usuario_informe')
         ->get();
 
+
         $totales = DB::table('resultados_servicios as a')
-        ->select('a.id', 'a.id_atencion', 'a.id_servicio','a.usuario_informe','a.informe','b.usuario', 'a.created_at', 'a.estatus','b.resta',DB::raw('SUM(b.monto) as monto,COUNT(*) as cantidad'),'b.abono', 'b.id_paciente','b.estatus','b.sede', 'b.id_origen', 's.nombre as servicio', 'pa.nombres', 'pa.apellidos', 'c.name', 'c.lastname')
+        ->select('a.id', 'a.id_atencion', 'a.id_servicio','a.usuario_informe','a.informe','b.usuario', 'a.created_at', 'a.estatus','b.tipo_atencion','b.resta',DB::raw('SUM(b.monto) as monto,COUNT(*) as cantidad'),'b.abono', 'b.id_paciente','b.estatus','b.sede', 'b.id_origen', 's.nombre as servicio', 'pa.nombres', 'pa.apellidos', 'c.name', 'c.lastname')
         ->join('atenciones as b', 'b.id', 'a.id_atencion')
         ->join('users as c', 'c.id', 'a.usuario_informe')
         ->join('pacientes as pa', 'pa.id', 'b.id_paciente')
         ->join('servicios as s', 's.id', 'a.id_servicio')
         ->whereBetween('a.created_at', [$f1, $f2])
+        ->where('b.tipo_atencion', '!=', 7)
+        ->orderBy('a.id','DESC')
+        //->where('a.monto', '!=', '0')
+        ->first();
+
+        $totalesc = DB::table('resultados_servicios as a')
+        ->select('a.id', 'a.id_atencion', 'a.id_servicio','a.usuario_informe','a.informe','b.usuario', 'a.created_at', 'a.estatus','b.tipo_atencion','b.resta',DB::raw('SUM(s.precio) as monto,COUNT(*) as cantidad'),'b.abono', 'b.id_paciente','b.estatus','b.sede', 'b.id_origen', 's.nombre as servicio','s.precio', 'pa.nombres', 'pa.apellidos', 'c.name', 'c.lastname')
+        ->join('atenciones as b', 'b.id', 'a.id_atencion')
+        ->join('users as c', 'c.id', 'a.usuario_informe')
+        ->join('pacientes as pa', 'pa.id', 'b.id_paciente')
+        ->join('servicios as s', 's.id', 'a.id_servicio')
+        ->whereBetween('a.created_at', [$f1, $f2])
+        ->where('b.tipo_atencion', '=', 7)
         ->orderBy('a.id','DESC')
         //->where('a.monto', '!=', '0')
         ->first();
@@ -711,12 +743,25 @@ class ReportesController extends Controller
             ->get();
 
             $totales = DB::table('resultados_servicios as a')
-            ->select('a.id', 'a.id_atencion', 'a.id_servicio','a.usuario_informe','a.informe','b.usuario', 'a.created_at', 'a.estatus','b.resta',DB::raw('SUM(b.monto) as monto,COUNT(*) as cantidad'),'b.abono', 'b.id_paciente','b.estatus','b.sede', 'b.id_origen', 's.nombre as servicio', 'pa.nombres', 'pa.apellidos', 'c.name', 'c.lastname')
+            ->select('a.id', 'a.id_atencion', 'a.id_servicio','a.usuario_informe','a.informe','b.usuario', 'a.created_at', 'a.estatus','b.tipo_atencion','b.resta',DB::raw('SUM(b.monto) as monto,COUNT(*) as cantidad'),'b.abono', 'b.id_paciente','b.estatus','b.sede', 'b.id_origen', 's.nombre as servicio', 'pa.nombres', 'pa.apellidos', 'c.name', 'c.lastname')
             ->join('atenciones as b', 'b.id', 'a.id_atencion')
             ->join('users as c', 'c.id', 'a.usuario_informe')
             ->join('pacientes as pa', 'pa.id', 'b.id_paciente')
             ->join('servicios as s', 's.id', 'a.id_servicio')
             ->where('a.created_at', '=', date('Y-m-d'))
+            ->where('b.tipo_atencion', '!=', 7)
+            ->orderBy('a.id','DESC')
+            //->where('a.monto', '!=', '0')
+            ->first();
+
+            $totalesc = DB::table('resultados_servicios as a')
+            ->select('a.id', 'a.id_atencion', 'a.id_servicio','a.usuario_informe','a.informe','b.usuario', 'a.created_at', 'a.estatus','b.tipo_atencion','b.resta',DB::raw('SUM(s.precio) as monto,COUNT(*) as cantidad'),'b.abono', 'b.id_paciente','b.estatus','b.sede', 'b.id_origen', 's.nombre as servicio','s.precio', 'pa.nombres', 'pa.apellidos', 'c.name', 'c.lastname')
+            ->join('atenciones as b', 'b.id', 'a.id_atencion')
+            ->join('users as c', 'c.id', 'a.usuario_informe')
+            ->join('pacientes as pa', 'pa.id', 'b.id_paciente')
+            ->join('servicios as s', 's.id', 'a.id_servicio')
+            ->where('a.created_at', '=', date('Y-m-d'))
+            ->where('b.tipo_atencion', '=', 7)
             ->orderBy('a.id','DESC')
             //->where('a.monto', '!=', '0')
             ->first();
@@ -728,7 +773,7 @@ class ReportesController extends Controller
         }
 
 
-        return view('reportes.produccion_servicios', compact('resultados','f1','f2','usuarios','totales'));
+        return view('reportes.produccion_servicios', compact('resultados','f1','f2','usuarios','totales','totalesc'));
 
        
 
