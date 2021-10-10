@@ -367,13 +367,13 @@ class ComisionesPagadasController extends Controller
      public function reporte_pagadas1(Request $request){
 
         $pagadas = DB::table('comisiones as a')
-        ->select('a.id', 'a.estatus','a.recibo', 'a.id_atencion','a.fecha_pago','a.created_at','a.detalle','a.usuario', 'a.porcentaje', 'a.monto', 'a.estatus', 'at.id_paciente', 'at.tipo_atencion', 'at.sede', 'at.tipo_origen', 'at.id_origen', 'at.monto as total', 'b.nombres', 'b.apellidos', 'c.name as nameo', 'c.lastname as lasto', 'd.name as nameu', 'd.lastname as lastu',DB::raw('SUM(a.monto) as totalrecibo'), DB::raw('COUNT(DISTINCT a.recibo) as total'))
+        ->select('a.id', 'a.estatus','a.recibo', 'a.id_atencion','a.id_origen','a.fecha_pago','a.created_at','a.detalle','a.usuario', 'a.porcentaje', 'a.monto', 'a.estatus', 'at.id_paciente', 'at.tipo_atencion', 'at.sede', 'at.tipo_origen', 'at.id_origen', 'at.monto as total', 'b.nombres', 'b.apellidos', 'c.name as nameo', 'c.lastname as lasto', 'd.name as nameu', 'd.lastname as lastu',DB::raw('SUM(a.monto) as totalrecibo'), DB::raw('COUNT(DISTINCT a.recibo) as total'))
         ->join('atenciones as at', 'at.id', 'a.id_atencion')
         ->join('pacientes as b', 'b.id', 'at.id_paciente')
         ->join('users as c', 'c.id', 'at.id_origen')
         ->join('users as d', 'd.id', 'a.usuario')
         ->where('a.estatus', '=', 2)
-        ->where('at.tipo_origen', '=', 2)
+        ->where('a.id_origen', '=', 2)
         ->where('at.sede', '=', $request->session()->get('sede'))
        // ->where('at.id_origen','=',$request->origen)
         ->whereBetween('a.fecha_pago', [$request->f1, $request->f2])
@@ -381,13 +381,13 @@ class ComisionesPagadasController extends Controller
         ->get();
 
         $total_sobres = DB::table('comisiones as a')
-        ->select('a.id', 'a.estatus','a.recibo', 'a.id_atencion','a.fecha_pago','a.created_at','a.detalle','a.usuario', 'a.porcentaje', 'a.monto', 'a.estatus', 'at.id_paciente', 'at.tipo_atencion', 'at.sede', 'at.tipo_origen', 'at.id_origen', 'at.monto as total', 'b.nombres', 'b.apellidos', 'c.name as nameo', 'c.lastname as lasto', 'd.name as nameu', 'd.lastname as lastu',DB::raw('SUM(a.monto) as totalrecibo'), DB::raw('COUNT(DISTINCT a.recibo) as total'))
+        ->select('a.id', 'a.estatus','a.recibo', 'a.id_atencion','a.id_origen','a.fecha_pago','a.created_at','a.detalle','a.usuario', 'a.porcentaje', 'a.monto', 'a.estatus', 'at.id_paciente', 'at.tipo_atencion', 'at.sede', 'at.tipo_origen', 'at.id_origen', 'at.monto as total', 'b.nombres', 'b.apellidos', 'c.name as nameo', 'c.lastname as lasto', 'd.name as nameu', 'd.lastname as lastu',DB::raw('SUM(a.monto) as totalrecibo'), DB::raw('COUNT(DISTINCT a.recibo) as total'))
         ->join('atenciones as at', 'at.id', 'a.id_atencion')
         ->join('pacientes as b', 'b.id', 'at.id_paciente')
         ->join('users as c', 'c.id', 'at.id_origen')
         ->join('users as d', 'd.id', 'a.usuario')
         ->where('a.estatus', '=', 2)
-        ->where('at.tipo_origen', '=', 2)
+        ->where('a.id_origen', '=', 2)
         ->where('at.sede', '=', $request->session()->get('sede'))
        // ->where('at.id_origen','=',$request->origen)
         ->whereBetween('a.fecha_pago', [$request->f1, $request->f2])
