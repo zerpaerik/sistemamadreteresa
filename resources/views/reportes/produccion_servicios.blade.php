@@ -90,17 +90,8 @@
                     <input type="date" class="form-control" value="{{$f2}}" name="fin">
                   </div>
 
-                  <div class="col-md-3">
-                    <label for="exampleInputEmail1">Seleccione el Usuario</label>
-                    <select class="form-control" data-placeholder="Seleccione" style="width: 100%;" name="usuario">
-                    <option value="">Seleccione</option>
-                   @foreach($usuarios as $o)
-                   <option value="{{$o->usuario}}">{{$o->lastname}} {{$o->name}}</option>
-                    @endforeach
-                  </select>
-                  </div>
-                  
-                
+                 
+
                  
                   <div class="col-md-2" style="margin-top: 30px;">
                   <button type="submit" class="btn btn-primary">Buscar</button>
@@ -130,24 +121,28 @@
                 <table id="" class="table table-bordered table-striped">
                   <thead>
                   <tr>
-                    <th>Fecha</th>
-                    <th>Detalle</th>
-                    <th>Monto</th>
                     <th>Usuario Informe</th>
+                    <th>Monto</th>
+                    <th>Acciones</th>
                   </tr>
                   </thead>
                   <tbody>
 
                   @foreach($resultados as $an)
                   <tr>
-                   <td>{{$an->created_at}}</td>
-                   <td>{{$an->servicio}}</td>
+                   <td>{{$an->lastname}} {{$an->name}}</td>
                     @if($an->tipo_atencion == 7)
                     <td>{{$an->pre_ser}}</td>                 
                     @else
                     <td>{{$an->monto}}</td>                 
                     @endif
-                    <td>{{$an->lastname}} {{$an->name}}</td>
+                    <td>
+                    <a target="_blank" class="btn btn-success btn-sm" href="prod-serv/{{$an->usuario_informe}}/{{$f1}}/{{$f2}}">
+                              <i class="fas fa-print">
+                              </i>
+                              Recibo
+                          </a>
+                    </td>                 
                   
                                
 
@@ -163,10 +158,9 @@
                   </tbody>
                   <tfoot>
                   <tr>
-                  <th>Fecha</th>
-                    <th>Detalle.</th>
+                  <th>Usuario Informe</th>
                     <th>Monto</th>
-                    <th>Usuario Informe</th>
+                    <th>Acciones</th>
                   </tr>
                  
                   </tfoot>

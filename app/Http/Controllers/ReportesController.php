@@ -666,13 +666,14 @@ class ReportesController extends Controller
         $f2 = $request->fin;
 
         $resultados = DB::table('resultados_servicios as a')
-        ->select('a.id', 'a.id_atencion', 'a.id_servicio','a.usuario_informe','a.informe','b.tipo_atencion', 'b.usuario','b.resta','b.monto', 'a.created_at', 'a.estatus', 'b.estatus','b.monto','b.abono','b.sede','b.id_paciente', 'b.id_origen', 's.nombre as servicio','s.precio as pre_ser', 'pa.nombres', 'pa.apellidos', 'c.name', 'c.lastname')
+        ->select('a.id', 'a.id_atencion', 'a.id_servicio','a.usuario_informe','a.informe','b.tipo_atencion', 'b.usuario','b.resta', 'a.created_at', 'a.estatus', 'b.estatus',DB::raw('SUM(b.monto) as monto'),'b.abono','b.sede','b.id_paciente', 'b.id_origen', 's.nombre as servicio','s.precio as pre_ser', 'pa.nombres', 'pa.apellidos', 'c.name', 'c.lastname')
         ->join('atenciones as b', 'b.id', 'a.id_atencion')
         ->join('users as c', 'c.id', 'a.usuario_informe')
         ->join('pacientes as pa', 'pa.id', 'b.id_paciente')
         ->join('servicios as s', 's.id', 'a.id_servicio')
         ->whereBetween('a.created_at', [$f1, $f2])
         ->orderBy('a.id','DESC')
+        ->groupBy('a.usuario_informe')
         //->where('a.monto', '!=', '0')
         ->get();
 
@@ -723,16 +724,21 @@ class ReportesController extends Controller
             $f1 = date('Y-m-d');
             $f2 = date('Y-m-d');
 
+         
+
+
+
 
             $resultados = DB::table('resultados_servicios as a')
-            ->select('a.id', 'a.id_atencion', 'a.id_servicio','a.usuario_informe','a.informe','b.tipo_atencion', 'b.usuario','b.resta','b.monto', 'a.created_at', 'a.estatus', 'b.estatus','b.monto','b.abono','b.sede','b.id_paciente', 'b.id_origen', 's.nombre as servicio','s.precio as pre_ser', 'pa.nombres', 'pa.apellidos', 'c.name', 'c.lastname')
+            ->select('a.id', 'a.id_atencion', 'a.id_servicio','a.usuario_informe','a.informe','b.tipo_atencion', 'b.usuario','b.resta',DB::raw('SUM(b.monto) as monto'),'a.created_at', 'a.estatus', 'b.estatus','b.abono','b.sede','b.id_paciente', 'b.id_origen', 's.nombre as servicio','s.precio as pre_ser', 'pa.nombres', 'pa.apellidos', 'c.name', 'c.lastname')
             ->join('atenciones as b', 'b.id', 'a.id_atencion')
             ->join('users as c', 'c.id', 'a.usuario_informe')
             ->join('pacientes as pa', 'pa.id', 'b.id_paciente')
             ->join('servicios as s', 's.id', 'a.id_servicio')
             ->where('a.created_at', '=', date('Y-m-d'))
-            ->orderBy('a.id','DESC')
+            ->groupBy('a.usuario_informe')
             ->get();
+
 
             $usuarios = DB::table('resultados_servicios as a')
             ->select('a.id', 'a.id_atencion', 'a.usuario_informe','c.name', 'c.lastname','c.id as usuario')
@@ -777,6 +783,48 @@ class ReportesController extends Controller
 
        
 
+    }
+
+    public function prod_servicios_report($id, $f1, $f2){
+
+        $resultados = DB::table('resultados_servicios as a')
+        ->select('a.id', 'a.id_atencion', 'a.id_servicio','a.usuario_informe','a.informe','b.tipo_atencion', 'b.usuario','b.resta',DB::raw('SUM(b.monto) as monto,COUNT(*) as cantidad'), 'a.created_at', 'a.estatus', 'b.estatus','b.abono','b.sede','b.id_paciente', 'b.id_origen', 's.nombre as servicio','s.precio as pre_ser', 'pa.nombres', 'pa.apellidos', 'c.name', 'c.lastname')
+        ->join('atenciones as b', 'b.id', 'a.id_atencion')
+        ->join('users as c', 'c.id', 'a.usuario_informe')
+        ->join('pacientes as pa', 'pa.id', 'b.id_paciente')
+        ->join('servicios as s', 's.id', 'a.id_servicio')
+        ->where('a.usuario_informe', '=', $id)
+        ->whereBetween('a.created_at', [$f1, $f2])
+        ->orderBy('a.id','DESC')
+        ->groupBy('a.id_servicio')
+        ->get();
+        
+
+        $resultados_t = DB::table('resultados_servicios as a')
+        ->select('a.id', 'a.id_atencion', 'a.id_servicio','a.usuario_informe','a.informe','b.tipo_atencion', 'b.usuario','b.resta',DB::raw('SUM(b.monto) as monto'), 'a.created_at', 'a.estatus', 'b.estatus','b.abono','b.sede','b.id_paciente', 'b.id_origen', 's.nombre as servicio','s.precio as pre_ser', 'pa.nombres', 'pa.apellidos', 'c.name', 'c.lastname')
+        ->join('atenciones as b', 'b.id', 'a.id_atencion')
+        ->join('users as c', 'c.id', 'a.usuario_informe')
+        ->join('pacientes as pa', 'pa.id', 'b.id_paciente')
+        ->join('servicios as s', 's.id', 'a.id_servicio')
+        ->where('a.usuario_informe', '=', $id)
+        ->whereBetween('a.created_at', [$f1, $f2])
+        ->orderBy('a.id','DESC')
+        //->where('a.monto', '!=', '0')
+        ->first();
+
+
+
+        $view = \View::make('reportes.recibo_prod_serv', compact('f1','f2','resultados','resultados_t'));
+
+        $pdf = \App::make('dompdf.wrapper');
+        $pdf->loadHTML($view);
+     
+       
+        return $pdf->stream('recibo-produccion-servicios'.'.pdf');
+
+
+
+        
     }
 
     public function prod_consultas(Request $request){

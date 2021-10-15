@@ -395,6 +395,8 @@ Route::post('report/general', 'ReportesController@reportg');
 Route::get('produccion_servicios', 'ReportesController@prod_servicios')->name('prod_serv.index');
 Route::get('produccion_consultas', 'ReportesController@prod_consultas')->name('prod_cons.index');
 Route::get('produccion_sesiones', 'ReportesController@prod_sesiones')->name('prod_ses.index');
+Route::get('prod-serv/{id}/{f1}/{f2}', 'ReportesController@prod_servicios_report');
+
 
 
 
