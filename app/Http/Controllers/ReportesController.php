@@ -702,14 +702,15 @@ class ReportesController extends Controller
 
          
             $resultados = DB::table('resultados_servicios as a')
-            ->select('a.id', 'a.id_atencion', 'a.id_servicio','a.usuario_informe','a.informe','b.tipo_atencion', 'b.usuario','b.resta',DB::raw('SUM(a.monto) as monto'),'a.created_at', 'a.estatus', 'b.estatus','b.abono','b.sede','b.id_paciente', 'b.id_origen', 's.nombre as servicio','s.precio as pre_ser', 'pa.nombres', 'pa.apellidos', 'c.name', 'c.lastname')
+            ->select('a.id', 'a.id_atencion', 'a.id_servicio','a.usuario_informe','a.informe',DB::raw('SUM(a.monto) as monto'),'a.created_at','b.id_paciente', 's.nombre as servicio', 'c.name', 'c.lastname')
             ->join('atenciones as b', 'b.id', 'a.id_atencion')
             ->join('users as c', 'c.id', 'a.usuario_informe')
-            ->join('pacientes as pa', 'pa.id', 'b.id_paciente')
             ->join('servicios as s', 's.id', 'a.id_servicio')
             ->where('a.created_at', '=', date('Y-m-d'))
             ->groupBy('a.usuario_informe')
             ->get();
+
+            dd($resultados);
 
 
             $usuarios = DB::table('resultados_servicios as a')
