@@ -107,7 +107,7 @@
 
                   <div class="col-md-3">
                     <label for="exampleInputEmail1">Total en Soles</label>
-                    <input type="text" disabled class="form-control" value="{{$totales->monto + $totalesc->monto}}" >
+                    <input type="text" disabled class="form-control" value="{{$totales->monto}}" >
                   </div>
                   
 

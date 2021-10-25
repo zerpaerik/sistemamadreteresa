@@ -1198,6 +1198,7 @@ return view('atenciones.particular');
                                       $rs = new ResultadosServicios();
                                       $rs->id_atencion =  $lab->id;
                                       $rs->id_servicio = $id_servicio;
+                                      $rs->monto = $servdetalle->precio;
                                       $rs->save();
                                   }
                               }
@@ -1346,6 +1347,7 @@ return view('atenciones.particular');
                           $rs = new ResultadosServicios();
                           $rs->id_atencion =  $lab->id;
                           $rs->id_servicio = $eco['ecografia'];
+                          $rs->monto = (float)$request->monto_abol['ecografias'][$key]['abono'];
                           $rs->save();
 
                    
@@ -1448,6 +1450,7 @@ return view('atenciones.particular');
                           $rs = new ResultadosServicios();
                           $rs->id_atencion =  $lab->id;
                           $rs->id_servicio =$ray['rayo'];
+                          $rs->monto =  (float)$request->monto_abol['rayos'][$key]['abono'];
                           $rs->save();
 
                           if ($request->monto_s['rayos'][$key]['monto'] > $request->monto_abol['rayos'][$key]['abono']) {
