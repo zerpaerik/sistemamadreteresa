@@ -710,7 +710,6 @@ class ReportesController extends Controller
             ->groupBy('a.usuario_informe')
             ->get();
 
-            dd($resultados);
 
 
             $usuarios = DB::table('resultados_servicios as a')
