@@ -131,11 +131,7 @@
                   @foreach($resultados as $an)
                   <tr>
                    <td>{{$an->lastname}} {{$an->name}}</td>
-                    @if($an->tipo_atencion == 7)
-                    <td>{{$an->pre_ser}}</td>                 
-                    @else
-                    <td>{{$an->monto}}</td>                 
-                    @endif
+                   <td>{{$an->monto}}</td>                 
                     <td>
                     <a target="_blank" class="btn btn-success btn-sm" href="prod-serv/{{$an->usuario_informe}}/{{$f1}}/{{$f2}}">
                               <i class="fas fa-print">
