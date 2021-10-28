@@ -186,6 +186,9 @@
                                     <option value="PERFIL TIROIDEO.docx">PERFIL TIROIDEO</option>
                                     <option value="PROTENURIA.docx">PROTENURIA</option>
                                     <option value="PSA TOTAL.docx">PSA TOTAL</option>
+                                    <option value="PRE_1.docx">PRE OPERATORIO 1</option>
+                                    <option value="PRE_2.docx">PRE OPERATORIO 2</option>
+								                  	<option value="PRUEBA RAPIDA.docx">PRUEBA RAPIDA</option>
 								                  	<option value="PRUEBA RAPIDA.docx">PRUEBA RAPIDA</option>
 									                  <option value="PRUEBA RAPIDA PDF.docx">PRUEBA RAPIDA PDF</option>
                                     <option value="RECUENTO DE PLAQUETAS.docx">RECUENTO DE PLAQUETAS</option>
@@ -199,6 +202,7 @@
                                     <option value="SUB UNIDAD NEGATIVO.docx">SUB UNIDAD NEGATIVO</option>
                                     <option value="SUB UNIDAD POSITIVO.docx">SUB UNIDAD POSITIVO</option>
                                     <option value="TEST DE GRAHAM.docx">TEST DE GRAHAM</option>
+                                    <option value="TOLERANCIA.docx">TOLERANCIA A LA GLUCOSA</option>
                                     <option value="THEVENON.docx">THEVENON</option>
                                     <option value="TIEMPO DE COAGULACION - TIEMPO DE SANGRIA.docx">TIEMPO DE COAGULACION - TIEMPO DE SANGRIA</option>
                                     <option value="TRIGLICERIDOS.docx">TRIGLICERIDOS</option>
