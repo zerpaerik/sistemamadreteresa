@@ -90,15 +90,7 @@
                     <input type="date" class="form-control" value="{{$f2}}" name="fin">
                   </div>
 
-                  <div class="col-md-3">
-                    <label for="exampleInputEmail1">Seleccione el Usuario</label>
-                    <select class="form-control" data-placeholder="Seleccione" style="width: 100%;" name="usuario">
-                    <option value="">Seleccione</option>
-                   @foreach($usuarios as $o)
-                   <option value="{{$o->usuario}}">{{$o->lastname}} {{$o->name}}</option>
-                    @endforeach
-                  </select>
-                  </div>
+                 
                   
                 
                  
@@ -130,21 +122,24 @@
                 <table id="" class="table table-bordered table-striped">
                   <thead>
                   <tr>
-                    <th>Fecha</th>
-                    <th>Detalle</th>
-                    <th>Monto</th>
                     <th>Usuario Informe</th>
+                    <th>Monto</th>
+                    <th>Acciones</th>
                   </tr>
                   </thead>
                   <tbody>
 
                   @foreach($resultados as $an)
                   <tr>
-                   <td>{{$an->created_at}}</td>
-                   <td>{{$an->detalle}}</td>
-                   <td>{{$an->monto}}</td>                 
                    <td>{{$an->lastname}} {{$an->name}}</td>
-                  
+                   <td>{{$an->monto}}</td>                 
+                    <td>
+                    <a target="_blank" class="btn btn-success btn-sm" href="prod-sesio/{{$an->id_personal}}/{{$f1}}/{{$f2}}">
+                              <i class="fas fa-print">
+                              </i>
+                              Recibo
+                          </a>
+                    </td>  
                                
 
                 </tr>
@@ -159,10 +154,9 @@
                   </tbody>
                   <tfoot>
                   <tr>
-                  <th>Fecha</th>
-                    <th>Detalle.</th>
+                  <th>Usuario Informe</th>
                     <th>Monto</th>
-                    <th>Usuario Informe</th>
+                    <th>Acciones</th>
                   </tr>
                  
                   </tfoot>

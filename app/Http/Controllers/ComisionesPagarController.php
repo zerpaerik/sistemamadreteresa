@@ -957,12 +957,13 @@ class ComisionesPagarController extends Controller
 
       $recibo = $last1 + 1;
 
-
-      $a = Atenciones::where('id','=',$com->id_atencion)->first();
-      $a->pagado =2;
-      $resa = $a->update();
+      if ($com->tecnologo != 1) { // SI LA COMISION QUE SE ESTA PAGANDO ES DE TECNOLOGO NO SE ACTUALIZA LA ATENCION A PAGADA
+          $a = Atenciones::where('id', '=', $com->id_atencion)->first();
+          $a->pagado =2;
+          $resa = $a->update();
+      }
      
-
+      
       $p = Comisiones::find($id);
       $p->estatus =2;
       $p->recibo = $recibo;

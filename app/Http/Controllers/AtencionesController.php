@@ -941,6 +941,7 @@ return view('atenciones.particular');
                                $ses = new Sesiones();
                                $ses->id_paciente =   $request->paciente;
                                $ses->id_atencion =  $lab->id;
+                               $ses->monto = '50';
                                $ses->save();
 
                                $contador++;
@@ -1184,6 +1185,7 @@ return view('atenciones.particular');
                                       $ses = new Sesiones();
                                       $ses->id_paciente =   $request->paciente;
                                       $ses->id_atencion =  $lab->id;
+                                      $ses->monto =  '50';
                                       $ses->save();
        
                                       $contador++;
@@ -1704,6 +1706,7 @@ return view('atenciones.particular');
               $ses = new Sesiones();
               $ses->id_paciente =   $atenciod->id_paciente;
               $ses->id_atencion =  $atenciod->id;
+              $ses->monto = '50';
               $ses->save();
 
               $contador++;

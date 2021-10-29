@@ -396,8 +396,8 @@ Route::get('produccion_servicios', 'ReportesController@prod_servicios')->name('p
 Route::get('produccion_consultas', 'ReportesController@prod_consultas')->name('prod_cons.index');
 Route::get('produccion_sesiones', 'ReportesController@prod_sesiones')->name('prod_ses.index');
 Route::get('prod-serv/{id}/{f1}/{f2}', 'ReportesController@prod_servicios_report');
-
-
+Route::get('prod-sesio/{id}/{f1}/{f2}', 'ReportesController@prod_sesiones_report');
+Route::get('prod-cons/{id}/{f1}/{f2}', 'ReportesController@prod_consultas_report');
 
 
 Route::get('productos', 'ProductosController@index')->name('productos.index');
