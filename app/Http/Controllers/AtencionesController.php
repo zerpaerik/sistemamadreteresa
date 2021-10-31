@@ -1794,6 +1794,7 @@ return view('atenciones.particular');
         $com->monto = $request->monto * $serv->porcentaje / 100;
         $com->estatus = 1;
         $com->usuario = Auth::user()->id;
+        $com->sede = $request->session()->get('sede');
         $com->save();
 
        /* $csf = Comisiones::where('id_atencion','=',$request->id)->first();
@@ -1813,6 +1814,7 @@ return view('atenciones.particular');
         $com->monto = $request->monto * $serv->porcentaje1 / 100;
         $com->estatus = 1;
         $com->usuario = Auth::user()->id;
+        $com->sede = $request->session()->get('sede');
         $com->save();
 
        /* $csf = Comisiones::where('id_atencion','=',$request->id)->first();
@@ -1915,6 +1917,7 @@ return view('atenciones.particular');
         $com->monto = $request->monto * $serv->porcentaje / 100;
         $com->estatus = 1;
         $com->usuario = Auth::user()->id;
+        $com->sede = $request->session()->get('sede');
         $com->save();
 
       } 
