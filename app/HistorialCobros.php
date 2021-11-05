@@ -10,7 +10,7 @@ class HistorialCobros extends Model
     protected $table="historial_cobros";
 
     protected $fillable = [
-        'id_cobro', 'monto','sede','tipopago'
+        'id_cobro', 'monto','sede','tipopago','usuario'
     ];
     //
 }
