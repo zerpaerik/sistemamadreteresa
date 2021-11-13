@@ -795,55 +795,32 @@ class ReportesController extends Controller
         $f1 = $request->inicio;
         $f2 = $request->fin;
 
-        $control = DB::table('control as a')
-        ->select('a.id', 'a.id_consulta', 'a.created_at','a.usuario','b.tipo','b.id_paciente',DB::raw('SUM(b.monto) as monto'),'b.id_paciente','c.name', 'c.lastname','pa.nombres','pa.apellidos')
-        ->join('consultas as b', 'b.id', 'a.id_consulta')
-        ->join('users as c', 'c.id', 'a.usuario')
-        ->join('pacientes as pa', 'pa.id', 'b.id_paciente')
-        ->whereBetween('a.created_at', [$f1, $f2])
-        ->orderBy('a.id','DESC');
-
-        $resultados = DB::table('historia as a')
-        ->select('a.id', 'a.id_consulta', 'a.created_at','a.usuario','b.tipo','b.id_paciente',DB::raw('SUM(b.monto) as monto'),'b.id_paciente','c.name', 'c.lastname','pa.nombres','pa.apellidos')
-        ->join('consultas as b', 'b.id', 'a.id_consulta')
-        ->join('users as c', 'c.id', 'a.usuario')
-        ->join('pacientes as pa', 'pa.id', 'b.id_paciente')
-        ->whereBetween('a.created_at', [$f1, $f2])
-        ->orderBy('a.id','DESC')
-        ->union($control)
-        ->get();
-
         
-
-        $totales = DB::table('historia as a')
-        ->select('a.id', 'a.id_consulta', 'a.created_at','a.usuario','b.id_paciente',DB::raw('SUM(b.monto) as monto,COUNT(*) as cantidad'),'b.id_paciente','c.name', 'c.lastname','pa.nombres','pa.apellidos')
-        ->join('consultas as b', 'b.id', 'a.id_consulta')
-        ->join('users as c', 'c.id', 'a.usuario')
-        ->join('pacientes as pa', 'pa.id', 'b.id_paciente')
+        $resultados = DB::table('consultas as a')
+        ->select('a.id', 'a.atendido', 'a.created_at','a.usuario',DB::raw('SUM(a.monto) as monto'),'c.name', 'c.lastname')
+        ->join('users as c', 'c.id', 'a.atendido')
         ->whereBetween('a.created_at', [$f1, $f2])
         ->orderBy('a.id','DESC')
-        //->where('a.monto', '!=', '0')
-        ->first();
-
-        $totalesc = DB::table('control as a')
-        ->select('a.id', 'a.id_consulta', 'a.created_at','a.usuario','b.id_paciente',DB::raw('SUM(b.monto) as monto,COUNT(*) as cantidad'),'b.id_paciente','c.name', 'c.lastname','pa.nombres','pa.apellidos')
-        ->join('consultas as b', 'b.id', 'a.id_consulta')
-        ->join('users as c', 'c.id', 'a.usuario')
-        ->join('pacientes as pa', 'pa.id', 'b.id_paciente')
-        ->whereBetween('a.created_at', [$f1, $f2])
-        ->orderBy('a.id','DESC')
-        //->where('a.monto', '!=', '0')
-        ->first();
-
-
-
-        $usuarios = DB::table('historia as a')
-        ->select('a.id', 'a.usuario','a.created_at','c.name', 'c.lastname','c.id as usuario')
-        ->join('users as c', 'c.id', 'a.usuario')
-        ->whereBetween('a.created_at', [$f1, $f2])
-        ->orderBy('a.id','DESC')
-        ->groupBy('a.usuario')
+        ->groupBy('a.atendido')
         ->get();
+
+
+
+    $totales = DB::table('consultas as a')
+    ->select('a.id', 'a.atendido', 'a.created_at','a.usuario',DB::raw('SUM(a.monto) as monto,COUNT(*) as cantidad'),'c.name', 'c.lastname')
+    ->join('users as c', 'c.id', 'a.atendido')
+    ->whereBetween('a.created_at', [$f1, $f2])
+    ->orderBy('a.id','DESC')
+    ->first();
+
+   
+    $usuarios = DB::table('consultas as a')
+    ->select('a.id', 'a.atendido','a.created_at','c.name', 'c.lastname','c.id as usuario')
+    ->join('users as c', 'c.id', 'a.atendido')
+    ->whereBetween('a.created_at', [$f1, $f2])
+    ->orderBy('a.id','DESC')
+    ->groupBy('a.atendido')
+    ->get();
 
 
         //DB::raw('SUM(monto) as monto'),
