@@ -63,6 +63,7 @@
 
   <p><strong>DOCTOR:</strong>{{ $ticketu->lasto.' '.$ticketu->nameo}}</p>
   <p><strong>CONSULTORIO:</strong>MADRE TERESA</p>
+  <p><strong>CENTRO MÉDICO:</strong>{{ $ticketu->centro_med}}</p>
   <p><strong>RECIBO: </strong>REC-2021-{{ $ticketu->recibo}}</p>
 
 

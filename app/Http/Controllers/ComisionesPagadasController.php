@@ -164,12 +164,13 @@ class ComisionesPagadasController extends Controller
         ->get();
 
         $ticketu = DB::table('comisiones as a')
-        ->select('a.id', 'a.id_atencion','a.recibo','a.id_responsable','a.porcentaje','a.fecha_pago','a.detalle','a.monto','a.created_at','at.id_paciente','at.usuario',  'at.tipo_atencion', 'at.sede', 'at.tipo_origen', 'at.id_origen', 'at.monto as total', 'b.nombres', 'b.apellidos', 'c.name as nameo', 'c.lastname as lasto','c.cuenta', 'd.name as nameu', 'd.lastname as lastu', 'se.nombre as sedename')
+        ->select('a.id', 'a.id_atencion','a.recibo','a.id_responsable','a.porcentaje','a.fecha_pago','a.detalle','a.monto','a.created_at','at.id_paciente','at.usuario',  'at.tipo_atencion', 'at.sede', 'at.tipo_origen', 'at.id_origen', 'at.monto as total', 'b.nombres', 'b.apellidos', 'c.name as nameo', 'c.lastname as lasto','c.cuenta','c.centro', 'd.name as nameu', 'd.lastname as lastu', 'se.nombre as sedename','cent.nombre as centro_med')
         ->join('atenciones as at', 'at.id', 'a.id_atencion')
         ->join('pacientes as b', 'b.id', 'at.id_paciente')
         ->join('users as c', 'c.id', 'a.id_responsable')
         ->join('users as d', 'd.id', 'at.usuario')
         ->join('sedes as se', 'se.id', 'at.sede')
+        ->join('centros as cent', 'cent.id', 'c.centro')
         ->where('a.recibo','=', $id)
         ->first();
 
