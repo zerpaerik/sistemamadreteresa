@@ -599,6 +599,183 @@ class ReportesController extends Controller
 
     }
 
+    public function reporte_individual(Request $request){
+
+       
+        //$tipo = $request->tipo;
+        //$resultados = [];
+        
+
+        if($request->inicio && $request->fin && $request->tipo){
+            $f1 = $request->inicio;
+            $f2 = $request->fin;
+        
+            if ($request->tipo == 1 || $request->tipo == 2 || $request->tipo == 3 || $request->tipo == 8) {
+            $resultados = DB::table('atenciones as a')
+            ->select('a.id', 'a.tipo_atencion', 'a.id_tipo', 'a.usuario', 'a.resta', DB::raw('SUM(a.monto) as monto,COUNT(*) as cantidad'), 'a.created_at', 'a.estatus', 'a.abono', 'a.sede', 'a.id_paciente', 'a.id_origen', 's.nombre as servicio', 's.precio as pre_ser', 'pa.nombres', 'pa.apellidos', 'c.name', 'c.lastname')
+            ->join('users as c', 'c.id', 'a.usuario')
+            ->join('pacientes as pa', 'pa.id', 'a.id_paciente')
+            ->join('servicios as s', 's.id', 'a.id_tipo')
+            ->where('a.tipo_atencion', '=', $request->tipo)
+            ->whereBetween('a.created_at', [date('Y-m-d 00:00:00', strtotime($f1)), date('Y-m-d 23:59:59', strtotime($f1))])
+            ->orderBy('a.id', 'DESC')
+            ->groupBy('a.id_tipo')
+            ->get();
+            } else if ($request->tipo == 4){
+
+                $resultados = DB::table('atenciones as a')
+                ->select('a.id', 'a.tipo_atencion', 'a.id_tipo', 'a.usuario', 'a.resta', DB::raw('SUM(a.monto) as monto,COUNT(*) as cantidad'), 'a.created_at', 'a.estatus', 'a.abono', 'a.sede', 'a.id_paciente', 'a.id_origen', 's.nombre as servicio', 's.precio as pre_ser', 'pa.nombres', 'pa.apellidos', 'c.name', 'c.lastname')
+                ->join('users as c', 'c.id', 'a.usuario')
+                ->join('pacientes as pa', 'pa.id', 'a.id_paciente')
+                ->join('analisis as s', 's.id', 'a.id_tipo')
+                ->where('a.tipo_atencion', '=', $request->tipo)
+                ->whereBetween('a.created_at', [date('Y-m-d 00:00:00', strtotime($f1)), date('Y-m-d 23:59:59', strtotime($f1))])
+                ->orderBy('a.id', 'DESC')
+                ->groupBy('a.id_tipo')
+                ->get();
+
+            } else if ($request->tipo == 7){
+
+                $resultados = DB::table('atenciones as a')
+                ->select('a.id', 'a.tipo_atencion', 'a.id_tipo', 'a.usuario', 'a.resta', DB::raw('SUM(a.monto) as monto,COUNT(*) as cantidad'), 'a.created_at', 'a.estatus', 'a.abono', 'a.sede', 'a.id_paciente', 'a.id_origen', 's.nombre as servicio', 's.precio as pre_ser', 'pa.nombres', 'pa.apellidos', 'c.name', 'c.lastname')
+                ->join('users as c', 'c.id', 'a.usuario')
+                ->join('pacientes as pa', 'pa.id', 'a.id_paciente')
+                ->join('paquetes as s', 's.id', 'a.id_tipo')
+                ->where('a.tipo_atencion', '=', $request->tipo)
+                ->whereBetween('a.created_at', [date('Y-m-d 00:00:00', strtotime($f1)), date('Y-m-d 23:59:59', strtotime($f1))])
+                ->orderBy('a.id', 'DESC')
+                ->groupBy('a.id_tipo')
+                ->get();
+
+            } else if ($request->tipo == 6){
+
+                $resultados = DB::table('atenciones as a')
+                ->select('a.id', 'a.tipo_atencion', 'a.id_tipo', 'a.usuario', 'a.resta', DB::raw('SUM(a.monto) as monto,COUNT(*) as cantidad'), 'a.created_at', 'a.estatus', 'a.abono', 'a.sede', 'a.id_paciente', 'a.id_origen', 's.nombre as servicio', 'pa.nombres', 'pa.apellidos', 'c.name', 'c.lastname')
+                ->join('users as c', 'c.id', 'a.usuario')
+                ->join('pacientes as pa', 'pa.id', 'a.id_paciente')
+                ->join('meto_pro as s', 's.id', 'a.id_tipo')
+                ->where('a.tipo_atencion', '=', $request->tipo)
+                ->whereBetween('a.created_at', [date('Y-m-d 00:00:00', strtotime($f1)), date('Y-m-d 23:59:59', strtotime($f1))])
+                ->orderBy('a.id', 'DESC')
+                ->groupBy('a.id_tipo')
+                ->get();
+
+            }
+
+
+       // dd($resultados);
+
+
+        } else {
+
+            $f1 = date('Y-m-d');
+            $f2 = date('Y-m-d');
+
+        $resultados = DB::table('atenciones as a')
+        ->select('a.id', 'a.tipo_atencion', 'a.id_tipo', 'a.usuario','a.resta',DB::raw('SUM(a.monto) as monto,COUNT(*) as cantidad'), 'a.created_at',  'a.estatus','a.abono','a.sede','a.id_paciente', 'a.id_origen', 's.nombre as servicio','s.precio as pre_ser', 'pa.nombres', 'pa.apellidos', 'c.name', 'c.lastname')
+        ->join('users as c', 'c.id', 'a.usuario')
+        ->join('pacientes as pa', 'pa.id', 'a.id_paciente')
+        ->join('servicios as s', 's.id', 'a.id_tipo')
+        ->where('a.tipo_atencion', '=', 7777)
+        ->whereBetween('a.created_at', [$f1, $f2])
+        ->orderBy('a.id','DESC')
+        ->groupBy('a.id_tipo')
+        ->get();
+            
+        }
+
+        $tipo = $request->tipo;
+
+        return view('reportes.reporte_individual', compact('f1','f2','tipo','resultados'));
+
+       
+
+    }
+
+    public function reporte_individual_pdf($tipo,$tipo2, $f1, $f2){
+
+
+      
+           if ($tipo == 1 || $tipo == 2 || $tipo == 3 || $tipo == 8) {
+
+            $resultados = DB::table('atenciones as a')
+            ->select('a.id', 'a.tipo_atencion', 'a.id_tipo', 'a.usuario', 'a.resta','a.created_at', 'a.estatus', 'a.abono','a.monto',  'a.sede', 'a.id_paciente', 'a.id_origen', 's.nombre as servicio', 's.id as id_tipo', 'pa.nombres', 'pa.apellidos', 'c.name', 'c.lastname')
+            ->join('users as c', 'c.id', 'a.usuario')
+            ->join('pacientes as pa', 'pa.id', 'a.id_paciente')
+            ->join('servicios as s', 's.id', 'a.id_tipo')
+            ->where('a.estatus', '=', 1)
+            ->where('a.tipo_atencion', '=', $tipo)
+            ->where('a.id_tipo', '=', $tipo2)
+            ->whereBetween('a.created_at', [date('Y-m-d 00:00:00', strtotime($f1)), date('Y-m-d 23:59:59', strtotime($f1))])
+            //->orderBy('a.id', 'DESC')
+           // ->groupBy('a.id_tipo')
+            ->get();
+
+
+
+            } else if ($tipo == 4){
+
+                $resultados = DB::table('atenciones as a')
+                ->select('a.id', 'a.tipo_atencion', 'a.id_tipo', 'a.usuario', 'a.resta', 'a.monto',  'a.created_at', 'a.estatus', 'a.abono', 'a.sede', 'a.id_paciente', 'a.id_origen', 's.nombre as servicio','s.id as id_tipo', 's.precio as pre_ser', 'pa.nombres', 'pa.apellidos', 'c.name', 'c.lastname')
+                ->join('users as c', 'c.id', 'a.usuario')
+                ->join('pacientes as pa', 'pa.id', 'a.id_paciente')
+                ->join('analisis as s', 's.id', 'a.id_tipo')
+                ->where('a.estatus', '=', 1)
+                ->where('a.tipo_atencion', '=', $tipo)
+                ->where('a.id_tipo', '=', $tipo2)
+                ->whereBetween('a.created_at', [date('Y-m-d 00:00:00', strtotime($f1)), date('Y-m-d 23:59:59', strtotime($f1))])
+                ->orderBy('a.id', 'DESC')
+                //->groupBy('a.id_tipo')
+                ->get();
+
+            } else if ($tipo == 7){
+
+                $resultados = DB::table('atenciones as a')
+                ->select('a.id', 'a.tipo_atencion', 'a.id_tipo', 'a.usuario', 'a.resta', 'a.monto',  'a.created_at', 'a.estatus', 'a.abono', 'a.sede', 'a.id_paciente', 'a.id_origen', 's.nombre as servicio', 's.id as id_tipo','s.precio as pre_ser', 'pa.nombres', 'pa.apellidos', 'c.name', 'c.lastname')
+                ->join('users as c', 'c.id', 'a.usuario')
+                ->join('pacientes as pa', 'pa.id', 'a.id_paciente')
+                ->join('paquetes as s', 's.id', 'a.id_tipo')
+                ->where('a.estatus', '=', 1)
+                ->where('a.tipo_atencion', '=', $tipo)
+                ->where('a.id_tipo', '=', $tipo2)
+                ->whereBetween('a.created_at', [date('Y-m-d 00:00:00', strtotime($f1)), date('Y-m-d 23:59:59', strtotime($f1))])
+                ->orderBy('a.id', 'DESC')
+                //->groupBy('a.id_tipo')
+                ->get();
+
+            } else if ($tipo == 6){
+
+                $resultados = DB::table('atenciones as a')
+                ->select('a.id', 'a.tipo_atencion', 'a.id_tipo', 'a.usuario', 'a.resta', 'a.monto',  'a.created_at', 'a.estatus', 'a.abono', 'a.sede', 'a.id_paciente', 'a.id_origen', 's.nombre as servicio','s.id as id_tipo', 'pa.nombres', 'pa.apellidos', 'c.name', 'c.lastname')
+                ->join('users as c', 'c.id', 'a.usuario')
+                ->join('pacientes as pa', 'pa.id', 'a.id_paciente')
+                ->join('meto_pro as s', 's.id', 'a.id_tipo')
+                ->where('a.estatus', '=', 1)
+                ->where('a.tipo_atencion', '=', $tipo)
+                ->where('a.id_tipo', '=', $tipo2)
+                ->whereBetween('a.created_at', [date('Y-m-d 00:00:00', strtotime($f1)), date('Y-m-d 23:59:59', strtotime($f1))])
+                ->orderBy('a.id', 'DESC')
+                //->groupBy('a.id_tipo')
+                ->get();
+
+            }
+
+      
+
+
+        $view = \View::make('reportes.reporte_individual_pdf', compact('f1','f2','resultados'));
+
+        $pdf = \App::make('dompdf.wrapper');
+        $pdf->loadHTML($view);
+     
+       
+        return $pdf->stream('reporte-individual-detallado'.'.pdf');
+
+
+
+        
+    }
+
     public function prod_servicios(Request $request){
 
         if ($request->inicio && $request->inicio && $request->usuario) {
@@ -745,6 +922,9 @@ class ReportesController extends Controller
        
 
     }
+
+
+
 
     public function prod_servicios_report($id, $f1, $f2){
 
