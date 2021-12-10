@@ -700,7 +700,7 @@ class ReportesController extends Controller
 
     }
 
-    public function reporte_individual_pdf($tipo,$tipo2, $f1, $f2){
+    public function reporte_individual_pdf($tipo,$tipo2, $f1, $f2,Request $request){
 
 
       
