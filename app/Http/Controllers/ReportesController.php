@@ -619,7 +619,7 @@ class ReportesController extends Controller
             ->where('a.tipo_atencion', '=', $request->tipo)
             ->where('a.sede', '=', $request->session()->get('sede'))
             ->where('a.estatus', '=', 1)
-            ->whereBetween('a.created_at', [date('Y-m-d 00:00:00', strtotime($f1)), date('Y-m-d 23:59:59', strtotime($f1))])
+            ->whereBetween('a.created_at', [date('Y-m-d 00:00:00', strtotime($f1)), date('Y-m-d 23:59:59', strtotime($f2))])
             ->orderBy('a.id', 'DESC')
             ->groupBy('a.id_tipo')
             ->get();
@@ -633,7 +633,7 @@ class ReportesController extends Controller
                 ->where('a.tipo_atencion', '=', $request->tipo)
                 ->where('a.sede', '=', $request->session()->get('sede'))
                 ->where('a.estatus', '=', 1)
-                ->whereBetween('a.created_at', [date('Y-m-d 00:00:00', strtotime($f1)), date('Y-m-d 23:59:59', strtotime($f1))])
+                ->whereBetween('a.created_at', [date('Y-m-d 00:00:00', strtotime($f1)), date('Y-m-d 23:59:59', strtotime($f2))])
                 ->orderBy('a.id', 'DESC')
                 ->groupBy('a.id_tipo')
                 ->get();
@@ -648,7 +648,7 @@ class ReportesController extends Controller
                 ->where('a.tipo_atencion', '=', $request->tipo)
                 ->where('a.sede', '=', $request->session()->get('sede'))
                 ->where('a.estatus', '=', 1)
-                ->whereBetween('a.created_at', [date('Y-m-d 00:00:00', strtotime($f1)), date('Y-m-d 23:59:59', strtotime($f1))])
+                ->whereBetween('a.created_at', [date('Y-m-d 00:00:00', strtotime($f1)), date('Y-m-d 23:59:59', strtotime($f2))])
                 ->orderBy('a.id', 'DESC')
                 ->groupBy('a.id_tipo')
                 ->get();
@@ -663,7 +663,7 @@ class ReportesController extends Controller
                 ->where('a.tipo_atencion', '=', $request->tipo)
                 ->where('a.sede', '=', $request->session()->get('sede'))
                 ->where('a.estatus', '=', 1)
-                ->whereBetween('a.created_at', [date('Y-m-d 00:00:00', strtotime($f1)), date('Y-m-d 23:59:59', strtotime($f1))])
+                ->whereBetween('a.created_at', [date('Y-m-d 00:00:00', strtotime($f1)), date('Y-m-d 23:59:59', strtotime($f2))])
                 ->orderBy('a.id', 'DESC')
                 ->groupBy('a.id_tipo')
                 ->get();
@@ -715,7 +715,7 @@ class ReportesController extends Controller
             ->where('a.estatus', '=', 1)
             ->where('a.tipo_atencion', '=', $tipo)
             ->where('a.id_tipo', '=', $tipo2)
-            ->whereBetween('a.created_at', [date('Y-m-d 00:00:00', strtotime($f1)), date('Y-m-d 23:59:59', strtotime($f1))])
+            ->whereBetween('a.created_at', [date('Y-m-d 00:00:00', strtotime($f1)), date('Y-m-d 23:59:59', strtotime($f2))])
             //->orderBy('a.id', 'DESC')
            // ->groupBy('a.id_tipo')
             ->get();
@@ -733,7 +733,7 @@ class ReportesController extends Controller
                 ->where('a.estatus', '=', 1)
                 ->where('a.tipo_atencion', '=', $tipo)
                 ->where('a.id_tipo', '=', $tipo2)
-                ->whereBetween('a.created_at', [date('Y-m-d 00:00:00', strtotime($f1)), date('Y-m-d 23:59:59', strtotime($f1))])
+                ->whereBetween('a.created_at', [date('Y-m-d 00:00:00', strtotime($f1)), date('Y-m-d 23:59:59', strtotime($f2))])
                 ->orderBy('a.id', 'DESC')
                 //->groupBy('a.id_tipo')
                 ->get();
@@ -749,7 +749,7 @@ class ReportesController extends Controller
                 ->where('a.estatus', '=', 1)
                 ->where('a.tipo_atencion', '=', $tipo)
                 ->where('a.id_tipo', '=', $tipo2)
-                ->whereBetween('a.created_at', [date('Y-m-d 00:00:00', strtotime($f1)), date('Y-m-d 23:59:59', strtotime($f1))])
+                ->whereBetween('a.created_at', [date('Y-m-d 00:00:00', strtotime($f1)), date('Y-m-d 23:59:59', strtotime($f2))])
                 ->orderBy('a.id', 'DESC')
                 //->groupBy('a.id_tipo')
                 ->get();
@@ -765,7 +765,7 @@ class ReportesController extends Controller
                 ->where('a.sede', '=', $request->session()->get('sede'))
                 ->where('a.tipo_atencion', '=', $tipo)
                 ->where('a.id_tipo', '=', $tipo2)
-                ->whereBetween('a.created_at', [date('Y-m-d 00:00:00', strtotime($f1)), date('Y-m-d 23:59:59', strtotime($f1))])
+                ->whereBetween('a.created_at', [date('Y-m-d 00:00:00', strtotime($f1)), date('Y-m-d 23:59:59', strtotime($f2))])
                 ->orderBy('a.id', 'DESC')
                 //->groupBy('a.id_tipo')
                 ->get();
