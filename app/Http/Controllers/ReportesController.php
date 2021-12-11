@@ -720,6 +720,23 @@ class ReportesController extends Controller
            // ->groupBy('a.id_tipo')
             ->get();
 
+            $resultadost = DB::table('atenciones as a')
+            ->select('a.id', 'a.tipo_atencion', 'a.id_tipo', 'a.usuario', 'a.resta','a.created_at', 'a.estatus', 'a.abono',DB::raw('SUM(a.monto) as monto,COUNT(*) as cantidad'), 'a.sede', 'a.id_paciente', 'a.id_origen', 's.nombre as servicio', 's.id as id_tipo', 'pa.nombres', 'pa.apellidos', 'c.name', 'c.lastname')
+            ->join('users as c', 'c.id', 'a.usuario')
+            ->join('pacientes as pa', 'pa.id', 'a.id_paciente')
+            ->join('servicios as s', 's.id', 'a.id_tipo')
+            ->where('a.sede', '=', $request->session()->get('sede'))
+            ->where('a.estatus', '=', 1)
+            ->where('a.tipo_atencion', '=', $tipo)
+            ->where('a.id_tipo', '=', $tipo2)
+            ->whereBetween('a.created_at', [date('Y-m-d 00:00:00', strtotime($f1)), date('Y-m-d 23:59:59', strtotime($f2))])
+            //->orderBy('a.id', 'DESC')
+           // ->groupBy('a.id_tipo')
+            ->first();
+
+          
+
+
 
 
             } else if ($tipo == 4){
@@ -738,6 +755,20 @@ class ReportesController extends Controller
                 //->groupBy('a.id_tipo')
                 ->get();
 
+                $resultadost = DB::table('atenciones as a')
+                ->select('a.id', 'a.tipo_atencion', 'a.id_tipo', 'a.usuario', 'a.resta','a.created_at', 'a.estatus', 'a.abono',DB::raw('SUM(a.monto) as monto,COUNT(*) as cantidad'), 'a.sede', 'a.id_paciente', 'a.id_origen', 's.nombre as servicio', 's.id as id_tipo', 'pa.nombres', 'pa.apellidos', 'c.name', 'c.lastname')
+                ->join('users as c', 'c.id', 'a.usuario')
+                ->join('pacientes as pa', 'pa.id', 'a.id_paciente')
+                ->join('analisis as s', 's.id', 'a.id_tipo')
+                ->where('a.sede', '=', $request->session()->get('sede'))
+                ->where('a.estatus', '=', 1)
+                ->where('a.tipo_atencion', '=', $tipo)
+                ->where('a.id_tipo', '=', $tipo2)
+                ->whereBetween('a.created_at', [date('Y-m-d 00:00:00', strtotime($f1)), date('Y-m-d 23:59:59', strtotime($f2))])
+                //->orderBy('a.id', 'DESC')
+               // ->groupBy('a.id_tipo')
+                ->first();
+
             } else if ($tipo == 7){
 
                 $resultados = DB::table('atenciones as a')
@@ -753,6 +784,20 @@ class ReportesController extends Controller
                 ->orderBy('a.id', 'DESC')
                 //->groupBy('a.id_tipo')
                 ->get();
+
+                $resultadost = DB::table('atenciones as a')
+                ->select('a.id', 'a.tipo_atencion', 'a.id_tipo', 'a.usuario', 'a.resta','a.created_at', 'a.estatus', 'a.abono',DB::raw('SUM(a.monto) as monto,COUNT(*) as cantidad'), 'a.sede', 'a.id_paciente', 'a.id_origen', 's.nombre as servicio', 's.id as id_tipo', 'pa.nombres', 'pa.apellidos', 'c.name', 'c.lastname')
+                ->join('users as c', 'c.id', 'a.usuario')
+                ->join('pacientes as pa', 'pa.id', 'a.id_paciente')
+                ->join('paquetes as s', 's.id', 'a.id_tipo')
+                ->where('a.sede', '=', $request->session()->get('sede'))
+                ->where('a.estatus', '=', 1)
+                ->where('a.tipo_atencion', '=', $tipo)
+                ->where('a.id_tipo', '=', $tipo2)
+                ->whereBetween('a.created_at', [date('Y-m-d 00:00:00', strtotime($f1)), date('Y-m-d 23:59:59', strtotime($f2))])
+                //->orderBy('a.id', 'DESC')
+               // ->groupBy('a.id_tipo')
+                ->first();
 
             } else if ($tipo == 6){
 
@@ -770,12 +815,26 @@ class ReportesController extends Controller
                 //->groupBy('a.id_tipo')
                 ->get();
 
+                $resultadost = DB::table('atenciones as a')
+                ->select('a.id', 'a.tipo_atencion', 'a.id_tipo', 'a.usuario', 'a.resta','a.created_at', 'a.estatus', 'a.abono',DB::raw('SUM(a.monto) as monto,COUNT(*) as cantidad'), 'a.sede', 'a.id_paciente', 'a.id_origen', 's.nombre as servicio', 's.id as id_tipo', 'pa.nombres', 'pa.apellidos', 'c.name', 'c.lastname')
+                ->join('users as c', 'c.id', 'a.usuario')
+                ->join('pacientes as pa', 'pa.id', 'a.id_paciente')
+                ->join('meto_pro as s', 's.id', 'a.id_tipo')
+                ->where('a.sede', '=', $request->session()->get('sede'))
+                ->where('a.estatus', '=', 1)
+                ->where('a.tipo_atencion', '=', $tipo)
+                ->where('a.id_tipo', '=', $tipo2)
+                ->whereBetween('a.created_at', [date('Y-m-d 00:00:00', strtotime($f1)), date('Y-m-d 23:59:59', strtotime($f2))])
+                //->orderBy('a.id', 'DESC')
+               // ->groupBy('a.id_tipo')
+                ->first();
+
             }
 
       
 
 
-        $view = \View::make('reportes.reporte_individual_pdf', compact('f1','f2','resultados'));
+        $view = \View::make('reportes.reporte_individual_pdf', compact('f1','f2','resultados','resultadost'));
 
         $pdf = \App::make('dompdf.wrapper');
         $pdf->loadHTML($view);

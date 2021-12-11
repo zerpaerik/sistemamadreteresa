@@ -62,6 +62,13 @@
 	</div> 
 </div>
 
+<div style="font-weight: bold; font-size: 14px">
+		TOTAL:  {{$resultadost->monto }} Soles
+</div>
+<div style="font-weight: bold; font-size: 14px">
+		ITEMS:  {{$resultadost->cantidad }}
+</div>
+
 <br>
 
 
