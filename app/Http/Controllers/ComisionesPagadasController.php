@@ -112,7 +112,6 @@ class ComisionesPagadasController extends Controller
         ->get();
 
 
-      
 
         } else {
 
@@ -373,7 +372,7 @@ class ComisionesPagadasController extends Controller
         ->join('pacientes as b', 'b.id', 'at.id_paciente')
         ->join('users as c', 'c.id', 'at.id_origen')
         ->join('users as d', 'd.id', 'a.usuario')
-        ->where('a.estatus', '=', 2)
+        ->where('a.fecha_pago', '!=', null)
         ->where('a.id_origen', '=', 2)
         ->where('at.sede', '=', $request->session()->get('sede'))
        // ->where('at.id_origen','=',$request->origen)
@@ -387,7 +386,7 @@ class ComisionesPagadasController extends Controller
         ->join('pacientes as b', 'b.id', 'at.id_paciente')
         ->join('users as c', 'c.id', 'at.id_origen')
         ->join('users as d', 'd.id', 'a.usuario')
-        ->where('a.estatus', '=', 2)
+        ->where('a.fecha_pago', '!=', null)
         ->where('a.id_origen', '=', 2)
         ->where('at.sede', '=', $request->session()->get('sede'))
        // ->where('at.id_origen','=',$request->origen)
