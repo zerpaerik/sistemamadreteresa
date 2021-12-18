@@ -466,6 +466,18 @@ Route::get('caja-ticket-{id}','CajaController@ticket');
 Route::get('caja-cerrar-{id}','CajaController@cerrar');
 Route::get('saldo/view/{id}', 'CajaController@saldo');
 
+
+Route::get('creditos_b', 'CreditosController@creditosb')->name('creditos.b')->middleware('auth');
+Route::get('creditos_c', 'CreditosController@creditosc')->name('creditos.c')->middleware('auth');
+Route::get('creditos-procesar-{id}','CreditosController@procesar');
+Route::get('creditos-reversar-{id}','CreditosController@reversar');
+
+Route::get('gastos_b', 'CreditosController@gastosb')->name('gastos.b')->middleware('auth');
+Route::get('gastos_c', 'CreditosController@gastosc')->name('gastos.c')->middleware('auth');
+Route::get('gastoss-procesar-{id}','CreditosController@procesarg');
+Route::get('gastoss-reversar-{id}','CreditosController@reversarg');
+
+
 Route::get('download2/{filename}', function($filename)
 {
     // Check if file exists in 
