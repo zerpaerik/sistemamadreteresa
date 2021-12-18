@@ -372,7 +372,9 @@ Route::post('pedidos/pagar', 'PedidosController@pago');
 
 Route::get('gastos', 'GastosController@index')->name('gastos.index');
 Route::get('gastos-create', 'GastosController@create')->name('gastos.create')->middleware('auth');
+Route::get('gastos-createc', 'GastosController@createc')->name('gastosc.create')->middleware('auth');
 Route::post('gastos/create', 'GastosController@store')->middleware('auth');
+Route::post('gastos/createc', 'GastosController@storec')->middleware('auth');
 Route::get('gastos-delete-{id}', 'GastosController@delete')->middleware('auth');
 Route::get('gastos-edit-{id}', 'GastosController@edit')->name('gastos.edit');
 Route::get('gastos-ticket-{id}', 'GastosController@ticket');

@@ -72,6 +72,11 @@
       <div class="container-fluid">
       <div class="card">
               <div class="card-header">
+              <a class="btn btn-primary btn-sm" href="{{route('gastosc.create')}}">
+                              <i class="fas fa-folder">
+                              </i>
+                              Agregar
+                          </a>
                 
                           <form method="get" action="gastosc">					
                   <label for="exampleInputEmail1">Filtros de Busqueda</label>
@@ -129,9 +134,29 @@
                     <td>{{$client->name}}</td>
                     <td>{{$client->created_at}}</td>
                     <td>
-                    <a class="btn btn-danger btn-sm" href="gastoss-reversar-{{$client->id}}" onclick="return confirm('¿Desea reversar este registro??')">
+                    <a class="btn btn-primary btn-sm" href="gastos-ticket-{{$client->id}}" target="_blank">
+                              <i class="fas fa-print">
+                              </i>
+                              Ticket
+                          </a>
+                    @if(Auth::user()->rol == 1)
+
+                          <a class="btn btn-info btn-sm" href="gastos-edit-{{$client->id}}">
+                              <i class="fas fa-pencil-alt">
+                              </i>
+                              Edit
+                          </a>
+                          <a class="btn btn-danger btn-sm" href="gastos-delete-{{$client->id}}" onclick="return confirm('¿Desea Eliminar este registro?')">
                               <i class="fas fa-trash">
                               </i>
+                              Delete
+                          </a>
+                        
+                          @endif
+                    <a class="btn btn-danger btn-sm" href="gastoss-reversar-{{$client->id}}" onclick="return confirm('¿Desea reversar este registro??')">
+                              <i class="fas fa-trash"> 
+                              </i>
+                              Reversar
                     </a>
                           </td>
                   </tr>

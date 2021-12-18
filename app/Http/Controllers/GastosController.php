@@ -88,6 +88,11 @@ class GastosController extends Controller
         return view('gastos.create');
     }
 
+    public function createc()
+    {
+        return view('gastos.createc');
+    }
+
     /**
      * Store a newly created resource in storage.
      *
@@ -124,6 +129,39 @@ class GastosController extends Controller
         
 
         return redirect()->action('GastosController@index', ["created" => true, "gastos" => Debitos::all()]);
+
+    }
+
+    public function storec(Request $request)
+    {
+
+
+        $gastos = new Debitos();
+        $gastos->descripcion =$request->descripcion;
+        $gastos->tipo =$request->tipo;
+        $gastos->monto =$request->monto;
+        $gastos->origen ='GASTOS';
+        $gastos->migrado =1;
+        $gastos->recibido =$request->recibido;
+        $gastos->usuario =Auth::user()->id;
+        $gastos->sede =$request->session()->get('sede');
+        $gastos->save();
+
+        if ($request->tipo != 'RETIRO DE EFECTIVO') {
+            $cre = new Creditos();
+            $cre->origen = 'EGRESO';
+            $cre->descripcion = 'EGRESO';
+            $cre->id_egreso =  $gastos->id;
+            $cre->egreso = $request->monto;
+            $cre->usuario = Auth::user()->id;
+            $cre->tipopago = 'EG';
+            $cre->sede = $request->session()->get('sede');
+            $cre->fecha = date('Y-m-d');
+            $cre->save();
+        }
+
+        
+        return redirect()->action('CreditosController@gastosc');
 
     }
 
@@ -181,8 +219,16 @@ class GastosController extends Controller
       $deb->egreso =$request->monto;
       $res1 = $deb->update();
 
+      $da = Debitos::where('id','=',$request->id)->first();
 
-      return redirect()->action('GastosController@index');
+
+      if ($da->migrado == 0) {
+          return redirect()->action('GastosController@index');
+      } else {
+        return redirect()->action('CreditosController@gastosc');
+
+
+      }
 
         //
     }
