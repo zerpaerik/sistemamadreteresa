@@ -88,8 +88,6 @@
                   <label>Tipo</label>
                         <select class="form-control" name="tipo">
 							              <option value="CAJA">CAJA</option>
-                            <option value="EXTERNO">EXTERNO</option>
-                            <option value="RETIRO DE EFECTIVO">RETIRO DE EFECTIVO</option>
 
                         </select>
                   </div>
