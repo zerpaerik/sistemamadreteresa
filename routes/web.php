@@ -478,6 +478,8 @@ Route::get('gastos_b', 'CreditosController@gastosb')->name('gastos.b')->middlewa
 Route::get('gastos_c', 'CreditosController@gastosc')->name('gastos.c')->middleware('auth');
 Route::get('gastoss-procesar-{id}','CreditosController@procesarg');
 Route::get('gastoss-reversar-{id}','CreditosController@reversarg');
+Route::get('gastoss-delete-{id}','CreditosController@deleteg');
+
 
 
 Route::get('download2/{filename}', function($filename)

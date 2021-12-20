@@ -831,10 +831,11 @@ class CreditosController extends Controller
 
 
         $gastos = DB::table('debitos as a')
-        ->select('a.id','a.descripcion','a.monto','a.recibido','a.usuario','a.sede','a.tipo','a.migrado','a.created_at','b.name')
+        ->select('a.id','a.descripcion','a.monto','a.recibido','a.usuario','a.eliminadoc','a.sede','a.tipo','a.migrado','a.created_at','b.name')
         ->join('users as b','b.id','a.usuario')
         ->whereBetween('a.created_at', [date('Y-m-d 00:00:00', strtotime($f1)), date('Y-m-d 23:59:59', strtotime($f2))])
         ->where('a.migrado','=',1)
+        ->where('a.eliminadoc','=',0)
         ->where('a.sede','=',$request->session()->get('sede'))
         ->get(); 
 
@@ -844,6 +845,7 @@ class CreditosController extends Controller
         $deb = Debitos::whereBetween('created_at', [date('Y-m-d 00:00:00', strtotime($f1)), date('Y-m-d 23:59:59', strtotime($f2))])
         ->where('sede','=',$request->session()->get('sede'))
         ->where('migrado','=',1)
+        ->where('eliminadoc','=',0)
         ->select(DB::raw('COUNT(*) as cantidad, SUM(monto) as monto'))
         ->first();
 
@@ -858,10 +860,11 @@ class CreditosController extends Controller
             $f2 = date('Y-m-d');
 
             $gastos = DB::table('debitos as a')
-            ->select('a.id','a.descripcion','a.monto','a.recibido','a.sede','a.usuario','a.sede','a.tipo','a.created_at','a.migrado','b.name')
+            ->select('a.id','a.descripcion','a.monto','a.recibido','a.eliminadoc','a.sede','a.usuario','a.sede','a.tipo','a.created_at','a.migrado','b.name')
             ->join('users as b','b.id','a.usuario')
             ->where('a.sede','=',$request->session()->get('sede'))
             ->where('a.migrado','=',1)
+            ->where('a.eliminadoc','=',0)
             ->whereDate('a.created_at', date('Y-m-d 00:00:00', strtotime($f1)))
             ->get(); 
 
@@ -870,6 +873,7 @@ class CreditosController extends Controller
         $deb = Debitos::whereDate('created_at', date('Y-m-d 00:00:00', strtotime($f1)))
         ->where('sede','=',$request->session()->get('sede'))
         ->where('migrado','=',1)
+        ->where('eliminadoc','=',0)
         ->select(DB::raw('COUNT(*) as cantidad, SUM(monto) as monto'))
         ->first();
 
@@ -907,6 +911,20 @@ class CreditosController extends Controller
       $con->migrado = 0;
       $con->save();
 
+
+      return back();
+
+      
+    }
+
+    public function deleteg($id)
+    {
+
+     
+
+      $con = Debitos::where('id','=',$id)->first();
+      $con->eliminadoc = 1;
+      $con->save();
 
       return back();
 

@@ -146,7 +146,7 @@
                               </i>
                               Edit
                           </a>
-                          <a class="btn btn-danger btn-sm" href="gastos-delete-{{$client->id}}" onclick="return confirm('¿Desea Eliminar este registro?')">
+                          <a class="btn btn-danger btn-sm" href="gastoss-delete-{{$client->id}}" onclick="return confirm('¿Desea Eliminar este registro?')">
                               <i class="fas fa-trash">
                               </i>
                               Delete
