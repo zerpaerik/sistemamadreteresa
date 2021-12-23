@@ -417,6 +417,19 @@
                   <p>Detallado por Sede</p>
                 </a>
               </li>
+              <li class="nav-item">
+                <a href="{{route('detalladob.index')}}" class="nav-link">
+                  <i class="fas fa-hand-holding-usd nav-icon"></i>
+                  <p>Detallado por Sede B</p>
+                </a>
+              </li>
+
+              <li class="nav-item">
+                <a href="{{route('detalladoc.index')}}" class="nav-link">
+                  <i class="fas fa-hand-holding-usd nav-icon"></i>
+                  <p>Detallado por Sede C</p>
+                </a>
+              </li>
 
               <li class="nav-item">
                 <a href="{{route('reporte_servicios.index')}}" class="nav-link">

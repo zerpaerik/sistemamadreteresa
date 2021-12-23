@@ -76,6 +76,34 @@ class ReportesController extends Controller
 
     }
 
+    public function detalladob(Request $request)
+    {
+
+        
+        $f1 =date('Y-m-d');
+        $f2 = date('Y-m-d');
+
+
+        
+
+        return view('reportes.detalladob', compact('f1','f2'));
+
+    }
+
+    public function detalladoc(Request $request)
+    {
+
+        
+        $f1 =date('Y-m-d');
+        $f2 = date('Y-m-d');
+
+
+        
+
+        return view('reportes.detalladoc', compact('f1','f2'));
+
+    }
+
 
     public function general(Request $request)
     {
@@ -242,6 +270,123 @@ class ReportesController extends Controller
      
        
         return $pdf->stream('report-detallado'.'.pdf');
+
+
+
+
+
+    }
+
+    public function reportdb(Request $request){
+
+        
+        $f1= $request->inicio;
+        $f2= $request->fin;
+
+
+
+
+
+
+        $efectivo = DB::table('creditosb as a')
+        ->select('a.id','a.created_at','a.fecha','a.migrado','a.tipopago','a.sede',DB::raw('SUM(monto) as monto'),DB::raw('SUM(efectivo) as efectivo'),DB::raw('SUM(tarjeta) as tarjeta'),DB::raw('SUM(dep) as deposito'),DB::raw('SUM(yap) as yape'),DB::raw('SUM(egreso) as egre'))
+        ->where('a.sede','=',  $request->sede)
+        ->where('a.migrado','=',  0)
+       // ->where('a.tipopago','=',  'EF')
+        ->whereBetween('a.fecha', [$f1,$f2])
+        ->groupBy('a.fecha')
+        ->get();
+        
+        $totales = DB::table('creditosb as a')
+        ->select('a.id','a.created_at','a.fecha','a.migrado','a.tipopago','a.sede',DB::raw('SUM(monto) as monto'),DB::raw('SUM(efectivo) as efectivo'),DB::raw('SUM(tarjeta) as tarjeta'),DB::raw('SUM(dep) as deposito'),DB::raw('SUM(yap) as yape'),DB::raw('SUM(egreso) as egre'))
+        ->where('a.sede','=',  $request->sede)
+        ->where('a.migrado','=',  0)
+        ->whereBetween('a.fecha', [$f1,$f2])
+        //->groupBy('a.fecha')
+        ->first(); 
+
+        if($request->sede == 1){
+            $sede = 'PROCERES';
+        } else if($request->sede == 2){
+            $sede = 'CANTO REY';
+        } else if($request->sede == 3){
+            $sede = 'VIDA FELIZ';
+        } else if($request->sede == 4){
+            $sede = 'ZARATE';
+        } else if($request->sede == 5){
+            $sede = 'INDEPENDENCIA';
+        } else {
+            $sede = 'LOS OLIVOS';
+        }
+
+       
+
+
+
+         $view = \View::make('reportes.viewd', compact('f1','f2','efectivo','sede','totales'));
+
+        $pdf = \App::make('dompdf.wrapper');
+        $pdf->loadHTML($view);
+     
+       
+        return $pdf->stream('report-detallado-b'.'.pdf');
+
+
+
+
+
+    }
+
+    public function reportdc(Request $request){
+
+        
+        $f1= $request->inicio;
+        $f2= $request->fin;
+
+
+
+
+
+
+        $efectivo = DB::table('creditosb as a')
+        ->select('a.id','a.created_at','a.fecha','a.migrado','a.tipopago','a.sede',DB::raw('SUM(monto) as monto'),DB::raw('SUM(efectivo) as efectivo'),DB::raw('SUM(tarjeta) as tarjeta'),DB::raw('SUM(dep) as deposito'),DB::raw('SUM(yap) as yape'),DB::raw('SUM(egreso) as egre'))
+        ->where('a.sede','=',  $request->sede)
+        ->where('a.migrado','=',  1)
+        ->whereBetween('a.fecha', [$f1,$f2])
+        ->groupBy('a.fecha')
+        ->get();
+        
+        $totales = DB::table('creditosb as a')
+        ->select('a.id','a.created_at','a.fecha','a.migrado','a.tipopago','a.sede',DB::raw('SUM(monto) as monto'),DB::raw('SUM(efectivo) as efectivo'),DB::raw('SUM(tarjeta) as tarjeta'),DB::raw('SUM(dep) as deposito'),DB::raw('SUM(yap) as yape'),DB::raw('SUM(egreso) as egre'))
+        ->where('a.sede','=',  $request->sede)
+        ->where('a.migrado','=',  1)
+        ->whereBetween('a.fecha', [$f1,$f2])
+        //->groupBy('a.fecha')
+        ->first(); 
+
+        if($request->sede == 1){
+            $sede = 'PROCERES';
+        } else if($request->sede == 2){
+            $sede = 'CANTO REY';
+        } else if($request->sede == 3){
+            $sede = 'VIDA FELIZ';
+        } else if($request->sede == 4){
+            $sede = 'ZARATE';
+        } else if($request->sede == 5){
+            $sede = 'INDEPENDENCIA';
+        } else {
+            $sede = 'LOS OLIVOS';
+        }
+
+       
+
+         $view = \View::make('reportes.viewd', compact('f1','f2','efectivo','sede','totales'));
+
+        $pdf = \App::make('dompdf.wrapper');
+        $pdf->loadHTML($view);
+     
+       
+        return $pdf->stream('report-detallado-c'.'.pdf');
 
 
 
