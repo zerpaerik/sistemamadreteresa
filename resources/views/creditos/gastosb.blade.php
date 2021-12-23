@@ -72,6 +72,11 @@
       <div class="container-fluid">
       <div class="card">
               <div class="card-header">
+              <a class="btn btn-primary btn-sm" href="{{route('gastosb.create')}}">
+                              <i class="fas fa-folder">
+                              </i>
+                              Agregar
+                          </a>
                 
                           <form method="get" action="gastosb">					
                   <label for="exampleInputEmail1">Filtros de Busqueda</label>
@@ -133,6 +138,13 @@
                               <i class="fas fa-check">
                               </i>
                     </a>
+
+                    <a class="btn btn-danger btn-sm" href="gastosb-delete-{{$client->id}}" onclick="return confirm('¿Desea Eliminar este registro?')">
+                              <i class="fas fa-trash">
+                              </i>
+                              Eliminar
+                          </a>
+
                           </td>
                   </tr>
                   @endforeach

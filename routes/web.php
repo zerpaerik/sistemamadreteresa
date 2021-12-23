@@ -372,10 +372,14 @@ Route::post('pedidos/pagar', 'PedidosController@pago');
 
 Route::get('gastos', 'GastosController@index')->name('gastos.index');
 Route::get('gastos-create', 'GastosController@create')->name('gastos.create')->middleware('auth');
+Route::get('gastos-createb', 'GastosController@createb')->name('gastosb.create')->middleware('auth');
 Route::get('gastos-createc', 'GastosController@createc')->name('gastosc.create')->middleware('auth');
 Route::post('gastos/create', 'GastosController@store')->middleware('auth');
+Route::post('gastos/createb', 'GastosController@storeb')->middleware('auth');
 Route::post('gastos/createc', 'GastosController@storec')->middleware('auth');
 Route::get('gastos-delete-{id}', 'GastosController@delete')->middleware('auth');
+Route::get('gastosb-delete-{id}', 'GastosController@deleteb')->middleware('auth');
+Route::get('gastosc-delete-{id}', 'GastosController@deletec')->middleware('auth');
 Route::get('gastos-edit-{id}', 'GastosController@edit')->name('gastos.edit');
 Route::get('gastos-ticket-{id}', 'GastosController@ticket');
 Route::post('gastos/edit', 'GastosController@update');
@@ -392,9 +396,13 @@ Route::get('reporte_total', 'ReportesController@total')->name('reporte_total.ind
 Route::get('reporte_servicios', 'ReportesController@total_servicios')->name('reporte_servicios.index');
 Route::get('consolidado', 'ReportesController@consolidado')->name('consolidado.index');
 Route::get('detallado', 'ReportesController@detallado')->name('detallado.index');
+Route::get('detalladob', 'ReportesController@detalladob')->name('detalladob.index');
+Route::get('detalladoc', 'ReportesController@detalladoc')->name('detalladoc.index');
 Route::get('general', 'ReportesController@general')->name('general.index');
 Route::post('report/consolidado', 'ReportesController@reportc');
 Route::post('report/detallado', 'ReportesController@reportd');
+Route::post('report/detalladob', 'ReportesController@reportdb');
+Route::post('report/detalladoc', 'ReportesController@reportdc');
 Route::post('report/general', 'ReportesController@reportg');
 Route::get('produccion_servicios', 'ReportesController@prod_servicios')->name('prod_serv.index');
 Route::get('produccion_consultas', 'ReportesController@prod_consultas')->name('prod_cons.index');

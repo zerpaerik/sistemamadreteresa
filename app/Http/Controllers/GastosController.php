@@ -5,6 +5,8 @@ use App\Equipos;
 use App\Analisis;
 use App\Debitos;
 use App\Creditos;
+use App\DebitosB;
+use App\CreditosB;
 use App\Tiempo;
 use App\Material;
 use App\User;
@@ -35,7 +37,6 @@ class GastosController extends Controller
         ->get(); 
 
         
-
 
         $deb = Debitos::whereBetween('created_at', [date('Y-m-d 00:00:00', strtotime($f1)), date('Y-m-d 23:59:59', strtotime($f2))])
         ->where('sede','=',$request->session()->get('sede'))
@@ -88,6 +89,11 @@ class GastosController extends Controller
         return view('gastos.create');
     }
 
+    public function createb()
+    {
+        return view('gastos.createb');
+    }
+
     public function createc()
     {
         return view('gastos.createc');
@@ -113,8 +119,29 @@ class GastosController extends Controller
         $gastos->sede =$request->session()->get('sede');
         $gastos->save();
 
+        $gastos = new DebitosB();
+        $gastos->descripcion =$request->descripcion;
+        $gastos->tipo =$request->tipo;
+        $gastos->monto =$request->monto;
+        $gastos->origen ='GASTOS';
+        $gastos->recibido =$request->recibido;
+        $gastos->usuario =Auth::user()->id;
+        $gastos->sede =$request->session()->get('sede');
+        $gastos->save();
+
         if ($request->tipo != 'RETIRO DE EFECTIVO') {
             $cre = new Creditos();
+            $cre->origen = 'EGRESO';
+            $cre->descripcion = 'EGRESO';
+            $cre->id_egreso =  $gastos->id;
+            $cre->egreso = $request->monto;
+            $cre->usuario = Auth::user()->id;
+            $cre->tipopago = 'EG';
+            $cre->sede = $request->session()->get('sede');
+            $cre->fecha = date('Y-m-d');
+            $cre->save();
+
+            $cre = new CreditosB();
             $cre->origen = 'EGRESO';
             $cre->descripcion = 'EGRESO';
             $cre->id_egreso =  $gastos->id;
@@ -132,23 +159,59 @@ class GastosController extends Controller
 
     }
 
-    public function storec(Request $request)
+    public function storeb(Request $request)
     {
 
 
-        $gastos = new Debitos();
+        $gastos = new DebitosB();
         $gastos->descripcion =$request->descripcion;
         $gastos->tipo =$request->tipo;
         $gastos->monto =$request->monto;
         $gastos->origen ='GASTOS';
-        $gastos->migrado =1;
+        $gastos->migrado =0;
         $gastos->recibido =$request->recibido;
         $gastos->usuario =Auth::user()->id;
         $gastos->sede =$request->session()->get('sede');
         $gastos->save();
 
         if ($request->tipo != 'RETIRO DE EFECTIVO') {
-            $cre = new Creditos();
+          
+            $cre = new CreditosB();
+            $cre->origen = 'EGRESO';
+            $cre->descripcion = 'EGRESO';
+            $cre->id_egreso =  $gastos->id;
+            $cre->egreso = $request->monto;
+            $cre->usuario = Auth::user()->id;
+            $cre->tipopago = 'EG';
+            $cre->sede = $request->session()->get('sede');
+            $cre->fecha = date('Y-m-d');
+            $cre->save();
+        }
+
+        
+        return redirect()->action('CreditosController@gastosb');
+
+    }
+
+    public function storec(Request $request)
+    {
+
+
+        $gastos = new DebitosB();
+        $gastos->descripcion =$request->descripcion;
+        $gastos->tipo =$request->tipo;
+        $gastos->monto =$request->monto;
+        $gastos->origen ='GASTOS';
+        $gastos->migrado =1;
+        $gastos->tipo_deb =1;
+        $gastos->recibido =$request->recibido;
+        $gastos->usuario =Auth::user()->id;
+        $gastos->sede =$request->session()->get('sede');
+        $gastos->save();
+
+        if ($request->tipo != 'RETIRO DE EFECTIVO') {
+         
+            $cre = new CreditosB();
             $cre->origen = 'EGRESO';
             $cre->descripcion = 'EGRESO';
             $cre->id_egreso =  $gastos->id;
@@ -219,6 +282,10 @@ class GastosController extends Controller
       $deb->egreso =$request->monto;
       $res1 = $deb->update();
 
+      $deb = CreditosB::where('id_egreso','=',$request->id)->first();
+      $deb->egreso =$request->monto;
+      $res1 = $deb->update();
+
       $da = Debitos::where('id','=',$request->id)->first();
 
 
@@ -251,8 +318,30 @@ class GastosController extends Controller
         $debito = Creditos::where('id_egreso','=',$id)->first();
         $debito->delete();
 
+        
+        $debito = CreditosB::where('id_egreso','=',$id)->first();
+        $debito->delete();
+
 
         return redirect()->action('GastosController@index');
+
+        //
+    }
+
+    public function deleteb($id)
+    {
+
+        $deb = Debitos::where('id','=',$id)->first();
+
+
+        $ingresos = DebitosB::where('id','=',$id);
+        $ingresos->delete();
+
+        $debito = CreditosB::where('id_egreso','=',$id)->first();
+        $debito->delete();
+
+
+        return back();
 
         //
     }

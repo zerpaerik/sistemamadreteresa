@@ -19,8 +19,10 @@ use App\MetoPro;
 use App\Comisiones;
 use App\Cobrar;
 use App\Debitos;
+use App\DebitosB;
 use App\HistorialCobros;
 use App\Creditos;
+use App\CreditosB;
 use App\Sesiones;
 use App\ResultadosServicios;
 use App\ResultadosLaboratorio;
@@ -52,7 +54,7 @@ class CreditosController extends Controller
         ->join('users as c','c.id','a.id_origen')
         ->join('users as d','d.id','a.usuario')
         ->join('servicios as s','s.id','a.id_tipo')
-        ->join('creditos as cred','cred.id_atencion','a.id')
+        ->join('creditosb as cred','cred.id_atencion','a.id')
         ->where('cred.migrado', '=', 0)
         ->where('a.tipo_atencion', '=', 1)
         ->where('a.monto', '!=', '0')
@@ -67,7 +69,7 @@ class CreditosController extends Controller
         ->join('users as c','c.id','a.id_origen')
         ->join('users as d','d.id','a.usuario')
         ->join('servicios as s','s.id','a.id_tipo')
-        ->join('creditos as cred','cred.id_atencion','a.id')
+        ->join('creditosb as cred','cred.id_atencion','a.id')
         ->where('cred.migrado', '=', 0)
         ->where('a.tipo_atencion', '=', 2)
         ->where('a.monto', '!=', '0')
@@ -81,7 +83,7 @@ class CreditosController extends Controller
         ->join('users as c','c.id','a.id_origen')
         ->join('users as d','d.id','a.usuario')
         ->join('servicios as s','s.id','a.id_tipo')
-        ->join('creditos as cred','cred.id_atencion','a.id')
+        ->join('creditosb as cred','cred.id_atencion','a.id')
         ->where('cred.migrado', '=', 0)
         ->where('a.tipo_atencion', '=', 5)
         ->where('a.monto', '!=', '0')
@@ -95,7 +97,7 @@ class CreditosController extends Controller
         ->join('users as c','c.id','a.id_origen')
         ->join('users as d','d.id','a.usuario')
         ->join('servicios as s','s.id','a.id_tipo')
-        ->join('creditos as cred','cred.id_atencion','a.id')
+        ->join('creditosb as cred','cred.id_atencion','a.id')
         ->where('cred.migrado', '=', 0)
         ->where('a.tipo_atencion', '=', 6)
         ->where('a.monto', '!=', '0')
@@ -109,7 +111,7 @@ class CreditosController extends Controller
         ->join('users as c','c.id','a.id_origen')
         ->join('users as d','d.id','a.usuario')
         ->join('servicios as s','s.id','a.id_tipo')
-        ->join('creditos as cred','cred.id_atencion','a.id')
+        ->join('creditosb as cred','cred.id_atencion','a.id')
         ->where('cred.migrado', '=', 0)
         ->where('a.tipo_atencion', '=', 8)
         ->where('a.monto', '!=', '0')
@@ -123,7 +125,7 @@ class CreditosController extends Controller
         ->join('users as c','c.id','a.id_origen')
         ->join('users as d','d.id','a.usuario')
         ->join('analisis as s','s.id','a.id_tipo')
-        ->join('creditos as cred','cred.id_atencion','a.id')
+        ->join('creditosb as cred','cred.id_atencion','a.id')
         ->where('cred.migrado', '=', 0)
         ->where('a.tipo_atencion', '=', 4)
         ->where('a.monto', '!=', '0')
@@ -137,7 +139,7 @@ class CreditosController extends Controller
         ->join('users as c','c.id','a.id_origen')
         ->join('users as d','d.id','a.usuario')
         ->join('paquetes as s','s.id','a.id_tipo')
-        ->join('creditos as cred','cred.id_atencion','a.id')
+        ->join('creditosb as cred','cred.id_atencion','a.id')
         ->where('cred.migrado', '=', 0)
         ->where('a.tipo_atencion', '=', 7)
         ->where('a.monto', '!=', '0')
@@ -152,7 +154,7 @@ class CreditosController extends Controller
         ->join('users as c','c.id','a.id_origen')
         ->join('users as d','d.id','a.usuario')
         ->join('meto_pro as s','s.id','a.id_tipo')
-        ->join('creditos as cred','cred.id_atencion','a.id')
+        ->join('creditosb as cred','cred.id_atencion','a.id')
         ->where('cred.migrado', '=', 0)
         ->where('a.tipo_atencion', '=', 6)
         ->where('a.monto', '!=', '0')
@@ -166,7 +168,7 @@ class CreditosController extends Controller
         ->join('users as c','c.id','a.id_origen')
         ->join('users as d','d.id','a.usuario')
         ->join('tipo_con as s','s.id','a.id_tipo')
-        ->join('creditos as cred','cred.id_atencion','a.id')
+        ->join('creditosb as cred','cred.id_atencion','a.id')
         ->where('cred.migrado', '=', 0)
         ->where('a.tipo_atencion', '=', 5)
         ->where('a.monto', '!=', '0')
@@ -183,7 +185,7 @@ class CreditosController extends Controller
         ->join('users as c','c.id','a.id_origen')
         ->join('users as d','d.id','a.usuario')
         ->join('servicios as s','s.id','a.id_tipo')
-        ->join('creditos as cred','cred.id_atencion','a.id')
+        ->join('creditosb as cred','cred.id_atencion','a.id')
         ->where('cred.migrado', '=', 0)
         ->where('a.tipo_atencion', '=', 3)
         ->where('a.monto', '!=', '0')
@@ -212,7 +214,7 @@ class CreditosController extends Controller
         ->join('users as c','c.id','a.id_origen')
         ->join('users as d','d.id','a.usuario')
         ->join('servicios as s','s.id','a.id_tipo')
-        ->join('creditos as cred','cred.id_atencion','a.id')
+        ->join('creditosb as cred','cred.id_atencion','a.id')
         ->where('cred.migrado', '=', 0)
         ->where('a.tipo_atencion', '=', 1)
         ->where('a.monto', '!=', '0')
@@ -228,7 +230,7 @@ class CreditosController extends Controller
         ->join('users as c','c.id','a.id_origen')
         ->join('users as d','d.id','a.usuario')
         ->join('servicios as s','s.id','a.id_tipo')
-        ->join('creditos as cred','cred.id_atencion','a.id')
+        ->join('creditosb as cred','cred.id_atencion','a.id')
         ->where('cred.migrado', '=', 0)
         ->where('a.tipo_atencion', '=', 2)
         ->where('a.monto', '!=', '0')
@@ -243,7 +245,7 @@ class CreditosController extends Controller
         ->join('users as c','c.id','a.id_origen')
         ->join('users as d','d.id','a.usuario')
         ->join('servicios as s','s.id','a.id_tipo')
-        ->join('creditos as cred','cred.id_atencion','a.id')
+        ->join('creditosb as cred','cred.id_atencion','a.id')
         ->where('cred.migrado', '=', 0)
         ->where('a.tipo_atencion', '=', 5)
         ->where('a.monto', '!=', '0')
@@ -258,7 +260,7 @@ class CreditosController extends Controller
         ->join('users as c','c.id','a.id_origen')
         ->join('users as d','d.id','a.usuario')
         ->join('servicios as s','s.id','a.id_tipo')
-        ->join('creditos as cred','cred.id_atencion','a.id')
+        ->join('creditosb as cred','cred.id_atencion','a.id')
         ->where('cred.migrado', '=', 0)
         ->where('a.tipo_atencion', '=', 6)
         ->where('a.monto', '!=', '0')
@@ -272,7 +274,7 @@ class CreditosController extends Controller
         ->join('users as c','c.id','a.id_origen')
         ->join('users as d','d.id','a.usuario')
         ->join('servicios as s','s.id','a.id_tipo')
-        ->join('creditos as cred','cred.id_atencion','a.id')
+        ->join('creditosb as cred','cred.id_atencion','a.id')
         ->where('cred.migrado', '=', 0)
         ->where('a.tipo_atencion', '=', 8)
         ->where('a.monto', '!=', '0')
@@ -287,7 +289,7 @@ class CreditosController extends Controller
         ->join('users as c','c.id','a.id_origen')
         ->join('users as d','d.id','a.usuario')
         ->join('analisis as s','s.id','a.id_tipo')
-        ->join('creditos as cred','cred.id_atencion','a.id')
+        ->join('creditosb as cred','cred.id_atencion','a.id')
         ->where('cred.migrado', '=', 0)
         ->where('a.tipo_atencion', '=', 4)
         ->where('a.monto', '!=', '0')
@@ -302,7 +304,7 @@ class CreditosController extends Controller
         ->join('users as c','c.id','a.id_origen')
         ->join('users as d','d.id','a.usuario')
         ->join('paquetes as s','s.id','a.id_tipo')
-        ->join('creditos as cred','cred.id_atencion','a.id')
+        ->join('creditosb as cred','cred.id_atencion','a.id')
         ->where('cred.migrado', '=', 0)
         ->where('a.tipo_atencion', '=', 7)
         ->where('a.monto', '!=', '0')
@@ -316,7 +318,7 @@ class CreditosController extends Controller
         ->join('users as c','c.id','a.id_origen')
         ->join('users as d','d.id','a.usuario')
         ->join('meto_pro as s','s.id','a.id_tipo')
-        ->join('creditos as cred','cred.id_atencion','a.id')
+        ->join('creditosb as cred','cred.id_atencion','a.id')
         ->where('cred.migrado', '=', 0)
         ->where('a.tipo_atencion', '=', 6)
         ->where('a.monto', '!=', '0')
@@ -331,7 +333,7 @@ class CreditosController extends Controller
         ->join('users as c','c.id','a.id_origen')
         ->join('users as d','d.id','a.usuario')
         ->join('tipo_con as s','s.id','a.id_tipo')
-        ->join('creditos as cred','cred.id_atencion','a.id')
+        ->join('creditosb as cred','cred.id_atencion','a.id')
         ->where('cred.migrado', '=', 0)
         ->where('a.tipo_atencion', '=', 5)
         ->where('a.monto', '!=', '0')
@@ -349,7 +351,7 @@ class CreditosController extends Controller
         ->join('users as c','c.id','a.id_origen')
         ->join('users as d','d.id','a.usuario')
         ->join('servicios as s','s.id','a.id_tipo')
-        ->join('creditos as cred','cred.id_atencion','a.id')
+        ->join('creditosb as cred','cred.id_atencion','a.id')
         ->where('cred.migrado', '=', 0)
         ->where('a.tipo_atencion', '=', 3)
         ->where('a.monto', '!=', '0')
@@ -398,7 +400,7 @@ class CreditosController extends Controller
         ->join('users as c','c.id','a.id_origen')
         ->join('users as d','d.id','a.usuario')
         ->join('servicios as s','s.id','a.id_tipo')
-        ->join('creditos as cred','cred.id_atencion','a.id')
+        ->join('creditosb as cred','cred.id_atencion','a.id')
         ->where('cred.migrado', '=', 1)
         ->where('a.tipo_atencion', '=', 1)
         ->where('a.monto', '!=', '0')
@@ -413,7 +415,7 @@ class CreditosController extends Controller
         ->join('users as c','c.id','a.id_origen')
         ->join('users as d','d.id','a.usuario')
         ->join('servicios as s','s.id','a.id_tipo')
-        ->join('creditos as cred','cred.id_atencion','a.id')
+        ->join('creditosb as cred','cred.id_atencion','a.id')
         ->where('cred.migrado', '=', 1)
         ->where('a.tipo_atencion', '=', 2)
         ->where('a.monto', '!=', '0')
@@ -427,7 +429,7 @@ class CreditosController extends Controller
         ->join('users as c','c.id','a.id_origen')
         ->join('users as d','d.id','a.usuario')
         ->join('servicios as s','s.id','a.id_tipo')
-        ->join('creditos as cred','cred.id_atencion','a.id')
+        ->join('creditosb as cred','cred.id_atencion','a.id')
         ->where('cred.migrado', '=', 1)
         ->where('a.tipo_atencion', '=', 5)
         ->where('a.monto', '!=', '0')
@@ -441,7 +443,7 @@ class CreditosController extends Controller
         ->join('users as c','c.id','a.id_origen')
         ->join('users as d','d.id','a.usuario')
         ->join('servicios as s','s.id','a.id_tipo')
-        ->join('creditos as cred','cred.id_atencion','a.id')
+        ->join('creditosb as cred','cred.id_atencion','a.id')
         ->where('cred.migrado', '=', 1)
         ->where('a.tipo_atencion', '=', 6)
         ->where('a.monto', '!=', '0')
@@ -455,7 +457,7 @@ class CreditosController extends Controller
         ->join('users as c','c.id','a.id_origen')
         ->join('users as d','d.id','a.usuario')
         ->join('servicios as s','s.id','a.id_tipo')
-        ->join('creditos as cred','cred.id_atencion','a.id')
+        ->join('creditosb as cred','cred.id_atencion','a.id')
         ->where('cred.migrado', '=', 1)
         ->where('a.tipo_atencion', '=', 8)
         ->where('a.monto', '!=', '0')
@@ -469,7 +471,7 @@ class CreditosController extends Controller
         ->join('users as c','c.id','a.id_origen')
         ->join('users as d','d.id','a.usuario')
         ->join('analisis as s','s.id','a.id_tipo')
-        ->join('creditos as cred','cred.id_atencion','a.id')
+        ->join('creditosb as cred','cred.id_atencion','a.id')
         ->where('cred.migrado', '=', 1)
         ->where('a.tipo_atencion', '=', 4)
         ->where('a.monto', '!=', '0')
@@ -483,7 +485,7 @@ class CreditosController extends Controller
         ->join('users as c','c.id','a.id_origen')
         ->join('users as d','d.id','a.usuario')
         ->join('paquetes as s','s.id','a.id_tipo')
-        ->join('creditos as cred','cred.id_atencion','a.id')
+        ->join('creditosb as cred','cred.id_atencion','a.id')
         ->where('cred.migrado', '=', 1)
         ->where('a.tipo_atencion', '=', 7)
         ->where('a.monto', '!=', '0')
@@ -498,7 +500,7 @@ class CreditosController extends Controller
         ->join('users as c','c.id','a.id_origen')
         ->join('users as d','d.id','a.usuario')
         ->join('meto_pro as s','s.id','a.id_tipo')
-        ->join('creditos as cred','cred.id_atencion','a.id')
+        ->join('creditosb as cred','cred.id_atencion','a.id')
         ->where('cred.migrado', '=', 1)
         ->where('a.tipo_atencion', '=', 6)
         ->where('a.monto', '!=', '0')
@@ -512,7 +514,7 @@ class CreditosController extends Controller
         ->join('users as c','c.id','a.id_origen')
         ->join('users as d','d.id','a.usuario')
         ->join('tipo_con as s','s.id','a.id_tipo')
-        ->join('creditos as cred','cred.id_atencion','a.id')
+        ->join('creditosb as cred','cred.id_atencion','a.id')
         ->where('cred.migrado', '=', 1)
         ->where('a.tipo_atencion', '=', 5)
         ->where('a.monto', '!=', '0')
@@ -529,7 +531,7 @@ class CreditosController extends Controller
         ->join('users as c','c.id','a.id_origen')
         ->join('users as d','d.id','a.usuario')
         ->join('servicios as s','s.id','a.id_tipo')
-        ->join('creditos as cred','cred.id_atencion','a.id')
+        ->join('creditosb as cred','cred.id_atencion','a.id')
         ->where('cred.migrado', '=', 1)
         ->where('a.tipo_atencion', '=', 3)
         ->where('a.monto', '!=', '0')
@@ -558,7 +560,7 @@ class CreditosController extends Controller
         ->join('users as c','c.id','a.id_origen')
         ->join('users as d','d.id','a.usuario')
         ->join('servicios as s','s.id','a.id_tipo')
-        ->join('creditos as cred','cred.id_atencion','a.id')
+        ->join('creditosb as cred','cred.id_atencion','a.id')
         ->where('cred.migrado', '=', 1)
         ->where('a.tipo_atencion', '=', 1)
         ->where('a.monto', '!=', '0')
@@ -574,7 +576,7 @@ class CreditosController extends Controller
         ->join('users as c','c.id','a.id_origen')
         ->join('users as d','d.id','a.usuario')
         ->join('servicios as s','s.id','a.id_tipo')
-        ->join('creditos as cred','cred.id_atencion','a.id')
+        ->join('creditosb as cred','cred.id_atencion','a.id')
         ->where('cred.migrado', '=', 1)
         ->where('a.tipo_atencion', '=', 2)
         ->where('a.monto', '!=', '0')
@@ -589,7 +591,7 @@ class CreditosController extends Controller
         ->join('users as c','c.id','a.id_origen')
         ->join('users as d','d.id','a.usuario')
         ->join('servicios as s','s.id','a.id_tipo')
-        ->join('creditos as cred','cred.id_atencion','a.id')
+        ->join('creditosb as cred','cred.id_atencion','a.id')
         ->where('cred.migrado', '=', 1)
         ->where('a.tipo_atencion', '=', 5)
         ->where('a.monto', '!=', '0')
@@ -604,7 +606,7 @@ class CreditosController extends Controller
         ->join('users as c','c.id','a.id_origen')
         ->join('users as d','d.id','a.usuario')
         ->join('servicios as s','s.id','a.id_tipo')
-        ->join('creditos as cred','cred.id_atencion','a.id')
+        ->join('creditosb as cred','cred.id_atencion','a.id')
         ->where('cred.migrado', '=', 1)
         ->where('a.tipo_atencion', '=', 6)
         ->where('a.monto', '!=', '0')
@@ -618,7 +620,7 @@ class CreditosController extends Controller
         ->join('users as c','c.id','a.id_origen')
         ->join('users as d','d.id','a.usuario')
         ->join('servicios as s','s.id','a.id_tipo')
-        ->join('creditos as cred','cred.id_atencion','a.id')
+        ->join('creditosb as cred','cred.id_atencion','a.id')
         ->where('cred.migrado', '=', 1)
         ->where('a.tipo_atencion', '=', 8)
         ->where('a.monto', '!=', '0')
@@ -633,7 +635,7 @@ class CreditosController extends Controller
         ->join('users as c','c.id','a.id_origen')
         ->join('users as d','d.id','a.usuario')
         ->join('analisis as s','s.id','a.id_tipo')
-        ->join('creditos as cred','cred.id_atencion','a.id')
+        ->join('creditosb as cred','cred.id_atencion','a.id')
         ->where('cred.migrado', '=', 1)
         ->where('a.tipo_atencion', '=', 4)
         ->where('a.monto', '!=', '0')
@@ -648,7 +650,7 @@ class CreditosController extends Controller
         ->join('users as c','c.id','a.id_origen')
         ->join('users as d','d.id','a.usuario')
         ->join('paquetes as s','s.id','a.id_tipo')
-        ->join('creditos as cred','cred.id_atencion','a.id')
+        ->join('creditosb as cred','cred.id_atencion','a.id')
         ->where('cred.migrado', '=', 1)
         ->where('a.tipo_atencion', '=', 7)
         ->where('a.monto', '!=', '0')
@@ -662,7 +664,7 @@ class CreditosController extends Controller
         ->join('users as c','c.id','a.id_origen')
         ->join('users as d','d.id','a.usuario')
         ->join('meto_pro as s','s.id','a.id_tipo')
-        ->join('creditos as cred','cred.id_atencion','a.id')
+        ->join('creditosb as cred','cred.id_atencion','a.id')
         ->where('cred.migrado', '=', 1)
         ->where('a.tipo_atencion', '=', 6)
         ->where('a.monto', '!=', '0')
@@ -677,7 +679,7 @@ class CreditosController extends Controller
         ->join('users as c','c.id','a.id_origen')
         ->join('users as d','d.id','a.usuario')
         ->join('tipo_con as s','s.id','a.id_tipo')
-        ->join('creditos as cred','cred.id_atencion','a.id')
+        ->join('creditosb as cred','cred.id_atencion','a.id')
         ->where('cred.migrado', '=', 1)
         ->where('a.tipo_atencion', '=', 5)
         ->where('a.monto', '!=', '0')
@@ -695,7 +697,7 @@ class CreditosController extends Controller
         ->join('users as c','c.id','a.id_origen')
         ->join('users as d','d.id','a.usuario')
         ->join('servicios as s','s.id','a.id_tipo')
-        ->join('creditos as cred','cred.id_atencion','a.id')
+        ->join('creditosb as cred','cred.id_atencion','a.id')
         ->where('cred.migrado', '=', 1)
         ->where('a.tipo_atencion', '=', 3)
         ->where('a.monto', '!=', '0')
@@ -735,7 +737,7 @@ class CreditosController extends Controller
 
      
 
-      $con = Creditos::where('id','=',$id)->first();
+      $con = CreditosB::where('id','=',$id)->first();
       $con->migrado = 1;
       $con->save();
 
@@ -750,7 +752,7 @@ class CreditosController extends Controller
 
      
 
-      $con = Creditos::where('id','=',$id)->first();
+      $con = CreditosB::where('id','=',$id)->first();
       $con->migrado = 0;
       $con->save();
 
@@ -769,7 +771,7 @@ class CreditosController extends Controller
             $f2 = $request->fin;
 
 
-        $gastos = DB::table('debitos as a')
+        $gastos = DB::table('debitosb as a')
         ->select('a.id','a.descripcion','a.monto','a.recibido','a.usuario','a.sede','a.tipo','a.migrado','a.created_at','b.name')
         ->join('users as b','b.id','a.usuario')
         ->whereBetween('a.created_at', [date('Y-m-d 00:00:00', strtotime($f1)), date('Y-m-d 23:59:59', strtotime($f2))])
@@ -780,7 +782,7 @@ class CreditosController extends Controller
         
 
 
-        $deb = Debitos::whereBetween('created_at', [date('Y-m-d 00:00:00', strtotime($f1)), date('Y-m-d 23:59:59', strtotime($f2))])
+        $deb = DebitosB::whereBetween('created_at', [date('Y-m-d 00:00:00', strtotime($f1)), date('Y-m-d 23:59:59', strtotime($f2))])
         ->where('sede','=',$request->session()->get('sede'))
         ->where('migrado','=',0)
         ->select(DB::raw('COUNT(*) as cantidad, SUM(monto) as monto'))
@@ -796,7 +798,7 @@ class CreditosController extends Controller
             $f1 =date('Y-m-d');
             $f2 = date('Y-m-d');
 
-            $gastos = DB::table('debitos as a')
+            $gastos = DB::table('debitosb as a')
             ->select('a.id','a.descripcion','a.monto','a.recibido','a.sede','a.usuario','a.sede','a.tipo','a.created_at','a.migrado','b.name')
             ->join('users as b','b.id','a.usuario')
             ->where('a.sede','=',$request->session()->get('sede'))
@@ -806,7 +808,7 @@ class CreditosController extends Controller
 
           
             
-        $deb = Debitos::whereDate('created_at', date('Y-m-d 00:00:00', strtotime($f1)))
+        $deb = DebitosB::whereDate('created_at', date('Y-m-d 00:00:00', strtotime($f1)))
         ->where('sede','=',$request->session()->get('sede'))
         ->where('migrado','=',0)
         ->select(DB::raw('COUNT(*) as cantidad, SUM(monto) as monto'))
@@ -830,8 +832,8 @@ class CreditosController extends Controller
             $f2 = $request->fin;
 
 
-        $gastos = DB::table('debitos as a')
-        ->select('a.id','a.descripcion','a.monto','a.recibido','a.usuario','a.eliminadoc','a.sede','a.tipo','a.migrado','a.created_at','b.name')
+        $gastos = DB::table('debitosb as a')
+        ->select('a.id','a.descripcion','a.monto','a.tipo_deb','a.recibido','a.usuario','a.eliminadoc','a.sede','a.tipo','a.migrado','a.created_at','b.name')
         ->join('users as b','b.id','a.usuario')
         ->whereBetween('a.created_at', [date('Y-m-d 00:00:00', strtotime($f1)), date('Y-m-d 23:59:59', strtotime($f2))])
         ->where('a.migrado','=',1)
@@ -842,7 +844,7 @@ class CreditosController extends Controller
         
 
 
-        $deb = Debitos::whereBetween('created_at', [date('Y-m-d 00:00:00', strtotime($f1)), date('Y-m-d 23:59:59', strtotime($f2))])
+        $deb = DebitosB::whereBetween('created_at', [date('Y-m-d 00:00:00', strtotime($f1)), date('Y-m-d 23:59:59', strtotime($f2))])
         ->where('sede','=',$request->session()->get('sede'))
         ->where('migrado','=',1)
         ->where('eliminadoc','=',0)
@@ -859,8 +861,8 @@ class CreditosController extends Controller
             $f1 =date('Y-m-d');
             $f2 = date('Y-m-d');
 
-            $gastos = DB::table('debitos as a')
-            ->select('a.id','a.descripcion','a.monto','a.recibido','a.eliminadoc','a.sede','a.usuario','a.sede','a.tipo','a.created_at','a.migrado','b.name')
+            $gastos = DB::table('debitosb as a')
+            ->select('a.id','a.descripcion','a.monto','a.recibido','a.tipo_deb','a.eliminadoc','a.sede','a.usuario','a.sede','a.tipo','a.created_at','a.migrado','b.name')
             ->join('users as b','b.id','a.usuario')
             ->where('a.sede','=',$request->session()->get('sede'))
             ->where('a.migrado','=',1)
@@ -870,7 +872,7 @@ class CreditosController extends Controller
 
           
             
-        $deb = Debitos::whereDate('created_at', date('Y-m-d 00:00:00', strtotime($f1)))
+        $deb = DebitosB::whereDate('created_at', date('Y-m-d 00:00:00', strtotime($f1)))
         ->where('sede','=',$request->session()->get('sede'))
         ->where('migrado','=',1)
         ->where('eliminadoc','=',0)
@@ -892,7 +894,7 @@ class CreditosController extends Controller
 
      
 
-      $con = Debitos::where('id','=',$id)->first();
+      $con = DebitosB::where('id','=',$id)->first();
       $con->migrado = 1;
       $con->save();
 
@@ -907,7 +909,7 @@ class CreditosController extends Controller
 
      
 
-      $con = Debitos::where('id','=',$id)->first();
+      $con = DebitosB::where('id','=',$id)->first();
       $con->migrado = 0;
       $con->save();
 

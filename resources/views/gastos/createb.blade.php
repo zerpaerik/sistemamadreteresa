@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <title>MadreTeresa | Admin</title>
+  <title>Madeteresa | Admin</title>
   <!-- Tell the browser to be responsive to screen width -->
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <!-- Font Awesome -->
@@ -54,12 +54,12 @@
       <div class="container-fluid">
         <div class="row mb-2">
           <div class="col-sm-6">
-            <h1 class="m-0 text-dark">Gastos C</h1>
+            <h1 class="m-0 text-dark">Movimientos</h1>
           </div><!-- /.col -->
           <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">
               <li class="breadcrumb-item"><a href="#">Movimientos</a></li>
-              <li class="breadcrumb-item active">Gastos C</li>
+              <li class="breadcrumb-item active">GastosB</li>
             </ol>
           </div><!-- /.col -->
         </div><!-- /.row -->
@@ -70,127 +70,79 @@
     <!-- Main content -->
     <section class="content">
       <div class="container-fluid">
-      <div class="card">
+        <div class="row">
+          <!-- left column -->
+          <div class="col-md-12">
+            <!-- general form elements -->
+            <div class="card card-primary">
               <div class="card-header">
-              <a class="btn btn-primary btn-sm" href="{{route('gastosc.create')}}">
-                              <i class="fas fa-folder">
-                              </i>
-                              Agregar
-                          </a>
-                
-                          <form method="get" action="gastosc">					
-                  <label for="exampleInputEmail1">Filtros de Busqueda</label>
-
-                    <div class="row">
-                  <div class="col-md-3">
-                    <label for="exampleInputEmail1">Fecha Inicio</label>
-                    <input type="date" class="form-control" value="{{$f1}}" name="inicio" placeholder="Buscar por dni" onsubmit="datapac()">
-                  </div>
-                  <div class="col-md-3">
-                    <label for="exampleInputEmail1">Fecha Fin</label>
-                    <input type="date" class="form-control" value="{{$f2}}" name="fin" placeholder="Buscar por dni" onsubmit="datapac()">
-                  </div>
-
-                  <div class="col-md-2">
-                    <label for="exampleInputEmail1">Items</label>
-                    <input type="text" disabled class="form-control" value="{{$deb->cantidad}}" name="inicio" placeholder="Buscar por dni" onsubmit="datapac()">
-                  </div>
-                  
-                  <div class="col-md-2">
-                    <label for="exampleInputEmail1">Total</label>
-                    <input type="text" disabled class="form-control" value="{{$deb->monto}}" name="inicio" placeholder="Buscar por dni" onsubmit="datapac()">
-                  </div>
-                 
-                 
-                  <div class="col-md-2" style="margin-top: 30px;">
-                  <button type="submit" class="btn btn-primary">Buscar</button>
-
-                  </div>
-                  </form>
-              </div>
+                <h3 class="card-title">Agregar</h3>
               </div>
               <!-- /.card-header -->
-              <div class="card-body">
-                <table id="example1" class="table table-bordered table-striped">
-                  <thead>
-                  <tr>
-                    <th>Tipo</th>
-                    <th>Descripción</th>
-                    <th>Monto</th>
-                    <th>Recibido Por</th>
-                    <th>Registrado Por:</th>
-                    <th>Fecha</th>
-                    <th>Acciones</th>
-                  </tr>
-                  </thead>
-                  <tbody>
+              <!-- form start -->
+              <form method="post" action="gastos/createb">					
+              {{ csrf_field() }}                
+                    <div class="card-body">
+                    <div class="row">
+                    <div class="col-md-3">
+                  <label>Tipo</label>
+                        <select class="form-control" name="tipo">
+							              <option value="CAJA">CAJA</option>
 
-                  @foreach($gastos as $client)
-                  <tr>
-                    <td>{{$client->tipo}}</td>
-                    <td>{{$client->descripcion}}</td>
-                    <td>{{$client->monto}}</td>
-                    <td>{{$client->recibido}}</td>
-                    <td>{{$client->name}}</td>
-                    <td>{{$client->created_at}}</td>
-                    <td>
-                   
-                    @if(Auth::user()->rol == 1)
+                        </select>
+                  </div>
+                  
+                  <div class="col-md-3">
+                    <label for="exampleInputEmail1">Descripción</label>
+                    <input type="text" class="form-control" id="email" name="descripcion" placeholder="Descripción">
+                  </div>
+                  <div class="col-md-3">
+                    <label for="exampleInputEmail1">Monto</label>
+                    <input type="float" class="form-control" id="name" name="monto" placeholder="Monto">
+                  </div>
 
-                          
-                          @if($client->tipo_deb == 1)
-                          <a class="btn btn-danger btn-sm" href="gastosb-delete-{{$client->id}}" onclick="return confirm('¿Desea Eliminar este registro?')">
-                              <i class="fas fa-trash">
-                              </i>
-                              Eliminar
-                          </a>
-                          @else
-                          <a class="btn btn-danger btn-sm" href="gastoss-reversar-{{$client->id}}" onclick="return confirm('¿Desea reversar este registro??')">
-                              <i class="fas fa-trash"> 
-                              </i>
-                              Reversar
-                          </a>
-
-                          @endif
-                        
-                          @endif
-                    
-                          </td>
-                  </tr>
-                  @endforeach
+                  <div class="col-md-3">
+                    <label for="exampleInputEmail1">Recibido Por</label>
+                    <input type="text" class="form-control" id="email" name="recibido" placeholder="Recibido Por">
+                  </div>
+                  
+                  </div>
+                  <br>
+                
                  
+
+        
                  
+                </div>
+                <!-- /.card-body -->
+
+                <div class="card-footer">
+                  <button type="submit" class="btn btn-primary">Guardar</button>
+                </div>
+              </form>
+            </div>
+            <!-- /.card -->
+
+         
+            <!-- /.card -->
+
+           
+           
                
-                 
-                 
-                  </tbody>
-                  <tfoot>
-                  <tr>
-                  <th>Tipo</th>
-                    <th>Descripción</th>
-                    <th>Monto</th>
-                    <th>Recibido Por</th>
-                    <th>Registrado Por:</th>
-                    <th>Fecha</th>
-                    <th>Acciones</th>
-                  </tr>
-                  </tfoot>
-                </table>
+
+
+           
               </div>
               <!-- /.card-body -->
             </div>
             <!-- /.card -->
           </div>
-          <!-- /.col -->
+          <!--/.col (right) -->
         </div>
         <!-- /.row -->
-      </div>
-      <!-- /.container-fluid -->
+      </div><!-- /.container-fluid -->
     </section>
-    <!-- /.content -->
-  </div>
-  </div>
-  </section>
+    
 
   <!-- /.content-wrapper -->
   
@@ -247,22 +199,6 @@
 <!-- AdminLTE for demo purposes -->
 <script src="../../dist/js/demo.js"></script>
 <!-- page script -->
-<script>
-  $(function () {
-    $("#example1").DataTable({
-      "responsive": true,
-      "autoWidth": false,
-    });
-    $('#example2').DataTable({
-      "paging": true,
-      "lengthChange": false,
-      "searching": false,
-      "ordering": true,
-      "info": true,
-      "autoWidth": false,
-      "responsive": true,
-    });
-  });
-</script>
+
 </body>
 </html>
