@@ -892,11 +892,16 @@ class CreditosController extends Controller
     public function procesarg($id)
     {
 
-     
 
+     
+     
       $con = DebitosB::where('id','=',$id)->first();
       $con->migrado = 1;
       $con->save();
+
+      $credb = CreditosB::where('id','=',$id)->first();
+      $credb->migrado = 1;
+      $credb->save();
 
 
       return back();
@@ -912,6 +917,10 @@ class CreditosController extends Controller
       $con = DebitosB::where('id','=',$id)->first();
       $con->migrado = 0;
       $con->save();
+
+      $credb = CreditosB::where('id','=',$id)->first();
+      $credb->migrado = 0;
+      $credb->save();
 
 
       return back();

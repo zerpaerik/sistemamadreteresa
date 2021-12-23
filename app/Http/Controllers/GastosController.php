@@ -109,6 +109,7 @@ class GastosController extends Controller
     {
 
 
+
         $gastos = new Debitos();
         $gastos->descripcion =$request->descripcion;
         $gastos->tipo =$request->tipo;
@@ -119,15 +120,15 @@ class GastosController extends Controller
         $gastos->sede =$request->session()->get('sede');
         $gastos->save();
 
-        $gastos = new DebitosB();
-        $gastos->descripcion =$request->descripcion;
-        $gastos->tipo =$request->tipo;
-        $gastos->monto =$request->monto;
-        $gastos->origen ='GASTOS';
-        $gastos->recibido =$request->recibido;
-        $gastos->usuario =Auth::user()->id;
-        $gastos->sede =$request->session()->get('sede');
-        $gastos->save();
+        $gastosb = new DebitosB();
+        $gastosb->descripcion =$request->descripcion;
+        $gastosb->tipo =$request->tipo;
+        $gastosb->monto =$request->monto;
+        $gastosb->origen ='GASTOS';
+        $gastosb->recibido =$request->recibido;
+        $gastosb->usuario =Auth::user()->id;
+        $gastosb->sede =$request->session()->get('sede');
+        $gastosb->save();
 
         if ($request->tipo != 'RETIRO DE EFECTIVO') {
             $cre = new Creditos();
@@ -144,7 +145,7 @@ class GastosController extends Controller
             $cre = new CreditosB();
             $cre->origen = 'EGRESO';
             $cre->descripcion = 'EGRESO';
-            $cre->id_egreso =  $gastos->id;
+            $cre->id_egreso =  $gastosb->id;
             $cre->egreso = $request->monto;
             $cre->usuario = Auth::user()->id;
             $cre->tipopago = 'EG';
