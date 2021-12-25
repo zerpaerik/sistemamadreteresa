@@ -219,6 +219,7 @@ class GastosController extends Controller
             $cre->egreso = $request->monto;
             $cre->usuario = Auth::user()->id;
             $cre->tipopago = 'EG';
+            $cre->migrado = 1;
             $cre->sede = $request->session()->get('sede');
             $cre->fecha = date('Y-m-d');
             $cre->save();
