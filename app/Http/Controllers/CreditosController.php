@@ -900,8 +900,6 @@ class CreditosController extends Controller
       $con->save();
 
       $credb = CreditosB::where('id_egreso','=',$id)->first();
-
-      dd($credb);
       $credb->migrado = 1;
       $credb->save();
 
