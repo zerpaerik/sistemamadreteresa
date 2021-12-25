@@ -901,7 +901,7 @@ class CreditosController extends Controller
 
       $credb = CreditosB::where('id_egreso','=',$id)->first();
 
-      print($credb);
+      dd($credb);
       $credb->migrado = 1;
       $credb->save();
 
