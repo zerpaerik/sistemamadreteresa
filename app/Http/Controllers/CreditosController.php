@@ -899,7 +899,7 @@ class CreditosController extends Controller
       $con->migrado = 1;
       $con->save();
 
-      $credb = CreditosB::where('id','=',$id)->first();
+      $credb = CreditosB::where('id_egreso','=',$id)->first();
       $credb->migrado = 1;
       $credb->save();
 
@@ -918,7 +918,7 @@ class CreditosController extends Controller
       $con->migrado = 0;
       $con->save();
 
-      $credb = CreditosB::where('id','=',$id)->first();
+      $credb = CreditosB::where('id_egreso','=',$id)->first();
       $credb->migrado = 0;
       $credb->save();
 
