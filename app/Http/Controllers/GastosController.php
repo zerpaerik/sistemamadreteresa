@@ -322,9 +322,11 @@ class GastosController extends Controller
         $debito = Creditos::where('id_egreso','=',$id)->first();
         $debito->delete();
 
-        
-        $debito = CreditosB::where('id_gastoa','=',$id)->first();
-        $debito->delete();
+        $debb = DebitosB::where('id_gastoa','=',$id);
+        $debb->delete();
+
+        $creditosb = CreditosB::where('id_gastoa','=',$id)->first();
+        $creditosb->delete();
 
 
         return redirect()->action('GastosController@index');
