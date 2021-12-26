@@ -323,7 +323,7 @@ class GastosController extends Controller
         $debito->delete();
 
         
-        $debito = CreditosB::where('id_egreso','=',$id)->first();
+        $debito = CreditosB::where('id_gastoa','=',$id)->first();
         $debito->delete();
 
 
@@ -338,10 +338,10 @@ class GastosController extends Controller
         $deb = Debitos::where('id','=',$id)->first();
 
 
-        $ingresos = DebitosB::where('id_gastoa','=',$id);
+        $ingresos = DebitosB::where('id','=',$id);
         $ingresos->delete();
 
-        $debito = CreditosB::where('id_gastoa','=',$id)->first();
+        $debito = CreditosB::where('id_egreso','=',$id)->first();
         $debito->delete();
 
         return back();
