@@ -1670,6 +1670,146 @@
     @endif
 
 
+ @if(\Auth::user()->rol == 12)
+
+    
+<a href="{{route('home')}}" class="brand-link">
+<img src="logo.jpeg" class="img-circle elevation-2" alt="User Image" width="40">
+      
+      <span class="brand-text font-weight-light">ADMIN MadreTeresa</span>
+    </a>
+
+<div class="sidebar">
+      <!-- Sidebar user panel (optional) -->
+    
+
+      <!-- Sidebar Menu -->
+      <nav class="mt-2">
+        <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
+          <!-- Add icons to the links using the .nav-icon class
+               with font-awesome or any other icon font library -->
+               <li class="nav-item has-treeview">
+            <a href="#" class="nav-link">
+              <i class="nav-icon fas fa-money-check-alt"></i>
+              <p>
+                Reportes
+                <i class="fas fa-angle-left right"></i>
+              </p>
+            </a>
+            <ul class="nav nav-treeview">
+           
+
+              <li class="nav-item">
+                <a href="{{route('detalladoc.index')}}" class="nav-link">
+                  <i class="fas fa-hand-holding-usd nav-icon"></i>
+                  <p>Detallado por Sede C</p>
+                </a>
+              </li>
+
+            
+
+  
+            </ul>
+          </li>
+
+
+        
+
+       
+
+          <li class="nav-item has-treeview">
+            <a href="#" class="nav-link">
+              <i class="nav-icon fas fa-money-check-alt"></i>
+              <p>
+                Creditos
+                <i class="fas fa-angle-left right"></i>
+              </p>
+            </a>
+            <ul class="nav nav-treeview">
+
+
+
+              <li class="nav-item">
+                <a href="{{route('creditos.c')}}" class="nav-link">
+                  <i class="fas fa-cart-arrow-down nav-icon"></i>
+                  <p>Creditos C</p>
+                </a>
+              </li>
+
+            
+            
+              
+            </ul>
+          </li>
+
+          <li class="nav-item has-treeview">
+            <a href="#" class="nav-link">
+              <i class="nav-icon fas fa-money-check-alt"></i>
+              <p>
+                Gastoss
+                <i class="fas fa-angle-left right"></i>
+              </p>
+            </a>
+            <ul class="nav nav-treeview">
+
+
+            
+
+
+              <li class="nav-item">
+                <a href="{{route('gastos.c')}}" class="nav-link">
+                  <i class="fas fa-cart-arrow-down nav-icon"></i>
+                  <p>Gastoss C</p>
+                </a>
+              </li>
+
+            
+            
+              
+            </ul>
+          </li>
+
+              
+           
+
+          
+        
+        
+
+          <li class="nav-item has-treeview">
+            <a href="#" class="nav-link">
+              <i class="nav-icon fas fa-tools"></i>
+              <p>
+                Administrativo
+                <i class="fas fa-angle-left right"></i>
+              </p>
+            </a>
+            <ul class="nav nav-treeview">
+
+            <li class="nav-item">
+                <a href="{{route('users.password')}}" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>Modificar Contraseña</p>
+                </a>
+              </li>
+              
+              
+            </ul>
+          </li>
+
+
+          
+         
+          
+         
+         
+      </nav>
+      <!-- /.sidebar-menu -->
+    </div>
+    @endif
+
+
+
 
 
 
