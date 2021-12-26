@@ -15,7 +15,7 @@ class CreditosB extends Model
     protected $table="creditosb";
 
     protected $fillable = [
-        'origen','descripcion','tipopago','usuario', 'solicitud','monto','nombre','efectivo','tarjeta','dep','yap','atendido_por','tarjeta','fecha','id_atencion','sede','id_cobro','id_egreso','monto','migrado'
+        'origen','descripcion','tipopago','usuario', 'solicitud','monto','nombre','efectivo','tarjeta','dep','yap','atendido_por','tarjeta','fecha','id_atencion','sede','id_cobro','id_egreso','monto','migrado','id_gastoa'
     ];
 
     
