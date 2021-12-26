@@ -128,7 +128,7 @@ class GastosController extends Controller
         $gastosb->recibido =$request->recibido;
         $gastosb->usuario =Auth::user()->id;
         $gastosb->sede =$request->session()->get('sede');
-        $gastosb->id_gastoa =$gastos->monto;
+        $gastosb->id_gastoa =$gastos->id;
         $gastosb->save();
 
         if ($request->tipo != 'RETIRO DE EFECTIVO') {
@@ -147,7 +147,7 @@ class GastosController extends Controller
             $cre->origen = 'EGRESO';
             $cre->descripcion = 'EGRESO';
             $cre->id_egreso =  $gastosb->id;
-            $cre->id_gastoa =$gastos->monto;
+            $cre->id_gastoa =$gastos->id;
             $cre->egreso = $request->monto;
             $cre->usuario = Auth::user()->id;
             $cre->tipopago = 'EG';
