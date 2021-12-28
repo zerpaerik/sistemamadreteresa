@@ -366,8 +366,12 @@
   </tr>
 
      <th style="background: #81BEF7;border: 1px solid black;">Perfìl Biofìsico</th>
-    <td style="border: 1px solid black;">{{$cont->perfil}}</td>
-  </tr>
+     <td style="border: 1px solid black;">{{$cont->perfil}}</td>
+    </tr>
+
+    <th style="background: #81BEF7;border: 1px solid black;">Responsable</th>
+     <td style="border: 1px solid black;">{{$cont->lastname}} {{$cont->name}}</td>
+    </tr>
 
   
 
