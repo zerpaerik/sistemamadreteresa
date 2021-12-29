@@ -78,7 +78,7 @@
                               Agregar
                           </a>
                 
-                          <form method="get" action="gastosc">					
+                          <form method="get" action="gastos_c">					
                   <label for="exampleInputEmail1">Filtros de Busqueda</label>
 
                     <div class="row">
