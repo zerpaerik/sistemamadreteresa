@@ -78,7 +78,7 @@
       <div class="card">
               <div class="card-header">
               
-                          <form method="get" action="creditos_b">					
+                          <form method="get" action="creditos_c">					
                   <label for="exampleInputEmail1">Filtros de Busqueda</label>
 
                     <div class="row">
