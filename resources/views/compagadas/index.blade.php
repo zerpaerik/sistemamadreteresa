@@ -137,7 +137,7 @@
                    
 
                     <td>
-                    <a target="_blank" class="btn btn-success btn-sm" href="comisionep-ticket-{{$an->recibo}}">
+                    <a target="_blank" class="btn btn-success btn-sm" href="comisionepp-ticket-{{$an->recibo}}">
                               <i class="fas fa-print">
                               </i>
                               Recibo
