@@ -83,9 +83,9 @@
   </thead>
   <tbody>
     @foreach($ticket as $recibo)
-    <tr><td style="padding: 0;text-align: left;">{{substr($recibo->apellidos.' '.$recibo->nombres,0,24)}}</td>
+    <tr><td style="padding: 0;text-align: left;">{{substr($recibo->apellidos.' '.$recibo->nombres,0,20)}}</td>
     <td style="padding: 0;">{{date('d-m-Y', strtotime($recibo->created_at))}}</td>
-    <td style="padding: 0;text-align: left;width: 5%;text-overflow: ellipsis;">{{$recibo->detalle}}</td>
+    <td style="padding: 0;text-align: left;width: 5%;text-overflow: ellipsis;">{{substr($recibo->detalle,0,15)}}</td>
     <td style="padding: 0;">{{$recibo->total}}</td>
     <td style="padding: 0;">{{$recibo->porcentaje}}</td>
     <td style="padding: 0;">{{$recibo->monto}}</td></tr>

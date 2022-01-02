@@ -62,7 +62,11 @@
 
 
   <p><strong>DOCTOR:</strong>{{ $ticketu->lasto.' '.$ticketu->nameo}}</p>
+  @if($ticketu->centro_med != null)
   <p><strong>CENTRO MÉDICO:</strong>{{ $ticketu->centro_med}}</p>
+  @else
+  <p><strong>CENTRO MÉDICO:</strong>MADRE TERESA</p>
+  @endif
   <p><strong>RECIBO: </strong>REC-2021-{{ $ticketu->recibo}}</p>
 
 
@@ -85,7 +89,7 @@
     @foreach($ticket as $recibo)
     <tr><td style="padding: 0;text-align: left;">{{substr($recibo->apellidos.' '.$recibo->nombres,0,24)}}</td>
     <td style="padding: 0;">{{date('d-m-Y', strtotime($recibo->created_at))}}</td>
-    <td style="padding: 0;text-align: left;width: 5%;text-overflow: ellipsis;">{{$recibo->detalle}}</td>
+    <td style="padding: 0;text-align: left;width: 5%;text-overflow: ellipsis;">{{substr($recibo->detalle,0,15)}}</td>
     <td style="padding: 0;">{{$recibo->total}}</td>
     <td style="padding: 0;">{{$recibo->porcentaje}}</td>
     <td style="padding: 0;">{{$recibo->monto}}</td></tr>
