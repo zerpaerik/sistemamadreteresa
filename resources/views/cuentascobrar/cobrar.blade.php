@@ -23,7 +23,7 @@
                   </div>
                     <div class="col-md-3">
                     <label for="exampleInputEmail1">Pagar</label>
-                    <input type="number" class="form-control"  name="pagar" placeholder="Pagar">
+                    <input type="text" class="form-control"  name="pagar" placeholder="Pagar">
                   </div>
                   <div class="col-md-3">
                   <label>TipoPago</label>
