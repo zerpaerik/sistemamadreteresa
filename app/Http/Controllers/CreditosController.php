@@ -202,6 +202,7 @@ class CreditosController extends Controller
         ->get(); 
 
         $total = CreditosB::where('migrado', 0)
+        ->where('sede','=',$request->session()->get('sede'))
         ->whereBetween('created_at',[date('Y-m-d 00:00:00', strtotime($f1)), date('Y-m-d 23:59:59', strtotime($f1))])
         ->select(DB::raw('COUNT(*) as cantidad, SUM(monto) as monto'))
         ->first();
@@ -375,6 +376,7 @@ class CreditosController extends Controller
 
 
         $total = CreditosB::where('migrado', 0)
+        ->where('sede','=',$request->session()->get('sede'))
         ->whereBetween('created_at',[date('Y-m-d 00:00:00', strtotime($f1)), date('Y-m-d 23:59:59', strtotime($f1))])
         ->select(DB::raw('COUNT(*) as cantidad, SUM(monto) as monto'))
         ->first();
@@ -561,6 +563,7 @@ class CreditosController extends Controller
 
         
         $total = CreditosB::where('migrado', 1)
+        ->where('sede','=',$request->session()->get('sede'))
         ->whereBetween('created_at',[date('Y-m-d 00:00:00', strtotime($f1)), date('Y-m-d 23:59:59', strtotime($f1))])
         ->select(DB::raw('COUNT(*) as cantidad, SUM(monto) as monto'))
         ->first();
@@ -734,6 +737,7 @@ class CreditosController extends Controller
 
          
         $total = CreditosB::where('migrado', 1)
+        ->where('sede','=',$request->session()->get('sede'))
         ->whereBetween('created_at',[date('Y-m-d 00:00:00', strtotime($f1)), date('Y-m-d 23:59:59', strtotime($f1))])
         ->select(DB::raw('COUNT(*) as cantidad, SUM(monto) as monto'))
         ->first();
