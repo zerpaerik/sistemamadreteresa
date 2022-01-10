@@ -99,6 +99,23 @@
 
                   </div>
                   </form>
+
+                  <div class="row" style="margin-left: 5px;">
+
+<div class="col-md-2">
+<label for="exampleInputEmail1">Items</label>
+<input type="text" disabled class="form-control" value="{{$total->cantidad}}">
+</div>
+
+<div class="col-md-3">
+<label for="exampleInputEmail1">Total en Soles</label>
+<input type="text" disabled class="form-control" value="{{$total->monto}}" >
+</div>
+
+
+
+
+</div>
               </div>
               <!-- /.card-header -->
               <div class="card-body">

@@ -201,6 +201,12 @@ class CreditosController extends Controller
         ->union($consultas)
         ->get(); 
 
+        $total = CreditosB::where('migrado', 0)
+        ->whereBetween('created_at',[date('Y-m-d 00:00:00', strtotime($f1)), date('Y-m-d 23:59:59', strtotime($f1))])
+        ->select(DB::raw('COUNT(*) as cantidad, SUM(monto) as monto'))
+        ->first();
+
+
 
 
       } else {
@@ -367,6 +373,12 @@ class CreditosController extends Controller
         ->orderBy('id','desc')
         ->get(); 
 
+
+        $total = CreditosB::where('migrado', 0)
+        ->whereBetween('created_at',[date('Y-m-d 00:00:00', strtotime($f1)), date('Y-m-d 23:59:59', strtotime($f1))])
+        ->select(DB::raw('COUNT(*) as cantidad, SUM(monto) as monto'))
+        ->first();
+
  
 
 
@@ -381,7 +393,7 @@ class CreditosController extends Controller
         
         
 
-        return view('creditos.indexb', compact('atenciones','f1','f2'));
+        return view('creditos.indexb', compact('atenciones','f1','f2','total'));
         //
     }
 
@@ -547,6 +559,13 @@ class CreditosController extends Controller
         ->union($consultas)
         ->get(); 
 
+        
+        $total = CreditosB::where('migrado', 1)
+        ->whereBetween('created_at',[date('Y-m-d 00:00:00', strtotime($f1)), date('Y-m-d 23:59:59', strtotime($f1))])
+        ->select(DB::raw('COUNT(*) as cantidad, SUM(monto) as monto'))
+        ->first();
+
+
 
 
       } else {
@@ -713,6 +732,12 @@ class CreditosController extends Controller
         ->orderBy('id','desc')
         ->get(); 
 
+         
+        $total = CreditosB::where('migrado', 1)
+        ->whereBetween('created_at',[date('Y-m-d 00:00:00', strtotime($f1)), date('Y-m-d 23:59:59', strtotime($f1))])
+        ->select(DB::raw('COUNT(*) as cantidad, SUM(monto) as monto'))
+        ->first();
+
  
 
 
@@ -727,7 +752,7 @@ class CreditosController extends Controller
         
         
 
-        return view('creditos.indexc', compact('atenciones','f1','f2'));
+        return view('creditos.indexc', compact('atenciones','f1','f2','total'));
         //
     }
 
