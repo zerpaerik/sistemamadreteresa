@@ -1922,32 +1922,37 @@ return view('atenciones.particular');
       }
       $creditos->save();
 
-      $creditos = CreditosB::where('id_atencion','=',$request->id)->first();
-      $creditos->monto = $request->abono;
-      $creditos->tipopago =$request->tipo_pago;
-      $creditos->created_at =$creditosa->created_at;
+      $creditosbb = CreditosB::where('id_atencion','=',$request->id)->first();
+
+      if($creditosbb != null){
+      $creditosb = CreditosB::where('id_atencion','=',$request->id)->first();
+      $creditosb->monto = $request->abono;
+      $creditosb->tipopago =$request->tipo_pago;
+      $creditosb->created_at =$creditosa->created_at;
       if ($request->tipo_pago == 'EF') {
-        $creditos->efectivo = $request->abono;
-        $creditos->tarjeta = '0';
-        $creditos->dep = '0';
-        $creditos->yap = '0';
+        $creditosb->efectivo = $request->abono;
+        $creditosb->tarjeta = '0';
+        $creditosb->dep = '0';
+        $creditosb->yap = '0';
       } elseif($request->tipo_pago == 'TJ') {
-        $creditos->tarjeta = $request->abono;
-        $creditos->efectivo = '0';
-        $creditos->dep = '0';
-        $creditos->yap = '0';
+        $creditosb->tarjeta = $request->abono;
+        $creditosb->efectivo = '0';
+        $creditosb->dep = '0';
+        $creditosb->yap = '0';
       } elseif($request->tipo_pago == 'DP') {
-        $creditos->dep = $request->abono;
-        $creditos->efectivo = '0';
-        $creditos->tarjeta = '0';
-        $creditos->yap = '0';
+        $creditosb->dep = $request->abono;
+        $creditosb->efectivo = '0';
+        $creditosb->tarjeta = '0';
+        $creditosb->yap = '0';
       } else {
-        $creditos->efectivo = '0';
-        $creditos->tarjeta = '0';
-        $creditos->dep = '0';
-        $creditos->yap = $request->abono;
+        $creditosb->efectivo = '0';
+        $creditosb->tarjeta = '0';
+        $creditosb->dep = '0';
+        $creditosb->yap = $request->abono;
       }
-      $creditos->save();
+      $creditosb->save();
+
+    }
 
    
       
