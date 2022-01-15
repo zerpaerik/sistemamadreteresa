@@ -73,7 +73,7 @@ class CreditosController extends Controller
         ->where('cred.migrado', '=', 0)
         ->where('a.tipo_atencion', '=', 2)
         ->where('a.monto', '!=', '0')
-        ->whereBetween('a.created_at', [date('Y-m-d 00:00:00', strtotime($f1)), date('Y-m-d 23:59:59', strtotime($f1))])
+        ->whereBetween('a.created_at', [date('Y-m-d 00:00:00', strtotime($f1)), date('Y-m-d 23:59:59', strtotime($f2))])
         ->orderBy('a.id','DESC')
         ->where('a.sede', '=', $request->session()->get('sede'));
 
@@ -87,7 +87,7 @@ class CreditosController extends Controller
         ->where('cred.migrado', '=', 0)
         ->where('a.tipo_atencion', '=', 5)
         ->where('a.monto', '!=', '0')
-        ->whereBetween('a.created_at', [date('Y-m-d 00:00:00', strtotime($f1)), date('Y-m-d 23:59:59', strtotime($f1))])
+        ->whereBetween('a.created_at', [date('Y-m-d 00:00:00', strtotime($f1)), date('Y-m-d 23:59:59', strtotime($f2))])
         ->orderBy('a.id','DESC')
         ->where('a.sede', '=', $request->session()->get('sede'));
 
@@ -101,7 +101,7 @@ class CreditosController extends Controller
         ->where('cred.migrado', '=', 0)
         ->where('a.tipo_atencion', '=', 6)
         ->where('a.monto', '!=', '0')
-        ->whereBetween('a.created_at', [date('Y-m-d 00:00:00', strtotime($f1)), date('Y-m-d 23:59:59', strtotime($f1))])
+        ->whereBetween('a.created_at', [date('Y-m-d 00:00:00', strtotime($f1)), date('Y-m-d 23:59:59', strtotime($f2))])
         ->orderBy('a.id','DESC')
         ->where('a.sede', '=', $request->session()->get('sede'));
 
@@ -115,7 +115,7 @@ class CreditosController extends Controller
         ->where('cred.migrado', '=', 0)
         ->where('a.tipo_atencion', '=', 8)
         ->where('a.monto', '!=', '0')
-        ->whereBetween('a.created_at', [date('Y-m-d 00:00:00', strtotime($f1)), date('Y-m-d 23:59:59', strtotime($f1))])
+        ->whereBetween('a.created_at', [date('Y-m-d 00:00:00', strtotime($f1)), date('Y-m-d 23:59:59', strtotime($f2))])
         ->orderBy('a.id','DESC')
         ->where('a.sede', '=', $request->session()->get('sede'));
 
@@ -129,7 +129,7 @@ class CreditosController extends Controller
         ->where('cred.migrado', '=', 0)
         ->where('a.tipo_atencion', '=', 4)
         ->where('a.monto', '!=', '0')
-        ->whereBetween('a.created_at', [date('Y-m-d 00:00:00', strtotime($f1)), date('Y-m-d 23:59:59', strtotime($f1))])
+        ->whereBetween('a.created_at', [date('Y-m-d 00:00:00', strtotime($f1)), date('Y-m-d 23:59:59', strtotime($f2))])
         ->orderBy('a.id','DESC')
         ->where('a.sede', '=', $request->session()->get('sede'));
 
@@ -143,7 +143,7 @@ class CreditosController extends Controller
         ->where('cred.migrado', '=', 0)
         ->where('a.tipo_atencion', '=', 7)
         ->where('a.monto', '!=', '0')
-        ->whereBetween('a.created_at', [date('Y-m-d 00:00:00', strtotime($f1)), date('Y-m-d 23:59:59', strtotime($f1))])
+        ->whereBetween('a.created_at', [date('Y-m-d 00:00:00', strtotime($f1)), date('Y-m-d 23:59:59', strtotime($f2))])
         ->orderBy('a.id','DESC')
         ->where('a.sede', '=', $request->session()->get('sede'));
 
@@ -158,7 +158,7 @@ class CreditosController extends Controller
         ->where('cred.migrado', '=', 0)
         ->where('a.tipo_atencion', '=', 6)
         ->where('a.monto', '!=', '0')
-        ->whereBetween('a.created_at', [date('Y-m-d 00:00:00', strtotime($f1)), date('Y-m-d 23:59:59', strtotime($f1))])
+        ->whereBetween('a.created_at', [date('Y-m-d 00:00:00', strtotime($f1)), date('Y-m-d 23:59:59', strtotime($f2))])
         ->orderBy('a.id','DESC')
         ->where('a.sede', '=', $request->session()->get('sede'));
 
@@ -172,7 +172,7 @@ class CreditosController extends Controller
         ->where('cred.migrado', '=', 0)
         ->where('a.tipo_atencion', '=', 5)
         ->where('a.monto', '!=', '0')
-        ->whereBetween('a.created_at', [date('Y-m-d 00:00:00', strtotime($f1)), date('Y-m-d 23:59:59', strtotime($f1))])
+        ->whereBetween('a.created_at', [date('Y-m-d 00:00:00', strtotime($f1)), date('Y-m-d 23:59:59', strtotime($f2))])
         ->orderBy('a.id','DESC')
         ->where('a.sede', '=', $request->session()->get('sede'));
         //->get(); 
@@ -190,7 +190,7 @@ class CreditosController extends Controller
         ->where('a.tipo_atencion', '=', 3)
         ->where('a.monto', '!=', '0')
         ->where('a.sede', '=', $request->session()->get('sede'))
-        ->whereBetween('a.created_at', [date('Y-m-d 00:00:00', strtotime($f1)), date('Y-m-d 23:59:59', strtotime($f1))])
+        ->whereBetween('a.created_at', [date('Y-m-d 00:00:00', strtotime($f1)), date('Y-m-d 23:59:59', strtotime($f2))])
         ->orderBy('a.id','DESC')
         ->union($serv)
         ->union($eco)
@@ -203,7 +203,7 @@ class CreditosController extends Controller
 
         $total = CreditosB::where('migrado', 0)
         ->where('sede','=',$request->session()->get('sede'))
-        ->whereBetween('created_at',[date('Y-m-d 00:00:00', strtotime($f1)), date('Y-m-d 23:59:59', strtotime($f1))])
+        ->whereBetween('created_at',[date('Y-m-d 00:00:00', strtotime($f1)), date('Y-m-d 23:59:59', strtotime($f2))])
         ->select(DB::raw('COUNT(*) as cantidad, SUM(monto) as monto'))
         ->first();
 
@@ -225,7 +225,7 @@ class CreditosController extends Controller
         ->where('cred.migrado', '=', 0)
         ->where('a.tipo_atencion', '=', 1)
         ->where('a.monto', '!=', '0')
-        ->whereBetween('a.created_at', [date('Y-m-d 00:00:00', strtotime($f1)), date('Y-m-d 23:59:59', strtotime($f1))])
+        ->whereBetween('a.created_at', [date('Y-m-d 00:00:00', strtotime($f1)), date('Y-m-d 23:59:59', strtotime($f2))])
         ->where('a.sede', '=', $request->session()->get('sede'))
         ->orderBy('a.id','desc');
 
@@ -241,7 +241,7 @@ class CreditosController extends Controller
         ->where('cred.migrado', '=', 0)
         ->where('a.tipo_atencion', '=', 2)
         ->where('a.monto', '!=', '0')
-        ->whereBetween('a.created_at', [date('Y-m-d 00:00:00', strtotime($f1)), date('Y-m-d 23:59:59', strtotime($f1))])
+        ->whereBetween('a.created_at', [date('Y-m-d 00:00:00', strtotime($f1)), date('Y-m-d 23:59:59', strtotime($f2))])
         ->where('a.sede', '=', $request->session()->get('sede'))
         ->orderBy('a.id','desc');
 
@@ -256,7 +256,7 @@ class CreditosController extends Controller
         ->where('cred.migrado', '=', 0)
         ->where('a.tipo_atencion', '=', 5)
         ->where('a.monto', '!=', '0')
-        ->whereBetween('a.created_at', [date('Y-m-d 00:00:00', strtotime($f1)), date('Y-m-d 23:59:59', strtotime($f1))])
+        ->whereBetween('a.created_at', [date('Y-m-d 00:00:00', strtotime($f1)), date('Y-m-d 23:59:59', strtotime($f2))])
         ->where('a.sede', '=', $request->session()->get('sede'))
         ->orderBy('a.id','desc');
 
@@ -271,7 +271,7 @@ class CreditosController extends Controller
         ->where('cred.migrado', '=', 0)
         ->where('a.tipo_atencion', '=', 6)
         ->where('a.monto', '!=', '0')
-        ->whereBetween('a.created_at', [date('Y-m-d 00:00:00', strtotime($f1)), date('Y-m-d 23:59:59', strtotime($f1))])
+        ->whereBetween('a.created_at', [date('Y-m-d 00:00:00', strtotime($f1)), date('Y-m-d 23:59:59', strtotime($f2))])
         ->where('a.sede', '=', $request->session()->get('sede'))   
         ->orderBy('a.id','desc');
 
@@ -285,7 +285,7 @@ class CreditosController extends Controller
         ->where('cred.migrado', '=', 0)
         ->where('a.tipo_atencion', '=', 8)
         ->where('a.monto', '!=', '0')
-        ->whereBetween('a.created_at', [date('Y-m-d 00:00:00', strtotime($f1)), date('Y-m-d 23:59:59', strtotime($f1))])
+        ->whereBetween('a.created_at', [date('Y-m-d 00:00:00', strtotime($f1)), date('Y-m-d 23:59:59', strtotime($f2))])
         ->where('a.sede', '=', $request->session()->get('sede'))   
         ->orderBy('a.id','desc');
 
@@ -300,7 +300,7 @@ class CreditosController extends Controller
         ->where('cred.migrado', '=', 0)
         ->where('a.tipo_atencion', '=', 4)
         ->where('a.monto', '!=', '0')
-        ->whereBetween('a.created_at', [date('Y-m-d 00:00:00', strtotime($f1)), date('Y-m-d 23:59:59', strtotime($f1))])
+        ->whereBetween('a.created_at', [date('Y-m-d 00:00:00', strtotime($f1)), date('Y-m-d 23:59:59', strtotime($f2))])
         ->where('a.sede', '=', $request->session()->get('sede'))
         ->orderBy('a.id','desc');
 
@@ -316,7 +316,7 @@ class CreditosController extends Controller
         ->where('a.tipo_atencion', '=', 7)
         ->where('a.monto', '!=', '0')
         ->where('a.sede', '=', $request->session()->get('sede'))
-        ->whereBetween('a.created_at', [date('Y-m-d 00:00:00', strtotime($f1)), date('Y-m-d 23:59:59', strtotime($f1))])
+        ->whereBetween('a.created_at', [date('Y-m-d 00:00:00', strtotime($f1)), date('Y-m-d 23:59:59', strtotime($f2))])
         ->orderBy('a.id','desc');
 
         $metodos = DB::table('atenciones as a')
@@ -329,7 +329,7 @@ class CreditosController extends Controller
         ->where('cred.migrado', '=', 0)
         ->where('a.tipo_atencion', '=', 6)
         ->where('a.monto', '!=', '0')
-        ->whereBetween('a.created_at', [date('Y-m-d 00:00:00', strtotime($f1)), date('Y-m-d 23:59:59', strtotime($f1))])
+        ->whereBetween('a.created_at', [date('Y-m-d 00:00:00', strtotime($f1)), date('Y-m-d 23:59:59', strtotime($f2))])
         ->where('a.sede', '=', $request->session()->get('sede'))
         ->orderBy('a.id','desc');
 
@@ -344,7 +344,7 @@ class CreditosController extends Controller
         ->where('cred.migrado', '=', 0)
         ->where('a.tipo_atencion', '=', 5)
         ->where('a.monto', '!=', '0')
-        ->whereBetween('a.created_at', [date('Y-m-d 00:00:00', strtotime($f1)), date('Y-m-d 23:59:59', strtotime($f1))])
+        ->whereBetween('a.created_at', [date('Y-m-d 00:00:00', strtotime($f1)), date('Y-m-d 23:59:59', strtotime($f2))])
         ->where('a.sede', '=', $request->session()->get('sede'))
         ->orderBy('a.id','desc');
 
@@ -363,7 +363,7 @@ class CreditosController extends Controller
         ->where('a.tipo_atencion', '=', 3)
         ->where('a.monto', '!=', '0')
         ->where('a.sede', '=', $request->session()->get('sede'))
-        ->whereBetween('a.created_at', [date('Y-m-d 00:00:00', strtotime($f1)), date('Y-m-d 23:59:59', strtotime($f1))])
+        ->whereBetween('a.created_at', [date('Y-m-d 00:00:00', strtotime($f1)), date('Y-m-d 23:59:59', strtotime($f2))])
         ->union($serv)
         ->union($eco)
         ->union($ana)
@@ -377,7 +377,7 @@ class CreditosController extends Controller
 
         $total = CreditosB::where('migrado', 0)
         ->where('sede','=',$request->session()->get('sede'))
-        ->whereBetween('created_at',[date('Y-m-d 00:00:00', strtotime($f1)), date('Y-m-d 23:59:59', strtotime($f1))])
+        ->whereBetween('created_at',[date('Y-m-d 00:00:00', strtotime($f1)), date('Y-m-d 23:59:59', strtotime($f2))])
         ->select(DB::raw('COUNT(*) as cantidad, SUM(monto) as monto'))
         ->first();
 
@@ -433,7 +433,7 @@ class CreditosController extends Controller
         ->where('cred.migrado', '=', 1)
         ->where('a.tipo_atencion', '=', 2)
         ->where('a.monto', '!=', '0')
-        ->whereBetween('a.created_at', [date('Y-m-d 00:00:00', strtotime($f1)), date('Y-m-d 23:59:59', strtotime($f1))])
+        ->whereBetween('a.created_at', [date('Y-m-d 00:00:00', strtotime($f1)), date('Y-m-d 23:59:59', strtotime($f2))])
         ->orderBy('a.id','DESC')
         ->where('a.sede', '=', $request->session()->get('sede'));
 
@@ -447,7 +447,7 @@ class CreditosController extends Controller
         ->where('cred.migrado', '=', 1)
         ->where('a.tipo_atencion', '=', 5)
         ->where('a.monto', '!=', '0')
-        ->whereBetween('a.created_at', [date('Y-m-d 00:00:00', strtotime($f1)), date('Y-m-d 23:59:59', strtotime($f1))])
+        ->whereBetween('a.created_at', [date('Y-m-d 00:00:00', strtotime($f1)), date('Y-m-d 23:59:59', strtotime($f2))])
         ->orderBy('a.id','DESC')
         ->where('a.sede', '=', $request->session()->get('sede'));
 
@@ -461,7 +461,7 @@ class CreditosController extends Controller
         ->where('cred.migrado', '=', 1)
         ->where('a.tipo_atencion', '=', 6)
         ->where('a.monto', '!=', '0')
-        ->whereBetween('a.created_at', [date('Y-m-d 00:00:00', strtotime($f1)), date('Y-m-d 23:59:59', strtotime($f1))])
+        ->whereBetween('a.created_at', [date('Y-m-d 00:00:00', strtotime($f1)), date('Y-m-d 23:59:59', strtotime($f2))])
         ->orderBy('a.id','DESC')
         ->where('a.sede', '=', $request->session()->get('sede'));
 
@@ -475,7 +475,7 @@ class CreditosController extends Controller
         ->where('cred.migrado', '=', 1)
         ->where('a.tipo_atencion', '=', 8)
         ->where('a.monto', '!=', '0')
-        ->whereBetween('a.created_at', [date('Y-m-d 00:00:00', strtotime($f1)), date('Y-m-d 23:59:59', strtotime($f1))])
+        ->whereBetween('a.created_at', [date('Y-m-d 00:00:00', strtotime($f1)), date('Y-m-d 23:59:59', strtotime($f2))])
         ->orderBy('a.id','DESC')
         ->where('a.sede', '=', $request->session()->get('sede'));
 
@@ -489,7 +489,7 @@ class CreditosController extends Controller
         ->where('cred.migrado', '=', 1)
         ->where('a.tipo_atencion', '=', 4)
         ->where('a.monto', '!=', '0')
-        ->whereBetween('a.created_at', [date('Y-m-d 00:00:00', strtotime($f1)), date('Y-m-d 23:59:59', strtotime($f1))])
+        ->whereBetween('a.created_at', [date('Y-m-d 00:00:00', strtotime($f1)), date('Y-m-d 23:59:59', strtotime($f2))])
         ->orderBy('a.id','DESC')
         ->where('a.sede', '=', $request->session()->get('sede'));
 
@@ -503,7 +503,7 @@ class CreditosController extends Controller
         ->where('cred.migrado', '=', 1)
         ->where('a.tipo_atencion', '=', 7)
         ->where('a.monto', '!=', '0')
-        ->whereBetween('a.created_at', [date('Y-m-d 00:00:00', strtotime($f1)), date('Y-m-d 23:59:59', strtotime($f1))])
+        ->whereBetween('a.created_at', [date('Y-m-d 00:00:00', strtotime($f1)), date('Y-m-d 23:59:59', strtotime($f2))])
         ->orderBy('a.id','DESC')
         ->where('a.sede', '=', $request->session()->get('sede'));
 
@@ -518,7 +518,7 @@ class CreditosController extends Controller
         ->where('cred.migrado', '=', 1)
         ->where('a.tipo_atencion', '=', 6)
         ->where('a.monto', '!=', '0')
-        ->whereBetween('a.created_at', [date('Y-m-d 00:00:00', strtotime($f1)), date('Y-m-d 23:59:59', strtotime($f1))])
+        ->whereBetween('a.created_at', [date('Y-m-d 00:00:00', strtotime($f1)), date('Y-m-d 23:59:59', strtotime($f2))])
         ->orderBy('a.id','DESC')
         ->where('a.sede', '=', $request->session()->get('sede'));
 
@@ -532,7 +532,7 @@ class CreditosController extends Controller
         ->where('cred.migrado', '=', 1)
         ->where('a.tipo_atencion', '=', 5)
         ->where('a.monto', '!=', '0')
-        ->whereBetween('a.created_at', [date('Y-m-d 00:00:00', strtotime($f1)), date('Y-m-d 23:59:59', strtotime($f1))])
+        ->whereBetween('a.created_at', [date('Y-m-d 00:00:00', strtotime($f1)), date('Y-m-d 23:59:59', strtotime($f2))])
         ->orderBy('a.id','DESC')
         ->where('a.sede', '=', $request->session()->get('sede'));
         //->get(); 
@@ -550,7 +550,7 @@ class CreditosController extends Controller
         ->where('a.tipo_atencion', '=', 3)
         ->where('a.monto', '!=', '0')
         ->where('a.sede', '=', $request->session()->get('sede'))
-        ->whereBetween('a.created_at', [date('Y-m-d 00:00:00', strtotime($f1)), date('Y-m-d 23:59:59', strtotime($f1))])
+        ->whereBetween('a.created_at', [date('Y-m-d 00:00:00', strtotime($f1)), date('Y-m-d 23:59:59', strtotime($f2))])
         ->orderBy('a.id','DESC')
         ->union($serv)
         ->union($eco)
@@ -564,7 +564,7 @@ class CreditosController extends Controller
         
         $total = CreditosB::where('migrado', 1)
         ->where('sede','=',$request->session()->get('sede'))
-        ->whereBetween('created_at',[date('Y-m-d 00:00:00', strtotime($f1)), date('Y-m-d 23:59:59', strtotime($f1))])
+        ->whereBetween('created_at',[date('Y-m-d 00:00:00', strtotime($f1)), date('Y-m-d 23:59:59', strtotime($f2))])
         ->select(DB::raw('COUNT(*) as cantidad, SUM(monto) as monto'))
         ->first();
 
@@ -586,7 +586,7 @@ class CreditosController extends Controller
         ->where('cred.migrado', '=', 1)
         ->where('a.tipo_atencion', '=', 1)
         ->where('a.monto', '!=', '0')
-        ->whereBetween('a.created_at', [date('Y-m-d 00:00:00', strtotime($f1)), date('Y-m-d 23:59:59', strtotime($f1))])
+        ->whereBetween('a.created_at', [date('Y-m-d 00:00:00', strtotime($f1)), date('Y-m-d 23:59:59', strtotime($f2))])
         ->where('a.sede', '=', $request->session()->get('sede'))
         ->orderBy('a.id','desc');
 
@@ -602,7 +602,7 @@ class CreditosController extends Controller
         ->where('cred.migrado', '=', 1)
         ->where('a.tipo_atencion', '=', 2)
         ->where('a.monto', '!=', '0')
-        ->whereBetween('a.created_at', [date('Y-m-d 00:00:00', strtotime($f1)), date('Y-m-d 23:59:59', strtotime($f1))])
+        ->whereBetween('a.created_at', [date('Y-m-d 00:00:00', strtotime($f1)), date('Y-m-d 23:59:59', strtotime($f2))])
         ->where('a.sede', '=', $request->session()->get('sede'))
         ->orderBy('a.id','desc');
 
@@ -617,7 +617,7 @@ class CreditosController extends Controller
         ->where('cred.migrado', '=', 1)
         ->where('a.tipo_atencion', '=', 5)
         ->where('a.monto', '!=', '0')
-        ->whereBetween('a.created_at', [date('Y-m-d 00:00:00', strtotime($f1)), date('Y-m-d 23:59:59', strtotime($f1))])
+        ->whereBetween('a.created_at', [date('Y-m-d 00:00:00', strtotime($f1)), date('Y-m-d 23:59:59', strtotime($f2))])
         ->where('a.sede', '=', $request->session()->get('sede'))
         ->orderBy('a.id','desc');
 
@@ -632,7 +632,7 @@ class CreditosController extends Controller
         ->where('cred.migrado', '=', 1)
         ->where('a.tipo_atencion', '=', 6)
         ->where('a.monto', '!=', '0')
-        ->whereBetween('a.created_at', [date('Y-m-d 00:00:00', strtotime($f1)), date('Y-m-d 23:59:59', strtotime($f1))])
+        ->whereBetween('a.created_at', [date('Y-m-d 00:00:00', strtotime($f1)), date('Y-m-d 23:59:59', strtotime($f2))])
         ->where('a.sede', '=', $request->session()->get('sede'))   
         ->orderBy('a.id','desc');
 
@@ -646,7 +646,7 @@ class CreditosController extends Controller
         ->where('cred.migrado', '=', 1)
         ->where('a.tipo_atencion', '=', 8)
         ->where('a.monto', '!=', '0')
-        ->whereBetween('a.created_at', [date('Y-m-d 00:00:00', strtotime($f1)), date('Y-m-d 23:59:59', strtotime($f1))])
+        ->whereBetween('a.created_at', [date('Y-m-d 00:00:00', strtotime($f1)), date('Y-m-d 23:59:59', strtotime($f2))])
         ->where('a.sede', '=', $request->session()->get('sede'))   
         ->orderBy('a.id','desc');
 
@@ -661,7 +661,7 @@ class CreditosController extends Controller
         ->where('cred.migrado', '=', 1)
         ->where('a.tipo_atencion', '=', 4)
         ->where('a.monto', '!=', '0')
-        ->whereBetween('a.created_at', [date('Y-m-d 00:00:00', strtotime($f1)), date('Y-m-d 23:59:59', strtotime($f1))])
+        ->whereBetween('a.created_at', [date('Y-m-d 00:00:00', strtotime($f1)), date('Y-m-d 23:59:59', strtotime($f2))])
         ->where('a.sede', '=', $request->session()->get('sede'))
         ->orderBy('a.id','desc');
 
@@ -677,7 +677,7 @@ class CreditosController extends Controller
         ->where('a.tipo_atencion', '=', 7)
         ->where('a.monto', '!=', '0')
         ->where('a.sede', '=', $request->session()->get('sede'))
-        ->whereBetween('a.created_at', [date('Y-m-d 00:00:00', strtotime($f1)), date('Y-m-d 23:59:59', strtotime($f1))])
+        ->whereBetween('a.created_at', [date('Y-m-d 00:00:00', strtotime($f1)), date('Y-m-d 23:59:59', strtotime($f2))])
         ->orderBy('a.id','desc');
 
         $metodos = DB::table('atenciones as a')
@@ -690,7 +690,7 @@ class CreditosController extends Controller
         ->where('cred.migrado', '=', 1)
         ->where('a.tipo_atencion', '=', 6)
         ->where('a.monto', '!=', '0')
-        ->whereBetween('a.created_at', [date('Y-m-d 00:00:00', strtotime($f1)), date('Y-m-d 23:59:59', strtotime($f1))])
+        ->whereBetween('a.created_at', [date('Y-m-d 00:00:00', strtotime($f1)), date('Y-m-d 23:59:59', strtotime($f2))])
         ->where('a.sede', '=', $request->session()->get('sede'))
         ->orderBy('a.id','desc');
 
@@ -705,7 +705,7 @@ class CreditosController extends Controller
         ->where('cred.migrado', '=', 1)
         ->where('a.tipo_atencion', '=', 5)
         ->where('a.monto', '!=', '0')
-        ->whereBetween('a.created_at', [date('Y-m-d 00:00:00', strtotime($f1)), date('Y-m-d 23:59:59', strtotime($f1))])
+        ->whereBetween('a.created_at', [date('Y-m-d 00:00:00', strtotime($f1)), date('Y-m-d 23:59:59', strtotime($f2))])
         ->where('a.sede', '=', $request->session()->get('sede'))
         ->orderBy('a.id','desc');
 
@@ -724,7 +724,7 @@ class CreditosController extends Controller
         ->where('a.tipo_atencion', '=', 3)
         ->where('a.monto', '!=', '0')
         ->where('a.sede', '=', $request->session()->get('sede'))
-        ->whereBetween('a.created_at', [date('Y-m-d 00:00:00', strtotime($f1)), date('Y-m-d 23:59:59', strtotime($f1))])
+        ->whereBetween('a.created_at', [date('Y-m-d 00:00:00', strtotime($f1)), date('Y-m-d 23:59:59', strtotime($f2))])
         ->union($serv)
         ->union($eco)
         ->union($ana)
@@ -738,7 +738,7 @@ class CreditosController extends Controller
          
         $total = CreditosB::where('migrado', 1)
         ->where('sede','=',$request->session()->get('sede'))
-        ->whereBetween('created_at',[date('Y-m-d 00:00:00', strtotime($f1)), date('Y-m-d 23:59:59', strtotime($f1))])
+        ->whereBetween('created_at',[date('Y-m-d 00:00:00', strtotime($f1)), date('Y-m-d 23:59:59', strtotime($f2))])
         ->select(DB::raw('COUNT(*) as cantidad, SUM(monto) as monto'))
         ->first();
 
