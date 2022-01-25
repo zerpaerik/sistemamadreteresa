@@ -310,10 +310,8 @@ table {
 			<div class="divTable">
 				<div class="divTableBody">
 					<div class="divTableRow">
-						<div class="divTableCell" style="width: 10%">Servicios</div>
-						<div class="divTableCell" style="width: 40%">{{$hist->ex_aux_s}}</div>
-						<div class="divTableCell" style="width: 10%">Laboratorios</div>
-						<div class="divTableCell" style="width: 40%">{{$hist->ex_aux_l}}</div>
+						<div class="divTableCell" style="width: 10%">Todos</div>
+						<div class="divTableCell" style="width: 40%">{{$hist->ex_aux}}</div>
                        
 					</div>
 				</div>
@@ -322,7 +320,7 @@ table {
             <div class="divTable">
 				<div class="divTableBody">
 					<div class="divTableRow">
-						<div class="divTableCell divTableHead"> OSBSERVACIONES</div>
+						<div class="divTableCell divTableHead"> Observaciones</div>
 					</div>
 				</div>
 			</div>
