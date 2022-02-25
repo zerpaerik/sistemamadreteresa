@@ -255,8 +255,10 @@ class ReportesController extends Controller
             $sede = 'ZARATE';
         } else if($request->sede == 5){
             $sede = 'INDEPENDENCIA';
-        } else {
+        } else if($request->sede == 6){
             $sede = 'LOS OLIVOS';
+        } else {
+            $sede = 'LABORATORIO VIDA';
         }
 
        

@@ -62,6 +62,13 @@
 2do piso SJL</strong></p>
 		<p style="margin-top: -20px;"><strong>Teléfono:  01 4596494</strong></p>
 		<p style="margin-top: -20px;"><strong>WhatsApp: 978 216 315</strong></p>
+    @elseif(Session::get('sedeName') == 'LABORATORIO VIDA')
+   <p><strong>VIDA FELIZ SAC- MADRE TERESA</strong></p>
+		<p style="margin-top: -20px;"><strong>RUC: 20602415539</strong></p>
+        <p style="margin-top: -10px;"><strong>Dirección: Av Próceres de la independencia 1795
+2do piso SJL</strong></p>
+		<p style="margin-top: -20px;"><strong>Teléfono:  01 4596494</strong></p>
+		<p style="margin-top: -20px;"><strong>WhatsApp: 978 216 315</strong></p>
     @elseif(Session::get('sedeName') == 'INDEPENDENCIA')
    <p><strong>SYSMEDIC PERU SAC -INDEPENDENCIA</strong></p>
 		<p style="margin-top: -20px;"><strong>RUC: 20606283980</strong></p>
