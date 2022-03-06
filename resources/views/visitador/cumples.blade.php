@@ -54,12 +54,12 @@
       <div class="container-fluid">
         <div class="row mb-2">
           <div class="col-sm-6">
-            <h1 class="m-0 text-dark">Profesionales</h1>
+            <h1 class="m-0 text-dark">Cumpleaños de Profesionales</h1>
           </div><!-- /.col -->
           <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">
               <li class="breadcrumb-item"><a href="#">Home</a></li>
-              <li class="breadcrumb-item active">Profesionales</li>
+              <li class="breadcrumb-item active">Cumpleaños de Profesionale</li>
             </ol>
           </div><!-- /.col -->
         </div><!-- /.row -->
@@ -70,124 +70,90 @@
     <!-- Main content -->
     <section class="content">
       <div class="container-fluid">
-        <div class="row">
-          <!-- left column -->
-          <div class="col-md-12">
-            <!-- general form elements -->
-            <div class="card card-primary">
+      <div class="card">
               <div class="card-header">
-                <h3 class="card-title">Agregar</h3>
-              </div>
-              @include('flash-message')
+              <form method="get" action="cumpleaños">
+            {{ csrf_field() }}						
+                  <label for="exampleInputEmail1">Filtros de Busqueda</label>
 
-              <!-- /.card-header -->
-              <!-- form start -->
-              <form role="form" method="post" action="profesionales/create">
-					{{ csrf_field() }}                
-                    <div class="card-body">
                     <div class="row">
-                  <div class="col-md-3">
-                    <label for="exampleInputEmail1">Nombres</label>
-                    <input type="text" onkeyup="javascript:this.value=this.value.toUpperCase();" class="form-control" id="nombre" name="nombres" placeholder="Nombres">
+                    <div class="col-md-3">
+                    <label for="exampleInputEmail1">Inicio</label>
+                    <input type="date" class="form-control" value="{{$f1}}" name="inicio">
                   </div>
                   <div class="col-md-3">
-                    <label for="exampleInputEmail1">Apellidos</label>
-                    <input type="text" onkeyup="javascript:this.value=this.value.toUpperCase();" class="form-control" id="nombre" name="apellidos" placeholder="Apellidos">
-                  </div>
-                  <div class="col-md-3">
-                    <label for="exampleInputEmail1">CMP</label>
-                    <input type="text" onkeyup="javascript:this.value=this.value.toUpperCase();" class="form-control" id="nombre" name="cmp" placeholder="CMP">
-                  </div>
-
-                  <div class="col-md-3">
-                    <label for="exampleInputEmail1">Nacimiento</label>
-                    <input type="date" class="form-control" id="nombre" name="nacimiento" placeholder="Telefono de contacto">
-                  </div>
-
-                 
-                  </div>
-                  <div class="row">
-                 
-                
-                  </div>
-                  <div class="row">
-                  <div class="col-md-4">
-                    <label for="exampleInputEmail1">Teléfono</label>
-                    <input type="text" onkeyup="javascript:this.value=this.value.toUpperCase();" class="form-control" id="nombre" name="telefono" placeholder="Teléfono">
-                  </div>
-                  <div class="col-md-4">
-                    <label for="exampleInputEmail1">Especialidad</label>
-                    <select class="form-control" name="especialidad">
-                    @foreach($especialidades as $esp)
-                    <option value="{{$esp->id}}">{{$esp->nombre}}</option>
-                    @endforeach
-                    
-                        </select>                  
-                        </div>
-                 
-
-                  <div class="col-md-4">
-                    <label for="exampleInputEmail1">Centro</label>
-                    <select class="form-control" name="centro">
-                    @foreach($centros as $c)
-                    <option value="{{$c->id}}">{{$c->nombre}}</option>
-                    @endforeach
-                  
-                        </select>                    
-                        </div>
-
-                      
-                  
-                 
+                    <label for="exampleInputEmail1">Fin</label>
+                    <input type="date" class="form-control" value="{{$f2}}" name="fin">
                   </div>
                  
+                  <div class="col-md-2" style="margin-top: 30px;">
+                  <button type="submit" class="btn btn-primary">Buscar</button>
 
-
-
-                  <div id="sesion" class="sesion">
-
-
-                
-
-                                                      
-
-                  <br>
-                  
-
-                  
-
-        
-                 
-                </div>
-                <!-- /.card-body -->
-
-                <div class="card-footer">
-                  <button type="submit" class="btn btn-primary">Guardar</button>
-                </div>
-              </form>
-            </div>
-            <!-- /.card -->
-
-         
-            <!-- /.card -->
-
+                  </div>
+                  </form>
+              </div>
            
-           
+              </div>
+              <!-- /.card-header -->
+              <div class="card-body">
+                <table id="example1" class="table table-bordered table-striped">
+                  <thead>
+                  <tr>
+                    <th>Nacimiento</th>
+                    <th>Nombres</th>
+                    <th>Apellidos</th>
+                    <th>Centro</th>
+                    <th>Especialidad</th>
+                    <th>Telefono</th>
+                    <th>Acciones</th>
+                  </tr>
+                  </thead>
+                  <tbody>
+
+                  @foreach($prof as $p)
+                  <tr>
+                  <td>{{$p->nacimiento}}</td>
+                    <td>{{$p->name}}</td>
+                    <td>{{$p->lastname}}</td>
+                    <td>{{$p->centro}}</td>
+                    <td>{{$p->especialidad}}</td>
+                    <td>{{$p->telefono}}</td>
+                    <td></td>
+                  </tr>
+                  @endforeach
+                 
+                 
                
-
-
-           
+                 
+                 
+                  </tbody>
+                  <tfoot>
+                  <tr>
+                    <th>Nacimiento</th>
+                    <th>Nombres</th>
+                    <th>Apellidos</th>
+                    <th>Centro</th>
+                    <th>Especialidad</th>
+                    <th>Telefono</th>
+                    <th>Acciones</th>
+                  </tr>
+                  </tfoot>
+                </table>
               </div>
               <!-- /.card-body -->
             </div>
             <!-- /.card -->
           </div>
-          <!--/.col (right) -->
+          <!-- /.col -->
         </div>
         <!-- /.row -->
-      </div><!-- /.container-fluid -->
+      </div>
+      <!-- /.container-fluid -->
     </section>
-    
+    <!-- /.content -->
+  </div>
+  </div>
+  </section>
 
   <!-- /.content-wrapper -->
   
@@ -201,31 +167,6 @@
 
 <!-- jQuery -->
 <script src="plugins/jquery/jquery.min.js"></script>
-
-<script type="text/javascript">
-      $(document).ready(function(){
-        $('#el2').on('change',function(){
-          var link;
-          if ($(this).val() == 1) {
-            link = '/crear/sesion/';
-          } else {
-		    link = '/crear/otros/';
-		  }
-
-          $.ajax({
-                 type: "get",
-                 url:  link,
-                 success: function(a) {
-                    $('#sesion').html(a);
-                 }
-          });
-
-        });
-        
-
-      });
-       
-    </script>
 <!-- jQuery UI 1.11.4 -->
 <script src="plugins/jquery-ui/jquery-ui.min.js"></script>
 <!-- Resolve conflict in jQuery UI tooltip with Bootstrap tooltip -->
@@ -264,11 +205,39 @@
 <script src="../../plugins/datatables-bs4/js/dataTables.bootstrap4.min.js"></script>
 <script src="../../plugins/datatables-responsive/js/dataTables.responsive.min.js"></script>
 <script src="../../plugins/datatables-responsive/js/responsive.bootstrap4.min.js"></script>
+
+<script type="text/javascript" src="https://cdn.datatables.net/buttons/1.6.1/js/dataTables.buttons.min.js"></script> 
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.1.3/jszip.min.js"></script>
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/pdfmake.min.js"></script>
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/vfs_fonts.js"></script>
+<script type="text/javascript" src="https://cdn.datatables.net/buttons/1.6.1/js/buttons.html5.min.js"></script>
+<script type="text/javascript" src="https://cdn.datatables.net/buttons/1.6.1/js/buttons.print.min.js"></script>
+<!-- AdminLTE App -->
 <!-- AdminLTE App -->
 <script src="../../dist/js/adminlte.min.js"></script>
 <!-- AdminLTE for demo purposes -->
 <script src="../../dist/js/demo.js"></script>
 <!-- page script -->
-
+<script>
+  $(function () {
+    $("#example1").DataTable({
+      "responsive": true,
+      "autoWidth": false,
+      dom: 'Bfrtip',
+      buttons: [
+            'copy', 'csv', 'excel', 'pdf', 'print'
+        ]
+    });
+    $('#example2').DataTable({
+      "paging": true,
+      "lengthChange": false,
+      "searching": false,
+      "ordering": true,
+      "info": true,
+      "autoWidth": false,
+      "responsive": true,
+    });
+  });
+</script>
 </body>
 </html>

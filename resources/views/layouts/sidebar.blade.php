@@ -387,6 +387,13 @@
                 </a>
               </li>
 
+              <li class="nav-item">
+                <a href="{{route('cumpleaños.index')}}" class="nav-link">
+                  <i class="fas fa-hand-holding-usd nav-icon"></i>
+                  <p>Compleaños Profesionales</p>
+                </a>
+              </li>
+
             
             
               
@@ -1703,6 +1710,12 @@
                 <a href="{{route('comisionese.index')}}" class="nav-link">
                   <i class="fas fa-cart-arrow-down nav-icon"></i>
                   <p>Comisiones Entregadas</p>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a href="{{route('cumpleaños.index')}}" class="nav-link">
+                  <i class="fas fa-hand-holding-usd nav-icon"></i>
+                  <p>Compleaños Profesionales</p>
                 </a>
               </li>
 

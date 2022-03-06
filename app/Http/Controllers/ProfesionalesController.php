@@ -66,6 +66,7 @@ class ProfesionalesController extends Controller
         $personal->lastname =$request->apellidos;
         $personal->cmp =$request->cmp;
         $personal->telefono =$request->telefono;
+        $personal->nacimiento =$request->nacimiento;
         $personal->centro =$request->centro;
         $personal->especialidad =$request->especialidad;
         $personal->tipo =2;
@@ -125,6 +126,7 @@ class ProfesionalesController extends Controller
       $personal->lastname =$request->apellidos;
       $personal->cmp =$request->cmp;
       $personal->telefono =$request->telefono;
+      $personal->nacimiento =$request->nacimiento;
       $personal->centro =$request->centro;
       $personal->especialidad =$request->especialidad;
       $res = $personal->update();

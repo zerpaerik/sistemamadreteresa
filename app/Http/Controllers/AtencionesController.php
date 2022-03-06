@@ -12,6 +12,7 @@ use App\PlacasUsadas;
 use App\PlacasMalogradas;
 use App\User;
 use App\Atenciones;
+use App\AtencionesArchivo;
 use App\Atec;
 use App\Consultas;
 use App\Metodos;
@@ -2652,6 +2653,92 @@ return view('atenciones.particular');
 
         //
     }
+
+    public function guardar_archivo(Request $request){
+
+
+
+      $usuario = DB::table('users')
+      ->select('*')
+      ->where('id','=', Auth::user()->id)
+      ->first();  
+
+
+      if (isset($request->monto_ls)) {
+        foreach ($request->monto_ls['laboratorios'] as $key => $lab) {
+
+         // dd($request->file($request->monto_ls['laboratorios'][$key]['montos']));
+
+         /* $rs = Atenciones::where('id','=',$request->id)->first();
+          $img = $request->file('informe');
+          $nombre_imagen=$img->getClientOriginalName();
+          $rs->usuario_archivo=Auth::user()->id;
+          $rs->archivo=$nombre_imagen;
+          if ($rs->save()) {
+              \Storage::disk('public')->put($nombre_imagen, \File::get($img));
+          }
+          \DB::commit();*/
+
+          $atec_a = new AtencionesArchivo();
+          $atec_a->id_atencion =$request->id_atencion;
+          $img = $request->monto_ls['laboratorios'][$key]['montos'];
+          $nombre_imagen=$img->getClientOriginalName();
+          $atec_a->usuario=Auth::user()->id;
+          $atec_a->archivo=$nombre_imagen;
+          if ($atec_a->save()) {
+            \Storage::disk('public')->put($nombre_imagen, \File::get($img));
+          }
+          \DB::commit();
+
+        }
+      }
+
+
+
+      /*
+
+
+      $rs = Atenciones::where('id','=',$request->id)->first();
+      $img = $request->file('informe');
+      $nombre_imagen=$img->getClientOriginalName();
+      $rs->usuario_archivo=Auth::user()->id;
+      $rs->archivo=$nombre_imagen;
+      if ($rs->save()) {
+          \Storage::disk('public')->put($nombre_imagen, \File::get($img));
+      }
+      \DB::commit();*/
+
+
+      return redirect()->route('atenciones.index')
+      ->with('success','Creado Exitosamente!');
+         
+    }
+
+    public function guardar_archivo_get($id){
+
+      return view('atenciones.archivo', compact('id'));
+
+    }
+
+    public function ver_archivos($id){
+
+      $archivos = AtencionesArchivo::where('id_atencion','=',$id)->get();
+
+      return view('atenciones.ver_archivos', compact('archivos'));
+
+
+
+    }
+
+    public function eliminar_archivos($id){
+
+      $comisionescc = AtencionesArchivo::where('id', '=', $id)->first();
+      $comisionescc->delete();
+
+      return back();
+
+    }
+
 
 
  
