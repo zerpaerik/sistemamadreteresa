@@ -24,6 +24,11 @@
   <link rel="stylesheet" href="plugins/daterangepicker/daterangepicker.css">
   <!-- summernote -->
   <link rel="stylesheet" href="plugins/summernote/summernote-bs4.css">
+  <!-- summernote -->
+  <link rel="stylesheet" href="../../plugins/summernote/summernote-bs4.css">
+  <!-- Select2 -->
+  <link rel="stylesheet" href="../../plugins/select2/css/select2.min.css">
+  <link rel="stylesheet" href="../../plugins/select2-bootstrap4-theme/select2-bootstrap4.min.css">
   <!-- Google Font: Source Sans Pro -->
   <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
 <!-- DataTables -->
@@ -54,12 +59,12 @@
       <div class="container-fluid">
         <div class="row mb-2">
           <div class="col-sm-6">
-            <h1 class="m-0 text-dark">Cumpleaños de Profesionales</h1>
+            <h1 class="m-0 text-dark">Atenciones</h1>
           </div><!-- /.col -->
           <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">
-              <li class="breadcrumb-item"><a href="#">Home</a></li>
-              <li class="breadcrumb-item active">Cumpleaños de Profesionale</li>
+              <li class="breadcrumb-item"><a href="#">Movimientos</a></li>
+              <li class="breadcrumb-item active">Atenciones</li>
             </ol>
           </div><!-- /.col -->
         </div><!-- /.row -->
@@ -70,90 +75,70 @@
     <!-- Main content -->
     <section class="content">
       <div class="container-fluid">
-      <div class="card">
+        <div class="row">
+          <!-- left column -->
+          <div class="col-md-12">
+            <!-- general form elements -->
+            <div class="card card-primary">
               <div class="card-header">
-              <form method="get" action="cumpleaños">
-            {{ csrf_field() }}						
-                  <label for="exampleInputEmail1">Filtros de Busqueda</label>
-
-                    <div class="row">
-                    <div class="col-md-3">
-                    <label for="exampleInputEmail1">Inicio</label>
-                    <input type="date" class="form-control" value="{{$f1}}" name="inicio">
-                  </div>
-                  <div class="col-md-3">
-                    <label for="exampleInputEmail1">Fin</label>
-                    <input type="date" class="form-control" value="{{$f2}}" name="fin">
-                  </div>
-                 
-                  <div class="col-md-2" style="margin-top: 30px;">
-                  <button type="submit" class="btn btn-primary">Buscar</button>
-
-                  </div>
-                  </form>
-              </div>
-           
+                <h3 class="card-title">Observaciones</h3>
               </div>
               <!-- /.card-header -->
-              <div class="card-body">
-                <table id="example1" class="table table-bordered table-striped">
-                  <thead>
-                  <tr>
-                    <th>Nacimiento</th>
-                    <th>Nombres</th>
-                    <th>Apellidos</th>
-                    <th>Centro</th>
-                    <th>Especialidad</th>
-                    <th>Telefono</th>
-                    <th>Acciones</th>
-                  </tr>
-                  </thead>
-                  <tbody>
+              <!-- form start -->
+              <form method="post" action="atenciones/edits">					
+              {{ csrf_field() }}                
+                    <div class="card-body">
+                    
+                  <br>
 
-                  @foreach($prof as $p)
-                  <tr>
-                  <td>{{date('d-M-y H:i', strtotime($p->nacimiento))}}</td>
-                    <td>{{$p->name}}</td>
-                    <td>{{$p->lastname}}</td>
-                    <td>{{$p->centro}}</td>
-                    <td>{{$p->especialidad}}</td>
-                    <td>{{$p->telefono}}</td>
-                    <td></td>
-                  </tr>
-                  @endforeach
-                 
-                 
+                    <div class="row">
+                  <div class="col-md-12">
+                    <label for="exampleInputEmail1">Observaciones</label>
+                    <input type="text" class="form-control" id="name" name="monto" value="{{$atenciones->observaciones}}" placeholder="Nombre de Analisis">
+                  </div>
                
-                 
-                 
-                  </tbody>
-                  <tfoot>
-                  <tr>
-                    <th>Nacimiento</th>
-                    <th>Nombres</th>
-                    <th>Apellidos</th>
-                    <th>Centro</th>
-                    <th>Especialidad</th>
-                    <th>Telefono</th>
-                    <th>Acciones</th>
-                  </tr>
-                  </tfoot>
-                </table>
+                  
+
+
+                  </div>
+
+               
+                  <br>
+                
+
+
+                  
+            
+
+               
+        
+                <!-- /.card-body -->
+
+                
+              </form>
+            </div>
+            <!-- /.card -->
+
+         
+            <!-- /.card -->
+
+           
+           
+               
+
+
+           
               </div>
               <!-- /.card-body -->
             </div>
             <!-- /.card -->
           </div>
-          <!-- /.col -->
+          <!--/.col (right) -->
         </div>
         <!-- /.row -->
-      </div>
-      <!-- /.container-fluid -->
+      </div><!-- /.container-fluid -->
     </section>
-    <!-- /.content -->
-  </div>
-  </div>
-  </section>
+    
 
   <!-- /.content-wrapper -->
   
@@ -205,39 +190,125 @@
 <script src="../../plugins/datatables-bs4/js/dataTables.bootstrap4.min.js"></script>
 <script src="../../plugins/datatables-responsive/js/dataTables.responsive.min.js"></script>
 <script src="../../plugins/datatables-responsive/js/responsive.bootstrap4.min.js"></script>
+<script src="../../plugins/select2/js/select2.full.min.js"></script>
 
-<script type="text/javascript" src="https://cdn.datatables.net/buttons/1.6.1/js/dataTables.buttons.min.js"></script> 
-<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.1.3/jszip.min.js"></script>
-<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/pdfmake.min.js"></script>
-<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/vfs_fonts.js"></script>
-<script type="text/javascript" src="https://cdn.datatables.net/buttons/1.6.1/js/buttons.html5.min.js"></script>
-<script type="text/javascript" src="https://cdn.datatables.net/buttons/1.6.1/js/buttons.print.min.js"></script>
-<!-- AdminLTE App -->
 <!-- AdminLTE App -->
 <script src="../../dist/js/adminlte.min.js"></script>
 <!-- AdminLTE for demo purposes -->
 <script src="../../dist/js/demo.js"></script>
 <!-- page script -->
+<!-- Summernote -->
+<script src="../../plugins/summernote/summernote-bs4.min.js"></script>
 <script>
   $(function () {
-    $("#example1").DataTable({
-      "responsive": true,
-      "autoWidth": false,
-      dom: 'Bfrtip',
-      buttons: [
-            'copy', 'csv', 'excel', 'pdf', 'print'
-        ]
-    });
-    $('#example2').DataTable({
-      "paging": true,
-      "lengthChange": false,
-      "searching": false,
-      "ordering": true,
-      "info": true,
-      "autoWidth": false,
-      "responsive": true,
-    });
-  });
+    // Summernote
+    $('.textarea').summernote()
+  })
 </script>
+
+<script type="text/javascript">
+      $(document).ready(function(){
+        $('#el2').on('change',function(){
+          var link;
+          if ($(this).val() == 1) {
+            link = '/atenciones/personal/';
+
+          }else if ($(this).val() == 2) {
+            link = '/atenciones/profesionales/';
+          } else {
+		    link = '/atenciones/particular/';
+		  }
+
+          $.ajax({
+                 type: "get",
+                 url:  link,
+                 success: function(a) {
+                    $('#origen_usuario').html(a);
+                 }
+          });
+
+        });
+        
+
+      });
+       
+    </script>
+
+
+<script>
+<script>
+  $(function () {
+    //Initialize Select2 Elements
+    $('.select2').select2()
+
+    //Initialize Select2 Elements
+    $('.select2bs4').select2({
+      theme: 'bootstrap4'
+    })
+
+    //Datemask dd/mm/yyyy
+    $('#datemask').inputmask('dd/mm/yyyy', { 'placeholder': 'dd/mm/yyyy' })
+    //Datemask2 mm/dd/yyyy
+    $('#datemask2').inputmask('mm/dd/yyyy', { 'placeholder': 'mm/dd/yyyy' })
+    //Money Euro
+    $('[data-mask]').inputmask()
+
+    //Date range picker
+    $('#reservationdate').datetimepicker({
+        format: 'L'
+    });
+    //Date range picker
+    $('#reservation').daterangepicker()
+    //Date range picker with time picker
+    $('#reservationtime').daterangepicker({
+      timePicker: true,
+      timePickerIncrement: 30,
+      locale: {
+        format: 'MM/DD/YYYY hh:mm A'
+      }
+    })
+    //Date range as a button
+    $('#daterange-btn').daterangepicker(
+      {
+        ranges   : {
+          'Today'       : [moment(), moment()],
+          'Yesterday'   : [moment().subtract(1, 'days'), moment().subtract(1, 'days')],
+          'Last 7 Days' : [moment().subtract(6, 'days'), moment()],
+          'Last 30 Days': [moment().subtract(29, 'days'), moment()],
+          'This Month'  : [moment().startOf('month'), moment().endOf('month')],
+          'Last Month'  : [moment().subtract(1, 'month').startOf('month'), moment().subtract(1, 'month').endOf('month')]
+        },
+        startDate: moment().subtract(29, 'days'),
+        endDate  : moment()
+      },
+      function (start, end) {
+        $('#reportrange span').html(start.format('MMMM D, YYYY') + ' - ' + end.format('MMMM D, YYYY'))
+      }
+    )
+
+    //Timepicker
+    $('#timepicker').datetimepicker({
+      format: 'LT'
+    })
+    
+    //Bootstrap Duallistbox
+    $('.duallistbox').bootstrapDualListbox()
+
+    //Colorpicker
+    $('.my-colorpicker1').colorpicker()
+    //color picker with addon
+    $('.my-colorpicker2').colorpicker()
+
+    $('.my-colorpicker2').on('colorpickerChange', function(event) {
+      $('.my-colorpicker2 .fa-square').css('color', event.color.toString());
+    });
+
+    $("input[data-bootstrap-switch]").each(function(){
+      $(this).bootstrapSwitch('state', $(this).prop('checked'));
+    });
+
+  })
+</script>
+
 </body>
 </html>

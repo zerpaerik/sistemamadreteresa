@@ -155,6 +155,19 @@
                               <i class="fas fa-print">
                               </i>
                           </a>
+                          <a class="btn btn-primary btn-sm" href="atenciones-archivo-{{$an->id}}">
+                              <i class="fas fa-upload">
+                          </i>
+                          <a class="btn btn-success btn-sm" href="atenciones-ver-archivo-{{$an->id}}">
+                              <i class="fas fa-download">
+                          </i>
+                          </a>
+                          @if($an->observaciones != null)
+                          <a class="btn btn-primary btn-sm" href="atenciones-ver-{{$an->id}}">
+                                    <i class="fas fa-eye">
+                                    </i>
+                                </a>
+                          @endif
                           @if($an->atendido == 2)
                           @if(Auth::user()->rol == 1)
                           <a class="btn btn-danger btn-sm" href="atenciones-delete-{{$an->id}}" onclick="return confirm('¿Desea Eliminar este registro?')">

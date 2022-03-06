@@ -105,7 +105,7 @@
                   <button type="submit" class="btn btn-primary">Buscar</button>
 
                   </div>
-
+<!--
                   <div class="col-md-2">
                     <label for="exampleInputEmail1">Total</label>
 
@@ -123,6 +123,7 @@
   
                       <input class="form-control" type="text" name="resta" id="resta" readonly="readonly" value="0.00">
                       </div>
+                      -->
                  
                   </form>
 

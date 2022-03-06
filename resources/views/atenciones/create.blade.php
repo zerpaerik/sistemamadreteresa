@@ -485,6 +485,8 @@
   
     </div>
 
+    
+
   <div class="tab-pane container fade" id="lab">
   <div class="row">
             <label class="col-sm-6 alert"><i class="fa fa-tasks" aria-hidden="true"></i> Laboratorios Seleccionadas</label>
@@ -702,6 +704,12 @@
 
 </div>
 </div>
+
+<div class="row">
+                     <div class="col-md-12">
+                    <label for="exampleInputEmail1">Observaciones</label>
+                    <input type="text" onkeyup="javascript:this.value=this.value.toUpperCase();" class="form-control" id="nombre"   name="observaciones">
+                   </div>
 
 
                 <!-- /.card-body -->

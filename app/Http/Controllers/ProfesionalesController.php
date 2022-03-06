@@ -24,7 +24,7 @@ class ProfesionalesController extends Controller
         $prof = User::where('estatus','=',1)->where('tipo','=',2)->get();
 
         $prof = DB::table('users as a')
-        ->select('a.id','a.name','a.lastname','a.telefono','a.especialidad','a.estatus','a.tipo','a.centro','a.email','b.nombre as especialidad','c.nombre as centro')
+        ->select('a.id','a.name','a.lastname','a.telefono','a.nacimiento','a.especialidad','a.estatus','a.tipo','a.centro','a.email','b.nombre as especialidad','c.nombre as centro')
         ->join('especialidades as b','b.id','a.especialidad')
         ->join('centros as c','c.id','a.centro')
         ->where('a.estatus','=',1)
