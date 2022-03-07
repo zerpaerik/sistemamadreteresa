@@ -112,7 +112,11 @@
 
                   @foreach($prof as $p)
                   <tr>
-                  <td>{{date('d-M-y', strtotime($p->nacimiento))}}</td>
+                    @if($p->nacimiento != null)
+                    <td>{{date('d-M-y', strtotime($p->nacimiento))}}</td>
+                    @else
+                    <td></td>
+                    @endif
                     <td>{{$p->name}}</td>
                     <td>{{$p->lastname}}</td>
                     <td>{{$p->centro_name}}</td>

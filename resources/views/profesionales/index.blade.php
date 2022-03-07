@@ -98,7 +98,11 @@
                   <tr>
                     <td>{{$p->name}}</td>
                     <td>{{$p->lastname}}</td>
+                    @if($p->nacimiento != null)
                     <td>{{date('d-M-y', strtotime($p->nacimiento))}}</td>
+                    @else
+                    <td></td>
+                    @endif
                     <td>{{$p->centro}}</td>
                     <td>{{$p->especialidad}}</td>
                     <td>{{$p->telefono}}</td>
