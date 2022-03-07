@@ -208,6 +208,7 @@ Route::get('atenciones-archivo-{id}', 'AtencionesController@guardar_archivo_get'
 Route::post('atenciones_archivo', 'AtencionesController@guardar_archivo');
 Route::get('atenciones-ver-archivo-{id}', 'AtencionesController@ver_archivos');
 Route::get('archivos-eliminar-{id}', 'AtencionesController@eliminar_archivos');
+Route::get('atenciones-ver-{id}', 'AtencionesController@ver')->middleware('auth');
 
 Route::get('pagos-personal', 'PagosPersonalController@index')->name('pagosp.index');
 Route::get('pagosp-create', 'PagosPersonalController@create')->name('pagosp.create')->middleware('auth');

@@ -83,9 +83,9 @@
                 <table id="example1" class="table table-bordered table-striped">
                   <thead>
                   <tr>
-                    <th>Id</th>
                     <th>Nombres</th>
                     <th>Apellidos</th>
+                    <th>Nacimiento</th>
                     <th>Centro</th>
                     <th>Especialidad</th>
                     <th>Telefono</th>
@@ -96,9 +96,9 @@
 
                   @foreach($prof as $p)
                   <tr>
-                  <td>{{$p->id}}</td>
                     <td>{{$p->name}}</td>
                     <td>{{$p->lastname}}</td>
+                    <td>{{date('d-M-y', strtotime($p->nacimiento))}}</td>
                     <td>{{$p->centro}}</td>
                     <td>{{$p->especialidad}}</td>
                     <td>{{$p->telefono}}</td>
@@ -127,9 +127,9 @@
                   </tbody>
                   <tfoot>
                   <tr>
-                  <th>Id</th>
-                    <th>Nombres</th>
+                  <th>Nombres</th>
                     <th>Apellidos</th>
+                    <th>Nacimiento</th>
                     <th>Centro</th>
                     <th>Especialidad</th>
                     <th>Telefono</th>

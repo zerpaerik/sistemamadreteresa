@@ -127,7 +127,7 @@ class ProfesionalesController extends Controller
       $personal->cmp =$request->cmp;
       $personal->telefono =$request->telefono;
       $personal->nacimiento =$request->nacimiento;
-      $personal->centro =$request->centro;
+     // $personal->centro =$request->centro;
       $personal->especialidad =$request->especialidad;
       $res = $personal->update();
 

@@ -153,7 +153,7 @@ class VisitadorController extends Controller
 
 
           $prof = DB::table('users as a')
-        ->select('a.id', 'a.name', 'a.lastname','a.nacimiento', 'a.telefono', 'a.especialidad', 'a.estatus', 'a.tipo', 'a.centro', 'a.email', 'b.nombre as especialidad', 'c.nombre as centro')
+        ->select('a.id', 'a.name', 'a.lastname','a.nacimiento', 'a.telefono', 'a.especialidad', 'a.estatus', 'a.tipo', 'a.centro', 'a.email', 'b.nombre as especialidad', 'c.nombre as centro_name')
         ->join('especialidades as b', 'b.id', 'a.especialidad')
         ->join('centros as c', 'c.id', 'a.centro')
         ->where('a.estatus', '=', 1)
@@ -166,7 +166,7 @@ class VisitadorController extends Controller
         $f2 = date('Y-m-d');
 
         $prof = DB::table('users as a')
-        ->select('a.id', 'a.name', 'a.lastname','a.nacimiento', 'a.telefono', 'a.especialidad', 'a.estatus', 'a.tipo', 'a.centro', 'a.email', 'b.nombre as especialidad', 'c.nombre as centro')
+        ->select('a.id', 'a.name', 'a.lastname','a.nacimiento', 'a.telefono', 'a.especialidad', 'a.estatus', 'a.tipo',  'a.email', 'b.nombre as especialidad', 'c.nombre as centro_name')
         ->join('especialidades as b', 'b.id', 'a.especialidad')
         ->join('centros as c', 'c.id', 'a.centro')
         ->where('a.estatus', '=', 1)
@@ -175,7 +175,10 @@ class VisitadorController extends Controller
         ->distinct('a.id')
         ->get();
 
+
       }
+
+    
         return view('visitador.cumples', compact('prof','f1','f2'));
         //
     }

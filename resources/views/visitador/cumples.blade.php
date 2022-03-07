@@ -112,10 +112,10 @@
 
                   @foreach($prof as $p)
                   <tr>
-                  <td>{{date('d-M-y H:i', strtotime($p->nacimiento))}}</td>
+                  <td>{{date('d-M-y', strtotime($p->nacimiento))}}</td>
                     <td>{{$p->name}}</td>
                     <td>{{$p->lastname}}</td>
-                    <td>{{$p->centro}}</td>
+                    <td>{{$p->centro_name}}</td>
                     <td>{{$p->especialidad}}</td>
                     <td>{{$p->telefono}}</td>
                     <td></td>
