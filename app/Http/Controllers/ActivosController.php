@@ -28,7 +28,6 @@ class ActivosController extends Controller
         $activos = DB::table('activos as a')
         ->select('a.*')
         ->where('a.sede', '=', $request->session()->get('sede'))
-        ->where('a.estatus', '=', 1)
         ->get(); 
 
         return view('activos.index', compact('activos'));
