@@ -90,7 +90,22 @@
                   </div>
                   <div class="col-md-4">
                     <label for="exampleInputEmail1">Ubicación</label>
-                    <input type="text" class="form-control" id="nombre" name="ubicacion" placeholder="Ubicación de Activo">
+                    <select class="form-control" name="ubicacion">
+						    <option value="RECEPCION">RECEPCION</option>
+                            <option value="ECOGRAFIA 1">ECOGRAFIA 1</option>
+                            <option value="ECOGRAFIA 2">ECOGRAFIA 2</option>
+                            <option value="CONSULTORIO 1">CONSULTORIO 1</option>
+                            <option value="CONSULTORIO 2">CONSULTORIO 2</option>
+                            <option value="LABORATORIO">LABORATORIO</option>
+                            <option value="RAYOS X">RAYOS X</option>
+                            <option value="TOPICO">TOPICO</option>
+                            <option value="COMEDOR">COMEDOR</option>
+                            <option value="OFICINA 2DO PISO">OFICINA 2DO PISO</option>
+                            <option value="COACHING 1">COACHING 1</option>
+                            <option value="COACHING 2">COACHING 2</option>
+                            <option value="SALA PROCED">SALA PROCED</option>
+                            <option value="ALMACEN">ALMACEN</option>
+                        </select>
                   </div>
 
                   <div class="col-md-4">
@@ -113,7 +128,7 @@
                   </div>
                   <div class="col-md-8">
                     <label for="exampleInputEmail1">Descripción</label>
-                    <input type="text" class="form-control" id="nombre" name="descripcion" placeholder="Descripción de activo">
+                    <textarea class="form-control" onkeyup="javascript:this.value=this.value.toUpperCase();" rows="3"  name="descripcion"></textarea>
                   </div>
                  
                   </div>
