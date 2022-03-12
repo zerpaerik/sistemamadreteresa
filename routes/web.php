@@ -232,6 +232,13 @@ Route::post('atenciones/editp', 'AtencionesController@updatep');
 Route::post('atenciones/editc', 'AtencionesController@updatec');
 Route::post('atenciones/editm', 'AtencionesController@updatem');
 
+Route::get('activos', 'ActivosController@index')->name('activos.index');
+Route::get('activos-create', 'ActivosController@create')->name('activos.create')->middleware('auth');
+Route::post('activos/create', 'ActivosController@store')->middleware('auth');
+Route::get('activos-delete-{id}', 'ActivosController@delete')->middleware('auth');
+Route::get('activos-edit-{id}', 'ActivosController@edit')->name('activos.edit');
+Route::post('activos/edit', 'ActivosController@update');
+
 Route::get('atenciones/getServicio/{id}', 'AtencionesController@getServicio')->middleware('auth');
 Route::get('atenciones/getAnalisis/{id}', 'AtencionesController@getAnalisis')->middleware('auth');
 Route::get('atenciones/getPaquetes/{id}', 'AtencionesController@getPaquetes')->middleware('auth');
