@@ -92,6 +92,7 @@
                     <th>Precio Aproximado</th>
                     <th>Estado</th>
                     <th>Ubicación</th>
+                    <th>Estatus</th>
                     <th>Acciones</th>
                   </tr>
                   </thead>
@@ -104,6 +105,11 @@
                     <td>{{$an->precio}}</td>
                     <td>{{$an->estado}}</td>
                     <td>{{$an->ubicacion}}</td>
+                    @if($an->estatus == 1)
+                    <td>Activo</td>
+                    @else
+                    <td style="background-color: yellow;">Baja</td>
+                    @endif
                     <td>
                     @if(Auth::user()->rol == 1)
 
@@ -135,6 +141,7 @@
                     <th>Precio Aproximado</th>
                     <th>Estado</th>
                     <th>Ubicación</th>
+                    <th>Estatus</th>
                     <th>Acciones</th>
                   </tr>
                   </tfoot>
