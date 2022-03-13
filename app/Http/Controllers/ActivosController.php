@@ -25,11 +25,20 @@ class ActivosController extends Controller
     public function index(Request $request)
     {
         if ($request->ubicacion != null) {
-            $activos = DB::table('activos as a')
+
+            if ($request->ubicacion == 'TODOS') {
+                $activos = DB::table('activos as a')
             ->select('a.*')
             ->where('a.sede', '=', $request->session()->get('sede'))
-            ->where('a.ubicacion', '=',$request->ubicacion)
             ->get();
+            } else {
+                $activos = DB::table('activos as a')
+                ->select('a.*')
+                ->where('a.sede', '=', $request->session()->get('sede'))
+                ->where('a.ubicacion', '=', $request->ubicacion)
+                ->get();
+
+            }
 
         }else {
 

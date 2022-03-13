@@ -102,6 +102,7 @@
                             <option value="COACHING 2">COACHING 2</option>
                             <option value="SALA PROCED">SALA PROCED</option>
                             <option value="ALMACEN">ALMACEN</option>
+                            <option value="TODOS">TODOS</option>
                         </select>                  
                         </div>
 
