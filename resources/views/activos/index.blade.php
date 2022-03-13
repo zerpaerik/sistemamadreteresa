@@ -102,7 +102,8 @@
                             <option value="COACHING 2">COACHING 2</option>
                             <option value="SALA PROCED">SALA PROCED</option>
                             <option value="ALMACEN">ALMACEN</option>
-                        </select>                  </div>
+                        </select>                  
+                        </div>
 
                  
                   
@@ -135,7 +136,11 @@
                     <td>ACT-2022-{{$an->id}}</td>
                     <td>{{$an->nombre}}</td>
                     <td>{{$an->precio}}</td>
+                    @if($an->estatus == 'REEMPLAZAR')
+                    <td style="background-color: red;">{{$an->estado}}</td>
+                    @else
                     <td>{{$an->estado}}</td>
+                    @endif
                     <td>{{$an->ubicacion}}</td>
                     @if($an->estatus == 1)
                     <td>Activo</td>
