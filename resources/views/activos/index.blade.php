@@ -138,9 +138,9 @@
                     <td>{{$an->nombre}}</td>
                     <td>{{$an->precio}}</td>
                     @if($an->estatus == 'REEMPLAZAR')
-                    <td style="background-color: red;">{{$an->estado}}</td>
+                    <td >{{$an->estado}}</td>
                     @else
-                    <td>{{$an->estado}}</td>
+                    <td style="background-color: red;">{{$an->estado}}</td>
                     @endif
                     <td>{{$an->ubicacion}}</td>
                     @if($an->estatus == 1)
