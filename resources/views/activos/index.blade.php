@@ -126,6 +126,7 @@
                     <th>Estado</th>
                     <th>Ubicación</th>
                     <th>Estatus</th>
+                    <th>Fecha</th>
                     <th>Acciones</th>
                   </tr>
                   </thead>
@@ -147,6 +148,7 @@
                     @else
                     <td style="background-color: yellow;">Baja</td>
                     @endif
+                    <td>{{$an->created_at}}</td>
                     <td>
                     <a class="btn btn-primary btn-sm" id="{{$an->id}}" onclick="viewh(this)">
                               <i class="fas fa-eye">
@@ -184,6 +186,7 @@
                     <th>Estado</th>
                     <th>Ubicación</th>
                     <th>Estatus</th>
+                    <th>Fecha</th>
                     <th>Acciones</th>
                   </tr>
                   </tfoot>
