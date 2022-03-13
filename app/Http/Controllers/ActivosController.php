@@ -24,11 +24,21 @@ class ActivosController extends Controller
      */
     public function index(Request $request)
     {
+        if ($request->ubicacion != null) {
+            $activos = DB::table('activos as a')
+            ->select('a.*')
+            ->where('a.sede', '=', $request->session()->get('sede'))
+            ->where('a.ubicacion', '=',$request->ubicacion)
+            ->get();
 
-        $activos = DB::table('activos as a')
-        ->select('a.*')
-        ->where('a.sede', '=', $request->session()->get('sede'))
-        ->get(); 
+        }else {
+
+            $activos = DB::table('activos as a')
+            ->select('a.*')
+            ->where('a.sede', '=', $request->session()->get('sede'))
+            ->get();
+
+        }
 
         return view('activos.index', compact('activos'));
         //
@@ -78,25 +88,16 @@ class ActivosController extends Controller
     public function ver($id)
     {
 	  
-        $req = DB::table('requerimientos as a')
-        ->select('a.id','a.asunto','a.prioridad','a.categoria','a.descripcion','a.estatus','a.estado','a.empresa','b.nombre as empresa')
-        ->join('clientes as b','b.id','a.empresa')
-        ->where('a.empresa', '=', Auth::user()->empresa)
-        ->where('a.estatus', '=', 1)
+     
+        $activo = DB::table('activos as a')
+        ->select('a.*')
+       // ->join('users as u', 'u.id', 'a.usuario')
         ->where('a.id', '=', $id)
         ->first(); 
+  
 
-        //$equipos = ActivosRequerimientos::
-
-        $equipos = DB::table('activos_requerimientos as a')
-        ->select('a.id','a.activo','a.ticket','b.nombre','b.modelo','b.serial')
-        ->join('equipos as b','b.id','a.activo')
-        ->where('ticket','=',$id)
-        ->get();
-
-
-	  
-      return view('requerimientos.ver', compact('req','equipos'));
+        
+        return view('activos.ver', compact('activo'));
     }	  
 
     /**
@@ -131,6 +132,7 @@ class ActivosController extends Controller
       $p->precio =$request->precio;
       $p->estado =$request->estado;
       $p->ubicacion =$request->ubicacion;
+      $p->estatus =$request->estatus;
       $res = $p->update();
     
     

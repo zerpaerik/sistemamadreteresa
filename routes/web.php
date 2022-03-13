@@ -238,6 +238,8 @@ Route::post('activos/create', 'ActivosController@store')->middleware('auth');
 Route::get('activos-delete-{id}', 'ActivosController@delete')->middleware('auth');
 Route::get('activos-edit-{id}', 'ActivosController@edit')->name('activos.edit');
 Route::post('activos/edit', 'ActivosController@update');
+Route::get('activos/ver/{id}', 'ActivosController@ver');
+
 
 Route::get('atenciones/getServicio/{id}', 'AtencionesController@getServicio')->middleware('auth');
 Route::get('atenciones/getAnalisis/{id}', 'AtencionesController@getAnalisis')->middleware('auth');

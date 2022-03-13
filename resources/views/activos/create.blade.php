@@ -114,7 +114,7 @@
 						    <option value="NUEVO">NUEVO</option>
                             <option value="BUENO">BUENO</option>
                             <option value="REGULAR">REGULAR</option>
-                            <option value="DAÑADO">DAÑADO</option>
+                            <option value="REEMPLAZAR">REEMPLAZAR</option>
                         </select>
                   </div>
                  
@@ -126,6 +126,7 @@
                     <label for="exampleInputEmail1">Precio</label>
                     <input type="float" class="form-control" id="nombre" name="precio" placeholder="Precio Aproximado">
                   </div>
+              
                   <div class="col-md-8">
                     <label for="exampleInputEmail1">Descripción</label>
                     <textarea class="form-control" onkeyup="javascript:this.value=this.value.toUpperCase();" rows="3"  name="descripcion"></textarea>

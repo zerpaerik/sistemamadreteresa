@@ -100,22 +100,22 @@
                             <option value="NUEVO" selected>NUEVO</option>
                             <option value="BUENO">BUENO</option>
                             <option value="REGULAR">REGULAR</option>
-                            <option value="DAÑADO">DAÑADO</option>
+                            <option value="REEMPLAZAR">REEMPLAZAR</option>
                             @elseif($activo->estado == 'BUENO')
                             <option value="NUEVO" >NUEVO</option>
                             <option value="BUENO" selected>BUENO</option>
                             <option value="REGULAR">REGULAR</option>
-                            <option value="DAÑADO">DAÑADO</option>
+                            <option value="REEMPLAZAR">REEMPLAZAR</option>
                             @elseif($activo->estado == 'REGULAR')
                             <option value="NUEVO" >NUEVO</option>
                             <option value="BUENO" >BUENO</option>
                             <option value="REGULAR" selected>REGULAR</option>
-                            <option value="DAÑADO">DAÑADO</option>
+                            <option value="REEMPLAZAR">REEMPLAZAR</option>
                             @else
                             <option value="NUEVO" >NUEVO</option>
                             <option value="BUENO" >BUENO</option>
                             <option value="REGULAR" >REGULAR</option>
-                            <option value="DAÑADO" selected>DAÑADO</option>
+                            <option value="REEMPLAZAR" selected>REEMPLAZAR</option>
                             @endif
 						    
                         </select>
@@ -129,11 +129,29 @@
                     <label for="exampleInputEmail1">Precio</label>
                     <input type="float" class="form-control" id="nombre" name="precio" placeholder="Precio Aproximado" value="{{$activo->precio}}">
                   </div>
-                  <div class="col-md-8">
-                    <label for="exampleInputEmail1">Descripción</label>
-                    <input type="text" class="form-control" id="nombre" name="descripcion" placeholder="Descripción de activo" value="{{$activo->descripcion}}">
+                  <div class="col-md-4">
+                    <label for="exampleInputEmail1">Estatus</label>
+                    <select class="form-control" name="estatus" value="{{$activo->estatus}}">
+                        @if($activo->estatus == 1)
+                            <option value="1" selected>ACTIVO</option>
+                            <option value="0">BAJA</option>
+                            @else
+                            <option value="1">ACTIVO</option>
+                            <option value="0" selected>BAJA</option>
+                            @endif
+						    
+                        </select>
                   </div>
                  
+                  </div>
+
+                  <div class="row">
+                 
+                  <div class="col-md-12">
+                    <label for="exampleInputEmail1">Descripción</label>
+                    <textarea class="form-control"  rows="3"  name="descripcion">{{$activo->descripcion}}</textarea>
+
+                    </div>
                   </div>
 
                   <input type="hidden" name="id" value="{{$activo->id}}">
