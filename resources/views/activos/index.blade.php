@@ -118,7 +118,7 @@
               </div>
               <!-- /.card-header -->
               <div class="card-body">
-                <table id="example1" class="table table-bordered table-striped">
+                <table id="example1" class="table table-bordered table-striped" data-page-length='100'>
                   <thead>
                   <tr>
                     <th>Identificador</th>
@@ -138,10 +138,14 @@
                     <td>ACT-2022-{{$an->id}}</td>
                     <td>{{$an->nombre}}</td>
                     <td>{{$an->precio}}</td>
-                    @if($an->estatus == 'REEMPLAZAR')
-                    <td >{{$an->estado}}</td>
-                    @else
+                    @if($an->estado == 'REEMPLAZAR')
                     <td style="background-color: red;">{{$an->estado}}</td>
+                    @elseif($an->estado == 'NUEVO')
+                    <td style="background-color: green;">{{$an->estado}}</td>
+                    @elseif($an->estado == 'BUENO')
+                    <td style="background-color: blue;">{{$an->estado}}</td>
+                    @else
+                    <td style="background-color: yellow;">{{$an->estado}}</td>
                     @endif
                     <td>{{$an->ubicacion}}</td>
                     @if($an->estatus == 1)
@@ -163,7 +167,13 @@
                               </i>
                               Editar
                           </a>
-                          <a class="btn btn-danger btn-sm" href="activos-delete-{{$an->id}}" onclick="return confirm('¿Desea Eliminar este registro?')">
+                          <a class="btn btn-warning btn-sm" href="activos-delete-{{$an->id}}" onclick="return confirm('¿Desea dar de baja este activo?')">
+                              <i class="fas fa-edit">
+                              </i>
+                              Dar Baja
+                          </a>
+
+                          <a class="btn btn-danger btn-sm" href="activos-deletea-{{$an->id}}" onclick="return confirm('¿Desea eliminar este activo?')">
                               <i class="fas fa-trash">
                               </i>
                               Eliminar

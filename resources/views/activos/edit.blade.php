@@ -90,7 +90,15 @@
                   </div>
                   <div class="col-md-4">
                     <label for="exampleInputEmail1">Ubicación</label>
-                    <input type="text" class="form-control" id="nombre" name="ubicacion" placeholder="Ubicación de Activo" value="{{$activo->ubicacion}}">
+                    <select class="form-control" name="ubicacion">
+                    @foreach($ubicaciones as $u)
+                                @if($activo->ubicacion == $u->nombre)
+                                <option value="{{$u->nombre}}" selected="selected">{{$u->nombre}}</option>
+                                @else
+                                <option value="{{$u->nombre}}">{{$u->nombre}}</option>
+                                @endif
+                            @endforeach
+                            </select>
                   </div>
 
                   <div class="col-md-4">

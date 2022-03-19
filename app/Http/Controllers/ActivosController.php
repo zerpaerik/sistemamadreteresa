@@ -9,6 +9,7 @@ use App\Tiempo;
 use App\Material;
 use App\Solicitudes;
 use App\Activos;
+use App\Ubicaciones;
 use App\User;
 use Auth;
 use Illuminate\Http\Request;
@@ -30,12 +31,14 @@ class ActivosController extends Controller
                 $activos = DB::table('activos as a')
             ->select('a.*')
             ->where('a.sede', '=', $request->session()->get('sede'))
+            ->where('a.estatus', '!=', 99)
             ->get();
             } else {
                 $activos = DB::table('activos as a')
                 ->select('a.*')
                 ->where('a.sede', '=', $request->session()->get('sede'))
                 ->where('a.ubicacion', '=', $request->ubicacion)
+                ->where('a.estatus', '!=', 99)
                 ->get();
 
             }
@@ -45,6 +48,7 @@ class ActivosController extends Controller
             $activos = DB::table('activos as a')
             ->select('a.*')
             ->where('a.sede', '=', $request->session()->get('sede'))
+            ->where('a.estatus', '!=', 99)
             ->get();
 
         }
@@ -62,8 +66,8 @@ class ActivosController extends Controller
      */
     public function create()
     {
-     
-        return view('activos.create');
+      $ubicaciones = Ubicaciones::all();
+        return view('activos.create', compact('ubicaciones'));
     }
 
     /**
@@ -119,7 +123,9 @@ class ActivosController extends Controller
     {
        
         $activo = Activos::where('id','=',$id)->first();
-        return view('activos.edit', compact('activo')); //
+        $ubicaciones = Ubicaciones::all();
+
+        return view('activos.edit', compact('activo','ubicaciones')); //
     }
 
     /**
@@ -165,6 +171,18 @@ class ActivosController extends Controller
 
         $analisis = Activos::find($id);
         $analisis->estatus = 0;
+        $analisis->save();
+
+        return redirect()->action('ActivosController@index');
+
+        //
+    }
+
+    public function deletea($id)
+    {
+
+        $analisis = Activos::find($id);
+        $analisis->estatus = 99;
         $analisis->save();
 
         return redirect()->action('ActivosController@index');

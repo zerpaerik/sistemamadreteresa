@@ -91,20 +91,10 @@
                   <div class="col-md-4">
                     <label for="exampleInputEmail1">Ubicación</label>
                     <select class="form-control" name="ubicacion">
-						    <option value="RECEPCION">RECEPCION</option>
-                            <option value="ECOGRAFIA 1">ECOGRAFIA 1</option>
-                            <option value="ECOGRAFIA 2">ECOGRAFIA 2</option>
-                            <option value="CONSULTORIO 1">CONSULTORIO 1</option>
-                            <option value="CONSULTORIO 2">CONSULTORIO 2</option>
-                            <option value="LABORATORIO">LABORATORIO</option>
-                            <option value="RAYOS X">RAYOS X</option>
-                            <option value="TOPICO">TOPICO</option>
-                            <option value="COMEDOR">COMEDOR</option>
-                            <option value="OFICINA 2DO PISO">OFICINA 2DO PISO</option>
-                            <option value="COACHING 1">COACHING 1</option>
-                            <option value="COACHING 2">COACHING 2</option>
-                            <option value="SALA PROCED">SALA PROCED</option>
-                            <option value="ALMACEN">ALMACEN</option>
+                    @foreach($ubicaciones as $u)
+						            <option value="{{$u->nombre}}">{{$u->nombre}}</option>
+                    @endforeach
+                           
                         </select>
                   </div>
 
