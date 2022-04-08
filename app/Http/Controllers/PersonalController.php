@@ -114,7 +114,6 @@ class PersonalController extends Controller
       $personal->telefono =$request->telefono;
       $personal->direccion =$request->direccion;
       $personal->cargo =$request->cargo;
-      $personal->tipo_personal =$request->tipo;
       $res = $personal->update();
 
     
