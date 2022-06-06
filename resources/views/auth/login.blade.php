@@ -64,6 +64,8 @@
                             <option value="4">ZARATE</option>
                             <option value="5">INDEPENDENCIA</option>
                             <option value="6">LOS OLIVOS</option>
+                            <option value="7">LABORATORIO VIDA</option>
+
 
                         </select>        
               <div class="input-group-append">
