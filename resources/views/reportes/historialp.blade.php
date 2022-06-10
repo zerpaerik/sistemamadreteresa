@@ -149,6 +149,8 @@
                     <td>ZARATE</td>
                     @elseif($an->sede == 5)
                     <td>INDEPENDENCIA</td>
+                     @elseif($an->sede == 7)
+                    <td>LABORATORIO VIDA</td>
                     @else
                     <td>LOS OLIVOS</td>
                     @endif
