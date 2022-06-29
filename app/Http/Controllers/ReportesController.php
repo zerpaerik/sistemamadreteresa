@@ -2038,6 +2038,50 @@ class ReportesController extends Controller
   
       }
 
+
+      public function reporte_asignacion(Request $request){
+
+        if ($request->inicio) {
+            $f1 = $request->inicio;
+            $f2 = $request->fin;
+
+  
+
+            $creditos = DB::table('creditos as a')
+            ->select('a.*','b.name','b.lastname')
+            ->join('users as b','b.id','a.usuario')
+            ->whereBetween('a.fecha', [$f1, $f2])
+            ->orderBy('a.id','DESC')
+            ->get();
+
+
+    
+        } else {
+
+            $f1 = date('Y-m-d');
+            $f2 = date('Y-m-d');
+
+         
+          
+            $creditos = DB::table('creditos as a')
+            ->select('a.*','b.name','b.lastname')
+            ->join('users as b','b.id','a.usuario')
+            ->whereBetween('a.fecha', [$f1, $f2])
+            ->orderBy('a.id','DESC')
+            ->get();
+
+
+        }
+
+
+        return view('reportes.asignacion', compact('creditos','f1','f2'));
+
+       
+
+    }
+
+
+
       public function total_servicios(Request $request){
 
         if($request->inicio){

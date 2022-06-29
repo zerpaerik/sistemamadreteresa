@@ -296,6 +296,8 @@ Route::get('historial_pacientes', 'ReportesController@historial_pacientes')->nam
 Route::get('reporte_individual', 'ReportesController@reporte_individual')->name('reporte.individual');
 Route::get('rep-ind/{id}/{id2}/{f1}/{f2}', 'ReportesController@reporte_individual_pdf');
 
+Route::get('reporte_asignacion', 'ReportesController@reporte_asignacion')->name('reporte.asignacion');
+
 
 Route::get('comisiones', 'ComisionesPagarController@index')->name('comisiones.index');
 Route::get('comisiones1', 'ComisionesPagarController@index1')->name('comisiones.index1');
