@@ -188,7 +188,7 @@ class VisitadorController extends Controller
     {
 
 
-      if ($request->inicio) {
+      if ($request->inicio && $request->prof == 0) {
           $f1 = $request->inicio;
           $f2 = $request->fin;
 
@@ -201,6 +201,24 @@ class VisitadorController extends Controller
           ->whereBetween('a.created_at', [date('Y-m-d 00:00:00', strtotime($f1)), date('Y-m-d 23:59:59', strtotime($f2))])
           //->whereBetween('a.nacimiento', [$f1, $f2])
           ->get();
+
+
+      } else if($request->inicio && $request->prof != 0) {
+
+        $f1 = $request->inicio;
+        $f2 = $request->fin;
+
+
+        $visitas = DB::table('visitas as a')
+        ->select('a.id', 'a.profesional', 'a.turno','a.usuario','a.created_at', 'b.centro','b.telefono', 'b.name as namep','b.lastname as apep','c.name as visiname','c.lastname as visiape','d.nombre as centro')
+        ->join('users as b', 'b.id', 'a.profesional')
+        ->join('users as c', 'c.id', 'a.usuario')
+        ->join('centros as d', 'd.id', 'b.centro')
+        ->whereBetween('a.created_at', [date('Y-m-d 00:00:00', strtotime($f1)), date('Y-m-d 23:59:59', strtotime($f2))])
+        ->where('a.profesional', '=', $request->prof)
+        ->get();
+
+
       } else {
         $f1 = date('Y-m-d');
         $f2 = date('Y-m-d');
@@ -216,9 +234,11 @@ class VisitadorController extends Controller
 
 
       }
+      $profesionales = User::where('estatus','=',1)->where('tipo','=',2)->orderBy('lastname','ASC')->get();
+
 
     
-        return view('visitador.visitas', compact('visitas','f1','f2'));
+        return view('visitador.visitas', compact('visitas','f1','f2','profesionales'));
         //
     }
 

@@ -94,6 +94,16 @@
                     <label for="exampleInputEmail1">Fecha Fin</label>
                     <input type="date" class="form-control" value="{{$f2}}" name="fin">
                   </div>
+
+                  <div class="col-md-4">
+                    <label for="exampleInputEmail1">Profesional</label>
+                    <select class="form-control" name="prof" id="el2">
+                    <option value="0">Selecciona</option>
+                        @foreach($profesionales as $prof)
+						    <option value="{{$prof->id}}">{{$prof->lastname}} {{$prof->name}}</option>
+                        @endforeach
+                        </select>
+                  </div>
                   
                 
                  
