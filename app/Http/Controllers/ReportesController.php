@@ -2050,6 +2050,7 @@ class ReportesController extends Controller
             $creditos = DB::table('creditos as a')
             ->select('a.*','b.name','b.lastname')
             ->join('users as b','b.id','a.usuario')
+            ->where('a.sede','=',$request->session()->get('sede'))
             ->whereBetween('a.fecha', [$f1, $f2])
             ->orderBy('a.id','DESC')
             ->get();
@@ -2066,6 +2067,7 @@ class ReportesController extends Controller
             $creditos = DB::table('creditos as a')
             ->select('a.*','b.name','b.lastname')
             ->join('users as b','b.id','a.usuario')
+            ->where('a.sede','=',$request->session()->get('sede'))
             ->whereBetween('a.fecha', [$f1, $f2])
             ->orderBy('a.id','DESC')
             ->get();
