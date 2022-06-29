@@ -111,7 +111,7 @@ class IngresosController extends Controller
         $cre->save();
 
 
-        return view('ingresos.index'); //
+        return redirect()->action('IngresosController@index');
 
     }
 
