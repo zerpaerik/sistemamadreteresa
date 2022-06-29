@@ -119,6 +119,7 @@
                     <th>Visitador</th>
                     <th>Fecha de Visita</th>
                     <th>Turno</th>
+                    <th>Acciones</th>
                   </tr>
                   </thead>
                   <tbody>
@@ -131,6 +132,15 @@
                     <td>{{$an->visiape}} {{$an->visiname}}</td>
                     <td>{{date('d-M-y h:m', strtotime($an->created_at))}}</td>
                     <td>{{$an->turno}}</td>
+                    <td>
+                    <a class="btn btn-danger btn-sm" href="visitas-eliminar-{{$an->id}}" onclick="return confirm('¿Desea Eliminar este registro?')">
+                              <i class="fas fa-trash">
+                              </i>
+                              Eliminar
+                          </a>
+
+                    </td>
+
 
                 
                 
@@ -147,6 +157,8 @@
                     <th>Visitador</th>
                     <th>Fecha de Visita</th>
                     <th>Turno</th>
+                    <th>Acciones</th>
+
                   </tr>
                   </tfoot>
                 </table>

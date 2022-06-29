@@ -198,7 +198,7 @@ class VisitadorController extends Controller
           ->join('users as b', 'b.id', 'a.profesional')
           ->join('users as c', 'c.id', 'a.usuario')
           ->join('centros as d', 'd.id', 'b.centro')
-          ->whereBetween('a.created_at', [date('Y-m-d 00:00:00', strtotime($f1)), date('Y-m-d 23:59:59', strtotime($f1))])
+          ->whereBetween('a.created_at', [date('Y-m-d 00:00:00', strtotime($f1)), date('Y-m-d 23:59:59', strtotime($f2))])
           //->whereBetween('a.nacimiento', [$f1, $f2])
           ->get();
       } else {
@@ -210,7 +210,7 @@ class VisitadorController extends Controller
         ->join('users as b', 'b.id', 'a.profesional')
         ->join('users as c', 'c.id', 'a.usuario')
         ->join('centros as d', 'd.id', 'b.centro')
-        ->whereBetween('a.created_at', [date('Y-m-d 00:00:00', strtotime($f1)), date('Y-m-d 23:59:59', strtotime($f1))])
+        ->whereBetween('a.created_at', [date('Y-m-d 00:00:00', strtotime($f1)), date('Y-m-d 23:59:59', strtotime($f2))])
         //->whereBetween('a.nacimiento', [$f1, $f2])
         ->get();
 
@@ -287,6 +287,20 @@ class VisitadorController extends Controller
 
         //
     }
+
+    
+
+        public function eliminar($id)
+        {
+
+          $visitas = Visitas::where('id','=',$id)->first();
+          $visitas->delete();
+    
+        
+          return back();
+    
+            //
+        }
 
     public function reversar($id)
     {

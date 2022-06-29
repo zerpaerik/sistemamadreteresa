@@ -497,6 +497,7 @@ Route::get('saldo/view/{id}', 'CajaController@saldo');
 Route::get('visitas', 'VisitadorController@visitas')->name('visitas.index');
 Route::get('visitas-create', 'VisitadorController@create_visitas')->name('visitas.create');
 Route::post('visitas/guardar', 'VisitadorController@guardar_visitas');
+Route::get('visitas-eliminar-{id}','VisitadorController@eliminar');
 
 
 
