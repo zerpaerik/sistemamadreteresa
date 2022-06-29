@@ -371,6 +371,13 @@
             </a>
             <ul class="nav nav-treeview">
 
+            <li class="nav-item">
+                <a href="{{route('visitas.index')}}" class="nav-link">
+                  <i class="fas fa-hand-holding-usd nav-icon"></i>
+                  <p>Visitas</p>
+                </a>
+              </li>
+
 
             <li class="nav-item">
                 <a href="{{route('comisionespe.index')}}" class="nav-link">
@@ -1702,6 +1709,13 @@
               </p>
             </a>
             <ul class="nav nav-treeview">
+
+            <li class="nav-item">
+                <a href="{{route('visitas.index')}}" class="nav-link">
+                  <i class="fas fa-hand-holding-usd nav-icon"></i>
+                  <p>Visitas</p>
+                </a>
+              </li>
 
 
             <li class="nav-item">

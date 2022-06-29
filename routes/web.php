@@ -494,6 +494,13 @@ Route::get('caja-ticket-{id}','CajaController@ticket');
 Route::get('caja-cerrar-{id}','CajaController@cerrar');
 Route::get('saldo/view/{id}', 'CajaController@saldo');
 
+Route::get('visitas', 'VisitadorController@visitas')->name('visitas.index');
+Route::get('visitas-create', 'VisitadorController@create_visitas')->name('visitas.create');
+Route::post('visitas/guardar', 'VisitadorController@guardar_visitas');
+
+
+
+
 
 Route::get('creditos_b', 'CreditosController@creditosb')->name('creditos.b')->middleware('auth');
 Route::get('creditos_c', 'CreditosController@creditosc')->name('creditos.c')->middleware('auth');

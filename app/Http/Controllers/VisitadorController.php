@@ -11,6 +11,7 @@ use App\Servicios;
 use App\User;
 use App\Atenciones;
 use App\Comisiones;
+use App\Visitas;
 use Auth;
 use Illuminate\Http\Request;
 use DB;
@@ -181,6 +182,70 @@ class VisitadorController extends Controller
     
         return view('visitador.cumples', compact('prof','f1','f2'));
         //
+    }
+
+    public function visitas(Request $request)
+    {
+
+
+      if ($request->inicio) {
+          $f1 = $request->inicio;
+          $f2 = $request->fin;
+
+
+          $visitas = DB::table('visitas as a')
+          ->select('a.id', 'a.profesional', 'a.turno','a.usuario','a.created_at', 'b.centro','b.telefono', 'b.name as namep','b.lastname as apep','c.name as visiname','c.lastname as visiape','d.nombre as centro')
+          ->join('users as b', 'b.id', 'a.profesional')
+          ->join('users as c', 'c.id', 'a.usuario')
+          ->join('centros as d', 'd.id', 'b.centro')
+          ->whereBetween('a.created_at', [date('Y-m-d 00:00:00', strtotime($f1)), date('Y-m-d 23:59:59', strtotime($f1))])
+          //->whereBetween('a.nacimiento', [$f1, $f2])
+          ->get();
+      } else {
+        $f1 = date('Y-m-d');
+        $f2 = date('Y-m-d');
+
+        $visitas = DB::table('visitas as a')
+        ->select('a.id', 'a.profesional', 'a.turno','a.usuario','a.created_at', 'b.centro','b.telefono', 'b.name as namep','b.lastname as apep','c.name as visiname','c.lastname as visiape','d.nombre as centro')
+        ->join('users as b', 'b.id', 'a.profesional')
+        ->join('users as c', 'c.id', 'a.usuario')
+        ->join('centros as d', 'd.id', 'b.centro')
+        ->whereBetween('a.created_at', [date('Y-m-d 00:00:00', strtotime($f1)), date('Y-m-d 23:59:59', strtotime($f1))])
+        //->whereBetween('a.nacimiento', [$f1, $f2])
+        ->get();
+
+
+      }
+
+    
+        return view('visitador.visitas', compact('visitas','f1','f2'));
+        //
+    }
+
+    
+    public function create_visitas()
+    {
+
+        $profesionales = User::where('estatus','=',1)->where('tipo','=',2)->orderBy('lastname','ASC')->get();
+
+        return view('visitador.create', compact('profesionales'));
+        //
+    }
+
+    public function guardar_visitas (Request $request)
+    {
+
+       // dd($request->all());
+
+        $tiempo = new Visitas();
+        $tiempo->profesional =$request->prof;
+        $tiempo->turno =$request->turno;
+        $tiempo->usuario =Auth::user()->id;
+        $tiempo->save();
+
+        return redirect()->action('VisitadorController@visitas');
+
+
     }
 
 
