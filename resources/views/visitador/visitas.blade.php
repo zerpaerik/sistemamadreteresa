@@ -118,6 +118,7 @@
                     <th>Consultorio</th>
                     <th>Visitador</th>
                     <th>Fecha de Visita</th>
+                    <th>Turno</th>
                   </tr>
                   </thead>
                   <tbody>
@@ -129,6 +130,7 @@
                     <td>{{$an->centro}}</td>
                     <td>{{$an->visiape}} {{$an->visiname}}</td>
                     <td>{{date('d-M-y h:m', strtotime($an->created_at))}}</td>
+                    <td>{{$an->turno}}</td>
 
                 
                 
@@ -144,6 +146,7 @@
                     <th>Consultorio</th>
                     <th>Visitador</th>
                     <th>Fecha de Visita</th>
+                    <th>Turno</th>
                   </tr>
                   </tfoot>
                 </table>
