@@ -44,7 +44,7 @@ class ProfesionalesController extends Controller
     {
 
         $especialidades = Especialidades::all();
-        $centros = Centros::where('estatus','=',1)->get();
+        $centros = Centros::where('estatus','=',1)->orderBy('nombre','ASC')->get();
 
         return view('profesionales.create', compact('especialidades','centros'));
     
@@ -105,7 +105,7 @@ class ProfesionalesController extends Controller
         ->where('a.id','=',$id)
         ->first(); 
         $especialidades = Especialidades::all();
-        $centros = Centros::where('estatus','=',1)->get();
+        $centros = Centros::where('estatus','=',1)->orderBy('nombre','ASC')->get();
         return view('profesionales.edit', compact('prof','especialidades','centros')); //
     }
 

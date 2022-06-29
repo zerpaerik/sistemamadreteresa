@@ -111,8 +111,7 @@ class IngresosController extends Controller
         $cre->save();
 
 
-
-        return redirect()->action('IngresosController@index', ["created" => true, "ingresos" => Creditos::all()]);
+        return view('ingresos.index'); //
 
     }
 
