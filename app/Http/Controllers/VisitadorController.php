@@ -149,11 +149,11 @@ class VisitadorController extends Controller
 
 
       if ($request->inicio) {
-          $f1 = $request->inicio;
-          $f2 = $request->fin;
+          $f1 = $request->inicio->format('M-d');
+          $f2 = $request->fin->format('M-d');
 
 
-          $prof = DB::table('users as a')
+        $prof = DB::table('users as a')
         ->select('a.id', 'a.name', 'a.lastname','a.nacimiento', 'a.telefono', 'a.especialidad', 'a.estatus', 'a.tipo', 'a.centro', 'a.email', 'b.nombre as especialidad', 'c.nombre as centro_name')
         ->join('especialidades as b', 'b.id', 'a.especialidad')
         ->join('centros as c', 'c.id', 'a.centro')
@@ -162,9 +162,10 @@ class VisitadorController extends Controller
         ->whereBetween('a.nacimiento', [$f1, $f2])
         ->distinct('a.id')
         ->get();
+
       } else {
-        $f1 = date('Y-m-d');
-        $f2 = date('Y-m-d');
+        $f1 = date('M-d');
+        $f2 = date('M-d');
 
         $prof = DB::table('users as a')
         ->select('a.id', 'a.name', 'a.lastname','a.nacimiento', 'a.telefono', 'a.especialidad', 'a.estatus', 'a.tipo',  'a.email', 'b.nombre as especialidad', 'c.nombre as centro_name')
