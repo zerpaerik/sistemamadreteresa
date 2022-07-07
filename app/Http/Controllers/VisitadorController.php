@@ -159,7 +159,7 @@ class VisitadorController extends Controller
         ->join('centros as c', 'c.id', 'a.centro')
         ->where('a.estatus', '=', 1)
         ->where('a.tipo', '=', 2)
-        ->whereBetween('a.nacimiento', [$f1, $f2])
+        ->whereBetween(date("m-d", strtotime('a.nacimiento')), [$f1, $f2])
         ->distinct('a.id')
         ->get();
 
@@ -173,7 +173,7 @@ class VisitadorController extends Controller
         ->join('centros as c', 'c.id', 'a.centro')
         ->where('a.estatus', '=', 1)
         ->where('a.tipo', '=', 2)
-        ->whereBetween('a.nacimiento', [$f1, $f2])
+        ->whereBetween(date("m-d", strtotime('a.nacimiento')), [$f1, $f2])
         ->distinct('a.id')
         ->get();
 
