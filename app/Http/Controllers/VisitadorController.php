@@ -149,8 +149,8 @@ class VisitadorController extends Controller
 
 
       if ($request->inicio) {
-          $f1 = $request->inicio->format('M-d');
-          $f2 = $request->fin->format('M-d');
+          $f1 = date("Y-m-d", strtotime($request->inicio));
+          $f2 = date("Y-m-d", strtotime($request->fin));
 
 
         $prof = DB::table('users as a')
