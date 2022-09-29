@@ -77,7 +77,9 @@
 	<table>
 		<tr>
 		    <th style="padding: 0;width: 20%;text-overflow: ellipsis;">DETALLE</th>
-			<th style="padding: 0;width: 40%;text-overflow: ellipsis;">PACIENTE</th>
+			<th style="padding: 0;width: 10%;text-overflow: ellipsis;">FECHA</th>
+			<th style="padding: 0;width: 30%;text-overflow: ellipsis;">PACIENTE</th>
+			<th style="padding: 0;width: 10%;text-overflow: ellipsis;">TELEFONO</th>
 			<th style="padding: 0;width: 10%;text-overflow: ellipsis;">MONTO</th>
             <th style="padding: 0;width: 10%;text-overflow: ellipsis;">ABONO</th>
 
@@ -89,9 +91,11 @@
 		@foreach($resultados as $ingreso)
 		<tr>
 		    <td style="padding: 0;width: 20%;text-overflow: ellipsis;">{{$ingreso->servicio }}</td>
-			<td style="padding: 0;width: 40%;text-overflow: ellipsis;">{{ $ingreso->apellidos }} {{ $ingreso->nombres }}</td>
-			<td style="padding: 0;width: 5%;text-overflow: ellipsis;">{{ $ingreso->monto }}</td>
-            <td style="padding: 0;width: 5%;text-overflow: ellipsis;">{{ $ingreso->abono }}</td>
+			<td style="padding: 0;width: 10%;text-overflow: ellipsis;">{{$ingreso->created_at }}</td>
+			<td style="padding: 0;width: 30%;text-overflow: ellipsis;">{{ $ingreso->apellidos }} {{ $ingreso->nombres }}</td>
+			<td style="padding: 0;width: 10%;text-overflow: ellipsis;">{{$ingreso->telefono }}</td>
+			<td style="padding: 0;width: 10%;text-overflow: ellipsis;">{{ $ingreso->monto }}</td>
+            <td style="padding: 0;width: 10%;text-overflow: ellipsis;">{{ $ingreso->abono }}</td>
 
 		</tr>
 		@endforeach
