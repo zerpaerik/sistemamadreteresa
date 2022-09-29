@@ -458,7 +458,7 @@ class ReportesController extends Controller
         ->where('a.estatus', '=', 1)
         ->where('a.tipo_atencion', '=', 1)
         ->where('a.monto', '!=', '0')
-        ->orderBy('a.id','DESC')
+        ->orderBy('a.created_at','ASC')
         ->where('a.id_paciente', '=', $request->id_paciente);
        // ->get(); 
 
@@ -471,7 +471,7 @@ class ReportesController extends Controller
         ->where('a.estatus', '=', 1)
         ->where('a.tipo_atencion', '=', 2)
         ->where('a.monto', '!=', '0')
-        ->orderBy('a.id','DESC')
+        ->orderBy('a.created_at','ASC')
         ->where('a.id_paciente', '=', $request->id_paciente);
 
         $cons = DB::table('atenciones as a')
@@ -483,7 +483,7 @@ class ReportesController extends Controller
         ->where('a.estatus', '=', 1)
         ->where('a.tipo_atencion', '=', 5)
         ->where('a.monto', '!=', '0')
-        ->orderBy('a.id','DESC')
+        ->orderBy('a.created_at','ASC')
         ->where('a.id_paciente', '=', $request->id_paciente);
 
         $meto = DB::table('atenciones as a')
@@ -495,7 +495,7 @@ class ReportesController extends Controller
         ->where('a.estatus', '=', 1)
         ->where('a.tipo_atencion', '=', 6)
         ->where('a.monto', '!=', '0')
-        ->orderBy('a.id','DESC')
+        ->orderBy('a.created_at','ASC')
         ->where('a.id_paciente', '=', $request->id_paciente);
 
         
@@ -508,7 +508,7 @@ class ReportesController extends Controller
         ->where('a.estatus', '=', 1)
         ->where('a.tipo_atencion', '=', 8)
         ->where('a.monto', '!=', '0')
-        ->orderBy('a.id','DESC')
+        ->orderBy('a.created_at','ASC')
         ->where('a.id_paciente', '=', $request->id_paciente);
 
         $ana = DB::table('atenciones as a')
@@ -520,7 +520,7 @@ class ReportesController extends Controller
         ->where('a.estatus', '=', 1)
         ->where('a.tipo_atencion', '=', 4)
         ->where('a.monto', '!=', '0')
-        ->orderBy('a.id','DESC')
+        ->orderBy('a.created_at','ASC')
         ->where('a.id_paciente', '=', $request->id_paciente);
 
         $paq = DB::table('atenciones as a')
@@ -532,7 +532,7 @@ class ReportesController extends Controller
         ->where('a.estatus', '=', 1)
         ->where('a.tipo_atencion', '=', 7)
         ->where('a.monto', '!=', '0')
-        ->orderBy('a.id','DESC')
+        ->orderBy('a.created_at','ASC')
         ->where('a.id_paciente', '=', $request->id_paciente);
 
 
@@ -545,7 +545,7 @@ class ReportesController extends Controller
         ->where('a.estatus', '=', 1)
         ->where('a.tipo_atencion', '=', 6)
         ->where('a.monto', '!=', '0')
-        ->orderBy('a.id','DESC')
+        ->orderBy('a.created_at','ASC')
         ->where('a.id_paciente', '=', $request->id_paciente);
 
         $consultas = DB::table('atenciones as a')
@@ -557,7 +557,7 @@ class ReportesController extends Controller
         ->where('a.estatus', '=', 1)
         ->where('a.tipo_atencion', '=', 5)
         ->where('a.monto', '!=', '0')
-        ->orderBy('a.id','DESC')
+        ->orderBy('a.created_at','ASC')
         ->where('a.id_paciente', '=', $request->id_paciente);
         //->get(); 
 
@@ -573,7 +573,7 @@ class ReportesController extends Controller
         ->where('a.tipo_atencion', '=', 3)
         ->where('a.monto', '!=', '0')
         ->where('a.id_paciente', '=', $request->id_paciente)
-        ->orderBy('a.id','DESC')
+        ->orderBy('a.created_at','ASC')
         ->union($serv)
         ->union($eco)
         ->union($ana)
@@ -948,7 +948,7 @@ class ReportesController extends Controller
                 ->get();
 
                 $resultadost = DB::table('atenciones as a')
-                ->select('a.id', 'a.tipo_atencion', 'a.id_tipo', 'a.usuario', 'a.resta','a.created_at', 'a.estatus', 'a.abono',DB::raw('SUM(a.monto) as monto,COUNT(*) as cantidad'), 'a.sede', 'a.id_paciente', 'a.id_origen', 's.nombre as servicio', 's.id as id_tipo', 'pa.nombres', 'pa.apellidos', 'c.name', 'c.lastname')
+                ->select('a.id', 'a.tipo_atencion', 'a.id_tipo', 'a.usuario', 'a.resta','a.created_at', 'a.estatus', 'a.abono',DB::raw('SUM(a.monto) as monto,COUNT(*) as cantidad'), 'a.sede', 'a.id_paciente', 'a.id_origen', 's.nombre as servicio', 's.id as id_tipo', 'pa.nombres','pa.telefono', 'pa.apellidos', 'c.name', 'c.lastname')
                 ->join('users as c', 'c.id', 'a.usuario')
                 ->join('pacientes as pa', 'pa.id', 'a.id_paciente')
                 ->join('tipo_con as s', 's.id', 'a.id_tipo')
@@ -964,7 +964,7 @@ class ReportesController extends Controller
             } else if ($tipo == 7){
 
                 $resultados = DB::table('atenciones as a')
-                ->select('a.id', 'a.tipo_atencion', 'a.id_tipo', 'a.usuario', 'a.resta', 'a.monto',  'a.created_at', 'a.estatus', 'a.abono', 'a.sede', 'a.id_paciente', 'a.id_origen', 's.nombre as servicio', 's.id as id_tipo','s.precio as pre_ser', 'pa.nombres', 'pa.apellidos', 'c.name', 'c.lastname')
+                ->select('a.id', 'a.tipo_atencion', 'a.id_tipo', 'a.usuario', 'a.resta', 'a.monto',  'a.created_at', 'a.estatus', 'a.abono', 'a.sede', 'a.id_paciente', 'a.id_origen', 's.nombre as servicio', 's.id as id_tipo','s.precio as pre_ser', 'pa.nombres', 'pa.apellidos','pa.telefono', 'c.name', 'c.lastname')
                 ->join('users as c', 'c.id', 'a.usuario')
                 ->join('pacientes as pa', 'pa.id', 'a.id_paciente')
                 ->join('paquetes as s', 's.id', 'a.id_tipo')
@@ -978,7 +978,7 @@ class ReportesController extends Controller
                 ->get();
 
                 $resultadost = DB::table('atenciones as a')
-                ->select('a.id', 'a.tipo_atencion', 'a.id_tipo', 'a.usuario', 'a.resta','a.created_at', 'a.estatus', 'a.abono',DB::raw('SUM(a.monto) as monto,COUNT(*) as cantidad'), 'a.sede', 'a.id_paciente', 'a.id_origen', 's.nombre as servicio', 's.id as id_tipo', 'pa.nombres', 'pa.apellidos', 'c.name', 'c.lastname')
+                ->select('a.id', 'a.tipo_atencion', 'a.id_tipo', 'a.usuario', 'a.resta','a.created_at', 'a.estatus', 'a.abono',DB::raw('SUM(a.monto) as monto,COUNT(*) as cantidad'), 'a.sede', 'a.id_paciente', 'a.id_origen', 's.nombre as servicio', 's.id as id_tipo', 'pa.nombres', 'pa.apellidos','pa.telefono', 'c.name', 'c.lastname')
                 ->join('users as c', 'c.id', 'a.usuario')
                 ->join('pacientes as pa', 'pa.id', 'a.id_paciente')
                 ->join('paquetes as s', 's.id', 'a.id_tipo')
@@ -993,7 +993,7 @@ class ReportesController extends Controller
             } else if ($tipo == 5){
 
                 $resultados = DB::table('atenciones as a')
-                ->select('a.id', 'a.tipo_atencion', 'a.id_tipo', 'a.usuario', 'a.resta', 'a.monto',  'a.created_at', 'a.estatus', 'a.abono', 'a.sede', 'a.id_paciente', 'a.id_origen', 's.nombre as servicio', 's.id as id_tipo','s.precio as pre_ser', 'pa.nombres', 'pa.apellidos', 'c.name', 'c.lastname')
+                ->select('a.id', 'a.tipo_atencion', 'a.id_tipo', 'a.usuario', 'a.resta', 'a.monto',  'a.created_at', 'a.estatus', 'a.abono', 'a.sede', 'a.id_paciente', 'a.id_origen', 's.nombre as servicio', 's.id as id_tipo','s.precio as pre_ser', 'pa.nombres', 'pa.apellidos','pa.telefono', 'c.name', 'c.lastname')
                 ->join('users as c', 'c.id', 'a.usuario')
                 ->join('pacientes as pa', 'pa.id', 'a.id_paciente')
                 ->join('tipo_con as s', 's.id', 'a.id_tipo')
@@ -1007,7 +1007,7 @@ class ReportesController extends Controller
                 ->get();
 
                 $resultadost = DB::table('atenciones as a')
-                ->select('a.id', 'a.tipo_atencion', 'a.id_tipo', 'a.usuario', 'a.resta','a.created_at', 'a.estatus', 'a.abono',DB::raw('SUM(a.monto) as monto,COUNT(*) as cantidad'), 'a.sede', 'a.id_paciente', 'a.id_origen', 's.nombre as servicio', 's.id as id_tipo', 'pa.nombres', 'pa.apellidos', 'c.name', 'c.lastname')
+                ->select('a.id', 'a.tipo_atencion', 'a.id_tipo', 'a.usuario', 'a.resta','a.created_at', 'a.estatus', 'a.abono',DB::raw('SUM(a.monto) as monto,COUNT(*) as cantidad'), 'a.sede', 'a.id_paciente', 'a.id_origen', 's.nombre as servicio', 's.id as id_tipo', 'pa.nombres', 'pa.apellidos','pa.telefono', 'c.name', 'c.lastname')
                 ->join('users as c', 'c.id', 'a.usuario')
                 ->join('pacientes as pa', 'pa.id', 'a.id_paciente')
                 ->join('tipo_con as s', 's.id', 'a.id_tipo')
@@ -1023,7 +1023,7 @@ class ReportesController extends Controller
             } else if ($tipo == 6){
 
                 $resultados = DB::table('atenciones as a')
-                ->select('a.id', 'a.tipo_atencion', 'a.id_tipo', 'a.usuario', 'a.resta', 'a.monto',  'a.created_at', 'a.estatus', 'a.abono', 'a.sede', 'a.id_paciente', 'a.id_origen', 's.nombre as servicio','s.id as id_tipo', 'pa.nombres', 'pa.apellidos', 'c.name', 'c.lastname')
+                ->select('a.id', 'a.tipo_atencion', 'a.id_tipo', 'a.usuario', 'a.resta', 'a.monto',  'a.created_at', 'a.estatus', 'a.abono', 'a.sede', 'a.id_paciente', 'a.id_origen', 's.nombre as servicio','s.id as id_tipo', 'pa.nombres', 'pa.apellidos','pa.telefono', 'c.name', 'c.lastname')
                 ->join('users as c', 'c.id', 'a.usuario')
                 ->join('pacientes as pa', 'pa.id', 'a.id_paciente')
                 ->join('meto_pro as s', 's.id', 'a.id_tipo')
@@ -1037,7 +1037,7 @@ class ReportesController extends Controller
                 ->get();
 
                 $resultadost = DB::table('atenciones as a')
-                ->select('a.id', 'a.tipo_atencion', 'a.id_tipo', 'a.usuario', 'a.resta','a.created_at', 'a.estatus', 'a.abono',DB::raw('SUM(a.monto) as monto,COUNT(*) as cantidad'), 'a.sede', 'a.id_paciente', 'a.id_origen', 's.nombre as servicio', 's.id as id_tipo', 'pa.nombres', 'pa.apellidos', 'c.name', 'c.lastname')
+                ->select('a.id', 'a.tipo_atencion', 'a.id_tipo', 'a.usuario', 'a.resta','a.created_at', 'a.estatus', 'a.abono',DB::raw('SUM(a.monto) as monto,COUNT(*) as cantidad'), 'a.sede', 'a.id_paciente', 'a.id_origen', 's.nombre as servicio', 's.id as id_tipo', 'pa.nombres', 'pa.apellidos','pa.telefono', 'c.name', 'c.lastname')
                 ->join('users as c', 'c.id', 'a.usuario')
                 ->join('pacientes as pa', 'pa.id', 'a.id_paciente')
                 ->join('meto_pro as s', 's.id', 'a.id_tipo')
