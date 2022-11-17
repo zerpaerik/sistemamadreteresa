@@ -37,7 +37,7 @@
     <br><br>
 
 	<div class="" style="font-size: 35px; text-align: center;margin-bottom: 15px;">
-		<img src="/var/www/html/sistemamadreteresa/public/image.png"  style="width: 40%; color: black;"/>
+		<img src="/var/www/html/mt/sistemamadreteresa/public/image.png"  style="width: 40%; color: black;"/>
 	</div>
 
     <div  style="font-size: 15px; text-align: center;margin-bottom:-60px;margin-top: -30px;">
@@ -61,7 +61,7 @@
         <p style="margin-top: -10px;"><strong>Dirección: Av Próceres de la independencia 1795
 2do piso SJL</strong></p>
 		<p style="margin-top: -20px;"><strong>Teléfono:  01 4596494</strong></p>
-		<p style="margin-top: -20px;"><strong>WhatsApp: 978 216 315</strong></p>
+		<p style="margin-top: -20px;"><strong>WhatsApp: 978 216 135</strong></p>
     @elseif(Session::get('sedeName') == 'LABORATORIO VIDA')
    <p><strong>VIDA FELIZ SAC- MADRE TERESA</strong></p>
 		<p style="margin-top: -20px;"><strong>RUC: 20602415539</strong></p>
