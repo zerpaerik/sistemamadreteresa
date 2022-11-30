@@ -83,6 +83,7 @@
                 <table id="example1" class="table table-bordered table-striped">
                   <thead>
                   <tr>
+                  <th>Id</th>
                     <th>Nombres</th>
                     <th>Apellidos</th>
                     <th>Nacimiento</th>
@@ -96,6 +97,7 @@
 
                   @foreach($prof as $p)
                   <tr>
+                  <td>{{$p->id}}</td>
                     <td>{{$p->name}}</td>
                     <td>{{$p->lastname}}</td>
                     @if($p->nacimiento != null)
@@ -131,7 +133,8 @@
                   </tbody>
                   <tfoot>
                   <tr>
-                  <th>Nombres</th>
+                  <th>Id</th>
+                    <th>Nombres</th>
                     <th>Apellidos</th>
                     <th>Nacimiento</th>
                     <th>Centro</th>
