@@ -118,7 +118,8 @@
                     <td>{{date('d-M-y', strtotime($an->fecha))}}</td>
                     <td>{{$an->nombres}} {{$an->apellidos}}</td>
                     <td>{{$an->telefono}}</td>
-                    <td> <a class="btn btn-primary btn-sm" id="{{$an->id}}" onclick="viewhi(this)">
+                    <td>Registrado Por: {{$an->name}} {{$an->lastname}} 
+                        <a class="btn btn-primary btn-sm" id="{{$an->id}}" onclick="viewhi(this)">
                                     <i class="fas fa-eye">
                                     </i>
                                     Ver
