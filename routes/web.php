@@ -151,6 +151,13 @@ Route::get('pacientes-edit-{id}', 'PacientesController@edit')->name('pacientes.e
 Route::get('pacientes/ver/{id}', 'PacientesController@ver');
 Route::post('pacientes/edit', 'PacientesController@update');
 
+Route::get('resultados/anotar/{id}', 'ResultadosController@anotar');
+Route::post('resultados/anotar', 'ResultadosController@anotarPost');
+Route::get('anotaciones', 'ResultadosController@anotaciones')->name('anotaciones.index');;
+
+
+
+
 Route::get('productos_usados', 'ProductosUsadosController@index')->name('productosu.index');
 Route::get('productos_usados1', 'ProductosUsadosController@index1')->name('productosu.index1');
 Route::get('productos-usados-creater', 'ProductosUsadosController@creater')->name('productosu.creater')->middleware('auth');

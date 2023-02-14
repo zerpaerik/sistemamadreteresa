@@ -7,6 +7,7 @@ use App\Clientes;
 use App\Tiempo;
 use App\Material;
 use App\Pacientes;
+use App\Anotaciones;
 use App\Servicios;
 use App\User;
 use App\Atenciones;
@@ -722,8 +723,78 @@ class ResultadosController extends Controller
 
   }
 
+  public function anotar($id)
+  {
+
+    $pacientes = DB::table('pacientes as a')
+    ->select('a.id','a.nombres','a.dni','a.apellidos','a.ocupacion','a.tipo_doc','a.usuario','a.fechanac','a.email','a.sexo','a.telefono','a.empresa','a.estatus','u.name','u.lastname')
+    ->join('users as u', 'u.id', 'a.usuario')
+    ->where('a.id', '=', $id)
+    ->first(); 
+
+   // $edad = Carbon::parse($pacientes->fechanac)->age;
+  
+    
+    return view('resultados.anotar', compact('id'));
+  }	  
+
+  public function anotarPost(Request $request)
+  {
 
 
+        $lab = new Anotaciones();
+        $lab->id_resultado =  $request->id;
+        $lab->texto = $request->instru;
+        $lab->fecha =  $request->fecha;
+        $lab->usuario = Auth::user()->id;
+        $lab->save();
+
+        return back();
+
+  }	  
+
+
+  public function anotaciones(Request $request)
+  {
+
+      if ($request->inicio) {
+          $f1 = $request->inicio;
+          $f2 = $request->fin;
+
+
+          $anotaciones = DB::table('anotaciones as a')
+      ->select('a.*','b.id_paciente','pa.nombres', 'pa.apellidos','pa.telefono', 'c.name', 'c.lastname')
+      ->join('atenciones as b', 'b.id', 'a.id_resultado')
+      ->join('users as c', 'c.id', 'a.usuario')
+      ->join('pacientes as pa', 'pa.id', 'b.id_paciente')
+      ->whereBetween('a.fecha', [$f1, $f2])
+      ->orderBy('a.id','DESC')
+      //->where('a.monto', '!=', '0')
+      ->get();
+      } else {
+
+          $f1 = date('Y-m-d');
+          $f2 = date('Y-m-d');
+
+
+          $anotaciones = DB::table('anotaciones as a')
+          ->select('a.*','b.id_paciente','pa.nombres', 'pa.apellidos','pa.telefono', 'c.name', 'c.lastname')
+          ->join('atenciones as b', 'b.id', 'a.id_resultado')
+          ->join('users as c', 'c.id', 'a.usuario')
+          ->join('pacientes as pa', 'pa.id', 'b.id_paciente')
+          ->whereBetween('a.fecha', [$f1, $f2])
+          ->orderBy('a.id','DESC')
+          //->where('a.monto', '!=', '0')
+          ->get();
+
+          //->where('
+
+      }
+
+
+      return view('anotaciones.index', compact('anotaciones','f1','f2'));
+      //
+  }
 
 
     public function modelo_informe($id,$informe)
