@@ -57,12 +57,12 @@
       <div class="container-fluid">
         <div class="row mb-2">
           <div class="col-sm-6">
-            <h1 class="m-0 text-dark">Métodos</h1>
+            <h1 class="m-0 text-dark">Anotaciones</h1>
           </div><!-- /.col -->
           <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">
               <li class="breadcrumb-item"><a href="#">Home</a></li>
-              <li class="breadcrumb-item active">Métodos</li>
+              <li class="breadcrumb-item active">Anotaciones</li>
             </ol>
           </div><!-- /.col -->
         </div><!-- /.row -->
@@ -76,7 +76,7 @@
       <div class="container-fluid">
       <div class="card">
               <div class="card-header">
-              <form method="get" action="metodos">					
+              <form method="get" action="anotaciones">					
                   <label for="exampleInputEmail1">Filtros de Busqueda</label>
 
                     <div class="row">
@@ -101,60 +101,36 @@
               </div>
               <!-- /.card-header -->
               <div class="card-body">
-                <table id="example1" class="table table-bordered table-striped">
+                <table id="" class="table table-bordered table-striped">
                   <thead>
                   <tr>
-                    <th>Id</th>
                     <th>Fecha</th>
                     <th>Paciente</th>
-                    <th>Producto</th>
-                    <th>Monto</th>
+                    <th>Telefono</th>
+                    <th>Indicaciones</th>
                     <th>RP</th>
-                    <th>Acciones</th>
                   </tr>
                   </thead>
                   <tbody>
 
-                  @foreach($metodos as $an)
+                  @foreach($anotaciones as $an)
                   <tr>
-                    <td>{{$an->id}}</td>
                     <td>{{date('d-M-y H:i', strtotime($an->fecha))}}</td>
                     <td>{{$an->nombres}} {{$an->apellidos}}</td>
-                    <td>{{$an->producto}}</td>
-                    <td>{{$an->monto}}</td>
-                    <td>{{$an->nameo}} {{$an->lasto}}</td>
-
-                    <td>
-                    <a class="btn btn-primary btn-sm" id="{{$an->id_atencion}}" onclick="viewh1(this)">
-                                    <i class="fas fa-eye">
-                                    </i>
-                                    Anotaciòn
-                                </a>
-                    @if($an->estatus == 2)
-                    <p>APLICADO POR: {{$an->usuario_aplica}} </p>
-                    @else
-                    <a class="btn btn-primary btn-sm" id="{{$an->id}}" onclick="viewh(this)">
-                              <i class="fas fa-eye">
-                              </i>
-                              Aplicar
-                          </a>
-                    @endif
-                  
-                  
-                          </td>
+                    <td>{{$an->telefono}}</td>
+                    <td>{{$an->texto}}</td>
+                    <td>{{$an->name}} {{$an->lastname}}</td>
                   </tr>
                   @endforeach
                  
                   </tbody>
                   <tfoot>
                   <tr>
-                  <th>Id</th>
                     <th>Fecha</th>
                     <th>Paciente</th>
-                    <th>Producto</th>
-                    <th>Monto</th>
+                    <th>Telefono</th>
+                    <th>Indicaciones</th>
                     <th>RP</th>
-                    <th>Acciones</th>
                   </tr>
                   </tfoot>
                 </table>
@@ -172,24 +148,8 @@
     <!-- /.content -->
   </div>
   </div>
-  <div class="modal fade" id="viewTicket">
-        <div class="modal-dialog">
-          <div class="modal-content">
-            <div class="modal-header">
-              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                <span aria-hidden="true">&times;</span>
-              </button>
-            </div>
-            <div class="modal-body">
-            </div>
-           
-          </div>
-          <!-- /.modal-content -->
-        </div>
-        <!-- /.modal-dialog -->
-      </div>
 
-      <div class="modal fade" id="viewTicket1">
+  <div class="modal fade" id="viewTicket">
         <div class="modal-dialog">
           <div class="modal-content">
             <div class="modal-header">
@@ -216,6 +176,8 @@
   <!-- /.control-sidebar -->
 </div>
 <!-- ./wrapper -->
+
+<!-- jQuery -->
 <script src="plugins/jquery/jquery.min.js"></script>
 <!-- jQuery UI 1.11.4 -->
 <script src="plugins/jquery-ui/jquery-ui.min.js"></script>
@@ -266,34 +228,14 @@
 <script src="../../dist/js/adminlte.min.js"></script>
 <!-- AdminLTE for demo purposes -->
 <script src="../../dist/js/demo.js"></script>
-
-<script type="text/javascript">
-		function viewh1(e){
-		    var id = $(e).attr('id');
-		    
-		    $.ajax({
-		        type: "GET",
-		        url: "/resultados/anotar/"+id,
-		        success: function (data) {
-		            $("#viewTicket1 .modal-body").html(data);
-		            $('#viewTicket1').modal('show');
-		        },
-		        error: function (data) {
-		            console.log('Error:', data);
-		        }
-		    });
-		}
-
-	
-	</script>
-
+<!-- page script -->
 <script type="text/javascript">
 		function viewh(e){
 		    var id = $(e).attr('id');
 		    
 		    $.ajax({
 		        type: "GET",
-		        url: "/metodos/aplicar/"+id,
+		        url: "/resultados/anotar/"+id,
 		        success: function (data) {
 		            $("#viewTicket .modal-body").html(data);
 		            $('#viewTicket').modal('show');
@@ -306,30 +248,11 @@
 
 	
 	</script>
-
-
-<!-- page script -->
-<script>
-
-$(document).ready(function() {
-    $('#example').DataTable( {
-        dom: 'Bfrtip',
-        buttons: [
-            'excel', 'pdf', 'print'
-        ]
-    } );
-} );
-</script>
-
 <script>
   $(function () {
     $("#example1").DataTable({
       "responsive": true,
       "autoWidth": false,
-      dom: 'Bfrtip',
-      buttons: [
-            'copy', 'csv', 'excel', 'pdf', 'print'
-        ]
     });
     $('#example2').DataTable({
       "paging": true,
