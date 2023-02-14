@@ -132,6 +132,7 @@
                                     Registrar
                                 </a>
                                 @else
+                                Registrado Por: {{$an->usuario_respuesta}}
                                 <a class="btn btn-primary btn-sm" id="{{$an->id}}" onclick="viewhs(this)">
                                     <i class="fas fa-eye">
                                     </i>
