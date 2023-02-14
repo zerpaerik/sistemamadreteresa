@@ -736,7 +736,22 @@ class ResultadosController extends Controller
   
     
     return view('resultados.anotar', compact('id'));
-  }	  
+  }	 
+  
+  public function anotaG($id)
+  {
+
+    return view('anotaciones.respuesta', compact('id'));
+  }	 
+
+
+  public function anotaV($id)
+  {
+
+    $anotacion = Anotaciones::where('id','=',$id)->first();
+
+    return view('anotaciones.respuestaL', compact('anotacion'));
+  }	 
 
   public function anotarPost(Request $request)
   {
@@ -748,6 +763,19 @@ class ResultadosController extends Controller
         $lab->fecha =  $request->fecha;
         $lab->usuario = Auth::user()->id;
         $lab->save();
+
+        return back();
+
+  }	  
+
+  public function anotaP(Request $request)
+  {
+
+
+        $atencion = Anotaciones::where('id','=',$request->id)->first();
+        $atencion->estatus = 1;
+        $atencion->respuesta= $request->resp;
+        $atencion->save();
 
         return back();
 

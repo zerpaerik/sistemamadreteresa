@@ -108,18 +108,32 @@
                     <th>Paciente</th>
                     <th>Telefono</th>
                     <th>Indicaciones</th>
-                    <th>RP</th>
+                    <th>Acciones</th>
                   </tr>
                   </thead>
                   <tbody>
 
                   @foreach($anotaciones as $an)
                   <tr>
-                    <td>{{date('d-M-y H:i', strtotime($an->fecha))}}</td>
+                    <td>{{date('d-M-y', strtotime($an->fecha))}}</td>
                     <td>{{$an->nombres}} {{$an->apellidos}}</td>
                     <td>{{$an->telefono}}</td>
-                    <td>{{$an->texto}}</td>
-                    <td>{{$an->name}} {{$an->lastname}}</td>
+                    <td style="width: 50px;word-wrap: break-word;overflow: hidden">{{$an->texto}}</td>
+                    <td>
+                        @if($an->estatus == 0)
+                        <a class="btn btn-success btn-sm" id="{{$an->id}}" onclick="viewh(this)">
+                                    <i class="fas fa-edit">
+                                    </i>
+                                    Registrar
+                                </a>
+                                @else
+                                <a class="btn btn-primary btn-sm" id="{{$an->id}}" onclick="viewhs(this)">
+                                    <i class="fas fa-eye">
+                                    </i>
+                                    Ver
+                                </a>
+                                @endif
+                            </td>
                   </tr>
                   @endforeach
                  
@@ -130,7 +144,7 @@
                     <th>Paciente</th>
                     <th>Telefono</th>
                     <th>Indicaciones</th>
-                    <th>RP</th>
+                    <th>Acciones</th>
                   </tr>
                   </tfoot>
                 </table>
@@ -150,6 +164,23 @@
   </div>
 
   <div class="modal fade" id="viewTicket">
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="modal-body">
+            </div>
+           
+          </div>
+          <!-- /.modal-content -->
+        </div>
+        <!-- /.modal-dialog -->
+      </div>
+      
+  <div class="modal fade" id="viewTicket1">
         <div class="modal-dialog">
           <div class="modal-content">
             <div class="modal-header">
@@ -235,10 +266,30 @@
 		    
 		    $.ajax({
 		        type: "GET",
-		        url: "/resultados/anotar/"+id,
+		        url: "/anotaciones/registrarg/"+id,
 		        success: function (data) {
 		            $("#viewTicket .modal-body").html(data);
 		            $('#viewTicket').modal('show');
+		        },
+		        error: function (data) {
+		            console.log('Error:', data);
+		        }
+		    });
+		}
+
+	
+	</script>
+
+<script type="text/javascript">
+		function viewhs(e){
+		    var id = $(e).attr('id');
+		    
+		    $.ajax({
+		        type: "GET",
+		        url: "/anotaciones/ver/"+id,
+		        success: function (data) {
+		            $("#viewTicket1 .modal-body").html(data);
+		            $('#viewTicket1').modal('show');
 		        },
 		        error: function (data) {
 		            console.log('Error:', data);
