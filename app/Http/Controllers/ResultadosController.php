@@ -753,6 +753,15 @@ class ResultadosController extends Controller
     return view('anotaciones.respuestaL', compact('anotacion'));
   }	 
 
+  
+  public function anotaI($id)
+  {
+
+    $anotacion = Anotaciones::where('id','=',$id)->first();
+
+    return view('anotaciones.indicaciones', compact('anotacion'));
+  }	 
+
   public function anotarPost(Request $request)
   {
 

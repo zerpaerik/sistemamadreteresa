@@ -118,7 +118,11 @@
                     <td>{{date('d-M-y', strtotime($an->fecha))}}</td>
                     <td>{{$an->nombres}} {{$an->apellidos}}</td>
                     <td>{{$an->telefono}}</td>
-                    <td style="width: 50px;word-wrap: break-word;overflow: hidden">{{$an->texto}}</td>
+                    <td> <a class="btn btn-primary btn-sm" id="{{$an->id}}" onclick="viewhi(this)">
+                                    <i class="fas fa-eye">
+                                    </i>
+                                    Ver
+                                </a></td>
                     <td>
                         @if($an->estatus == 0)
                         <a class="btn btn-success btn-sm" id="{{$an->id}}" onclick="viewh(this)">
@@ -287,6 +291,26 @@
 		    $.ajax({
 		        type: "GET",
 		        url: "/anotaciones/ver/"+id,
+		        success: function (data) {
+		            $("#viewTicket1 .modal-body").html(data);
+		            $('#viewTicket1').modal('show');
+		        },
+		        error: function (data) {
+		            console.log('Error:', data);
+		        }
+		    });
+		}
+
+	
+	</script>
+
+<script type="text/javascript">
+		function viewhi(e){
+		    var id = $(e).attr('id');
+		    
+		    $.ajax({
+		        type: "GET",
+		        url: "/anotaciones/indicacion/"+id,
 		        success: function (data) {
 		            $("#viewTicket1 .modal-body").html(data);
 		            $('#viewTicket1').modal('show');
