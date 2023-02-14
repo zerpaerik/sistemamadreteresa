@@ -153,7 +153,12 @@ Route::post('pacientes/edit', 'PacientesController@update');
 
 Route::get('resultados/anotar/{id}', 'ResultadosController@anotar');
 Route::post('resultados/anotar', 'ResultadosController@anotarPost');
-Route::get('anotaciones', 'ResultadosController@anotaciones')->name('anotaciones.index');;
+Route::get('anotaciones', 'ResultadosController@anotaciones')->name('anotaciones.index');
+Route::get('anotaciones/registrarg/{id}', 'ResultadosController@anotaG');
+Route::get('anotaciones/ver/{id}', 'ResultadosController@anotaV');
+Route::post('anotaciones/registrar', 'ResultadosController@anotaP');
+
+
 
 
 
