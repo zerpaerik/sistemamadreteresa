@@ -771,6 +771,7 @@ class ResultadosController extends Controller
         $lab->texto = $request->instru;
         $lab->fecha =  $request->fecha;
         $lab->usuario = Auth::user()->id;
+        $lab->sede = $request->session()->get('sede');
         $lab->save();
 
         return back();
@@ -784,6 +785,8 @@ class ResultadosController extends Controller
         $atencion = Anotaciones::where('id','=',$request->id)->first();
         $atencion->estatus = 1;
         $atencion->respuesta= $request->resp;
+        $atencion->usuario_respuesta= Auth::user()->name." ".Auth::user()->lastname;
+
         $atencion->save();
 
         return back();
@@ -805,8 +808,8 @@ class ResultadosController extends Controller
       ->join('users as c', 'c.id', 'a.usuario')
       ->join('pacientes as pa', 'pa.id', 'b.id_paciente')
       ->whereBetween('a.fecha', [$f1, $f2])
+      ->where('a.sede', '=',  $request->session()->get('sede'))
       ->orderBy('a.id','DESC')
-      //->where('a.monto', '!=', '0')
       ->get();
       } else {
 
@@ -820,6 +823,7 @@ class ResultadosController extends Controller
           ->join('users as c', 'c.id', 'a.usuario')
           ->join('pacientes as pa', 'pa.id', 'b.id_paciente')
           ->whereBetween('a.fecha', [$f1, $f2])
+          ->where('a.sede', '=',  $request->session()->get('sede'))
           ->orderBy('a.id','DESC')
           //->where('a.monto', '!=', '0')
           ->get();
