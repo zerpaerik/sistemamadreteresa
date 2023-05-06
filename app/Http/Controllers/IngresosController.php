@@ -27,7 +27,7 @@ class IngresosController extends Controller
 
             $f1 = $request->inicio;
             $ingresos = DB::table('creditos as a')
-          ->select('a.id', 'a.origen', 'a.descripcion', 'a.monto','a.sede',  'a.usuario', 'a.created_at', 'b.name')
+          ->select('a.id', 'a.origen', 'a.descripcion','a.tipopago', 'a.monto','a.sede',  'a.usuario', 'a.created_at', 'b.name')
           ->join('users as b', 'b.id', 'a.usuario')
           ->where('a.origen', '=', 'INGRESOS')
           ->whereDate('a.created_at', date('Y-m-d 00:00:00', strtotime($f1)))
@@ -47,7 +47,7 @@ class IngresosController extends Controller
             $f1 =date('Y-m-d');
 
             $ingresos = DB::table('creditos as a')
-            ->select('a.id', 'a.origen', 'a.descripcion', 'a.sede','a.monto', 'a.usuario', 'a.created_at', 'b.name')
+            ->select('a.id', 'a.origen', 'a.descripcion', 'a.tipopago', 'a.sede','a.monto', 'a.usuario', 'a.created_at', 'b.name')
             ->join('users as b', 'b.id', 'a.usuario')
             ->where('a.origen', '=', 'INGRESOS')
             ->whereDate('a.created_at', date('Y-m-d 00:00:00', strtotime($f1)))
@@ -69,7 +69,7 @@ class IngresosController extends Controller
 
             //
         }
-        return view('ingresos.index', compact('ingresos', 'f1', 'ing'));
+        return view('ingresos.index', compact('ingresos', 'f1'));
 
     }
 

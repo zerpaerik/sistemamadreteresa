@@ -104,6 +104,7 @@
                     <th>Origen</th>
                     <th>Descripción</th>
                     <th>Monto</th>
+                    <th>TP</th>
                     <th>Registrado Por:</th>
                     <th>Fecha</th>
                     <th>Acciones</th>
@@ -116,6 +117,7 @@
                     <td>{{$client->origen}}</td>
                     <td>{{$client->descripcion}}</td>
                     <td>{{$client->monto}}</td>
+                    <td>{{$client->tipopago}}</td>
                     <td>{{$client->name}}</td>
                     <td>{{$client->created_at}}</td>
                     <td>
