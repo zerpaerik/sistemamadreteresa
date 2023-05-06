@@ -180,7 +180,6 @@
 
               @foreach($historias as $hist)
 
-              ID:{{$hist->id }}
 
               <div class="card-body">
                     <label for="exampleInputEmail1">Fecha: {{$hist->created_at }}</label>
