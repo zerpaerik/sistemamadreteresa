@@ -180,12 +180,13 @@
 
               @foreach($historias as $hist)
 
+
               <div class="card-body">
                     <label for="exampleInputEmail1">Fecha: {{$hist->created_at }}</label>
                     <div class="row">
                      <div class="col-md-12">
-                    <label for="exampleInputEmail1">Motivo de Consulta</label>
-                    <input type="text" onkeyup="javascript:this.value=this.value.toUpperCase();" class="form-control" id="nombre" disabled  name="sexo" value="{{$hist->motivo}}">
+                    <label for="exampleInputEmail1">Motivo de Consultas</label>
+                    <textarea name="" id="" cols="120" rows="5" disabled>{{$hist->motivo}}</textarea>
 
                    </div>
                     </div>
@@ -376,8 +377,6 @@
 
                 </div>
                 <!-- /.card-body -->
-
-            </div>
             @endforeach
 
 
