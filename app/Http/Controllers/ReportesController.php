@@ -867,6 +867,8 @@ class ReportesController extends Controller
        
         //$tipo = $request->tipo;
         //$resultados = [];
+
+        $count = 0;
         
 
         if($request->inicio && $request->fin && $request->tipo){
@@ -881,6 +883,9 @@ class ReportesController extends Controller
             ->whereBetween('a.created_at', [date('Y-m-d 00:00:00', strtotime($f1)), date('Y-m-d 23:59:59', strtotime($f2))])
             ->groupBy('a.id_paciente')
             ->get();
+
+            $count = count($pacientes);
+
        
 
         } else {
@@ -896,11 +901,15 @@ class ReportesController extends Controller
             ->where('a.estatus', '=', 1)
             ->whereBetween('a.created_at', [date('Y-m-d 00:00:00', strtotime($f1)), date('Y-m-d 23:59:59', strtotime($f2))])
             ->groupBy('a.id_paciente')
-            ->get();            
+            ->get();     
+
+            $count = count($pacientes);
+
+            
         }
 
 
-        return view('reportes.reporte_pacientes', compact('f1','f2','pacientes'));
+        return view('reportes.reporte_pacientes', compact('f1','f2','pacientes','count'));
 
        
 
@@ -1469,6 +1478,7 @@ class ReportesController extends Controller
         ->orderBy('a.id','DESC')
         ->groupBy('a.id_personal')
         ->get();
+
 
 
         //DB::raw('SUM(monto) as monto'),
