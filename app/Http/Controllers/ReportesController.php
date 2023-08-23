@@ -862,6 +862,50 @@ class ReportesController extends Controller
 
     }
 
+    public function reporte_pacientes(Request $request){
+
+       
+        //$tipo = $request->tipo;
+        //$resultados = [];
+        
+
+        if($request->inicio && $request->fin && $request->tipo){
+            $f1 = $request->inicio;
+            $f2 = $request->fin;
+        
+            $pacientes = DB::table('atenciones as a')
+            ->select('a.id', 'a.tipo_atencion', 'a.id_tipo', 'a.usuario', 'a.resta', DB::raw('SUM(a.monto) as monto,COUNT(*) as cantidad'), 'a.created_at', 'a.estatus', 'a.abono', 'a.sede', 'a.id_paciente', 'a.id_origen', 'pa.nombres', 'pa.apellidos', 'pa.dni','pa.telefono')
+            ->join('pacientes as pa', 'pa.id', 'a.id_paciente')
+            ->where('a.sede', '=', $request->session()->get('sede'))
+            ->where('a.estatus', '=', 1)
+            ->whereBetween('a.created_at', [date('Y-m-d 00:00:00', strtotime($f1)), date('Y-m-d 23:59:59', strtotime($f2))])
+            ->groupBy('a.id_paciente')
+            ->get();
+       
+
+        } else {
+
+            $f1 = date('Y-m-d');
+            $f2 = date('Y-m-d');
+
+
+            $pacientes = DB::table('atenciones as a')
+            ->select('a.id', 'a.tipo_atencion', 'a.id_tipo', 'a.usuario', 'a.resta','a.created_at', 'a.estatus', 'a.abono', 'a.sede', 'a.id_paciente', 'a.id_origen', 'pa.nombres', 'pa.apellidos', 'pa.dni','pa.telefono')
+            ->join('pacientes as pa', 'pa.id', 'a.id_paciente')
+            ->where('a.sede', '=', $request->session()->get('sede'))
+            ->where('a.estatus', '=', 1)
+            ->whereBetween('a.created_at', [date('Y-m-d 00:00:00', strtotime($f1)), date('Y-m-d 23:59:59', strtotime($f2))])
+            ->groupBy('a.id_paciente')
+            ->get();            
+        }
+
+
+        return view('reportes.reporte_pacientes', compact('f1','f2','pacientes'));
+
+       
+
+    }
+
     public function reporte_individual_pdf($tipo,$tipo2, $f1, $f2,Request $request){
 
 
