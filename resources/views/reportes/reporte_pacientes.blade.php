@@ -79,7 +79,7 @@
               <form method="get" action="reporte_pacientes">					
                   <label for="exampleInputEmail1">Filtros de Busqueda</label>
 
-                    <div class="row">
+                  <div class="row">
                   <div class="col-md-3">
                     <label for="exampleInputEmail1">Fecha Inicio</label>
                     <input type="date" class="form-control" value="{{$f1}}" name="inicio">
@@ -94,17 +94,15 @@
                  
                   <div class="col-md-2" style="margin-top: 30px;">
                   <button type="submit" class="btn btn-primary">Buscar</button>
-
                   </div>
                   </form>
-
-                
-              </div>
-              <div class="row">
-                    <div class="col-md-6">
-                      <p>Total:</p> {{count($pacientes)}}
-                    </div>
+                  <div class="col-md-1">
+                    <label for="exampleInputEmail1">Total</label>
+                    <input type="text" disabled class="form-control" value="{{count($pacientes)}}">
                   </div>
+
+              </div>
+             
               <!-- /.card-header -->
               <div class="card-body">
                 <table id="example1" class="table table-bordered table-striped">
