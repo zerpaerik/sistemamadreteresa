@@ -241,7 +241,7 @@
       //"pageLength": 100
       dom: 'Bfrtip',
       buttons: [
-           'csv', 'excel', 'pdf', 'print'
+           'csv', 'excel', 'pdf'
         ]
     });
     $('#example2').DataTable({
