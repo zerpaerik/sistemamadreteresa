@@ -97,8 +97,14 @@
 
                   </div>
                   </form>
-              
+
+                
               </div>
+              <div class="row">
+                    <div class="col-md-6">
+                      <p>Total:</p> {{count($pacientes)}}
+                    </div>
+                  </div>
               <!-- /.card-header -->
               <div class="card-body">
                 <table id="example1" class="table table-bordered table-striped">
