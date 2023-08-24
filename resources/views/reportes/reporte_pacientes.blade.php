@@ -238,7 +238,7 @@
     $("#example1").DataTable({
       "responsive": true,
       "autoWidth": false,
-      //"pageLength": 100
+      "pageLength": 100
       dom: 'Bfrtip',
       buttons: [
            'csv', 'excel', 'pdf'
