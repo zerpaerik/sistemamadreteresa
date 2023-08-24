@@ -57,12 +57,12 @@
       <div class="container-fluid">
         <div class="row mb-2">
           <div class="col-sm-6">
-            <h1 class="m-0 text-dark">Reporte Pacientes</h1>
+            <h1 class="m-0 text-dark">Reportes</h1>
           </div><!-- /.col -->
           <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">
-              <li class="breadcrumb-item"><a href="#">Reporte</a></li>
-              <li class="breadcrumb-item active">Pacientes</li>
+              <li class="breadcrumb-item"><a href="#">Reportes</a></li>
+              <li class="breadcrumb-item active">Pacientes Atendidos</li>
             </ol>
           </div><!-- /.col -->
         </div><!-- /.row -->
@@ -76,14 +76,11 @@
       <div class="container-fluid">
       <div class="card">
               <div class="card-header">
-         
-
-
-                  <form method="get" action="reporte_pacientes">					
+              <form method="get" action="reporte_pacientes">					
+                  <label for="exampleInputEmail1">Filtros de Busqueda</label>
 
                     <div class="row">
-
-                    <div class="col-md-3">
+                  <div class="col-md-3">
                     <label for="exampleInputEmail1">Fecha Inicio</label>
                     <input type="date" class="form-control" value="{{$f1}}" name="inicio">
                   </div>
@@ -93,66 +90,51 @@
                     <input type="date" class="form-control" value="{{$f2}}" name="fin">
                   </div>
                   
-
-                  <div class="col-md-2" style="margin-top: 1px;">
+                
+                 
+                  <div class="col-md-2" style="margin-top: 30px;">
                   <button type="submit" class="btn btn-primary">Buscar</button>
+
                   </div>
                   </form>
-
-                  <div class="row" style="margin-left: 5px;">
-
-                    <div class="col-md-2">
-                    <label for="exampleInputEmail1">Total: {{count($pacientes)}}</label>
-                    
-                  </div>
-
-            
-
-
-                
+              
               </div>
               <!-- /.card-header -->
               <div class="card-body">
-                <table id="example1"  class="table table-bordered table-striped">
+                <table id="example1" class="table table-bordered table-striped">
                   <thead>
                   <tr>
+                    <th>Fecha</th>
                     <th>Apellidos</th>
                     <th>Nombres</th>
                     <th>DNI</th>
-                    <th>Telefono</th>
-                    <th>Fecha</th>
-
+                    <th>Teléfono</th>
+                 
                   </tr>
                   </thead>
                   <tbody>
 
-                  
                   @foreach($pacientes as $an)
                   <tr>
-                    <td>{{$an->apellidos}}
+                    <td>{{date('d-M-y h:m', strtotime($an->created_at))}}</td>
+                    <td>{{$an->apellidos}}</td>
                     <td>{{$an->nombres}}</td>
                     <td>{{$an->dni}}</td>
                     <td>{{$an->telefono}}</td>
-                    <td>{{$an->created_at}}</td>
-
-                
                   </tr>
                   @endforeach
                  
                   </tbody>
                   <tfoot>
                   <tr>
+                  <th>Fecha</th>
                     <th>Apellidos</th>
                     <th>Nombres</th>
                     <th>DNI</th>
-                    <th>Telefono</th>
-                    <th>Fecha</th>
-
+                    <th>Teléfono</th>
                   </tr>
-                 
                   </tfoot>
                 </table>
-                <br>
               </div>
               <!-- /.card-body -->
             </div>
@@ -167,6 +149,22 @@
     <!-- /.content -->
   </div>
   </div>
+  <div class="modal fade" id="viewTicket">
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="modal-body">
+            </div>
+           
+          </div>
+          <!-- /.modal-content -->
+        </div>
+        <!-- /.modal-dialog -->
+      </div>
   </section>
 
   <!-- /.content-wrapper -->
@@ -178,8 +176,6 @@
   <!-- /.control-sidebar -->
 </div>
 <!-- ./wrapper -->
-
-<!-- jQuery -->
 <script src="plugins/jquery/jquery.min.js"></script>
 <!-- jQuery UI 1.11.4 -->
 <script src="plugins/jquery-ui/jquery-ui.min.js"></script>
@@ -230,18 +226,50 @@
 <script src="../../dist/js/adminlte.min.js"></script>
 <!-- AdminLTE for demo purposes -->
 <script src="../../dist/js/demo.js"></script>
-<!-- page script -->
 
+<script type="text/javascript">
+		function viewh(e){
+		    var id = $(e).attr('id');
+		    
+		    $.ajax({
+		        type: "GET",
+		        url: "/metodos/aplicar/"+id,
+		        success: function (data) {
+		            $("#viewTicket .modal-body").html(data);
+		            $('#viewTicket').modal('show');
+		        },
+		        error: function (data) {
+		            console.log('Error:', data);
+		        }
+		    });
+		}
+
+	
+	</script>
+
+
+<!-- page script -->
+<script>
+
+$(document).ready(function() {
+    $('#example').DataTable( {
+        dom: 'Bfrtip',
+        buttons: [
+            'excel', 'pdf', 'print'
+        ]
+    } );
+} );
+</script>
 
 <script>
   $(function () {
     $("#example1").DataTable({
       "responsive": true,
       "autoWidth": false,
-      "pageLength": 100
+      "pageLength": 100,
       dom: 'Bfrtip',
       buttons: [
-           'csv', 'excel', 'pdf', 
+            'copy', 'csv', 'excel', 'pdf'
         ]
     });
     $('#example2').DataTable({
