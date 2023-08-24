@@ -99,8 +99,6 @@
                   </div>
                   </form>
 
-                  
-
                   <div class="row" style="margin-left: 5px;">
 
                     <div class="col-md-2">
@@ -110,7 +108,6 @@
 
             
 
-                  </div>
 
                 
               </div>
@@ -149,6 +146,8 @@
                     <th>Nombres</th>
                     <th>DNI</th>
                     <th>Telefono</th>
+                    <th>Fecha</th>
+
                   </tr>
                  
                   </tfoot>
@@ -239,10 +238,10 @@
     $("#example1").DataTable({
       "responsive": true,
       "autoWidth": false,
-      "pageLength": 100
+      //"pageLength": 100
       dom: 'Bfrtip',
       buttons: [
-            'copy', 'csv', 'excel', 'pdf', 'print'
+           'csv', 'excel', 'pdf', 'print'
         ]
     });
     $('#example2').DataTable({
