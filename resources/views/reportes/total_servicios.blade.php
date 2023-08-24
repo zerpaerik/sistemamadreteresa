@@ -91,117 +91,39 @@
                     <label for="exampleInputEmail1">Fecha Fin</label>
                     <input type="date" class="form-control" value="{{$f2}}" name="fin">
                   </div>
-                  <div class="col-md-3">
-                    <label for="exampleInputEmail1">Tipo</label>
-                    <select class="form-control" name="tipo">
-                    @if($tipo == '1')
-                    <option value="1" selected>Procedimiento</option>
-                    <option value="2">Ecografia</option>
-                    <option value="3">Rayos X</option>
-                    <option value="8">Salud Mental</option>
-                    <option value="4">Laboratorios</option>
-                    <option value="7">Paquetes</option>
-                    <option value="5">Consultas/Controles</option>
-                    <option value="6">Métodos</option>
-                    @elseif($tipo == '2')
-                    <option value="1" >Procedimiento</option>
-                    <option value="2" selected>Ecografia</option>
-                    <option value="3">Rayos X</option>
-                    <option value="8">Salud Mental</option>
-                    <option value="4">Laboratorios</option>
-                    <option value="7">Paquetes</option>
-                    <option value="5">Consultas/Controles</option>
-                    <option value="6">Métodos</option>
-                    @elseif($tipo == '3')
-                    <option value="1" >Procedimiento</option>
-                    <option value="2" >Ecografia</option>
-                    <option value="3" selected>Rayos X</option>
-                    <option value="8">Salud Mental</option>
-                    <option value="4">Laboratorios</option>
-                    <option value="7">Paquetes</option>
-                    <option value="5">Consultas/Controles</option>
-                    <option value="6">Métodos</option>
-                    @elseif($tipo == '4')
-                    <option value="1" >Procedimiento</option>
-                    <option value="2" >Ecografia</option>
-                    <option value="3" >Rayos X</option>
-                    <option value="8">Salud Mental</option>
-                    <option value="4" selected>Laboratorios</option>
-                    <option value="7">Paquetes</option>
-                    <option value="5">Consultas/Controles</option>
-                    <option value="6">Métodos</option>
-                    @elseif($tipo == '5')
-                    <option value="1" >Procedimiento</option>
-                    <option value="2" >Ecografia</option>
-                    <option value="3" >Rayos X</option>
-                    <option value="8">Salud Mental</option>
-                    <option value="4" >Laboratorios</option>
-                    <option value="7">Paquetes</option>
-                    <option value="5" selected>Consultas/Controles</option>
-                    <option value="6">Métodos</option>
-                    @elseif($tipo == '6')
-                    <option value="1" >Procedimiento</option>
-                    <option value="2" >Ecografia</option>
-                    <option value="3" >Rayos X</option>
-                    <option value="8">Salud Mental</option>
-                    <option value="4" >Laboratorios</option>
-                    <option value="7">Paquetes</option>
-                    <option value="5" >Consultas/Controles</option>
-                    <option value="6" selected>Métodos</option>
-                    @elseif($tipo == '7')
-                    <option value="1" >Procedimiento</option>
-                    <option value="2" >Ecografia</option>
-                    <option value="3" >Rayos X</option>
-                    <option value="8">Salud Mental</option>
-                    <option value="4" >Laboratorios</option>
-                    <option value="7" selected>Paquetes</option>
-                    <option value="5" >Consultas/Controles</option>
-                    <option value="6" >Métodos</option>
-                    @else
-                    <option value="1" >Procedimiento</option>
-                    <option value="2" >Ecografia</option>
-                    <option value="3" >Rayos X</option>
-                    <option value="8" selected>Salud Mental</option>
-                    <option value="4" >Laboratorios</option>
-                    <option value="7" >Paquetes</option>
-                    <option value="5" >Consultas/Controles</option>
-                    <option value="6" >Métodos</option>
-                    @endif
-
-
                   
-                    </select>                  
-                    </div>
 
-               
-                  
-                
-                 
-                  <div class="col-md-2" style="margin-top: 30px;">
+                  <div class="col-md-1" style="margin-top: 30px;">
                   <button type="submit" class="btn btn-primary">Buscar</button>
+                  </div>
 
+                  <div class="col-md-1">
+                  @php
+                      $total = 0;
+                  @endphp
+
+                  @foreach ($atenciones as $item)
+                 
+                  @php
+                      $total += $item->abono;
+                  @endphp
+
+                  @endforeach
+
+                  <label for="exampleInputEmail1">Total</label>
+                  <input type="text" disabled class="form-control" value="{{$total}} Soles">
+                  </div>
+                  <div class="col-md-1">
+                  <label for="exampleInputEmail1">Items</label>
+                  <input type="text" disabled class="form-control" value="{{count($atenciones)}}" >
                   </div>
                   </form>
 
-                  @if($totales)
-                  <div class="row" style="margin-left: 5px;">
-                    <div class="col-md-4">
-                    <label for="exampleInputEmail1">Total</label>
-                    <input type="text" disabled class="form-control" value="{{$totales->monto}}">
-                  </div>
-                  <div class="col-md-2">
-                    <label for="exampleInputEmail1">Items</label>
-                    <input type="text" disabled class="form-control" value="{{$totales->cantidad}}" >
-                  </div>
-                  </div>
-                  @endif
-              </div>
               <!-- /.card-header -->
               <div class="card-body">
                 <table id="" class="table table-bordered table-striped">
                   <thead>
                   <tr>
-                    <th>Id</th>
                     <th>Fecha</th>
                     <th>Paciente</th>
                     <th>Origen</th>
@@ -219,7 +141,6 @@
 
                   @foreach($atenciones as $an)
                   <tr>
-                  <td>{{$an->id}}</td>
                     <td>{{date('d-M-y H:i', strtotime($an->created_at))}}</td>
                     <td>{{$an->apellidos}} {{$an->nombres}}</td>
                     <td>{{$an->lasto}} {{$an->nameo}}</td>
@@ -246,7 +167,6 @@
                   </tbody>
                   <tfoot>
                   <tr>
-                  <th>Id</th>
                     <th>Fecha</th>
                     <th>Paciente</th>
                     <th>Origen</th>
