@@ -864,28 +864,33 @@ class ReportesController extends Controller
 
     public function reporte_pacientes(Request $request){
 
-       
-        //$tipo = $request->tipo;
-        //$resultados = [];
+
 
         $count = 0;
         
 
-        if($request->inicio && $request->fin && $request->tipo){
+        if($request->inicio && $request->fin){
             $f1 = $request->inicio;
             $f2 = $request->fin;
+
         
             $pacientes = DB::table('atenciones as a')
-            ->select('a.id', 'a.tipo_atencion', 'a.id_tipo', 'a.usuario', 'a.resta', DB::raw('SUM(a.monto) as monto,COUNT(*) as cantidad'), 'a.created_at', 'a.estatus', 'a.abono', 'a.sede', 'a.id_paciente', 'a.id_origen', 'pa.nombres', 'pa.apellidos', 'pa.dni','pa.telefono')
+            ->select('a.id','a.id_atec','a.tipo_atencion', 'a.id_tipo', 'a.usuario', 'a.resta', DB::raw('SUM(a.monto) as monto,COUNT(*) as cantidad'), 'a.created_at', 'a.estatus', 'a.abono', 'a.sede', 'a.id_paciente', 'a.id_origen', 'pa.nombres', 'pa.apellidos', 'pa.dni','pa.telefono')
             ->join('pacientes as pa', 'pa.id', 'a.id_paciente')
             ->where('a.sede', '=', $request->session()->get('sede'))
             ->where('a.estatus', '=', 1)
             ->whereBetween('a.created_at', [date('Y-m-d 00:00:00', strtotime($f1)), date('Y-m-d 23:59:59', strtotime($f2))])
+            ->groupBy('a.id_atec')
             ->groupBy('a.id_paciente')
             ->get();
 
-            $count = count($pacientes);
-
+            $totales = Atenciones::whereBetween('created_at', [date('Y-m-d 00:00:00', strtotime($f1)), date('Y-m-d 23:59:59', strtotime($f2))])
+            ->where('sede', '=', $request->session()->get('sede'))
+            ->where('estatus', '=', 1)
+           //  ->groupBy('id_atec')
+           // ->groupBy('id_paciente')
+            ->select(DB::raw('COUNT(*) as item'))
+            ->first();
        
 
         } else {
@@ -895,21 +900,31 @@ class ReportesController extends Controller
 
 
             $pacientes = DB::table('atenciones as a')
-            ->select('a.id', 'a.tipo_atencion', 'a.id_tipo', 'a.usuario', 'a.resta','a.created_at', 'a.estatus', 'a.abono', 'a.sede', 'a.id_paciente', 'a.id_origen', 'pa.nombres', 'pa.apellidos', 'pa.dni','pa.telefono')
+            ->select('a.id','a.id_atec', 'a.tipo_atencion', 'a.id_tipo', 'a.usuario', 'a.resta','a.created_at', 'a.estatus', 'a.abono', 'a.sede', 'a.id_paciente', 'a.id_origen', 'pa.nombres', 'pa.apellidos', 'pa.dni','pa.telefono')
             ->join('pacientes as pa', 'pa.id', 'a.id_paciente')
             ->where('a.sede', '=', $request->session()->get('sede'))
             ->where('a.estatus', '=', 1)
             ->whereBetween('a.created_at', [date('Y-m-d 00:00:00', strtotime($f1)), date('Y-m-d 23:59:59', strtotime($f2))])
+            ->groupBy('a.id_atec')
             ->groupBy('a.id_paciente')
-            ->get();     
+            ->get();
 
-            $count = count($pacientes);
+            $totales = Atenciones::whereBetween('created_at', [date('Y-m-d 00:00:00', strtotime($f1)), date('Y-m-d 23:59:59', strtotime($f2))])
+            ->where('sede', '=', $request->session()->get('sede'))
+            ->where('estatus', '=', 1)
+            ->groupBy('id_atec')
+            ->groupBy('id_paciente')
+            ->select(DB::raw('COUNT(*) as item'))
+            ->first();
+
+      
+
 
             
         }
 
 
-        return view('reportes.reporte_pacientes', compact('f1','f2','pacientes','count'));
+        return view('reportes.reporte_pacientes', compact('f1','f2','pacientes','totales'));
 
        
 
