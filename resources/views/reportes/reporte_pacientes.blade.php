@@ -96,9 +96,22 @@
 
                   <div class="col-md-2" style="margin-top: 1px;">
                   <button type="submit" class="btn btn-primary">Buscar</button>
-
                   </div>
                   </form>
+
+                  
+
+                  <div class="row" style="margin-left: 5px;">
+
+                    <div class="col-md-2">
+                    <label for="exampleInputEmail1">Total: {{count($pacientes)}}</label>
+                    
+                  </div>
+
+            
+
+                  </div>
+
                 
               </div>
               <!-- /.card-header -->
@@ -110,6 +123,8 @@
                     <th>Nombres</th>
                     <th>DNI</th>
                     <th>Telefono</th>
+                    <th>Fecha</th>
+
                   </tr>
                   </thead>
                   <tbody>
@@ -121,8 +136,9 @@
                     <td>{{$an->nombres}}</td>
                     <td>{{$an->dni}}</td>
                     <td>{{$an->telefono}}</td>
-                  
-                  
+                    <td>{{$an->created_at}}</td>
+
+                
                   </tr>
                   @endforeach
                  
@@ -216,23 +232,14 @@
 <!-- AdminLTE for demo purposes -->
 <script src="../../dist/js/demo.js"></script>
 <!-- page script -->
-<script>
 
-$(document).ready(function() {
-    $('#example').DataTable( {
-        dom: 'Bfrtip',
-        buttons: [
-            'excel', 'pdf', 'print'
-        ]
-    } );
-} );
-</script>
 
 <script>
   $(function () {
     $("#example1").DataTable({
       "responsive": true,
       "autoWidth": false,
+      "pageLength": 100
       dom: 'Bfrtip',
       buttons: [
             'copy', 'csv', 'excel', 'pdf', 'print'
