@@ -880,18 +880,11 @@ class ReportesController extends Controller
             ->where('a.sede', '=', $request->session()->get('sede'))
             ->where('a.estatus', '=', 1)
             ->whereBetween('a.created_at', [date('Y-m-d 00:00:00', strtotime($f1)), date('Y-m-d 23:59:59', strtotime($f2))])
-            ->groupBy('a.id_atec')
             ->groupBy('a.id_paciente')
             ->get();
 
-            $totales = Atenciones::whereBetween('created_at', [date('Y-m-d 00:00:00', strtotime($f1)), date('Y-m-d 23:59:59', strtotime($f2))])
-            ->where('sede', '=', $request->session()->get('sede'))
-            ->where('estatus', '=', 1)
-           //  ->groupBy('id_atec')
-           // ->groupBy('id_paciente')
-            ->select(DB::raw('COUNT(*) as item'))
-            ->first();
-       
+          
+    
 
         } else {
 
@@ -905,26 +898,18 @@ class ReportesController extends Controller
             ->where('a.sede', '=', $request->session()->get('sede'))
             ->where('a.estatus', '=', 1)
             ->whereBetween('a.created_at', [date('Y-m-d 00:00:00', strtotime($f1)), date('Y-m-d 23:59:59', strtotime($f2))])
-            ->groupBy('a.id_atec')
+           // ->groupBy('a.id_atec')
             ->groupBy('a.id_paciente')
             ->get();
 
-            $totales = Atenciones::whereBetween('created_at', [date('Y-m-d 00:00:00', strtotime($f1)), date('Y-m-d 23:59:59', strtotime($f2))])
-            ->where('sede', '=', $request->session()->get('sede'))
-            ->where('estatus', '=', 1)
-            ->groupBy('id_atec')
-            ->groupBy('id_paciente')
-            ->select(DB::raw('COUNT(*) as item'))
-            ->first();
-
-      
-
+           
+    
 
             
         }
 
 
-        return view('reportes.reporte_pacientes', compact('f1','f2','pacientes','totales'));
+        return view('reportes.reporte_pacientes', compact('f1','f2','pacientes'));
 
        
 
