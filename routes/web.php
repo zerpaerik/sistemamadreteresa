@@ -299,6 +299,7 @@ Route::get('materiales-malogrados', 'ResultadosController@materialesm')->name('m
 
 Route::get('resultadosg', 'ResultadosController@indexg')->name('resultados.indexg');
 Route::get('resultadosg-reversar-{id}', 'ResultadosController@reversarg');
+Route::get('resultadosg-entregar-{id}', 'ResultadosController@entregar');
 Route::get('resultadosgl', 'ResultadosController@indexg1')->name('resultados.indexg1');
 Route::get('resultadosgl-reversar-{id}', 'ResultadosController@reversargl');
 
