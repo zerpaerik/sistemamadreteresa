@@ -746,6 +746,41 @@ class ReportesController extends Controller
 
     }
 
+    public function reporte_paquetes($id){
+
+
+        $atencion = DB::table('atenciones as a')
+        ->select('a.id', 'a.tipo_atencion', 'a.id_tipo', 'a.usuario', 'a.resta', DB::raw('SUM(a.monto) as monto,COUNT(*) as cantidad'), 'a.created_at', 'a.estatus', 'a.abono', 'a.sede', 'a.id_paciente', 'a.id_origen', 's.nombre as servicio', 's.precio as pre_ser', 'pa.nombres', 'pa.apellidos', 'c.name', 'c.lastname')
+        ->join('users as c', 'c.id', 'a.usuario')
+        ->join('pacientes as pa', 'pa.id', 'a.id_paciente')
+        ->join('servicios as s', 's.id', 'a.id_tipo')
+        ->where('a.id', '=', $id)
+        ->first();
+
+
+        $resultados_s = DB::table('resultados_servicios as a')
+            ->select('a.id', 'a.id_atencion', 'a.id_servicio','a.usuario_informe','a.informe','a.informe_guarda','b.tipo_atencion', 'b.usuario','b.resta','b.monto', 'a.created_at', 'a.estatus', 'b.estatus','b.monto','b.abono','b.sede','b.id_paciente', 'b.id_origen', 's.nombre as servicio','s.precio as pre_ser')
+            ->join('atenciones as b', 'b.id', 'a.id_atencion')
+            ->join('servicios as s', 's.id', 'a.id_servicio')
+            ->where('a.id_atencion', '=', $id)
+            //->where('a.monto', '!=', '0')
+            ->get();
+
+        $resultados_l = DB::table('resultados_laboratorio as a')
+            ->select('a.id', 'a.id_atencion', 'a.id_laboratorio', 'a.informe','a.informe_guarda','b.estatus as sta_ate','b.sede','b.usuario', 'a.created_at', 'a.estatus', 'b.id_paciente', 'b.id_origen', 's.nombre as laboratorio')
+            ->join('atenciones as b', 'b.id', 'a.id_atencion')
+            ->join('analisis as s', 's.id', 'a.id_laboratorio')
+            ->where('a.id_atencion', '=', $id)
+            ->where('a.id_laboratorio', '!=', 1)
+            ->get();
+
+
+        
+    
+        return view('reportes.detalle_paquetes', compact('atencion','resultados_s', 'resultados_l'));
+
+    }
+
     public function reporte_individual(Request $request){
 
        
@@ -1082,11 +1117,11 @@ class ReportesController extends Controller
             ->join('users as c', 'c.id', 'a.usuario_informe')
             ->join('pacientes as pa', 'pa.id', 'b.id_paciente')
             ->join('servicios as s', 's.id', 'a.id_servicio')
-        ->where('a.usuario_informe', '=', $request->usuario)
-        ->whereBetween('a.created_at', [$f1, $f2])
-        ->orderBy('a.id','DESC')
-        //->where('a.monto', '!=', '0')
-        ->get();
+            ->where('a.usuario_informe', '=', $request->usuario)
+            ->whereBetween('a.created_at', [$f1, $f2])
+            ->orderBy('a.id','DESC')
+            //->where('a.monto', '!=', '0')
+            ->get();
 
 
         $totales = DB::table('resultados_servicios as a')

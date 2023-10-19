@@ -100,6 +100,7 @@
 
     <p style="margin-left: -80px;font-size: 14px;"><strong>FECHA:</strong> {{$header->created_at}} </p>
 
+
 	
 
 	</div>
@@ -107,6 +108,8 @@
     <div  style="font-size: 15px; text-align: left;margin-bottom:-20px;margin-top: 20px;">
 		<p style="margin-left: -40px;"><strong>PACIENTE:</strong> {{ $header->apellidos}},{{ $header->nombres}}</p>
     <p style="margin-left: -40px;margin-top: -10px;"><strong>DNI:</strong> {{ $header->dni}}</p>
+    <p style="margin-left: -40px;margin-top: -10px;margin-bottom: 30px;"><strong>TIPO PAGO:</strong> {{ $header->tipo_pago}}</p>
+
 	
 	</div>
 

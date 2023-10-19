@@ -101,6 +101,7 @@
                 <table id="example1" class="table table-bordered table-striped">
                   <thead>
                   <tr>
+                    <th>Id</th>
                     <th>Origen</th>
                     <th>Descripción</th>
                     <th>Monto</th>
@@ -113,6 +114,7 @@
 
                   @foreach($ingresos as $client)
                   <tr>
+                  <td>{{$client->id}}</td>
                     <td>{{$client->origen}}</td>
                     <td>{{$client->descripcion}}</td>
                     <td>{{$client->monto}}</td>
@@ -148,7 +150,8 @@
                   </tbody>
                   <tfoot>
                   <tr>
-                  <th>Origen</th>
+                  <th>Id</th>
+                    <th>Origen</th>
                     <th>Descripción</th>
                     <th>Monto</th>
                     <th>Registrado Por:</th>

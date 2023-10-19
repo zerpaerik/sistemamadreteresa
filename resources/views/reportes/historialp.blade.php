@@ -161,9 +161,9 @@
                     <td>{{$an->abono}}</td>
                     <td >{{$an->tipo_pago}}</td>
                     @if($an->pagado == 1)
-                    <td><span class="badge bg-danger">NO</span></td>
-                    @else
                     <td><span class="badge bg-success">SI</span></td>
+                    @else
+                    <td><span class="badge bg-danger">NO</span></td>
                     @endif
                     @if($an->atendido == 1)
                     <td><span class="badge bg-danger">NO</span></td>
@@ -172,20 +172,24 @@
                     @endif
                     <td>{{substr($an->lastu,0,5)}} {{substr($an->nameu,0,5)}}</td>
                     <td>
-                    @if($an->atendido_por != null)
+                    @if($an->tipo_atencion == 7)
+                    <a href="reporte-paquetes-{{$an->id}}" class="btn btn-success" target="_blank">Ver detalle</a>
+                    @endif
+                    @if($an->atendido_por != null && $an->tipo_atencion != 7)
                     <p>Atendido Por: {{$an->atendido_por}}</p>
-
-                    @if($an->tipo_atencion == 1)
-                    <a href="{{route('descargar2',$an->informe)}}" class="btn btn-success" target="_blank">Ver Informe</a>
-                    @endif
-                    @if($an->tipo_atencion == 2)
-                    <a href="{{route('descargar2',$an->informe)}}" class="btn btn-success" target="_blank">Ver Informe</a>
-                    @endif
-                    @if($an->tipo_atencion == 4)
-                    <a href="{{route('descargar2',$an->informe)}}" class="btn btn-success" target="_blank">Ver Informe</a>
-                    @endif
+                      @if($an->tipo_atencion == 1)
+                      <a href="{{route('descargar2',$an->informe)}}" class="btn btn-success" target="_blank">Ver Informe</a>
+                      @endif
+                      @if($an->tipo_atencion == 2)
+                      <a href="{{route('descargar2',$an->informe)}}" class="btn btn-success" target="_blank">Ver Informe</a>
+                      @endif
+                      @if($an->tipo_atencion == 4)
+                      <a href="{{route('descargar2',$an->informe)}}" class="btn btn-success" target="_blank">Ver Informe</a>
+                      @endif
                     @else
-                    <p>NO HAY INFORME</p>
+                      @if($an->tipo_atencion != 7)
+                      <p>NO HAY INFORME</p>
+                      @endif
                     @endif
                     </td>
                   
