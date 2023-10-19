@@ -897,6 +897,59 @@ class ReportesController extends Controller
 
     }
 
+    public function reporte_pacientes(Request $request){
+
+
+
+        $count = 0;
+        
+
+        if($request->inicio && $request->fin){
+            $f1 = $request->inicio;
+            $f2 = $request->fin;
+
+        
+            $pacientes = DB::table('atenciones as a')
+            ->select('a.id','a.id_atec','a.tipo_atencion', 'a.id_tipo', 'a.usuario', 'a.resta', DB::raw('SUM(a.monto) as monto,COUNT(*) as cantidad'), 'a.created_at', 'a.estatus', 'a.abono', 'a.sede', 'a.id_paciente', 'a.id_origen', 'pa.nombres', 'pa.apellidos', 'pa.dni','pa.telefono')
+            ->join('pacientes as pa', 'pa.id', 'a.id_paciente')
+            ->where('a.sede', '=', $request->session()->get('sede'))
+            ->where('a.estatus', '=', 1)
+            ->whereBetween('a.created_at', [date('Y-m-d 00:00:00', strtotime($f1)), date('Y-m-d 23:59:59', strtotime($f2))])
+            ->groupBy('a.id_paciente')
+            ->get();
+
+          
+    
+
+        } else {
+
+            $f1 = date('Y-m-d');
+            $f2 = date('Y-m-d');
+
+
+            $pacientes = DB::table('atenciones as a')
+            ->select('a.id','a.id_atec', 'a.tipo_atencion', 'a.id_tipo', 'a.usuario', 'a.resta','a.created_at', 'a.estatus', 'a.abono', 'a.sede', 'a.id_paciente', 'a.id_origen', 'pa.nombres', 'pa.apellidos', 'pa.dni','pa.telefono')
+            ->join('pacientes as pa', 'pa.id', 'a.id_paciente')
+            ->where('a.sede', '=', $request->session()->get('sede'))
+            ->where('a.estatus', '=', 1)
+            ->whereBetween('a.created_at', [date('Y-m-d 00:00:00', strtotime($f1)), date('Y-m-d 23:59:59', strtotime($f2))])
+           // ->groupBy('a.id_atec')
+            ->groupBy('a.id_paciente')
+            ->get();
+
+           
+    
+
+            
+        }
+
+
+        return view('reportes.reporte_pacientes', compact('f1','f2','pacientes'));
+
+       
+
+    }
+
     public function reporte_individual_pdf($tipo,$tipo2, $f1, $f2,Request $request){
 
 
@@ -1460,6 +1513,7 @@ class ReportesController extends Controller
         ->orderBy('a.id','DESC')
         ->groupBy('a.id_personal')
         ->get();
+
 
 
         //DB::raw('SUM(monto) as monto'),
@@ -2121,7 +2175,7 @@ class ReportesController extends Controller
 
       public function total_servicios(Request $request){
 
-        if($request->inicio){
+       /* if($request->inicio){
             $f1 = $request->inicio;
             $f2 = $request->fin;
             $tipo = $request->tipo;
@@ -2352,13 +2406,309 @@ class ReportesController extends Controller
     
     
     
+          }*/
+
+          if($request->inicio){
+            $f1 = $request->inicio;
+            $f2 = $request->fin;
+
+    
+          
+    
+            $serv = DB::table('atenciones as a')
+            ->select('a.id','a.tipo_origen','a.id_origen','a.observaciones','a.eliminado_por','a.id_atec','a.id_tipo','a.pagado','a.atendido','a.sede','a.usuario','a.created_at','a.estatus','a.id_paciente','a.tipo_atencion','a.monto','a.abono','a.tipo_pago','b.nombres','b.apellidos','b.dni','c.name as nameo','c.lastname as lasto','d.name as nameu','d.lastname as lastu','s.nombre as detalle')
+            ->join('pacientes as b','b.id','a.id_paciente')
+            ->join('users as c','c.id','a.id_origen')
+            ->join('users as d','d.id','a.usuario')
+            ->join('servicios as s','s.id','a.id_tipo')
+            ->where('a.tipo_atencion', '=', 1)
+            ->where('a.monto', '!=', '0')
+            ->whereBetween('a.created_at', [date('Y-m-d 00:00:00', strtotime($f1)), date('Y-m-d 23:59:59', strtotime($f2))])
+            ->orderBy('a.id','DESC')
+            ->where('a.sede', '=', $request->session()->get('sede'));
+           // ->get(); 
+    
+            $eco = DB::table('atenciones as a')
+            ->select('a.id','a.tipo_origen','a.id_origen','a.observaciones', 'a.eliminado_por','a.id_atec','a.id_tipo','a.pagado','a.atendido','a.sede','a.usuario','a.created_at','a.estatus','a.id_paciente','a.tipo_atencion','a.monto','a.abono','a.tipo_pago','b.nombres','b.apellidos','b.dni','c.name as nameo','c.lastname as lasto','d.name as nameu','d.lastname as lastu','s.nombre as detalle')
+            ->join('pacientes as b','b.id','a.id_paciente')
+            ->join('users as c','c.id','a.id_origen')
+            ->join('users as d','d.id','a.usuario')
+            ->join('servicios as s','s.id','a.id_tipo')
+            ->where('a.tipo_atencion', '=', 2)
+            ->where('a.monto', '!=', '0')
+            ->whereBetween('a.created_at', [date('Y-m-d 00:00:00', strtotime($f1)), date('Y-m-d 23:59:59', strtotime($f2))])
+            ->orderBy('a.id','DESC')
+            ->where('a.sede', '=', $request->session()->get('sede'));
+    
+            $cons = DB::table('atenciones as a')
+            ->select('a.id','a.tipo_origen','a.id_origen','a.observaciones','a.eliminado_por','a.id_atec','a.id_tipo','a.pagado','a.atendido','a.sede','a.usuario','a.created_at','a.estatus','a.id_paciente','a.tipo_atencion','a.monto','a.abono','a.tipo_pago','b.nombres','b.apellidos','b.dni','c.name as nameo','c.lastname as lasto','d.name as nameu','d.lastname as lastu','s.nombre as detalle')
+            ->join('pacientes as b','b.id','a.id_paciente')
+            ->join('users as c','c.id','a.id_origen')
+            ->join('users as d','d.id','a.usuario')
+            ->join('servicios as s','s.id','a.id_tipo')
+            ->where('a.tipo_atencion', '=', 5)
+            ->where('a.monto', '!=', '0')
+            ->whereBetween('a.created_at', [date('Y-m-d 00:00:00', strtotime($f1)), date('Y-m-d 23:59:59', strtotime($f2))])
+            ->orderBy('a.id','DESC')
+            ->where('a.sede', '=', $request->session()->get('sede'));
+    
+            $meto = DB::table('atenciones as a')
+            ->select('a.id','a.tipo_origen','a.id_origen','a.observaciones','a.eliminado_por','a.id_atec','a.id_tipo','a.pagado','a.atendido','a.sede','a.usuario','a.created_at','a.estatus','a.id_paciente','a.tipo_atencion','a.monto','a.abono','a.tipo_pago','b.nombres','b.apellidos','b.dni','c.name as nameo','c.lastname as lasto','d.name as nameu','d.lastname as lastu','s.nombre as detalle')
+            ->join('pacientes as b','b.id','a.id_paciente')
+            ->join('users as c','c.id','a.id_origen')
+            ->join('users as d','d.id','a.usuario')
+            ->join('servicios as s','s.id','a.id_tipo')
+            ->where('a.tipo_atencion', '=', 6)
+            ->where('a.monto', '!=', '0')
+            ->whereBetween('a.created_at', [date('Y-m-d 00:00:00', strtotime($f1)), date('Y-m-d 23:59:59', strtotime($f2))])
+            ->orderBy('a.id','DESC')
+            ->where('a.sede', '=', $request->session()->get('sede'));
+    
+            $salud = DB::table('atenciones as a')
+            ->select('a.id','a.tipo_origen','a.id_origen','a.observaciones','a.eliminado_por','a.id_atec','a.id_tipo','a.pagado','a.atendido','a.sede','a.usuario','a.created_at','a.estatus','a.id_paciente','a.tipo_atencion','a.monto','a.abono','a.tipo_pago','b.nombres','b.apellidos','b.dni','c.name as nameo','c.lastname as lasto','d.name as nameu','d.lastname as lastu','s.nombre as detalle')
+            ->join('pacientes as b','b.id','a.id_paciente')
+            ->join('users as c','c.id','a.id_origen')
+            ->join('users as d','d.id','a.usuario')
+            ->join('servicios as s','s.id','a.id_tipo')
+            ->where('a.tipo_atencion', '=', 8)
+            ->where('a.monto', '!=', '0')
+            ->whereBetween('a.created_at', [date('Y-m-d 00:00:00', strtotime($f1)), date('Y-m-d 23:59:59', strtotime($f2))])
+            ->orderBy('a.id','DESC')
+            ->where('a.sede', '=', $request->session()->get('sede'));
+    
+            $ana = DB::table('atenciones as a')
+            ->select('a.id','a.tipo_origen','a.id_origen','a.observaciones','a.eliminado_por','a.id_atec','a.id_tipo','a.pagado','a.atendido','a.sede','a.usuario','a.created_at','a.estatus','a.id_paciente','a.tipo_atencion','a.monto','a.abono','a.tipo_pago','b.nombres','b.apellidos','b.dni','c.name as nameo','c.lastname as lasto','d.name as nameu','d.lastname as lastu','s.nombre as detalle')
+            ->join('pacientes as b','b.id','a.id_paciente')
+            ->join('users as c','c.id','a.id_origen')
+            ->join('users as d','d.id','a.usuario')
+            ->join('analisis as s','s.id','a.id_tipo')
+            ->where('a.tipo_atencion', '=', 4)
+            ->where('a.monto', '!=', '0')
+            ->whereBetween('a.created_at', [date('Y-m-d 00:00:00', strtotime($f1)), date('Y-m-d 23:59:59', strtotime($f2))])
+            ->orderBy('a.id','DESC')
+            ->where('a.sede', '=', $request->session()->get('sede'));
+    
+            $paq = DB::table('atenciones as a')
+            ->select('a.id','a.tipo_origen','a.id_origen','a.observaciones','a.eliminado_por','a.id_atec','a.id_tipo','a.pagado','a.atendido','a.sede','a.usuario','a.created_at','a.estatus','a.id_paciente','a.tipo_atencion','a.monto','a.abono','a.tipo_pago','b.nombres','b.apellidos','b.dni','c.name as nameo','c.lastname as lasto','d.name as nameu','d.lastname as lastu','s.nombre as detalle')
+            ->join('pacientes as b','b.id','a.id_paciente')
+            ->join('users as c','c.id','a.id_origen')
+            ->join('users as d','d.id','a.usuario')
+            ->join('paquetes as s','s.id','a.id_tipo')
+            ->where('a.tipo_atencion', '=', 7)
+            ->where('a.monto', '!=', '0')
+            ->whereBetween('a.created_at', [date('Y-m-d 00:00:00', strtotime($f1)), date('Y-m-d 23:59:59', strtotime($f2))])
+            ->orderBy('a.id','DESC')
+            ->where('a.sede', '=', $request->session()->get('sede'));
+    
+    
+            $metodos = DB::table('atenciones as a')
+            ->select('a.id','a.tipo_origen','a.id_origen','a.observaciones','a.eliminado_por','a.id_atec','a.id_tipo','a.pagado','a.atendido','a.sede','a.usuario','a.created_at','a.estatus','a.id_paciente','a.tipo_atencion','a.monto','a.abono','a.tipo_pago','b.nombres','b.apellidos','b.dni','c.name as nameo','c.lastname as lasto','d.name as nameu','d.lastname as lastu','s.nombre as detalle')
+            ->join('pacientes as b','b.id','a.id_paciente')
+            ->join('users as c','c.id','a.id_origen')
+            ->join('users as d','d.id','a.usuario')
+            ->join('meto_pro as s','s.id','a.id_tipo')
+            ->where('a.tipo_atencion', '=', 6)
+            ->where('a.monto', '!=', '0')
+            ->whereBetween('a.created_at', [date('Y-m-d 00:00:00', strtotime($f1)), date('Y-m-d 23:59:59', strtotime($f2))])
+            ->orderBy('a.id','DESC')
+            ->where('a.sede', '=', $request->session()->get('sede'));
+    
+            $consultas = DB::table('atenciones as a')
+            ->select('a.id','a.tipo_origen','a.id_origen','a.observaciones','a.eliminado_por','a.id_atec','a.id_tipo','a.pagado','a.atendido','a.sede','a.usuario','a.created_at','a.estatus','a.id_paciente','a.tipo_atencion','a.monto','a.abono','a.tipo_pago','b.nombres','b.apellidos','b.dni','c.name as nameo','c.lastname as lasto','d.name as nameu','d.lastname as lastu','s.nombre as detalle')
+            ->join('pacientes as b','b.id','a.id_paciente')
+            ->join('users as c','c.id','a.id_origen')
+            ->join('users as d','d.id','a.usuario')
+            ->join('tipo_con as s','s.id','a.id_tipo')
+            ->where('a.tipo_atencion', '=', 5)
+            ->where('a.monto', '!=', '0')
+            ->whereBetween('a.created_at', [date('Y-m-d 00:00:00', strtotime($f1)), date('Y-m-d 23:59:59', strtotime($f2))])
+            ->orderBy('a.id','DESC')
+            ->where('a.sede', '=', $request->session()->get('sede'));
+            //->get(); 
+    
+         
+    
+            $atenciones = DB::table('atenciones as a')
+            ->select('a.id','a.tipo_origen','a.id_origen','a.observaciones','a.eliminado_por','a.id_atec','a.id_tipo','a.pagado','a.atendido','a.sede','a.usuario','a.created_at','a.estatus','a.id_paciente','a.tipo_atencion','a.monto','a.abono','a.tipo_pago','b.nombres','b.apellidos','b.dni','c.name as nameo','c.lastname as lasto','d.name as nameu','d.lastname as lastu','s.nombre as detalle')
+            ->join('pacientes as b','b.id','a.id_paciente')
+            ->join('users as c','c.id','a.id_origen')
+            ->join('users as d','d.id','a.usuario')
+            ->join('servicios as s','s.id','a.id_tipo')
+            ->where('a.tipo_atencion', '=', 3)
+            ->where('a.monto', '!=', '0')
+            ->where('a.sede', '=', $request->session()->get('sede'))
+            ->whereBetween('a.created_at', [date('Y-m-d 00:00:00', strtotime($f1)), date('Y-m-d 23:59:59', strtotime($f2))])
+            ->orderBy('a.id','DESC')
+            ->union($serv)
+            ->union($eco)
+            ->union($ana)
+            ->union($metodos)
+            ->union($salud)
+            ->union($paq)
+            ->union($consultas)
+            ->get(); 
+    
+    
+    
+          } else {
+    
+            $f1 = date('Y-m-d');
+            $f2 = date('Y-m-d');
+    
+            $serv = DB::table('atenciones as a')
+            ->select('a.id','a.tipo_origen','a.id_origen','a.observaciones','a.eliminado_por','a.id_atec','a.id_tipo','a.pagado','a.atendido','a.sede','a.usuario','a.created_at','a.estatus','a.id_paciente','a.tipo_atencion','a.monto','a.abono','a.tipo_pago','b.nombres','b.apellidos','b.dni','c.name as nameo','c.lastname as lasto','d.name as nameu','d.lastname as lastu','s.nombre as detalle')
+            ->join('pacientes as b','b.id','a.id_paciente')
+            ->join('users as c','c.id','a.id_origen')
+            ->join('users as d','d.id','a.usuario')
+            ->join('servicios as s','s.id','a.id_tipo')
+            ->where('a.tipo_atencion', '=', 1)
+            ->where('a.monto', '!=', '0')
+            ->whereBetween('a.created_at', [date('Y-m-d 00:00:00', strtotime($f1)), date('Y-m-d 23:59:59', strtotime($f2))])
+            ->where('a.sede', '=', $request->session()->get('sede'))
+            ->orderBy('a.id','desc');
+    
+         
+    
+            $eco = DB::table('atenciones as a')
+            ->select('a.id','a.tipo_origen','a.id_origen','a.observaciones','a.eliminado_por','a.id_atec','a.id_tipo','a.pagado','a.atendido','a.sede','a.usuario','a.created_at','a.estatus','a.id_paciente','a.tipo_atencion','a.monto','a.abono','a.tipo_pago','b.nombres','b.apellidos','b.dni','c.name as nameo','c.lastname as lasto','d.name as nameu','d.lastname as lastu','s.nombre as detalle')
+            ->join('pacientes as b','b.id','a.id_paciente')
+            ->join('users as c','c.id','a.id_origen')
+            ->join('users as d','d.id','a.usuario')
+            ->join('servicios as s','s.id','a.id_tipo')
+            ->where('a.tipo_atencion', '=', 2)
+            ->where('a.monto', '!=', '0')
+            ->whereBetween('a.created_at', [date('Y-m-d 00:00:00', strtotime($f1)), date('Y-m-d 23:59:59', strtotime($f2))])
+            ->where('a.sede', '=', $request->session()->get('sede'))
+            ->orderBy('a.id','desc');
+    
+    
+            $cons = DB::table('atenciones as a')
+            ->select('a.id','a.tipo_origen','a.id_origen','a.observaciones','a.eliminado_por','a.id_atec','a.id_tipo','a.pagado','a.atendido','a.sede','a.usuario','a.created_at','a.estatus','a.id_paciente','a.tipo_atencion','a.monto','a.abono','a.tipo_pago','b.nombres','b.apellidos','b.dni','c.name as nameo','c.lastname as lasto','d.name as nameu','d.lastname as lastu','s.nombre as detalle')
+            ->join('pacientes as b','b.id','a.id_paciente')
+            ->join('users as c','c.id','a.id_origen')
+            ->join('users as d','d.id','a.usuario')
+            ->join('servicios as s','s.id','a.id_tipo')
+            ->where('a.tipo_atencion', '=', 5)
+            ->where('a.monto', '!=', '0')
+            ->whereBetween('a.created_at', [date('Y-m-d 00:00:00', strtotime($f1)), date('Y-m-d 23:59:59', strtotime($f2))])
+            ->where('a.sede', '=', $request->session()->get('sede'))
+            ->orderBy('a.id','desc');
+    
+    
+            $meto = DB::table('atenciones as a')
+            ->select('a.id','a.tipo_origen','a.id_origen','a.observaciones','a.eliminado_por','a.id_atec','a.id_tipo','a.pagado','a.atendido','a.sede','a.usuario','a.created_at','a.estatus','a.id_paciente','a.tipo_atencion','a.monto','a.abono','a.tipo_pago','b.nombres','b.apellidos','b.dni','c.name as nameo','c.lastname as lasto','d.name as nameu','d.lastname as lastu','s.nombre as detalle')
+            ->join('pacientes as b','b.id','a.id_paciente')
+            ->join('users as c','c.id','a.id_origen')
+            ->join('users as d','d.id','a.usuario')
+            ->join('servicios as s','s.id','a.id_tipo')
+            ->where('a.tipo_atencion', '=', 6)
+            ->where('a.monto', '!=', '0')
+            ->whereBetween('a.created_at', [date('Y-m-d 00:00:00', strtotime($f1)), date('Y-m-d 23:59:59', strtotime($f2))])
+            ->where('a.sede', '=', $request->session()->get('sede'))   
+            ->orderBy('a.id','desc');
+    
+            $salud = DB::table('atenciones as a')
+            ->select('a.id','a.tipo_origen','a.id_origen','a.observaciones','a.eliminado_por','a.id_atec','a.id_tipo','a.pagado','a.atendido','a.sede','a.usuario','a.created_at','a.estatus','a.id_paciente','a.tipo_atencion','a.monto','a.abono','a.tipo_pago','b.nombres','b.apellidos','b.dni','c.name as nameo','c.lastname as lasto','d.name as nameu','d.lastname as lastu','s.nombre as detalle')
+            ->join('pacientes as b','b.id','a.id_paciente')
+            ->join('users as c','c.id','a.id_origen')
+            ->join('users as d','d.id','a.usuario')
+            ->join('servicios as s','s.id','a.id_tipo')
+            ->where('a.tipo_atencion', '=', 8)
+            ->where('a.monto', '!=', '0')
+            ->whereBetween('a.created_at', [date('Y-m-d 00:00:00', strtotime($f1)), date('Y-m-d 23:59:59', strtotime($f2))])
+            ->where('a.sede', '=', $request->session()->get('sede'))   
+            ->orderBy('a.id','desc');
+    
+    
+            $ana = DB::table('atenciones as a')
+            ->select('a.id','a.tipo_origen','a.id_origen','a.observaciones','a.eliminado_por','a.id_atec','a.id_tipo','a.pagado','a.atendido','a.sede','a.usuario','a.created_at','a.estatus','a.id_paciente','a.tipo_atencion','a.monto','a.abono','a.tipo_pago','b.nombres','b.apellidos','b.dni','c.name as nameo','c.lastname as lasto','d.name as nameu','d.lastname as lastu','s.nombre as detalle')
+            ->join('pacientes as b','b.id','a.id_paciente')
+            ->join('users as c','c.id','a.id_origen')
+            ->join('users as d','d.id','a.usuario')
+            ->join('analisis as s','s.id','a.id_tipo')
+            ->where('a.tipo_atencion', '=', 4)
+            ->where('a.monto', '!=', '0')
+            ->whereBetween('a.created_at', [date('Y-m-d 00:00:00', strtotime($f1)), date('Y-m-d 23:59:59', strtotime($f2))])
+            ->where('a.sede', '=', $request->session()->get('sede'))
+            ->orderBy('a.id','desc');
+    
+    
+            $paq = DB::table('atenciones as a')
+            ->select('a.id','a.tipo_origen','a.id_origen','a.observaciones','a.eliminado_por','a.id_atec','a.id_tipo','a.pagado','a.atendido','a.sede','a.usuario','a.created_at','a.estatus','a.id_paciente','a.tipo_atencion','a.monto','a.abono','a.tipo_pago','b.nombres','b.apellidos','b.dni','c.name as nameo','c.lastname as lasto','d.name as nameu','d.lastname as lastu','s.nombre as detalle')
+            ->join('pacientes as b','b.id','a.id_paciente')
+            ->join('users as c','c.id','a.id_origen')
+            ->join('users as d','d.id','a.usuario')
+            ->join('paquetes as s','s.id','a.id_tipo')
+            ->where('a.tipo_atencion', '=', 7)
+            ->where('a.monto', '!=', '0')
+            ->where('a.sede', '=', $request->session()->get('sede'))
+            ->whereBetween('a.created_at', [date('Y-m-d 00:00:00', strtotime($f1)), date('Y-m-d 23:59:59', strtotime($f2))])
+            ->orderBy('a.id','desc');
+    
+            $metodos = DB::table('atenciones as a')
+            ->select('a.id','a.tipo_origen','a.id_origen','a.observaciones','a.eliminado_por','a.id_atec','a.id_tipo','a.pagado','a.atendido','a.sede','a.usuario','a.created_at','a.estatus','a.id_paciente','a.tipo_atencion','a.monto','a.abono','a.tipo_pago','b.nombres','b.apellidos','b.dni','c.name as nameo','c.lastname as lasto','d.name as nameu','d.lastname as lastu','s.nombre as detalle')
+            ->join('pacientes as b','b.id','a.id_paciente')
+            ->join('users as c','c.id','a.id_origen')
+            ->join('users as d','d.id','a.usuario')
+            ->join('meto_pro as s','s.id','a.id_tipo')
+            ->where('a.tipo_atencion', '=', 6)
+            ->where('a.monto', '!=', '0')
+            ->whereBetween('a.created_at', [date('Y-m-d 00:00:00', strtotime($f1)), date('Y-m-d 23:59:59', strtotime($f2))])
+            ->where('a.sede', '=', $request->session()->get('sede'))
+            ->orderBy('a.id','desc');
+    
+            
+            $consultas = DB::table('atenciones as a')
+            ->select('a.id','a.tipo_origen','a.id_origen','a.observaciones','a.eliminado_por','a.id_atec','a.id_tipo','a.pagado','a.atendido','a.sede','a.usuario','a.created_at','a.estatus','a.id_paciente','a.tipo_atencion','a.monto','a.abono','a.tipo_pago','b.nombres','b.apellidos','b.dni','c.name as nameo','c.lastname as lasto','d.name as nameu','d.lastname as lastu','s.nombre as detalle')
+            ->join('pacientes as b','b.id','a.id_paciente')
+            ->join('users as c','c.id','a.id_origen')
+            ->join('users as d','d.id','a.usuario')
+            ->join('tipo_con as s','s.id','a.id_tipo')
+            ->where('a.tipo_atencion', '=', 5)
+            ->where('a.monto', '!=', '0')
+            ->whereBetween('a.created_at', [date('Y-m-d 00:00:00', strtotime($f1)), date('Y-m-d 23:59:59', strtotime($f2))])
+            ->where('a.sede', '=', $request->session()->get('sede'))
+            ->orderBy('a.id','desc');
+    
+            //->get(); 
+    
+         
+    
+            $atenciones = DB::table('atenciones as a')
+            ->select('a.id','a.tipo_origen','a.id_origen','a.observaciones','a.eliminado_por','a.id_atec','a.id_tipo','a.pagado','a.atendido','a.sede','a.usuario','a.created_at','a.estatus','a.id_paciente','a.tipo_atencion','a.monto','a.abono','a.tipo_pago','b.nombres','b.apellidos','b.dni','c.name as nameo','c.lastname as lasto','d.name as nameu','d.lastname as lastu','s.nombre as detalle')
+            ->join('pacientes as b','b.id','a.id_paciente')
+            ->join('users as c','c.id','a.id_origen')
+            ->join('users as d','d.id','a.usuario')
+            ->join('servicios as s','s.id','a.id_tipo')
+            ->where('a.tipo_atencion', '=', 3)
+            ->where('a.monto', '!=', '0')
+            ->where('a.sede', '=', $request->session()->get('sede'))
+            ->whereBetween('a.created_at', [date('Y-m-d 00:00:00', strtotime($f1)), date('Y-m-d 23:59:59', strtotime($f2))])
+            ->union($serv)
+            ->union($eco)
+            ->union($ana)
+            ->union($metodos)
+            ->union($salud)
+            ->union($consultas)
+            ->union($paq)
+            ->orderBy('id','desc')
+            ->get(); 
+
+            
+    
+     
+    
+          
+    
+    
+    
           }
 
 
        
   
 
-          return view('reportes.total_servicios', compact('f1','f2','atenciones','tipo','totales'));
+          return view('reportes.total_servicios', compact('f1','f2','atenciones'));
          
   
       }

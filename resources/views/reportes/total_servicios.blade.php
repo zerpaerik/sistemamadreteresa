@@ -91,117 +91,39 @@
                     <label for="exampleInputEmail1">Fecha Fin</label>
                     <input type="date" class="form-control" value="{{$f2}}" name="fin">
                   </div>
-                  <div class="col-md-3">
-                    <label for="exampleInputEmail1">Tipo</label>
-                    <select class="form-control" name="tipo">
-                    @if($tipo == '1')
-                    <option value="1" selected>Procedimiento</option>
-                    <option value="2">Ecografia</option>
-                    <option value="3">Rayos X</option>
-                    <option value="8">Salud Mental</option>
-                    <option value="4">Laboratorios</option>
-                    <option value="7">Paquetes</option>
-                    <option value="5">Consultas/Controles</option>
-                    <option value="6">Métodos</option>
-                    @elseif($tipo == '2')
-                    <option value="1" >Procedimiento</option>
-                    <option value="2" selected>Ecografia</option>
-                    <option value="3">Rayos X</option>
-                    <option value="8">Salud Mental</option>
-                    <option value="4">Laboratorios</option>
-                    <option value="7">Paquetes</option>
-                    <option value="5">Consultas/Controles</option>
-                    <option value="6">Métodos</option>
-                    @elseif($tipo == '3')
-                    <option value="1" >Procedimiento</option>
-                    <option value="2" >Ecografia</option>
-                    <option value="3" selected>Rayos X</option>
-                    <option value="8">Salud Mental</option>
-                    <option value="4">Laboratorios</option>
-                    <option value="7">Paquetes</option>
-                    <option value="5">Consultas/Controles</option>
-                    <option value="6">Métodos</option>
-                    @elseif($tipo == '4')
-                    <option value="1" >Procedimiento</option>
-                    <option value="2" >Ecografia</option>
-                    <option value="3" >Rayos X</option>
-                    <option value="8">Salud Mental</option>
-                    <option value="4" selected>Laboratorios</option>
-                    <option value="7">Paquetes</option>
-                    <option value="5">Consultas/Controles</option>
-                    <option value="6">Métodos</option>
-                    @elseif($tipo == '5')
-                    <option value="1" >Procedimiento</option>
-                    <option value="2" >Ecografia</option>
-                    <option value="3" >Rayos X</option>
-                    <option value="8">Salud Mental</option>
-                    <option value="4" >Laboratorios</option>
-                    <option value="7">Paquetes</option>
-                    <option value="5" selected>Consultas/Controles</option>
-                    <option value="6">Métodos</option>
-                    @elseif($tipo == '6')
-                    <option value="1" >Procedimiento</option>
-                    <option value="2" >Ecografia</option>
-                    <option value="3" >Rayos X</option>
-                    <option value="8">Salud Mental</option>
-                    <option value="4" >Laboratorios</option>
-                    <option value="7">Paquetes</option>
-                    <option value="5" >Consultas/Controles</option>
-                    <option value="6" selected>Métodos</option>
-                    @elseif($tipo == '7')
-                    <option value="1" >Procedimiento</option>
-                    <option value="2" >Ecografia</option>
-                    <option value="3" >Rayos X</option>
-                    <option value="8">Salud Mental</option>
-                    <option value="4" >Laboratorios</option>
-                    <option value="7" selected>Paquetes</option>
-                    <option value="5" >Consultas/Controles</option>
-                    <option value="6" >Métodos</option>
-                    @else
-                    <option value="1" >Procedimiento</option>
-                    <option value="2" >Ecografia</option>
-                    <option value="3" >Rayos X</option>
-                    <option value="8" selected>Salud Mental</option>
-                    <option value="4" >Laboratorios</option>
-                    <option value="7" >Paquetes</option>
-                    <option value="5" >Consultas/Controles</option>
-                    <option value="6" >Métodos</option>
-                    @endif
-
-
                   
-                    </select>                  
-                    </div>
 
-               
-                  
-                
-                 
-                  <div class="col-md-2" style="margin-top: 30px;">
+                  <div class="col-md-1" style="margin-top: 30px;">
                   <button type="submit" class="btn btn-primary">Buscar</button>
+                  </div>
 
+                  <div class="col-md-1">
+                  @php
+                      $total = 0;
+                  @endphp
+
+                  @foreach ($atenciones as $item)
+                 
+                  @php
+                      $total += $item->abono;
+                  @endphp
+
+                  @endforeach
+
+                  <label for="exampleInputEmail1">Total</label>
+                  <input type="text" disabled class="form-control" value="{{$total}} Soles">
+                  </div>
+                  <div class="col-md-1">
+                  <label for="exampleInputEmail1">Items</label>
+                  <input type="text" disabled class="form-control" value="{{count($atenciones)}}" >
                   </div>
                   </form>
 
-                  @if($totales)
-                  <div class="row" style="margin-left: 5px;">
-                    <div class="col-md-4">
-                    <label for="exampleInputEmail1">Total</label>
-                    <input type="text" disabled class="form-control" value="{{$totales->monto}}">
-                  </div>
-                  <div class="col-md-2">
-                    <label for="exampleInputEmail1">Items</label>
-                    <input type="text" disabled class="form-control" value="{{$totales->cantidad}}" >
-                  </div>
-                  </div>
-                  @endif
-              </div>
               <!-- /.card-header -->
               <div class="card-body">
-                <table id="" class="table table-bordered table-striped">
+                <table id="example1" class="table table-bordered table-striped">
                   <thead>
                   <tr>
-                    <th>Id</th>
                     <th>Fecha</th>
                     <th>Paciente</th>
                     <th>Origen</th>
@@ -219,7 +141,6 @@
 
                   @foreach($atenciones as $an)
                   <tr>
-                  <td>{{$an->id}}</td>
                     <td>{{date('d-M-y H:i', strtotime($an->created_at))}}</td>
                     <td>{{$an->apellidos}} {{$an->nombres}}</td>
                     <td>{{$an->lasto}} {{$an->nameo}}</td>
@@ -246,7 +167,6 @@
                   </tbody>
                   <tfoot>
                   <tr>
-                  <th>Id</th>
                     <th>Fecha</th>
                     <th>Paciente</th>
                     <th>Origen</th>
@@ -321,72 +241,67 @@
 <!-- AdminLTE for demo purposes -->
 <script src="dist/js/demo.js"></script>
 
-<script src="http://cdn.bootcss.com/jquery/2.2.4/jquery.min.js"></script>
-<script src="http://cdn.bootcss.com/toastr.js/latest/js/toastr.min.js"></script>
-
-
 <!-- DataTables -->
 <script src="../../plugins/datatables/jquery.dataTables.min.js"></script>
 <script src="../../plugins/datatables-bs4/js/dataTables.bootstrap4.min.js"></script>
 <script src="../../plugins/datatables-responsive/js/dataTables.responsive.min.js"></script>
 <script src="../../plugins/datatables-responsive/js/responsive.bootstrap4.min.js"></script>
+
+<script type="text/javascript" src="https://cdn.datatables.net/buttons/1.6.1/js/dataTables.buttons.min.js"></script> 
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.1.3/jszip.min.js"></script>
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/pdfmake.min.js"></script>
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/vfs_fonts.js"></script>
+<script type="text/javascript" src="https://cdn.datatables.net/buttons/1.6.1/js/buttons.html5.min.js"></script>
+<script type="text/javascript" src="https://cdn.datatables.net/buttons/1.6.1/js/buttons.print.min.js"></script>
 <!-- AdminLTE App -->
 <script src="../../dist/js/adminlte.min.js"></script>
 <!-- AdminLTE for demo purposes -->
 <script src="../../dist/js/demo.js"></script>
 
-<script>
-  @if(Session::has('message'))
-  toastr.options =
-  {
-  	"closeButton" : true,
-  	"progressBar" : true
-  }
-  		toastr.success("{{ session('message') }}");
-  @endif
+<script type="text/javascript">
+		function viewh(e){
+		    var id = $(e).attr('id');
+		    
+		    $.ajax({
+		        type: "GET",
+		        url: "/metodos/aplicar/"+id,
+		        success: function (data) {
+		            $("#viewTicket .modal-body").html(data);
+		            $('#viewTicket').modal('show');
+		        },
+		        error: function (data) {
+		            console.log('Error:', data);
+		        }
+		    });
+		}
 
-  @if(Session::has('error'))
-  toastr.options =
-  {
-  	"closeButton" : true,
-  	"progressBar" : true
-  }
-  		toastr.error("{{ session('error') }}");
-  @endif
+	
+	</script>
 
-  @if(Session::has('info'))
-  toastr.options =
-  {
-  	"closeButton" : true,
-  	"progressBar" : true
-  }
-  		toastr.info("{{ session('info') }}");
-  @endif
 
-  @if(Session::has('success'))
-  toastr.options =
-  {
-  	"closeButton" : true,
-  	"progressBar" : true
-  }
-  		toastr.info("{{ session('success') }}");
-  @endif
-
-  @if(Session::has('warning'))
-  toastr.options =
-  {
-  	"closeButton" : true,
-  	"progressBar" : true
-  }
-  		toastr.warning("{{ session('warning') }}");
-  @endif
-</script>
 <!-- page script -->
+<script>
+
+$(document).ready(function() {
+    $('#example').DataTable( {
+        dom: 'Bfrtip',
+        buttons: [
+            'excel', 'pdf', 'print'
+        ]
+    } );
+} );
+</script>
+
 <script>
   $(function () {
     $("#example1").DataTable({
       "responsive": true,
       "autoWidth": false,
+      "pageLength": 100,
+      dom: 'Bfrtip',
+      buttons: [
+            'copy', 'csv', 'excel', 'pdf'
+        ]
     });
     $('#example2').DataTable({
       "paging": true,
@@ -398,6 +313,7 @@
       "responsive": true,
     });
   });
+</script>
 </script>
 </body>
 </html>

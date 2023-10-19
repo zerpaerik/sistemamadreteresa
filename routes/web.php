@@ -305,6 +305,7 @@ Route::get('resultadosgl-reversar-{id}', 'ResultadosController@reversargl');
 
 Route::get('historial_pacientes', 'ReportesController@historial_pacientes')->name('historial.pacientes');
 Route::get('reporte-paquetes-{id}', 'ReportesController@reporte_paquetes');
+Route::get('reporte_pacientes', 'ReportesController@reporte_pacientes')->name('reporte.pacientes');
 
 
 

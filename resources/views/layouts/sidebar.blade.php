@@ -418,6 +418,13 @@
             <ul class="nav nav-treeview">
 
             <li class="nav-item">
+                <a href="{{route('reporte.pacientes')}}" class="nav-link">
+                  <i class="fas fa-hand-holding-usd nav-icon"></i>
+                  <p>Reporte Pacientes</p>
+                </a>
+              </li> 
+
+            <li class="nav-item">
                 <a href="{{route('reporte.asignacion')}}" class="nav-link">
                   <i class="fas fa-hand-holding-usd nav-icon"></i>
                   <p>Reporte Asignaciòn</p>

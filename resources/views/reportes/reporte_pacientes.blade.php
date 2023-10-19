@@ -29,6 +29,8 @@
 <!-- DataTables -->
 <link rel="stylesheet" href="../../plugins/datatables-bs4/css/dataTables.bootstrap4.min.css">
 <link rel="stylesheet" href="../../plugins/datatables-responsive/css/responsive.bootstrap4.min.css">
+<link rel="stylesheet" href="http://cdn.bootcss.com/toastr.js/latest/css/toastr.min.css"> 
+
 </head>
 <body class="hold-transition sidebar-mini layout-fixed">
 <div class="wrapper">
@@ -49,17 +51,18 @@
 
   <!-- Content Wrapper. Contains page content -->
   <div class="content-wrapper">
+
     <!-- Content Header (Page header) -->
     <div class="content-header">
       <div class="container-fluid">
         <div class="row mb-2">
           <div class="col-sm-6">
-            <h1 class="m-0 text-dark">Otros Ingresos</h1>
+            <h1 class="m-0 text-dark">Reportes</h1>
           </div><!-- /.col -->
           <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">
-              <li class="breadcrumb-item"><a href="#">Movimientos</a></li>
-              <li class="breadcrumb-item active">Otros Ingresos</li>
+              <li class="breadcrumb-item"><a href="#">Reportes</a></li>
+              <li class="breadcrumb-item active">Pacientes Atendidos</li>
             </ol>
           </div><!-- /.col -->
         </div><!-- /.row -->
@@ -69,96 +72,70 @@
 
     <!-- Main content -->
     <section class="content">
+    @include('flash-message')
       <div class="container-fluid">
       <div class="card">
               <div class="card-header">
-                <a class="btn btn-primary btn-sm" href="{{route('ingresos.create')}}">
-                              <i class="fas fa-folder">
-                              </i>
-                              Agregar
-                          </a>
-                          <form method="get" action="ingresos">					
+              <form method="get" action="reporte_pacientes">					
                   <label for="exampleInputEmail1">Filtros de Busqueda</label>
 
-                    <div class="row">
+                  <div class="row">
                   <div class="col-md-3">
-                    <label for="exampleInputEmail1">Fecha</label>
-                    <input type="date" class="form-control" value="{{$f1}}" name="inicio" placeholder="Buscar por dni" onsubmit="datapac()">
+                    <label for="exampleInputEmail1">Fecha Inicio</label>
+                    <input type="date" class="form-control" value="{{$f1}}" name="inicio">
                   </div>
 
-                 
+                  <div class="col-md-3">
+                    <label for="exampleInputEmail1">Fecha Fin</label>
+                    <input type="date" class="form-control" value="{{$f2}}" name="fin">
+                  </div>
+                  
                 
                  
                   <div class="col-md-2" style="margin-top: 30px;">
                   <button type="submit" class="btn btn-primary">Buscar</button>
-
                   </div>
                   </form>
+                  <div class="col-md-1">
+                    <label for="exampleInputEmail1">Total</label>
+                    <input type="text" disabled class="form-control" value="{{count($pacientes)}}">
+                  </div>
+
               </div>
-              </div>
+             
               <!-- /.card-header -->
               <div class="card-body">
                 <table id="example1" class="table table-bordered table-striped">
                   <thead>
                   <tr>
-                    <th>Id</th>
-                    <th>Origen</th>
-                    <th>Descripción</th>
-                    <th>Monto</th>
-                    <th>TP</th>
-                    <th>Registrado Por:</th>
                     <th>Fecha</th>
-                    <th>Acciones</th>
+                    <th>Apellidos</th>
+                    <th>Nombres</th>
+                    <th>DNI</th>
+                    <th>Teléfono</th>
+                 
                   </tr>
                   </thead>
                   <tbody>
 
-                  @foreach($ingresos as $client)
+                  @foreach($pacientes as $an)
                   <tr>
-                  <td>{{$client->id}}</td>
-                    <td>{{$client->origen}}</td>
-                    <td>{{$client->descripcion}}</td>
-                    <td>{{$client->monto}}</td>
-                    <td>{{$client->tipopago}}</td>
-                    <td>{{$client->name}}</td>
-                    <td>{{$client->created_at}}</td>
-                    <td>
-                    <a target="_blank" class="btn btn-success btn-sm" href="ingresos-ticket-{{$client->id}}">
-                              <i class="fas fa-print">
-                              </i>
-                              Ticket
-                              </a>
-
-                    @if(Auth::user()->rol == 1)
-
-                          <a class="btn btn-info btn-sm" href="ingresos-edit-{{$client->id}}">
-                              <i class="fas fa-pencil-alt">
-                              </i>
-                              Edit
-                          </a>
-                          <a class="btn btn-danger btn-sm" href="ingresos-delete-{{$client->id}}" onclick="return confirm('¿Desea Eliminar este registro?')">
-                              <i class="fas fa-trash">
-                              </i>
-                              Delete
-                          </a>
-                          @endif</td>
+                    <td>{{date('d-M-y h:m', strtotime($an->created_at))}}</td>
+                    <td>{{$an->apellidos}}</td>
+                    <td>{{$an->nombres}}</td>
+                    <td>{{$an->dni}}</td>
+                    <td>{{$an->telefono}}</td>
                   </tr>
                   @endforeach
-                 
-                 
-               
-                 
                  
                   </tbody>
                   <tfoot>
                   <tr>
-                  <th>Id</th>
-                    <th>Origen</th>
-                    <th>Descripción</th>
-                    <th>Monto</th>
-                    <th>Registrado Por:</th>
-                    <th>Fecha</th>
-                    <th>Acciones</th>
+                  <th>Fecha</th>
+                    <th>Apellidos</th>
+                    <th>Nombres</th>
+                    <th>DNI</th>
+                    <th>Teléfono</th>
                   </tr>
                   </tfoot>
                 </table>
@@ -176,6 +153,22 @@
     <!-- /.content -->
   </div>
   </div>
+  <div class="modal fade" id="viewTicket">
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="modal-body">
+            </div>
+           
+          </div>
+          <!-- /.modal-content -->
+        </div>
+        <!-- /.modal-dialog -->
+      </div>
   </section>
 
   <!-- /.content-wrapper -->
@@ -187,8 +180,6 @@
   <!-- /.control-sidebar -->
 </div>
 <!-- ./wrapper -->
-
-<!-- jQuery -->
 <script src="plugins/jquery/jquery.min.js"></script>
 <!-- jQuery UI 1.11.4 -->
 <script src="plugins/jquery-ui/jquery-ui.min.js"></script>
@@ -228,16 +219,62 @@
 <script src="../../plugins/datatables-bs4/js/dataTables.bootstrap4.min.js"></script>
 <script src="../../plugins/datatables-responsive/js/dataTables.responsive.min.js"></script>
 <script src="../../plugins/datatables-responsive/js/responsive.bootstrap4.min.js"></script>
+
+<script type="text/javascript" src="https://cdn.datatables.net/buttons/1.6.1/js/dataTables.buttons.min.js"></script> 
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.1.3/jszip.min.js"></script>
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/pdfmake.min.js"></script>
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/vfs_fonts.js"></script>
+<script type="text/javascript" src="https://cdn.datatables.net/buttons/1.6.1/js/buttons.html5.min.js"></script>
+<script type="text/javascript" src="https://cdn.datatables.net/buttons/1.6.1/js/buttons.print.min.js"></script>
 <!-- AdminLTE App -->
 <script src="../../dist/js/adminlte.min.js"></script>
 <!-- AdminLTE for demo purposes -->
 <script src="../../dist/js/demo.js"></script>
+
+<script type="text/javascript">
+		function viewh(e){
+		    var id = $(e).attr('id');
+		    
+		    $.ajax({
+		        type: "GET",
+		        url: "/metodos/aplicar/"+id,
+		        success: function (data) {
+		            $("#viewTicket .modal-body").html(data);
+		            $('#viewTicket').modal('show');
+		        },
+		        error: function (data) {
+		            console.log('Error:', data);
+		        }
+		    });
+		}
+
+	
+	</script>
+
+
 <!-- page script -->
+<script>
+
+$(document).ready(function() {
+    $('#example').DataTable( {
+        dom: 'Bfrtip',
+        buttons: [
+            'excel', 'pdf', 'print'
+        ]
+    } );
+} );
+</script>
+
 <script>
   $(function () {
     $("#example1").DataTable({
       "responsive": true,
       "autoWidth": false,
+      "pageLength": 100,
+      dom: 'Bfrtip',
+      buttons: [
+            'copy', 'csv', 'excel', 'pdf'
+        ]
     });
     $('#example2').DataTable({
       "paging": true,
