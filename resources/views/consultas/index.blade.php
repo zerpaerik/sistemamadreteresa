@@ -130,6 +130,8 @@
                     <td>{{$an->nameo}} {{$an->lasto}}</td>
 
                     <td>
+                    @if(Auth::user()->rol != 7)
+
                     <a class="btn btn-primary btn-sm" id="{{$an->id_atencion}}" onclick="viewh(this)">
                                     <i class="fas fa-eye">
                                     </i>
@@ -172,7 +174,8 @@
                     @endif
 
                     @endif
-                
+                    @endif
+
                     </td>
                   </tr>
                   @endforeach
