@@ -70,7 +70,12 @@ class ConsultasController extends Controller
 
       }
 
-        return view('consultas.index', compact('consultas','f1','f2'));
+        $ant = AntecedentesObstetricos::all();
+
+        $histb = HistoriaBase::all();
+
+
+        return view('consultas.index', compact('consultas','f1','f2','ant','histb'));
         //
     }
 
@@ -107,14 +112,10 @@ class ConsultasController extends Controller
       $cie = Ciexes::all();
       $cie1 = Ciexes::all();
       $consulta = Consultas::where('id','=',$consulta)->first();
-      $hist = HistoriaBase::where('id_paciente','=',$consulta->id_paciente)->first();
+      $hist = HistoriaBase::where('id_paciente','=',$consulta->id_paciente)->where('estatus','=',0)->first();
       $historias = Historia::where('id_paciente','=',$consulta->id_paciente)->get();
 
       $paciente = Pacientes::where('id','=',$consulta->id_paciente)->first();
-
-
-
-
 
 
         return view('consultas.historia',compact('cie','cie1','consulta','hist','historias','paciente'));
@@ -128,7 +129,7 @@ class ConsultasController extends Controller
 
       $consulta = Consultas::where('id','=',$consulta)->first();
 
-      $ant = AntecedentesObstetricos::where('id_paciente','=',$consulta->id_paciente)->first();
+      $ant = AntecedentesObstetricos::where('id_paciente','=',$consulta->id_paciente)->where('estatus','=',0)->first();
       $controles = Control::where('id_paciente','=',$consulta->id_paciente)->get();
 
       //dd($controles);
@@ -277,6 +278,23 @@ class ConsultasController extends Controller
 
     }
 
+
+    public function reversar_ant_cont($id){
+
+        $at_fin = AntecedentesObstetricos::where('id','=',$id)->first();
+        $at_fin->estatus = 1;
+        $at_fin->save();
+        return back();
+    }
+
+    public function reversar_ant_hist($id){
+
+      $at_fin = HistoriaBase::where('id','=',$id)->first();
+      $at_fin->estatus = 1;
+      $at_fin->save();
+      return back();
+  }
+
     public function guardar_control(Request $request){
 
       $usuario = DB::table('users')
@@ -324,6 +342,7 @@ class ConsultasController extends Controller
       $con->diag_def = $request->diag_def;
       $con->plan = $request->plan;
       $con->prox = $request->prox;
+      $con->observaciones = $request->observaciones;
       $con->usuario = Auth::user()->id;
       $con->save();
 

@@ -18,6 +18,18 @@ class AntecedentesObstetricos extends Model
         'id_paciente','gestas','abortos','vaginales','nac_vivos','viven','parto','cesarea','nac_muertos','ant_fam','ant_pers','gest_ant','fecha_ant','tipo_aborto','mayor_peso','peso','talla','tipo_sangre','sangre','fun','fpp','ecoeg','orina','fec_orina','urea','fec_urea','creatinina','fec_creati','bk','fec_bk','torch','fec_torch','usuario'
     ];
 
+
+    public function getAnt($paciente)
+
+    {
+
+      $consulta = AntecedentesObstetricos::where('id_paciente','=',$paciente)->first();
+
+      return $consulta;
+     
+    }
+
+
     
     //
 }

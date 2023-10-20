@@ -134,6 +134,6 @@ class HomeController extends Controller
 
         }
 
-        return view('home',compact('sedes', 'total','efec','tarj','dep','count','yap','egresos'));
+        return view('home',compact('sedes', 'total','efec','tarj','dep','yap','egresos'));
     }
 }
