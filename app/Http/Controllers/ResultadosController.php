@@ -271,7 +271,7 @@ class ResultadosController extends Controller
 
       $rs = ResultadosServicios::where('id','=',$id)->first();
       $rs->entregado = 1;
-      $rs->fec_entrega = date('Y-m-d h:m');
+      $rs->fec_entrega = now();
       $rs->por_entrega= Auth::user()->name." ".Auth::user()->lastname;
       $rs->save();
        
@@ -285,7 +285,7 @@ class ResultadosController extends Controller
 
       $rs = ResultadosLaboratorio::where('id','=',$id)->first();
       $rs->entregado = 1;
-      $rs->fec_entrega = date('Y-m-d h:m');
+      $rs->fec_entrega = now();;
       $rs->por_entrega= Auth::user()->name." ".Auth::user()->lastname;
       $rs->save();
 
