@@ -143,20 +143,37 @@
                               </i>
                               Historia
                           </a>
+                      @foreach($histb as $historialbase)
+                      @if($historialbase->id_paciente == $an->id_paciente && $historialbase->estatus == 0)
+                      <a class="btn btn-primary btn-sm" href="historia-ant-reversar-{{$historialbase->id}}" onclick="return confirm('¿Desea resetear este registro?')">
+                                    <i class="fas fa-eye">
+                                    </i>
+                                    Reset HistorialB
+                                </a>
+                      @else
+                      @endif
+                    @endforeach
                     @else
                     <a class="btn btn-danger btn-sm" href="control-crear-{{$an->id}}">
                               <i class="fas fa-pencil-alt">
                               </i>
                               Control
                     </a>
+                    @foreach($ant as $antecedentes)
+                      @if($antecedentes->id_paciente == $an->id_paciente && $antecedentes->estatus == 0)
+                      <a class="btn btn-primary btn-sm" href="controles-ant-reversar-{{$antecedentes->id}}" onclick="return confirm('¿Desea resetear este registro?')">
+                                    <i class="fas fa-eye">
+                                    </i>
+                                    Reset Antecedentes
+                                </a>
+                      @else
+                      @endif
+                    @endforeach
                     @endif
 
                     @endif
-
-                         
-
-                        
-                          </td>
+                
+                    </td>
                   </tr>
                   @endforeach
                  

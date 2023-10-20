@@ -299,11 +299,14 @@ Route::get('materiales-malogrados', 'ResultadosController@materialesm')->name('m
 
 Route::get('resultadosg', 'ResultadosController@indexg')->name('resultados.indexg');
 Route::get('resultadosg-reversar-{id}', 'ResultadosController@reversarg');
+Route::get('resultadosg-entregar-{id}', 'ResultadosController@entregar');
+Route::get('resultadosgl-entregar-{id}', 'ResultadosController@entregarl');
 Route::get('resultadosgl', 'ResultadosController@indexg1')->name('resultados.indexg1');
 Route::get('resultadosgl-reversar-{id}', 'ResultadosController@reversargl');
 
 
 Route::get('historial_pacientes', 'ReportesController@historial_pacientes')->name('historial.pacientes');
+Route::get('reporte-paquetes-{id}', 'ReportesController@reporte_paquetes');
 Route::get('reporte_pacientes', 'ReportesController@reporte_pacientes')->name('reporte.pacientes');
 
 
@@ -343,6 +346,10 @@ Route::get('consultas-delete-{id}', 'ConsultasController@delete')->middleware('a
 Route::get('cobrconsultasar-edit-{id}', 'ConsultasController@edit')->name('ingresos.edit');
 Route::post('consultas/edit', 'ConsultasController@update');
 Route::get('consultas-ticket-{id}', 'ConsultasController@ticket');
+Route::get('controles-ant-reversar-{id}', 'ConsultasController@reversar_ant_cont');
+Route::get('historia-ant-reversar-{id}', 'ConsultasController@reversar_ant_hist');
+
+
 Route::get('historias', 'ConsultasController@historias')->name('historias.index');
 Route::get('historia/reevaluar/{id}', 'ConsultasController@reevaluar');
 Route::post('historia/reevaluar', 'ConsultasController@reevaluarPost');

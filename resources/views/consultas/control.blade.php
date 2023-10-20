@@ -465,6 +465,9 @@
                        
 
                         </div>
+
+
+                       
                     
 
                         <input type="hidden" name="consulta" value="{{$consulta->id}}">
@@ -682,6 +685,13 @@
   @endforeach
   </tr>
 
+
+  <th style="background: #81BEF7;border: 1px solid black;">Observaciones</th>
+ @foreach($controles as $c)
+    <td style="border: 1px solid black;">{{$c->observaciones}}</td>
+  @endforeach
+  </tr>
+
   
 
 
@@ -869,6 +879,13 @@
                         </div>
                      
                     
+                        </div>
+
+                        <div class="row">
+                        <div class="col-md-12">
+                        <label for="exampleInputEmail1">Observaciones</label>
+                        <textarea class="form-control" onkeyup="javascript:this.value=this.value.toUpperCase();" rows="3"  name="observaciones" placeholder="Observaciones"></textarea>
+                      </div>
                         </div>
                   
                     <br>

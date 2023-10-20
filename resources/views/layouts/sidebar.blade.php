@@ -1356,6 +1356,7 @@
             </ul>
           </li>
 
+
           <li class="nav-item has-treeview">
             <a href="#" class="nav-link">
               <i class="nav-icon fas fa-money-check-alt"></i>
@@ -1366,9 +1367,12 @@
             </a>
             <ul class="nav nav-treeview">
 
-
-          
-
+            <li class="nav-item">
+                <a href="{{route('consultas.index')}}" class="nav-link">
+                  <i class="fas fa-hand-holding-usd nav-icon"></i>
+                  <p>Lista de Consultas</p>
+                </a>
+              </li>
               
             <li class="nav-item">
                 <a href="{{route('historias.index')}}" class="nav-link">

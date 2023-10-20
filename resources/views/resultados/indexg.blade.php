@@ -130,7 +130,7 @@
 
                   @foreach($resultados as $an)
                   <tr>
-                   <td>{{$an->created_at}}</td>
+                    <td>{{$an->created_at}}</td>
                     <td>{{$an->apellidos}} {{$an->nombres}}</td>
                     <td>{{$an->lastname}} {{$an->name}}</td>
                     <td>{{$an->servicio}}</td>
@@ -142,19 +142,25 @@
 
                     <a href="{{route('descargar2',$an->informe_guarda)}}" class="btn btn-success" target="_blank">Ver Informe</a>
 
+                    @if($an->entregado == 0)
+
+                    <a href="resultadosg-entregar-{{$an->id}}" class="btn btn-danger" onclick="return confirm('¿Desea entregar este resultado?')">Entregar</a>
+                    @endif
+
 
                     </td>
 
+                    @if($an->entregado == 0)
+                    <td style="background-color: yellow;">
+                      <p>EL INFORME NO HA SIDO ENTREGADO AL PACIENTE</p>
+                    </td>
+                    @endif
 
-                    <td>
-                    @if(Auth::user()->rol == 1)
-                   
-
-                         
-
-                        
-                         </td>
-                          @endif
+                    @if($an->entregado == 1)
+                    <td style="background-color: green;">
+                      <p>EL INFORME YA FUE ENTREGADO AL PACIENTE</p>
+                    </td>
+                    @endif
                   </tr>
                   @endforeach
                  
