@@ -483,6 +483,13 @@
                      
                     
                         </div>
+
+                        <div class="row">
+                     <div class="col-md-12">
+                    <label for="exampleInputEmail1">Observaciones</label>
+                    <input type="text" onkeyup="javascript:this.value=this.value.toUpperCase();" class="form-control" id="nombre" disabled  name="sexo" value="{{$cont->observaciones}}">
+                   </div>
+                    </div>
                    
 
 
