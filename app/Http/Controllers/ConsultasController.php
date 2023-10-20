@@ -396,7 +396,7 @@ class ConsultasController extends Controller
           ->select('a.id_paciente','a.id','a.created_at','a.reevalua','a.observacion','a.usuario_reevalua','b.nombres','b.apellidos','b.dni','b.fechanac','b.telefono','b.gradoinstruccion')
           ->join('pacientes as b','b.id','a.id_paciente')
           ->where('a.id_paciente', '=',$request->id_paciente)
-          ->orderBy('a.created_at','DESC')
+          ->orderBy('a.created_at','ASC')
           ->get(); 
   
         } else {
