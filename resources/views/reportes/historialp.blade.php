@@ -173,7 +173,7 @@
                     <td>{{substr($an->lastu,0,5)}} {{substr($an->nameu,0,5)}}</td>
                     <td>
                     @if($an->tipo_atencion == 7)
-                    <a href="reporte-paquetes-{{$an->id}}" class="btn btn-success" target="_blank">Ver detalle</a>
+                    <a href="reporte-paquetes-{{$an->id}}" class="btn btn-success">Ver detalle</a>
                     @endif
                     @if($an->atendido_por != null && $an->tipo_atencion != 7)
                     <p>Atendido Por: {{$an->atendido_por}}</p>
