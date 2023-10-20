@@ -102,18 +102,12 @@
                     <td>{{$an->porcentaje}}</td>
                 
                     <td>
-                    @if(Auth::user()->rol == 1)
-
                     <a class="btn btn-success btn-sm" id="{{$an->id}}" onclick="view(this)">
                               <i class="fas fa-eye">
                               </i>
                               Ver
                           </a>
-
-                        
-
-                        
-                          @endif</td>
+                  </td>
                   </tr>
                   @endforeach
                  
