@@ -142,7 +142,7 @@ class ResultadosController extends Controller
 
         if ($request->id_paciente != null) {
             $resultados = DB::table('resultados_servicios as a')
-        ->select('a.id', 'a.id_atencion', 'a.id_servicio', 'a.entregado','a.informe', 'a.informe_guarda', 'b.estatus', 'b.usuario', 'a.created_at', 'a.estatus', 'b.sede','b.id_paciente', 'b.id_origen', 's.nombre as servicio', 'pa.nombres', 'pa.apellidos', 'c.name', 'c.lastname')
+        ->select('a.id', 'a.id_atencion', 'a.id_servicio', 'a.fec_entrega','a.por_entrega','a.entregado','a.informe', 'a.informe_guarda', 'b.estatus', 'b.usuario', 'a.created_at', 'a.estatus', 'b.sede','b.id_paciente', 'b.id_origen', 's.nombre as servicio', 'pa.nombres', 'pa.apellidos', 'c.name', 'c.lastname')
         ->join('atenciones as b', 'b.id', 'a.id_atencion')
         ->join('users as c', 'c.id', 'b.id_origen')
         ->join('pacientes as pa', 'pa.id', 'b.id_paciente')
@@ -154,7 +154,7 @@ class ResultadosController extends Controller
         ->get();
         } else {
           $resultados = DB::table('resultados_servicios as a')
-          ->select('a.id', 'a.id_atencion', 'a.id_servicio','a.entregado', 'a.informe', 'a.informe_guarda', 'b.estatus', 'b.usuario', 'a.created_at', 'a.estatus','b.sede', 'b.id_paciente', 'b.id_origen', 's.nombre as servicio', 'pa.nombres', 'pa.apellidos', 'c.name', 'c.lastname')
+          ->select('a.id', 'a.id_atencion', 'a.id_servicio','a.entregado','a.fec_entrega','a.por_entrega', 'a.informe', 'a.informe_guarda', 'b.estatus', 'b.usuario', 'a.created_at', 'a.estatus','b.sede', 'b.id_paciente', 'b.id_origen', 's.nombre as servicio', 'pa.nombres', 'pa.apellidos', 'c.name', 'c.lastname')
           ->join('atenciones as b', 'b.id', 'a.id_atencion')
           ->join('users as c', 'c.id', 'b.id_origen')
           ->join('pacientes as pa', 'pa.id', 'b.id_paciente')
@@ -187,7 +187,7 @@ class ResultadosController extends Controller
           
 
             $resultados = DB::table('resultados_laboratorio as a')
-        ->select('a.id', 'a.id_atencion', 'a.id_laboratorio', 'a.entregado','a.informe','a.informe_guarda','b.estatus as sta_ate','b.sede','b.usuario', 'a.created_at', 'a.estatus', 'b.id_paciente', 'b.id_origen', 's.nombre as laboratorio', 'pa.nombres', 'pa.apellidos', 'c.name', 'c.lastname')
+        ->select('a.id', 'a.id_atencion', 'a.id_laboratorio', 'a.fec_entrega','a.por_entrega','a.entregado','a.informe','a.informe_guarda','b.estatus as sta_ate','b.sede','b.usuario', 'a.created_at', 'a.estatus', 'b.id_paciente', 'b.id_origen', 's.nombre as laboratorio', 'pa.nombres', 'pa.apellidos', 'c.name', 'c.lastname')
         ->join('atenciones as b', 'b.id', 'a.id_atencion')
         ->join('users as c', 'c.id', 'b.id_origen')
         ->join('pacientes as pa', 'pa.id', 'b.id_paciente')
@@ -201,7 +201,7 @@ class ResultadosController extends Controller
        
 
             $resultados = DB::table('resultados_laboratorio as a')
-            ->select('a.id', 'a.id_atencion', 'a.id_laboratorio','a.entregado','a.informe', 'a.informe_guarda','b.estatus as sta_ate','b.sede','b.usuario', 'a.created_at', 'a.estatus', 'b.id_paciente', 'b.id_origen', 's.nombre as laboratorio', 'pa.nombres', 'pa.apellidos', 'c.name', 'c.lastname')
+            ->select('a.id', 'a.id_atencion', 'a.id_laboratorio','a.entregado','a.fec_entrega','a.por_entrega','a.informe', 'a.informe_guarda','b.estatus as sta_ate','b.sede','b.usuario', 'a.created_at', 'a.estatus', 'b.id_paciente', 'b.id_origen', 's.nombre as laboratorio', 'pa.nombres', 'pa.apellidos', 'c.name', 'c.lastname')
             ->join('atenciones as b', 'b.id', 'a.id_atencion')
             ->join('users as c', 'c.id', 'b.id_origen')
             ->join('pacientes as pa', 'pa.id', 'b.id_paciente')
@@ -269,13 +269,11 @@ class ResultadosController extends Controller
 
     public function entregar($id){
 
-
-
-
       $rs = ResultadosServicios::where('id','=',$id)->first();
       $rs->entregado = 1;
+      $rs->fec_entrega = date('Y-m-d h:m');
+      $rs->por_entrega= Auth::user()->name." ".Auth::user()->lastname;
       $rs->save();
-
        
     return back();
 
@@ -287,6 +285,8 @@ class ResultadosController extends Controller
 
       $rs = ResultadosLaboratorio::where('id','=',$id)->first();
       $rs->entregado = 1;
+      $rs->fec_entrega = date('Y-m-d h:m');
+      $rs->por_entrega= Auth::user()->name." ".Auth::user()->lastname;
       $rs->save();
 
        

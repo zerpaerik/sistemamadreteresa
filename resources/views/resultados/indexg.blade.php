@@ -157,8 +157,8 @@
                     @endif
 
                     @if($an->entregado == 1)
-                    <td style="background-color: green;">
-                      <p>EL INFORME YA FUE ENTREGADO AL PACIENTE</p>
+                    <td style="background-color: green;color: white;">
+                      <p>EL INFORME YA FUE ENTREGADO AL PACIENTE POR: {{$an->por_entrega}}, fecha:{{$an->fec_entrega}}</p>
                     </td>
                     @endif
                   </tr>
