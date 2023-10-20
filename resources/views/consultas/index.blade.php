@@ -130,6 +130,19 @@
                     <td>{{$an->nameo}} {{$an->lasto}}</td>
 
                     <td>
+                    @if(Auth::user()->rol == 7)
+
+                    @if($an->historia == 0)
+                    <p>No ha sido atendido</p>
+
+                    @else
+                    <p>Ya fue atendido</p>
+
+                    @endif
+
+
+                    @endif
+
                     @if(Auth::user()->rol != 7)
 
                     <a class="btn btn-primary btn-sm" id="{{$an->id_atencion}}" onclick="viewh(this)">
