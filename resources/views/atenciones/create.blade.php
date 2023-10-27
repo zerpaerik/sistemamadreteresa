@@ -227,9 +227,8 @@
             <div id="servicios" class="embed ">
             
                 <!-- Form template-->
-                <div id="servicios_template" class="template row">
+                <div id="servicios_template" class="template row" style="margin-left:1px;">
 
-                <label for="servicios_#index#_servicio" class="col-sm-1 control-label">Procedimiento</label>
                     <div class="col-sm-3">
                       <select id="servicios_#index#_servicio" name="id_servicio[servicios][#index#][servicio]" class="selectServ form-control">
                       <option value="1">Seleccionar Procedimiento</option>
@@ -242,24 +241,38 @@
                     </div>
 
                     <label for="servicios_#index#_monto" class="col-sm-1 control-label">Monto</label>
-                    <div class="col-sm-1">
+                    <div class="col-sm-1" style="margin-left:-40px;">
                       <input id="servicios_#index#_montoHidden" name="monto_h[servicios][#index#][montoHidden]" class="text" type="hidden" value="">
 
                       <input id="servicios_#index#_monto" name="monto_s[servicios][#index#][monto]" type="number" class="number form-control monto" onchange="sumar();"  placeholder="Precio"  data-toggle="tooltip" data-placement="bottom" title="Precio">
                     </div>
 
-                    <label for="servicios_#index#_abonoS" class="col-sm-1 control-label">Abono.</label>
-                    <div class="col-sm-1">
-
+                    <label for="servicios_#index#_abonoS" class="col-sm-1">Abono.</label>
+                    <div class="col-sm-1" style="margin-left:-40px;">
                       <input id="servicios_#index#_abonoS" name="monto_abol[servicios][#index#][abono]" type="float" class="number form-control abonoS abono" onchange="sumar_ab();"  onkeyup="myFunction()" placeholder="Abono" data-toggle="tooltip" data-placement="bottom" title="Abono">
                     </div>
-                    <label for="servicios_#index#_tipop" class="col-sm-1 control-label">TipoPago</label>
-                    <div class="col-sm-2">
+                    <label for="servicios_#index#_tipop" class="col-sm-1 control-label">TPago</label>
+                    <div class="col-sm-1" style="margin-left:-40px;">
                       <select id="servicios_#index#_servicio" name="id_pago[servicios][#index#][tipop]" class="form-control">
-                        <option value="EF">Efectivo</option>
-                        <option value="TJ">Tarjeta</option>
-                        <option value="DP">Depósito</option>
-                        <option value="YP">Yape</option>
+                        <option value="EF">EF</option>
+                        <option value="TJ">TJ</option>
+                        <option value="DP">DP</option>
+                        <option value="YP">YP</option>
+
+                      </select>
+                    </div>
+                    <label for="servicios_#index#_abonoS" class="col-sm-1 control-label">Abono.</label>
+                    <div class="col-sm-1" style="margin-left:-40px;">
+
+                      <input id="servicios_#index#_abonoS" name="monto_abol[servicios][#index#][abono1]" type="float" class="number form-control abonoS abono" onchange="sumar_ab();"  onkeyup="myFunction()" placeholder="Abono" data-toggle="tooltip" data-placement="bottom" title="Abono">
+                    </div>
+                    <label for="servicios_#index#_tipop" class="col-sm-1 control-label">TPago</label>
+                    <div class="col-sm-1" style="margin-left:-40px;">
+                      <select id="servicios_#index#_servicio" name="id_pago[servicios][#index#][tipop1]" class="form-control">
+                      <option value="EF">EF</option>
+                        <option value="TJ">TJ</option>
+                        <option value="DP">DP</option>
+                        <option value="YP">YP</option>
 
                       </select>
                     </div>
@@ -291,9 +304,8 @@
             <div id="ecografias" class="embed ">
             
                 <!-- Form template-->
-                <div id="ecografias_template" class="template row">
+                <div id="ecografias_template" class="template row" style="margin-left:1px;">
 
-                <label for="ecografias_#index#_ecografia" class="col-sm-1 control-label">Ecografias</label>
                     <div class="col-sm-3">
                       <select id="ecografias_#index#_ecografia" name="id_ecografia[ecografias][#index#][ecografia]" class="selectEco form-control">
                         <option value="1">Seleccionar Ecografia</option>
@@ -306,26 +318,44 @@
                     </div>
 
                     <label for="ecografias_#index#_monto" class="col-sm-1 control-label">Monto</label>
-                    <div class="col-sm-1">
+                    <div class="col-sm-1" style="margin-left:-40px;">
                       <input id="ecografias_#index#_montoHidden" name="monto_h[ecografias][#index#][montoHidden]" class="text" type="hidden" value="">
 
                       <input id="ecografias_#index#_monto" name="monto_s[ecografias][#index#][monto]" type="text" class="number form-control monto" onchange="sumar();" placeholder="Precio" data-toggle="tooltip" data-placement="bottom" title="Precio">
                     </div>
 
                     <label for="ecografias_#index#_abonoL" class="col-sm-1 control-label">Abono.</label>
-                    <div class="col-sm-1">
+                    <div class="col-sm-1" style="margin-left:-40px;">
 
                       <input id="ecografias_#index#_abonoL" name="monto_abol[ecografias][#index#][abono]" type="float" class="number form-control abonoL abono" onchange="sumar_ab();" placeholder="Abono" data-toggle="tooltip" data-placement="bottom" title="Abono">
                     </div>
 
-                    <label for="ecografias_#index#_tipop" class="col-sm-1 control-label">TipoPago</label>
-                    <div class="col-sm-2">
+                    <label for="ecografias_#index#_tipop" class="col-sm-1 control-label">TPago</label>
+                    <div class="col-sm-1" style="margin-left:-40px;">
                       <select id="ecografias_#index#_ecografia" name="id_pago[ecografias][#index#][tipop]" class="form-control">
                       <option value="" disabled>Seleccione</option>
-                        <option value="EF">Efectivo</option>
-                        <option value="TJ">Tarjeta</option>
-                        <option value="DP">Depósito</option>
-                        <option value="YP">Yape</option>
+                        <option value="EF">EF</option>
+                        <option value="TJ">TJ</option>
+                        <option value="DP">DP</option>
+                        <option value="YP">YP</option>
+
+                      </select>
+                    </div>
+
+                    <label for="ecografias_#index#_abonoL" class="col-sm-1 control-label">Abono.</label>
+                    <div class="col-sm-1" style="margin-left:-40px;">
+
+                      <input id="ecografias_#index#_abonoL" name="monto_abol[ecografias][#index#][abono1]" type="float" class="number form-control abonoL abono" onchange="sumar_ab();" placeholder="Abono" data-toggle="tooltip" data-placement="bottom" title="Abono">
+                    </div>
+
+                    <label for="ecografias_#index#_tipop" class="col-sm-1 control-label">TPago</label>
+                    <div class="col-sm-1" style="margin-left:-40px;">
+                      <select id="ecografias_#index#_ecografia" name="id_pago[ecografias][#index#][tipop1]" class="form-control">
+                      <option value="" disabled>Seleccione</option>
+                        <option value="EF">EF</option>
+                        <option value="TJ">TJ</option>
+                        <option value="DP">DP</option>
+                        <option value="YP">YP</option>
 
                       </select>
                     </div>
@@ -357,9 +387,8 @@
             <div id="rayos" class="embed ">
             
                 <!-- Form template-->
-                <div id="rayos_template" class="template row">
+                <div id="rayos_template" class="template row" style="margin-left:1px;">
 
-                <label for="rayos_#index#_rayo" class="col-sm-1 control-label">Rayos X</label>
                     <div class="col-sm-3">
                       <select id="rayos_#index#_rayo" name="id_rayo[rayos][#index#][rayo]" class="selectRayos form-control">
                         <option value="1">Seleccionar Rayos X</option>
@@ -372,25 +401,43 @@
                     </div>
 
                     <label for="rayos_#index#_monto" class="col-sm-1 control-label">Monto</label>
-                    <div class="col-sm-1">
+                    <div class="col-sm-1" style="margin-left:-40px;">
                       <input id="rayos_#index#_montoHidden" name="monto_h[rayos][#index#][montoHidden]" class="text" type="hidden" value="">
 
                       <input id="rayos_#index#_monto" name="monto_s[rayos][#index#][monto]" type="text" class="number form-control monto" onchange="sumar();" placeholder="Precio" data-toggle="tooltip" data-placement="bottom" title="Precio">
                     </div>
 
                     <label for="rayos_#index#_abonoL" class="col-sm-1 control-label">Abono.</label>
-                    <div class="col-sm-1">
+                    <div class="col-sm-1" style="margin-left:-40px;">
 
                       <input id="rayos_#index#_abonoL" name="monto_abol[rayos][#index#][abono]" type="float" class="number form-control abonoL abono" onchange="sumar_ab();" placeholder="Abono" data-toggle="tooltip" data-placement="bottom" title="Abono">
                     </div>
 
-                    <label for="rayos_#index#_tipop" class="col-sm-1 control-label">TipoPago</label>
-                    <div class="col-sm-2">
+                    <label for="rayos_#index#_tipop" class="col-sm-1 control-label">TPago</label>
+                    <div class="col-sm-1" style="margin-left:-40px;">
                       <select id="rayos_#index#_rayo" name="id_pago[rayos][#index#][tipop]" class="form-control">
-                        <option value="EF">Efectivo</option>
-                        <option value="TJ">Tarjeta</option>
-                        <option value="DP">Depósito</option>
-                        <option value="YP">Yape</option>
+                        <option value="EF">EF</option>
+                        <option value="TJ">TJ</option>
+                        <option value="DP">DP</option>
+                        <option value="YP">YP</option>
+
+                      </select>
+                    </div>
+
+                    
+                    <label for="rayos_#index#_abonoL" class="col-sm-1 control-label">Abono.</label>
+                    <div class="col-sm-1" style="margin-left:-40px;">
+
+                      <input id="rayos_#index#_abonoL" name="monto_abol[rayos][#index#][abono1]" type="float" class="number form-control abonoL abono" onchange="sumar_ab();" placeholder="Abono" data-toggle="tooltip" data-placement="bottom" title="Abono">
+                    </div>
+
+                    <label for="rayos_#index#_tipop" class="col-sm-1 control-label">TPago</label>
+                    <div class="col-sm-1" style="margin-left:-40px;">
+                      <select id="rayos_#index#_rayo" name="id_pago[rayos][#index#][tipop1]" class="form-control">
+                        <option value="EF">EF</option>
+                        <option value="TJ">TJ</option>
+                        <option value="DP">DP</option>
+                        <option value="YP">YP</option>
 
                       </select>
                     </div>
@@ -424,9 +471,8 @@
               <div id="salud" class="embed ">
               
                   <!-- Form template-->
-                  <div id="salud_template" class="template row">
+                  <div id="salud_template" class="template row" style="margin-left:1px;">
   
-                  <label for="salud_#index#_salu" class="col-sm-1 control-label">Salud Mental</label>
                       <div class="col-sm-3">
                         <select id="salud_#index#_salu" name="id_salu[salud][#index#][salu]" class="selectSalud form-control">
                           <option value="1">Seleccionar Salud M</option>
@@ -439,29 +485,48 @@
                       </div>
   
                       <label for="salud_#index#_monto" class="col-sm-1 control-label">Monto</label>
-                      <div class="col-sm-1">
+                      <div class="col-sm-1" style="margin-left:-40px;">
                         <input id="salud_#index#_montoHidden" name="monto_h[salud][#index#][montoHidden]" class="text" type="hidden" value="">
   
                         <input id="salud_#index#_monto" name="monto_s[salud][#index#][monto]" type="text" class="number form-control monto" onchange="sumar();" placeholder="Precio" data-toggle="tooltip" data-placement="bottom" title="Precio">
                       </div>
   
                       <label for="salud_#index#_abonoL" class="col-sm-1 control-label">Abono.</label>
-                      <div class="col-sm-1">
+                      <div class="col-sm-1" style="margin-left:-40px;">
   
                         <input id="salud_#index#_abonoL" name="monto_abol[salud][#index#][abono]" type="float" class="number form-control abonoL abono" onchange="sumar_ab();" placeholder="Abono" data-toggle="tooltip" data-placement="bottom" title="Abono">
                       </div>
   
-                      <label for="salud_#index#_tipop" class="col-sm-1 control-label">TipoPago</label>
-                      <div class="col-sm-2">
+                      <label for="salud_#index#_tipop" class="col-sm-1 control-label">TPago</label>
+                      <div class="col-sm-1" style="margin-left:-40px;">
                         <select id="salud_#index#_salu" name="id_pago[salud][#index#][tipop]" class="form-control">
                         <option value="" disabled>Seleccione</option>
-                          <option value="EF">Efectivo</option>
-                          <option value="TJ">Tarjeta</option>
-                          <option value="DP">Depósito</option>
-                          <option value="YP">Yape</option>
+                          <option value="EF">EF</option>
+                          <option value="TJ">TJ</option>
+                          <option value="DP">DP</option>
+                          <option value="YP">YP</option>
   
                         </select>
                       </div>
+
+                      <label for="salud_#index#_abonoL" class="col-sm-1 control-label">Abono.</label>
+                      <div class="col-sm-1" style="margin-left:-40px;">
+  
+                        <input id="salud_#index#_abonoL" name="monto_abol[salud][#index#][abono1]" type="float" class="number form-control abonoL abono" onchange="sumar_ab();" placeholder="Abono" data-toggle="tooltip" data-placement="bottom" title="Abono">
+                      </div>
+  
+                      <label for="salud_#index#_tipop" class="col-sm-1 control-label">TPago</label>
+                      <div class="col-sm-1" style="margin-left:-40px;">
+                        <select id="salud_#index#_salu" name="id_pago[salud][#index#][tipop1]" class="form-control">
+                        <option value="" disabled>Seleccione</option>
+                          <option value="EF">EF</option>
+                          <option value="TJ">TJ</option>
+                          <option value="DP">DP</option>
+                          <option value="YP">YP</option>
+  
+                        </select>
+                      </div>
+  
   
                      
   
@@ -494,9 +559,8 @@
             <div id="analisis" class="embed ">
             
                 <!-- Form template-->
-                <div id="analisis_template" class="template row">
+                <div id="analisis_template" class="template row" style="margin-left:1px;">
 
-                <label for="analisis_#index#_rayo" class="col-sm-2 control-label">Laboratorios</label>
                     <div class="col-sm-3">
                       <select id="analisis_#index#_sayo" name="id_analisi[analisis][#index#][analisi]" class="selectLab form-control">
                         <option value="1" >Seleccionar Labo.</option>
@@ -509,27 +573,46 @@
                     </div>
 
                     <label for="analisis_#index#_monto" class="col-sm-1 control-label">Monto</label>
-                    <div class="col-sm-1">
+                    <div class="col-sm-1" style="margin-left:-40px;">
                       <input id="analisis_#index#_montoHidden" name="monto_h[analisis][#index#][montoHidden]" class="text" type="hidden" value="">
 
                       <input id="analisis_#index#_monto" name="monto_s[analisis][#index#][monto]" type="text" class="number form-control monto" onchange="sumar();" placeholder="Precio" data-toggle="tooltip" data-placement="bottom" title="Precio">
                     </div>
 
                     <label for="analisis_#index#_abonoL" class="col-sm-1 control-label">Abono.</label>
-                    <div class="col-sm-1">
+                    <div class="col-sm-1" style="margin-left:-40px;">
 
                       <input id="analisis_#index#_abonoL" name="monto_abol[analisis][#index#][abono]" type="float" class="number form-control abonoL abono" onchange="sumar_ab();" placeholder="Abono" data-toggle="tooltip" data-placement="bottom" title="Abono">
                     </div>
 
                     
-                    <label for="analisis_#index#_tipop" class="col-sm-1 control-label">TipoPago</label>
-                    <div class="col-sm-2">
+                    <label for="analisis_#index#_tipop" class="col-sm-1 control-label">TPago</label>
+                    <div class="col-sm-1" style="margin-left:-40px;">
                       <select id="analisis_#index#_analisi" name="id_pago[analisis][#index#][tipop]" class="form-control">
                       <option value="" disabled>Seleccione</option>
-                        <option value="EF">Efectivo</option>
-                        <option value="TJ">Tarjeta</option>
-                        <option value="DP">Depósito</option>
-                        <option value="YP">Yape</option>
+                        <option value="EF">EF</option>
+                        <option value="TJ">TJ</option>
+                        <option value="DP">DP</option>
+                        <option value="YP">YP</option>
+
+                      </select>
+                    </div>
+
+                    <label for="analisis_#index#_abonoL" class="col-sm-1 control-label">Abono.</label>
+                    <div class="col-sm-1" style="margin-left:-40px;">
+
+                      <input id="analisis_#index#_abonoL" name="monto_abol[analisis][#index#][abono1]" type="float" class="number form-control abonoL abono" onchange="sumar_ab();" placeholder="Abono" data-toggle="tooltip" data-placement="bottom" title="Abono">
+                    </div>
+
+                    
+                    <label for="analisis_#index#_tipop" class="col-sm-1 control-label">TPago</label>
+                    <div class="col-sm-1" style="margin-left:-40px;">
+                      <select id="analisis_#index#_analisi" name="id_pago[analisis][#index#][tipop1]" class="form-control">
+                      <option value="" disabled>Seleccione</option>
+                        <option value="EF">EF</option>
+                        <option value="TJ">TJ</option>
+                        <option value="DP">DP</option>
+                        <option value="YP">YP</option>
 
                       </select>
                     </div>
@@ -562,9 +645,8 @@
       <div id="paquetes" class="embed ">
       
           <!-- Form template-->
-          <div id="paquetes_template" class="template row">
+          <div id="paquetes_template" class="template row" style="margin-left:1px;">
 
-          <label for="paquetes_#index#_paquete" class="col-sm-2 control-label">Paquetes</label>
               <div class="col-sm-3">
                 <select id="paquetes_#index#_paquete" name="id_paquete[paquetes_][#index#][paquete]" class="selectPaq form-control">
                   <option value="1" >Seleccionar Paquete.</option>
@@ -577,27 +659,46 @@
               </div>
 
               <label for="paquetes_#index#_monto" class="col-sm-1 control-label">Monto</label>
-              <div class="col-sm-1">
+              <div class="col-sm-1" style="margin-left:-40px;">
                 <input id="paquetes_#index#_montoHidden" name="monto_h[paquetes][#index#][montoHidden]" class="text" type="hidden" value="">
 
                 <input id="paquetes_#index#_monto" name="monto_s[paquetes][#index#][monto]" type="text" class="number form-control monto" onchange="sumar();" placeholder="Precio" data-toggle="tooltip" data-placement="bottom" title="Precio">
               </div>
 
               <label for="paquetes_#index#_abonoL" class="col-sm-1 control-label">Abono.</label>
-              <div class="col-sm-1">
+              <div class="col-sm-1" style="margin-left:-40px;">
 
                 <input id="paquetes_#index#_abonoL" name="monto_abol[paquetes][#index#][abono]" type="float" class="number form-control abonoL abono" onchange="sumar_ab();" placeholder="Abono" data-toggle="tooltip" data-placement="bottom" title="Abono">
               </div>
 
               
-              <label for="paquetes_#index#_tipop" class="col-sm-1 control-label">TipoPago</label>
-              <div class="col-sm-2">
+              <label for="paquetes_#index#_tipop" class="col-sm-1 control-label">TPago</label>
+              <div class="col-sm-1" style="margin-left:-40px;">
                 <select id="paquetes_#index#_paquete" name="id_pago[paquetes][#index#][tipop]" class="form-control">
                 <option value="" disabled>Seleccione</option>
-                  <option value="EF">Efectivo</option>
-                  <option value="TJ">Tarjeta</option>
-                  <option value="DP">Depósito</option>
-                  <option value="YP">Yape</option>
+                  <option value="EF">EF</option>
+                  <option value="TJ">TJ</option>
+                  <option value="DP">DP</option>
+                  <option value="YP">YP</option>
+
+                </select>
+              </div>
+
+              <label for="paquetes_#index#_abonoL" class="col-sm-1 control-label">Abono.</label>
+              <div class="col-sm-1" style="margin-left:-40px;">
+
+                <input id="paquetes_#index#_abonoL" name="monto_abol[paquetes][#index#][abono1]" type="float" class="number form-control abonoL abono" onchange="sumar_ab();" placeholder="Abono" data-toggle="tooltip" data-placement="bottom" title="Abono">
+              </div>
+
+              
+              <label for="paquetes_#index#_tipop" class="col-sm-1 control-label">TPago</label>
+              <div class="col-sm-1" style="margin-left:-40px;">
+                <select id="paquetes_#index#_paquete" name="id_pago[paquetes][#index#][tipop1]" class="form-control">
+                <option value="" disabled>Seleccione</option>
+                  <option value="EF">EF</option>
+                  <option value="TJ">TJ</option>
+                  <option value="DP">DP</option>
+                  <option value="YP">YP</option>
 
                 </select>
               </div>
@@ -626,7 +727,7 @@
   <div class="tab-pane container fade" id="con">  
   <div class="card-body">
                     <div class="row" width="100%">
-                    <div class="col-md-3">
+                    <div class="col-md-2">
                   <label>Tipo</label>
                         <select class="form-control" name="tipo_con">
 						              	<option value="" disabled>Seleccione</option>
@@ -634,7 +735,7 @@
                             <option value="2">Control</option>
                         </select>
                   </div>
-                  <div class="col-md-3">
+                  <div class="col-md-2">
                   <label>Especialista</label>
                         <select class="form-control" name="esp_con">
                           <option value="">Seleccione</option>
@@ -643,18 +744,39 @@
                           @endforeach
                         </select>
                   </div>
-                  <div class="col-md-3">
+                  <div class="col-md-2">
                     <label for="exampleInputEmail1">Precio</label>
-                    <input type="float" class="form-control monto abono" id="email" name="precio_con" placeholder="Precio" onchange="sumar();sumar_ab()" >
+                    <input type="float" class="form-control monto abono" id="email" name="precio_con" placeholder="Precio" onchange="sumar();" >
                   </div>
-                  <div class="col-md-3">
-                  <label>TipoPago</label>
+                 
+
+                  <div class="col-md-1">
+                    <label for="exampleInputEmail1">Abono</label>
+                    <input type="float" class="form-control monto abono" id="email" name="abo_con" placeholder="Precio">
+                  </div>
+                  <div class="col-md-2">
+                  <label>TPago</label>
                         <select class="form-control" name="tipop_con">
 						              	<option value="" disabled>Seleccione</option>
-                            <option value="EF">Efectivo</option>
-                            <option value="TJ">Tarjeta</option>
-                            <option value="DP">Depósito</option>
-                            <option value="YP">Yape</option>
+                            <option value="EF">EF</option>
+                            <option value="TJ">TJ</option>
+                            <option value="DP">DP</option>
+                            <option value="YP">YP</option>
+                        </select>
+                  </div>
+
+                  <div class="col-md-1">
+                    <label for="exampleInputEmail1">Abono</label>
+                    <input type="float" class="form-control monto abono" id="email" name="abo1_con" placeholder="Precio" >
+                  </div>
+                  <div class="col-md-2">
+                  <label>TPago</label>
+                        <select class="form-control" name="tipop1_con">
+						              	<option value="" disabled>Seleccione</option>
+                            <option value="EF">EF</option>
+                            <option value="TJ">TJ</option>
+                            <option value="DP">DP</option>
+                            <option value="YP">YP</option>
                         </select>
                   </div>
 
@@ -667,7 +789,7 @@
                   </div>
   <div class="tab-pane container fade" id="met"> <div class="card-body">
                     <div class="row">
-                    <div class="col-md-4">
+                    <div class="col-md-2">
                   <label>Producto</label>
                   <select class="form-control" name="metodo">
                     <option value="">Seleccione</option>
@@ -678,18 +800,37 @@
 
                       
                   </div>
-                  <div class="col-md-4">
+                  <div class="col-md-2">
                     <label for="exampleInputEmail1">Precio</label>
-                    <input type="float" class="form-control monto abono" id="email" name="precio_met" placeholder="Precio" onchange="sumar();sumar_ab()">
+                    <input type="float" class="form-control monto abono" id="email" name="precio_met" placeholder="Precio" onchange="sumar();>
                   </div>
-                  <div class="col-md-4">
-                  <label>TipoPago</label>
+              
+                  <div class="col-md-2">
+                    <label for="exampleInputEmail1">Abono</label>
+                    <input type="float" class="form-control monto abono" id="email" name="abo_met" placeholder="Precio">
+                  </div>
+                  <div class="col-md-2">
+                  <label>TPago</label>
                         <select class="form-control" name="tipop_met">
 						              	<option value="" disabled>Seleccione</option>
-                            <option value="EF">Efectivo</option>
-                            <option value="TJ">Tarjeta</option>
-                            <option value="DP">Depósito</option>
-                            <option value="YP">Yape</option>
+                            <option value="EF">EF</option>
+                            <option value="TJ">TJ</option>
+                            <option value="DP">DP</option>
+                            <option value="YP">YP</option>
+                        </select>
+                  </div>
+                  <div class="col-md-2">
+                    <label for="exampleInputEmail1">Abono</label>
+                    <input type="float" class="form-control monto abono" id="email" name="abo1_met" placeholder="Precio">
+                  </div>
+                  <div class="col-md-2">
+                  <label>TPago</label>
+                        <select class="form-control" name="tipop1_met">
+						              	<option value="" disabled>Seleccione</option>
+                            <option value="EF">EF</option>
+                            <option value="TJ">TJ</option>
+                            <option value="DP">DP</option>
+                            <option value="YP">YP</option>
                         </select>
                   </div>
 

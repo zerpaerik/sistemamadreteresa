@@ -47,7 +47,7 @@ class AtencionesController extends Controller
       
 
         $serv = DB::table('atenciones as a')
-        ->select('a.id','a.tipo_origen','a.id_origen','a.observaciones','a.eliminado_por','a.id_atec','a.id_tipo','a.pagado','a.atendido','a.sede','a.usuario','a.created_at','a.estatus','a.id_paciente','a.tipo_atencion','a.monto','a.abono','a.tipo_pago','b.nombres','b.apellidos','b.dni','c.name as nameo','c.lastname as lasto','d.name as nameu','d.lastname as lastu','s.nombre as detalle')
+        ->select('a.id','a.tipo_origen','a.id_origen','a.abono1','a.abono2','a.tipo_pago1','a.observaciones','a.eliminado_por','a.id_atec','a.id_tipo','a.pagado','a.atendido','a.sede','a.usuario','a.created_at','a.estatus','a.id_paciente','a.tipo_atencion','a.monto','a.abono','a.tipo_pago','b.nombres','b.apellidos','b.dni','c.name as nameo','c.lastname as lasto','d.name as nameu','d.lastname as lastu','s.nombre as detalle')
         ->join('pacientes as b','b.id','a.id_paciente')
         ->join('users as c','c.id','a.id_origen')
         ->join('users as d','d.id','a.usuario')
@@ -60,7 +60,7 @@ class AtencionesController extends Controller
        // ->get(); 
 
         $eco = DB::table('atenciones as a')
-        ->select('a.id','a.tipo_origen','a.id_origen','a.observaciones', 'a.eliminado_por','a.id_atec','a.id_tipo','a.pagado','a.atendido','a.sede','a.usuario','a.created_at','a.estatus','a.id_paciente','a.tipo_atencion','a.monto','a.abono','a.tipo_pago','b.nombres','b.apellidos','b.dni','c.name as nameo','c.lastname as lasto','d.name as nameu','d.lastname as lastu','s.nombre as detalle')
+        ->select('a.id','a.tipo_origen','a.id_origen','a.abono1','a.abono2','a.tipo_pago1','a.observaciones', 'a.eliminado_por','a.id_atec','a.id_tipo','a.pagado','a.atendido','a.sede','a.usuario','a.created_at','a.estatus','a.id_paciente','a.tipo_atencion','a.monto','a.abono','a.tipo_pago','b.nombres','b.apellidos','b.dni','c.name as nameo','c.lastname as lasto','d.name as nameu','d.lastname as lastu','s.nombre as detalle')
         ->join('pacientes as b','b.id','a.id_paciente')
         ->join('users as c','c.id','a.id_origen')
         ->join('users as d','d.id','a.usuario')
@@ -72,7 +72,7 @@ class AtencionesController extends Controller
         ->where('a.sede', '=', $request->session()->get('sede'));
 
         $cons = DB::table('atenciones as a')
-        ->select('a.id','a.tipo_origen','a.id_origen','a.observaciones','a.eliminado_por','a.id_atec','a.id_tipo','a.pagado','a.atendido','a.sede','a.usuario','a.created_at','a.estatus','a.id_paciente','a.tipo_atencion','a.monto','a.abono','a.tipo_pago','b.nombres','b.apellidos','b.dni','c.name as nameo','c.lastname as lasto','d.name as nameu','d.lastname as lastu','s.nombre as detalle')
+        ->select('a.id','a.tipo_origen','a.id_origen','a.abono1','a.abono2','a.tipo_pago1','a.observaciones','a.eliminado_por','a.id_atec','a.id_tipo','a.pagado','a.atendido','a.sede','a.usuario','a.created_at','a.estatus','a.id_paciente','a.tipo_atencion','a.monto','a.abono','a.tipo_pago','b.nombres','b.apellidos','b.dni','c.name as nameo','c.lastname as lasto','d.name as nameu','d.lastname as lastu','s.nombre as detalle')
         ->join('pacientes as b','b.id','a.id_paciente')
         ->join('users as c','c.id','a.id_origen')
         ->join('users as d','d.id','a.usuario')
@@ -84,7 +84,7 @@ class AtencionesController extends Controller
         ->where('a.sede', '=', $request->session()->get('sede'));
 
         $meto = DB::table('atenciones as a')
-        ->select('a.id','a.tipo_origen','a.id_origen','a.observaciones','a.eliminado_por','a.id_atec','a.id_tipo','a.pagado','a.atendido','a.sede','a.usuario','a.created_at','a.estatus','a.id_paciente','a.tipo_atencion','a.monto','a.abono','a.tipo_pago','b.nombres','b.apellidos','b.dni','c.name as nameo','c.lastname as lasto','d.name as nameu','d.lastname as lastu','s.nombre as detalle')
+        ->select('a.id','a.tipo_origen','a.id_origen','a.abono1','a.abono2','a.tipo_pago1','a.observaciones','a.eliminado_por','a.id_atec','a.id_tipo','a.pagado','a.atendido','a.sede','a.usuario','a.created_at','a.estatus','a.id_paciente','a.tipo_atencion','a.monto','a.abono','a.tipo_pago','b.nombres','b.apellidos','b.dni','c.name as nameo','c.lastname as lasto','d.name as nameu','d.lastname as lastu','s.nombre as detalle')
         ->join('pacientes as b','b.id','a.id_paciente')
         ->join('users as c','c.id','a.id_origen')
         ->join('users as d','d.id','a.usuario')
@@ -96,7 +96,7 @@ class AtencionesController extends Controller
         ->where('a.sede', '=', $request->session()->get('sede'));
 
         $salud = DB::table('atenciones as a')
-        ->select('a.id','a.tipo_origen','a.id_origen','a.observaciones','a.eliminado_por','a.id_atec','a.id_tipo','a.pagado','a.atendido','a.sede','a.usuario','a.created_at','a.estatus','a.id_paciente','a.tipo_atencion','a.monto','a.abono','a.tipo_pago','b.nombres','b.apellidos','b.dni','c.name as nameo','c.lastname as lasto','d.name as nameu','d.lastname as lastu','s.nombre as detalle')
+        ->select('a.id','a.tipo_origen','a.id_origen','a.abono1','a.abono2','a.tipo_pago1','a.observaciones','a.eliminado_por','a.id_atec','a.id_tipo','a.pagado','a.atendido','a.sede','a.usuario','a.created_at','a.estatus','a.id_paciente','a.tipo_atencion','a.monto','a.abono','a.tipo_pago','b.nombres','b.apellidos','b.dni','c.name as nameo','c.lastname as lasto','d.name as nameu','d.lastname as lastu','s.nombre as detalle')
         ->join('pacientes as b','b.id','a.id_paciente')
         ->join('users as c','c.id','a.id_origen')
         ->join('users as d','d.id','a.usuario')
@@ -108,7 +108,7 @@ class AtencionesController extends Controller
         ->where('a.sede', '=', $request->session()->get('sede'));
 
         $ana = DB::table('atenciones as a')
-        ->select('a.id','a.tipo_origen','a.id_origen','a.observaciones','a.eliminado_por','a.id_atec','a.id_tipo','a.pagado','a.atendido','a.sede','a.usuario','a.created_at','a.estatus','a.id_paciente','a.tipo_atencion','a.monto','a.abono','a.tipo_pago','b.nombres','b.apellidos','b.dni','c.name as nameo','c.lastname as lasto','d.name as nameu','d.lastname as lastu','s.nombre as detalle')
+        ->select('a.id','a.tipo_origen','a.id_origen','a.abono1','a.abono2','a.tipo_pago1','a.observaciones','a.eliminado_por','a.id_atec','a.id_tipo','a.pagado','a.atendido','a.sede','a.usuario','a.created_at','a.estatus','a.id_paciente','a.tipo_atencion','a.monto','a.abono','a.tipo_pago','b.nombres','b.apellidos','b.dni','c.name as nameo','c.lastname as lasto','d.name as nameu','d.lastname as lastu','s.nombre as detalle')
         ->join('pacientes as b','b.id','a.id_paciente')
         ->join('users as c','c.id','a.id_origen')
         ->join('users as d','d.id','a.usuario')
@@ -120,7 +120,7 @@ class AtencionesController extends Controller
         ->where('a.sede', '=', $request->session()->get('sede'));
 
         $paq = DB::table('atenciones as a')
-        ->select('a.id','a.tipo_origen','a.id_origen','a.observaciones','a.eliminado_por','a.id_atec','a.id_tipo','a.pagado','a.atendido','a.sede','a.usuario','a.created_at','a.estatus','a.id_paciente','a.tipo_atencion','a.monto','a.abono','a.tipo_pago','b.nombres','b.apellidos','b.dni','c.name as nameo','c.lastname as lasto','d.name as nameu','d.lastname as lastu','s.nombre as detalle')
+        ->select('a.id','a.tipo_origen','a.id_origen','a.abono1','a.abono2','a.tipo_pago1','a.observaciones','a.eliminado_por','a.id_atec','a.id_tipo','a.pagado','a.atendido','a.sede','a.usuario','a.created_at','a.estatus','a.id_paciente','a.tipo_atencion','a.monto','a.abono','a.tipo_pago','b.nombres','b.apellidos','b.dni','c.name as nameo','c.lastname as lasto','d.name as nameu','d.lastname as lastu','s.nombre as detalle')
         ->join('pacientes as b','b.id','a.id_paciente')
         ->join('users as c','c.id','a.id_origen')
         ->join('users as d','d.id','a.usuario')
@@ -133,7 +133,7 @@ class AtencionesController extends Controller
 
 
         $metodos = DB::table('atenciones as a')
-        ->select('a.id','a.tipo_origen','a.id_origen','a.observaciones','a.eliminado_por','a.id_atec','a.id_tipo','a.pagado','a.atendido','a.sede','a.usuario','a.created_at','a.estatus','a.id_paciente','a.tipo_atencion','a.monto','a.abono','a.tipo_pago','b.nombres','b.apellidos','b.dni','c.name as nameo','c.lastname as lasto','d.name as nameu','d.lastname as lastu','s.nombre as detalle')
+        ->select('a.id','a.tipo_origen','a.id_origen','a.abono1','a.abono2','a.tipo_pago1','a.observaciones','a.eliminado_por','a.id_atec','a.id_tipo','a.pagado','a.atendido','a.sede','a.usuario','a.created_at','a.estatus','a.id_paciente','a.tipo_atencion','a.monto','a.abono','a.tipo_pago','b.nombres','b.apellidos','b.dni','c.name as nameo','c.lastname as lasto','d.name as nameu','d.lastname as lastu','s.nombre as detalle')
         ->join('pacientes as b','b.id','a.id_paciente')
         ->join('users as c','c.id','a.id_origen')
         ->join('users as d','d.id','a.usuario')
@@ -145,7 +145,7 @@ class AtencionesController extends Controller
         ->where('a.sede', '=', $request->session()->get('sede'));
 
         $consultas = DB::table('atenciones as a')
-        ->select('a.id','a.tipo_origen','a.id_origen','a.observaciones','a.eliminado_por','a.id_atec','a.id_tipo','a.pagado','a.atendido','a.sede','a.usuario','a.created_at','a.estatus','a.id_paciente','a.tipo_atencion','a.monto','a.abono','a.tipo_pago','b.nombres','b.apellidos','b.dni','c.name as nameo','c.lastname as lasto','d.name as nameu','d.lastname as lastu','s.nombre as detalle')
+        ->select('a.id','a.tipo_origen','a.id_origen','a.abono1','a.abono2','a.tipo_pago1','a.observaciones','a.eliminado_por','a.id_atec','a.id_tipo','a.pagado','a.atendido','a.sede','a.usuario','a.created_at','a.estatus','a.id_paciente','a.tipo_atencion','a.monto','a.abono','a.tipo_pago','b.nombres','b.apellidos','b.dni','c.name as nameo','c.lastname as lasto','d.name as nameu','d.lastname as lastu','s.nombre as detalle')
         ->join('pacientes as b','b.id','a.id_paciente')
         ->join('users as c','c.id','a.id_origen')
         ->join('users as d','d.id','a.usuario')
@@ -160,7 +160,7 @@ class AtencionesController extends Controller
      
 
         $atenciones = DB::table('atenciones as a')
-        ->select('a.id','a.tipo_origen','a.id_origen','a.observaciones','a.eliminado_por','a.id_atec','a.id_tipo','a.pagado','a.atendido','a.sede','a.usuario','a.created_at','a.estatus','a.id_paciente','a.tipo_atencion','a.monto','a.abono','a.tipo_pago','b.nombres','b.apellidos','b.dni','c.name as nameo','c.lastname as lasto','d.name as nameu','d.lastname as lastu','s.nombre as detalle')
+        ->select('a.id','a.tipo_origen','a.id_origen','a.abono1','a.abono2','a.tipo_pago1','a.observaciones','a.eliminado_por','a.id_atec','a.id_tipo','a.pagado','a.atendido','a.sede','a.usuario','a.created_at','a.estatus','a.id_paciente','a.tipo_atencion','a.monto','a.abono','a.tipo_pago','b.nombres','b.apellidos','b.dni','c.name as nameo','c.lastname as lasto','d.name as nameu','d.lastname as lastu','s.nombre as detalle')
         ->join('pacientes as b','b.id','a.id_paciente')
         ->join('users as c','c.id','a.id_origen')
         ->join('users as d','d.id','a.usuario')
@@ -186,7 +186,7 @@ class AtencionesController extends Controller
         $f1 = date('Y-m-d');
 
         $serv = DB::table('atenciones as a')
-        ->select('a.id','a.tipo_origen','a.id_origen','a.observaciones','a.eliminado_por','a.id_atec','a.id_tipo','a.pagado','a.atendido','a.sede','a.usuario','a.created_at','a.estatus','a.id_paciente','a.tipo_atencion','a.monto','a.abono','a.tipo_pago','b.nombres','b.apellidos','b.dni','c.name as nameo','c.lastname as lasto','d.name as nameu','d.lastname as lastu','s.nombre as detalle')
+        ->select('a.id','a.tipo_origen','a.id_origen','a.abono1','a.abono2','a.tipo_pago1','a.observaciones','a.eliminado_por','a.id_atec','a.id_tipo','a.pagado','a.atendido','a.sede','a.usuario','a.created_at','a.estatus','a.id_paciente','a.tipo_atencion','a.monto','a.abono','a.tipo_pago','b.nombres','b.apellidos','b.dni','c.name as nameo','c.lastname as lasto','d.name as nameu','d.lastname as lastu','s.nombre as detalle')
         ->join('pacientes as b','b.id','a.id_paciente')
         ->join('users as c','c.id','a.id_origen')
         ->join('users as d','d.id','a.usuario')
@@ -200,7 +200,7 @@ class AtencionesController extends Controller
      
 
         $eco = DB::table('atenciones as a')
-        ->select('a.id','a.tipo_origen','a.id_origen','a.observaciones','a.eliminado_por','a.id_atec','a.id_tipo','a.pagado','a.atendido','a.sede','a.usuario','a.created_at','a.estatus','a.id_paciente','a.tipo_atencion','a.monto','a.abono','a.tipo_pago','b.nombres','b.apellidos','b.dni','c.name as nameo','c.lastname as lasto','d.name as nameu','d.lastname as lastu','s.nombre as detalle')
+        ->select('a.id','a.tipo_origen','a.id_origen','a.abono1','a.abono2','a.tipo_pago1','a.observaciones','a.eliminado_por','a.id_atec','a.id_tipo','a.pagado','a.atendido','a.sede','a.usuario','a.created_at','a.estatus','a.id_paciente','a.tipo_atencion','a.monto','a.abono','a.tipo_pago','b.nombres','b.apellidos','b.dni','c.name as nameo','c.lastname as lasto','d.name as nameu','d.lastname as lastu','s.nombre as detalle')
         ->join('pacientes as b','b.id','a.id_paciente')
         ->join('users as c','c.id','a.id_origen')
         ->join('users as d','d.id','a.usuario')
@@ -213,7 +213,7 @@ class AtencionesController extends Controller
 
 
         $cons = DB::table('atenciones as a')
-        ->select('a.id','a.tipo_origen','a.id_origen','a.observaciones','a.eliminado_por','a.id_atec','a.id_tipo','a.pagado','a.atendido','a.sede','a.usuario','a.created_at','a.estatus','a.id_paciente','a.tipo_atencion','a.monto','a.abono','a.tipo_pago','b.nombres','b.apellidos','b.dni','c.name as nameo','c.lastname as lasto','d.name as nameu','d.lastname as lastu','s.nombre as detalle')
+        ->select('a.id','a.tipo_origen','a.id_origen','a.abono1','a.abono2','a.tipo_pago1','a.observaciones','a.eliminado_por','a.id_atec','a.id_tipo','a.pagado','a.atendido','a.sede','a.usuario','a.created_at','a.estatus','a.id_paciente','a.tipo_atencion','a.monto','a.abono','a.tipo_pago','b.nombres','b.apellidos','b.dni','c.name as nameo','c.lastname as lasto','d.name as nameu','d.lastname as lastu','s.nombre as detalle')
         ->join('pacientes as b','b.id','a.id_paciente')
         ->join('users as c','c.id','a.id_origen')
         ->join('users as d','d.id','a.usuario')
@@ -226,7 +226,7 @@ class AtencionesController extends Controller
 
 
         $meto = DB::table('atenciones as a')
-        ->select('a.id','a.tipo_origen','a.id_origen','a.observaciones','a.eliminado_por','a.id_atec','a.id_tipo','a.pagado','a.atendido','a.sede','a.usuario','a.created_at','a.estatus','a.id_paciente','a.tipo_atencion','a.monto','a.abono','a.tipo_pago','b.nombres','b.apellidos','b.dni','c.name as nameo','c.lastname as lasto','d.name as nameu','d.lastname as lastu','s.nombre as detalle')
+        ->select('a.id','a.tipo_origen','a.id_origen','a.abono1','a.abono2','a.tipo_pago1','a.observaciones','a.eliminado_por','a.id_atec','a.id_tipo','a.pagado','a.atendido','a.sede','a.usuario','a.created_at','a.estatus','a.id_paciente','a.tipo_atencion','a.monto','a.abono','a.tipo_pago','b.nombres','b.apellidos','b.dni','c.name as nameo','c.lastname as lasto','d.name as nameu','d.lastname as lastu','s.nombre as detalle')
         ->join('pacientes as b','b.id','a.id_paciente')
         ->join('users as c','c.id','a.id_origen')
         ->join('users as d','d.id','a.usuario')
@@ -238,7 +238,7 @@ class AtencionesController extends Controller
         ->orderBy('a.id','desc');
 
         $salud = DB::table('atenciones as a')
-        ->select('a.id','a.tipo_origen','a.id_origen','a.observaciones','a.eliminado_por','a.id_atec','a.id_tipo','a.pagado','a.atendido','a.sede','a.usuario','a.created_at','a.estatus','a.id_paciente','a.tipo_atencion','a.monto','a.abono','a.tipo_pago','b.nombres','b.apellidos','b.dni','c.name as nameo','c.lastname as lasto','d.name as nameu','d.lastname as lastu','s.nombre as detalle')
+        ->select('a.id','a.tipo_origen','a.id_origen','a.abono1','a.abono2','a.tipo_pago1','a.observaciones','a.eliminado_por','a.id_atec','a.id_tipo','a.pagado','a.atendido','a.sede','a.usuario','a.created_at','a.estatus','a.id_paciente','a.tipo_atencion','a.monto','a.abono','a.tipo_pago','b.nombres','b.apellidos','b.dni','c.name as nameo','c.lastname as lasto','d.name as nameu','d.lastname as lastu','s.nombre as detalle')
         ->join('pacientes as b','b.id','a.id_paciente')
         ->join('users as c','c.id','a.id_origen')
         ->join('users as d','d.id','a.usuario')
@@ -251,7 +251,7 @@ class AtencionesController extends Controller
 
 
         $ana = DB::table('atenciones as a')
-        ->select('a.id','a.tipo_origen','a.id_origen','a.observaciones','a.eliminado_por','a.id_atec','a.id_tipo','a.pagado','a.atendido','a.sede','a.usuario','a.created_at','a.estatus','a.id_paciente','a.tipo_atencion','a.monto','a.abono','a.tipo_pago','b.nombres','b.apellidos','b.dni','c.name as nameo','c.lastname as lasto','d.name as nameu','d.lastname as lastu','s.nombre as detalle')
+        ->select('a.id','a.tipo_origen','a.id_origen','a.abono1','a.abono2','a.tipo_pago1','a.observaciones','a.eliminado_por','a.id_atec','a.id_tipo','a.pagado','a.atendido','a.sede','a.usuario','a.created_at','a.estatus','a.id_paciente','a.tipo_atencion','a.monto','a.abono','a.tipo_pago','b.nombres','b.apellidos','b.dni','c.name as nameo','c.lastname as lasto','d.name as nameu','d.lastname as lastu','s.nombre as detalle')
         ->join('pacientes as b','b.id','a.id_paciente')
         ->join('users as c','c.id','a.id_origen')
         ->join('users as d','d.id','a.usuario')
@@ -264,7 +264,7 @@ class AtencionesController extends Controller
 
 
         $paq = DB::table('atenciones as a')
-        ->select('a.id','a.tipo_origen','a.id_origen','a.observaciones','a.eliminado_por','a.id_atec','a.id_tipo','a.pagado','a.atendido','a.sede','a.usuario','a.created_at','a.estatus','a.id_paciente','a.tipo_atencion','a.monto','a.abono','a.tipo_pago','b.nombres','b.apellidos','b.dni','c.name as nameo','c.lastname as lasto','d.name as nameu','d.lastname as lastu','s.nombre as detalle')
+        ->select('a.id','a.tipo_origen','a.id_origen','a.abono1','a.abono2','a.tipo_pago1','a.observaciones','a.eliminado_por','a.id_atec','a.id_tipo','a.pagado','a.atendido','a.sede','a.usuario','a.created_at','a.estatus','a.id_paciente','a.tipo_atencion','a.monto','a.abono','a.tipo_pago','b.nombres','b.apellidos','b.dni','c.name as nameo','c.lastname as lasto','d.name as nameu','d.lastname as lastu','s.nombre as detalle')
         ->join('pacientes as b','b.id','a.id_paciente')
         ->join('users as c','c.id','a.id_origen')
         ->join('users as d','d.id','a.usuario')
@@ -276,7 +276,7 @@ class AtencionesController extends Controller
         ->orderBy('a.id','desc');
 
         $metodos = DB::table('atenciones as a')
-        ->select('a.id','a.tipo_origen','a.id_origen','a.observaciones','a.eliminado_por','a.id_atec','a.id_tipo','a.pagado','a.atendido','a.sede','a.usuario','a.created_at','a.estatus','a.id_paciente','a.tipo_atencion','a.monto','a.abono','a.tipo_pago','b.nombres','b.apellidos','b.dni','c.name as nameo','c.lastname as lasto','d.name as nameu','d.lastname as lastu','s.nombre as detalle')
+        ->select('a.id','a.tipo_origen','a.id_origen','a.abono1','a.abono2','a.tipo_pago1','a.observaciones','a.eliminado_por','a.id_atec','a.id_tipo','a.pagado','a.atendido','a.sede','a.usuario','a.created_at','a.estatus','a.id_paciente','a.tipo_atencion','a.monto','a.abono','a.tipo_pago','b.nombres','b.apellidos','b.dni','c.name as nameo','c.lastname as lasto','d.name as nameu','d.lastname as lastu','s.nombre as detalle')
         ->join('pacientes as b','b.id','a.id_paciente')
         ->join('users as c','c.id','a.id_origen')
         ->join('users as d','d.id','a.usuario')
@@ -289,7 +289,7 @@ class AtencionesController extends Controller
 
         
         $consultas = DB::table('atenciones as a')
-        ->select('a.id','a.tipo_origen','a.id_origen','a.observaciones','a.eliminado_por','a.id_atec','a.id_tipo','a.pagado','a.atendido','a.sede','a.usuario','a.created_at','a.estatus','a.id_paciente','a.tipo_atencion','a.monto','a.abono','a.tipo_pago','b.nombres','b.apellidos','b.dni','c.name as nameo','c.lastname as lasto','d.name as nameu','d.lastname as lastu','s.nombre as detalle')
+        ->select('a.id','a.tipo_origen','a.id_origen','a.abono1','a.abono2','a.tipo_pago1','a.observaciones','a.eliminado_por','a.id_atec','a.id_tipo','a.pagado','a.atendido','a.sede','a.usuario','a.created_at','a.estatus','a.id_paciente','a.tipo_atencion','a.monto','a.abono','a.tipo_pago','b.nombres','b.apellidos','b.dni','c.name as nameo','c.lastname as lasto','d.name as nameu','d.lastname as lastu','s.nombre as detalle')
         ->join('pacientes as b','b.id','a.id_paciente')
         ->join('users as c','c.id','a.id_origen')
         ->join('users as d','d.id','a.usuario')
@@ -305,7 +305,7 @@ class AtencionesController extends Controller
      
 
         $atenciones = DB::table('atenciones as a')
-        ->select('a.id','a.tipo_origen','a.id_origen','a.observaciones','a.eliminado_por','a.id_atec','a.id_tipo','a.pagado','a.atendido','a.sede','a.usuario','a.created_at','a.estatus','a.id_paciente','a.tipo_atencion','a.monto','a.abono','a.tipo_pago','b.nombres','b.apellidos','b.dni','c.name as nameo','c.lastname as lasto','d.name as nameu','d.lastname as lastu','s.nombre as detalle')
+        ->select('a.id','a.tipo_origen','a.id_origen','a.abono1','a.abono2','a.tipo_pago1','a.observaciones','a.eliminado_por','a.id_atec','a.id_tipo','a.pagado','a.atendido','a.sede','a.usuario','a.created_at','a.estatus','a.id_paciente','a.tipo_atencion','a.monto','a.abono','a.tipo_pago','b.nombres','b.apellidos','b.dni','c.name as nameo','c.lastname as lasto','d.name as nameu','d.lastname as lastu','s.nombre as detalle')
         ->join('pacientes as b','b.id','a.id_paciente')
         ->join('users as c','c.id','a.id_origen')
         ->join('users as d','d.id','a.usuario')
@@ -323,10 +323,6 @@ class AtencionesController extends Controller
         ->union($paq)
         ->orderBy('id','desc')
         ->get(); 
-
- 
-
-
 
 
 
@@ -669,10 +665,15 @@ return view('atenciones.particular');
                 if($request->esp_con == null){
                   $request->session()->flash('error', 'Debe Seleccionar un Especialista para hacer el ingreso.');
                   return back();
-      
                 }
 
-
+                
+                $totalabono = $request->abo_con + $request->abo1_con;
+                          
+                if($totalabono > $request->precio_con){
+                  $request->session()->flash('error', 'El monto del abono de pagos mixto es mayor al item de la consulta/control.');
+                  return back();
+                } 
 
 
                   $lab = new Atenciones();
@@ -683,8 +684,12 @@ return view('atenciones.particular');
                   $lab->tipo_atencion = 5;
                   $lab->id_tipo = $request->tipo_con;
                   $lab->monto = $request->precio_con;
-                  $lab->abono = $request->precio_con;
+                  $lab->resta = $request->precio_con - $totalabono;
+                  $lab->abono = $totalabono;
+                  $lab->abono1 = $request->abo_con;
+                  $lab->abono2 = $request->abo1_con;
                   $lab->tipo_pago = $request->tipop_con;
+                  $lab->tipo_pago1 = $request->tipop1_con;
                   $lab->observaciones = $request->observaciones;
                   $lab->usuario = Auth::user()->id;
                   $lab->sede = $request->session()->get('sede');
@@ -694,45 +699,53 @@ return view('atenciones.particular');
                   $cre->origen = 'CONSULTAS';
                   $cre->descripcion = 'INGRESO POR CONSULTA';
                   $cre->id_atencion =  $lab->id;
-                  $cre->monto = $request->precio_con;
+                  $cre->monto = $request->abo_con;
                   $cre->usuario = Auth::user()->id;
                   $cre->tipopago = $request->tipop_con;
                   if ($request->tipop_con == 'EF') {
-                    $cre->efectivo = $request->precio_con;
+                    $cre->efectivo = $request->abo_con;
                   } elseif($request->tipop_con == 'TJ') {
-                    $cre->tarjeta = $request->precio_con;
+                    $cre->tarjeta = $request->abo_con;
                   } elseif($request->tipop_con == 'DP') {
-                    $cre->dep = $request->precio_con;
+                    $cre->dep = $request->abo_con;
                   } else {
-                    $cre->yap = $request->precio_con;
+                    $cre->yap = $request->abo_con;
                   }
                   $cre->sede = $request->session()->get('sede');
                   $cre->fecha = date('Y-m-d');
                   $cre->save();
 
-                  $cre = new CreditosB();
-                  $cre->origen = 'CONSULTAS';
-                  $cre->descripcion = 'INGRESO POR CONSULTA';
-                  $cre->id_atencion =  $lab->id;
-                  $cre->monto = $request->precio_con;
-                  $cre->usuario = Auth::user()->id;
-                  $cre->tipopago = $request->tipop_con;
-                  if ($request->tipop_con == 'EF') {
-                    $cre->efectivo = $request->precio_con;
-                  } elseif($request->tipop_con == 'TJ') {
-                    $cre->tarjeta = $request->precio_con;
-                  } elseif($request->tipop_con == 'DP') {
-                    $cre->dep = $request->precio_con;
-                  } else {
-                    $cre->yap = $request->precio_con;
+                  if ($request->abo1_con != null) {
+                    $cre1 = new Creditos();
+                    $cre1->origen = 'CONSULTAS';
+                    $cre1->descripcion = 'INGRESO POR CONSULTA';
+                    $cre1->id_atencion =  $lab->id;
+                    $cre1->monto = $request->abo1_con;
+                    $cre1->usuario = Auth::user()->id;
+                    $cre1->tipopago = $request->tipop1_con;
+                    if ($request->tipop1_con == 'EF') {
+                      $cre1->efectivo = $request->abo1_con;
+                    } elseif($request->tipop1_con == 'TJ') {
+                      $cre1->tarjeta = $request->abo1_con;
+                    } elseif($request->tipop1_con == 'DP') {
+                      $cre1->dep = $request->abo1_con;
+                    } else {
+                      $cre1->yap = $request->abo1_con;
+                    }
+                    $cre1->sede = $request->session()->get('sede');
+                    $cre1->fecha = date('Y-m-d');
+                    $cre1->save();
                   }
-                  $cre->sede = $request->session()->get('sede');
-                  $cre->fecha = date('Y-m-d');
-                  $cre->save();
 
-
-                  if ($request->precio_con > $request->precio_con) {
+                  
+                  if ($request->precio_con > $totalabono) {
+                    $cb = new Cobrar();
+                    $cb->id_atencion =  $lab->id;
+                    $cb->detalle =  'CONSULTA';
+                    $cb->resta =(float)$request->precio_con - (float)$totalabono;
+                    $cb->save();
                   }
+
 
                   $con = new Consultas();
                   $con->id_paciente =  $request->paciente;
@@ -758,6 +771,14 @@ return view('atenciones.particular');
                 }
 
 
+                $totalabono = $request->abo_met + $request->abo1_met;
+                          
+                if($totalabono > $request->precio_met){
+                  $request->session()->flash('error', 'El monto del abono de pagos mixto es mayor al item de la consulta/control.');
+                  return back();
+                } 
+
+
 
                   $lab = new Atenciones();
                   $lab->tipo_origen =  $request->origen;
@@ -771,8 +792,12 @@ return view('atenciones.particular');
                   $lab->id_atec =  $atec->id;
                   $lab->id_tipo = $request->metodo;
                   $lab->monto = $request->precio_met;
-                  $lab->abono = $request->precio_met;
+                  $lab->abono = $totalabono;
+                  $lab->abono1 = $request->abo_met;
+                  $lab->abono2 = $request->abo1_met;
+                  $lab->resta = $request->precio_met - $totalabono;
                   $lab->tipo_pago = $request->tipop_met;
+                  $lab->tipo_pago1 = $request->tipop1_met;
                   $lab->observaciones = $request->observaciones;
                   $lab->usuario = Auth::user()->id;
                   $lab->sede = $request->session()->get('sede');
@@ -782,43 +807,56 @@ return view('atenciones.particular');
                   $cre->origen = 'METODO';
                   $cre->descripcion = 'INGRESO POR METODO';
                   $cre->id_atencion =  $lab->id;
-                  $cre->monto = $request->precio_met;
+                  $cre->monto = $request->abo_met;
                   $cre->tipopago = $request->tipop_met;
                   if ($request->tipop_met == 'EF') {
-                    $cre->efectivo = $request->precio_met;
+                    $cre->efectivo = $request->abo_met;
                   } elseif($request->tipop_met == 'TJ') {
-                    $cre->tarjeta = $request->precio_met;
+                    $cre->tarjeta = $request->abo_met;
                   } elseif($request->tipop_met == 'DP') {
-                    $cre->dep = $request->precio_met;
+                    $cre->dep = $request->abo_met;
                   } else {
-                    $cre->yap = $request->precio_met;
+                    $cre->yap = $request->abo_met;
                   }
                   $cre->usuario = Auth::user()->id;
                   $cre->sede = $request->session()->get('sede');
                   $cre->fecha = date('Y-m-d');
                   $cre->save();
 
-                  $cre = new CreditosB();
-                  $cre->origen = 'METODO';
-                  $cre->descripcion = 'INGRESO POR METODO';
-                  $cre->id_atencion =  $lab->id;
-                  $cre->monto = $request->precio_met;
-                  $cre->tipopago = $request->tipop_met;
-                  if ($request->tipop_met == 'EF') {
-                    $cre->efectivo = $request->precio_met;
-                  } elseif($request->tipop_met == 'TJ') {
-                    $cre->tarjeta = $request->precio_met;
-                  } elseif($request->tipop_met == 'DP') {
-                    $cre->dep = $request->precio_met;
-                  } else {
-                    $cre->yap = $request->precio_met;
+                  if($request->abo1_met != null){
+
+                    $cre1 = new Creditos();
+                    $cre1->origen = 'METODO';
+                    $cre1->descripcion = 'INGRESO POR METODO';
+                    $cre1->id_atencion =  $lab->id;
+                    $cre1->monto = $request->abo1_met;
+                    $cre1->tipopago = $request->tipop1_met;
+                    if ($request->tipop1_met == 'EF') {
+                      $cre1->efectivo = $request->abo1_met;
+                    } elseif($request->tipop1_met == 'TJ') {
+                      $cre1->tarjeta = $request->abo1_met;
+                    } elseif($request->tipop1_met == 'DP') {
+                      $cre1->dep = $request->abo1_met;
+                    } else {
+                      $cre1->yap = $request->abo1_met;
+                    }
+                    $cre1->usuario = Auth::user()->id;
+                    $cre1->sede = $request->session()->get('sede');
+                    $cre1->fecha = date('Y-m-d');
+                    $cre1->save();
+
                   }
-                  $cre->usuario = Auth::user()->id;
-                  $cre->sede = $request->session()->get('sede');
-                  $cre->fecha = date('Y-m-d');
-                  $cre->save();
 
+                   
+                  if ($request->precio_met > $totalabono) {
+                    $cb = new Cobrar();
+                    $cb->id_atencion =  $lab->id;
+                    $cb->detalle =  'MÈTODO ANTICONCEPTIVO';
+                    $cb->resta =(float)$request->precio_met - (float)$totalabono;
+                    $cb->save();
+                  }
 
+                  
                   $met = new Metodos();
                   $met->id_paciente =  $request->paciente;
                   $met->id_atencion =  $lab->id;
@@ -838,6 +876,14 @@ return view('atenciones.particular');
                       if (!is_null($serv['servicio'])) {
                           $servicio = Servicios::where('id', '=', $serv['servicio'])->first();
 
+                          $totalabono = (float)$request->monto_abol['servicios'][$key]['abono'] + (float)$request->monto_abol['servicios'][$key]['abono1'];
+                          
+                          if($totalabono > (float)$request->monto_s['servicios'][$key]['monto']){
+                            $request->session()->flash('error', 'El monto del abono de pagos mixto es mayor al item del procedimiento.');
+                            return back();
+                          } 
+
+
                           //TIPO ATENCION SERVICIOS= 1
                           $lab = new Atenciones();
                           $lab->tipo_origen =  $request->origen;
@@ -851,9 +897,12 @@ return view('atenciones.particular');
                           $lab->atendido = 2;
                           $lab->id_tipo = $serv['servicio'];
                           $lab->monto = (float)$request->monto_s['servicios'][$key]['monto'];
-                          $lab->abono = (float)$request->monto_abol['servicios'][$key]['abono'];
-                          $lab->resta = (float)$request->monto_s['servicios'][$key]['monto'] - (float)$request->monto_abol['servicios'][$key]['abono'];
+                          $lab->abono =  $request->monto_abol['servicios'][$key]['abono1'] != null ? (float)$request->monto_abol['servicios'][$key]['abono'] + (float)$request->monto_abol['servicios'][$key]['abono1'] : (float)$request->monto_abol['servicios'][$key]['abono'];
+                          $lab->abono1 =  (float)$request->monto_abol['servicios'][$key]['abono'];
+                          $lab->abono2 =  (float)$request->monto_abol['servicios'][$key]['abono1'];
                           $lab->tipo_pago = $request->id_pago['servicios'][$key]['tipop'];
+                          $lab->tipo_pago1 = $request->id_pago['servicios'][$key]['tipop1'];
+                          $lab->resta = (float)$request->monto_s['servicios'][$key]['monto'] - $totalabono;
                           $lab->usuario = Auth::user()->id;
                           $lab->observaciones = $request->observaciones;
                           $lab->sede = $request->session()->get('sede');
@@ -880,36 +929,37 @@ return view('atenciones.particular');
                           $cre->fecha = date('Y-m-d');
                           $cre->save();
 
-                          $cre = new CreditosB();
-                          $cre->origen = 'SERVICIO';
-                          $cre->descripcion = 'INGRESO POR SERVICIO';
-                          $cre->id_atencion =  $lab->id;
-                          $cre->tipopago =  $request->id_pago['servicios'][$key]['tipop'];
-                          $cre->monto = (float)$request->monto_abol['servicios'][$key]['abono'];
-                          if ($request->id_pago['servicios'][$key]['tipop'] == 'EF') {
-                            $cre->efectivo = (float)$request->monto_abol['servicios'][$key]['abono'];
-                          } elseif($request->id_pago['servicios'][$key]['tipop'] == 'TJ') {
-                            $cre->tarjeta =(float)$request->monto_abol['servicios'][$key]['abono'];
-                          } elseif($request->id_pago['servicios'][$key]['tipop'] == 'DP') {
-                            $cre->dep = (float)$request->monto_abol['servicios'][$key]['abono'];
+                          if($request->monto_abol['servicios'][$key]['abono1'] != null){
+
+                          $cre1 = new Creditos();
+                          $cre1->origen = 'SERVICIO';
+                          $cre1->descripcion = 'INGRESO POR SERVICIO';
+                          $cre1->id_atencion =  $lab->id;
+                          $cre1->tipopago =  $request->id_pago['servicios'][$key]['tipop1'];
+                          $cre1->monto = (float)$request->monto_abol['servicios'][$key]['abono1'];
+                          if ($request->id_pago['servicios'][$key]['tipop1'] == 'EF') {
+                            $cre1->efectivo = (float)$request->monto_abol['servicios'][$key]['abono1'];
+                          } elseif($request->id_pago['servicios'][$key]['tipop1'] == 'TJ') {
+                            $cre1->tarjeta =(float)$request->monto_abol['servicios'][$key]['abono1'];
+                          } elseif($request->id_pago['servicios'][$key]['tipop1'] == 'DP') {
+                            $cre1->dep = (float)$request->monto_abol['servicios'][$key]['abono1'];
                           } else {
-                            $cre->yap = (float)$request->monto_abol['servicios'][$key]['abono'];
+                            $cre1->yap = (float)$request->monto_abol['servicios'][$key]['abono1'];
                           }
-                          $cre->usuario = Auth::user()->id;
-                          $cre->sede = $request->session()->get('sede');
-                          $cre->fecha = date('Y-m-d');
-                          $cre->save();
+                          $cre1->usuario = Auth::user()->id;
+                          $cre1->sede = $request->session()->get('sede');
+                          $cre1->fecha = date('Y-m-d');
+                          $cre1->save();
 
-                          /*  $rs = new ResultadosServicios();
-                            $rs->id_atencion =  $lab->id;
-                            $rs->id_servicio = $serv['servicio'];
-                            $rs->save();*/
+                          }
 
-                          if ($request->monto_s['servicios'][$key]['monto'] > $request->monto_abol['servicios'][$key]['abono']) {
+
+
+                          if ($request->monto_s['servicios'][$key]['monto'] > $totalabono) {
                               $cb = new Cobrar();
                               $cb->id_atencion =  $lab->id;
                               $cb->detalle =  $servicio->nombre;
-                              $cb->resta =(float)$request->monto_s['servicios'][$key]['monto'] - (float)$request->monto_abol['servicios'][$key]['abono'];
+                              $cb->resta =(float)$request->monto_s['servicios'][$key]['monto'] - (float)$totalabono;
                               $cb->save();
                           }
 
@@ -956,6 +1006,14 @@ return view('atenciones.particular');
                   if (!is_null($serv['salu'])) {
                       $servicio = Servicios::where('id', '=', $serv['salu'])->first();
 
+                      $totalabono = (float)$request->monto_abol['salud'][$key]['abono'] + (float)$request->monto_abol['salud'][$key]['abono1'];
+                          
+                      if($totalabono > (float)$request->monto_s['salud'][$key]['monto']){
+                        $request->session()->flash('error', 'El monto del abono de pagos mixto es mayor al item de salud mental.');
+                        return back();
+                      } 
+
+
 
                       //TIPO ATENCION SERVICIOS= 1
                       $lab = new Atenciones();
@@ -968,10 +1026,12 @@ return view('atenciones.particular');
                       $lab->id_paciente =  $request->paciente;
                       $lab->tipo_atencion = 8;
                       $lab->id_tipo = $serv['salu'];
-                      $lab->monto = (float)$request->monto_s['salud'][$key]['monto'];
-                      $lab->abono = (float)$request->monto_abol['salud'][$key]['abono'];
-                      $lab->resta = (float)$request->monto_s['salud'][$key]['monto'] - (float)$request->monto_abol['salud'][$key]['abono'];
+                      $lab->abono =  $request->monto_abol['salud'][$key]['abono1'] != null ? (float)$totalabono : (float)$request->monto_abol['salud'][$key]['abono'];
+                      $lab->abono1 =  (float)$request->monto_abol['salud'][$key]['abono'];
+                      $lab->abono2 =  (float)$request->monto_abol['salud'][$key]['abono1'];
                       $lab->tipo_pago = $request->id_pago['salud'][$key]['tipop'];
+                      $lab->tipo_pago1 = $request->id_pago['salud'][$key]['tipop1'];
+                      $lab->resta = (float)$request->monto_s['salud'][$key]['monto'] - $totalabono;
                       $lab->usuario = Auth::user()->id;
                       $lab->sede = $request->session()->get('sede');
                       $lab->observaciones = $request->observaciones;
@@ -997,6 +1057,30 @@ return view('atenciones.particular');
                       $cre->sede = $request->session()->get('sede');
                       $cre->fecha = date('Y-m-d');
                       $cre->save();
+
+                      if($request->monto_abol['salud'][$key]['abono1'] != null){
+
+                        $cre1 = new Creditos();
+                        $cre1->origen = 'SERVICIO';
+                        $cre1->descripcion = 'INGRESO POR SERVICIO';
+                        $cre1->id_atencion =  $lab->id;
+                        $cre1->tipopago =  $request->id_pago['salud'][$key]['tipop1'];
+                        $cre1->monto = (float)$request->monto_abol['salud'][$key]['abono1'];
+                        if ($request->id_pago['salud'][$key]['tipop1'] == 'EF') {
+                          $cre1->efectivo = (float)$request->monto_abol['salud'][$key]['abono1'];
+                        } elseif($request->id_pago['salud'][$key]['tipop1'] == 'TJ') {
+                          $cre1->tarjeta =(float)$request->monto_abol['salud'][$key]['abono1'];
+                        } elseif($request->id_pago['salud'][$key]['tipop1'] == 'DP') {
+                          $cre1->dep = (float)$request->monto_abol['salud'][$key]['abono1'];
+                        } else {
+                          $cre1->yap = (float)$request->monto_abol['salud'][$key]['abono1'];
+                        }
+                        $cre1->usuario = Auth::user()->id;
+                        $cre1->sede = $request->session()->get('sede');
+                        $cre1->fecha = date('Y-m-d');
+                        $cre1->save();
+
+                        }
 
                       $cre = new CreditosB();
                       $cre->origen = 'SERVICIO';
@@ -1039,11 +1123,11 @@ return view('atenciones.particular');
 
                   
 
-                      if ($request->monto_s['salud'][$key]['monto'] > $request->monto_abol['salud'][$key]['abono']) {
+                      if ($request->monto_s['salud'][$key]['monto'] > $totalabono) {
                           $cb = new Cobrar();
                           $cb->id_atencion =  $lab->id;
                           $cb->detalle =  $servicio->nombre;
-                          $cb->resta =(float)$request->monto_s['salud'][$key]['monto'] - (float)$request->monto_abol['salud'][$key]['abono'];
+                          $cb->resta =(float)$request->monto_s['salud'][$key]['monto'] - (float)$totalabono;
                           $cb->save();
                       }
 
@@ -1099,6 +1183,13 @@ return view('atenciones.particular');
                       if (!is_null($laboratorio['analisi'])) {
                           $analisis = Analisis::where('id', '=', $laboratorio['analisi'])->first();
 
+                          $totalabono = (float)$request->monto_abol['analisis'][$key]['abono'] + (float)$request->monto_abol['analisis'][$key]['abono1'];
+                          
+                          if($totalabono > (float)$request->monto_s['analisis'][$key]['monto']){
+                            $request->session()->flash('error', 'El monto del abono de pagos mixto es mayor al item de laboratorio.');
+                            return back();
+                          } 
+
 
                           //TIPO ATENCION LABORATORIO= 4
                           $lab = new Atenciones();
@@ -1112,9 +1203,12 @@ return view('atenciones.particular');
                           $lab->tipo_atencion = 4;
                           $lab->id_tipo = $laboratorio['analisi'];
                           $lab->monto = (float)$request->monto_s['analisis'][$key]['monto'];
-                          $lab->abono = (float)$request->monto_abol['analisis'][$key]['abono'];
-                          $lab->resta = (float)$request->monto_s['analisis'][$key]['monto'] - (float)$request->monto_abol['analisis'][$key]['abono'];
+                          $lab->abono =  $request->monto_abol['analisis'][$key]['abono1'] != null ? (float)$totalabono : (float)$request->monto_abol['analisis'][$key]['abono'];
+                          $lab->abono1 =  (float)$request->monto_abol['analisis'][$key]['abono'];
+                          $lab->abono2 =  (float)$request->monto_abol['analisis'][$key]['abono1'];
                           $lab->tipo_pago = $request->id_pago['analisis'][$key]['tipop'];
+                          $lab->tipo_pago1 = $request->id_pago['analisis'][$key]['tipop1'];
+                          $lab->resta = (float)$request->monto_s['analisis'][$key]['monto'] - $totalabono;
                           $lab->usuario = Auth::user()->id;
                           $lab->sede = $request->session()->get('sede');
                           $lab->observaciones = $request->observaciones;
@@ -1141,26 +1235,30 @@ return view('atenciones.particular');
                           $cre->fecha = date('Y-m-d');
                           $cre->save();
 
-                          
-                          $cre = new CreditosB();
-                          $cre->origen = 'ANALISIS';
-                          $cre->descripcion = 'INGRESO POR ANALISIS';
-                          $cre->id_atencion =  $lab->id;
-                          $cre->tipopago =  $request->id_pago['analisis'][$key]['tipop'];
-                          $cre->monto = (float)$request->monto_abol['analisis'][$key]['abono'];
-                          if ($request->id_pago['analisis'][$key]['tipop'] == 'EF') {
-                            $cre->efectivo = (float)$request->monto_abol['analisis'][$key]['abono'];
-                          } elseif($request->id_pago['analisis'][$key]['tipop'] == 'TJ') {
-                            $cre->tarjeta =(float)$request->monto_abol['analisis'][$key]['abono'];
-                          } elseif($request->id_pago['analisis'][$key]['tipop'] == 'DP') {
-                            $cre->dep = (float)$request->monto_abol['analisis'][$key]['abono'];
+                          if($request->monto_abol['analisis'][$key]['abono1'] != null){
+                            
+                          $cre1 = new Creditos();
+                          $cre1->origen = 'ANALISIS';
+                          $cre1->descripcion = 'INGRESO POR ANALISIS';
+                          $cre1->id_atencion =  $lab->id;
+                          $cre1->tipopago =  $request->id_pago['analisis'][$key]['tipop1'];
+                          $cre1->monto = (float)$request->monto_abol['analisis'][$key]['abono1'];
+                          if ($request->id_pago['analisis'][$key]['tipop1'] == 'EF') {
+                            $cre1->efectivo = (float)$request->monto_abol['analisis'][$key]['abono1'];
+                          } elseif($request->id_pago['analisis'][$key]['tipop1'] == 'TJ') {
+                            $cre1->tarjeta =(float)$request->monto_abol['analisis'][$key]['abono1'];
+                          } elseif($request->id_pago['analisis'][$key]['tipop1'] == 'DP') {
+                            $cre1->dep = (float)$request->monto_abol['analisis'][$key]['abono1'];
                           } else {
-                            $cre->yap = (float)$request->monto_abol['analisis'][$key]['abono'];
+                            $cre1->yap = (float)$request->monto_abol['analisis'][$key]['abono1'];
                           }
-                          $cre->usuario = Auth::user()->id;
-                          $cre->sede = $request->session()->get('sede');
-                          $cre->fecha = date('Y-m-d');
-                          $cre->save();
+                          $cre1->usuario = Auth::user()->id;
+                          $cre1->sede = $request->session()->get('sede');
+                          $cre1->fecha = date('Y-m-d');
+                          $cre1->save();
+                          }
+
+                     
 
                           $rs = new ResultadosLaboratorio();
                           $rs->id_atencion =  $lab->id;
@@ -1168,11 +1266,11 @@ return view('atenciones.particular');
                           $rs->save();
 
 
-                          if ($request->monto_s['analisis'][$key]['monto'] > $request->monto_abol['analisis'][$key]['abono']) {
+                          if ($request->monto_s['analisis'][$key]['monto'] > $totalabono) {
                               $cb = new Cobrar();
                               $cb->id_atencion =  $lab->id;
                               $cb->detalle =  $analisis->nombre;
-                              $cb->resta =(float)$request->monto_s['analisis'][$key]['monto'] - (float)$request->monto_abol['analisis'][$key]['abono'];
+                              $cb->resta =(float)$request->monto_s['analisis'][$key]['monto'] - (float)$totalabono;
                               $cb->save();
                           }
 
@@ -1203,6 +1301,14 @@ return view('atenciones.particular');
                       if (!is_null($paq['paquete'])) {
                           $paquetes = Paquetes::where('id', '=', $paq['paquete'])->first();
 
+                          $totalabono = (float)$request->monto_abol['paquetes'][$key]['abono'] + (float)$request->monto_abol['paquetes'][$key]['abono1'];
+                          
+                          if($totalabono > (float)$request->monto_s['paquetes'][$key]['monto']){
+                            $request->session()->flash('error', 'El monto del abono de pagos mixto es mayor al item del paquete.');
+                            return back();
+                          } 
+
+
                           //TIPO ATENCION PAQUETE= 7
                           $lab = new Atenciones();
                           $lab->tipo_origen =  $request->origen;
@@ -1215,9 +1321,12 @@ return view('atenciones.particular');
                           $lab->tipo_atencion = 7;
                           $lab->id_tipo = $paq['paquete'];
                           $lab->monto = (float)$request->monto_s['paquetes'][$key]['monto'];
-                          $lab->abono = (float)$request->monto_abol['paquetes'][$key]['abono'];
-                          $lab->resta = (float)$request->monto_s['paquetes'][$key]['monto'] - (float)$request->monto_abol['paquetes'][$key]['abono'];
+                          $lab->abono =  $request->monto_abol['paquetes'][$key]['abono1'] != null ? (float)$totalabono : (float)$request->monto_abol['paquetes'][$key]['abono'];
+                          $lab->abono1 =  (float)$request->monto_abol['paquetes'][$key]['abono'];
+                          $lab->abono2 =  (float)$request->monto_abol['paquetes'][$key]['abono1'];
                           $lab->tipo_pago = $request->id_pago['paquetes'][$key]['tipop'];
+                          $lab->tipo_pago1 = $request->id_pago['paquetes'][$key]['tipop1'];
+                          $lab->resta = (float)$request->monto_s['paquetes'][$key]['monto'] - $totalabono;
                           $lab->usuario = Auth::user()->id;
                           $lab->sede = $request->session()->get('sede');
                           $lab->observaciones = $request->observaciones;
@@ -1244,34 +1353,36 @@ return view('atenciones.particular');
                           $cre->fecha = date('Y-m-d');
                           $cre->save();
 
-                          
-                          $cre = new CreditosB();
-                          $cre->origen = 'PAQUETES';
-                          $cre->descripcion = 'INGRESO POR PAQUETE';
-                          $cre->id_atencion =  $lab->id;
-                          $cre->tipopago =  $request->id_pago['paquetes'][$key]['tipop'];
-                          $cre->monto = (float)$request->monto_abol['paquetes'][$key]['abono'];
-                          if ($request->id_pago['paquetes'][$key]['tipop'] == 'EF') {
-                            $cre->efectivo = (float)$request->monto_abol['paquetes'][$key]['abono'];
-                          } elseif($request->id_pago['paquetes'][$key]['tipop'] == 'TJ') {
-                            $cre->tarjeta =(float)$request->monto_abol['paquetes'][$key]['abono'];
-                          } elseif($request->id_pago['paquetes'][$key]['tipop'] == 'DP') {
-                            $cre->dep = (float)$request->monto_abol['paquetes'][$key]['abono'];
-                          } else {
-                            $cre->yap = (float)$request->monto_abol['paquetes'][$key]['abono'];
+                          if($request->monto_abol['paquetes'][$key]['abono1'] != null){
+                            $cre1 = new Creditos();
+                            $cre1->origen = 'PAQUETES';
+                            $cre1->descripcion = 'INGRESO POR PAQUETE';
+                            $cre1->id_atencion =  $lab->id;
+                            $cre1->tipopago =  $request->id_pago['paquetes'][$key]['tipop1'];
+                            $cre1->monto = (float)$request->monto_abol['paquetes'][$key]['abono1'];
+                            if ($request->id_pago['paquetes'][$key]['tipop1'] == 'EF') {
+                              $cre1->efectivo = (float)$request->monto_abol['paquetes'][$key]['abono1'];
+                            } elseif($request->id_pago['paquetes'][$key]['tipop1'] == 'TJ') {
+                              $cre1->tarjeta =(float)$request->monto_abol['paquetes'][$key]['abono1'];
+                            } elseif($request->id_pago['paquetes'][$key]['tipop1'] == 'DP') {
+                              $cre1->dep = (float)$request->monto_abol['paquetes'][$key]['abono1'];
+                            } else {
+                              $cre1->yap = (float)$request->monto_abol['paquetes'][$key]['abono1'];
+                            }
+                            $cre1->usuario = Auth::user()->id;
+                            $cre1->sede = $request->session()->get('sede');
+                            $cre1->fecha = date('Y-m-d');
+                            $cre1->save();
+
                           }
-                          $cre->usuario = Auth::user()->id;
-                          $cre->sede = $request->session()->get('sede');
-                          $cre->fecha = date('Y-m-d');
-                          $cre->save();
 
-
-              
-                          if ($request->monto_s['paquetes'][$key]['monto'] > $request->monto_abol['paquetes'][$key]['abono']) {
+                          
+                        
+                          if ($request->monto_s['paquetes'][$key]['monto'] > $totalabono) {
                               $cb = new Cobrar();
                               $cb->id_atencion =  $lab->id;
                               $cb->detalle =  $paquetes->nombre;
-                              $cb->resta =(float)$request->monto_s['paquetes'][$key]['monto'] - (float)$request->monto_abol['paquetes'][$key]['abono'];
+                              $cb->resta =(float)$request->monto_s['paquetes'][$key]['monto'] - (float)$totalabono;
                               $cb->save();
                           }
 
@@ -1435,6 +1546,13 @@ return view('atenciones.particular');
                       if (!is_null($eco['ecografia'])) {
                           $servicio = Servicios::where('id', '=', $eco['ecografia'])->first();
 
+                          $totalabono = (float)$request->monto_abol['ecografias'][$key]['abono'] + (float)$request->monto_abol['ecografias'][$key]['abono1'];
+                          
+                          if($totalabono > (float)$request->monto_s['ecografias'][$key]['monto']){
+                            $request->session()->flash('error', 'El monto del abono de pagos mixto es mayor al item de ecografias.');
+                            return back();
+                          } 
+
                           //TIPO ATENCION ECOGRAFIA= 2
                           $lab = new Atenciones();
                           $lab->tipo_origen =  $request->origen;
@@ -1447,9 +1565,12 @@ return view('atenciones.particular');
                           $lab->tipo_atencion = 2;
                           $lab->id_tipo = $eco['ecografia'];
                           $lab->monto = (float)$request->monto_s['ecografias'][$key]['monto'];
-                          $lab->abono = (float)$request->monto_abol['ecografias'][$key]['abono'];
-                          $lab->resta = (float)$request->monto_s['ecografias'][$key]['monto'] - (float)$request->monto_abol['ecografias'][$key]['abono'];
+                          $lab->abono =  $request->monto_abol['ecografias'][$key]['abono1'] != null ? (float)$totalabono : (float)$request->monto_abol['ecografias'][$key]['abono'];
+                          $lab->abono1 =  (float)$request->monto_abol['ecografias'][$key]['abono'];
+                          $lab->abono2 =  (float)$request->monto_abol['ecografias'][$key]['abono1'];
                           $lab->tipo_pago = $request->id_pago['ecografias'][$key]['tipop'];
+                          $lab->tipo_pago1 = $request->id_pago['ecografias'][$key]['tipop1'];
+                          $lab->resta = (float)$request->monto_s['ecografias'][$key]['monto'] - $totalabono;
                           $lab->usuario = Auth::user()->id;
                           $lab->sede = $request->session()->get('sede');
                           $lab->observaciones = $request->observaciones;
@@ -1476,26 +1597,33 @@ return view('atenciones.particular');
                           $cre->sede = $request->session()->get('sede');
                           $cre->fecha = date('Y-m-d');
                           $cre->save();
-                          
-                          $cre = new CreditosB();
-                          $cre->origen = 'ECOGRAFIA';
-                          $cre->descripcion = 'INGRESO POR ECOGRAFIA';
-                          $cre->id_atencion =  $lab->id;
-                          $cre->tipopago =  $request->id_pago['ecografias'][$key]['tipop'];
-                          $cre->monto = (float)$request->monto_abol['ecografias'][$key]['abono'];
-                          if ($request->id_pago['ecografias'][$key]['tipop'] == 'EF') {
-                            $cre->efectivo = (float)$request->monto_abol['ecografias'][$key]['abono'];
-                          } elseif($request->id_pago['ecografias'][$key]['tipop'] == 'TJ') {
-                            $cre->tarjeta =(float)$request->monto_abol['ecografias'][$key]['abono'];
-                          } elseif($request->id_pago['ecografias'][$key]['tipop'] == 'DP') {
-                            $cre->dep = (float)$request->monto_abol['ecografias'][$key]['abono'];
-                          } else {
-                            $cre->yap = (float)$request->monto_abol['ecografias'][$key]['abono'];
+
+                          if($request->monto_abol['ecografias'][$key]['abono1'] != null){
+
+                            $cre1 = new Creditos();
+                            $cre1->origen = 'ECOGRAFIA';
+                            $cre1->descripcion = 'INGRESO POR ECOGRAFIA';
+                            $cre1->id_atencion =  $lab->id;
+                            $cre1->tipopago =  $request->id_pago['ecografias'][$key]['tipop1'];
+                            $cre1->monto = (float)$request->monto_abol['ecografias'][$key]['abono1'];
+                            if ($request->id_pago['ecografias'][$key]['tipop1'] == 'EF') {
+                              $cre1->efectivo = (float)$request->monto_abol['ecografias'][$key]['abono1'];
+                            } elseif($request->id_pago['ecografias'][$key]['tipop1'] == 'TJ') {
+                              $cre1->tarjeta =(float)$request->monto_abol['ecografias'][$key]['abono1'];
+                            } elseif($request->id_pago['ecografias'][$key]['tipop1'] == 'DP') {
+                              $cre1->dep = (float)$request->monto_abol['ecografias'][$key]['abono1'];
+                            } else {
+                              $cre1->yap = (float)$request->monto_abol['ecografias'][$key]['abono1'];
+                            }
+                            $cre1->usuario = Auth::user()->id;
+                            $cre1->sede = $request->session()->get('sede');
+                            $cre1->fecha = date('Y-m-d');
+                            $cre1->save();
+
                           }
-                          $cre->usuario = Auth::user()->id;
-                          $cre->sede = $request->session()->get('sede');
-                          $cre->fecha = date('Y-m-d');
-                          $cre->save();
+                          
+                         
+
                           $rs = new ResultadosServicios();
                           $rs->id_atencion =  $lab->id;
                           $rs->id_servicio = $eco['ecografia'];
@@ -1503,11 +1631,11 @@ return view('atenciones.particular');
                           $rs->save();
 
                    
-                          if ($request->monto_s['ecografias'][$key]['monto'] > $request->monto_abol['ecografias'][$key]['abono']) {
+                          if ($request->monto_s['ecografias'][$key]['monto'] > $totalabono) {
                               $cb = new Cobrar();
                               $cb->id_atencion =  $lab->id;
                               $cb->detalle =  $servicio->nombre;
-                              $cb->resta =(float)$request->monto_s['ecografias'][$key]['monto'] - (float)$request->monto_abol['ecografias'][$key]['abono'];
+                              $cb->resta =(float)$request->monto_s['ecografias'][$key]['monto'] - (float)$totalabono;
                               $cb->save();
                           }
 
@@ -1558,6 +1686,14 @@ return view('atenciones.particular');
                       if (!is_null($ray['rayo'])) {
                           $servicio = Servicios::where('id', '=', $ray['rayo'])->first();
 
+                          $totalabono = (float)$request->monto_abol['rayos'][$key]['abono'] + (float)$request->monto_abol['rayos'][$key]['abono1'];
+                          
+                          if($totalabono > (float)$request->monto_s['rayos'][$key]['monto']){
+                            $request->session()->flash('error', 'El monto del abono de pagos mixto es mayor al item de rayos x.');
+                            return back();
+                          } 
+    
+
 
                           //TIPO ATENCION RAYOS= 3
                           $lab = new Atenciones();
@@ -1571,9 +1707,12 @@ return view('atenciones.particular');
                           $lab->tipo_atencion = 3;
                           $lab->id_tipo = $ray['rayo'];
                           $lab->monto = (float)$request->monto_s['rayos'][$key]['monto'];
-                          $lab->abono = (float)$request->monto_abol['rayos'][$key]['abono'];
-                          $lab->resta = (float)$request->monto_s['rayos'][$key]['monto'] - (float)$request->monto_abol['rayos'][$key]['abono'];
+                          $lab->abono =  $request->monto_abol['rayos'][$key]['abono1'] != null ? (float)$totalabono : (float)$request->monto_abol['rayos'][$key]['abono'];
+                          $lab->abono1 =  (float)$request->monto_abol['rayos'][$key]['abono'];
+                          $lab->abono2 =  (float)$request->monto_abol['rayos'][$key]['abono1'];
                           $lab->tipo_pago = $request->id_pago['rayos'][$key]['tipop'];
+                          $lab->tipo_pago1 = $request->id_pago['rayos'][$key]['tipop1'];
+                          $lab->resta = (float)$request->monto_s['rayos'][$key]['monto'] - $totalabono;
                           $lab->usuario = Auth::user()->id;
                           $lab->sede =$request->session()->get('sede');
                           $lab->observaciones = $request->observaciones;
@@ -1600,25 +1739,30 @@ return view('atenciones.particular');
                           $cre->fecha = date('Y-m-d');
                           $cre->save();
 
-                          $cre = new CreditosB();
-                          $cre->origen = 'RAYOSX';
-                          $cre->descripcion = 'INGRESO POR RAYOSX';
-                          $cre->id_atencion =  $lab->id;
-                          $cre->tipopago =  $request->id_pago['rayos'][$key]['tipop'];
-                          $cre->monto = (float)$request->monto_abol['rayos'][$key]['abono'];
-                          if ($request->id_pago['rayos'][$key]['tipop'] == 'EF') {
-                            $cre->efectivo = (float)$request->monto_abol['rayos'][$key]['abono'];
-                          } elseif($request->id_pago['rayos'][$key]['tipop'] == 'TJ') {
-                            $cre->tarjeta =(float)$request->monto_abol['rayos'][$key]['abono'];
-                          } elseif($request->id_pago['rayos'][$key]['tipop'] == 'DP') {
-                            $cre->dep = (float)$request->monto_abol['rayos'][$key]['abono'];
-                          } else {
-                            $cre->yap = (float)$request->monto_abol['rayos'][$key]['abono'];
+                          if($request->monto_abol['rayos'][$key]['abono1'] != null){
+                            $cre = new Creditos();
+                            $cre->origen = 'RAYOSX';
+                            $cre->descripcion = 'INGRESO POR RAYOSX';
+                            $cre->id_atencion =  $lab->id;
+                            $cre->tipopago =  $request->id_pago['rayos'][$key]['tipop'];
+                            $cre->monto = (float)$request->monto_abol['rayos'][$key]['abono1'];
+                            if ($request->id_pago['rayos'][$key]['tipop1'] == 'EF') {
+                              $cre->efectivo = (float)$request->monto_abol['rayos'][$key]['abono1'];
+                            } elseif($request->id_pago['rayos'][$key]['tipop1'] == 'TJ') {
+                              $cre->tarjeta =(float)$request->monto_abol['rayos'][$key]['abono1'];
+                            } elseif($request->id_pago['rayos'][$key]['tipop1'] == 'DP') {
+                              $cre->dep = (float)$request->monto_abol['rayos'][$key]['abono1'];
+                            } else {
+                              $cre->yap = (float)$request->monto_abol['rayos'][$key]['abono1'];
+                            }
+                            $cre->usuario = Auth::user()->id;
+                            $cre->sede = $request->session()->get('sede');
+                            $cre->fecha = date('Y-m-d');
+                            $cre->save();
+
                           }
-                          $cre->usuario = Auth::user()->id;
-                          $cre->sede = $request->session()->get('sede');
-                          $cre->fecha = date('Y-m-d');
-                          $cre->save();
+
+                         
 
                           $rs = new ResultadosServicios();
                           $rs->id_atencion =  $lab->id;
@@ -1626,11 +1770,11 @@ return view('atenciones.particular');
                           $rs->monto =  (float)$request->monto_abol['rayos'][$key]['abono'];
                           $rs->save();
 
-                          if ($request->monto_s['rayos'][$key]['monto'] > $request->monto_abol['rayos'][$key]['abono']) {
+                          if ($request->monto_s['rayos'][$key]['monto'] > $totalabono) {
                               $cb = new Cobrar();
                               $cb->id_atencion =  $lab->id;
                               $cb->detalle =  $servicio->nombre;
-                              $cb->resta =(float)$request->monto_s['rayos'][$key]['monto'] - (float)$request->monto_abol['rayos'][$key]['abono'];
+                              $cb->resta =(float)$request->monto_s['rayos'][$key]['monto'] - (float)$totalabono;
                               $cb->save();
                           }
 
