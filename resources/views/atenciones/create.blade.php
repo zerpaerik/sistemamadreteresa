@@ -802,7 +802,7 @@
                   </div>
                   <div class="col-md-2">
                     <label for="exampleInputEmail1">Precio</label>
-                    <input type="float" class="form-control monto abono" id="email" name="precio_met" placeholder="Precio" onchange="sumar();>
+                    <input type="float" class="form-control monto abono" id="email" name="precio_met" placeholder="Precio" onchange="sumar();">
                   </div>
               
                   <div class="col-md-2">
