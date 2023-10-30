@@ -275,12 +275,26 @@ class GastosController extends Controller
     public function update(Request $request)
     {
 
-      $p = Debitos::find($request->id);
+     /* $p = Debitos::find($request->id);
       $p->descripcion =$request->descripcion;
       $p->tipo =$request->tipo;
       $p->monto =$request->monto;
       $p->recibido =$request->recibido;
-      $res = $p->update();
+      $res = $p->update();*/
+
+      $p1 = Debitos::where('id','=',$request->id)->first();
+
+
+
+      $p = Debitos::where('id','=',$request->id)->first();
+      $p->descripcion =$request->descripcion;
+      $p->tipo =$request->tipo;
+      $p->monto =$request->monto;
+      $p->created_at = $p1->created_at;
+      $p->recibido =$request->recibido;
+      $p->update();
+
+
 
       $deb = Creditos::where('id_egreso','=',$request->id)->first();
       $deb->egreso =$request->monto;
