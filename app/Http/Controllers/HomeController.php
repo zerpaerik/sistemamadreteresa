@@ -119,7 +119,7 @@ class HomeController extends Controller
             $yap = Creditos::whereRaw("created_at >= ? AND created_at <= ?", 
             array($fecha, $fechafin))
             ->select(DB::raw('SUM(yap) as monto'))
-            ->where('tipopago', '=', 'YP')
+           // ->where('tipopago', '=', 'YP')
             ->where('sede', '=', $request->session()->get('sede'))
             ->first();
 
