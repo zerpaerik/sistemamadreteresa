@@ -96,7 +96,7 @@ class HomeController extends Controller
 
             $efec = Creditos::whereRaw("created_at >= ? AND created_at <= ?", 
             array($fecha, $fechafin))
-        ->select(DB::raw('SUM(monto) as monto'))
+        ->select(DB::raw('SUM(efectivo) as monto'))
         ->where('tipopago', '=', 'EF')
         ->where('sede', '=', $request->session()->get('sede'))
         ->first();
@@ -104,24 +104,24 @@ class HomeController extends Controller
 
             $tarj = Creditos::whereRaw("created_at >= ? AND created_at <= ?", 
             array($fecha, $fechafin))
-        ->select(DB::raw('SUM(monto) as monto'))
+        ->select(DB::raw('SUM(tarjeta) as monto'))
         ->where('tipopago', '=', 'TJ')
         ->where('sede', '=', $request->session()->get('sede'))
         ->first();
 
             $dep = Creditos::whereRaw("created_at >= ? AND created_at <= ?", 
             array($fecha, $fechafin))
-        ->select(DB::raw('SUM(monto) as monto'))
-        ->where('tipopago', '=', 'DP')
-        ->where('sede', '=', $request->session()->get('sede'))
-        ->first();
+            ->select(DB::raw('SUM(dep) as monto'))
+            ->where('tipopago', '=', 'DP')
+            ->where('sede', '=', $request->session()->get('sede'))
+            ->first();
 
             $yap = Creditos::whereRaw("created_at >= ? AND created_at <= ?", 
             array($fecha, $fechafin))
-        ->select(DB::raw('SUM(monto) as monto'))
-        ->where('tipopago', '=', 'YP')
-        ->where('sede', '=', $request->session()->get('sede'))
-        ->first();
+            ->select(DB::raw('SUM(yap) as monto'))
+            ->where('tipopago', '=', 'YP')
+            ->where('sede', '=', $request->session()->get('sede'))
+            ->first();
 
             $egresos = Debitos::whereRaw("created_at >= ? AND created_at <= ?", 
             array($fecha, $fechafin))
