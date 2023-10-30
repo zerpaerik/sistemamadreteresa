@@ -203,7 +203,7 @@ class CajaController extends Controller
             $efectivo = Creditos::where('tipopago', 'EF')
             ->whereRaw("fecha > ? AND fecha <= ?", 
             array($caja->fecha_init, $caja->fecha_fin))
-            ->select(DB::raw('SUM(monto) as monto'))
+            ->select(DB::raw('SUM(efectivo) as monto'))
             ->first();
 
             if (is_null($efectivo->monto)) {
@@ -213,7 +213,7 @@ class CajaController extends Controller
             $tarjeta = Creditos::where('tipopago', 'TJ')
             ->whereRaw("fecha > ? AND fecha <= ?", 
               array($caja->fecha_init, $caja->fecha_fin))
-                    ->select(DB::raw('SUM(monto) as monto'))
+                    ->select(DB::raw('SUM(tarjeta) as monto'))
                     ->first();
     
             if (is_null($tarjeta->monto)) {
@@ -456,7 +456,7 @@ class CajaController extends Controller
                             ->where('sede','=', $request->session()->get('sede'))
                             ->whereRaw("created_at >= ? AND created_at <= ?", 
                                      array($fechainic, $fecha))
-                            ->select(DB::raw('SUM(monto) as monto'))
+                            ->select(DB::raw('SUM(efectivo) as monto'))
                             ->first();
         if (is_null($efectivo->monto)) {
             $efectivo->monto = 0;
@@ -466,7 +466,7 @@ class CajaController extends Controller
         ->where('sede','=', $request->session()->get('sede'))
         ->whereRaw("created_at >= ? AND created_at <= ?", 
                  array($fechainic, $fecha))
-        ->select(DB::raw('SUM(monto) as monto'))
+        ->select(DB::raw('SUM(dep) as monto'))
         ->first();
         if (is_null($deposito->monto)) {
         $deposito->monto = 0;
@@ -476,7 +476,7 @@ class CajaController extends Controller
       ->where('sede','=', $request->session()->get('sede'))
       ->whereRaw("created_at >= ? AND created_at <= ?", 
               array($fechainic, $fecha))
-      ->select(DB::raw('SUM(monto) as monto'))
+      ->select(DB::raw('SUM(yap) as monto'))
       ->first();
       if (is_null($yape->monto)) {
       $yape->monto = 0;
@@ -486,7 +486,7 @@ class CajaController extends Controller
                             ->where('sede','=', $request->session()->get('sede'))
                             ->whereRaw("created_at >= ? AND created_at <= ?", 
                                      array($fechainic, $fecha))
-                            ->select(DB::raw('SUM(monto) as monto'))
+                            ->select(DB::raw('SUM(tarjeta) as monto'))
                             ->first();
 
         if (is_null($tarjeta->monto)) {
@@ -666,7 +666,7 @@ class CajaController extends Controller
                           ->where('sede','=', $request->session()->get('sede'))
                           ->whereRaw("created_at >= ? AND created_at <= ?", 
                                    array($fechamañana, $fecha))
-                          ->select(DB::raw('SUM(monto) as monto'))
+                          ->select(DB::raw('SUM(efectivo) as monto'))
                           ->first();
       if (is_null($efectivo->monto)) {
           $efectivo->monto = 0;
@@ -676,7 +676,7 @@ class CajaController extends Controller
       ->where('sede','=', $request->session()->get('sede'))
       ->whereRaw("created_at >= ? AND created_at <= ?", 
                array($fechamañana, $fecha))
-      ->select(DB::raw('SUM(monto) as monto'))
+      ->select(DB::raw('SUM(dep) as monto'))
       ->first();
       if (is_null($deposito->monto)) {
       $deposito->monto = 0;
@@ -686,7 +686,7 @@ class CajaController extends Controller
     ->where('sede','=', $request->session()->get('sede'))
     ->whereRaw("created_at >= ? AND created_at <= ?", 
             array($fechamañana, $fecha))
-    ->select(DB::raw('SUM(monto) as monto'))
+    ->select(DB::raw('SUM(yap) as monto'))
     ->first();
     if (is_null($yape->monto)) {
     $yape->monto = 0;
@@ -696,7 +696,7 @@ class CajaController extends Controller
                           ->where('sede','=', $request->session()->get('sede'))
                           ->whereRaw("created_at >= ? AND created_at <= ?", 
                                    array($fechamañana, $fecha))
-                          ->select(DB::raw('SUM(monto) as monto'))
+                          ->select(DB::raw('SUM(tarjeta) as monto'))
                           ->first();
 
       if (is_null($tarjeta->monto)) {
