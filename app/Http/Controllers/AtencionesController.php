@@ -1026,6 +1026,7 @@ return view('atenciones.particular');
                       $lab->id_paciente =  $request->paciente;
                       $lab->tipo_atencion = 8;
                       $lab->id_tipo = $serv['salu'];
+                      $lab->monto = (float)$request->monto_s['salud'][$key]['monto'];
                       $lab->abono =  $request->monto_abol['salud'][$key]['abono1'] != null ? (float)$totalabono : (float)$request->monto_abol['salud'][$key]['abono'];
                       $lab->abono1 =  (float)$request->monto_abol['salud'][$key]['abono'];
                       $lab->abono2 =  (float)$request->monto_abol['salud'][$key]['abono1'];
