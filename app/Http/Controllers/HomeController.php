@@ -50,26 +50,26 @@ class HomeController extends Controller
           
 
             $efec = Creditos::whereDate('created_at', date('Y-m-d 00:00:00', strtotime(date('Y-m-d'))))
-        ->select(DB::raw('SUM(monto) as monto'))
+        ->select(DB::raw('SUM(efectivo) as monto'))
         ->where('tipopago', '=', 'EF')
         ->where('sede', '=', $request->session()->get('sede'))
         ->first();
 
 
             $tarj = Creditos::whereDate('created_at', date('Y-m-d 00:00:00', strtotime(date('Y-m-d'))))
-        ->select(DB::raw('SUM(monto) as monto'))
+        ->select(DB::raw('SUM(tarjeta) as monto'))
         ->where('tipopago', '=', 'TJ')
         ->where('sede', '=', $request->session()->get('sede'))
         ->first();
 
             $dep = Creditos::whereDate('created_at', date('Y-m-d 00:00:00', strtotime(date('Y-m-d'))))
-        ->select(DB::raw('SUM(monto) as monto'))
+        ->select(DB::raw('SUM(dep) as monto'))
         ->where('tipopago', '=', 'DP')
         ->where('sede', '=', $request->session()->get('sede'))
         ->first();
 
             $yap = Creditos::whereDate('created_at', date('Y-m-d 00:00:00', strtotime(date('Y-m-d'))))
-        ->select(DB::raw('SUM(monto) as monto'))
+        ->select(DB::raw('SUM(yap) as monto'))
         ->where('tipopago', '=', 'YP')
         ->where('sede', '=', $request->session()->get('sede'))
         ->first();
