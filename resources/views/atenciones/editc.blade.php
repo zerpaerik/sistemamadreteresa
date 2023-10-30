@@ -122,16 +122,16 @@
                   </div>
                   <br>
 
-                    <div class="row">
-                  <div class="col-md-4">
+                  <div class="row">
+                  <div class="col-md-2">
                     <label for="exampleInputEmail1">Monto</label>
                     <input type="text" class="form-control" id="name" name="monto" value="{{$atencion->monto}}" placeholder="Nombre de Analisis">
                   </div>
-                  <div class="col-md-4">
+                  <div class="col-md-2">
                     <label for="exampleInputEmail1">Abono</label>
-                    <input type="text" class="form-control" id="email" name="abono" value="{{$atencion->abono}}" placeholder="Descripción">
+                    <input type="text" class="form-control" id="email" name="abono1" value="{{$atencion->abono1}}" placeholder="Descripción">
                   </div>
-                  <div class="col-md-4">
+                  <div class="col-md-2">
                   <label for="exampleInputEmail1">Tipo de Pago</label>
                   <select class="form-control" name="tipo_pago">
 
@@ -160,6 +160,41 @@
                             </select>
                     
                   </div>
+
+                  <div class="col-md-2">
+                    <label for="exampleInputEmail1">Abono</label>
+                    <input type="text" class="form-control" id="email" name="abono2" value="{{$atencion->abono2}}" placeholder="Descripción">
+                  </div>
+                  <div class="col-md-2">
+                  <label for="exampleInputEmail1">Tipo de Pago</label>
+                  <select class="form-control" name="tipo_pago1">
+
+                            @if($atencion->tipo_pago1 == 'EF')
+                                <option selected value="EF">Efectivo</option>
+                                <option value="TJ">Tarjeta</option>
+                                <option value="DP">Depósito</option>
+                                <option value="YP">Yape</option>
+                            @elseif($atencion->tipo_pago1 == 'TJ')
+                                <option value="EF">Efectivo</option>
+                                <option value="TJ" selected>Tarjeta</option>
+                                <option value="DP">Depósito</option>
+                                <option value="YP">Yape</option>
+                            @elseif($atencion->tipo_pago1 == 'DP')
+                                <option value="EF">Efectivo</option>
+                                <option value="TJ">Tarjeta</option>
+                                <option value="DP" selected>Depósito</option>
+                                <option value="YP">Yape</option>
+                            @else
+                                <option  value="EF">Efectivo</option>
+                                <option value="TJ">Tarjeta</option>
+                                <option value="DP">Depósito</option>
+                                <option value="YP" selected>Yape</option>
+                            @endif
+                                
+                            </select>
+                    
+                  </div>
+
 
 
                   </div>
