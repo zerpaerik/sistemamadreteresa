@@ -1083,25 +1083,7 @@ return view('atenciones.particular');
 
                         }
 
-                      $cre = new CreditosB();
-                      $cre->origen = 'SERVICIO';
-                      $cre->descripcion = 'INGRESO POR SERVICIO';
-                      $cre->id_atencion =  $lab->id;
-                      $cre->tipopago =  $request->id_pago['salud'][$key]['tipop'];
-                      $cre->monto = (float)$request->monto_abol['salud'][$key]['abono'];
-                      if ($request->id_pago['salud'][$key]['tipop'] == 'EF') {
-                        $cre->efectivo = (float)$request->monto_abol['salud'][$key]['abono'];
-                      } elseif($request->id_pago['salud'][$key]['tipop'] == 'TJ') {
-                        $cre->tarjeta =(float)$request->monto_abol['salud'][$key]['abono'];
-                      } elseif($request->id_pago['salud'][$key]['tipop'] == 'DP') {
-                        $cre->dep = (float)$request->monto_abol['salud'][$key]['abono'];
-                      } else {
-                        $cre->yap = (float)$request->monto_abol['salud'][$key]['abono'];
-                      }
-                      $cre->usuario = Auth::user()->id;
-                      $cre->sede = $request->session()->get('sede');
-                      $cre->fecha = date('Y-m-d');
-                      $cre->save();
+                  
 
                        //VERIFICAR SESIONES
 
@@ -3311,20 +3293,9 @@ return view('atenciones.particular');
         $creditos = Creditos::where('id_atencion','=',$id)->first();
         $creditos->delete();
 
-        $creditos = CreditosB::where('id_atencion','=',$id)->first();
-        $creditos->delete();
-/*
-        $rs = ResultadosServicios::where('id_atencion','=',$id)->first();
-        $rs->estatus = 0;
-        $rs->delete();
-
-        $rl = ResultadosLaboratorio::where('id_atencion','=',$id)->first();
-        $rl->estatus = 0;
-        $rl->save();*/
-
         return redirect()->action('AtencionesController@index')
         ->with('success','Eliminado Exitosamente!');
-        //
+        
     }
 }
 
