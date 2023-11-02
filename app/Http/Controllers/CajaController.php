@@ -60,8 +60,6 @@ class CajaController extends Controller
         $total = $aten->monto - $deb->monto;
 
 
-
-
 } else {
 
 
@@ -73,21 +71,26 @@ class CajaController extends Controller
         ->where('a.fecha','=',date('Y-m-d'))
         ->get();
 
+      
+
 
   
         $cajaa = DB::table('cajas')
         ->where('sede','=',$request->session()->get('sede'))
-                       ->select('*')->get()->last();
+        ->where('fecha','=',date('Y-m-d'))
+        ->select('*')->get()->last();
+
 
 
         if($cajaa != null){
             
-        $aten = Creditos::where('fecha','>',$cajaa->created_at)
+        $aten = Creditos::where('created_at','>',$cajaa->created_at)
         ->where('sede','=',$request->session()->get('sede'))
         ->select(DB::raw('SUM(monto) as monto'))
         ->first();
 
-        $deb = Debitos::where('fecha','>',$cajaa->created_at)
+
+        $deb = Debitos::where('created_at','>',$cajaa->created_at)
         ->where('sede','=',$request->session()->get('sede'))
         ->select(DB::raw('SUM(monto) as monto'))
         ->first();
@@ -97,11 +100,15 @@ class CajaController extends Controller
 
         } else {
 
+
         $aten = Creditos::select(DB::raw('SUM(monto) as monto'))
         ->where('sede','=',$request->session()->get('sede'))
+        ->whereDate('fecha','=',date('Y-m-d'))
         ->first();
 
+
         $deb = Debitos::select(DB::raw('SUM(monto) as monto'))
+        ->whereDate('fecha','=',date('Y-m-d'))
         ->where('sede','=',$request->session()->get('sede'))
         ->first();
 
@@ -115,7 +122,7 @@ class CajaController extends Controller
 
 
 
-          $f1 = date('Y-m-d');
+        $f1 = date('Y-m-d');
          $f2 = date('Y-m-d'); 
     	
     	
@@ -504,7 +511,7 @@ class CajaController extends Controller
         
  
        
-       $view = \View::make('caja.consolidado', compact('servicios', 'consultas','eco','rayos', 'cuentasXcobrar','metodos','serv','lab','paq','caja','egresos','ingresos','efectivo','tarjeta','deposito','yape','totalEgresos','totalIngresos'));
+       $view = \View::make('caja.consolidado', compact('servicios', 'consultas','eco','rayos', 'cuentasXcobrar','metodos','lab','paq','caja','egresos','ingresos','efectivo','tarjeta','deposito','yape','totalEgresos','totalIngresos'));
       
        //$view = \View::make('reportes.cierre_caja_ver')->with('caja', $caja);
        $pdf = \App::make('dompdf.wrapper');
@@ -714,7 +721,7 @@ class CajaController extends Controller
       
 
      
-     $view = \View::make('caja.consolidado', compact('servicios', 'consultas','eco','rayos', 'cuentasXcobrar','metodos','serv','lab','paq','caja','egresos','ingresos','efectivo','tarjeta','deposito','yape','totalEgresos','totalIngresos'));
+     $view = \View::make('caja.consolidado', compact('servicios', 'consultas','eco','rayos', 'cuentasXcobrar','metodos','lab','paq','caja','egresos','ingresos','efectivo','tarjeta','deposito','yape','totalEgresos','totalIngresos'));
     
      //$view = \View::make('reportes.cierre_caja_ver')->with('caja', $caja);
      $pdf = \App::make('dompdf.wrapper');
