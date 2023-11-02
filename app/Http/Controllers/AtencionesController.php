@@ -3290,8 +3290,20 @@ return view('atenciones.particular');
         }
        
 
-        $creditos = Creditos::where('id_atencion','=',$id)->first();
-        $creditos->delete();
+
+
+        $creditosa = Creditos::where('id_atencion','=',$id)->get();
+
+
+      //ELIMINAR CREDITOS
+
+      foreach ($creditosa as $cred) {
+        $id_credito = $cred->id;
+        if (!is_null($id_credito)) {
+            $rsf = Creditos::where('id', '=', $id_credito)->first();
+            $rsf->delete();
+        }
+    }
 
         return redirect()->action('AtencionesController@index')
         ->with('success','Eliminado Exitosamente!');
