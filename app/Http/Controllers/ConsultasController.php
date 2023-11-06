@@ -531,6 +531,7 @@ class ConsultasController extends Controller
 
 
 
+
          $historias_base = HistoriaBase::where('id_paciente','=',$hist->id_paciente)->first();
 
          $paciente = Pacientes::where('id','=',$hist->id_paciente)->first();
