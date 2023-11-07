@@ -113,7 +113,16 @@ class ConsultasController extends Controller
       $cie1 = Ciexes::all();
       $consulta = Consultas::where('id','=',$consulta)->first();
       $hist = HistoriaBase::where('id_paciente','=',$consulta->id_paciente)->where('estatus','=',0)->first();
-      $historias = Historia::where('id_paciente','=',$consulta->id_paciente)->get();
+     // $historias = Historia::where('id_paciente','=',$consulta->id_paciente)->get();
+
+
+
+      
+      $historias = DB::table('historia as a')
+      ->select('a.*','b.name','b.lastname')
+      ->join('users as b','b.id','a.usuario')
+      ->where('a.id_paciente', '=',$consulta->id_paciente)
+      ->get(); 
 
       $paciente = Pacientes::where('id','=',$consulta->id_paciente)->first();
 

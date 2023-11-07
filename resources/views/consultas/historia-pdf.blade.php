@@ -422,6 +422,10 @@ table {
 			<div align="right" style="margin-top:20px;">
 				<img src="/var/www/html/mt/sistemamadreteresa/public/firma_jeny.jpeg"  style="width: 30%;"/>
 			</div>
+			@elseif($hist->usuario == 32)
+			<div align="right" style="margin-top:20px;">
+				<img src="/var/www/html/mt/sistemamadreteresa/public/firma_janet.jpeg"  style="width: 30%;"/>
+			</div>
 			@elseif($hist->usuario == 371)
 			<div align="right" style="margin-top:20px;">
 				<img src="/var/www/html/mt/sistemamadreteresa/public/firma_vanessa.jpeg"  style="width: 30%;"/>

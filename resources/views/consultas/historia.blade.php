@@ -190,6 +190,12 @@
 
                    </div>
                     </div>
+                    <div class="row">
+                     <div class="col-md-12">
+                    <label for="exampleInputEmail1">Atendido Por:</label>
+                    <input type="text" onkeyup="javascript:this.value=this.value.toUpperCase();" class="form-control" disabled  id="nombre" name="pa" placeholder="" value="{{$hist->name}} {{$hist->lastname}}">
+                   </div>
+                    </div>
                    <label for="exampleInputEmail1">Funciones Vitales</label>
                    <div class="row">
                      <div class="col-md-2">

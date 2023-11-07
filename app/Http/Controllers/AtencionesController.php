@@ -15,6 +15,7 @@ use App\Atenciones;
 use App\AtencionesArchivo;
 use App\Atec;
 use App\Consultas;
+use App\Historia;
 use App\Metodos;
 use App\MetoPro;
 use App\Comisiones;
@@ -3199,6 +3200,16 @@ return view('atenciones.particular');
 
 
         if($aten->tipo_atencion == 5){
+
+          $data_consulta = Consultas::where('id_atencion','=',$id)->first();
+
+          if($data_consulta != null){
+            $historia = Historia::where('id_consulta', '=', $data_consulta->id_consulta)->first();
+            $historia->delete();
+          }
+
+        
+
           $con = Consultas::where('id_atencion','=',$id)->first();
           $con->estatus = 0;
           $con->save();
