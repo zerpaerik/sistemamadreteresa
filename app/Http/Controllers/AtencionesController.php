@@ -3204,7 +3204,7 @@ return view('atenciones.particular');
           $data_consulta = Consultas::where('id_atencion','=',$id)->first();
 
           if($data_consulta != null){
-            $historia = Historia::where('id_consulta', '=', $data_consulta->id_consulta)->first();
+            $historia = Historia::where('id_consulta', '=', $data_consulta->id)->first();
             $historia->delete();
           }
 
