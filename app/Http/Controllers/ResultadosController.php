@@ -80,8 +80,13 @@ class ResultadosController extends Controller
 
         }
 
+        $file_path = public_path().'/modelos_informes/';
 
-        return view('resultados.index', compact('resultados','f1','f2'));
+        $files = File::allFiles($file_path);
+
+     ///   dd($files);
+
+        return view('resultados.index', compact('resultados','f1','f2', 'files'));
         //
     }
 
