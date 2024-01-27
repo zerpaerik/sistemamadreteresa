@@ -80,9 +80,8 @@ class ResultadosController extends Controller
 
         }
 
-        $file_path = public_path().'/modelos_informes/';
-
-        $files = File::allFiles($file_path);
+       // $file_path = public_path().'/modelos_informes/';
+        //$files = File::allFiles($file_path);
 
      ///   dd($files);
 
