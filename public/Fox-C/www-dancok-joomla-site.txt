@@ -1,0 +1,1 @@
+/home/www-dancok/public_html/site/configuration.php
