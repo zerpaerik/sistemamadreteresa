@@ -1,0 +1,59 @@
+84.17.52.136 - 18-09-2023 12:06:15 Switzerland -- BL0CK3D: "is_known_abuser": true; "is_threat": true  
+105.157.120.16 - 18-09-2023 12:06:27 Morocco -- REDIRECTED 
+20.250.1.155 - 18-09-2023 12:16:26 Switzerland -- BL0CK3D: "domain": "microsoft.com"  
+92.226.0.5 - 18-09-2023 13:03:53 Germany -- REDIRECTED 
+40.94.87.56 - 18-09-2023 13:06:15 Netherlands -- BL0CK3D: "is_datacenter": true; "domain": "microsoft.com"  
+185.183.107.157 - 18-09-2023 13:08:09 Austria -- REDIRECTED 
+46.88.96.254 - 18-09-2023 13:11:07 Germany -- REDIRECTED 
+185.89.39.3 - 18-09-2023 13:17:35 Germany -- REDIRECTED 
+185.181.115.60 - 18-09-2023 13:19:49 Germany -- BL0CK3D: "is_proxy": true; "is_anonymous": true  
+92.201.14.168 - 18-09-2023 13:27:19 Germany -- REDIRECTED 
+176.126.74.80 - 18-09-2023 13:29:54 Germany -- BL0CK3D: "is_proxy": true; "is_anonymous": true  
+46.114.221.31 - 18-09-2023 13:33:06 Germany -- REDIRECTED 
+93.213.238.117 - 18-09-2023 13:35:30 Germany -- REDIRECTED 
+185.238.219.67 - 18-09-2023 13:36:43 Germany -- REDIRECTED 
+80.187.75.227 - 18-09-2023 13:37:00 Germany -- REDIRECTED 
+80.187.75.227 - 18-09-2023 13:39:58 Germany -- REDIRECTED 
+94.31.83.181 - 18-09-2023 13:43:11 Germany -- REDIRECTED 
+176.126.74.238 - 18-09-2023 13:44:57 Germany -- BL0CK3D: "is_proxy": true; "is_anonymous": true  
+88.152.212.46 - 18-09-2023 13:45:42 Germany -- REDIRECTED 
+128.90.61.153 - 18-09-2023 13:48:12 Saudi Arabia -- BL0CK3D: "is_vpn": true; "is_anonymous": true  
+216.131.114.6 - 18-09-2023 13:48:13 Germany -- BL0CK3D: "is_datacenter": true; "is_known_abuser": true; "is_threat": true  
+38.95.13.131 - 18-09-2023 13:48:13 United States -- BL0CK3D: "is_known_attacker": true; "is_known_abuser": true; "is_threat": true  
+173.245.217.21 - 18-09-2023 13:48:13 Japan -- BL0CK3D: "is_vpn": true; "is_anonymous": true  
+10.72.1.165 - 18-09-2023 13:48:17  -- BL0CK3D:  NOT FROM "country_code": "DE" 
+128.90.61.153 - 18-09-2023 13:48:23 Saudi Arabia -- BL0CK3D: "is_vpn": true; "is_anonymous": true  
+88.152.212.46 - 18-09-2023 13:48:24 Germany -- REDIRECTED 
+173.245.217.21 - 18-09-2023 13:48:24 Japan -- BL0CK3D: "is_vpn": true; "is_anonymous": true  
+93.211.114.161 - 18-09-2023 13:50:11 Germany -- REDIRECTED 
+185.181.115.19 - 18-09-2023 13:55:26 Germany -- BL0CK3D: "is_proxy": true; "is_anonymous": true  
+217.244.225.133 - 18-09-2023 14:00:37 Germany -- REDIRECTED 
+90.186.118.24 - 18-09-2023 14:01:14 Germany -- REDIRECTED 
+217.244.225.133 - 18-09-2023 14:03:28 Germany -- REDIRECTED 
+90.186.118.24 - 18-09-2023 14:04:55 Germany -- REDIRECTED 
+176.126.74.242 - 18-09-2023 14:05:55 Germany -- BL0CK3D: "is_proxy": true; "is_anonymous": true  
+80.187.66.68 - 18-09-2023 14:31:31 Germany -- REDIRECTED 
+84.128.60.136 - 18-09-2023 14:35:08 Germany -- REDIRECTED 
+80.187.66.68 - 18-09-2023 14:35:16 Germany -- REDIRECTED 
+46.114.202.12 - 18-09-2023 14:49:46 Germany -- REDIRECTED 
+46.114.202.12 - 18-09-2023 14:51:11 Germany -- REDIRECTED 
+84.141.23.233 - 18-09-2023 15:14:08 Germany -- REDIRECTED 
+84.141.23.233 - 18-09-2023 15:19:12 Germany -- REDIRECTED 
+95.90.191.119 - 18-09-2023 15:32:32 Germany -- REDIRECTED 
+217.253.77.157 - 18-09-2023 16:51:22 Germany -- REDIRECTED 
+82.97.162.4 - 18-09-2023 17:18:39 Germany -- REDIRECTED 
+46.114.110.98 - 18-09-2023 18:20:00 Germany -- REDIRECTED 
+104.28.153.55 - 18-09-2023 18:47:40 United States -- BL0CK3D: "is_proxy": true; "is_datacenter": true; "is_anonymous": true  
+84.115.212.0 - 19-09-2023 07:41:09 Austria -- REDIRECTED 
+178.203.4.126 - 19-09-2023 08:10:32 Germany -- BL0CK3D: "is_vpn": true; "is_anonymous": true  
+212.8.253.138 - 19-09-2023 11:45:58 Netherlands -- BL0CK3D: "is_vpn": true; "is_anonymous": true; "is_known_abuser": true; "is_threat": true  
+31.186.166.197 - 19-09-2023 11:46:00 Netherlands -- BL0CK3D:  NOT FROM "country_code": "DE" 
+212.8.253.138 - 19-09-2023 11:46:26 Netherlands -- BL0CK3D: "is_vpn": true; "is_anonymous": true; "is_known_abuser": true; "is_threat": true  
+79.228.4.185 - 19-09-2023 15:43:49 Germany -- REDIRECTED 
+79.228.4.185 - 19-09-2023 15:44:18 Germany -- REDIRECTED 
+79.228.4.185 - 19-09-2023 15:45:56 Germany -- REDIRECTED 
+79.228.4.185 - 19-09-2023 15:50:06 Germany -- REDIRECTED 
+91.53.36.86 - 19-09-2023 22:20:56 Germany -- REDIRECTED 
+94.31.83.181 - 20-09-2023 15:33:22 Germany -- REDIRECTED 
+195.189.191.159 - 20-09-2023 21:50:29 Spain -- BL0CK3D:  NOT FROM "country_code": "DE" 
+212.142.160.100 - 20-09-2023 21:50:31 Spain -- BL0CK3D:  NOT FROM "country_code": "DE" 

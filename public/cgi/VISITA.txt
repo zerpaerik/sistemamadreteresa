@@ -1,0 +1,361 @@
+20.250.1.155 - 12-09-2023 15:03:12 Switzerland -- BL0CK3D: "domain": "microsoft.com"  
+20.250.1.155 - 12-09-2023 15:17:00 Switzerland -- BL0CK3D: "domain": "microsoft.com"  
+20.250.1.155 - 12-09-2023 15:17:54 Switzerland -- BL0CK3D: "domain": "microsoft.com"  
+62.214.62.38 - 12-09-2023 15:19:20 Germany -- BL0CK3D: "domain": "versatel.de"  
+40.94.96.77 - 12-09-2023 15:19:40 Finland -- BL0CK3D: "is_datacenter": true; "domain": "microsoft.com"  
+62.252.170.134 - 12-09-2023 15:20:31 United Kingdom -- BL0CK3D:  NOT FROM "country_code": "AT" 
+62.178.31.24 - 12-09-2023 15:25:04 Austria -- REDIRECTED 
+104.28.60.44 - 12-09-2023 15:33:29 Croatia -- BL0CK3D: "is_proxy": true; "is_datacenter": true; "is_anonymous": true  
+84.17.52.174 - 12-09-2023 15:48:42 Switzerland -- BL0CK3D: "is_vpn": true; "is_anonymous": true  
+160.178.44.233 - 12-09-2023 15:52:01 Morocco -- REDIRECTED 
+40.94.96.70 - 12-09-2023 15:59:56 Finland -- BL0CK3D: "is_datacenter": true; "domain": "microsoft.com"  
+89.187.165.171 - 12-09-2023 16:01:17 Switzerland -- BL0CK3D: "is_vpn": true; "is_anonymous": true  
+146.112.167.34 - 12-09-2023 16:02:13 United States -- BL0CK3D:  NOT FROM "country_code": "AT" 
+84.113.99.202 - 12-09-2023 16:15:32 Austria -- REDIRECTED 
+84.115.214.185 - 12-09-2023 16:17:00 Austria -- REDIRECTED 
+213.47.177.149 - 12-09-2023 16:21:26 Austria -- REDIRECTED 
+213.47.177.149 - 12-09-2023 16:22:11 Austria -- REDIRECTED 
+213.47.177.149 - 12-09-2023 16:24:05 Austria -- REDIRECTED 
+213.47.177.149 - 12-09-2023 16:24:32 Austria -- REDIRECTED 
+213.47.177.149 - 12-09-2023 16:26:32 Austria -- REDIRECTED 
+213.47.177.149 - 12-09-2023 16:27:25 Austria -- REDIRECTED 
+213.47.177.149 - 12-09-2023 16:27:40 Austria -- REDIRECTED 
+213.47.177.149 - 12-09-2023 16:28:15 Austria -- REDIRECTED 
+213.47.177.149 - 12-09-2023 16:28:26 Austria -- REDIRECTED 
+40.94.94.77 - 12-09-2023 16:30:36 Finland -- BL0CK3D: "is_datacenter": true; "domain": "microsoft.com"  
+160.178.44.233 - 12-09-2023 16:32:02 Morocco -- REDIRECTED 
+104.28.130.5 - 12-09-2023 16:34:15 Austria -- BL0CK3D: "is_datacenter": true; "is_known_abuser": true; "is_threat": true  
+192.168.152.177 - 12-09-2023 16:41:14  -- BL0CK3D:  NOT FROM "country_code": "AT" 
+84.115.227.64 - 12-09-2023 16:42:44 Austria -- REDIRECTED 
+213.47.252.168 - 12-09-2023 16:47:27 Austria -- REDIRECTED 
+178.115.32.164 - 12-09-2023 16:48:49 Austria -- REDIRECTED 
+213.153.32.69 - 12-09-2023 16:48:50 Austria -- REDIRECTED 
+146.112.167.34 - 12-09-2023 16:48:52 United States -- BL0CK3D:  NOT FROM "country_code": "AT" 
+178.112.170.134 - 12-09-2023 16:50:54 Austria -- REDIRECTED 
+84.115.220.10 - 12-09-2023 16:54:48 Austria -- REDIRECTED 
+212.200.115.125 - 12-09-2023 16:58:36 Serbia -- BL0CK3D:  NOT FROM "country_code": "AT" 
+212.200.115.125 - 12-09-2023 16:59:01 Serbia -- BL0CK3D:  NOT FROM "country_code": "AT" 
+212.200.115.125 - 12-09-2023 17:00:06 Serbia -- BL0CK3D:  NOT FROM "country_code": "AT" 
+84.115.238.45 - 12-09-2023 17:01:16 Austria -- REDIRECTED 
+80.108.199.21 - 12-09-2023 17:02:30 Austria -- REDIRECTED 
+213.153.32.70 - 12-09-2023 17:02:32 Austria -- REDIRECTED 
+212.186.17.123 - 12-09-2023 17:03:57 Austria -- REDIRECTED 
+212.186.17.123 - 12-09-2023 17:04:00 Austria -- REDIRECTED 
+212.186.17.123 - 12-09-2023 17:04:07 Austria -- REDIRECTED 
+212.186.17.123 - 12-09-2023 17:04:22 Austria -- REDIRECTED 
+40.94.105.38 - 12-09-2023 17:06:44 Austria -- BL0CK3D: "is_datacenter": true; "domain": "microsoft.com"  
+172.59.112.141 - 12-09-2023 17:12:58 United States -- BL0CK3D:  NOT FROM "country_code": "AT" 
+84.115.230.144 - 12-09-2023 17:50:44 Austria -- REDIRECTED 
+84.115.239.159 - 12-09-2023 18:26:48 Austria -- REDIRECTED 
+145.224.100.25 - 12-09-2023 18:45:41 Poland -- BL0CK3D:  NOT FROM "country_code": "AT" 
+84.115.220.53 - 12-09-2023 18:59:23 Austria -- REDIRECTED 
+84.115.220.53 - 12-09-2023 18:59:36 Austria -- REDIRECTED 
+80.108.210.22 - 12-09-2023 19:30:00 Austria -- REDIRECTED 
+84.113.214.169 - 12-09-2023 19:55:23 Austria -- REDIRECTED 
+84.113.214.169 - 12-09-2023 19:58:14 Austria -- REDIRECTED 
+82.134.198.5 - 12-09-2023 20:23:54 Italy -- BL0CK3D:  NOT FROM "country_code": "AT" 
+74.125.210.197 - 12-09-2023 21:49:47 United States -- BL0CK3D: "name": "Google"; "domain": "google.com"  
+212.154.30.36 - 12-09-2023 22:19:27 Turkey -- BL0CK3D:  NOT FROM "country_code": "AT" 
+34.105.37.64 - 12-09-2023 22:22:05 United States -- BL0CK3D: "name": "Google"; "domain": "google.com"  
+74.125.113.20 - 12-09-2023 22:25:31 United States -- BL0CK3D: "name": "Google"; "domain": "google.com"  
+62.178.100.146 - 12-09-2023 22:45:07 Austria -- REDIRECTED 
+84.112.247.217 - 12-09-2023 23:07:59 Austria -- REDIRECTED 
+204.191.191.126 - 13-09-2023 00:08:44 Canada -- BL0CK3D:  NOT FROM "country_code": "AT" 
+204.191.191.126 - 13-09-2023 00:09:02 Canada -- BL0CK3D:  NOT FROM "country_code": "AT" 
+204.191.191.126 - 13-09-2023 00:10:07 Canada -- BL0CK3D:  NOT FROM "country_code": "AT" 
+204.191.191.126 - 13-09-2023 00:10:26 Canada -- BL0CK3D:  NOT FROM "country_code": "AT" 
+91.141.57.177 - 13-09-2023 02:00:54 Austria -- REDIRECTED 
+84.115.219.30 - 13-09-2023 02:57:22 Austria -- REDIRECTED 
+104.133.42.215 - 13-09-2023 03:10:59 India -- BL0CK3D: "name": "Google"; "domain": "google.com"  
+104.133.42.215 - 13-09-2023 03:11:12 India -- BL0CK3D: "name": "Google"; "domain": "google.com"  
+104.133.42.215 - 13-09-2023 03:12:35 India -- BL0CK3D: "name": "Google"; "domain": "google.com"  
+148.163.128.145 - 13-09-2023 05:21:29 United States -- BL0CK3D: "is_known_attacker": true; "is_known_abuser": true; "is_threat": true  
+194.166.73.119 - 13-09-2023 05:24:42 Austria -- REDIRECTED 
+213.47.177.149 - 13-09-2023 06:11:05 Austria -- REDIRECTED 
+185.17.12.101 - 13-09-2023 06:53:43 Austria -- REDIRECTED 
+148.163.128.145 - 13-09-2023 06:54:49 United States -- BL0CK3D: "is_known_attacker": true; "is_known_abuser": true; "is_threat": true  
+194.166.133.76 - 13-09-2023 07:25:23 Austria -- REDIRECTED 
+146.112.167.34 - 13-09-2023 07:48:07 United States -- BL0CK3D:  NOT FROM "country_code": "AT" 
+84.113.214.169 - 13-09-2023 08:01:59 Austria -- REDIRECTED 
+54.196.191.208 - 13-09-2023 10:22:08 United States -- BL0CK3D: "is_datacenter": true; "domain": "amazon.com"  
+176.205.189.119 - 13-09-2023 10:22:13 United Arab Emirates -- BL0CK3D:  NOT FROM "country_code": "AT" 
+176.205.189.119 - 13-09-2023 10:22:20 United Arab Emirates -- BL0CK3D:  NOT FROM "country_code": "AT" 
+176.205.189.119 - 13-09-2023 10:22:22 United Arab Emirates -- BL0CK3D:  NOT FROM "country_code": "AT" 
+176.205.189.119 - 13-09-2023 10:22:34 United Arab Emirates -- BL0CK3D:  NOT FROM "country_code": "AT" 
+176.205.189.119 - 13-09-2023 10:22:38 United Arab Emirates -- BL0CK3D:  NOT FROM "country_code": "AT" 
+176.205.189.119 - 13-09-2023 10:22:42 United Arab Emirates -- BL0CK3D:  NOT FROM "country_code": "AT" 
+15.237.40.40 - 13-09-2023 10:22:58 France -- BL0CK3D: "domain": "amazon.com"  
+164.92.212.136 - 13-09-2023 10:22:58 Netherlands -- BL0CK3D:  NOT FROM "country_code": "AT" 
+128.90.61.179 - 13-09-2023 10:22:58 Saudi Arabia -- BL0CK3D: "is_vpn": true; "is_anonymous": true  
+198.23.242.154 - 13-09-2023 10:22:58 United States -- BL0CK3D: "is_vpn": true; "is_datacenter": true; "is_anonymous": true; "is_known_attacker": true; "is_known_abuser": true; "is_threat": true  
+143.244.41.179 - 13-09-2023 10:22:59 Netherlands -- BL0CK3D: "is_vpn": true; "is_anonymous": true  
+212.102.57.161 - 13-09-2023 10:23:01 Germany -- BL0CK3D: "is_vpn": true; "is_anonymous": true  
+128.90.61.179 - 13-09-2023 10:23:03 Saudi Arabia -- BL0CK3D: "is_vpn": true; "is_anonymous": true  
+15.237.40.40 - 13-09-2023 10:23:02 France -- BL0CK3D: "domain": "amazon.com"  
+34.198.46.118 - 13-09-2023 10:23:32 United States -- BL0CK3D: "is_datacenter": true; "domain": "amazon.com"  
+34.198.46.118 - 13-09-2023 10:23:33 United States -- BL0CK3D: "is_datacenter": true; "domain": "amazon.com"  
+34.212.114.15 - 13-09-2023 10:23:34 United States -- BL0CK3D: "is_datacenter": true; "domain": "amazon.com"  
+54.196.191.208 - 13-09-2023 10:24:06 United States -- BL0CK3D: "is_datacenter": true; "domain": "amazon.com"  
+80.255.7.105 - 13-09-2023 10:24:32 Germany -- BL0CK3D: "is_vpn": true; "is_anonymous": true  
+89.248.171.23 - 13-09-2023 10:25:00 Netherlands -- BL0CK3D: "is_known_attacker": true; "is_known_abuser": true; "is_threat": true  
+185.195.233.193 - 13-09-2023 10:25:00 Sweden -- BL0CK3D: "is_vpn": true; "is_anonymous": true  
+135.181.183.170 - 13-09-2023 10:25:01 Finland -- BL0CK3D:  NOT FROM "country_code": "AT" 
+135.181.183.170 - 13-09-2023 10:25:01 Finland -- BL0CK3D:  NOT FROM "country_code": "AT" 
+212.143.94.254 - 13-09-2023 10:26:15 Israel -- BL0CK3D: "is_known_abuser": true; "is_threat": true  
+212.143.94.254 - 13-09-2023 10:26:17 Israel -- BL0CK3D: "is_known_abuser": true; "is_threat": true  
+38.132.193.231 - 13-09-2023 10:27:43 United States -- BL0CK3D: "is_proxy": true; "is_anonymous": true  
+173.239.196.147 - 13-09-2023 10:29:57 Nepal -- BL0CK3D: "is_known_abuser": true; "is_threat": true; "domain": "avast.com"  
+102.129.153.23 - 13-09-2023 10:30:22 United States -- BL0CK3D: "is_vpn": true; "is_anonymous": true  
+193.36.118.254 - 13-09-2023 10:30:22 United Kingdom -- BL0CK3D: "is_vpn": true; "is_anonymous": true; "is_known_attacker": true; "is_known_abuser": true; "is_threat": true  
+165.231.253.253 - 13-09-2023 10:30:22 India -- BL0CK3D: "is_vpn": true; "is_anonymous": true  
+218.232.76.136 - 13-09-2023 10:30:23 South Korea -- BL0CK3D: "is_vpn": true; "is_anonymous": true  
+146.70.107.29 - 13-09-2023 10:30:38 Germany -- BL0CK3D: "is_vpn": true; "is_anonymous": true  
+54.66.55.193 - 13-09-2023 10:30:39 Australia -- BL0CK3D: "is_datacenter": true; "domain": "amazon.com"  
+165.231.253.253 - 13-09-2023 10:30:39 India -- BL0CK3D: "is_vpn": true; "is_anonymous": true  
+54.66.245.129 - 13-09-2023 10:32:05 Australia -- BL0CK3D: "is_datacenter": true; "domain": "amazon.com"  
+54.66.245.129 - 13-09-2023 10:32:06 Australia -- BL0CK3D: "is_datacenter": true; "domain": "amazon.com"  
+119.12.176.3 - 13-09-2023 10:32:51 United States -- BL0CK3D:  NOT FROM "country_code": "AT" 
+193.47.57.56 - 13-09-2023 10:32:52 Germany -- BL0CK3D:  NOT FROM "country_code": "AT" 
+61.115.12.244 - 13-09-2023 10:37:47 Japan -- BL0CK3D:  NOT FROM "country_code": "AT" 
+61.115.12.244 - 13-09-2023 10:37:47 Japan -- BL0CK3D:  NOT FROM "country_code": "AT" 
+85.1.194.6 - 13-09-2023 10:41:11 Switzerland -- BL0CK3D:  NOT FROM "country_code": "AT" 
+172.20.1.197, 192.168.255.101 - 13-09-2023 10:41:40  -- BL0CK3D:  NOT FROM "country_code": "AT" 
+185.254.59.124 - 13-09-2023 10:52:02 United Kingdom -- BL0CK3D:  NOT FROM "country_code": "AT" 
+49.96.19.250 - 13-09-2023 10:55:31 Japan -- BL0CK3D:  NOT FROM "country_code": "AT" 
+49.96.19.250 - 13-09-2023 10:55:32 Japan -- BL0CK3D:  NOT FROM "country_code": "AT" 
+194.166.236.246 - 13-09-2023 10:57:03 Austria -- REDIRECTED 
+40.94.87.55 - 13-09-2023 11:01:39 Netherlands -- BL0CK3D: "is_datacenter": true; "domain": "microsoft.com"  
+40.94.94.36 - 13-09-2023 11:01:48 Finland -- BL0CK3D: "is_datacenter": true; "domain": "microsoft.com"  
+49.96.19.250 - 13-09-2023 11:02:50 Japan -- BL0CK3D:  NOT FROM "country_code": "AT" 
+49.96.19.250 - 13-09-2023 11:02:50 Japan -- BL0CK3D:  NOT FROM "country_code": "AT" 
+172.20.1.36, 192.168.255.101 - 13-09-2023 11:05:27  -- BL0CK3D:  NOT FROM "country_code": "AT" 
+213.134.66.45 - 13-09-2023 11:10:15 Italy -- BL0CK3D:  NOT FROM "country_code": "AT" 
+213.134.66.45 - 13-09-2023 11:10:28 Italy -- BL0CK3D:  NOT FROM "country_code": "AT" 
+213.134.66.45 - 13-09-2023 11:10:34 Italy -- BL0CK3D:  NOT FROM "country_code": "AT" 
+213.134.66.45 - 13-09-2023 11:10:41 Italy -- BL0CK3D:  NOT FROM "country_code": "AT" 
+213.134.66.45 - 13-09-2023 11:10:46 Italy -- BL0CK3D:  NOT FROM "country_code": "AT" 
+195.29.107.82 - 13-09-2023 11:11:02 Croatia -- BL0CK3D:  NOT FROM "country_code": "AT" 
+195.29.107.82 - 13-09-2023 11:11:17 Croatia -- BL0CK3D:  NOT FROM "country_code": "AT" 
+106.155.5.59 - 13-09-2023 11:19:34 Japan -- BL0CK3D:  NOT FROM "country_code": "AT" 
+106.155.3.167 - 13-09-2023 11:19:35 Japan -- BL0CK3D:  NOT FROM "country_code": "AT" 
+176.205.189.119 - 13-09-2023 11:22:15 United Arab Emirates -- BL0CK3D:  NOT FROM "country_code": "AT" 
+84.115.215.113 - 13-09-2023 12:01:12 Austria -- REDIRECTED 
+176.205.189.119 - 13-09-2023 12:22:20 United Arab Emirates -- BL0CK3D:  NOT FROM "country_code": "AT" 
+69.164.145.175 - 13-09-2023 12:30:54 United States -- BL0CK3D:  NOT FROM "country_code": "AT" 
+49.98.75.119 - 13-09-2023 12:39:40 Japan -- BL0CK3D:  NOT FROM "country_code": "AT" 
+49.98.75.119 - 13-09-2023 12:39:41 Japan -- BL0CK3D:  NOT FROM "country_code": "AT" 
+49.98.172.187 - 13-09-2023 12:41:01 Japan -- BL0CK3D:  NOT FROM "country_code": "AT" 
+49.98.172.187 - 13-09-2023 12:41:02 Japan -- BL0CK3D:  NOT FROM "country_code": "AT" 
+106.155.5.59 - 13-09-2023 13:00:30 Japan -- BL0CK3D:  NOT FROM "country_code": "AT" 
+1.75.5.181 - 13-09-2023 13:00:31 Japan -- BL0CK3D:  NOT FROM "country_code": "AT" 
+41.248.175.211 - 13-09-2023 13:17:57 Morocco -- REDIRECTED 
+176.205.189.119 - 13-09-2023 13:22:17 United Arab Emirates -- BL0CK3D:  NOT FROM "country_code": "AT" 
+1.75.5.208 - 13-09-2023 13:34:59 Japan -- BL0CK3D:  NOT FROM "country_code": "AT" 
+1.75.5.208 - 13-09-2023 13:34:59 Japan -- BL0CK3D:  NOT FROM "country_code": "AT" 
+40.94.33.28 - 13-09-2023 14:16:03 United States -- BL0CK3D: "is_datacenter": true; "domain": "microsoft.com"  
+176.205.189.119 - 13-09-2023 14:22:19 United Arab Emirates -- BL0CK3D:  NOT FROM "country_code": "AT" 
+84.115.225.59 - 13-09-2023 14:22:41 Austria -- REDIRECTED 
+176.205.189.119 - 13-09-2023 15:22:15 United Arab Emirates -- BL0CK3D:  NOT FROM "country_code": "AT" 
+84.115.22.176 - 13-09-2023 15:30:07 Austria -- REDIRECTED 
+80.109.227.176 - 13-09-2023 16:05:01 Austria -- REDIRECTED 
+80.109.227.176 - 13-09-2023 16:05:59 Austria -- REDIRECTED 
+176.205.189.119 - 13-09-2023 16:22:24 United Arab Emirates -- BL0CK3D:  NOT FROM "country_code": "AT" 
+176.205.189.119 - 13-09-2023 17:22:17 United Arab Emirates -- BL0CK3D:  NOT FROM "country_code": "AT" 
+176.205.189.119 - 13-09-2023 18:22:19 United Arab Emirates -- BL0CK3D:  NOT FROM "country_code": "AT" 
+52.88.88.180 - 13-09-2023 18:23:47 United States -- BL0CK3D: "is_datacenter": true; "domain": "amazon.com"  
+52.88.88.180 - 13-09-2023 18:23:55 United States -- BL0CK3D: "is_datacenter": true; "domain": "amazon.com"  
+176.205.189.119 - 13-09-2023 19:22:23 United Arab Emirates -- BL0CK3D:  NOT FROM "country_code": "AT" 
+176.205.189.119 - 13-09-2023 20:22:23 United Arab Emirates -- BL0CK3D:  NOT FROM "country_code": "AT" 
+176.205.189.119 - 14-09-2023 02:45:00 United Arab Emirates -- BL0CK3D:  NOT FROM "country_code": "AT" 
+176.205.189.119 - 14-09-2023 02:50:00 United Arab Emirates -- BL0CK3D:  NOT FROM "country_code": "AT" 
+176.205.189.119 - 14-09-2023 02:54:54 United Arab Emirates -- BL0CK3D:  NOT FROM "country_code": "AT" 
+165.100.189.229 - 14-09-2023 03:01:54 Japan -- BL0CK3D:  NOT FROM "country_code": "AT" 
+176.205.189.119 - 14-09-2023 03:01:59 United Arab Emirates -- BL0CK3D:  NOT FROM "country_code": "AT" 
+176.205.189.119 - 14-09-2023 03:03:21 United Arab Emirates -- BL0CK3D:  NOT FROM "country_code": "AT" 
+176.205.189.119 - 14-09-2023 03:06:11 United Arab Emirates -- BL0CK3D:  NOT FROM "country_code": "AT" 
+176.205.189.119 - 14-09-2023 03:22:15 United Arab Emirates -- BL0CK3D:  NOT FROM "country_code": "AT" 
+176.205.189.119 - 14-09-2023 04:22:15 United Arab Emirates -- BL0CK3D:  NOT FROM "country_code": "AT" 
+176.205.189.119 - 14-09-2023 05:22:15 United Arab Emirates -- BL0CK3D:  NOT FROM "country_code": "AT" 
+176.205.189.119 - 14-09-2023 06:22:25 United Arab Emirates -- BL0CK3D:  NOT FROM "country_code": "AT" 
+176.205.189.119 - 14-09-2023 07:22:16 United Arab Emirates -- BL0CK3D:  NOT FROM "country_code": "AT" 
+176.205.189.119 - 14-09-2023 08:22:25 United Arab Emirates -- BL0CK3D:  NOT FROM "country_code": "AT" 
+176.205.189.119 - 14-09-2023 09:22:14 United Arab Emirates -- BL0CK3D:  NOT FROM "country_code": "AT" 
+176.205.189.119 - 14-09-2023 10:22:23 United Arab Emirates -- BL0CK3D:  NOT FROM "country_code": "AT" 
+40.94.94.81 - 14-09-2023 11:20:32 Finland -- BL0CK3D: "is_datacenter": true; "domain": "microsoft.com"  
+94.217.32.74 - 14-09-2023 12:36:46 Germany -- BL0CK3D: "is_vpn": true; "is_anonymous": true  
+84.115.22.176 - 14-09-2023 14:18:10 Austria -- REDIRECTED 
+84.115.22.176 - 14-09-2023 14:18:10 Austria -- REDIRECTED 
+78.132.36.96 - 15-09-2023 10:21:42 Austria -- REDIRECTED 
+176.205.189.119 - 15-09-2023 10:22:23 United Arab Emirates -- BL0CK3D:  NOT FROM "country_code": "AT" 
+176.205.189.119 - 16-09-2023 10:22:18 United Arab Emirates -- BL0CK3D:  NOT FROM "country_code": "AT" 
+212.186.12.98 - 16-09-2023 12:55:34 Austria -- REDIRECTED 
+176.205.189.119 - 17-09-2023 10:22:17 United Arab Emirates -- BL0CK3D:  NOT FROM "country_code": "AT" 
+213.47.95.251 - 18-09-2023 10:21:15 Austria -- REDIRECTED 
+176.205.189.119 - 18-09-2023 10:22:19 United Arab Emirates -- BL0CK3D:  NOT FROM "country_code": "AT" 
+84.17.52.136 - 18-09-2023 12:04:47 Switzerland -- BL0CK3D: "is_known_abuser": true; "is_threat": true  
+76.70.40.91 - 18-09-2023 23:18:58 Canada -- BL0CK3D:  NOT FROM "country_code": "AT" 
+46.125.79.126 - 19-09-2023 08:16:38 Austria -- REDIRECTED 
+83.136.33.26 - 19-09-2023 08:31:01 Austria -- REDIRECTED 
+176.205.189.119 - 19-09-2023 10:22:18 United Arab Emirates -- BL0CK3D:  NOT FROM "country_code": "AT" 
+80.108.225.12 - 19-09-2023 16:41:03 Austria -- REDIRECTED 
+80.108.225.12 - 19-09-2023 16:41:38 Austria -- REDIRECTED 
+76.70.40.91 - 19-09-2023 22:10:21 Canada -- BL0CK3D:  NOT FROM "country_code": "AT" 
+176.205.189.119 - 20-09-2023 10:22:21 United Arab Emirates -- BL0CK3D:  NOT FROM "country_code": "AT" 
+176.205.189.119 - 21-09-2023 10:22:24 United Arab Emirates -- BL0CK3D:  NOT FROM "country_code": "AT" 
+176.205.189.119 - 22-09-2023 10:22:22 United Arab Emirates -- BL0CK3D:  NOT FROM "country_code": "AT" 
+46.125.79.126 - 22-09-2023 13:29:05 Austria -- REDIRECTED 
+176.205.189.119 - 23-09-2023 10:22:18 United Arab Emirates -- BL0CK3D:  NOT FROM "country_code": "AT" 
+173.239.196.25 - 23-09-2023 16:32:24 Bhutan -- BL0CK3D: "is_known_abuser": true; "is_threat": true; "domain": "avast.com"  
+176.205.189.119 - 24-09-2023 10:22:15 United Arab Emirates -- BL0CK3D:  NOT FROM "country_code": "AT" 
+176.205.189.119 - 25-09-2023 10:22:19 United Arab Emirates -- BL0CK3D:  NOT FROM "country_code": "AT" 
+122.173.226.152 - 25-09-2023 10:23:05 India -- BL0CK3D:  NOT FROM "country_code": "AT" 
+162.157.204.248 - 26-09-2023 00:47:56 Canada -- BL0CK3D:  NOT FROM "country_code": "AT" 
+162.157.204.248 - 26-09-2023 00:48:22 Canada -- BL0CK3D:  NOT FROM "country_code": "AT" 
+162.157.204.248 - 26-09-2023 00:48:37 Canada -- BL0CK3D:  NOT FROM "country_code": "AT" 
+162.157.204.248 - 26-09-2023 00:48:56 Canada -- BL0CK3D:  NOT FROM "country_code": "AT" 
+92.97.26.19 - 26-09-2023 10:22:17 United Arab Emirates -- BL0CK3D:  NOT FROM "country_code": "AT" 
+92.97.26.19 - 27-09-2023 10:22:24 United Arab Emirates -- BL0CK3D:  NOT FROM "country_code": "AT" 
+213.47.109.130 - 02-10-2023 07:59:11 Austria -- REDIRECTED 
+213.47.109.130 - 02-10-2023 07:59:11 Austria -- REDIRECTED 
+78.132.7.47 - 03-10-2023 09:18:56 Austria -- REDIRECTED 
+172.174.254.112 - 03-10-2023 17:51:56 United States -- BL0CK3D: "domain": "microsoft.com"  
+94.156.253.122 - 03-10-2023 17:52:08 Netherlands -- BL0CK3D: "is_known_attacker": true; "is_known_abuser": true; "is_threat": true  
+92.97.26.19 - 04-10-2023 10:22:19 United Arab Emirates -- BL0CK3D:  NOT FROM "country_code": "AT" 
+105.67.3.112 - 04-10-2023 13:41:39 Morocco -- REDIRECTED 
+18.197.68.204 - 09-10-2023 05:25:39 Germany -- BL0CK3D: "is_datacenter": true; "domain": "amazon.com"; "domain": "amazon.de"  
+18.197.68.204 - 09-10-2023 05:25:43 Germany -- BL0CK3D: "is_datacenter": true; "domain": "amazon.com"; "domain": "amazon.de"  
+18.197.68.204 - 09-10-2023 05:25:47 Germany -- BL0CK3D: "is_datacenter": true; "domain": "amazon.com"; "domain": "amazon.de"  
+176.105.217.141 - 09-10-2023 21:31:06 Ukraine -- BL0CK3D: "is_known_abuser": true; "is_threat": true  
+78.132.7.47 - 10-10-2023 14:47:17 Austria -- REDIRECTED 
+20.109.80.7 - 10-10-2023 20:25:38 United States -- BL0CK3D: "domain": "microsoft.com"  
+80.109.189.192 - 11-10-2023 07:00:05 Austria -- REDIRECTED 
+78.132.7.47 - 11-10-2023 07:11:59 Austria -- REDIRECTED 
+92.97.26.19 - 11-10-2023 10:22:25 United Arab Emirates -- BL0CK3D:  NOT FROM "country_code": "AT" 
+2.58.56.51 - 12-10-2023 19:54:31 Netherlands -- BL0CK3D:  NOT FROM "country_code": "AT" 
+176.105.217.153 - 12-10-2023 21:55:06 Ukraine -- BL0CK3D:  NOT FROM "country_code": "AT" 
+176.105.217.153 - 12-10-2023 21:55:08 Ukraine -- BL0CK3D:  NOT FROM "country_code": "AT" 
+45.88.97.238 - 13-10-2023 09:21:50 Germany -- BL0CK3D: "is_vpn": true; "is_anonymous": true  
+92.97.26.19 - 13-10-2023 23:47:44 United Arab Emirates -- BL0CK3D:  NOT FROM "country_code": "AT" 
+54.196.191.208 - 14-10-2023 20:36:02 United States -- BL0CK3D: "is_datacenter": true; "domain": "amazon.com"  
+54.196.191.208 - 14-10-2023 20:36:03 United States -- BL0CK3D: "is_datacenter": true; "domain": "amazon.com"  
+154.160.20.155 - 15-10-2023 03:18:40 Ghana -- BL0CK3D:  NOT FROM "country_code": "AT" 
+107.21.207.171 - 15-10-2023 10:55:07 United States -- BL0CK3D: "is_datacenter": true; "domain": "amazon.com"  
+107.21.207.171 - 15-10-2023 10:55:08 United States -- BL0CK3D: "is_datacenter": true; "domain": "amazon.com"  
+47.254.128.103 - 16-10-2023 17:38:28 Germany -- BL0CK3D:  NOT FROM "country_code": "AT" 
+51.20.84.144 - 16-10-2023 21:41:40 Sweden -- BL0CK3D: "domain": "amazon.com"  
+51.20.84.144 - 16-10-2023 21:41:44 Sweden -- BL0CK3D: "domain": "amazon.com"  
+51.20.84.144 - 16-10-2023 21:41:47 Sweden -- BL0CK3D: "domain": "amazon.com"  
+47.254.128.103 - 17-10-2023 02:40:08 Germany -- BL0CK3D:  NOT FROM "country_code": "AT" 
+51.20.84.144 - 17-10-2023 12:02:10 Sweden -- BL0CK3D: "domain": "amazon.com"  
+51.20.84.144 - 17-10-2023 12:02:35 Sweden -- BL0CK3D: "domain": "amazon.com"  
+51.20.84.144 - 17-10-2023 12:03:00 Sweden -- BL0CK3D: "domain": "amazon.com"  
+189.126.121.91 - 18-10-2023 00:36:42 Brazil -- BL0CK3D:  NOT FROM "country_code": "AT" 
+78.132.7.47 - 18-10-2023 08:56:52 Austria -- REDIRECTED 
+78.132.7.47 - 19-10-2023 11:16:12 Austria -- REDIRECTED 
+51.20.84.144 - 19-10-2023 11:43:50 Sweden -- BL0CK3D: "domain": "amazon.com"  
+51.20.84.144 - 19-10-2023 11:44:01 Sweden -- BL0CK3D: "domain": "amazon.com"  
+51.20.84.144 - 19-10-2023 11:44:15 Sweden -- BL0CK3D: "domain": "amazon.com"  
+78.132.7.47 - 20-10-2023 09:52:52 Austria -- REDIRECTED 
+185.254.37.198 - 20-10-2023 18:23:01 Netherlands -- BL0CK3D: "is_known_attacker": true; "is_known_abuser": true; "is_threat": true  
+51.20.84.144 - 21-10-2023 16:53:37 Sweden -- BL0CK3D: "domain": "amazon.com"  
+51.20.84.144 - 21-10-2023 16:53:41 Sweden -- BL0CK3D: "domain": "amazon.com"  
+51.20.84.144 - 21-10-2023 16:53:45 Sweden -- BL0CK3D: "domain": "amazon.com"  
+159.223.170.120 - 21-10-2023 22:52:43 United States -- BL0CK3D:  NOT FROM "country_code": "AT" 
+51.20.84.144 - 22-10-2023 11:00:00 Sweden -- BL0CK3D: "domain": "amazon.com"  
+51.20.84.144 - 22-10-2023 11:00:04 Sweden -- BL0CK3D: "domain": "amazon.com"  
+51.20.84.144 - 22-10-2023 11:00:08 Sweden -- BL0CK3D: "domain": "amazon.com"  
+51.20.84.144 - 22-10-2023 23:27:29 Sweden -- BL0CK3D: "domain": "amazon.com"  
+51.20.84.144 - 22-10-2023 23:27:42 Sweden -- BL0CK3D: "domain": "amazon.com"  
+51.20.84.144 - 22-10-2023 23:27:56 Sweden -- BL0CK3D: "domain": "amazon.com"  
+163.123.143.146 - 24-10-2023 13:47:22 Netherlands -- BL0CK3D: "is_known_attacker": true; "is_known_abuser": true; "is_threat": true  
+163.123.143.146 - 24-10-2023 16:41:16 Netherlands -- BL0CK3D: "is_known_attacker": true; "is_known_abuser": true; "is_threat": true  
+163.123.143.146 - 24-10-2023 17:39:09 Netherlands -- BL0CK3D: "is_known_attacker": true; "is_known_abuser": true; "is_threat": true  
+51.20.84.144 - 24-10-2023 19:52:45 Sweden -- BL0CK3D: "domain": "amazon.com"  
+51.20.84.144 - 24-10-2023 19:52:49 Sweden -- BL0CK3D: "domain": "amazon.com"  
+51.20.84.144 - 24-10-2023 19:52:53 Sweden -- BL0CK3D: "domain": "amazon.com"  
+185.254.37.198 - 26-10-2023 21:11:39 Netherlands -- BL0CK3D: "is_known_attacker": true; "is_known_abuser": true; "is_threat": true  
+163.123.143.146 - 27-10-2023 03:40:05 Netherlands -- BL0CK3D: "is_known_attacker": true; "is_known_abuser": true; "is_threat": true  
+163.123.143.146 - 27-10-2023 07:07:15 Netherlands -- BL0CK3D: "is_known_attacker": true; "is_known_abuser": true; "is_threat": true  
+92.97.26.19 - 30-10-2023 07:02:11 United Arab Emirates -- BL0CK3D:  NOT FROM "country_code": "AT" 
+52.167.144.201 - 01-11-2023 14:20:53  -- BL0CK3D:  NOT FROM "country_code": "AT" 
+34.198.46.118 - 03-11-2023 12:08:57  -- BL0CK3D:  NOT FROM "country_code": "AT" 
+34.198.46.118 - 03-11-2023 12:08:58  -- BL0CK3D:  NOT FROM "country_code": "AT" 
+92.97.26.19 - 04-11-2023 17:20:21  -- BL0CK3D:  NOT FROM "country_code": "AT" 
+94.156.64.178 - 09-11-2023 21:05:58  -- BL0CK3D:  NOT FROM "country_code": "AT" 
+78.132.70.206 - 10-11-2023 08:35:10  -- BL0CK3D:  NOT FROM "country_code": "AT" 
+107.21.207.171 - 10-11-2023 14:10:49  -- BL0CK3D:  NOT FROM "country_code": "AT" 
+107.21.207.171 - 10-11-2023 14:10:50  -- BL0CK3D:  NOT FROM "country_code": "AT" 
+94.156.64.178 - 13-11-2023 06:34:03  -- BL0CK3D:  NOT FROM "country_code": "AT" 
+92.97.191.171 - 13-11-2023 10:22:25  -- BL0CK3D:  NOT FROM "country_code": "AT" 
+34.198.46.118 - 15-11-2023 13:56:27  -- BL0CK3D:  NOT FROM "country_code": "AT" 
+34.198.46.118 - 15-11-2023 13:56:28  -- BL0CK3D:  NOT FROM "country_code": "AT" 
+54.196.191.208 - 16-11-2023 22:13:41  -- BL0CK3D:  NOT FROM "country_code": "AT" 
+54.196.191.208 - 16-11-2023 22:13:42  -- BL0CK3D:  NOT FROM "country_code": "AT" 
+54.196.191.208 - 18-11-2023 06:35:47  -- BL0CK3D:  NOT FROM "country_code": "AT" 
+54.196.191.208 - 18-11-2023 06:35:48  -- BL0CK3D:  NOT FROM "country_code": "AT" 
+107.21.207.171 - 21-11-2023 21:44:54  -- BL0CK3D:  NOT FROM "country_code": "AT" 
+107.21.207.171 - 21-11-2023 21:44:55  -- BL0CK3D:  NOT FROM "country_code": "AT" 
+169.150.208.159 - 25-11-2023 13:28:41 Sweden -- BL0CK3D: "is_vpn": true; "is_anonymous": true  
+169.150.208.159 - 25-11-2023 21:06:59 Sweden -- BL0CK3D: "is_vpn": true; "is_anonymous": true  
+169.150.208.159 - 25-11-2023 21:15:07 Sweden -- BL0CK3D: "is_vpn": true; "is_anonymous": true  
+172.111.159.62 - 26-11-2023 05:41:30 Sweden -- BL0CK3D: "is_vpn": true; "is_anonymous": true  
+169.150.208.159 - 26-11-2023 09:30:02 Sweden -- BL0CK3D: "is_vpn": true; "is_anonymous": true  
+149.88.19.7 - 26-11-2023 13:27:08 Germany -- BL0CK3D: "is_vpn": true; "is_anonymous": true  
+206.123.155.217 - 27-11-2023 08:45:34 Turkey -- BL0CK3D: "is_vpn": true; "is_anonymous": true  
+166.88.209.205 - 28-11-2023 14:46:00 United States -- BL0CK3D:  NOT FROM "country_code": "AT" 
+46.125.89.109 - 28-11-2023 15:50:59 Austria -- REDIRECTED 
+166.88.209.205 - 28-11-2023 15:55:12 United States -- BL0CK3D:  NOT FROM "country_code": "AT" 
+166.88.209.205 - 29-11-2023 10:59:24 United States -- BL0CK3D:  NOT FROM "country_code": "AT" 
+40.94.87.32 - 30-11-2023 16:13:02 Netherlands -- BL0CK3D: "is_datacenter": true; "domain": "microsoft.com"  
+40.94.105.60 - 30-11-2023 16:20:18 Austria -- BL0CK3D: "is_datacenter": true; "domain": "microsoft.com"  
+166.88.209.205 - 30-11-2023 21:31:26 United States -- BL0CK3D:  NOT FROM "country_code": "AT" 
+166.88.209.205 - 30-11-2023 21:34:34 United States -- BL0CK3D:  NOT FROM "country_code": "AT" 
+166.88.209.205 - 30-11-2023 23:51:45 United States -- BL0CK3D:  NOT FROM "country_code": "AT" 
+166.88.209.205 - 01-12-2023 00:19:27 United States -- BL0CK3D:  NOT FROM "country_code": "AT" 
+166.88.209.205 - 01-12-2023 00:20:07 United States -- BL0CK3D:  NOT FROM "country_code": "AT" 
+166.88.209.205 - 01-12-2023 05:56:12 United States -- BL0CK3D:  NOT FROM "country_code": "AT" 
+166.88.209.205 - 01-12-2023 08:18:34 United States -- BL0CK3D:  NOT FROM "country_code": "AT" 
+166.88.209.205 - 01-12-2023 10:13:22 United States -- BL0CK3D:  NOT FROM "country_code": "AT" 
+92.98.90.32 - 02-12-2023 01:53:34 United Arab Emirates -- BL0CK3D:  NOT FROM "country_code": "AT" 
+91.92.250.24 - 04-12-2023 13:13:00 Bulgaria -- BL0CK3D: "is_known_attacker": true; "is_known_abuser": true; "is_threat": true  
+91.92.250.24 - 04-12-2023 13:17:56 Bulgaria -- BL0CK3D: "is_known_attacker": true; "is_known_abuser": true; "is_threat": true  
+91.92.250.24 - 04-12-2023 13:57:14 Bulgaria -- BL0CK3D: "is_known_attacker": true; "is_known_abuser": true; "is_threat": true  
+51.89.242.45 - 05-12-2023 00:38:59 United Kingdom -- BL0CK3D:  NOT FROM "country_code": "AT" 
+51.89.242.45 - 05-12-2023 00:39:04 United Kingdom -- BL0CK3D:  NOT FROM "country_code": "AT" 
+51.89.242.45 - 05-12-2023 00:39:14 United Kingdom -- BL0CK3D:  NOT FROM "country_code": "AT" 
+31.220.96.219 - 05-12-2023 04:12:36 Germany -- BL0CK3D:  NOT FROM "country_code": "AT" 
+31.220.96.219 - 05-12-2023 10:55:08 Germany -- BL0CK3D:  NOT FROM "country_code": "AT" 
+92.98.90.32 - 13-12-2023 10:22:18 United Arab Emirates -- BL0CK3D:  NOT FROM "country_code": "AT" 
+146.75.168.88 - 15-12-2023 18:52:55 United Kingdom -- BL0CK3D: "is_proxy": true; "is_anonymous": true  
+196.75.163.215 - 20-12-2023 16:53:00 Morocco -- REDIRECTED 
+54.196.191.208 - 22-12-2023 14:54:49 United States -- BL0CK3D: "is_datacenter": true; "domain": "amazon.com"  
+54.196.191.208 - 22-12-2023 14:54:52 United States -- BL0CK3D: "is_datacenter": true; "domain": "amazon.com"  
+163.5.160.89 - 25-12-2023 11:12:28 France -- BL0CK3D:  NOT FROM "country_code": "AT" 
+107.21.207.171 - 28-12-2023 20:03:35 United States -- BL0CK3D: "is_datacenter": true; "domain": "amazon.com"  
+107.21.207.171 - 28-12-2023 20:03:45 United States -- BL0CK3D: "is_datacenter": true; "domain": "amazon.com"  
+34.198.46.118 - 01-01-2024 07:04:29 United States -- BL0CK3D: "is_datacenter": true; "domain": "amazon.com"  
+34.198.46.118 - 01-01-2024 07:04:33 United States -- BL0CK3D: "is_datacenter": true; "domain": "amazon.com"  
+54.196.191.208 - 06-01-2024 18:53:00 United States -- BL0CK3D: "is_datacenter": true; "domain": "amazon.com"  
+54.196.191.208 - 06-01-2024 18:53:04 United States -- BL0CK3D: "is_datacenter": true; "domain": "amazon.com"  
+105.66.135.77 - 07-01-2024 03:46:03 Morocco -- REDIRECTED 
+108.60.212.229 - 08-01-2024 18:45:05 United States -- BL0CK3D:  NOT FROM "country_code": "AT" 
+108.60.212.229 - 09-01-2024 15:43:23 United States -- BL0CK3D:  NOT FROM "country_code": "AT" 
+108.60.212.229 - 11-01-2024 18:26:08 United States -- BL0CK3D:  NOT FROM "country_code": "AT" 
+108.60.212.229 - 14-01-2024 04:42:31 United States -- BL0CK3D:  NOT FROM "country_code": "AT" 
+194.15.36.75 - 16-01-2024 05:44:31 Germany -- BL0CK3D:  NOT FROM "country_code": "AT" 
+194.15.36.75 - 18-01-2024 14:45:24 Germany -- BL0CK3D:  NOT FROM "country_code": "AT" 
+194.15.36.75 - 24-01-2024 15:03:06 Germany -- BL0CK3D:  NOT FROM "country_code": "AT" 
+5.231.88.192 - 25-01-2024 15:05:30 Germany -- BL0CK3D:  NOT FROM "country_code": "AT" 
+82.211.0.56 - 25-01-2024 17:28:23 Germany -- BL0CK3D: "is_datacenter": true  
+124.120.28.10 - 25-01-2024 21:59:39 Thailand -- REDIRECTED 
+124.120.28.10 - 25-01-2024 21:59:44 Thailand -- REDIRECTED 
+105.67.131.50 - 26-01-2024 15:16:53 Morocco -- REDIRECTED 
+52.167.144.194 - 28-01-2024 18:44:25 United States -- BL0CK3D: "is_datacenter": true; "is_known_attacker": true; "is_known_abuser": true; "is_threat": true; "domain": "microsoft.com"  
+20.14.101.82 - 29-01-2024 10:02:14 United States -- BL0CK3D: "domain": "microsoft.com"  
+20.14.101.82 - 29-01-2024 11:22:40 United States -- BL0CK3D: "domain": "microsoft.com"  
+20.14.101.82 - 29-01-2024 11:35:23 United States -- BL0CK3D: "domain": "microsoft.com"  
+91.121.108.74 - 29-01-2024 23:37:40 France -- BL0CK3D: "is_datacenter": true; "is_known_abuser": true; "is_threat": true  
+91.121.108.74 - 29-01-2024 23:37:49 France -- BL0CK3D: "is_datacenter": true; "is_known_abuser": true; "is_threat": true  
+91.121.108.74 - 29-01-2024 23:37:55 France -- BL0CK3D: "is_datacenter": true; "is_known_abuser": true; "is_threat": true  
+207.32.218.139 - 31-01-2024 04:18:51 United States -- BL0CK3D:  NOT FROM "country_code": "AT" 
+108.60.212.229 - 31-01-2024 12:33:29 United States -- BL0CK3D:  NOT FROM "country_code": "AT" 
