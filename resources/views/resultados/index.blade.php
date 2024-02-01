@@ -168,6 +168,8 @@
 <option value="AB STATUS POST COLECISTECTOMIA.docx">AB STATUS POST COLECISTECTOMIA</option>
 <option value="AB SUPERIOR NRML niño.docx">AB SUPERIOR NRML niño</option>
 <option value="AB SUPERIOR NRML.docx">AB SUPERIOR NRML</option>
+<option value="COLPOSCOPIA POSITIVA.docx">COLPOSCOPIA POSITIVA</option>
+<option value="COLPOSCOPIA NEGATIVA.docx">COLPOSCOPIA NEGATIVA</option>
 <option value="GIN EPI.docx">GIN EPI</option>
 <option value="GIN NRML.docx">GIN NRML</option>
 <option value="GIN POLIFOL, EPI.docx">GIN POLIFOL, EPI</option>
