@@ -714,6 +714,8 @@ return view('atenciones.particular');
                   }
                   $cre->sede = $request->session()->get('sede');
                   $cre->fecha = date('Y-m-d');
+                  $cre->fechatime = date('Y-m-d');
+                  $cre->horatime = now();
                   $cre->save();
 
                   if ($request->abo1_con != null) {
@@ -735,6 +737,8 @@ return view('atenciones.particular');
                     }
                     $cre1->sede = $request->session()->get('sede');
                     $cre1->fecha = date('Y-m-d');
+                    $cre1->fechatime = date('Y-m-d');
+                    $cre1->horatime = now();
                     $cre1->save();
                   }
 
@@ -822,6 +826,8 @@ return view('atenciones.particular');
                   $cre->usuario = Auth::user()->id;
                   $cre->sede = $request->session()->get('sede');
                   $cre->fecha = date('Y-m-d');
+                  $cre->fechatime = date('Y-m-d');
+                  $cre->horatime = now();
                   $cre->save();
 
                   if($request->abo1_met != null){
@@ -844,6 +850,8 @@ return view('atenciones.particular');
                     $cre1->usuario = Auth::user()->id;
                     $cre1->sede = $request->session()->get('sede');
                     $cre1->fecha = date('Y-m-d');
+                    $cre1->fechatime = date('Y-m-d');
+                    $cre1->horatime = now();
                     $cre1->save();
 
                   }
@@ -928,6 +936,8 @@ return view('atenciones.particular');
                           $cre->usuario = Auth::user()->id;
                           $cre->sede = $request->session()->get('sede');
                           $cre->fecha = date('Y-m-d');
+                          $cre->fechatime = date('Y-m-d');
+                          $cre->horatime = now();
                           $cre->save();
 
                           if($request->monto_abol['servicios'][$key]['abono1'] != null){
@@ -950,6 +960,8 @@ return view('atenciones.particular');
                           $cre1->usuario = Auth::user()->id;
                           $cre1->sede = $request->session()->get('sede');
                           $cre1->fecha = date('Y-m-d');
+                          $cre1->fechatime = date('Y-m-d');
+                          $cre1->horatime = now();
                           $cre1->save();
 
                           }
@@ -1058,6 +1070,8 @@ return view('atenciones.particular');
                       $cre->usuario = Auth::user()->id;
                       $cre->sede = $request->session()->get('sede');
                       $cre->fecha = date('Y-m-d');
+                      $cre->fechatime = date('Y-m-d');
+                      $cre->horatime = now();
                       $cre->save();
 
                       if($request->monto_abol['salud'][$key]['abono1'] != null){
@@ -1080,6 +1094,8 @@ return view('atenciones.particular');
                         $cre1->usuario = Auth::user()->id;
                         $cre1->sede = $request->session()->get('sede');
                         $cre1->fecha = date('Y-m-d');
+                        $cre1->fechatime = date('Y-m-d');
+                        $cre1->horatime = now();
                         $cre1->save();
 
                         }
@@ -1217,6 +1233,8 @@ return view('atenciones.particular');
                           $cre->usuario = Auth::user()->id;
                           $cre->sede = $request->session()->get('sede');
                           $cre->fecha = date('Y-m-d');
+                          $cre->fechatime = date('Y-m-d');
+                          $cre->horatime = now();
                           $cre->save();
 
                           if($request->monto_abol['analisis'][$key]['abono1'] != null){
@@ -1239,6 +1257,8 @@ return view('atenciones.particular');
                           $cre1->usuario = Auth::user()->id;
                           $cre1->sede = $request->session()->get('sede');
                           $cre1->fecha = date('Y-m-d');
+                          $cre1->fechatime = date('Y-m-d');
+                          $cre1->horatime = now();
                           $cre1->save();
                           }
 
@@ -1335,6 +1355,8 @@ return view('atenciones.particular');
                           $cre->usuario = Auth::user()->id;
                           $cre->sede = $request->session()->get('sede');
                           $cre->fecha = date('Y-m-d');
+                          $cre->fechatime = date('Y-m-d');
+                          $cre->horatime = now();
                           $cre->save();
 
                           if($request->monto_abol['paquetes'][$key]['abono1'] != null){
@@ -1356,6 +1378,8 @@ return view('atenciones.particular');
                             $cre1->usuario = Auth::user()->id;
                             $cre1->sede = $request->session()->get('sede');
                             $cre1->fecha = date('Y-m-d');
+                            $cre1->fechatime = date('Y-m-d');
+                            $cre1->horatime = now();
                             $cre1->save();
 
                           }
@@ -1580,6 +1604,8 @@ return view('atenciones.particular');
                           $cre->usuario = Auth::user()->id;
                           $cre->sede = $request->session()->get('sede');
                           $cre->fecha = date('Y-m-d');
+                          $cre->fechatime = date('Y-m-d');
+                          $cre->horatime = now();
                           $cre->save();
 
                           if($request->monto_abol['ecografias'][$key]['abono1'] != null){
@@ -1602,6 +1628,8 @@ return view('atenciones.particular');
                             $cre1->usuario = Auth::user()->id;
                             $cre1->sede = $request->session()->get('sede');
                             $cre1->fecha = date('Y-m-d');
+                            $cre1->fechatime = date('Y-m-d');
+                            $cre1->horatime = now();
                             $cre1->save();
 
                           }
@@ -1721,28 +1749,32 @@ return view('atenciones.particular');
                           $cre->usuario = Auth::user()->id;
                           $cre->sede = $request->session()->get('sede');
                           $cre->fecha = date('Y-m-d');
+                          $cre->fechatime = date('Y-m-d');
+                          $cre->horatime = now();
                           $cre->save();
 
                           if($request->monto_abol['rayos'][$key]['abono1'] != null){
-                            $cre = new Creditos();
-                            $cre->origen = 'RAYOSX';
-                            $cre->descripcion = 'INGRESO POR RAYOSX';
-                            $cre->id_atencion =  $lab->id;
-                            $cre->tipopago =  $request->id_pago['rayos'][$key]['tipop1'];
-                            $cre->monto = (float)$request->monto_abol['rayos'][$key]['abono1'];
+                            $cre1 = new Creditos();
+                            $cre1->origen = 'RAYOSX';
+                            $cre1->descripcion = 'INGRESO POR RAYOSX';
+                            $cre1->id_atencion =  $lab->id;
+                            $cre1->tipopago =  $request->id_pago['rayos'][$key]['tipop1'];
+                            $ccre1re->monto = (float)$request->monto_abol['rayos'][$key]['abono1'];
                             if ($request->id_pago['rayos'][$key]['tipop1'] == 'EF') {
-                              $cre->efectivo = (float)$request->monto_abol['rayos'][$key]['abono1'];
+                              $cre1->efectivo = (float)$request->monto_abol['rayos'][$key]['abono1'];
                             } elseif($request->id_pago['rayos'][$key]['tipop1'] == 'TJ') {
-                              $cre->tarjeta =(float)$request->monto_abol['rayos'][$key]['abono1'];
+                              $cre1->tarjeta =(float)$request->monto_abol['rayos'][$key]['abono1'];
                             } elseif($request->id_pago['rayos'][$key]['tipop1'] == 'DP') {
-                              $cre->dep = (float)$request->monto_abol['rayos'][$key]['abono1'];
+                              $cre1->dep = (float)$request->monto_abol['rayos'][$key]['abono1'];
                             } else {
-                              $cre->yap = (float)$request->monto_abol['rayos'][$key]['abono1'];
+                              $cre1->yap = (float)$request->monto_abol['rayos'][$key]['abono1'];
                             }
-                            $cre->usuario = Auth::user()->id;
-                            $cre->sede = $request->session()->get('sede');
-                            $cre->fecha = date('Y-m-d');
-                            $cre->save();
+                            $cre1->usuario = Auth::user()->id;
+                            $cre1->sede = $request->session()->get('sede');
+                            $cre1->fecha = date('Y-m-d');
+                            $cre1->fechatime = date('Y-m-d');
+                            $cre1->horatime = now();
+                            $cre1->save();
 
                           }
 
@@ -1779,7 +1811,6 @@ return view('atenciones.particular');
                   }
               }
           }
-
 
         return redirect()->route('atenciones.index')
         ->with('success','Creado Exitosamente!');
@@ -1975,6 +2006,7 @@ return view('atenciones.particular');
       $rsfd = ResultadosServicios::where('id_atencion','=',$request->id)->first();
       $atenciod = Atenciones::where('id','=',$request->id)->first();
 
+
       $sesio = Sesiones::where('id_atencion','=',$request->id)->get();
       if ($sesio != null) {
           foreach ($sesio as $rs) {
@@ -2041,7 +2073,7 @@ return view('atenciones.particular');
       $creditos->sede =$request->session()->get('sede');
       $creditos->origen = 'SERVICIO';
       $creditos->descripcion = 'INGRESO POR SERVICIO';
-      $creditos->fecha = $atenciod->fecha;
+      $creditos->fecha = $atenciod->created_at;
       $creditos->created_at = $atenciod->created_at;
       if ($request->tipo_pago == 'EF') {
         $creditos->efectivo = $request->abono1;
@@ -2072,7 +2104,7 @@ return view('atenciones.particular');
       $creditos2->tipopago =$request->tipo_pago1;
       $creditos2->usuario =Auth::user()->id;
       $creditos2->sede =$request->session()->get('sede');
-      $creditos2->fecha = $atenciod->fecha;
+      $creditos2->fecha = $atenciod->created_at;
       $creditos2->created_at = $atenciod->created_at;
       $creditos2->origen = 'SERVICIO';
       $creditos2->descripcion = 'INGRESO POR SERVICIO';
@@ -2252,7 +2284,7 @@ return view('atenciones.particular');
       $creditos->sede =$request->session()->get('sede');
       $creditos->origen = 'ANALISIS';
       $creditos->descripcion = 'INGRESO POR ANALISIS';
-      $creditos->fecha = $atenciod->fecha;
+      $creditos->fecha = $atenciod->created_at;
       $creditos->created_at = $atenciod->created_at;
       if ($request->tipo_pago == 'EF') {
         $creditos->efectivo = $request->abono1;
@@ -2283,7 +2315,7 @@ return view('atenciones.particular');
       $creditos2->tipopago =$request->tipo_pago1;
       $creditos2->usuario =Auth::user()->id;
       $creditos2->sede =$request->session()->get('sede');
-      $creditos2->fecha = $atenciod->fecha;
+      $creditos2->fecha = $atenciod->created_at;
       $creditos2->created_at = $atenciod->created_at;
       $creditos2->origen = 'ANALISIS';
       $creditos2->descripcion = 'INGRESO POR ANALISIS';
@@ -2417,7 +2449,7 @@ return view('atenciones.particular');
       $creditos->sede =$request->session()->get('sede');
       $creditos->origen = 'PAQUETES';
       $creditos->descripcion = 'INGRESO POR PAQUETE';
-      $creditos->fecha = $atenciod->fecha;
+      $creditos->fecha = $atenciod->created_at;
       $creditos->created_at = $atenciod->created_at;
       if ($request->tipo_pago == 'EF') {
         $creditos->efectivo = $request->abono1;
@@ -2448,7 +2480,7 @@ return view('atenciones.particular');
       $creditos2->tipopago =$request->tipo_pago1;
       $creditos2->usuario =Auth::user()->id;
       $creditos2->sede =$request->session()->get('sede');
-      $creditos2->fecha = $atenciod->fecha;
+      $creditos2->fecha = $atenciod->created_at;
       $creditos2->created_at = $atenciod->created_at;
       $creditos2->origen = 'PAQUETES';
       $creditos2->descripcion = 'INGRESO POR PAQUETE';
@@ -2645,7 +2677,7 @@ return view('atenciones.particular');
       $creditos->sede =$request->session()->get('sede');
       $creditos->origen = 'CONSULTAS';
       $creditos->descripcion = 'INGRESO POR CONSULTA';
-      $creditos->fecha = $atenciod->fecha;
+      $creditos->fecha = $atenciod->created_at;
       $creditos->created_at = $atenciod->created_at;
       if ($request->tipo_pago == 'EF') {
         $creditos->efectivo = $request->abono1;
@@ -2676,7 +2708,7 @@ return view('atenciones.particular');
       $creditos2->tipopago =$request->tipo_pago1;
       $creditos2->usuario =Auth::user()->id;
       $creditos2->sede =$request->session()->get('sede');
-      $creditos2->fecha = $atenciod->fecha;
+      $creditos2->fecha = $atenciod->created_at;
       $creditos2->created_at = $atenciod->created_at;
       $creditos2->origen = 'CONSULTAS';
       $creditos2->descripcion = 'INGRESO POR CONSULTA';
@@ -2788,7 +2820,7 @@ return view('atenciones.particular');
       $creditos->sede =$request->session()->get('sede');
       $creditos->origen = 'METODO';
       $creditos->descripcion = 'INGRESO POR METODO';
-      $creditos->fecha = $atenciod->fecha;
+      $creditos->fecha = $atenciod->created_at;
       $creditos->created_at = $atenciod->created_at;
       if ($request->tipo_pago == 'EF') {
         $creditos->efectivo = $request->abono1;
@@ -2819,7 +2851,7 @@ return view('atenciones.particular');
       $creditos2->tipopago =$request->tipo_pago1;
       $creditos2->usuario =Auth::user()->id;
       $creditos2->sede =$request->session()->get('sede');
-      $creditos2->fecha = $atenciod->fecha;
+      $creditos2->fecha = $atenciod->created_at;
       $creditos2->created_at = $atenciod->created_at;
       $creditos2->origen = 'METODO';
       $creditos2->descripcion = 'INGRESO POR METODO';
