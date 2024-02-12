@@ -278,7 +278,7 @@ class CajaController extends Controller
 
         Cajas::create([
               'primer_turno' => 0,
-              'segundo_turno' => $request->total - $caja->primer_turno,
+              'segundo_turno' => $request->total,
               'fecha' => Carbon::now()->toDateString(),
               'total' => $request->total,
               'sede' =>  $request->session()->get('sede'),

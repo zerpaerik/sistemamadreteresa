@@ -1750,7 +1750,6 @@ return view('atenciones.particular');
                           $cre->sede = $request->session()->get('sede');
                           $cre->fecha = date('Y-m-d');
                           $cre->fechatime = date('Y-m-d');
-                          $cre->horatime = now();
                           $cre->save();
 
                           if($request->monto_abol['rayos'][$key]['abono1'] != null){
@@ -1773,7 +1772,6 @@ return view('atenciones.particular');
                             $cre1->sede = $request->session()->get('sede');
                             $cre1->fecha = date('Y-m-d');
                             $cre1->fechatime = date('Y-m-d');
-                            $cre1->horatime = now();
                             $cre1->save();
 
                           }
