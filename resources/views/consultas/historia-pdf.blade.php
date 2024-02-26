@@ -71,7 +71,7 @@ table {
 
 		<div>
 			<div align="left" style="width: 50%;">
-				<img src="/var/www/html/mt/sistemamadreteresa/public/image.png"  style="width: 20%;"/>
+				<img src="/var/www/html/sistemamadreteresa/public/image.png"  style="width: 20%;"/>
 			</div>
 
 		</div>
