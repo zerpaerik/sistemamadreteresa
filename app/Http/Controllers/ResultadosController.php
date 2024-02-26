@@ -85,7 +85,7 @@ class ResultadosController extends Controller
 
      ///   dd($files);
 
-        return view('resultados.index', compact('resultados','f1','f2', 'files'));
+        return view('resultados.index', compact('resultados','f1','f2'));
         //
     }
 
