@@ -1297,7 +1297,7 @@ class ReportesController extends Controller
         }
 
 
-        return view('reportes.produccion_servicios', compact('resultados','f1','f2','usuarios','totales','totalesc'));
+        return view('reportes.produccion_servicios', compact('resultados','f1','f2','usuarios','totales'));
 
        
 
