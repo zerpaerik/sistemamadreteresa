@@ -79,6 +79,8 @@ class ComisionesPagarController extends Controller
           ->whereBetween('a.created_at', [$f1, $f2])
           ->orderBy('a.created_at', 'ASC')
           ->get();
+
+          dd($comisiones);
   
   
   
