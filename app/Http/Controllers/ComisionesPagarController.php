@@ -80,7 +80,6 @@ class ComisionesPagarController extends Controller
           ->orderBy('a.created_at', 'ASC')
           ->get();
 
-          dd($comisiones);
   
   
   
