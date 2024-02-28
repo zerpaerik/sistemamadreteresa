@@ -104,7 +104,6 @@ class ComisionesPagarController extends Controller
             $f2 = date('Y-m-d');
 
       
-
         $comisiones = DB::table('comisiones as a')
         ->select('a.id', 'a.estatus', 'a.id_atencion','a.id_origen','a.id_responsable','a.created_at','a.detalle','a.usuario', 'a.porcentaje', 'a.monto', 'a.estatus', 'at.id_paciente','at.resta', 'at.tipo_atencion', 'at.sede', 'at.atendido','at.tipo_origen','at.abono', 'at.id_origen', 'at.monto as total', 'b.nombres', 'b.apellidos', 'c.name as nameo', 'c.lastname as lasto', 'd.name as nameu', 'd.lastname as lastu')
         ->join('atenciones as at', 'at.id', 'a.id_atencion')
@@ -122,22 +121,6 @@ class ComisionesPagarController extends Controller
         ->orderBy('a.created_at','ASC')
         ->get();
 
-
-
-        
-       /* $origen = DB::table('comisiones as a')
-        ->select('a.id', 'a.estatus', 'a.id_atencion','a.id_origen','a.id_responsable', 'a.created_at','a.usuario', 'a.porcentaje', 'a.monto', 'a.estatus', 'at.id_paciente','at.resta', 'at.tipo_atencion', 'at.sede', 'at.tipo_origen','at.atendido', 'at.abono','at.id_origen', 'at.monto as total',  'c.name as nameo', 'c.lastname as lasto','c.id as idorigen')
-        ->join('atenciones as at', 'at.id', 'a.id_atencion')
-        ->join('users as c', 'c.id', 'a.id_responsable')
-        ->where('a.estatus', '=', 1)
-        ->where('a.id_origen', '=', 1)
-        ->where('at.atendido', '=', 2)
-        ->where('at.resta', '=', 0)
-        ->where('at.monto','at.abono')
-        ->where('at.sede', '=', $request->session()->get('sede'))
-        ->where('a.created_at','=',date('Y-m-d'))
-        ->groupBy('at.id_origen')
-        ->get();*/
 
         $origen = DB::table('comisiones as a')
         ->select('a.id', 'a.estatus', 'a.id_atencion','a.id_origen', 'a.id_responsable','a.created_at','a.usuario', 'a.porcentaje', 'a.monto', 'a.estatus', 'at.id_paciente', 'at.tipo_atencion', 'at.atendido','at.sede', 'at.resta','at.tipo_origen', 'at.id_origen', 'at.monto as total',  'c.name as nameo', 'c.lastname as lasto','c.id as idorigen')
