@@ -14,9 +14,13 @@ use App\Consultas;
 use App\Metodos;
 use App\Ciexes;
 use App\Historia;
+use App\HistoriaP;
+use App\HistoriaM;
 use App\AntecedentesObstetricos;
 use App\Control;
 use App\HistoriaBase;
+use App\HistoriaBaseP;
+use App\HistoriaBM;
 use Auth;
 use Illuminate\Http\Request;
 use DB;
@@ -130,6 +134,54 @@ class ConsultasController extends Controller
         return view('consultas.historia',compact('cie','cie1','consulta','hist','historias','paciente'));
     }
 
+    public function historiap_crear($consulta)
+
+    {
+
+
+      $cie = Ciexes::all();
+      $cie1 = Ciexes::all();
+      $consulta = Consultas::where('id','=',$consulta)->first();
+      $hist = HistoriaBaseP::where('id_paciente','=',$consulta->id_paciente)->where('estatus','=',0)->first();
+     // $historias = Historia::where('id_paciente','=',$consulta->id_paciente)->get();
+
+      
+      $historias = DB::table('historia_pediatrica as a')
+      ->select('a.*','b.name','b.lastname')
+      ->join('users as b','b.id','a.usuario')
+      ->where('a.id_paciente', '=',$consulta->id_paciente)
+      ->get(); 
+
+      $paciente = Pacientes::where('id','=',$consulta->id_paciente)->first();
+
+
+        return view('consultas.historiap',compact('cie','cie1','consulta','hist','historias','paciente'));
+    }
+
+    public function historiam_crear($consulta)
+
+    {
+
+
+      $cie = Ciexes::all();
+      $cie1 = Ciexes::all();
+      $consulta = Consultas::where('id','=',$consulta)->first();
+      $hist = HistoriaBM::where('id_paciente','=',$consulta->id_paciente)->where('estatus','=',0)->first();
+     // $historias = Historia::where('id_paciente','=',$consulta->id_paciente)->get();
+
+      
+      $historias = DB::table('historia_medicina as a')
+      ->select('a.*','b.name','b.lastname')
+      ->join('users as b','b.id','a.usuario')
+      ->where('a.id_paciente', '=',$consulta->id_paciente)
+      ->get(); 
+
+      $paciente = Pacientes::where('id','=',$consulta->id_paciente)->first();
+
+
+        return view('consultas.historiam',compact('cie','cie1','consulta','hist','historias','paciente'));
+    }
+
     
     public function control_crear($consulta)
 
@@ -218,6 +270,72 @@ class ConsultasController extends Controller
 
     }
 
+    public function guardar_historiabp(Request $request){
+
+
+      $consultaf = Consultas::where('id','=',$request->consulta)->first();
+
+      $con = new HistoriaBaseP();
+      $con->id_paciente =  $consultaf->id_paciente;
+      $con->fam_mat = $request->ant_mat;
+      $con->fam_pad = $request->ant_pad;
+      $con->fam_her = $request->ant_her;
+      $con->emb_num = $request->emb_num;
+      $con->emb_normal = $request->emb_normal;
+      $con->causa_emb = $request->causa_emb;
+      $con->sem_gest = $request->gest_sem;
+      $con->part_eut = $request->part_eut;
+      $con->causa_eut = $request->causa_eut;
+      $con->anestesia = $request->sexo;
+      $con->causa_anestesia = $request->causa_anestesia;
+      $con->rupt_mem = $request->rupt_mem;
+      $con->causa_rupt = $request->causa_rupt;
+      $con->peso = $request->peso;
+      $con->talla = $request->talla;
+      $con->pc = $request->pc;
+      $con->pa = $request->pa;
+      $con->apgar = $request->apgar;
+      $con->apnea = $request->apnea;
+      $con->ictericia	 = $request->icte;
+      $con->hemo = $request->hemo;
+      $con->convul = $request->conv;
+      $con->otros = $request->otros;
+      $con->infecciones = $request->infecciones;
+      $con->trauma = $request->trauma;
+      $con->quirur = $request->quirur;
+      $con->hospi = $request->hospi;
+      $con->alerg = $request->alerg;
+      $con->transfusiones = $request->transf;
+      $con->otros_pat = $request->otros1;
+      $con->usuario = Auth::user()->id;
+      $con->save();
+
+      return back();
+
+    }
+
+    public function guardar_historiabm(Request $request){
+
+
+      $consultaf = Consultas::where('id','=',$request->consulta)->first();
+
+      $con = new HistoriaBM();
+      $con->id_paciente =  $consultaf->id_paciente;
+      $con->ant_pers = $request->ant_per;
+      $con->ant_fam = $request->ant_fam;
+      $con->ant_qui = $request->ant_qui;
+      $con->tto_hab = $request->tto_hab;
+      $con->hosp_prev = $request->hosp;
+      $con->alerg = $request->alerg;
+      $con->tto_act = $request->tto_act;
+      $con->enf_act = $request->enf_act;
+      $con->anam = $request->anam;
+      $con->save();
+
+      return back();
+
+    }
+
     public function guardar_historia(Request $request)
 
     {
@@ -286,6 +404,162 @@ class ConsultasController extends Controller
 
 
     }
+
+    public function guardar_historiap(Request $request)
+
+    {
+
+
+      $consultaf = Consultas::where('id','=',$request->consulta)->first();
+      $con = new HistoriaP();
+      $con->id_paciente =  $consultaf->id_paciente;
+      $con->id_consulta = $consultaf->id;
+      $con->lact = $request->lact;
+      $con->dur_lact = $request->dur_lact;
+      $con->ablac = $request->ablac;
+      $con->dest = $request->dest;
+      $con->alim = $request->alim;
+      $con->polio = $request->polio;
+      $con->rota = $request->rota;
+      $con->dpt = $request->dpt;
+      $con->influ = $request->influ;
+      $con->hinflu = $request->hinflu;
+      $con->saram = $request->saramp;
+      $con->hb = $request->hb;
+      $con->rube = $request->rub;
+      $con->neumoco = $request->neu;
+      $con->paro = $request->paro;
+      $con->bcg = $request->bcg;
+      $con->vari = $request->vari;
+      $con->tox = $request->tox;
+      $con->ha = $request->ha;
+      $con->dt = $request->dt;
+      $con->vph = $request->vph;
+      $con->gamma = $request->gamma;
+      $con->siguio = $request->siguio;
+      $con->sost = $request->sos_cab;
+      $con->sento = $request->sento;
+      $con->prim_pal = $request->prim_pal;
+      $con->prim_fra = $request->prim_fra;
+      $con->sonrio = $request->sonrio;
+      $con->camino = $request->camino;
+      $con->esfint = $request->esfint;
+      $con->alt_leng = $request->alt_len;
+      $con->cual_alt = $request->cual_alt;
+      $con->datos = $request->datos_anorm;
+      $con->peso = $request->peso;
+      $con->talla = $request->talla;
+      $con->pcefa = $request->pcefa;
+      $con->pbra = $request->pbrazo;
+      $con->ppier = $request->ppier;
+      $con->imc = $request->imc;
+      $con->pa = $request->pa;
+      $con->t = $request->t;
+      $con->fc = $request->fc;
+      $con->fr = $request->fr;
+      $con->sat = $request->sat;
+      $con->glas = $request->glass;
+      $con->piel = $request->piel;
+      $con->cabeza = $request->cabe;
+      $con->ojos = $request->ojos;
+      $con->oidos = $request->oidos;
+      $con->nariz = $request->nariz;
+      $con->boca = $request->boca;
+      $con->cuello = $request->cuello;
+      $con->toral = $request->toral;
+      $con->mamas = $request->mamas;
+      $con->cardio = $request->cardio;
+      $con->abdomen = $request->abdo;
+      $con->gen = $request->geni;
+      $con->ano = $request->ano;
+      $con->extrem = $request->extrem;
+      $con->column = $request->column;
+      $con->neuro = $request->neuro;
+      $con->diag1 = $request->pre_diag;
+      $con->diag2 = $request->diag_fin;
+      $con->cie1 = $request->cie_pd;
+      $con->cie2 = $request->cie_df;
+      $con->trata = $request->trata;
+      $con->obser = $request->observ;
+      $con->usuario = Auth::user()->id;
+      $con->save();
+
+      $con_fin = Consultas::where('id','=',$request->consulta)->first();
+      $con_fin->historia = 2;
+      $con_fin->atendido = Auth::user()->id;
+      $con_fin->save();
+
+      $usuario = DB::table('users')
+      ->select('*')
+      ->where('id','=', Auth::user()->id)
+      ->first();  
+
+
+      $at_fin = Atenciones::where('id','=',$consultaf->id_atencion)->first();
+      $at_fin->atendido = 2;
+      $at_fin->atendido_por = $usuario->lastname.' '.$usuario->name;
+      $at_fin->save();
+
+      return redirect()->action('ConsultasController@index')
+      ->with('success','Creado Exitosamente!');
+
+
+    }
+
+    public function guardar_historiam(Request $request)
+
+    {
+
+
+      $consultaf = Consultas::where('id','=',$request->consulta)->first();
+      $con = new HistoriaM();
+      $con->id_paciente =  $consultaf->id_paciente;
+      $con->id_consulta = $consultaf->id;
+      $con->pa = $request->pa;
+      $con->t = $request->t;
+      $con->fc = $request->fc;
+      $con->fr = $request->fr;
+      $con->sat = $request->sat;
+      $con->peso = $request->peso;
+      $con->talla = $request->talla;
+      $con->glass = $request->glass;
+      $con->piel = $request->piel;
+      $con->mamas = $request->mamas;
+      $con->cardio = $request->cardio;
+      $con->abdo = $request->abdo;
+      $con->gen = $request->geni;
+      $con->extrem = $request->extrem;
+      $con->diag1 = $request->pre_diag;
+      $con->diag2 = $request->diag_fin;
+      $con->cie1 = $request->cie_pd;
+      $con->cie2 = $request->cie_df;
+      $con->trata = $request->trata;
+      $con->obser = $request->observ;
+      $con->usuario = Auth::user()->id;
+      $con->save();
+
+      $con_fin = Consultas::where('id','=',$request->consulta)->first();
+      $con_fin->historia = 2;
+      $con_fin->atendido = Auth::user()->id;
+      $con_fin->save();
+
+      $usuario = DB::table('users')
+      ->select('*')
+      ->where('id','=', Auth::user()->id)
+      ->first();  
+
+
+      $at_fin = Atenciones::where('id','=',$consultaf->id_atencion)->first();
+      $at_fin->atendido = 2;
+      $at_fin->atendido_por = $usuario->lastname.' '.$usuario->name;
+      $at_fin->save();
+
+      return redirect()->action('ConsultasController@index')
+      ->with('success','Creado Exitosamente!');
+
+
+    }
+
 
 
     public function reversar_ant_cont($id){

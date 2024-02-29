@@ -123,7 +123,10 @@
                     <td>{{$an->namee}} {{$an->laste}}</td>
                     @if($an->tipo == 1)
                     <td><span class="badge bg-success">CONSULTA</span></td>
-                  
+                    @elseif($an->tipo == 3)
+                    <td><span class="badge bg-success">PEDIATRICA</span></td> 
+                    @elseif($an->tipo == 4)
+                    <td><span class="badge bg-success">MEDICINA GENERAL</span></td>
                     @else
                     <td><span class="badge bg-success">CONTROL</span></td>
                     @endif
@@ -168,6 +171,41 @@
                       @else
                       @endif
                     @endforeach
+
+                    @elseif($an->tipo == 3)
+                    <a class="btn btn-danger btn-sm" href="historiap-crear-{{$an->id}}">
+                              <i class="fas fa-pencil-alt">
+                              </i>
+                              HistoriaP
+                          </a>
+                      @foreach($histb as $historialbase)
+                      @if($historialbase->id_paciente == $an->id_paciente && $historialbase->estatus == 0)
+                      <a class="btn btn-primary btn-sm" href="historia-ant-reversar-{{$historialbase->id}}" onclick="return confirm('¿Desea resetear este registro?')">
+                                    <i class="fas fa-eye">
+                                    </i>
+                                    Reset HistorialB
+                                </a>
+                      @else
+                      @endif
+                      @endforeach
+
+                    @elseif($an->tipo == 4)
+                    <a class="btn btn-danger btn-sm" href="historiam-crear-{{$an->id}}">
+                              <i class="fas fa-pencil-alt">
+                              </i>
+                              HistoriaM
+                          </a>
+                      @foreach($histb as $historialbase)
+                      @if($historialbase->id_paciente == $an->id_paciente && $historialbase->estatus == 0)
+                      <a class="btn btn-primary btn-sm" href="historia-ant-reversar-{{$historialbase->id}}" onclick="return confirm('¿Desea resetear este registro?')">
+                                    <i class="fas fa-eye">
+                                    </i>
+                                    Reset HistorialB
+                                </a>
+                      @else
+                      @endif
+                      @endforeach
+
                     @else
                     <a class="btn btn-danger btn-sm" href="control-crear-{{$an->id}}">
                               <i class="fas fa-pencil-alt">

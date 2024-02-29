@@ -714,7 +714,6 @@ return view('atenciones.particular');
                   }
                   $cre->sede = $request->session()->get('sede');
                   $cre->fecha = date('Y-m-d');
-                  $cre->fechatime = date('Y-m-d');
                   $cre->horatime = now();
                   $cre->save();
 
@@ -737,7 +736,6 @@ return view('atenciones.particular');
                     }
                     $cre1->sede = $request->session()->get('sede');
                     $cre1->fecha = date('Y-m-d');
-                    $cre1->fechatime = date('Y-m-d');
                     $cre1->horatime = now();
                     $cre1->save();
                   }
@@ -826,7 +824,6 @@ return view('atenciones.particular');
                   $cre->usuario = Auth::user()->id;
                   $cre->sede = $request->session()->get('sede');
                   $cre->fecha = date('Y-m-d');
-                  $cre->fechatime = date('Y-m-d');
                   $cre->horatime = now();
                   $cre->save();
 
@@ -850,7 +847,6 @@ return view('atenciones.particular');
                     $cre1->usuario = Auth::user()->id;
                     $cre1->sede = $request->session()->get('sede');
                     $cre1->fecha = date('Y-m-d');
-                    $cre1->fechatime = date('Y-m-d');
                     $cre1->horatime = now();
                     $cre1->save();
 

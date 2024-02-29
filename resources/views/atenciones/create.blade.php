@@ -732,6 +732,8 @@
                         <select class="form-control" name="tipo_con">
 						              	<option value="" disabled>Seleccione</option>
                             <option value="1">Consulta Ginecológica</option>
+                            <option value="3">Consulta Pediàtrica</option>
+                            <option value="4">Consulta Medicina General</option>
                             <option value="2">Control</option>
                         </select>
                   </div>
