@@ -126,24 +126,10 @@
                    </div>
                     </div>
 
-                    <div class="row">
-                     <div class="col-md-4">
-                    <label for="exampleInputEmail1">Enfermedad Actual</label>
-                    <input type="text" onkeyup="javascript:this.value=this.value.toUpperCase();" class="form-control" id="nombre" name="enf_act" placeholder="" disabled value="{{$hist->enf_act}}">
-                   </div>
-                   <div class="col-md-4">
-                    <label for="exampleInputEmail1">Tratamiento Actual</label>
-                    <input type="text" onkeyup="javascript:this.value=this.value.toUpperCase();" class="form-control" id="nombre" name="tto_act" placeholder="" disabled value="{{$hist->tto_hab}}">
-                   </div>
-                   <div class="col-md-4">
-                    <label for="exampleInputEmail1">Anamnesis</label>
-                    <input type="text" onkeyup="javascript:this.value=this.value.toUpperCase();" class="form-control" id="nombre" name="anam" placeholder="" disabled value="{{$hist->anam}}">
-                   </div>
-                    </div>
+               
 
                 
-                  
-                   
+                
               @else
 
               <div class="row" style = "margin-bottom: -20px;">
@@ -188,21 +174,7 @@
                    </div>
                     </div>
 
-                    <div class="row">
-                     <div class="col-md-4">
-                    <label for="exampleInputEmail1">Enfermedad Actual</label>
-                    <input type="text" onkeyup="javascript:this.value=this.value.toUpperCase();" class="form-control" id="nombre" name="enf_act" placeholder="">
-                   </div>
-                   <div class="col-md-4">
-                    <label for="exampleInputEmail1">Tratamiento Actual</label>
-                    <input type="text" onkeyup="javascript:this.value=this.value.toUpperCase();" class="form-control" id="nombre" name="tto_act" placeholder="">
-                   </div>
-                   <div class="col-md-4">
-                    <label for="exampleInputEmail1">Anamnesis</label>
-                    <input type="text" onkeyup="javascript:this.value=this.value.toUpperCase();" class="form-control" id="nombre" name="anam" placeholder="">
-                   </div>
-                    </div>
-
+            
                    
                 <input type="hidden" name="consulta" value="{{$consulta->id}}">
 
