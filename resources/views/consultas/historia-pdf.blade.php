@@ -388,47 +388,47 @@ table {
 			<div>
 			@if($hist->usuario == 38)
 			<div align="right" style="margin-top:20px;">
-				<img src="/var/www/html/mt/sistemamadreteresa/public/firma_kimber.jpeg"  style="width: 30%;"/>
+				<img src="/var/www/html/sistemamadreteresa/public/firma_kimber.jpeg"  style="width: 30%;"/>
 			</div>
 			@elseif($hist->usuario == 303)
 			<div align="right" style="margin-top:20px;">
-				<img src="/var/www/html/mt/sistemamadreteresa/public/firma_margarita.jpeg"  style="width: 30%;"/>
+				<img src="/var/www/html/sistemamadreteresa/public/firma_margarita.jpeg"  style="width: 30%;"/>
 			</div>
 			@elseif($hist->usuario == 249)
 			<div align="right" style="margin-top:20px;">
-				<img src="/var/www/html/mt/sistemamadreteresa/public/firma_rebeca.jpeg"  style="width: 30%;"/>
+				<img src="/var/www/html/sistemamadreteresa/public/firma_rebeca.jpeg"  style="width: 30%;"/>
 			</div>
 			@elseif($hist->usuario == 389)
 			<div align="right" style="margin-top:20px;">
-				<img src="/var/www/html/mt/sistemamadreteresa/public/firma_karelia.jpeg"  style="width: 30%;"/>
+				<img src="/var/www/html/sistemamadreteresa/public/firma_karelia.jpeg"  style="width: 30%;"/>
 			</div>
 			@elseif($hist->usuario == 42)
 			<div align="right" style="margin-top:20px;">
-				<img src="/var/www/html/mt/sistemamadreteresa/public/firma_melissa.jpeg"  style="width: 30%;"/>
+				<img src="/var/www/html/sistemamadreteresa/public/firma_melissa.jpeg"  style="width: 30%;"/>
 			</div>
 			@elseif($hist->usuario == 364)
 			<div align="right" style="margin-top:20px;">
-				<img src="/var/www/html/mt/sistemamadreteresa/public/firma_saida.jpeg"  style="width: 30%;"/>
+				<img src="/var/www/html/sistemamadreteresa/public/firma_saida.jpeg"  style="width: 30%;"/>
 			</div>
 			@elseif($hist->usuario == 287)
 			<div align="right" style="margin-top:20px;">
-				<img src="/var/www/html/mt/sistemamadreteresa/public/firma_yris.jpeg"  style="width: 30%;"/>
+				<img src="/var/www/html/sistemamadreteresa/public/firma_yris.jpeg"  style="width: 30%;"/>
 			</div>
 			@elseif($hist->usuario == 385)
 			<div align="right" style="margin-top:20px;">
-				<img src="/var/www/html/mt/sistemamadreteresa/public/firma_wendy.jpeg"  style="width: 30%;"/>
+				<img src="/var/www/html/sistemamadreteresa/public/firma_wendy.jpeg"  style="width: 30%;"/>
 			</div>
 			@elseif($hist->usuario == 29)
 			<div align="right" style="margin-top:20px;">
-				<img src="/var/www/html/mt/sistemamadreteresa/public/firma_jeny.jpeg"  style="width: 30%;"/>
+				<img src="/var/www/html/sistemamadreteresa/public/firma_jeny.jpeg"  style="width: 30%;"/>
 			</div>
 			@elseif($hist->usuario == 32)
 			<div align="right" style="margin-top:20px;">
-				<img src="/var/www/html/mt/sistemamadreteresa/public/firma_janet.jpeg"  style="width: 30%;"/>
+				<img src="/var/www/html/sistemamadreteresa/public/firma_janet.jpeg"  style="width: 30%;"/>
 			</div>
 			@elseif($hist->usuario == 371)
 			<div align="right" style="margin-top:20px;">
-				<img src="/var/www/html/mt/sistemamadreteresa/public/firma_vanessa.jpeg"  style="width: 30%;"/>
+				<img src="/var/www/html/sistemamadreteresa/public/firma_vanessa.jpeg"  style="width: 30%;"/>
 			</div>
 			@else
 			@endif
