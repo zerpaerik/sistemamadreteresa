@@ -663,69 +663,69 @@
                     <label for="exampleInputEmail1">GLASSGOW</label>
                     <input type="text" onkeyup="javascript:this.value=this.value.toUpperCase();" class="form-control" id="nombre" name="glass" placeholder="" disabled value="{{$hist->glas}}">
                    </div>
-                   <div class="col-md-2">
+                   <div class="col-md-6">
                     <label for="exampleInputEmail1">Piel</label>
                     <input type="text" onkeyup="javascript:this.value=this.value.toUpperCase();" class="form-control" id="nombre" name="piel" placeholder="" disabled value="{{$hist->piel}}">
                    </div>
-                   <div class="col-md-2">
+                   <div class="col-md-6">
                     <label for="exampleInputEmail1">Cabeza</label>
                     <input type="text" onkeyup="javascript:this.value=this.value.toUpperCase();" class="form-control" id="nombre" name="cabe" placeholder="" disabled value="{{$hist->cabeza}}">
                    </div>
-                   <div class="col-md-2">
+                   <div class="col-md-6">
                     <label for="exampleInputEmail1">Ojos</label>
                     <input type="text" onkeyup="javascript:this.value=this.value.toUpperCase();" class="form-control" id="nombre" name="ojos" placeholder="" disabled value="{{$hist->ojos}}">
                    </div>
 
-                   <div class="col-md-2">
+                   <div class="col-md-6">
                     <label for="exampleInputEmail1">Oidos</label>
                     <input type="text" onkeyup="javascript:this.value=this.value.toUpperCase();" class="form-control" id="nombre" name="oidos" placeholder="" disabled value="{{$hist->oidos}}">
                    </div>
 
-                   <div class="col-md-2">
+                   <div class="col-md-6">
                     <label for="exampleInputEmail1">Nariz</label>
                     <input type="text" onkeyup="javascript:this.value=this.value.toUpperCase();" class="form-control" id="nombre" name="nariz" placeholder="" disabled value="{{$hist->nariz}}">
                    </div>
-                   <div class="col-md-2">
+                   <div class="col-md-6">
                     <label for="exampleInputEmail1">Boca/Faringe</label>
                     <input type="text" onkeyup="javascript:this.value=this.value.toUpperCase();" class="form-control" id="nombre" name="boca" placeholder="" disabled value="{{$hist->boca}}">
                    </div>
-                   <div class="col-md-2">
+                   <div class="col-md-6">
                     <label for="exampleInputEmail1">Cuello</label>
                     <input type="text" onkeyup="javascript:this.value=this.value.toUpperCase();" class="form-control" id="nombre" name="cuello" placeholder="" disabled value="{{$hist->cuello}}">
                    </div>
-                   <div class="col-md-2">
+                   <div class="col-md-6">
                     <label for="exampleInputEmail1">Toral</label>
                     <input type="text" onkeyup="javascript:this.value=this.value.toUpperCase();" class="form-control" id="nombre" name="toral" placeholder=""disabled value="{{$hist->toral}}">
                    </div>
-                   <div class="col-md-2">
+                   <div class="col-md-6">
                     <label for="exampleInputEmail1">Mamas</label>
                     <input type="text" onkeyup="javascript:this.value=this.value.toUpperCase();" class="form-control" id="nombre" name="mamas" placeholder="" disabled value="{{$hist->mamas}}">
                    </div>
-                   <div class="col-md-2">
+                   <div class="col-md-6">
                     <label for="exampleInputEmail1">Cardiopulmonar</label>
                     <input type="text" onkeyup="javascript:this.value=this.value.toUpperCase();" class="form-control" id="nombre" name="cardio" placeholder="" disabled value="{{$hist->cardio}}">
                    </div>
-                   <div class="col-md-2">
+                   <div class="col-md-6">
                     <label for="exampleInputEmail1">Abdomen</label>
                     <input type="text" onkeyup="javascript:this.value=this.value.toUpperCase();" class="form-control" id="nombre" name="abdo" placeholder="" disabled value="{{$hist->abdomen}}">
                    </div>
-                   <div class="col-md-2">
+                   <div class="col-md-6">
                     <label for="exampleInputEmail1">Genitales</label>
                     <input type="text" onkeyup="javascript:this.value=this.value.toUpperCase();" class="form-control" id="nombre" name="geni" placeholder="" disabled value="{{$hist->gen}}">
                    </div>
-                   <div class="col-md-2">
+                   <div class="col-md-6">
                     <label for="exampleInputEmail1">Ano y Recto</label>
                     <input type="text" onkeyup="javascript:this.value=this.value.toUpperCase();" class="form-control" id="nombre" name="ano" placeholder="" disabled value="{{$hist->ano}}">
                    </div>
-                   <div class="col-md-2">
+                   <div class="col-md-6">
                     <label for="exampleInputEmail1">Extremidades</label>
                     <input type="text" onkeyup="javascript:this.value=this.value.toUpperCase();" class="form-control" id="nombre" name="extrem" placeholder="" disabled value="{{$hist->extrem}}">
                    </div>
-                   <div class="col-md-2">
+                   <div class="col-md-6">
                     <label for="exampleInputEmail1">Columna Vertebral</label>
                     <input type="text" onkeyup="javascript:this.value=this.value.toUpperCase();" class="form-control" id="nombre" name="column" placeholder="" disabled value="{{$hist->column}}">
                    </div>
-                   <div class="col-md-2">
+                   <div class="col-md-6">
                     <label for="exampleInputEmail1">Neurològico</label>
                     <input type="text" onkeyup="javascript:this.value=this.value.toUpperCase();" class="form-control" id="nombre" name="neuro" placeholder="" disabled value="{{$hist->neuro}}">
                    </div>
@@ -827,121 +827,189 @@
                      <div class="col-md-2">
                     <label for="exampleInputEmail1">Poliomelitis</label>
                     <select class="form-control" name="polio">
-                    <option value="SI">SI</option>
                     <option value="NO">NO</option>
+                    <option value="SI">SI</option>
                     </select>
+                   </div>
+                   <div class="col-md-2">
+                    <label for="exampleInputEmail1">Fecha</label>
+                    <input type="date" onkeyup="javascript:this.value=this.value.toUpperCase();" class="form-control" id="nombre" name="fec_polio" placeholder="">
                    </div>
                    <div class="col-md-2">
                     <label for="exampleInputEmail1">Rotavirus</label>
                     <select class="form-control" name="rota">
-                    <option value="SI">SI</option>
                     <option value="NO">NO</option>
+                    <option value="SI">SI</option>
                     </select>
+                   </div>
+                   <div class="col-md-2">
+                    <label for="exampleInputEmail1">Fecha</label>
+                    <input type="date" onkeyup="javascript:this.value=this.value.toUpperCase();" class="form-control" id="nombre" name="fec_rota" placeholder="">
                    </div>
                    <div class="col-md-2">
                     <label for="exampleInputEmail1">DPT</label>
                     <select class="form-control" name="dpt">
-                    <option value="SI">SI</option>
                     <option value="NO">NO</option>
+                    <option value="SI">SI</option>
                     </select>
+                   </div>
+                   <div class="col-md-2">
+                    <label for="exampleInputEmail1">Fecha</label>
+                    <input type="date" onkeyup="javascript:this.value=this.value.toUpperCase();" class="form-control" id="nombre" name="fec_dpt" placeholder="">
                    </div>
                    <div class="col-md-2">
                     <label for="exampleInputEmail1">Influenz</label>
                     <select class="form-control" name="influ">
-                    <option value="SI">SI</option>
                     <option value="NO">NO</option>
+                    <option value="SI">SI</option>
                     </select>
+                   </div>
+                   <div class="col-md-2">
+                    <label for="exampleInputEmail1">Fecha</label>
+                    <input type="date" onkeyup="javascript:this.value=this.value.toUpperCase();" class="form-control" id="nombre" name="fec_influ" placeholder="">
                    </div>
                    <div class="col-md-2">
                     <label for="exampleInputEmail1">H Influe TipoB</label>
                     <select class="form-control" name="hinflu">
-                    <option value="SI">SI</option>
                     <option value="NO">NO</option>
+                    <option value="SI">SI</option>
                     </select>
+                   </div>
+                   <div class="col-md-2">
+                    <label for="exampleInputEmail1">Fecha</label>
+                    <input type="date" onkeyup="javascript:this.value=this.value.toUpperCase();" class="form-control" id="nombre" name="fec_hinflu" placeholder="">
                    </div>
                    <div class="col-md-2">
                     <label for="exampleInputEmail1">Sarampion</label>
                     <select class="form-control" name="saramp">
-                    <option value="SI">SI</option>
                     <option value="NO">NO</option>
+                    <option value="SI">SI</option>
                     </select>
+                   </div>
+                   <div class="col-md-2">
+                    <label for="exampleInputEmail1">Fecha</label>
+                    <input type="date" onkeyup="javascript:this.value=this.value.toUpperCase();" class="form-control" id="nombre" name="fec_sar" placeholder="">
                    </div>
                    <div class="col-md-2">
                     <label for="exampleInputEmail1">Hepatitis B</label>
                     <select class="form-control" name="hb">
-                    <option value="SI">SI</option>
                     <option value="NO">NO</option>
+                    <option value="SI">SI</option>
                     </select>
+                   </div>
+                   <div class="col-md-2">
+                    <label for="exampleInputEmail1">Fecha</label>
+                    <input type="date" onkeyup="javascript:this.value=this.value.toUpperCase();" class="form-control" id="nombre" name="fec_hb" placeholder="">
                    </div>
                    <div class="col-md-2">
                     <label for="exampleInputEmail1">Rubeola</label>
                     <select class="form-control" name="rub">
-                    <option value="SI">SI</option>
                     <option value="NO">NO</option>
+                    <option value="SI">SI</option>
                     </select>
+                   </div>
+                   <div class="col-md-2">
+                    <label for="exampleInputEmail1">Fecha</label>
+                    <input type="date" onkeyup="javascript:this.value=this.value.toUpperCase();" class="form-control" id="nombre" name="fec_rub" placeholder="">
                    </div>
                    <div class="col-md-2">
                     <label for="exampleInputEmail1">Neumococo</label>
                     <select class="form-control" name="neu">
-                    <option value="SI">SI</option>
                     <option value="NO">NO</option>
+                    <option value="SI">SI</option>
                     </select>
+                   </div>
+                   <div class="col-md-2">
+                    <label for="exampleInputEmail1">Fecha</label>
+                    <input type="date" onkeyup="javascript:this.value=this.value.toUpperCase();" class="form-control" id="nombre" name="fec_neu" placeholder="">
                    </div>
                    <div class="col-md-2">
                     <label for="exampleInputEmail1">Parotiditis</label>
                     <select class="form-control" name="paro">
-                    <option value="SI">SI</option>
                     <option value="NO">NO</option>
+                    <option value="SI">SI</option>
                     </select>
+                   </div>
+                   <div class="col-md-2">
+                    <label for="exampleInputEmail1">Fecha</label>
+                    <input type="date" onkeyup="javascript:this.value=this.value.toUpperCase();" class="form-control" id="nombre" name="fec_paro" placeholder="">
                    </div>
                    <div class="col-md-2">
                     <label for="exampleInputEmail1">BCG</label>
                     <select class="form-control" name="bcg">
-                    <option value="SI">SI</option>
                     <option value="NO">NO</option>
+                    <option value="SI">SI</option>
                     </select>
+                   </div>
+                   <div class="col-md-2">
+                    <label for="exampleInputEmail1">Fecha</label>
+                    <input type="date" onkeyup="javascript:this.value=this.value.toUpperCase();" class="form-control" id="nombre" name="fec_bcg" placeholder="">
                    </div>
                    <div class="col-md-2">
                     <label for="exampleInputEmail1">Varicela</label>
                     <select class="form-control" name="vari">
-                    <option value="SI">SI</option>
                     <option value="NO">NO</option>
+                    <option value="SI">SI</option>
                     </select>
+                   </div>
+                   <div class="col-md-2">
+                    <label for="exampleInputEmail1">Fecha</label>
+                    <input type="date" onkeyup="javascript:this.value=this.value.toUpperCase();" class="form-control" id="nombre" name="fec_vari" placeholder="">
                    </div>
                    <div class="col-md-2">
                     <label for="exampleInputEmail1">Toxoide Tetànico</label>
                     <select class="form-control" name="tox">
-                    <option value="SI">SI</option>
                     <option value="NO">NO</option>
+                    <option value="SI">SI</option>
                     </select>
+                   </div>
+                   <div class="col-md-2">
+                    <label for="exampleInputEmail1">Fecha</label>
+                    <input type="date" onkeyup="javascript:this.value=this.value.toUpperCase();" class="form-control" id="nombre" name="fec_tox" placeholder="">
                    </div>
                    <div class="col-md-2">
                     <label for="exampleInputEmail1">Hepatitis A</label>
                     <select class="form-control" name="ha">
-                    <option value="SI">SI</option>
                     <option value="NO">NO</option>
+                    <option value="SI">SI</option>
                     </select>
+                   </div>
+                   <div class="col-md-2">
+                    <label for="exampleInputEmail1">Fecha</label>
+                    <input type="date" onkeyup="javascript:this.value=this.value.toUpperCase();" class="form-control" id="nombre" name="fec_ha" placeholder="">
                    </div>
                    <div class="col-md-2">
                     <label for="exampleInputEmail1">DT</label>
                     <select class="form-control" name="dt">
-                    <option value="SI">SI</option>
                     <option value="NO">NO</option>
+                    <option value="SI">SI</option>
                     </select>
+                   </div>
+                   <div class="col-md-2">
+                    <label for="exampleInputEmail1">Fecha</label>
+                    <input type="date" onkeyup="javascript:this.value=this.value.toUpperCase();" class="form-control" id="nombre" name="fec_dt" placeholder="">
                    </div>
                    <div class="col-md-2">
                     <label for="exampleInputEmail1">VPH</label>
                     <select class="form-control" name="vph">
-                    <option value="SI">SI</option>
                     <option value="NO">NO</option>
+                    <option value="SI">SI</option>
                     </select>
+                   </div>
+                   <div class="col-md-2">
+                    <label for="exampleInputEmail1">Fecha</label>
+                    <input type="date" onkeyup="javascript:this.value=this.value.toUpperCase();" class="form-control" id="nombre" name="fec_vph" placeholder="">
                    </div>
                    <div class="col-md-2">
                     <label for="exampleInputEmail1">Gamma Globulina</label>
                     <select class="form-control" name="gamma">
-                    <option value="SI">SI</option>
                     <option value="NO">NO</option>
+                    <option value="SI">SI</option>
                     </select>
+                   </div>
+                   <div class="col-md-2">
+                    <label for="exampleInputEmail1">Fecha</label>
+                    <input type="date" onkeyup="javascript:this.value=this.value.toUpperCase();" class="form-control" id="nombre" name="fec_gam" placeholder="">
                    </div>
                     </div>
                     <br>
@@ -1049,69 +1117,69 @@
                     <label for="exampleInputEmail1">GLASSGOW</label>
                     <input type="text" onkeyup="javascript:this.value=this.value.toUpperCase();" class="form-control" id="nombre" name="glass" placeholder="">
                    </div>
-                   <div class="col-md-2">
+                   <div class="col-md-6">
                     <label for="exampleInputEmail1">Piel</label>
                     <input type="text" onkeyup="javascript:this.value=this.value.toUpperCase();" class="form-control" id="nombre" name="piel" placeholder="">
                    </div>
-                   <div class="col-md-2">
+                   <div class="col-md-6">
                     <label for="exampleInputEmail1">Cabeza</label>
                     <input type="text" onkeyup="javascript:this.value=this.value.toUpperCase();" class="form-control" id="nombre" name="cabe" placeholder="">
                    </div>
-                   <div class="col-md-2">
+                   <div class="col-md-6">
                     <label for="exampleInputEmail1">Ojos</label>
                     <input type="text" onkeyup="javascript:this.value=this.value.toUpperCase();" class="form-control" id="nombre" name="ojos" placeholder="">
                    </div>
 
-                   <div class="col-md-2">
+                   <div class="col-md-6">
                     <label for="exampleInputEmail1">Oidos</label>
                     <input type="text" onkeyup="javascript:this.value=this.value.toUpperCase();" class="form-control" id="nombre" name="oidos" placeholder="">
                    </div>
 
-                   <div class="col-md-2">
+                   <div class="col-md-6">
                     <label for="exampleInputEmail1">Nariz</label>
                     <input type="text" onkeyup="javascript:this.value=this.value.toUpperCase();" class="form-control" id="nombre" name="nariz" placeholder="">
                    </div>
-                   <div class="col-md-2">
+                   <div class="col-md-6">
                     <label for="exampleInputEmail1">Boca/Faringe</label>
                     <input type="text" onkeyup="javascript:this.value=this.value.toUpperCase();" class="form-control" id="nombre" name="boca" placeholder="">
                    </div>
-                   <div class="col-md-2">
+                   <div class="col-md-6">
                     <label for="exampleInputEmail1">Cuello</label>
                     <input type="text" onkeyup="javascript:this.value=this.value.toUpperCase();" class="form-control" id="nombre" name="cuello" placeholder="">
                    </div>
-                   <div class="col-md-2">
+                   <div class="col-md-6">
                     <label for="exampleInputEmail1">Toral</label>
                     <input type="text" onkeyup="javascript:this.value=this.value.toUpperCase();" class="form-control" id="nombre" name="toral" placeholder="">
                    </div>
-                   <div class="col-md-2">
+                   <div class="col-md-6">
                     <label for="exampleInputEmail1">Mamas</label>
                     <input type="text" onkeyup="javascript:this.value=this.value.toUpperCase();" class="form-control" id="nombre" name="mamas" placeholder="">
                    </div>
-                   <div class="col-md-2">
+                   <div class="col-md-6">
                     <label for="exampleInputEmail1">Cardiopulmonar</label>
                     <input type="text" onkeyup="javascript:this.value=this.value.toUpperCase();" class="form-control" id="nombre" name="cardio" placeholder="">
                    </div>
-                   <div class="col-md-2">
+                   <div class="col-md-6">
                     <label for="exampleInputEmail1">Abdomen</label>
                     <input type="text" onkeyup="javascript:this.value=this.value.toUpperCase();" class="form-control" id="nombre" name="abdo" placeholder="">
                    </div>
-                   <div class="col-md-2">
+                   <div class="col-md-6">
                     <label for="exampleInputEmail1">Genitales</label>
                     <input type="text" onkeyup="javascript:this.value=this.value.toUpperCase();" class="form-control" id="nombre" name="geni" placeholder="">
                    </div>
-                   <div class="col-md-2">
+                   <div class="col-md-6">
                     <label for="exampleInputEmail1">Ano y Recto</label>
                     <input type="text" onkeyup="javascript:this.value=this.value.toUpperCase();" class="form-control" id="nombre" name="ano" placeholder="">
                    </div>
-                   <div class="col-md-2">
+                   <div class="col-md-6">
                     <label for="exampleInputEmail1">Extremidades</label>
                     <input type="text" onkeyup="javascript:this.value=this.value.toUpperCase();" class="form-control" id="nombre" name="extrem" placeholder="">
                    </div>
-                   <div class="col-md-2">
+                   <div class="col-md-6">
                     <label for="exampleInputEmail1">Columna Vertebral</label>
                     <input type="text" onkeyup="javascript:this.value=this.value.toUpperCase();" class="form-control" id="nombre" name="column" placeholder="">
                    </div>
-                   <div class="col-md-2">
+                   <div class="col-md-6">
                     <label for="exampleInputEmail1">Neurològico</label>
                     <input type="text" onkeyup="javascript:this.value=this.value.toUpperCase();" class="form-control" id="nombre" name="neuro" placeholder="">
                    </div>

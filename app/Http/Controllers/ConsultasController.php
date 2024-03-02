@@ -524,6 +524,9 @@ class ConsultasController extends Controller
       $con->talla = $request->talla;
       $con->glass = $request->glass;
       $con->piel = $request->piel;
+      $con->tto_act = $request->tto_act;
+      $con->enf_act = $request->enf_act;
+      $con->anam = $request->anam;
       $con->mamas = $request->mamas;
       $con->cardio = $request->cardio;
       $con->abdo = $request->abdo;
