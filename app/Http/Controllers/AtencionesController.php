@@ -1700,8 +1700,6 @@ return view('atenciones.particular');
                             $request->session()->flash('error', 'El monto del abono de pagos mixto es mayor al item de rayos x.');
                             return back();
                           } 
-    
-
 
                           //TIPO ATENCION RAYOS= 3
                           $lab = new Atenciones();
@@ -1754,7 +1752,7 @@ return view('atenciones.particular');
                             $cre1->descripcion = 'INGRESO POR RAYOSX';
                             $cre1->id_atencion =  $lab->id;
                             $cre1->tipopago =  $request->id_pago['rayos'][$key]['tipop1'];
-                            $ccre1re->monto = (float)$request->monto_abol['rayos'][$key]['abono1'];
+                            $cre1->monto = (float)$request->monto_abol['rayos'][$key]['abono1'];
                             if ($request->id_pago['rayos'][$key]['tipop1'] == 'EF') {
                               $cre1->efectivo = (float)$request->monto_abol['rayos'][$key]['abono1'];
                             } elseif($request->id_pago['rayos'][$key]['tipop1'] == 'TJ') {
