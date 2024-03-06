@@ -684,7 +684,23 @@ class ConsultasController extends Controller
           ->where('a.id_paciente', '=',$request->id_paciente)
           ->orderBy('a.created_at','ASC')
           ->get(); 
-  
+
+          $historias_m = DB::table('historia_medicina as a')
+          ->select('a.id_paciente','a.id','a.created_at','b.nombres','b.apellidos','b.dni','b.fechanac','b.telefono','b.gradoinstruccion')
+          ->join('pacientes as b','b.id','a.id_paciente')
+          ->where('a.id_paciente', '=',$request->id_paciente)
+          ->orderBy('a.created_at','ASC')
+          ->get(); 
+
+          $historias_p = DB::table('historia_pediatrica as a')
+          ->select('a.id_paciente','a.id','a.created_at','b.nombres','b.apellidos','b.dni','b.fechanac','b.telefono','b.gradoinstruccion')
+          ->join('pacientes as b','b.id','a.id_paciente')
+          ->where('a.id_paciente', '=',$request->id_paciente)
+          ->orderBy('a.created_at','ASC')
+          ->get(); 
+
+
+            
         } else {
           //$historias = Historias::where('id_paciente','=',77777777777)->get();
 
@@ -692,6 +708,20 @@ class ConsultasController extends Controller
           ->select('a.id_paciente','a.id','a.created_at','a.reevalua','a.observacion','a.usuario_reevalua','b.nombres','b.apellidos','b.dni','b.fechanac','b.telefono','b.gradoinstruccion')
           ->join('pacientes as b','b.id','a.id_paciente')
           ->where('a.id_paciente', '=',77777777777)
+          ->get(); 
+
+          $historias_m = DB::table('historia_medicina as a')
+          ->select('a.id_paciente','a.id','a.created_at','b.nombres','b.apellidos','b.dni','b.fechanac','b.telefono','b.gradoinstruccion')
+          ->join('pacientes as b','b.id','a.id_paciente')
+          ->where('a.id_paciente', '=',77777777777)
+          ->orderBy('a.created_at','ASC')
+          ->get(); 
+
+          $historias_p = DB::table('historia_pediatrica as a')
+          ->select('a.id_paciente','a.id','a.created_at','b.nombres','b.apellidos','b.dni','b.fechanac','b.telefono','b.gradoinstruccion')
+          ->join('pacientes as b','b.id','a.id_paciente')
+          ->where('a.id_paciente', '=',77777777777)
+          ->orderBy('a.created_at','ASC')
           ->get(); 
         }
 
@@ -704,7 +734,7 @@ class ConsultasController extends Controller
 
 
 
-        return view('consultas.historias', compact('pacientes','historias'));
+        return view('consultas.historias', compact('pacientes','historias', 'historias_m', 'historias_p'));
 
 
     }
@@ -766,6 +796,53 @@ class ConsultasController extends Controller
          $paciente = Pacientes::where('id','=',$hist->id_paciente)->first();
 
         return view('consultas.historias_ver', compact('hist','historias_base','paciente'));
+
+
+    }
+
+    
+    public function ver_historiasp($id)
+    {
+
+
+        // $hist = Historia::where('id','=',$id)->first();
+
+         $hist = DB::table('historia_pediatrica as a')
+         ->select('a.*','u.name','u.lastname')
+         ->join('users as u','u.id','a.usuario')
+         ->where('a.id', '=',$id)
+         ->first(); 
+
+
+
+         $historias_base = HistoriaBaseP::where('id_paciente','=',$hist->id_paciente)->first();
+
+         $paciente = Pacientes::where('id','=',$hist->id_paciente)->first();
+
+        return view('consultas.historiasp_ver', compact('hist','historias_base','paciente'));
+
+
+    }
+
+    public function ver_historiasm($id)
+    {
+
+
+        // $hist = Historia::where('id','=',$id)->first();
+
+         $hist = DB::table('historia_medicina as a')
+         ->select('a.*','u.name','u.lastname')
+         ->join('users as u','u.id','a.usuario')
+         ->where('a.id', '=',$id)
+         ->first(); 
+
+
+
+         $historias_base = HistoriaBM::where('id_paciente','=',$hist->id_paciente)->first();
+
+         $paciente = Pacientes::where('id','=',$hist->id_paciente)->first();
+
+        return view('consultas.historiasm_ver', compact('hist','historias_base','paciente'));
 
 
     }
