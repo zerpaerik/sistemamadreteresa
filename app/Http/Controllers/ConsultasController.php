@@ -967,7 +967,7 @@ class ConsultasController extends Controller
 
 
 
-         $historias_base = HistoriaBm::where('id_paciente','=',$hist->id_paciente)->first();
+         $historias_base = HistoriaBM::where('id_paciente','=',$hist->id_paciente)->first();
 
          $paciente = Pacientes::where('id','=',$hist->id_paciente)->first();
 
