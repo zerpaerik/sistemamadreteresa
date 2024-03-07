@@ -229,7 +229,7 @@
                           </a>
 
                             
-                          <a class="btn btn-info btn-sm" href="historiasp-pdf-{{$an->id}}" target="_blank">
+                          <a class="btn btn-info btn-sm" href="historiasp-pdf-{{$anp->id}}" target="_blank">
                               <i class="fas fa-print">
                               </i>
                               Ver PDF
@@ -292,7 +292,7 @@
                           </a>
 
                         
-                          <a class="btn btn-info btn-sm" href="historiasm-pdf-{{$an->id}}" target="_blank">
+                          <a class="btn btn-info btn-sm" href="historiasm-pdf-{{$anm->id}}" target="_blank">
                               <i class="fas fa-print">
                               </i>
                               Ver PDF
