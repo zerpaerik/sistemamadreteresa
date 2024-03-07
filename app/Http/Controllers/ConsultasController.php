@@ -928,6 +928,8 @@ class ConsultasController extends Controller
          ->where('a.id', '=',$id)
          ->first(); 
 
+         dd($hist);
+
 
 
 
