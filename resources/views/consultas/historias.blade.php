@@ -227,6 +227,13 @@
                               </i>
                               Ver Historia
                           </a>
+
+                            
+                          <a class="btn btn-info btn-sm" href="historiasp-pdf-{{$an->id}}" target="_blank">
+                              <i class="fas fa-print">
+                              </i>
+                              Ver PDF
+                          </a>
                           
                        
                         
@@ -283,6 +290,14 @@
                               </i>
                               Ver Historia
                           </a>
+
+                        
+                          <a class="btn btn-info btn-sm" href="historiasm-pdf-{{$an->id}}" target="_blank">
+                              <i class="fas fa-print">
+                              </i>
+                              Ver PDF
+                          </a>
+                          
                           
                         
                         

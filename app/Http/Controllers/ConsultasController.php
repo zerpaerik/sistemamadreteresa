@@ -916,6 +916,78 @@ class ConsultasController extends Controller
 
     }
 
+    public function ver_historiasp_pdf($id)
+    {
+
+
+        // $hist = Historia::where('id','=',$id)->first();
+
+         $hist = DB::table('historia_pediatrica as a')
+         ->select('a.*','u.name','u.lastname')
+         ->join('users as u','u.id','a.usuario')
+         ->where('a.id', '=',$id)
+         ->first(); 
+
+
+
+
+         $historias_base = HistoriaBaseP::where('id_paciente','=',$hist->id_paciente)->first();
+
+         $paciente = Pacientes::where('id','=',$hist->id_paciente)->first();
+
+         $edad = Carbon::parse($paciente->fechanac)->age;
+
+
+             
+          $view = \View::make('consultas.historiap-pdf', compact('hist','historias_base','paciente','edad'));
+
+          $pdf = \App::make('dompdf.wrapper');
+          $pdf->loadHTML($view);
+   
+     
+      return $pdf->stream('report-pdf'.'.pdf');
+
+
+
+
+    }
+
+    public function ver_historiasm_pdf($id)
+    {
+
+
+        // $hist = Historia::where('id','=',$id)->first();
+
+         $hist = DB::table('historia_medicina as a')
+         ->select('a.*','u.name','u.lastname')
+         ->join('users as u','u.id','a.usuario')
+         ->where('a.id', '=',$id)
+         ->first(); 
+
+
+
+
+         $historias_base = HistoriaBm::where('id_paciente','=',$hist->id_paciente)->first();
+
+         $paciente = Pacientes::where('id','=',$hist->id_paciente)->first();
+
+         $edad = Carbon::parse($paciente->fechanac)->age;
+
+
+             
+          $view = \View::make('consultas.historiam-pdf', compact('hist','historias_base','paciente','edad'));
+
+          $pdf = \App::make('dompdf.wrapper');
+          $pdf->loadHTML($view);
+   
+     
+      return $pdf->stream('report-pdf'.'.pdf');
+
+
+
+
+    }
+
     public function reevaluarPost(Request $request)
     {
 

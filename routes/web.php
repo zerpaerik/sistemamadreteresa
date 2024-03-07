@@ -356,7 +356,10 @@ Route::post('historia/reevaluar', 'ConsultasController@reevaluarPost');
 Route::get('historias-ver-{id}', 'ConsultasController@ver_historias');
 Route::get('historiasp-ver-{id}', 'ConsultasController@ver_historiasp');
 Route::get('historiasm-ver-{id}', 'ConsultasController@ver_historiasm');
+Route::get('historiasm-pdf-{id}', 'ConsultasController@ver_historiasm_pdf');
+Route::get('historiasp-pdf-{id}', 'ConsultasController@ver_historiasp_pdf');
 Route::get('historias-pdf-{id}', 'ConsultasController@ver_historias_pdf');
+
 Route::get('controles', 'ConsultasController@controles')->name('controles.index');
 Route::get('controles-ver-{id}', 'ConsultasController@ver_controles');
 Route::get('historia-crear-{id}', 'ConsultasController@historia_crear');
