@@ -193,14 +193,7 @@ table {
                     
 					</div>
 				</div>
-				<div class="divTableBody">
-					<div class="divTableRow">
-                        <div class="divTableCell" style="width: 10%">Anamnesis</div>
-						<div class="divTableCell" style="width: 60%">{{$hist->anam}}</div>
-						
-                    
-					</div>
-				</div>
+				
 			</div>
 
 			<div class="divTable">
@@ -215,10 +208,7 @@ table {
 			<div class="divTable">
 				<div class="divTableBody">
 					<div class="divTableRow">
-                        <div class="divTableCell" style="width: 10%">Peso</div>
-						<div class="divTableCell" style="width: 10%">{{$hist->peso}}</div>
-						<div class="divTableCell" style="width: 10%">Talla</div>
-						<div class="divTableCell" style="width: 10%">{{$hist->talla}}</div>
+                      
                         <div class="divTableCell" style="width: 10%">Mamas</div>
 						<div class="divTableCell" style="width: 10%">{{$hist->mamas}}</div>
                     
@@ -228,31 +218,35 @@ table {
 					<div class="divTableRow">
                         <div class="divTableCell" style="width: 10%">PA</div>
 						<div class="divTableCell" style="width: 10%">{{$hist->pa}}</div>
-						<div class="divTableCell" style="width: 10%">T</div>
-						<div class="divTableCell" style="width: 10%">{{$hist->t}}</div>
 						<div class="divTableCell" style="width: 10%">FC</div>
 						<div class="divTableCell" style="width: 10%">{{$hist->fc}}</div>
-                       
+						<div class="divTableCell" style="width: 10%">FR</div>
+						<div class="divTableCell" style="width: 10%">{{$hist->fr}}</div>
+					
 					</div>
 
 
 					<div class="divTableRow">
-                        <div class="divTableCell" style="width: 10%">FR</div>
-						<div class="divTableCell" style="width: 10%">{{$hist->fr}}</div>
-						<div class="divTableCell" style="width: 10%">SAT 02</div>
+					    <div class="divTableCell" style="width: 10%">T</div>
+						<div class="divTableCell" style="width: 10%">{{$hist->t}}</div>
+						<div class="divTableCell" style="width: 10%">Peso</div>
+						<div class="divTableCell" style="width: 10%">{{$hist->peso}}</div>
+						<div class="divTableCell" style="width: 10%">Talla</div>
+						<div class="divTableCell" style="width: 10%">{{$hist->talla}}</div>
+					
+                       
+					</div>
+
+					<div class="divTableRow">
+					    <div class="divTableCell" style="width: 10%">SAT 02</div>
 						<div class="divTableCell" style="width: 10%">{{$hist->sat}}</div>
 						<div class="divTableCell" style="width: 10%">GLASSGOW</div>
 						<div class="divTableCell" style="width: 10%">{{$hist->glass}}</div>
-                       
-					</div>
-
-					<div class="divTableRow">
                         <div class="divTableCell" style="width: 10%">Piel</div>
 						<div class="divTableCell" style="width: 10%">{{$hist->piel}}</div>
 						<div class="divTableCell" style="width: 10%">CardioPulmonar</div>
 						<div class="divTableCell" style="width: 10%">{{$hist->cardio}}</div>
-						<div class="divTableCell" style="width: 10%"></div>
-						<div class="divTableCell" style="width: 10%"></div>
+						
                        
 					</div>
 
