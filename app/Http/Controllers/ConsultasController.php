@@ -526,7 +526,7 @@ class ConsultasController extends Controller
       $con->piel = $request->piel;
       $con->tto_act = $request->tto_act;
       $con->enf_act = $request->enf_act;
-      $con->anam = $request->anam;
+      $con->anam = "N/D";
       $con->mamas = $request->mamas;
       $con->cardio = $request->cardio;
       $con->abdo = $request->abdo;
@@ -537,6 +537,7 @@ class ConsultasController extends Controller
       $con->cie1 = $request->cie_pd;
       $con->cie2 = $request->cie_df;
       $con->trata = $request->trata;
+      $con->ex_aux = $request->ex_aux;
       $con->obser = $request->observ;
       $con->usuario = Auth::user()->id;
       $con->save();
