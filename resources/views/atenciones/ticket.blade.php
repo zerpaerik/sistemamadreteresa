@@ -35,10 +35,13 @@
     <body style="width:100%; position:fixed: top: 1px; ">
 
     <br><br>
+    @if(Session::get('sedeName') != 'LOS OLIVOS')
 
 	<div class="" style="font-size: 35px; text-align: center;margin-bottom: 15px;">
 		<img src="/var/www/html/sistemamadreteresa/public/image.png"  style="width: 40%; color: black;"/>
 	</div>
+  @endif
+
 
     <div  style="font-size: 15px; text-align: center;margin-bottom:-60px;margin-top: -30px;">
     @if(Session::get('sedeName') == 'PROCERES')
@@ -83,11 +86,10 @@
 		<p style="margin-top: -20px;"><strong>WhatsApp: 924 520 026</strong></p>
 
     @else
-   <p><strong>SYSMEDIC PERU SAC -LOS OLIVOS</strong></p>
-		<p style="margin-top: -20px;"><strong>RUC: 20606283980</strong></p>
+   <p><strong>SALUD ECOSMED</strong></p>
         <p style="margin-top: -10px;"><strong>Dirección: AV.PROCERES 7832 URB PRO</strong></p>
-		<p style="margin-top: -20px;"><strong>Teléfono: 01 5390547</strong></p>
-		<p style="margin-top: -20px;"><strong>WhatsApp: 940 309 506</strong></p>
+		<p style="margin-top: -20px;"><strong>Teléfono: 955020438</strong></p>
+		<p style="margin-top: -20px;"><strong>WhatsApp: 955020438</strong></p>
 	
     @endif
 		
