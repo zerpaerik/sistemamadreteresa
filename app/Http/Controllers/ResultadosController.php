@@ -255,6 +255,11 @@ class ResultadosController extends Controller
 
     public function reversarg(Request $request){
 
+      $data = ResultadosServicios::where('id','=',$request->id)->first();
+      $at = Atenciones::where('id','=',$data->id_atencion)->first();
+      $at->atendido_por =  "";
+      $at->save();
+
 
 
 
@@ -301,6 +306,10 @@ class ResultadosController extends Controller
 
     public function reversargl(Request $request){
 
+      $data = ResultadosLaboratorio::where('id','=',$request->id)->first();
+      $at = Atenciones::where('id','=',$data->id_atencion)->first();
+      $at->atendido_por =  "";
+      $at->save();
 
 
       $rl = ResultadosLaboratorio::where('id','=',$request->id)->first();
