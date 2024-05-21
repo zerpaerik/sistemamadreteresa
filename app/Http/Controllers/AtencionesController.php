@@ -13,6 +13,7 @@ use App\PlacasMalogradas;
 use App\User;
 use App\Atenciones;
 use App\AtencionesArchivo;
+use Carbon\Carbon;
 use App\Atec;
 use App\Consultas;
 use App\Historia;
