@@ -150,17 +150,14 @@
 
                     @if($an->estatus == 1)
 
-                    @if($an->tipo_atencion == 4)
-                    <a class="btn btn-success btn-sm" target="_blank" href="atenciones-ticketl-{{$an->id_atec}}">
+                    <a class="btn btn-warning btn-sm" target="_blank" href="atenciones-ticketl-{{$an->id_atec}}">
                               <i class="fas fa-print">
                               </i>
                           </a>
-                          @else
                           <a class="btn btn-success btn-sm" target="_blank" href="atenciones-ticket-{{$an->id_atec}}">
                               <i class="fas fa-print">
                               </i>
                           </a>
-                          @endif
 
 
                           <a class="btn btn-primary btn-sm" href="atenciones-archivo-{{$an->id}}">
