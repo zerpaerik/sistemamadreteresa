@@ -1315,11 +1315,12 @@ class ReportesController extends Controller
     public function prod_servicios_report($id, $f1, $f2){
 
         $resultados = DB::table('resultados_servicios as a')
-        ->select('a.id', 'a.id_atencion', 'a.id_servicio','a.usuario_informe','a.informe','b.tipo_atencion', 'b.usuario','b.resta',DB::raw('SUM(a.monto) as monto,COUNT(*) as cantidad'), 'a.created_at', 'a.estatus', 'b.estatus','b.abono','b.sede','b.id_paciente', 'b.id_origen', 's.nombre as servicio','s.precio as pre_ser', 'pa.nombres', 'pa.apellidos', 'c.name', 'c.lastname')
+        ->select('a.id', 'a.id_atencion', 'a.id_servicio','a.usuario_informe','a.informe','b.sede','b.tipo_atencion', 'b.usuario','b.resta',DB::raw('SUM(a.monto) as monto,COUNT(*) as cantidad'), 'a.created_at', 'a.estatus', 'b.estatus','b.abono','b.sede','b.id_paciente', 'b.id_origen', 's.nombre as servicio','s.precio as pre_ser', 'pa.nombres', 'pa.apellidos', 'c.name', 'c.lastname')
         ->join('atenciones as b', 'b.id', 'a.id_atencion')
         ->join('users as c', 'c.id', 'a.usuario_informe')
         ->join('pacientes as pa', 'pa.id', 'b.id_paciente')
         ->join('servicios as s', 's.id', 'a.id_servicio')
+        ->where('b.sede', '=', $request->session()->get('sede'))
         ->where('a.usuario_informe', '=', $id)
         ->whereBetween('a.created_at', [$f1, $f2])
         ->orderBy('a.id','DESC')
@@ -1333,6 +1334,7 @@ class ReportesController extends Controller
         ->join('users as c', 'c.id', 'a.usuario_informe')
         ->join('pacientes as pa', 'pa.id', 'b.id_paciente')
         ->join('servicios as s', 's.id', 'a.id_servicio')
+        ->where('b.sede', '=', $request->session()->get('sede'))
         ->where('a.usuario_informe', '=', $id)
         ->whereBetween('a.created_at', [$f1, $f2])
         ->orderBy('a.id','DESC')
