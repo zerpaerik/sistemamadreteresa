@@ -211,6 +211,7 @@ Route::get('atenciones-create', 'AtencionesController@create')->name('atenciones
 Route::post('atenciones/create', 'AtencionesController@store')->middleware('auth');
 Route::get('atenciones-delete-{id}', 'AtencionesController@delete')->middleware('auth');
 Route::get('atenciones-ticket-{id}', 'AtencionesController@ticket')->middleware('auth');
+Route::get('atenciones-ticketl-{id}', 'AtencionesController@ticketl')->middleware('auth');
 Route::get('atenciones-edits-{id}', 'AtencionesController@edits')->name('atenciones.edits');
 Route::get('atenciones-editl-{id}', 'AtencionesController@editl')->name('atenciones.editl');
 Route::get('atenciones-editp-{id}', 'AtencionesController@editp')->name('atenciones.editp');
