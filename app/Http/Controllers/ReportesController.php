@@ -1224,20 +1224,22 @@ class ReportesController extends Controller
 
 
         $usuarios = DB::table('resultados_servicios as a')
-        ->select('a.id', 'a.id_atencion', 'a.usuario_informe','c.name', 'c.lastname','c.id as usuario')
+        ->select('a.id','a.sede', 'a.id_atencion', 'a.usuario_informe','c.name', 'c.lastname','c.id as usuario')
         ->join('users as c', 'c.id', 'a.usuario_informe')
         ->whereBetween('a.created_at', [$f1, $f2])
+        ->where('a.sede', '=', $request->session()->get('sede'))
         ->orderBy('a.id','DESC')
         ->groupBy('a.usuario_informe')
         ->get();
 
 
         $totales = DB::table('resultados_servicios as a')
-        ->select('a.id', 'a.id_atencion', 'a.id_servicio','a.usuario_informe','a.informe','b.usuario', 'a.created_at', 'a.estatus','b.tipo_atencion','b.resta',DB::raw('SUM(a.monto) as monto,COUNT(*) as cantidad'),'b.abono', 'b.id_paciente','b.estatus','b.sede', 'b.id_origen', 's.nombre as servicio', 'pa.nombres', 'pa.apellidos', 'c.name', 'c.lastname')
+        ->select('a.id','a.sede', 'a.id_atencion', 'a.id_servicio','a.usuario_informe','a.informe','b.usuario', 'a.created_at', 'a.estatus','b.tipo_atencion','b.resta',DB::raw('SUM(a.monto) as monto,COUNT(*) as cantidad'),'b.abono', 'b.id_paciente','b.estatus','b.sede', 'b.id_origen', 's.nombre as servicio', 'pa.nombres', 'pa.apellidos', 'c.name', 'c.lastname')
         ->join('atenciones as b', 'b.id', 'a.id_atencion')
         ->join('users as c', 'c.id', 'a.usuario_informe')
         ->join('pacientes as pa', 'pa.id', 'b.id_paciente')
         ->join('servicios as s', 's.id', 'a.id_servicio')
+        ->where('a.sede', '=', $request->session()->get('sede'))
         ->whereBetween('a.created_at', [$f1, $f2])
         ->orderBy('a.id','DESC')
         //->where('a.monto', '!=', '0')
@@ -1259,10 +1261,11 @@ class ReportesController extends Controller
 
          
             $resultados = DB::table('resultados_servicios as a')
-            ->select('a.id', 'a.id_atencion', 'a.id_servicio','a.usuario_informe','a.informe',DB::raw('SUM(a.monto) as monto'),'a.created_at','b.id_paciente', 's.nombre as servicio', 'c.name', 'c.lastname')
+            ->select('a.id','a.sede', 'a.id_atencion', 'a.id_servicio','a.usuario_informe','a.informe',DB::raw('SUM(a.monto) as monto'),'a.created_at','b.id_paciente', 's.nombre as servicio', 'c.name', 'c.lastname')
             ->join('atenciones as b', 'b.id', 'a.id_atencion')
             ->join('users as c', 'c.id', 'a.usuario_informe')
             ->join('servicios as s', 's.id', 'a.id_servicio')
+            ->where('a.sede', '=', $request->session()->get('sede'))
             ->where('a.created_at', '=', date('Y-m-d'))
             ->groupBy('a.usuario_informe')
             ->get();
@@ -1270,19 +1273,21 @@ class ReportesController extends Controller
 
 
             $usuarios = DB::table('resultados_servicios as a')
-            ->select('a.id', 'a.id_atencion', 'a.usuario_informe','c.name', 'c.lastname','c.id as usuario')
+            ->select('a.id','a.sede', 'a.id_atencion', 'a.usuario_informe','c.name', 'c.lastname','c.id as usuario')
             ->join('users as c', 'c.id', 'a.usuario_informe')
+            ->where('a.sede', '=', $request->session()->get('sede'))
             ->where('a.created_at', '=', date('Y-m-d'))
             ->orderBy('a.id','DESC')
             ->groupBy('a.usuario_informe')
             ->get();
 
             $totales = DB::table('resultados_servicios as a')
-            ->select('a.id', 'a.id_atencion', 'a.id_servicio','a.usuario_informe','a.informe','b.usuario', 'a.created_at', 'a.estatus','b.tipo_atencion','b.resta',DB::raw('SUM(a.monto) as monto,COUNT(*) as cantidad'),'b.abono', 'b.id_paciente','b.estatus','b.sede', 'b.id_origen', 's.nombre as servicio', 'pa.nombres', 'pa.apellidos', 'c.name', 'c.lastname')
+            ->select('a.id','a.sede','a.id_atencion', 'a.id_servicio','a.usuario_informe','a.informe','b.usuario', 'a.created_at', 'a.estatus','b.tipo_atencion','b.resta',DB::raw('SUM(a.monto) as monto,COUNT(*) as cantidad'),'b.abono', 'b.id_paciente','b.estatus','b.sede', 'b.id_origen', 's.nombre as servicio', 'pa.nombres', 'pa.apellidos', 'c.name', 'c.lastname')
             ->join('atenciones as b', 'b.id', 'a.id_atencion')
             ->join('users as c', 'c.id', 'a.usuario_informe')
             ->join('pacientes as pa', 'pa.id', 'b.id_paciente')
             ->join('servicios as s', 's.id', 'a.id_servicio')
+            ->where('a.sede', '=', $request->session()->get('sede'))
             ->where('a.created_at', '=', date('Y-m-d'))
             ->orderBy('a.id','DESC')
             //->where('a.monto', '!=', '0')
@@ -1357,8 +1362,9 @@ class ReportesController extends Controller
 
         
         $resultados = DB::table('consultas as a')
-        ->select('a.id', 'a.atendido', 'a.created_at','a.usuario',DB::raw('SUM(a.monto) as monto'),'c.name', 'c.lastname')
+        ->select('a.id', 'a.sede','a.atendido', 'a.created_at','a.usuario',DB::raw('SUM(a.monto) as monto'),'c.name', 'c.lastname')
         ->join('users as c', 'c.id', 'a.atendido')
+        ->where('a.sede', '=', $request->session()->get('sede'))
         ->whereBetween('a.created_at', [$f1, $f2])
         ->orderBy('a.id','DESC')
         ->groupBy('a.atendido')
@@ -1367,16 +1373,18 @@ class ReportesController extends Controller
 
 
     $totales = DB::table('consultas as a')
-    ->select('a.id', 'a.atendido', 'a.created_at','a.usuario',DB::raw('SUM(a.monto) as monto,COUNT(*) as cantidad'),'c.name', 'c.lastname')
+    ->select('a.id', 'a.sede','a.atendido', 'a.created_at','a.usuario',DB::raw('SUM(a.monto) as monto,COUNT(*) as cantidad'),'c.name', 'c.lastname')
     ->join('users as c', 'c.id', 'a.atendido')
+    ->where('a.sede', '=', $request->session()->get('sede'))
     ->whereBetween('a.created_at', [$f1, $f2])
     ->orderBy('a.id','DESC')
     ->first();
 
    
     $usuarios = DB::table('consultas as a')
-    ->select('a.id', 'a.atendido','a.created_at','c.name', 'c.lastname','c.id as usuario')
+    ->select('a.id', 'a.sede','a.atendido','a.created_at','c.name', 'c.lastname','c.id as usuario')
     ->join('users as c', 'c.id', 'a.atendido')
+    ->where('a.sede', '=', $request->session()->get('sede'))
     ->whereBetween('a.created_at', [$f1, $f2])
     ->orderBy('a.id','DESC')
     ->groupBy('a.atendido')
@@ -1397,9 +1405,10 @@ class ReportesController extends Controller
 
 
             $resultados = DB::table('consultas as a')
-            ->select('a.id', 'a.atendido', 'a.created_at','a.usuario',DB::raw('SUM(a.monto) as monto'),'c.name', 'c.lastname')
+            ->select('a.id','a.sede', 'a.atendido', 'a.created_at','a.usuario',DB::raw('SUM(a.monto) as monto'),'c.name', 'c.lastname')
             ->join('users as c', 'c.id', 'a.atendido')
             ->whereBetween('a.created_at', [$f1, $f2])
+            ->where('a.sede', '=', $request->session()->get('sede'))
             ->orderBy('a.id','DESC')
             ->groupBy('a.atendido')
             ->get();
@@ -1407,17 +1416,19 @@ class ReportesController extends Controller
 
     
         $totales = DB::table('consultas as a')
-        ->select('a.id', 'a.atendido', 'a.created_at','a.usuario',DB::raw('SUM(a.monto) as monto,COUNT(*) as cantidad'),'c.name', 'c.lastname')
+        ->select('a.id', 'a.sede','a.atendido', 'a.created_at','a.usuario',DB::raw('SUM(a.monto) as monto,COUNT(*) as cantidad'),'c.name', 'c.lastname')
         ->join('users as c', 'c.id', 'a.atendido')
         ->whereBetween('a.created_at', [$f1, $f2])
+        ->where('a.sede', '=', $request->session()->get('sede'))
         ->orderBy('a.id','DESC')
         ->first();
 
        
         $usuarios = DB::table('consultas as a')
-        ->select('a.id', 'a.atendido','a.created_at','c.name', 'c.lastname','c.id as usuario')
+        ->select('a.id','a.sede', 'a.atendido','a.created_at','c.name', 'c.lastname','c.id as usuario')
         ->join('users as c', 'c.id', 'a.atendido')
         ->whereBetween('a.created_at', [$f1, $f2])
+        ->where('a.sede', '=', $request->session()->get('sede'))
         ->orderBy('a.id','DESC')
         ->groupBy('a.atendido')
         ->get();
