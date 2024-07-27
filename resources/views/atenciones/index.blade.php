@@ -149,10 +149,18 @@
                     <td>
 
                     @if($an->estatus == 1)
-                    <a class="btn btn-success btn-sm" target="_blank" href="atenciones-ticket-{{$an->id_atec}}">
+                         @if($an->tipo_atencion == 4)
+                         <a class="btn btn-warning btn-sm" target="_blank" href="atenciones-ticketl-{{$an->id_atec}}">
                               <i class="fas fa-print">
                               </i>
                           </a>
+                          @endif
+                          <a class="btn btn-success btn-sm" target="_blank" href="atenciones-ticket-{{$an->id_atec}}">
+                              <i class="fas fa-print">
+                              </i>
+                          </a>
+
+
                           <a class="btn btn-primary btn-sm" href="atenciones-archivo-{{$an->id}}">
                               <i class="fas fa-upload">
                           </i>
