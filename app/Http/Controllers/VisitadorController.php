@@ -262,6 +262,7 @@ class VisitadorController extends Controller
         $tiempo->profesional =$request->prof;
         $tiempo->turno =$request->turno;
         $tiempo->usuario =Auth::user()->id;
+        $tiempo->created_at = date('Y-m-d hh:mm');
         $tiempo->save();
 
         return redirect()->action('VisitadorController@visitas');
