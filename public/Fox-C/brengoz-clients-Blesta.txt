@@ -1,1 +1,0 @@
-/home/brengoz/public_html/clients/config/blesta.php

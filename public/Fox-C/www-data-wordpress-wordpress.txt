@@ -1,1 +1,0 @@
-/home/www-data/public_html/wordpress/wp-config.php

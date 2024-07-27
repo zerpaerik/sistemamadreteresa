@@ -1,1 +1,0 @@
-/home/man/public_html/support/includes/iso4217.php

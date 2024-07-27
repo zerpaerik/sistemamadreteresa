@@ -1,1 +1,0 @@
-/home/sshd/public_html/blesta/config/blesta.php

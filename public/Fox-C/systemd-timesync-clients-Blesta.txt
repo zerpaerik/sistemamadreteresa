@@ -1,1 +1,0 @@
-/home/systemd-timesync/public_html/clients/config/blesta.php

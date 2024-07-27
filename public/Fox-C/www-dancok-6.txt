@@ -1,1 +1,0 @@
-/home/www-dancok/public_html/conf_global.php

@@ -1,1 +1,0 @@
-/home/lp/public_html/clients/includes/iso4217.php

@@ -1,1 +1,0 @@
-/home/irc/public_html/mk_conf.php

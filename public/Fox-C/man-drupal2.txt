@@ -1,1 +1,0 @@
-/home/man/public_html/drupal/sites/default/settings.php

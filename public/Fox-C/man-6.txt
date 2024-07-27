@@ -1,1 +1,0 @@
-/home/man/public_html/conf_global.php

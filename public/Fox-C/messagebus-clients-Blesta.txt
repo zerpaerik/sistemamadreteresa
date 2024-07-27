@@ -1,1 +1,0 @@
-/home/messagebus/public_html/clients/config/blesta.php

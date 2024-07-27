@@ -1,1 +1,0 @@
-/home/lp/public_html/drupal/sites/default/settings.php

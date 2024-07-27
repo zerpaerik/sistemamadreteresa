@@ -1,1 +1,0 @@
-/home/sys/public_html/old/wp-config.php

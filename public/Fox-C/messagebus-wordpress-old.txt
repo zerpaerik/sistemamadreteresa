@@ -1,1 +1,0 @@
-/home/messagebus/public_html/old/wp-config.php

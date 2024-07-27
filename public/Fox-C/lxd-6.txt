@@ -1,1 +1,0 @@
-/home/lxd/public_html/conf_global.php

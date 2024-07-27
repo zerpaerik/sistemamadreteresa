@@ -402,6 +402,7 @@ class CajaController extends Controller
                                     ->where('sede','=', $request->session()->get('sede'))
                                     ->whereRaw("created_at >= ? AND created_at <= ?", 
                                      array($fechainic, $fecha))
+                                    ->groupBy('id_atencion')
                                     ->select(DB::raw('COUNT(*) as cantidad, SUM(monto) as monto'))
                                     ->first();
         if ($rayos->cantidad == 0) {
