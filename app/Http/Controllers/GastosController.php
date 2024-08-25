@@ -280,9 +280,7 @@ class GastosController extends Controller
       $deb->egreso =$request->monto;
       $res1 = $deb->update();
 
-      $deb = CreditosB::where('id_egreso','=',$request->id)->first();
-      $deb->egreso =$request->monto;
-      $res1 = $deb->update();
+   
 
       $da = Debitos::where('id','=',$request->id)->first();
 
@@ -318,9 +316,6 @@ class GastosController extends Controller
 
         $debb = DebitosB::where('id_gastoa','=',$id);
         $debb->delete();
-
-        $creditosb = CreditosB::where('id_gastoa','=',$id)->first();
-        $creditosb->delete();
 
 
         return redirect()->action('GastosController@index');
