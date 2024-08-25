@@ -1992,11 +1992,7 @@
     </div>
     @endif
 
-<<<<<<< HEAD
-    @if(\Auth::user()->rol == 13)
-=======
              @if(\Auth::user()->rol == 13)
->>>>>>> 1f91ec6f970bb92d51ea12eb40c28eb7d80f7d80
 
     
 <a href="{{route('home')}}" class="brand-link">
