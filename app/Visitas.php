@@ -14,7 +14,7 @@ class Visitas extends Model
     protected $table="visitas";
 
     protected $fillable = [
-        'profesional','turno','usuario'
+        'profesional','turno','usuario','created_at'
     ];
 
     

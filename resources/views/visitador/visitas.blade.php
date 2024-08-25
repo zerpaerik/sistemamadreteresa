@@ -140,7 +140,7 @@
                     <td>{{$an->telefono}}</td>
                     <td>{{$an->centro}}</td>
                     <td>{{$an->visiape}} {{$an->visiname}}</td>
-                    <td>{{date('d-M-y h:m', strtotime($an->created_at))}}</td>
+                    <td>{{date('d-M-y H:i', strtotime($an->created_at))}}</td>
                     <td>{{$an->turno}}</td>
                     <td>
                     <a class="btn btn-danger btn-sm" href="visitas-eliminar-{{$an->id}}" onclick="return confirm('¿Desea Eliminar este registro?')">
