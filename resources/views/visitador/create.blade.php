@@ -95,7 +95,7 @@
                    
                   <div class="row">
                   
-                  <div class="col-md-6">
+                  <div class="col-md-4">
                     <label for="exampleInputEmail1">Profesional</label>
                     <select class="form-control" name="prof" id="el2">
                         @foreach($profesionales as $prof)
@@ -103,7 +103,9 @@
                         @endforeach
                         </select>
                   </div>
-                  <div class="col-md-3">
+
+
+                        <div class="col-md-4">
                     <label for="exampleInputEmail1">Turno</label>
                     <select class="form-control" name="turno" id="el2">
 						    <option value="MAÑANA">MAÑANA</option>
@@ -114,6 +116,12 @@
 
                  
                   </div>
+
+                      
+                  
+                 
+                  </div>
+                 
                   <br>
                   
                   
