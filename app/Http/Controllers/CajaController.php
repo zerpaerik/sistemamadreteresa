@@ -405,6 +405,7 @@ class CajaController extends Controller
                                     ->groupBy('id_atencion')
                                     ->select(DB::raw('COUNT(*) as cantidad, SUM(monto) as monto'))
                                     ->first();
+
         if ($rayos != null && $rayos->cantidad == 0) {
             $rayos->monto = 0;
         }
@@ -507,7 +508,7 @@ class CajaController extends Controller
             $totalEgresos += $egreso->monto;
         }
     
-         $totalIngresos = $servicios->monto + $consultas->monto + $eco->monto  + $cuentasXcobrar->monto + $metodos->monto + $paq->monto  + $lab->monto + $ingresos->monto;
+         $totalIngresos = $servicios->monto + $consultas->monto + $eco->monto + $rayos->monto  + $cuentasXcobrar->monto + $metodos->monto + $paq->monto  + $lab->monto + $ingresos->monto;
 
         
  

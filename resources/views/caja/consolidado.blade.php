@@ -113,8 +113,8 @@
 		</tr>
 		<tr>
 			<td style="padding: 0;width: 5%;text-overflow: ellipsis;">RayosX</td>
-			<td style="padding: 0;width: 5%;text-overflow: ellipsis;">0</td>
-			<td style="padding: 0;width: 5%;text-overflow: ellipsis;">0</td>
+			<td style="padding: 0;width: 5%;text-overflow: ellipsis;">{{ $rayos->cantidad }}</td>
+			<td style="padding: 0;width: 5%;text-overflow: ellipsis;">{{ $rayos->monto }}</td>
 		</tr>
 		<tr>
 			<td style="padding: 0;width: 5%;text-overflow: ellipsis;">Laboratorios</td>
