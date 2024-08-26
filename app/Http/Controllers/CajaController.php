@@ -405,7 +405,7 @@ class CajaController extends Controller
                                     ->groupBy('id_atencion')
                                     ->select(DB::raw('COUNT(*) as cantidad, SUM(monto) as monto'))
                                     ->first();
-        if ($rayos->cantidad == 0) {
+        if ($rayos != null && $rayos->cantidad == 0) {
             $rayos->monto = 0;
         }
 
