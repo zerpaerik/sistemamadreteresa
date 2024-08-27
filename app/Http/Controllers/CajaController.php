@@ -406,10 +406,6 @@ class CajaController extends Controller
                                     ->select(DB::raw('COUNT(*) as cantidad, SUM(monto) as monto'))
                                     ->first();
 
-        if ($rayos != null && $rayos->cantidad == 0) {
-            $rayos->monto = 0;
-        }
-
         $paq = Creditos::where('origen', 'PAQUETES')
         ->where('sede','=', $request->session()->get('sede'))
         ->whereRaw("created_at >= ? AND created_at <= ?", 
@@ -508,19 +504,18 @@ class CajaController extends Controller
             $totalEgresos += $egreso->monto;
         }
 
-        if($rayos != null || $rayos->monto != null){
-          $totalIngresos = $servicios->monto + $consultas->monto + $eco->monto + $rayos->monto  + $cuentasXcobrar->monto + $metodos->monto + $paq->monto  + $lab->monto + $ingresos->monto;
+        $sumServicios =  $servicios != null ? $servicios->monto : 0;
+        $sumConsultas =  $consultas != null ? $consultas->monto : 0;
+        $sumEco =  $eco != null ? $eco->monto : 0;
+        $sumRayos =  $rayos != null ? $rayos->monto : 0;
+        $sumcuentasXcobrar =  $cuentasXcobrar != null ? $cuentasXcobrar->monto : 0;
+        $summetodos =  $metodos != null ? $metodos->monto : 0;
+        $sumpaq =  $paq != null ? $paq->monto : 0;
+        $sumlab =  $lab != null ? $lab->monto : 0;
+        $sumingresos =  $ingresos != null ? $ingresos->monto : 0;
 
+        $totalIngresos = $sumServicios + $sumConsultas + $sumEco + $sumRayos + $sumcuentasXcobrar + $summetodos  + $sumpaq + $sumlab + $sumingresos;
 
-        } else {
-          $totalIngresos = $servicios->monto + $consultas->monto + $eco->monto  + $cuentasXcobrar->monto + $metodos->monto + $paq->monto  + $lab->monto + $ingresos->monto;
-
-
-        }
-    
-
-        
- 
        
        $view = \View::make('caja.consolidado', compact('servicios', 'consultas','eco','rayos', 'cuentasXcobrar','metodos','lab','paq','caja','egresos','ingresos','efectivo','tarjeta','deposito','yape','totalEgresos','totalIngresos'));
       

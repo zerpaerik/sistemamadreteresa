@@ -103,50 +103,109 @@
 		
 		<tr>
 			<td style="padding: 0;width: 5%;text-overflow: ellipsis;">Servicios</td>
+
+			@if($servicios == null)
+			<td style="padding: 0;width: 5%;text-overflow: ellipsis;">0</td>
+			<td style="padding: 0;width: 5%;text-overflow: ellipsis;">0</td>
+			@else
 			<td style="padding: 0;width: 5%;text-overflow: ellipsis;">{{ $servicios->cantidad }}</td>
 			<td style="padding: 0;width: 5%;text-overflow: ellipsis;">{{ $servicios->monto }}</td>
+			@endif
+
 		</tr>
 		<tr>
 			<td style="padding: 0;width: 5%;text-overflow: ellipsis;">Ecografias</td>
+
+			@if($eco == null)
+			<td style="padding: 0;width: 5%;text-overflow: ellipsis;">0</td>
+			<td style="padding: 0;width: 5%;text-overflow: ellipsis;">0</td>
+			@else
 			<td style="padding: 0;width: 5%;text-overflow: ellipsis;">{{ $eco->cantidad }}</td>
 			<td style="padding: 0;width: 5%;text-overflow: ellipsis;">{{ $eco->monto }}</td>
+			@endif
+
 		</tr>
 		<tr>
 			<td style="padding: 0;width: 5%;text-overflow: ellipsis;">RayosX</td>
+			@if($rayos == null)
+			<td style="padding: 0;width: 5%;text-overflow: ellipsis;">0</td>
+			<td style="padding: 0;width: 5%;text-overflow: ellipsis;">0</td>
+			@else
 			<td style="padding: 0;width: 5%;text-overflow: ellipsis;">{{ $rayos->cantidad }}</td>
 			<td style="padding: 0;width: 5%;text-overflow: ellipsis;">{{ $rayos->monto }}</td>
+			@endif
+			
 		</tr>
 		<tr>
 			<td style="padding: 0;width: 5%;text-overflow: ellipsis;">Laboratorios</td>
+
+			@if($lab == null)
+			<td style="padding: 0;width: 5%;text-overflow: ellipsis;">0</td>
+			<td style="padding: 0;width: 5%;text-overflow: ellipsis;">0</td>
+			@else
 			<td style="padding: 0;width: 5%;text-overflow: ellipsis;">{{ $lab->cantidad }}</td>
 			<td style="padding: 0;width: 5%;text-overflow: ellipsis;">{{ $lab->monto }}</td>
+			@endif
 		</tr>
 		<tr>
 			<td style="padding: 0;width: 5%;text-overflow: ellipsis;">Paquetes</td>
+			@if($paq == null)
+			<td style="padding: 0;width: 5%;text-overflow: ellipsis;">0</td>
+			<td style="padding: 0;width: 5%;text-overflow: ellipsis;">0</td>
+			@else
 			<td style="padding: 0;width: 5%;text-overflow: ellipsis;">{{ $paq->cantidad }}</td>
 			<td style="padding: 0;width: 5%;text-overflow: ellipsis;">{{ $paq->monto }}</td>
+			@endif
+			
 		</tr>
 		<tr>
 			<td style="padding: 0;width: 5%;text-overflow: ellipsis;">Consultas</td>
+
+			@if($consultas == null)
+			<td style="padding: 0;width: 5%;text-overflow: ellipsis;">0</td>
+			<td style="padding: 0;width: 5%;text-overflow: ellipsis;">0</td>
+			@else
 			<td style="padding: 0;width: 5%;text-overflow: ellipsis;">{{ $consultas->cantidad }}</td>
 			<td style="padding: 0;width: 5%;text-overflow: ellipsis;">{{ $consultas->monto }}</td>
+			@endif
+
 		</tr>
 	
 		<tr>
 			<td style="padding: 0;width: 5%;text-overflow: ellipsis;">Cuentas por Cobrar</td>
+
+			@if($cuentasXcobrar == null)
+			<td style="padding: 0;width: 5%;text-overflow: ellipsis;">0</td>
+			<td style="padding: 0;width: 5%;text-overflow: ellipsis;">0</td>
+			@else
 			<td style="padding: 0;width: 5%;text-overflow: ellipsis;">{{ $cuentasXcobrar->cantidad }}</td>
 			<td style="padding: 0;width: 5%;text-overflow: ellipsis;">{{ $cuentasXcobrar->monto }}</td>
+			@endif
 		</tr>
 		<tr>
 			<td style="padding: 0;width: 5%;text-overflow: ellipsis;">Métodos Anticonceptivos</td>
+
+			@if($metodos == null)
+			<td style="padding: 0;width: 5%;text-overflow: ellipsis;">0</td>
+			<td style="padding: 0;width: 5%;text-overflow: ellipsis;">0</td>
+			@else
 			<td style="padding: 0;width: 5%;text-overflow: ellipsis;">{{ $metodos->cantidad }}</td>
 			<td style="padding: 0;width: 5%;text-overflow: ellipsis;">{{ $metodos->monto }}</td>
+			@endif
+
 		</tr>
 
 		<tr>
 			<td style="padding: 0;width: 5%;text-overflow: ellipsis;">Otros Ingresos</td>
+
+			@if($ingresos == null)
+			<td style="padding: 0;width: 5%;text-overflow: ellipsis;">0</td>
+			<td style="padding: 0;width: 5%;text-overflow: ellipsis;">0</td>
+			@else
 			<td style="padding: 0;width: 5%;text-overflow: ellipsis;">{{ $ingresos->cantidad }}</td>
 			<td style="padding: 0;width: 5%;text-overflow: ellipsis;">{{ $ingresos->monto }}</td>
+			@endif
+
 		</tr>
 		
 	</table>
