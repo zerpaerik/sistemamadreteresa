@@ -507,8 +507,17 @@ class CajaController extends Controller
         foreach ($egresos as $egreso) {
             $totalEgresos += $egreso->monto;
         }
+
+        if($rayos != null || $rayos->monto != null){
+          $totalIngresos = $servicios->monto + $consultas->monto + $eco->monto + $rayos->monto  + $cuentasXcobrar->monto + $metodos->monto + $paq->monto  + $lab->monto + $ingresos->monto;
+
+
+        } else {
+          $totalIngresos = $servicios->monto + $consultas->monto + $eco->monto  + $cuentasXcobrar->monto + $metodos->monto + $paq->monto  + $lab->monto + $ingresos->monto;
+
+
+        }
     
-         $totalIngresos = $servicios->monto + $consultas->monto + $eco->monto + $rayos->monto  + $cuentasXcobrar->monto + $metodos->monto + $paq->monto  + $lab->monto + $ingresos->monto;
 
         
  
