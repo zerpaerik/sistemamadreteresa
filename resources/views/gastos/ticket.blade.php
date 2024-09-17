@@ -40,8 +40,11 @@
 		<img src="/var/www/html/sistemamadreteresa/public/image.png"  style="width: 40%; color: black;"/>
 	</div>
 
-    <div  style="font-size: 15px; text-align: center;margin-bottom:-60px;margin-top: -30px;">
+  <div  style="font-size: 15px; text-align: center;margin-bottom:-60px;margin-top: -30px;">
     @if(Session::get('sedeName') == 'PROCERES')
+    <div class="" style="font-size: 35px; text-align: center;margin-bottom: 15px;">
+		<img src="/var/www/html/mt/sistemamadreteresa/public/image.png"  style="width: 40%; color: black;"/>
+	</div>
 
 		<p><strong>MADRE TERESA SAC-{{Session::get('sedeName')}}</strong></p>
 		<p style="margin-top: -20px;"><strong>RUC: 20600971116</strong></p>
@@ -50,12 +53,28 @@
 		<p style="margin-top: -20px;"><strong>Teléfono:  01 3764637</strong></p>
 		<p style="margin-top: -20px;"><strong>WhatsApp: 978 216 135</strong></p>
    @elseif(Session::get('sedeName') == 'CANTO REY')
+   <div class="" style="font-size: 35px; text-align: center;margin-bottom: 15px;">
+		<img src="/var/www/html/mt/sistemamadreteresa/public/image.png"  style="width: 40%; color: black;"/>
+	</div>
    <p><strong>MADRE TERESA SAC-{{Session::get('sedeName')}}</strong></p>
 		<p style="margin-top: -20px;"><strong>RUC: 20600971116</strong></p>
         <p style="margin-top: -10px;"><strong>Dirección: Av Wiesse 3331 2do piso  SJL</strong></p>
 		<p style="margin-top: -20px;"><strong>Teléfono:  01 2534502</strong></p>
 		<p style="margin-top: -20px;"><strong>WhatsApp: 978 216 135</strong></p>
         @elseif(Session::get('sedeName') == 'VIDA FELIZ')
+        <div class="" style="font-size: 35px; text-align: center;margin-bottom: 15px;">
+		<img src="/var/www/html/mt/sistemamadreteresa/public/image.png"  style="width: 40%; color: black;"/>
+	</div>
+   <p><strong>VIDA FELIZ SAC- MADRE TERESA</strong></p>
+		<p style="margin-top: -20px;"><strong>RUC: 20602415539</strong></p>
+        <p style="margin-top: -10px;"><strong>Dirección: Av Próceres de la independencia 1795
+2do piso SJL</strong></p>
+		<p style="margin-top: -20px;"><strong>Teléfono:  01 4596494</strong></p>
+		<p style="margin-top: -20px;"><strong>WhatsApp: 978 216 135</strong></p>
+    @elseif(Session::get('sedeName') == 'LABORATORIO VIDA')
+    <div class="" style="font-size: 35px; text-align: center;margin-bottom: 15px;">
+		<img src="/var/www/html/mt/sistemamadreteresa/public/image.png"  style="width: 40%; color: black;"/>
+	</div>
    <p><strong>VIDA FELIZ SAC- MADRE TERESA</strong></p>
 		<p style="margin-top: -20px;"><strong>RUC: 20602415539</strong></p>
         <p style="margin-top: -10px;"><strong>Dirección: Av Próceres de la independencia 1795
@@ -63,12 +82,18 @@
 		<p style="margin-top: -20px;"><strong>Teléfono:  01 4596494</strong></p>
 		<p style="margin-top: -20px;"><strong>WhatsApp: 978 216 315</strong></p>
     @elseif(Session::get('sedeName') == 'INDEPENDENCIA')
+    <div class="" style="font-size: 35px; text-align: center;margin-bottom: 15px;">
+		<img src="/var/www/html/mt/sistemamadreteresa/public/image.png"  style="width: 40%; color: black;"/>
+	</div>
    <p><strong>SYSMEDIC PERU SAC -INDEPENDENCIA</strong></p>
 		<p style="margin-top: -20px;"><strong>RUC: 20606283980</strong></p>
         <p style="margin-top: -10px;"><strong>Dirección: AV.CHINCHAYSUYO 323 TAHUANTINSUYO</strong></p>
 		<p style="margin-top: -20px;"><strong>Teléfono: 01 5265711</strong></p>
 		<p style="margin-top: -20px;"><strong>WhatsApp: 940 309 507</strong></p>
     @elseif(Session::get('sedeName') == 'ZARATE')
+    <div class="" style="font-size: 35px; text-align: center;margin-bottom: 15px;">
+		<img src="/var/www/html/mt/sistemamadreteresa/public/image.png"  style="width: 40%; color: black;"/>
+	</div>
     <p><strong>SYSMEDIC PERU SAC</strong></p>
     <p style="margin-top: -20px;"><strong>RUC: 20606283980</strong></p>
         <p style="margin-top: -10px;"><strong>Dirección:  Av. gran chimu 745 Zarate SJL</strong></p>
@@ -76,13 +101,14 @@
 		<p style="margin-top: -20px;"><strong>WhatsApp: 924 520 026</strong></p>
 
     @else
-   <p><strong>SYSMEDIC PERU SAC -LOS OLIVOS</strong></p>
-		<p style="margin-top: -20px;"><strong>RUC: 20606283980</strong></p>
+   <p><strong>SALUD ECOSMED</strong></p>
         <p style="margin-top: -10px;"><strong>Dirección: AV.PROCERES 7832 URB PRO</strong></p>
-		<p style="margin-top: -20px;"><strong>Teléfono: 01 5390547</strong></p>
-		<p style="margin-top: -20px;"><strong>WhatsApp: 940 309 506</strong></p>
+		<p style="margin-top: -20px;"><strong>Teléfono: 955020438</strong></p>
+		<p style="margin-top: -20px;"><strong>WhatsApp: 955020438</strong></p>
 	
     @endif
+
+  
 		
 
 
