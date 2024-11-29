@@ -44,7 +44,7 @@
 		<img src="/var/www/html/mt/sistemamadreteresa/public/image.png"  style="width: 40%; color: black;"/>
 	</div>
 
-		<p><strong>MADRE TERESA SAC-{{Session::get('sedeName')}}</strong></p>
+		<p><strong>MADRE TERESA SAC-SEDE PRINCIPAL</strong></p>
     <p style="margin-top: -20px;"><strong>RUC: 20600971116</strong></p>
         <p style="margin-top: -10px;"><strong>Dirección: Calle los Eneldos 151 Urb San Hilarion - SJL</strong></p>
 		<p style="margin-top: -20px;"><strong>WhatsApp: 978 216 135</strong></p>
