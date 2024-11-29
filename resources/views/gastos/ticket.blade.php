@@ -45,10 +45,8 @@
 	</div>
 
 		<p><strong>MADRE TERESA SAC-{{Session::get('sedeName')}}</strong></p>
-		<p style="margin-top: -20px;"><strong>RUC: 20600971116</strong></p>
-        <p style="margin-top: -10px;"><strong>Dirección: Av Próceres de la independencia 1781
-3er piso SJL</strong></p>
-		<p style="margin-top: -20px;"><strong>Teléfono:  01 3764637</strong></p>
+    <p style="margin-top: -20px;"><strong>RUC: 20600971116</strong></p>
+        <p style="margin-top: -10px;"><strong>Dirección: Calle los Eneldos 151 Urb San Hilarion - SJL</strong></p>
 		<p style="margin-top: -20px;"><strong>WhatsApp: 978 216 135</strong></p>
    @elseif(Session::get('sedeName') == 'CANTO REY')
    <div class="" style="font-size: 35px; text-align: center;margin-bottom: 15px;">
