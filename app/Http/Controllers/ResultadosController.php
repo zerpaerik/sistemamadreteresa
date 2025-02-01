@@ -542,7 +542,7 @@ class ResultadosController extends Controller
         $img = $request->file('informe');
         $nombre_imagen=$img->getClientOriginalName();
         $rs->estatus=3;
-        $rs->usuario_informe=Auth::user()->id;
+        $rs->usuario_informe= Auth::user()->id;
         $rs->informe_guarda=$nombre_imagen;
         if ($rs->save()) {
             \Storage::disk('public')->put($nombre_imagen, \File::get($img));
