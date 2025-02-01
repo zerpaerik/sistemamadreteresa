@@ -451,6 +451,17 @@ class ResultadosController extends Controller
 
       $atenc = Atenciones::where('id','=',$res->id_atencion)->first();
 
+      $rs = ResultadosServicios::where('id','=',$request->id)->first();
+      $img = $request->file('informe');
+      $nombre_imagen=$img->getClientOriginalName();
+      $rs->estatus=3;
+      $rs->usuario_informe= Auth::user()->id;
+      $rs->informe_guarda= $nombre_imagen;
+      if ($rs->save()) {
+          \Storage::disk('public')->put($nombre_imagen, \File::get($img));
+      }
+      \DB::commit();
+
       
 
       if ($usuario->tipo_personal == 'Tecnólogo' && $servicio->porcentaje2 > 0 && $atenc->tipo_atencion != 7) {
@@ -538,16 +549,7 @@ class ResultadosController extends Controller
 
 
 
-        $rs = ResultadosServicios::where('id','=',$request->id)->first();
-        $img = $request->file('informe');
-        $nombre_imagen=$img->getClientOriginalName();
-        $rs->estatus=3;
-        $rs->usuario_informe= Auth::user()->id;
-        $rs->informe_guarda=$nombre_imagen;
-        if ($rs->save()) {
-            \Storage::disk('public')->put($nombre_imagen, \File::get($img));
-        }
-        \DB::commit();
+      
 
 
         return redirect()->route('resultados.index')
