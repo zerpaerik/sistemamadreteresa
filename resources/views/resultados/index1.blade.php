@@ -147,6 +147,7 @@
                                     <option value="AGLUTINACIONES.docx">AGLUTINACIONES</option>
                                     <option value="ALFA FETOPROTEINAS.docx">ALFA FETOPROTEINASsss</option>
                                     <option value="AMILASA SERICA.docx">AMILASA SERICA</option>
+                                    <option value="AMINAS.docx">AMINAS</option>
 									                  <option value="ANTIGENO SARS CoV 2.docx">ANTIGENO SARS CoV 2</option>
                                     <option value="ASO.docx">ASO</option>
                                     <option value="BETA HCG(cuantitativo).docx">BETA HCG(cuantitativo)</option>
