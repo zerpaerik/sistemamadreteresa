@@ -49,7 +49,7 @@
 		<p style="margin-top: -20px;"><strong>WhatsApp: 978 216 135</strong></p>
    @elseif(Session::get('sedeName') == 'CANTO REY')
    <div class="" style="font-size: 35px; text-align: center;margin-bottom: 15px;">
-		<img src="/var/www/html/mt/sistemamadreteresa/public/image.png"  style="width: 40%; color: black;"/>
+		<img src="/var/www/html/sistemamadreteresa/public/image.png"  style="width: 40%; color: black;"/>
 	</div>
    <p><strong>MADRE TERESA SAC-{{Session::get('sedeName')}}</strong></p>
 		<p style="margin-top: -20px;"><strong>RUC: 20600971116</strong></p>
@@ -58,7 +58,7 @@
 		<p style="margin-top: -20px;"><strong>WhatsApp: 978 216 135</strong></p>
         @elseif(Session::get('sedeName') == 'VIDA FELIZ')
         <div class="" style="font-size: 35px; text-align: center;margin-bottom: 15px;">
-		<img src="/var/www/html/mt/sistemamadreteresa/public/image.png"  style="width: 40%; color: black;"/>
+		<img src="/var/www/html/sistemamadreteresa/public/image.png"  style="width: 40%; color: black;"/>
 	</div>
    <p><strong>Madre Teresa Salud SAC</strong></p>
 		<p style="margin-top: -20px;"><strong>RUC: 20613410717</strong></p>
@@ -68,7 +68,7 @@
 		<p style="margin-top: -20px;"><strong>WhatsApp: 978 216 135</strong></p>
     @elseif(Session::get('sedeName') == 'LABORATORIO VIDA')
     <div class="" style="font-size: 35px; text-align: center;margin-bottom: 15px;">
-		<img src="/var/www/html/mt/sistemamadreteresa/public/image.png"  style="width: 40%; color: black;"/>
+		<img src="/var/www/html/sistemamadreteresa/public/image.png"  style="width: 40%; color: black;"/>
 	</div>
    <p><strong>VIDA FELIZ SAC- MADRE TERESA</strong></p>
 		<p style="margin-top: -20px;"><strong>RUC: 20602415539</strong></p>
@@ -78,7 +78,7 @@
 		<p style="margin-top: -20px;"><strong>WhatsApp: 978 216 315</strong></p>
     @elseif(Session::get('sedeName') == 'INDEPENDENCIA')
     <div class="" style="font-size: 35px; text-align: center;margin-bottom: 15px;">
-		<img src="/var/www/html/mt/sistemamadreteresa/public/image.png"  style="width: 40%; color: black;"/>
+		<img src="/var/www/html/sistemamadreteresa/public/image.png"  style="width: 40%; color: black;"/>
 	</div>
    <p><strong>SYSMEDIC PERU SAC -INDEPENDENCIA</strong></p>
 		<p style="margin-top: -20px;"><strong>RUC: 20606283980</strong></p>
@@ -87,7 +87,7 @@
 		<p style="margin-top: -20px;"><strong>WhatsApp: 940 309 507</strong></p>
     @elseif(Session::get('sedeName') == 'ZARATE')
     <div class="" style="font-size: 35px; text-align: center;margin-bottom: 15px;">
-		<img src="/var/www/html/mt/sistemamadreteresa/public/image.png"  style="width: 40%; color: black;"/>
+		<img src="/var/www/html/sistemamadreteresa/public/image.png"  style="width: 40%; color: black;"/>
 	</div>
     <p><strong>SYSMEDIC PERU SAC</strong></p>
     <p style="margin-top: -20px;"><strong>RUC: 20606283980</strong></p>
