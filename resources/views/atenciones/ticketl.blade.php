@@ -40,7 +40,7 @@
     <div  style="font-size: 15px; text-align: center;margin-bottom:-60px;margin-top: -30px;">
     @if(Session::get('sedeName') == 'PROCERES')
     <div class="" style="font-size: 35px; text-align: center;margin-bottom: 15px;">
-		<img src="/var/www/html/mt/sistemamadreteresa/public/image.png"  style="width: 40%; color: black;"/>
+		<img src="/var/www/html/sistemamadreteresa/public/image.png"  style="width: 40%; color: black;"/>
 	</div>
 
 		<p><strong>Consultorio Medico Salud y Vida SAC</strong></p>
