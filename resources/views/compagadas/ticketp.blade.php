@@ -55,9 +55,7 @@
 </head>
 <body>
 
-   <img src="/var/www/html/mt/sistemamadreteresa/public/image.png"  style="width: 40%; color: black;"/>
-
-
+	<img src="/var/www/html/sistemamadreteresa/public/image.png"  style="width: 40%; color: black;"/>
 	<p style="margin-left: 550px;margin-top: -100px;"><strong>SEDE:</strong>{{ Session::get('sedeName') }}</p>
 
 
