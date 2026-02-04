@@ -77,6 +77,8 @@ table {
 		</div>
 		<div class="text-center title-header col-12">
 			<center><strong>HISTORIA CLINICA</strong> </center>
+            <center><strong>MADRE TERESA SAC</strong> </center>
+            <center><strong>RUC: 20600971116</strong> </center>
 		</div>
 		<br>
 		
